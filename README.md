@@ -7,7 +7,7 @@ Unity vs Ionic, you can have a look at some reviews from others [here](https://w
   
 ### Both of them wouldn't cost us any money to use
 ###### Ionic is open source.
-###### Unity has a "personal version" available. In short, if the Cyclops is going to be non-profit, than we will be able to use it for free.
+###### Unity has a "personal version" available. In short, if the Cyclops is going to be non-profit, then we will be able to use it for free.
 
 ## Pros of Ionic
 ### It is a very powerful tool for developing all platform web-apps (This is the practice of a lot of large companies when it comes to web-app development):
@@ -23,7 +23,7 @@ Unity vs Ionic, you can have a look at some reviews from others [here](https://w
 ### Unity is a powerful tool for rendering effects:
 ###### We can build anmations from scratch with the various libraries Unity provides
 ### The learning curve is less steep than JavaScript Frameworks
-###### C# will be the language, and it has concepts and structures similar to Java. The transition will be much easier (than a JS Framework).
+###### C# will be the language we use in Unity. C# has concepts and structures similar to Java. The language transition will be much easier for us.
 
 ## Cons of Unity
 
