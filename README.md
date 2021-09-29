@@ -29,3 +29,7 @@ Unity vs Ionic, you can have a look at some reviews from others [here](https://w
 ### Unity is not conventionally used for a web-app
 ###### It "probably" won't have any ready-to-use UI Modules
 ###### There would be a higher cost to implement the website if we choose unity.
+
+# JavaScript Tutorials
+## JavaScript Array Methods (forEach, Map, Filter, etc)
+### https://www.youtube.com/watch?v=SXb5LN_opbA&list=PLgBH1CvjOA62PBFIDq55-S6Beivje30A2
