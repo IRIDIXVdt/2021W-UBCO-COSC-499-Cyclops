@@ -30,7 +30,7 @@ Unity vs Ionic, you can have a look at some reviews from others [here](https://w
 ###### It "probably" won't have any ready-to-use UI Modules
 ###### There would be a higher cost to implement the website if we choose unity.
 ---
-# A collection of sources that provided insights into the development of this project
+## A collection of sources that provided insights into the development of this project
 ###### [Fetch API/Http Requests ](--your link here--)
 ###### [NPM (Node Package Manger)](--your link here--)
 ###### [JavaScript Fundamentals and Async Progamming](--your link here--)
