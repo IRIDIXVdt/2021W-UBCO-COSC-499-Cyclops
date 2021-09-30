@@ -33,6 +33,6 @@ Unity vs Ionic, you can have a look at some reviews from others [here](https://w
 ## A collection of sources that provided insights into the development of this project
 ###### [Fetch API/Http Requests ](--your link here--)
 ###### [NPM (Node Package Manger)](--your link here--)
-###### [JavaScript Fundamentals and Async Progamming](--your link here--)
+###### [JavaScript Fundamentals and Async Progamming](https://www.youtube.com/watch?v=cDcmIfXFaWc)
 ###### [JavaScript Array Methods (forEach, Map, Filter, etc)](--your link here--)
 
