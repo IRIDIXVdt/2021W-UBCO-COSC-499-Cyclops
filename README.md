@@ -31,7 +31,7 @@ Unity vs Ionic, you can have a look at some reviews from others [here](https://w
 ###### There would be a higher cost to implement the website if we choose unity.
 ---
 ## A collection of sources that provided insights into the development of this project
-###### [Fetch API/Http Requests ](--your link here--)
+###### [Fetch API/Http Requests ](https://youtube.com/playlist?list=PLRTv4dXttAvwSh2RfzTYQL5_EAMH4wqRf)
 ###### [NPM (Node Package Manger)](https://www.youtube.com/watch?v=P3aKRdUyr0s)
 ###### [JavaScript Fundamentals and Async Progamming](https://www.youtube.com/watch?v=cDcmIfXFaWc)
 ###### [JavaScript Array Methods (forEach, Map, Filter, etc)](--your link here--)
