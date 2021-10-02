@@ -1,1 +1,1 @@
-This folder recored the completion of our tech tranning completion 
+This folder contains the proof of tech training completions.
