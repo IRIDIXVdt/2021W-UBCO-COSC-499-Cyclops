@@ -1,1 +1,1 @@
-This Folder contains the meeting notes using the Scrum template
+This folder contains the team and client meeting notes. Team meeting notes use the Scrum template.
