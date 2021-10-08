@@ -1,5 +1,5 @@
 # UBCO-COSC-499-Cyclops
-The meeting notes are [here](/meetingnotes)
+The meeting notes are [here](/tree/main/MeetingNotes)
 
 Unity vs Ionic, you can have a look at some reviews from others [here](https://www.g2.com/compare/ionic-vs-unity)
 
