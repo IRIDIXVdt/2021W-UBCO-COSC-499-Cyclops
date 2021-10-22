@@ -1,0 +1,7 @@
+{
+  "name": "Cyclops",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
