@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+<body>
+    <h4>Provide a definition for MVVM:</h4>
+    <p>the Model View View-Model approach, the View is the presentation to the user, the View Model is both the presentation and the 
+      presentation logic, user input with the view passes through here, and finally the model is the business logic and data, which works with 
+      the user input from view model and sends the output back through view model to the view for the user. The Angular architecture can be 
+      viewed as a MVVM variant.</p>
+	
+	<h4>Provide three ways a component can get hold of its dependencies:</h4>
+    <p>1. an object can create a dependency itself, like with classes
+      2. the dependent object can declare the other object as a global variable
+      3. using dependency injections and pass the dependencies only where it's needed</p>
+	
+	<h4>Among the three options, which is the most favorable one and why?</h4>
+    <p>dependency injections, this is more flexible than the first two options where dependencies are hard coded. Testing is also easier as the 
+      dependent object doesn't need to know exactly how its dependencies work, only use it where it's needed.</p>
+	
+	<h4>What is DI, and role(s) does it involve？</h4>
+    <p>Dependency Injections let objects/components access services of other objects that it's dependent on without having to know how those objects work. The 
+      four involved roles are:</p>
+	<ol>
+      <li>the service from the depency that will be injected in for use by the dependent object</li>
+      <li>the client that is dependent upon the service - your component</li>
+      <li>the interface that we work with to use the service once it's injected</li>
+      <li>the injector entity that is imported into your component and is responsible for the service injection</li>
+	</ol>
+	
+	<h4>Provide some examples of Angular Router Terms:</h4>
+    <p>History API, pushState(), replaceState(), Router module, Routes, Router outlet, Router link, Route parameter</p>
+	
+	<h4>What is Single Page Application?</h4>
+    <p>A web application that fits on one page, it's downloaded along with all the required assets when the browser requests it from the server. 
+      If the browser needs to render a different view then only data in the form of JSON or XML files are sent back.</p>
+</body>
+</html>
