@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import SwiperCore, { Navigation, Pagination } from 'swiper';
+import { IonicSwiper } from '@ionic/angular';
+
+SwiperCore.use([IonicSwiper, Navigation, Pagination]);
 
 @Component({
   selector: 'app-tab3',
