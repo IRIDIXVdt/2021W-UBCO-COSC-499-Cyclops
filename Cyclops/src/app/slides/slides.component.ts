@@ -13,7 +13,7 @@ SwiperCore.use([IonicSwiper, Navigation, Pagination]);
 export class SlidesComponent {
 
   slideOpts = {
-    initialSlide: 1,
+    initialSlide: 0,
     speed: 400
   };
 
