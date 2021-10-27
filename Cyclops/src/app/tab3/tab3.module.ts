@@ -7,7 +7,7 @@ import { Tab3Page } from './tab3.page';
 import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
 
 import { Tab3PageRoutingModule } from './tab3-routing.module';
-import { SwiperModule } from 'swiper/angular';
+// import { SwiperModule } from 'swiper/angular';
 
 import { SlidesComponent } from '../slides/slides.component';
 
@@ -21,8 +21,9 @@ import { SlidesComponent } from '../slides/slides.component';
     FormsModule,
     ExploreContainerComponentModule,
     RouterModule.forChild([{ path: '', component: Tab3Page }]),
-    Tab3PageRoutingModule,
-    SwiperModule
+    // SwiperModule,
+    Tab3PageRoutingModule
+    
   ],
   declarations: [Tab3Page,SlidesComponent]
 })
