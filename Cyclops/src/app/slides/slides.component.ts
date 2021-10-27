@@ -4,13 +4,19 @@ import { IonicSwiper } from '@ionic/angular';
 
 SwiperCore.use([IonicSwiper, Navigation, Pagination]);
 
-@Component({
-  selector: 'app-tab3',
-  templateUrl: 'tab3.page.html',
-  styleUrls: ['tab3.page.scss']
-})
-export class Tab3Page {
 
-  constructor() {}
+@Component({
+  selector: 'app-slides',
+  templateUrl: './slides.component.html',
+  styleUrls: ['./slides.component.scss'],
+})
+export class SlidesComponent {
+
+  slideOpts = {
+    initialSlide: 0,
+    speed: 400
+  };
+
+  constructor() { }
 
 }
