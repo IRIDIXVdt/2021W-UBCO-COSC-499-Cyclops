@@ -14,11 +14,19 @@
     </ion-toolbar>
   </ion-header>
 
+  <!-- <ion-content><app-slides></app-slides></ion-content> -->
 
-  <!-- <swiper [slidesPerView]="3" [loop]="true">
-    <swiper-slide>Slide 1</swiper-slide>
-    <swiper-slide>Slide 3</swiper-slide>
-    <swiper-slide>Slide 3</swiper-slide>
-  </swiper> -->
-  <app-slides></app-slides>
+  <ion-list>
+    <ion-item >
+      <ion-content><app-slides></app-slides></ion-content>
+    </ion-item>
+
+    <ion-item>
+      <ion-content><app-slides></app-slides></ion-content>
+    </ion-item>
+  </ion-list>
+  <!-- <section>
+    <app-slides></app-slides>
+  </section> -->
+  <!-- <app-slides></app-slides> -->
 </ion-content>
