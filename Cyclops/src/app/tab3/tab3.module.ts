@@ -21,7 +21,6 @@ import { SlidesComponent } from '../slides/slides.component';
     ExploreContainerComponentModule,
     RouterModule.forChild([{ path: '', component: Tab3Page }]),
     Tab3PageRoutingModule
-    
   ],
   declarations: [Tab3Page,SlidesComponent]
 })
