@@ -1,13 +1,85 @@
+<!-- <swiper [slidesPerView]="3" [spaceBetween]="50" [virtual]="true" effect="fade">
+  <ng-container *ngFor="let slide of slides; index as i">
+    <ng-template swiperSlide>Slide {{ slide }}</ng-template>
+  </ng-container>
+</swiper> -->
+
+
+
+
 <ion-content>
-  <ion-slides pager="true" [options]="slideOpts">
+  <ion-slides pager="true" [options]="slideOpts" >
+    
     <ion-slide>
-      <h1>Slide 1</h1>
+      <h1>Slide 1: Text Display</h1>
+    </ion-slide>
+
+    <ion-slide>
+      <ion-card>
+        <ion-card-header>
+          <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+          <ion-card-title>Card Title</ion-card-title>
+        </ion-card-header>
+      
+        <ion-card-content>
+          Keep close to Nature's heart... and break clear away, once in awhile,
+          and climb a mountain or spend a week in the woods. Wash your spirit clean.
+        </ion-card-content>
+      </ion-card>
     </ion-slide>
     <ion-slide>
-      <h1>Slide 2</h1>
-    </ion-slide>
-    <ion-slide>
-      <h1>Slide 3</h1>
+      <ion-card>
+        <ion-card-header>
+          <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+          <ion-card-title>Card Title</ion-card-title>
+        </ion-card-header>
+      
+        <ion-card-content>
+          Keep close to Nature's heart... and break clear away, once in awhile,
+          and climb a mountain or spend a week in the woods. Wash your spirit clean.
+        </ion-card-content>
+      </ion-card>
     </ion-slide>
   </ion-slides>
 </ion-content>
+
+<!-- <swiper [slidesPerView]="3" 
+  [spaceBetween]="50" 
+  (swiper)="onSwiper($event)" 
+  (slideChange)="onSlideChange()">
+
+  <ng-template swiperSlide>Slide 1</ng-template>
+  <ng-template swiperSlide>Slide 2</ng-template>
+  <ng-template swiperSlide>Slide 3</ng-template>
+  
+</swiper> -->
+
+<!-- <swiper>
+  <swiper-slide>
+    <h1>Slide 1</h1>
+  </swiper-slide>
+  <swiper-slide>
+    <h1>Slide 2</h1>
+  </swiper-slide>
+  <swiper-slide>
+    <h1>Slide 3</h1>
+  </swiper-slide>
+</swiper> -->
+
+<!-- <swiper
+  [pagination]="{ clickable: true }"
+  navigation
+>
+  <swiper-slide>Slide 1</swiper-slide>
+  <swiper-slide>Slide 3</swiper-slide>
+  <swiper-slide>Slide 3</swiper-slide>
+</swiper> -->
+
+<!-- <swiper
+  [slidesPerView]="3"
+  [loop]="true"
+>
+  <swiper-slide>Slide 1</swiper-slide>
+  <swiper-slide>Slide 3</swiper-slide>
+  <swiper-slide>Slide 3</swiper-slide>
+</swiper> -->

@@ -8,7 +8,6 @@ import { ExploreContainerComponentModule } from '../explore-container/explore-co
 
 import { Tab3PageRoutingModule } from './tab3-routing.module';
 
-
 import { SlidesComponent } from '../slides/slides.component';
 
 
@@ -21,7 +20,7 @@ import { SlidesComponent } from '../slides/slides.component';
     FormsModule,
     ExploreContainerComponentModule,
     RouterModule.forChild([{ path: '', component: Tab3Page }]),
-    Tab3PageRoutingModule,
+    Tab3PageRoutingModule
     
   ],
   declarations: [Tab3Page,SlidesComponent]
