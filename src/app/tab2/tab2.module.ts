@@ -1,5 +1,4 @@
 import { IonicModule } from '@ionic/angular';
-import { ArticleCardComponent } from '../article-card/article-card.component'; 
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -18,8 +17,7 @@ import { Tab2PageRoutingModule } from './tab2-routing.module';
     Tab2PageRoutingModule
   ],
   declarations: [
-    Tab2Page,
-    ArticleCardComponent
+    Tab2Page
   ]
 })
 export class Tab2PageModule {}
