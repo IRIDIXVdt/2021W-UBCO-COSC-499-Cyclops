@@ -9,6 +9,7 @@ import { ExploreContainerComponentModule } from '../explore-container/explore-co
 import { Tab3PageRoutingModule } from './tab3-routing.module';
 
 import { SlidesComponent } from '../slides/slides.component';
+import { PopoverComponent } from '../popover/popover.component';
 
 
 
@@ -22,6 +23,6 @@ import { SlidesComponent } from '../slides/slides.component';
     RouterModule.forChild([{ path: '', component: Tab3Page }]),
     Tab3PageRoutingModule
   ],
-  declarations: [Tab3Page,SlidesComponent]
+  declarations: [Tab3Page,SlidesComponent,PopoverComponent]
 })
 export class Tab3PageModule {}
