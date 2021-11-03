@@ -1,5 +1,6 @@
 import { IonicModule } from '@ionic/angular';
 import {ArticleCardComponent} from '../article-card/article-card.component'
+import {SearchbarComponent} from '../searchbar/searchbar.component'
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -19,7 +20,8 @@ import { Tab2PageRoutingModule } from './tab2-routing.module';
   ],
   declarations: [
     Tab2Page,
-    ArticleCardComponent
+    ArticleCardComponent,
+    SearchbarComponent
   ]
 })
 export class Tab2PageModule {}
