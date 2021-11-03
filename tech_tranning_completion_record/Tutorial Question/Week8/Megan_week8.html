@@ -6,19 +6,37 @@
 </head>
 <body>
     <h4>1. Provide a definition of Reactive Forms:</h4>
-    <p>Your answer here</p>
+    <p>We explicitly manage the data flow between non-UI data model and a UI-oriented form model.
+	This means creating a tree of angular form control objects within the component class instead of
+	putting all form controls in the HTML template. This tree is binded to elements in the template 
+	file.</p>
 	
-	<h4>2. List Reactive Form Classes with its functionality</h4>
-    <p>Your answer here</p>
+<h4>2. List Reactive Form Classes with its functionality</h4>
+	<ol>
+		<li>FormControl: individual form controls, tracks form values and validation status</li>
+		<li>FormGroup: group of FormControls</li>
+		<li>AbstractControl: abstract base class for the form control classes</li>
+		<li>FormArray: numerically indexed array of AbstractControl instances</li>
+	</ol>
 	
 	<h4>3. List Form Control Properties with its Description</h4>
-    <p>Your answer here</p>
+    <p>for checking form control values</p>
+	<ol>
+		<li>.value: value</li>
+		<li>.status: valid, invalid, pending, disabled</li>
+		<li>.pristine/.dirty: true if user did not change the value/true if value changed</li>
+		<li>true if user has not interacted with control/true if user has interacted with control</li>
+	</ol>
 	
 	<h4>4. Provide a definition of RxJS</h4>
-    <p>Your answer here</p>
+    <p>a library that angular uses to provide a reactive way of writing angular applications, used for
+	composing asynchronous and event-based programs by using observable sequences</p>
 	
 	<h4>5. Provide a definition The Observer Pattern</h4>
-    <p>Your answer here</p>
+    <p>The observer pattern is a software-engineering pattern. this is where there are observables, which are 
+	    many different streams, observers can subscribe to an observeable, which is when they can so it's 
+	    notified of any changes of that observeable .
+	</p>
 	
 	
 </body>
