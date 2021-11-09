@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { PopoverComponent } from '../popover/popover.component';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -15,6 +16,6 @@ import { PageSpaceMePage } from './page-space-me.page';
     IonicModule,
     PageSpaceMePageRoutingModule
   ],
-  declarations: [PageSpaceMePage]
+  declarations: [PageSpaceMePage, PopoverComponent]
 })
 export class PageSpaceMePageModule {}
