@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { PageSpaceSuPageRoutingModule } from './page-space-su-routing.module';
 
 import { PageSpaceSuPage } from './page-space-su.page';
-import { ProgressIndicatorsComponent } from '../progress-indicators/progress-indicators.component';
+import { ProgressIndicatorsComponent } from './progress-indicators/progress-indicators.component';
 
 @NgModule({
   imports: [
