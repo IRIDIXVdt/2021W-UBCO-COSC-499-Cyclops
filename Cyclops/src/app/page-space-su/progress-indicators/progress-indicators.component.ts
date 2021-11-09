@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PopoverController } from '@ionic/angular';
+import { EcoPopoverComponent } from '../eco-popover/eco-popover.component';
 
 
 
@@ -9,9 +11,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProgressIndicatorsComponent implements OnInit {
 
-  constructor() { }
+  constructor(public ecopopover:PopoverController) {}
 
+  currentTask="Solution 1";
+  currentScore="N/A";
+  
+
+  async notifications(ev: any) {  
+    const popover = await this.ecopopover.create({  
+        component: EcoPopoverComponent,  
+        event: ev,  
+        translucent: true
+    });  
+    return await popover.present(); 
+  }
   ngOnInit() {}
+
+  getTask(task){
+    console.warn(task)
+    this.currentTask=task
+  }
+  getScore(score){
+    console.warn(score)
+    this.currentScore= score
+  }
 
   
 
