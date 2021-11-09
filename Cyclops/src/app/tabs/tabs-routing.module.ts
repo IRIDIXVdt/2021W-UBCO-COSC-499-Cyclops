@@ -20,8 +20,20 @@ const routes: Routes = [
         loadChildren: () => import('../tab3/tab3.module').then(m => m.Tab3PageModule)
       },
       {
+        path: 'page-space-er',
+        loadChildren: () => import('../page-space-er/page-space-er.module').then(m => m.PageSpaceErPageModule)
+      },
+      {
         path: 'page-space-la',
         loadChildren: () => import('../page-space-la/page-space-la.module').then(m => m.PageSpaceLaPageModule)
+      },
+      {
+        path: 'page-space-me',
+        loadChildren: () => import('../page-space-me/page-space-me.module').then(m => m.PageSpaceMePageModule)
+      },
+      {
+        path: 'page-space-su',
+        loadChildren: () => import('../page-space-su/page-space-su.module').then(m => m.PageSpaceSuPageModule)
       },
       {
         path: '',
