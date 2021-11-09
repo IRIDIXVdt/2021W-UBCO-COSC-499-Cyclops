@@ -14,7 +14,7 @@ export class ProgressIndicatorsComponent implements OnInit {
   constructor(public ecopopover:PopoverController) {}
 
   currentTask="Solution 1";
-  currentScore="N/A";
+  currentScore="0";
   
 
   async notifications(ev: any) {  
