@@ -18,4 +18,4 @@ import { PageSpaceMePage } from './page-space-me.page';
   ],
   declarations: [PageSpaceMePage, PopoverComponent]
 })
-export class PageSpaceMePageModule {}
+export class PageSpaceMePageModule { }

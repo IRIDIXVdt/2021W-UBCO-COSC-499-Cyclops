@@ -25,7 +25,6 @@ export class PageSpaceMePage implements OnInit {
   async presentModal() {
     const modal = await this.modalController.create({
       component: FeedbackModalComponent,
-      cssClass: 'my-custom-class'
     });
     return await modal.present();
   }
