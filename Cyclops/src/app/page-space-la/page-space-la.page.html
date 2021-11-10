@@ -9,7 +9,7 @@
 
   <ion-searchbar></ion-searchbar>
 
-  <ion-segment (ionChange)="segmentChanged($event)" [(ngModel)]="status">
+  <ion-segment (ionChange)="segmentChanged($event)" [(ngModel)]="status" >
     <ion-segment-button value="Articles p1">
       <ion-label>Laying the Foundation</ion-label>
     </ion-segment-button>
@@ -245,6 +245,32 @@
         </ion-row>
       </ion-grid>
      
+    </div>
+    <div *ngSwitchDefault>
+      <ion-grid>
+        <ion-row>
+          <ion-card color = 'light'>
+            <ion-card-header>
+              <ion-card-subtitle>Destination</ion-card-subtitle>
+              <ion-card-title>Madison, WI</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              Founded in 1829 on an isthmus between Lake Monona and Lake Mendota, Madison was named the capital of the Wisconsin Territory in 1836.
+            </ion-card-content>
+          </ion-card>
+        </ion-row>
+        <ion-row>
+          <ion-card color = 'light'>
+            <ion-card-header>
+              <ion-card-subtitle>Destination</ion-card-subtitle>
+              <ion-card-title>Madison, WI</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              Founded in 1829 on an isthmus between Lake Monona and Lake Mendota, Madison was named the capital of the Wisconsin Territory in 1836.
+            </ion-card-content>
+          </ion-card>
+        </ion-row>
+      </ion-grid>
     </div>
   </div>
 </ion-content>
