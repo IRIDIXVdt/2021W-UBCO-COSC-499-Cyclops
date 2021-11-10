@@ -10,7 +10,7 @@ import { Tab1PageRoutingModule } from './tab1-routing.module';
 
 
 
-import { ProgressIndicatorsComponent } from '../progress-indicators/progress-indicators.component';
+import { ProgressIndicatorsComponent } from '../page-space-su/progress-indicators/progress-indicators.component';
 
 @NgModule({
   imports: [

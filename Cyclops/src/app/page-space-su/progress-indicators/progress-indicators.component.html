@@ -1,0 +1,64 @@
+<ion-card id="card1" style=" margin-left: 10%; margin-right: 10%;">
+  <ion-card-header>
+    <ion-card-subtitle style="text-align:center; font-size:150%;" >Overall Score</ion-card-subtitle>
+    <ion-card-title style="text-align:center; font-size:400%" fontsize >80%</ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content>
+    <ion-progress-bar color="primary" value="0.8"></ion-progress-bar>
+  </ion-card-content>
+</ion-card>
+
+
+
+  <ion-item>
+    <ion-label position="floating">Task Completed</ion-label>
+    <ion-input type="text" #box ></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Solution Score (1-10)</ion-label>
+    <ion-input type="number" #score min="0" max="10" ></ion-input>
+  </ion-item>
+  <p id="center">
+    <ion-button class="input"  size="small" shape="round"  color="tertiary" (click)="getTask(box.value)" (click)="getScore(score.value)">Submit</ion-button>
+  </p>
+
+
+
+<ion-card id="card1" style=" margin-left: 10%; margin-right: 10%;">
+  <ion-card-header>
+    <ion-card-subtitle>
+      <span class="text"><h4>{{currentTask}}</h4></span>
+      <p id="right">
+      <ion-button class="round"  size="small" shape="round"  color="medium" (click)="notifications()" >  
+      <ion-icon name="help"></ion-icon>
+      </ion-button>
+      </p>
+    </ion-card-subtitle>
+
+  
+    <ion-card-title style="text-align:center; font-size:300%" fontsize>{{currentScore}}</ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content>
+    <ion-progress-bar color="primary" value="0.4"></ion-progress-bar>
+  </ion-card-content>
+</ion-card>
+
+<ion-card id="card1" style=" margin-left: 10%; margin-right: 10%;">
+  <ion-card-header>
+    <ion-card-subtitle>
+      <span class="text"><h4>Solution 2</h4></span>
+      <p id="right">
+      <ion-button class="round"  size="small" shape="round"  color="medium" (click)="notifications()" >  
+      <ion-icon name="help"></ion-icon>
+      </ion-button>
+      </p>
+    </ion-card-subtitle>
+    <ion-card-title style="text-align:center; font-size:300%" fontsize >70%</ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content>
+    <ion-progress-bar color="primary" value="0.7"></ion-progress-bar>
+  </ion-card-content>
+</ion-card>
