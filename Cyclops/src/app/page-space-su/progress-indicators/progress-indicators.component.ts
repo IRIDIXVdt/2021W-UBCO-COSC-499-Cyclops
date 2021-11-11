@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { PopoverController } from '@ionic/angular';
+import { ModalController, PopoverController } from '@ionic/angular';
 import { EcoPopoverComponent } from '../eco-popover/eco-popover.component';
+import { ScoreModalComponent } from '../score-modal/score-modal.component';
 
 
 
@@ -11,11 +12,19 @@ import { EcoPopoverComponent } from '../eco-popover/eco-popover.component';
 })
 export class ProgressIndicatorsComponent implements OnInit {
 
-  constructor(public ecopopover:PopoverController) {}
+  eco = [
+    {
+      solution: 'Click to Enter Solution',
+      score: 0,
+      totalscore: 0
 
-  currentTask="Solution 1";
-  currentScore="0";
-  
+    }
+  ];
+
+
+
+  constructor(public ecopopover:PopoverController, private modalCtrol: ModalController) {}
+
 
   async notifications(ev: any) {  
     const popover = await this.ecopopover.create({  
@@ -27,15 +36,16 @@ export class ProgressIndicatorsComponent implements OnInit {
   }
   ngOnInit() {}
 
-  getTask(task){
-    console.warn(task)
-    this.currentTask=task
-  }
-  getScore(score){
-    console.warn(score)
-    this.currentScore= score
+  async openModal(){
+     const modal = await this.modalCtrol.create({
+      component: ScoreModalComponent
+    });
+
+    await modal.present();
+
   }
 
+  
   
 
 

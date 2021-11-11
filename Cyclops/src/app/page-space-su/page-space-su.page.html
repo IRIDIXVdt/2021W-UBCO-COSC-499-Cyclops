@@ -7,7 +7,64 @@
 </ion-header>
 
 <ion-content>
-  <app-progress-indicators></app-progress-indicators>
+  <ion-card id="card1" style=" margin-left: 10%; margin-right: 10%;">
+    <ion-card-header *ngFor="let eco of eco">
+      <ion-card-subtitle style="text-align:center; font-size:150%;" >Overall Score</ion-card-subtitle>
+      <ion-card-title style="text-align:center; font-size:400%" fontsize >{{eco.totalscore}}</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <ion-progress-bar color="primary" value="0.8"></ion-progress-bar>
+    </ion-card-content>
+  </ion-card>
+  
+  
+  
+  <ion-card button *ngFor="let eco of eco" id="card1" style=" margin-left: 10%; margin-right: 10%;" (click)="openModal()">
+    <ion-card-header>
+      <ion-card-subtitle>
+        <span class="text"><h4>{{eco.solution}}</h4></span>
+        <p id="right">
+        <ion-button class="round"  size="small" shape="round"  color="medium" (click)="notifications()" >  
+        <ion-icon name="help"></ion-icon>
+        </ion-button>
+        </p>
+      </ion-card-subtitle>
+  
+    
+      <ion-card-title style="text-align:center; font-size:300%" fontsize>{{eco.score | number }}</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <ion-progress-bar color="primary" value="0.4"></ion-progress-bar>
+    </ion-card-content>
+  </ion-card>
+  
+  <ion-card id="card1" style=" margin-left: 10%; margin-right: 10%;">
+    <ion-card-header>
+      <ion-card-subtitle>
+        <span class="text"><h4>Solution 2</h4></span>
+        <p id="right">
+        <ion-button class="round"  size="small" shape="round"  color="medium" (click)="notifications()" >  
+        <ion-icon name="help"></ion-icon>
+        </ion-button>
+        </p>
+      </ion-card-subtitle>
+      <ion-card-title style="text-align:center; font-size:300%" fontsize >70%</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <ion-progress-bar color="primary" value="0.7"></ion-progress-bar>
+    </ion-card-content>
+  </ion-card>
+  
+
+
+
+
+
+
+
   <section id ="surveycenter">
     <ion-button expand="block" >Submit New Survey</ion-button>
   </section>

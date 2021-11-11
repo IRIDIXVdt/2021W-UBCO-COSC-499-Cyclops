@@ -1,0 +1,24 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title> Eco Tracker Input</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="dismissModal()">Close</ion-button>
+  
+      </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-label position="floating">Task Completed</ion-label>
+    <ion-input [formControl]="taskInput" type="text"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Solution Score (1-10)</ion-label>
+    <ion-input [formControl]="scoreInput" type="number" ></ion-input>
+  </ion-item>
+  <p id="center">
+    <ion-button [disabled]="scoreInput.invalid" [disabled]="taskInput.invalid"  size="small" shape="round"  color="tertiary" (click)="onSolution()" class="ion-margin-top">Submit</ion-button>
+  </p>
+
+</ion-content>
+
