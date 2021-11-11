@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { ModalController } from '@ionic/angular';
+import { ModalController, NavParams } from '@ionic/angular';
 
 @Component({
   selector: 'app-score-modal',
@@ -8,25 +8,44 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./score-modal.component.scss'],
 })
 export class ScoreModalComponent  {
-  scoreInput = new FormControl('', Validators.required);
-  taskInput = new FormControl('', Validators.required);
+
+  usereco: any = {};
+
+
+  //@Input() solution: string;
+ // @Input() score: number;
+  //@Input() totalscore: number;
+  //scoreInput = new FormControl('', Validators.required);
+  //taskInput = new FormControl('', Validators.required);
   
 
-  constructor(private modalCtrl: ModalController) { }
+  constructor(private modalCtrl: ModalController, private navParams: NavParams) { 
+
+    this.usereco = this.navParams.data;
+
+    
+  }
 
   dismissModal() {
     this.modalCtrl.dismiss();
 
   }
   onSolution(){
-    //console.warn(task)
-   // this.currentTask=task
-    //console.warn(score)
-    //this.currentScore= score
+    this.modalCtrl.dismiss(this.usereco)
+    
+   
 
-    console.log(this.scoreInput.value);
-    console.log(this.taskInput.value);
+   //const totals = this.totalscore + this.scoreInput.value;
+   //const sol = this.taskInput.value;
+   //const sc = this.scoreInput.value;
 
+   //this.modalCtrl.dismiss(totals);
+   //this.modalCtrl.dismiss(sol);
+   //this.modalCtrl.dismiss(sc);
+
+   
+
+   
 
   }
 

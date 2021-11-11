@@ -11,15 +11,11 @@ import { ScoreModalComponent } from './score-modal/score-modal.component';
   styleUrls: ['./page-space-su.page.scss'],
 })
 export class PageSpaceSuPage implements OnInit {
-  eco = [
-    {
-      solution: 'Click to Enter Solution',
-      score: 0,
-      totalscore: 0
-
-    }
-  ];
-
+  profile = {
+    solution: "Solution 1",
+    score : 0
+  }
+  
   constructor(public ecopopover:PopoverController, private modalCtrol: ModalController) {}
 
 
@@ -33,14 +29,29 @@ export class PageSpaceSuPage implements OnInit {
   }
   ngOnInit() {}
 
-  async openModal(){
-     const modal = await this.modalCtrol.create({
-      component: ScoreModalComponent
-    });
+  openModal(){
+    this.modalCtrol.create({
+      component:ScoreModalComponent,
+      componentProps: this.profile
+    }).then(modalres =>{
+      modalres.present();
 
-    await modal.present();
-
+      modalres.onDidDismiss().then( res =>{
+        if(res.data != null){
+          this.profile = res.data;
+        }
+      })
+    })
   }
+    
+
+   // const data = await modal.onWillDismiss();
+    //const data1 = await modal.onWillDismiss();
+    //const data2 = await modal.onWillDismiss();
+
+   // console.log(data);
+
+  
 
   
   
