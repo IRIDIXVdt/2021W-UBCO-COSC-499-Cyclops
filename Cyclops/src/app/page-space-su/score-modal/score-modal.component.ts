@@ -1,13 +1,19 @@
-import { Component, Input } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { Component, OnInit, Input } from '@angular/core';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalController, NavParams } from '@ionic/angular';
+import { SolutionPageForm } from '../form/solution.page.form';
 
 @Component({
   selector: 'app-score-modal',
   templateUrl: './score-modal.component.html',
   styleUrls: ['./score-modal.component.scss'],
 })
-export class ScoreModalComponent  {
+export class ScoreModalComponent implements OnInit  {
+
+  myForm: FormGroup;
+  submitted = false;
+
+
 
   usereco: any = {};
 
@@ -19,19 +25,46 @@ export class ScoreModalComponent  {
   //taskInput = new FormControl('', Validators.required);
   
 
-  constructor(private modalCtrl: ModalController, private navParams: NavParams) { 
+  constructor(private modalCtrl: ModalController, private navParams: NavParams, public formBuilder: FormBuilder) { 
+
+  
 
     this.usereco = this.navParams.data;
 
     
   }
 
+  ngOnInit() {
+    this.myForm = this.formBuilder.group({
+      task: ['', [Validators.required]],
+      score: ['', [Validators.required, Validators.pattern('^[0-9]+$')]]
+    });
+  }
+  
   dismissModal() {
     this.modalCtrl.dismiss();
 
   }
+  get errorCtr() {
+    return this.myForm.controls;
+  }
+
+  
+
+
+
   onSolution(){
-    this.modalCtrl.dismiss(this.usereco)
+
+    this.submitted = true;
+    if (!this.myForm.valid) {
+      console.log('All fields are required.')
+      return false;
+    } else {
+      this.modalCtrl.dismiss(this.usereco)
+    }
+
+
+    
     
    
 

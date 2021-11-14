@@ -8,17 +8,36 @@
     </ion-toolbar>
 </ion-header>
 <ion-content class="ion-padding">
-  <ion-item>
-    <ion-label position="floating">Task Completed</ion-label>
-    <ion-input  type="text" [(ngModel)]="usereco.solution"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="floating">Solution Score (1-10)</ion-label>
-    <ion-input  type="number" [(ngModel)]="usereco.score" ></ion-input>
-  </ion-item>
-  <p id="center">
-    <ion-button   size="small" shape="round"  color="tertiary" (click)="onSolution()" class="ion-margin-top">Submit</ion-button>
-  </p>
+
+  <form [formGroup]="myForm">
+
+    <ion-item>
+      <ion-label position="floating">Task Completed</ion-label>
+      <ion-input formControlName="task"  type="text" [(ngModel)]="usereco.solution"></ion-input>
+    </ion-item>
+    <p id="err">
+      <span class="error" *ngIf="submitted && errorCtr.task.errors?.required">
+        Enter Task.
+       </span>
+    </p>
+    <ion-item>
+      <ion-label position="floating">Solution Score (1-10)</ion-label>
+      <ion-input formControlName="score"  type="number" [(ngModel)]="usereco.score" ></ion-input>
+    </ion-item>
+    <p id="err">
+      <span class="error" *ngIf="submitted && errorCtr.score.errors?.required">
+        Score is Required.
+      </span>
+      <span class="error" *ngIf="submitted && errorCtr.score.errors?.pattern">
+        Score has to be between 1-10.
+      </span>
+    </p>
+    <p id="center">
+      <ion-button size="small" shape="round"  color="tertiary" class="ion-margin-top" (click)="onSolution()">Submit</ion-button>
+    </p>
+
+  </form>
+
 
 </ion-content>
 

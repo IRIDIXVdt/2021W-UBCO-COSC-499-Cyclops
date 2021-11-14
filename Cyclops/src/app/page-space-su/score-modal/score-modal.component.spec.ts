@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
+
 
 import { ScoreModalComponent } from './score-modal.component';
 
@@ -10,7 +12,9 @@ describe('ScoreModalComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ ScoreModalComponent ],
-      imports: [IonicModule.forRoot()]
+      imports: [IonicModule.forRoot(),
+      ReactiveFormsModule,
+     FormsModule]
     }).compileComponents();
 
     fixture = TestBed.createComponent(ScoreModalComponent);
@@ -18,7 +22,4 @@ describe('ScoreModalComponent', () => {
     fixture.detectChanges();
   }));
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+})
