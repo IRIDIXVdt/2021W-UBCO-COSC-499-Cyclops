@@ -21,10 +21,10 @@
        </span>
     </p>
     <ion-item>
-      <ion-label position="floating">Solution Score (1-10)</ion-label>
+      <ion-label position="floating">Solution Score</ion-label>
       <ion-input formControlName="score"  type="number" [(ngModel)]="usereco.score" ></ion-input>
     </ion-item>
-    <p id="err">
+    <p id="err"s>
       <span class="error" *ngIf="submitted && errorCtr.score.errors?.required">
         Score is Required.
       </span>
