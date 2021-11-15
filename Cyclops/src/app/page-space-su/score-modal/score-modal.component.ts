@@ -36,7 +36,7 @@ export class ScoreModalComponent implements OnInit  {
 
   ngOnInit() {
     this.myForm = this.formBuilder.group({
-      task: ['', [Validators.required]],
+      task: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
       score: ['', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.max(100), Validators.min(0)]]
     });
   }

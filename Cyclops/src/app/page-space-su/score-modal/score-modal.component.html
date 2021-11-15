@@ -19,6 +19,9 @@
       <span class="error" *ngIf="submitted && errorCtr.task.errors?.required">
         Enter Task.
        </span>
+       <span class="error" *ngIf="submitted && errorCtr.task.errors?.pattern">
+        Task input must be text only.
+       </span>
     </p>
     <ion-item>
       <ion-label position="stacked">Solution Score</ion-label>
