@@ -1,0 +1,61 @@
+#card1{
+    padding-left: 3%;
+    padding-right: 3%;
+   
+    
+    
+
+    border-radius: 20px 20px 20px 20px;
+    -moz-border-radius: 20px 20px 20px 20px;
+    -webkit-border-radius: 20px 20px 20px 20px;
+    border: 0px solid #000000;
+    //https://www.cssmatic.com/border-radius
+
+    -webkit-box-shadow: -7px 8px 7px -4px rgba(92,87,92,1);
+    -moz-box-shadow: -7px 8px 7px -4px rgba(92,87,92,1);
+    box-shadow: -7px 8px 7px -4px rgba(92,87,92,1);
+}
+
+#card2{
+    padding-left: 3%;
+    padding-right: 3%;
+    
+    
+
+    border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    border: 0px solid #000000;
+    //https://www.cssmatic.com/border-radius
+
+    -webkit-box-shadow: -7px 8px 7px -4px rgba(92,87,92,1);
+    -moz-box-shadow: -7px 8px 7px -4px rgba(92,87,92,1);
+    box-shadow: -7px 8px 7px -4px rgba(92,87,92,1);
+}
+
+#card1OutSide{
+    text-align: center;
+}
+.round {
+
+
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    vertical-align: middle;
+    --padding-start: 10px;
+    --padding-end: 10px;
+  }
+  .text{
+    display: inline-block;
+    vertical-align: middle;
+  }
+  #right{
+    display: inline-block;
+    vertical-align: middle;
+    float: right;
+     
+  }
+  #center{
+    text-align: center;
+  }

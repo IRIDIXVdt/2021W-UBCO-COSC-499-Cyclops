@@ -1,9 +1,139 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>PageSpaceEr</ion-title>
+    <img src="../assets/icon/cyclops.png" style="margin-top: 3%; margin-left: 3%; width: 20%;"/>
+    <ion-title size="large" style="text-align: center;">Cyclops</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <!-- your code here --> 
+  <ion-grid>
+    <!-- first section begin -->
+    <ion-row>
+      <ion-col>
+        <ion-slides pager="true" [options]="slideOpts" >    
+          <ion-slide>
+              <div style="margin-bottom: 5%;">
+                <p>
+                  “The best time to plant a tree was 20 years ago. The second best time is now.The second best time is now 20 years ago.”
+                  <br>
+                  Proverb
+                </p>
+              </div>
+          </ion-slide>
+
+          <ion-slide>
+            <div style="margin-bottom: 5%;">
+              <p>
+                “The best time to plant a tree was 20 years ago. The second best time is now.”
+                <br>
+                Proverb
+              </p>
+            </div>
+          </ion-slide>
+        </ion-slides> 
+      </ion-col>
+    </ion-row>
+    <!-- first section end -->
+    
+    <!-- seconed section begin (title) -->
+    <ion-row>
+      <ion-col size="12">
+        <h1 style="text-align: left;">Newest Survey</h1>
+      </ion-col>
+    </ion-row>
+    <!-- seconed section end(title) -->
+
+    <!-- seconed section begin (content) -->
+    <ion-row>
+      <ion-col size="12">
+        <ion-slides pager="true" [options]="slideOpts" style="margin-top: -10%;">    
+          <ion-slide>
+            <ion-card id="card1" style=" margin-bottom: 10%;">
+              <ion-card-header>
+                <ion-card-title>Sample Survey</ion-card-title>
+              </ion-card-header>
+            
+              <ion-card-content>
+                Keep close to Nature's heart... and break clear away, once in awhile,
+                and climb a mountain or spend a week in the woods. Wash your spirit clean.
+              </ion-card-content>
+            </ion-card>            
+          </ion-slide>
+        </ion-slides>
+      </ion-col>
+    </ion-row>
+    <!-- seconed section end (content) -->
+
+    <!-- third section begin (title) -->
+    <ion-row>
+      <ion-col size="12">
+        <h1 style="text-align: left;">Your ECO score</h1>
+      </ion-col>
+    </ion-row>
+    <!-- third section end (title) -->
+
+    <!-- third section begin (content) -->
+    <ion-row>
+      <ion-col size="12">
+        <ion-card id="card2" style=" margin-left: 5%; margin-right: 5%;" style="margin-top: -2%;">
+          <ion-card-header>
+            <ion-card-subtitle style="text-align:center; font-size:150%;" >Overall Score</ion-card-subtitle>
+            <ion-card-title style="text-align:center; font-size:400%" fontsize >80%</ion-card-title>
+          </ion-card-header>
+        
+          <ion-card-content>
+            <ion-progress-bar color="primary" value="0.8"></ion-progress-bar>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <!-- third section end (content) -->
+
+    <!-- fourth section begin (title) -->
+    <ion-row>
+      <ion-col size="12">
+        <h1 style="text-align: left;">Newest article</h1>
+      </ion-col>
+    </ion-row>
+    <!-- fourth section end (title) -->
+
+    <!-- third section begin (content) -->
+    <ion-row>
+      <ion-col size="12">
+        <ion-slides pager="true" [options]="slideOpts" style="margin-top: -10%;">    
+          <ion-slide>
+            <ion-card id="card3" style=" margin-left: 5%; margin-right: 5%;" style=" margin-bottom: 10%;">
+              <img src="../assets/test.jpg"/>
+              <ion-card-header>
+                <ion-card-title style="text-align:center; " fontsize >Sample article</ion-card-title>
+              </ion-card-header>
+            
+              <ion-card-content>
+                Hello there! Welcome to CyclopediApp. Here, we explore the numerous industries and habits that contribute to the environmental crisis, especially through climate change and biodiversity loss. 
+                Cyc
+              </ion-card-content>
+            </ion-card>      
+          </ion-slide>
+          <ion-slide>
+            <ion-card id="card3" style=" margin-left: 5%; margin-right: 5%;">
+              <img src="../assets/test.jpg"/>
+              <ion-card-header>
+                <ion-card-title style="text-align:center; " fontsize >Sample article</ion-card-title>
+              </ion-card-header>
+            
+              <ion-card-content>
+                Hello there! Welcome to CyclopediApp. Here, we explore the numerous industries and habits that contribute to the environmental crisis, especially through climate change and biodiversity loss. 
+                Cyc
+              </ion-card-content>
+            </ion-card> 
+          </ion-slide>
+        </ion-slides>
+      </ion-col>
+    </ion-row>
+    <!-- third section end (content) -->
+    
+  </ion-grid>
+  
 </ion-content>
+
+
