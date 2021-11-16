@@ -9,18 +9,18 @@ import { FeedbackModalComponent } from '../feedback-modal/feedback-modal.compone
   styleUrls: ['./page-space-me.page.scss'],
 })
 export class PageSpaceMePage implements OnInit {
-  
 
-  constructor(public popover:PopoverController, public modalController: ModalController) {}
 
-  async notifications(ev: any) {  
-    const popover = await this.popover.create({  
-        component: PopoverComponent,  
-        event: ev,  
-        animated: true,  
-        showBackdrop: true  
-    });  
-    return await popover.present(); 
+  constructor(public popover: PopoverController, public modalController: ModalController) { }
+
+  async notifications(event) {
+    const popover = await this.popover.create({
+      event,
+      component: PopoverComponent,
+      animated: true,
+      showBackdrop: false,
+    });
+    return await popover.present();
   }
   async presentModal() {
     const modal = await this.modalController.create({
@@ -29,7 +29,7 @@ export class PageSpaceMePage implements OnInit {
     return await modal.present();
   }
 
-  
+
   ngOnInit() {
   }
 
