@@ -11,7 +11,7 @@
         </ion-toolbar>
     </ion-header>
 
-    <ion-segment>
+<!--     <ion-segment>
         <a href="#climatechange">
             <ion-segment-button value="Intro" href="#intro" checked>
                 <ion-label>Intro</ion-label>
@@ -24,9 +24,23 @@
         <ion-segment-button value="Biodiversity Loss" href="#bio">
             <ion-label>Biodiversity Loss</ion-label>
         </ion-segment-button>
+    </ion-segment> -->
+
+
+    <ion-segment (ionChange)="segmentChanged($event)" [(ngModel)]="status" >
+      <ion-segment-button value="segment1">
+        <ion-label>Intro</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="segment2">
+        <ion-label>Climate Change</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="segment3">
+        <ion-label>Biodiversity Loss</ion-label>
+      </ion-segment-button>
     </ion-segment>
 
-    <div id="article">
+    <div [ngSwitch]="status" >
+      <div *ngSwitchCase="'segment1'">
         <img src="../../assets/test.jpg">
         <p id="intro">
             Here, we’ll explore 2 of the most important aspects of the environmental crisis: climate change and biodiversity loss. We’ll see why mitigating each ‘sub-crisis’ is important for the planet and its millions of species, including humans. This section should
@@ -44,6 +58,43 @@
         <div id="button">
             <ion-button expand="block" (click)="presentModal()">Send feedback</ion-button>
         </div>
+      </div>
+    </div>
+
+    <!-- Biodiversity Loss content in here -->
+    <div [ngSwitch]="status" >
+      <div *ngSwitchCase="'segment2'">
+        <img src="../../assets/test.jpg">
+        <p id="intro">
+            Here, we’ll explore 2 of the most important aspects of the environmental crisis: climate change and biodiversity loss. We’ll see why mitigating each ‘sub-crisis’ is important for the planet and its millions of species, including humans. This section should
+            provide a solid foundation before exploring additional sections, where we’ll often allude to
+            <ion-text id="popover" (click)="notifications($event)">greenhouse gas emissions</ion-text> and biodiversity loss. This will help readers understand the severity of emissions and toxic pollution, instead of just reading meaningless numbers.
+        </p>
+        
+        <div id="button">
+            <ion-button expand="block" (click)="presentModal()">Send feedback</ion-button>
+        </div>
+      </div>
+    </div>
+
+
+     <!-- Climate change content in here -->
+    <div [ngSwitch]="status" >
+      <div *ngSwitchCase="'segment3'">
+        <img src="../../assets/test.jpg">
+       
+        <p id="climatechange">
+            The Sun emits light as shortwave radiation. The Earth heats as it absorbs some of that radiation, before sending a portion of that back towards space as longwave radiation. Unfortunately, the longwave type of radiation can be absorbed by CO2 and other
+            GHGs. These gases then re-emit this energy in all directions. Here’s the issue: the energy that was supposed to be sent back to space is now partially redirected towards the Earth’s surface – which effectively traps heat in our atmosphere.
+        </p>
+        <p id="bio">
+            What we’ve just explained here is the famous greenhouse effect, where heat is trapped in our atmosphere by the likes of CO2 and other GHGs. This effect has been taking place since our atmosphere formed billions of years ago and has played an important
+            role in keeping the Earth warm, but now it’s making it a tad too hot – way too fast. We’ve recently released GHGs in the atmosphere in such quantities that the previously stable energy balance is now tilted in favor of heating the Earth.
+        </p>
+        <div id="button">
+            <ion-button expand="block" (click)="presentModal()">Send feedback</ion-button>
+        </div>
+      </div>
     </div>
 
 </ion-content>
