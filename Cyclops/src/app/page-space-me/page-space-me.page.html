@@ -1,35 +1,43 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>PageSpaceMe</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>Sample Article</ion-title>
+    </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <p>
-    Here, we’ll explore 2 of the most important aspects of the environmental crisis:
-    climate change and biodiversity loss. We’ll see why mitigating each ‘sub-crisis’ is
-    important for the planet and its millions of species, including humans. This section
-    should provide a solid foundation before exploring additional sections, where we’ll
-    often allude to <ion-text color="primary" (click)="notifications()">greenhouse gas emissions</ion-text> and biodiversity loss. This will help
-    readers understand the severity of emissions and toxic pollution, instead of just
-    reading meaningless numbers.
-  </p>
-  <p>
-    The Sun emits light as shortwave radiation. The Earth heats as it absorbs some of
-    that radiation, before sending a portion of that back towards space as longwave
-    radiation. Unfortunately, the longwave type of radiation can be absorbed by CO2 and
-    other GHGs. These gases then re-emit this energy in all directions. Here’s the issue:
-    the energy that was supposed to be sent back to space is now partially redirected
-    towards the Earth’s surface – which effectively traps heat in our atmosphere.
-  </p>
-  <p>
-    What we’ve just explained here is the famous greenhouse effect, where heat is trapped 
-    in our atmosphere by the likes of CO2 and other GHGs. This effect has been taking place 
-    since our atmosphere formed billions of years ago and has played an important role in 
-    keeping the Earth warm, but now it’s making it a tad too hot – way too fast. We’ve 
-    recently released GHGs in the atmosphere in such quantities that the previously stable 
-    energy balance is now tilted in favor of heating the Earth.
-  </p>
+<ion-content [fullscreen]="true">
+    <ion-header collapse="condense">
+        <ion-toolbar>
+            <ion-title size="large">Sample Article</ion-title>
+        </ion-toolbar>
+    </ion-header>
 
-  <ion-button (click)="presentModal()">Send feedback</ion-button>
+    <ion-segment (ionChange)="segmentChanged($event)" [(ngModel)]="status">
+        <ion-segment-button value="Articles p1">
+            <ion-label>Laying the Foundation</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="Articles p2">
+            <ion-label>Main Sections</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="Articles p3">
+            <ion-label>Bonus Rounds</ion-label>
+        </ion-segment-button>
+    </ion-segment>
+    <div id="article">
+        <p>
+            Here, we’ll explore 2 of the most important aspects of the environmental crisis: climate change and biodiversity loss. We’ll see why mitigating each ‘sub-crisis’ is important for the planet and its millions of species, including humans. This section should
+            provide a solid foundation before exploring additional sections, where we’ll often allude to
+            <ion-text color="primary" (click)="notifications()">greenhouse gas emissions</ion-text> and biodiversity loss. This will help readers understand the severity of emissions and toxic pollution, instead of just reading meaningless numbers.
+        </p>
+        <p>
+            The Sun emits light as shortwave radiation. The Earth heats as it absorbs some of that radiation, before sending a portion of that back towards space as longwave radiation. Unfortunately, the longwave type of radiation can be absorbed by CO2 and other
+            GHGs. These gases then re-emit this energy in all directions. Here’s the issue: the energy that was supposed to be sent back to space is now partially redirected towards the Earth’s surface – which effectively traps heat in our atmosphere.
+        </p>
+        <p>
+            What we’ve just explained here is the famous greenhouse effect, where heat is trapped in our atmosphere by the likes of CO2 and other GHGs. This effect has been taking place since our atmosphere formed billions of years ago and has played an important
+            role in keeping the Earth warm, but now it’s making it a tad too hot – way too fast. We’ve recently released GHGs in the atmosphere in such quantities that the previously stable energy balance is now tilted in favor of heating the Earth.
+        </p>
+    </div>
+    <div id="button">
+        <ion-button (click)="presentModal()">Send feedback</ion-button>
+    </div>
 </ion-content>
