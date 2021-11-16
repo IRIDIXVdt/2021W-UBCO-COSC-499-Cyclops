@@ -16,7 +16,7 @@ import { Router } from '@angular/router';
 export class PageSpaceSuPage implements OnInit {
 
   profile = {
-    solution: "Solution 1",
+    solution: "Solution",
     score : 0
   }
 
