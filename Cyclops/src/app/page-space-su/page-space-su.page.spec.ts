@@ -10,7 +10,7 @@ describe('PageSpaceSuPage', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ PageSpaceSuPage ],
-      imports: [IonicModule.forRoot()]
+      imports: [IonicModule.forRoot(),]
     }).compileComponents();
 
     fixture = TestBed.createComponent(PageSpaceSuPage);
