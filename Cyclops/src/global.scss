@@ -24,3 +24,17 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Open+Sans:wght@300&display=swap');
+/*  the link of this font (Light 300)
+    https://fonts.google.com/specimen/Montserrat?subset=latin-ext#standard-styles 
+    
+    custom font tutorial
+    https://www.youtube.com/watch?v=S9P-SQmEq5I
+    
+*/
+* {
+    font-family: Montserrat;
+}
+
