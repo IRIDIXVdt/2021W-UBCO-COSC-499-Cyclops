@@ -65,7 +65,6 @@
         <!-- Climate Change content in here -->
 
         <div *ngSwitchCase="'segment2'">
-            <img src="../../assets/test.jpg">
             <p id="intro">
                 Climate change is not something that occurs overnight. </p>
             <p>
@@ -93,10 +92,16 @@
             </p>
             <h1>GHGs</h1>
             <p>
-                Scientific consensus is very clear that the atmosphere’s GHG content has been increasing rapidly because of human activity. Since 1750, atmospheric concentrations have risen by 47% for CO2, 156% for methane [CH4], and 23% for nitrous oxide [N2O]. In 2019,
-                atmospheric CO2 concentrations were higher than at any point in the past 2 million years, and we’ve emitted more CO2 since. Unfortunately, there are far more GHGs than just CO2 – and much more powerful ones too. For equal emissions [by
-                mass], CO2 is 28 times less greenhousy than methane and 22,800 times less greenhousy than sulfur hexafluoride [‘greenhousy’ describes the global warming potential of a gas – here, taken over 100 years]. However, we’ve been producing so
-                much more CO2 in the past few centuries that it’s still the largest contributor to global warming, with methane not too far behind.
+                Scientific consensus is
+                <ion-text id="popover" (click)="notifications($event)">very clear</ion-text> that the atmosphere’s GHG content has been increasing rapidly because of human activity. Since 1750, atmospheric concentrations have risen by
+                <ion-text id="popover" (click)="notifications($event)">47%</ion-text> for CO2,
+                <ion-text id="popover" (click)="notifications($event)">156%</ion-text> for methane [CH4], and
+                <ion-text id="popover" (click)="notifications($event)">23%</ion-text> for nitrous oxide [N2O]. In 2019, atmospheric CO2 concentrations were higher than at any point in the past
+                <ion-text id="popover" (click)="notifications($event)">2</ion-text> million years, and we’ve emitted more CO2 since. Unfortunately, there are far more GHGs than just CO2 – and much more powerful ones too. For equal emissions [by mass], CO2 is
+                <ion-text id="popover" (click)="notifications($event)">28</ion-text> times less greenhousy than methane and
+                <ion-text id="popover" (click)="notifications($event)">22,800</ion-text> times less greenhousy than sulfur hexafluoride [‘greenhousy’ describes the
+                <ion-text id="popover" (click)="notifications($event)">global warming potential</ion-text> of a gas – here, taken over 100 years]. However, we’ve been producing so much more CO2 in the past few centuries that it’s still the
+                <ion-text id="popover" (click)="notifications($event)">largest</ion-text> contributor to global warming, with methane not too far behind.
             </p>
             <h1>
                 From Global Warming to Climate Change
@@ -106,34 +111,46 @@
                 current systems. Unfortunately, that means that any slight variations in temperature can have devastating consequences at the global scale – notably by changing many climates at once. Climate change literally means changes in climate patterns
                 and events. Cyclones, storm surges, heat waves, droughts, and extreme precipitations are all destructive climate events that are occurring more frequently and/or more intensely as a result of global warming. For example, global warming
                 increases the atmosphere’s capacity to hold water vapor. In turn, this can cause more/bigger clouds to form, which can lead to more intense precipitation events [potentially causing floods]. This corroborates the projection that extreme
-                daily precipitation events will intensify by roughly 7% for every +1°C of global warming, according to the Intergovernmental Panel on Climate Change [IPCC]. That may not sound significant, but we have to keep in mind that long-term global
-                temperatures are projected to reach +3.3-5.7°C under the “very high GHG emissions scenario”. So all the 7% intensifications can add up real fast if emissions aren’t curbed soon. Alas it’s even worse than that. Global warming and climate
-                change are driving many long-term ‘irreversible’ effects that will have significant consequences worldwide. In particular, the IPCC has outlined the following points:
+                daily precipitation events will intensify by roughly
+                <ion-text id="popover" (click)="notifications($event)">7%</ion-text> for every +1°C of global warming, according to the Intergovernmental Panel on Climate Change [IPCC]. That may not sound significant, but we have to keep in mind that long-term global temperatures are projected to reach
+                <ion-text id="popover" (click)="notifications($event)">+3.3-5.7°C</ion-text> under the “very high GHG emissions scenario”. So all the 7% intensifications can add up real fast if emissions aren’t curbed soon. Alas it’s even worse than that. Global warming and climate change are driving many
+                long-term ‘irreversible’ effects that will have significant consequences worldwide. In particular, the IPCC has outlined the following points:
             </p>
             <ul>
                 <li>
-                    Mountain and polar glaciers are projected to continue melting for decades or centuries. Even if we were to drastically reduce our emissions in the coming decades [to limit warming to +1.5°C over the 21st century], the Arctic would still be likely to experience
-                    at least one sea ice free summer before 2050. And unsurprisingly, uncontrolled emissions in the near future would lead to far more occurrences of sea ice free summers in the Arctic.
+                    Mountain and polar glaciers are projected to continue
+                    <ion-text id="popover" (click)="notifications($event)">melting</ion-text> for decades or centuries. Even if we were to drastically reduce our emissions in the coming decades [to limit warming to
+                    <ion-text id="popover" (click)="notifications($event)">+1.5°C</ion-text> over the 21st century], the Arctic would still be likely to experience
+                    <ion-text id="popover" (click)="notifications($event)">at least one</ion-text> sea ice free summer before 2050. And unsurprisingly, uncontrolled emissions in the near future would lead to
+                    <ion-text id="popover" (click)="notifications($event)">far more occurrences</ion-text> of sea ice free summers in the Arctic.
                 </li>
                 <li>
-                    GHGs contained in permafrost [i.e. grounds that are completely frozen] will irreversibly be released into the atmosphere during permafrost thaw, at centennial timescales. Preventing permafrost thaw as much as possible by reducing our emissions will be
-                    key to reduce the amount of GHGs released by the environment. Otherwise, reaching the ‘tipping point’ for permafrost will induce more global warming, which can establish negative feedback loops [i.e. vicious circles] that end up causing
-                    even more irreversible damage.
+                    GHGs contained in permafrost [i.e. grounds that are completely frozen] will irreversibly be
+                    <ion-text id="popover" (click)="notifications($event)">released</ion-text> into the atmosphere during permafrost thaw, at centennial timescales. Preventing permafrost thaw as much as possible by reducing our emissions will be key to reduce the amount of GHGs released by the environment.
+                    Otherwise, reaching the ‘tipping point’ for permafrost will induce more global warming, which can establish negative feedback loops [i.e. vicious circles] that end up causing even more irreversible damage.
                 </li>
                 <li>
-                    The Greenland Ice Sheet will keep melting and the Antarctic Ice Sheet will likely do the same, although the total amount of ice loss remains to be seen. In Greenland, total ice loss will be heavily influenced by the amount of GHGs we emit in the next
-                    few decades [there isn’t a whole lot of evidence that would suggest the same is true for Antarctica, for now at least].
+                    The Greenland Ice Sheet will keep
+                    <ion-text id="popover" (click)="notifications($event)">melting</ion-text> and the Antarctic Ice Sheet will
+                    <ion-text id="popover" (click)="notifications($event)">likely</ion-text> do the same, although the total amount of ice loss remains to be seen. In Greenland, total ice loss will be
+                    <ion-text id="popover" (click)="notifications($event)">heavily influenced</ion-text> by the amount of GHGs we emit in the next few decades [there isn’t a whole lot of evidence that would suggest the same is true for Antarctica, for now at least].
                 </li>
                 <li>
-                    Sea level will continue to rise for hundreds to thousands of years, after which it will maintain its elevation for additional thousands of years. Over the next 2000 years for example, the average global sea level is expected to rise by roughly 2-3 meters
-                    if we limit global warming to +1.5°C, by 2-6 meters with a +2°C limit, or by 19-22 meters at +5°C [i.e. temperature reached in 2100]. And there’s a very real possibility that sea levels continue to rise after those 2000 years have
-                    passed, especially if we keep increasing the amount of GHGs we release every year. In the short term, the average global sea level rise will likely be contained between 0.28-2 meters by 2100, depending on if we limit warming to +1.5°C
-                    or if we keep growing it to +5°C over the 21st century.
+                    Sea level will continue to rise for
+                    <ion-text id="popover" (click)="notifications($event)">hundreds to thousands</ion-text> of years, after which it will maintain its elevation for additional
+                    <ion-text id="popover" (click)="notifications($event)">thousands of years</ion-text>. Over the next 2000 years for example, the average global sea level is expected to rise by roughly
+                    <ion-text id="popover" (click)="notifications($event)">2-3</ion-text> meters if we limit global warming to +1.5°C, by
+                    <ion-text id="popover" (click)="notifications($event)">2-6</ion-text> meters with a +2°C limit, or by
+                    <ion-text id="popover" (click)="notifications($event)">19-22</ion-text> meters at +5°C [i.e. temperature reached in 2100]. And there’s a very real
+                    <ion-text id="popover" (click)="notifications($event)">possibility</ion-text> that sea levels continue to rise after those 2000 years have passed, especially if we keep increasing the amount of GHGs we release every year. In the short term, the average global sea level rise will likely
+                    be contained between
+                    <ion-text id="popover" (click)="notifications($event)">0.28-2</ion-text> meters by 2100, depending on if we limit warming to +1.5°C or if we keep growing it to +5°C over the 21st century.
                 </li>
             </ul>
             <p>
                 Unfortunately, there are too many consequences to global warming and climate change to list them all here. However, a few of them can help us understand how humans will be directly impacted by these changes – notably by threatening global food and water
-                security, increasing the likeliness and intensity of extreme weather events, and forcing climate migration on hundreds of millions of individuals around the globe [among many more consequences].
+                security, increasing the likeliness and intensity of extreme weather events, and forcing climate migration on
+                <ion-text id="popover" (click)="notifications($event)">hundreds of millions</ion-text> of individuals around the globe [among many more consequences].
             </p>
             <p>
                 Sadly, many indirect effects will also drastically impact human lives, like biodiversity loss.
@@ -163,8 +180,6 @@
         <!-- Biodiversity content in here -->
 
         <div *ngSwitchCase="'segment3'">
-            <img src="../../assets/test.jpg">
-
             <p id="climatechange">
                 Biodiversity loss may not get as much attention as climate change does, but it’s just as bad. Biodiversity can be defined in a number of ways. Here, we’ll define it as the grouping of the genetic, species, and ecosystem diversities all into one. As we’ll
                 see in this section, these 3 types of diversities are all interconnected and interdependent.
@@ -196,26 +211,27 @@
                 Ecosystem diversity is extremely important as well and its effects are easier to visualize than for the previous two. An ecosystem is a natural environment in which plants, animals, and their surroundings coexist in balance. Many different ecosystems
                 exist around the world, and they all help regulate the Earth. Jungles, deserts, glaciers, savannahs, reefs, prairies, oceans, and many more all have unique characteristics that literally make the world a better place. Jungles and forests
                 for example, play an essential role in the water and carbon cycles. Deserts and glaciers may seem like uninhabitable wastes of space, but they help regulate the Earth’s temperature with their reflectiveness. Oceans don’t reflect much,
-                but they do help mitigate global warming by absorbing a quarter of our CO2 emissions every year. Maintaining our diverse ecosystems around the globe is essential if we are to preserve our remaining natural environments and the life they
-                contain, improve yields, limit global warming, mitigate the effects of climate change, and more. If it had to be summed up in a single sentence: biodiversity helps improve/preserve anything that involves the natural world – which we depend
-                on heavily.
+                but they do help mitigate global warming by absorbing a
+                <ion-text id="popover" (click)="notifications($event)">quarter</ion-text> of our CO2 emissions every year. Maintaining our diverse ecosystems around the globe is essential if we are to preserve our remaining natural environments and the life they contain, improve yields, limit global warming,
+                mitigate the effects of climate change, and more. If it had to be summed up in a single sentence: biodiversity helps improve/preserve anything that involves the natural world – which we depend on heavily.
             </p>
             <h1>
                 Threats
             </h1>
             <p>
-                Biodiversity is beautiful and balanced – but fragile. 5 major causes of biodiversity loss are a direct result of human activity, following the acronym H.I.C.O.P.: Habitat loss describes the physical deterioration or ‘shrinking’ of a species’ environment.
-                Affected species are seeing huge declines in their population size, and many are forced to migrate quickly into other ecosystems all at once, significantly unbalancing it. This can cause invasive species. Invasive species are characterized
-                as such when a single species starts dominating an ecosystem. This considerably weakens ecosystems as it does not allow species diversity or balance. They are especially a problem when foreign species integrate a new environment and start
-                outcompeting native species, as the native species are often crucial for ensuring ecosystem balance. Invasive species can occur naturally, but are often a consequence of human activity because of a rapid change in their environment. Climate
-                change describes the change in the climate due to human activity. Since you’ve made it this far, we’re going to assume you know what we’re talking about. Climate change can seriously affect biodiversity, as it threatens species that depend
-                on a stable climate pattern. The list of such species isn’t limited to polar bears and penguins – species all around the world have adapted to a very specific climate. An abrupt change in the climate [like the one we’re seeing now] severely
-                endangers all species as they do not have time to adapt to different living conditions in such a short amount of time. Overharvesting describes the excessive and destructive tendency we have to hunt species faster than they can procreate,
-                or grow crops faster than soil can heal. It takes no expert to see that this leads to extinction of animal species and degradation of croplands. This human characteristic isn’t new or unheard of. With examples ranging from the wooly mammoth
-                to the dodo bird, humans haven’t always shown their long-term thinking capabilities. As species go extinct and soil fertility drops, biodiversity levels decrease and entire ecosystems weaken. Pollution describes the contamination of any
-                environment that results in nature degradation. Air, water, soil, and noise. These don’t describe The Last Airbender‘s 4 nations, these are all serious types of pollution. Toxicity present in the first 3 elements directly endangers species
-                – especially those that live near sources of pollution. Often overlooked, noise pollution also impacts nearby species, since some of them rely on their hearing for survival and mating calls. It’s not just near cities either. Pollution
-                can occur in remote parts of the world where biodiversity is strong, as shown by the Deepwater Horizon oil spill of 2010. Pollution significantly weakens ecosystems as both its species and their environment are damaged simultaneously.
+                Biodiversity is beautiful and balanced – but fragile. 5 major causes of biodiversity loss are a direct result of human activity, following the acronym
+                <ion-text id="popover" (click)="notifications($event)">H.I.C.O.P.</ion-text>: Habitat loss describes the physical deterioration or ‘shrinking’ of a species’ environment. Affected species are seeing huge declines in their population size, and many are forced to migrate quickly into other ecosystems
+                all at once, significantly unbalancing it. This can cause invasive species. Invasive species are characterized as such when a single species starts dominating an ecosystem. This considerably weakens ecosystems as it does not allow species
+                diversity or balance. They are especially a problem when foreign species integrate a new environment and start outcompeting native species, as the native species are often crucial for ensuring ecosystem balance. Invasive species can occur
+                naturally, but are often a consequence of human activity because of a rapid change in their environment. Climate change describes the change in the climate due to human activity. Since you’ve made it this far, we’re going to assume you
+                know what we’re talking about. Climate change can seriously affect biodiversity, as it threatens species that depend on a stable climate pattern. The list of such species isn’t limited to polar bears and penguins – species all around the
+                world have adapted to a very specific climate. An abrupt change in the climate [like the one we’re seeing now] severely endangers all species as they do not have time to adapt to different living conditions in such a short amount of time.
+                Overharvesting describes the excessive and destructive tendency we have to hunt species faster than they can procreate, or grow crops faster than soil can heal. It takes no expert to see that this leads to extinction of animal species
+                and degradation of croplands. This human characteristic isn’t new or unheard of. With examples ranging from the wooly mammoth to the dodo bird, humans haven’t always shown their long-term thinking capabilities. As species go extinct and
+                soil fertility drops, biodiversity levels decrease and entire ecosystems weaken. Pollution describes the contamination of any environment that results in nature degradation. Air, water, soil, and noise. These don’t describe
+                <ion-text id="popover" (click)="notifications($event)">The Last Airbender</ion-text>‘s 4 nations, these are all serious types of pollution. Toxicity present in the first 3 elements directly endangers species – especially those that live near sources of pollution. Often overlooked, noise pollution
+                also impacts nearby species, since some of them rely on their hearing for survival and mating calls. It’s not just near cities either. Pollution can occur in remote parts of the world where biodiversity is strong, as shown by the Deepwater
+                Horizon oil spill of 2010. Pollution significantly weakens ecosystems as both its species and their environment are damaged simultaneously.
             </p>
             <div id="button">
                 <ion-button expand="block" (click)="presentModal()">Send feedback</ion-button>
