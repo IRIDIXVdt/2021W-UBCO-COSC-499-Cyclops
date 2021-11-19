@@ -1,14 +1,77 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      <h1>Eco Tracker</h1>
+      <h1 id="ecotitle">ECO Tracker</h1>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <app-progress-indicators></app-progress-indicators>
+  <ion-card id="card1" style=" margin-left: 10%; margin-right: 10%;">
+    <ion-card-header>
+      <ion-card-subtitle style="text-align:center; font-size:150%;" >Overall Score</ion-card-subtitle>
+      <ion-card-title style="text-align:center; font-size:400%" fontsize >{{profile.score}}%</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <ion-progress-bar color="primary" value="0.8"></ion-progress-bar>
+    </ion-card-content>
+  </ion-card>
+
   <section id ="surveycenter">
-    <ion-button expand="block" >Submit New Survey</ion-button>
+    <ion-button (click)= "openModal()" >Submit Solution</ion-button>
   </section>
+  
+  
+  
+  <ion-card id="card1" style=" margin-left: 10%; margin-right: 10%;">
+    <ion-card-header>
+      <ion-card-subtitle>
+        <span class="text"><h4>{{profile.solution}}</h4></span>
+        <p id="right">
+        <ion-button class="round"  size="small" shape="round"  color="medium" (click)="notifications()" >  
+        <ion-icon name="help"></ion-icon>
+        </ion-button>
+        </p>
+      </ion-card-subtitle>
+    
+      <ion-card-title style="text-align:center; font-size:300%" fontsize>{{profile.score}}%</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <ion-progress-bar color="primary" value="0.4"></ion-progress-bar>
+    </ion-card-content>
+  </ion-card>
+  
+  <ion-card id="card1" style=" margin-left: 10%; margin-right: 10%;">
+    <ion-card-header>
+      <ion-card-subtitle>
+        <span class="text"><h4>Solution 2</h4></span>
+        <p id="right">
+        <ion-button class="round"  size="small" shape="round"  color="medium" (click)="notifications()" >  
+        <ion-icon name="help"></ion-icon>
+        </ion-button>
+        </p>
+      </ion-card-subtitle>
+      <ion-card-title style="text-align:center; font-size:300%" fontsize >70%</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <ion-progress-bar color="primary" value="0.7"></ion-progress-bar>
+    </ion-card-content>
+  </ion-card>
+  
+
+
+
+
+
+
+
+
+  <section id ="surveycenter">
+    <ion-button expand="block" (click)="goSurvey()" >Submit Feedback</ion-button>
+  </section>
+
+
 </ion-content>
