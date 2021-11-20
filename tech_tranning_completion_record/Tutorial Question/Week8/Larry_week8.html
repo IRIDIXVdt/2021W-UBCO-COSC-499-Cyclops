@@ -6,20 +6,49 @@
 </head>
 <body>
     <h4>1. Provide a definition of Reactive Forms:</h4>
-    <p>Your answer here</p>
+    <p>In reactive forms, there are</p>
+    <p>Explicit management of data flowing between an non-UI data model and a UI-oriented form model</p>
+    <p>Create a tree of Angular form control objects in the component class</p>
+    <p>Bind them to thte native form control elements in the template</p>
+    <p>Component class has immediate access to both data model and the from control sturcture</p>
+    <p>Reatvie patterns, testing and validation</p>
+	<p>Values and Validity update are alwasy synchronous and it is easier to unit test</p>
 	
-	<h4>2. List Reactive Form Classes with its functionality</h4>
-    <p>Your answer here</p>
+    <h4>2. List Reactive Form Classes with its functionality</h4>
+    <p>FromControl: powers individual form control, tracks the value and validation status</p>
+	<p>FormGroup: group of FormControl instances</p>
+    <p>AbstractControl: abstract base class for the form control classes</p>
+    <p>FormArray: numberically indexed array of AbstractControl instances</p>
 	
-	<h4>3. List Form Control Properties with its Description</h4>
-    <p>Your answer here</p>
-	
+    <h4>3. List Form Control Properties with its Description</h4>
+    <p>.value</p>
+    <p>it describes the value of the form control</p>
+	<p>.status</p>
+    <p>validity:VALID, INVALID, PENDING, DISABLED</p>
+	<p>.pristine/.dirty</p>
+    <p>true if user has not changed/chantged value in UI</p>
+    <p>.untouched/.touched</p>
+    <p>true if the user has not yet entered the HTML control and triggered its blur event</p>
+    
 	<h4>4. Provide a definition of RxJS</h4>
-    <p>Your answer here</p>
-	
+    <p>RxJS is a library for composing asynchronoous and event-based programs by using obse4rvable sequences</p>
+    <p>it provides:</p>
+    <p>one core type, the Observable,</p>
+    <p>satellite types: Observer, Schedulers, Subjects</p>
+	<p>operators insipred by Array#extras: map, filter, reduce, every, etc</p>
+    <p>to allow handling asynchronous events as collections</p>
+    <p>Used for observables support in Angular</p>
+
 	<h4>5. Provide a definition The Observer Pattern</h4>
-    <p>Your answer here</p>
-	
+    <p>Observable provides values overtime, they can treated as values in an array</p>
+	<p>They can be passed to Operators, and transformed to another Observable</p>
+    <p>The Second one is dependent on the first one.</p>
+    <p>For Angular and RxJS, we have Observables all over Angular</p>
+    <p>In Forms, HTTP, AsyncPipe, Change detection...</p>
+    <p></p>
+    
+
+
 	
 </body>
 </html>
