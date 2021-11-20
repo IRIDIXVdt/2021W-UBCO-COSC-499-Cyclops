@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { ModalController,NavParams } from '@ionic/angular';
 @Component({
   selector: 'app-edit-modal',
   templateUrl: './edit-modal.component.html',
@@ -7,8 +7,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditModalComponent implements OnInit {
 
-  constructor() { }
+  contentModal: any ={};
+  constructor( 
+    public modalController: ModalController,
+    private navParams:NavParams
+    ) { 
+        this.contentModal = this.navParams.data;
+
+    }
 
   ngOnInit() {}
 
+  close() {
+    this.modalController.dismiss();
+  }
+
+  submit() {
+    this.modalController.dismiss(this.contentModal)
+
+    
+  }
 }

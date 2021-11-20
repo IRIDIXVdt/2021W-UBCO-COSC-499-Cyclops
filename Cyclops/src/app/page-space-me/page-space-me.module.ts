@@ -8,6 +8,7 @@ import { IonicModule } from '@ionic/angular';
 import { PageSpaceMePageRoutingModule } from './page-space-me-routing.module';
 
 import { PageSpaceMePage } from './page-space-me.page';
+import { EditModalComponent } from '../edit-modal/edit-modal.component';
 
 @NgModule({
   imports: [
@@ -16,6 +17,6 @@ import { PageSpaceMePage } from './page-space-me.page';
     IonicModule,
     PageSpaceMePageRoutingModule
   ],
-  declarations: [PageSpaceMePage, PopoverComponent]
+  declarations: [PageSpaceMePage, PopoverComponent,EditModalComponent]
 })
 export class PageSpaceMePageModule { }

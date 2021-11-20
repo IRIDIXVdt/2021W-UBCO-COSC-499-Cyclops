@@ -1,3 +1,24 @@
-<p>
-  edit-modal works!
-</p>
+<ion-toolbar>
+  <ion-title>Article Edit</ion-title>
+  <ion-buttons slot="primary" (click)="close()">Close</ion-buttons>
+</ion-toolbar>
+
+<ion-content>
+  <ion-item>
+    <ion-label >
+      Title: 
+    </ion-label>
+    <ion-input type="text" [(ngModel)]="contentModal.title"></ion-input>
+  </ion-item>
+
+
+  <ion-item>
+    <ion-label >
+      Intro: 
+    </ion-label>
+    <ion-textarea rows="20" cols="20" type="text" [(ngModel)]="contentModal.intro"></ion-textarea>
+  </ion-item>
+  <div id="button">
+    <ion-button expand="block"   color="tertiary" class="ion-margin-top" (click)="submit()">Edit Content</ion-button>
+  </div>
+</ion-content>

@@ -3,7 +3,7 @@
         <ion-buttons slot="start">
             <ion-back-button [text]="buttonText"></ion-back-button>
         </ion-buttons>
-        <ion-title>Sample article</ion-title>
+        <ion-title>{{content.title}}</ion-title>
     </ion-toolbar>
     <ion-toolbar>
         <ion-segment style="height: 40px; width: 100%;" (ionChange)="segmentChanged($event)" [(ngModel)]="status" scrollable>
@@ -45,10 +45,13 @@
         <div *ngSwitchDefault>
             <img src="../../assets/test.jpg">
             <p id="intro">
-                Here, we’ll explore 2 of the most important aspects of the environmental crisis: climate change and biodiversity loss. We’ll see why mitigating each ‘sub-crisis’ is important for the planet and its millions of species, including humans. This section should
-                provide a solid foundation before exploring additional sections, where we’ll often allude to greenhouse gas emissions and biodiversity loss. This will help readers understand the severity of emissions and toxic pollution, instead of just
-                reading meaningless numbers.
+               {{content.intro}}
             </p>
+
+            <div id="button">
+                <ion-button expand="block" (click) ="openModal()">Edit Content</ion-button>
+                <ion-button expand="block" (click)="presentModal()">Send feedback</ion-button>
+            </div>
         </div>
 
 
@@ -59,8 +62,12 @@
                 provide a solid foundation before exploring additional sections, where we’ll often allude to greenhouse gas emissions and biodiversity loss. This will help readers understand the severity of emissions and toxic pollution, instead of just
                 reading meaningless numbers.
             </p>
+            <div id="button">
+                <ion-button expand="block" (click) ="openModal()">Edit Content</ion-button>
+                <ion-button expand="block" (click)="presentModal()">Send feedback</ion-button>
+            </div>
         </div>
-        <ion-button (click) ="openmodal()">Edit Content</ion-button>
+        
 
         <!-- Climate Change content in here -->
 
@@ -173,6 +180,11 @@
                 temperature refute it. That being said, when year after year we measure record-breaking daily, weekly, monthly, and annual temperatures [or extreme weather events] in very different parts of the world, it becomes pretty clear that global
                 warming and climate change are already here. It’s no longer the future generation’s problem.
             </p>
+
+            <div id="button">
+                <ion-button expand="block" (click) ="openModal()">Edit Content</ion-button>
+                <ion-button expand="block" (click)="presentModal()">Send feedback</ion-button>
+            </div>
         </div>
 
 
@@ -234,6 +246,7 @@
                 Horizon oil spill of 2010. Pollution significantly weakens ecosystems as both its species and their environment are damaged simultaneously.
             </p>
             <div id="button">
+                <ion-button expand="block" (click) ="openModal()">Edit Content</ion-button>
                 <ion-button expand="block" (click)="presentModal()">Send feedback</ion-button>
             </div>
         </div>
