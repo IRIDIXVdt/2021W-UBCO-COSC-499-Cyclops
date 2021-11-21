@@ -11,6 +11,8 @@ export class PageSpaceLaPage implements OnInit {
   }
 
   ngOnInit() {
+
+
     const searchResult = document.querySelector('#requested') as HTMLElement;
     searchResult.style.display = 'none';
 
@@ -18,8 +20,11 @@ export class PageSpaceLaPage implements OnInit {
     const searchbar = document.querySelector('ion-searchbar');
     const items = Array.from(document.querySelector('ion-list').children as HTMLCollectionOf<HTMLElement>);
 
-    searchbar.addEventListener('ionInput', handleInput);
+    $(function(){
+      $("#includedContent").load("b.html"); 
+    });
 
+    searchbar.addEventListener('ionInput', handleInput);
     function handleInput(event) {
       const query = event.target.value.toLowerCase();
       requestAnimationFrame(() => {
@@ -31,7 +36,6 @@ export class PageSpaceLaPage implements OnInit {
     }
 
     searchbar.addEventListener('ionFocus', handleFocus);
-    
     function handleFocus(){
       console.log('message Focus emit');
       requestAnimationFrame(() => {
