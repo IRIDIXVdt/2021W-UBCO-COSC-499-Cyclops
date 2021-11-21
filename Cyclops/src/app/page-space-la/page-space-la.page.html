@@ -7,16 +7,28 @@
 <ion-content>
     <!-- your code here -->
     <!-- Searchbar with a cancel button and custom cancel button text -->
-    <ion-searchbar showCancelButton="focus" cancelButtonText="Cancel" animated='true'></ion-searchbar>
+    <ion-searchbar placeholder="Search Title" showCancelButton="focus" cancelButtonText="Cancel" animated='true'></ion-searchbar>
     <div id='test'>
         <!-- <ion-label color="primary">Primary Label</ion-label> -->
         <ion-list id='requested'>
-            <ion-item>Bogota</ion-item>
-            <ion-item>Buenos Aires</ion-item>
-            <ion-item>Cairo</ion-item>
-            <ion-item>Dhaka</ion-item>
+            <ion-item>Introduction</ion-item>
+            <ion-item>Money</ion-item>
+            <ion-item>Temperature Control</ion-item>
+            <ion-item>The 3 Rs</ion-item>
+            <ion-item>Transportation</ion-item>
+            <ion-item>Pollution</ion-item>
+            <ion-item>Population and Education</ion-item>
+            <ion-item>Resources and the Economy</ion-item>
         </ion-list>
     </div>
+
+
+
+
+
+
+
+    
     <div id='origin'>
 
         <ion-segment [(ngModel)]="status" scrollable>
