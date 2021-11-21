@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>
-      <h1 id="ecotitle">ECO Tracker</h1>
+    <ion-title style="font-size: 150%;">
+      ECO Tracker
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -18,9 +18,12 @@
     </ion-card-content>
   </ion-card>
 
-  <section id ="surveycenter">
-    <ion-button (click)= "openModal()" >Submit Solution</ion-button>
-  </section>
+  <div id="button">
+    <section id ="surveycenter">
+      <ion-button expand="block" (click)= "openModal()" >Submit Solution</ion-button>
+    </section>
+  </div>
+  
   
   
   
@@ -68,10 +71,13 @@
 
 
 
-
-  <section id ="surveycenter">
-    <ion-button expand="block" (click)="goSurvey()" >Submit Feedback</ion-button>
-  </section>
+  <div id="button">
+    <section id ="surveycenter">
+      <ion-button expand="block"  >Survey(peer testing 2)</ion-button>
+      <!-- <ion-button expand="block" (click)="goSurvey()" >Survey(peer testing 2)</ion-button> -->
+    </section>
+  </div>
+  
 
 
 </ion-content>
