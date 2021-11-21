@@ -20,9 +20,7 @@ export class PageSpaceLaPage implements OnInit {
     const searchbar = document.querySelector('ion-searchbar');
     const items = Array.from(document.querySelector('ion-list').children as HTMLCollectionOf<HTMLElement>);
 
-    $(function(){
-      $("#includedContent").load("b.html"); 
-    });
+
 
     searchbar.addEventListener('ionInput', handleInput);
     function handleInput(event) {
