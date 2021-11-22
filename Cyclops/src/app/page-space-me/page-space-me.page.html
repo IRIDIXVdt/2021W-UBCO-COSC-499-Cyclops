@@ -3,15 +3,18 @@
         <ion-buttons slot="start">
             <!-- <ion-back-button defaultHref="/tabs/page-space-la"></ion-back-button> -->
             
-            <ion-button  href="/tabs/page-space-la" >
+            <!-- <ion-button  href="/tabs/page-space-la" >
                 <ion-icon name="arrow-undo-circle"></ion-icon>
-            </ion-button>
+            </ion-button> -->
+            <ion-back-button defaultHref="/">
+            </ion-back-button>
+            
         </ion-buttons>
         <ion-title style="font-size: 150%;">{{content.title}}</ion-title>
     </ion-toolbar>
     
-    <ion-toolbar>
-        <ion-segment  [(ngModel)]="status" scrollable color = "light">
+    <!-- <ion-toolbar> -->
+        <ion-segment  [(ngModel)]="status" color = "medium">
             <ion-segment-button  text-wrap value="segment1">
                 <ion-label>Intro</ion-label>
             </ion-segment-button>
@@ -22,7 +25,7 @@
                 <ion-label>Biodiversity Loss</ion-label>
             </ion-segment-button>
         </ion-segment>
-    </ion-toolbar>
+    <!-- </ion-toolbar> -->
    
 </ion-header>
 
