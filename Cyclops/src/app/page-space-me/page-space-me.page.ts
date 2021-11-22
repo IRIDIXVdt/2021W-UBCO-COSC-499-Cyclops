@@ -4,7 +4,9 @@ import { PopoverComponent } from '../popover/popover.component';
 import { ModalController } from '@ionic/angular';
 import { FeedbackModalComponent } from '../feedback-modal/feedback-modal.component';
 import { EditModalComponent } from '../edit-modal/edit-modal.component';
-
+import { ActivatedRoute } from '@angular/router';
+import { content } from '../sharedData/content';
+import { CONTENTS } from '../sharedData/contents';
 
 @Component({
   selector: 'app-page-space-me',
@@ -16,14 +18,17 @@ export class PageSpaceMePage implements OnInit {
     title: 'Sample Article',
     intro: 'Here, we’ll explore 2 of the most important aspects of the environmental crisis: climate change and biodiversity loss. We’ll see why mitigating each ‘sub-crisis’ is important for the planet and its millions of species, including humans. This section should provide a solid foundation before exploring additional sections, where we’ll often allude to greenhouse gas emissions and biodiversity loss. This will help readers understand the severity of emissions and toxic pollution, instead of just reading meaningless numbers.'
   }
+  contents: content[] = CONTENTS;
+  articleId; 
 
   constructor(
     public popover: PopoverController, 
     public modalController: ModalController, 
-    private modalCtrol: ModalController 
+    private modalCtrol: ModalController,
+    private activatedrouter: ActivatedRoute
      ) {
 
-
+      this.articleId = this.activatedrouter.snapshot.paramMap.get('id');
    }
 
   async notifications(event) {

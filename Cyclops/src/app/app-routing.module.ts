@@ -21,6 +21,10 @@ const routes: Routes = [
   {
     path: 'page-space-me',
     loadChildren: () => import('./page-space-me/page-space-me.module').then( m => m.PageSpaceMePageModule)
+  },
+  {
+    path: 'tabs/page-space-me/:id',
+    loadChildren: () => import('./page-space-me/page-space-me.module').then( m => m.PageSpaceMePageModule)
   }
 
 ];
