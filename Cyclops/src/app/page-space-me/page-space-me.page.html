@@ -1,26 +1,33 @@
 <ion-header>
     <ion-toolbar>
         <ion-buttons slot="start">
-            <ion-back-button defaultHref="/tabs/page-space-la"></ion-back-button>
+            <!-- <ion-back-button defaultHref="/tabs/page-space-la"></ion-back-button> -->
+            
+            <ion-button  defaultHref="/tabs/page-space-la" >
+                <ion-icon name="arrow-undo-circle"></ion-icon>
+              </ion-button>
         </ion-buttons>
         <ion-title style="font-size: 150%;">{{content.title}}</ion-title>
     </ion-toolbar>
+    
     <ion-toolbar>
-        <ion-segment style="height: 40px; width: 100%;" [(ngModel)]="status" scrollable>
-            <ion-segment-button value="segment1">
+        <ion-segment  [(ngModel)]="status" scrollable color = "light">
+            <ion-segment-button  text-wrap value="segment1">
                 <ion-label>Intro</ion-label>
             </ion-segment-button>
-            <ion-segment-button value="segment2">
+            <ion-segment-button  text-wrap value="segment2">
                 <ion-label>Climate Change</ion-label>
             </ion-segment-button>
-            <ion-segment-button value="segment3">
+            <ion-segment-button  text-wrap value="segment3">
                 <ion-label>Biodiversity Loss</ion-label>
             </ion-segment-button>
         </ion-segment>
     </ion-toolbar>
+   
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content  class="ion-padding">
+
 
     <!--     <ion-segment>
         <a href="#climatechange">
