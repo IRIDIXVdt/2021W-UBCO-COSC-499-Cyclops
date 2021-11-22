@@ -6,7 +6,7 @@
         <ion-title style="font-size: 150%;">{{content.title}}</ion-title>
     </ion-toolbar>
     <ion-toolbar>
-        <ion-segment style="height: 40px; width: 100%;" (ionChange)="segmentChanged($event)" [(ngModel)]="status" scrollable>
+        <ion-segment style="height: 40px; width: 100%;" [(ngModel)]="status" scrollable>
             <ion-segment-button value="segment1">
                 <ion-label>Intro</ion-label>
             </ion-segment-button>
