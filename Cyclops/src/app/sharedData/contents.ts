@@ -20,6 +20,7 @@ export const CONTENTS: content[] = [
         article: 'Changing the way we interact with nature is essential to avoid further climate change and biodiversity loss – but there’s more to it than that. Transitioning our societies into more sustainable ones helps secure a stable future, by ensuring that everything we do, we can do forever.'
         
     },
+    
 
     {
         id: '2',
@@ -30,9 +31,27 @@ export const CONTENTS: content[] = [
         article: 'While the next few sections of ‘Laying the Foundation’ are focused on energy, it’s important to understand that polluting energy sources are just one part of the problem. We’ll go over numerous examples in the main sections – but for now, just remember that it’s not only about how we produce energy – it’s also about what we use it for.'
         
     },
-
     {
         id: '3',
+        title: 'Mining',
+        subtitle: '',
+        image: '../assets/mine.jpg',
+        segment: ['Summary','Overview'],
+        article: 'Mining is an extremely important primary industry that supports our modern societies during development. Mining is the first step before building, expanding, and growing civilizations. It’s also the backbone of the modern global economy, since inventing new products is one of the main drivers of growth in our societies.'
+        
+    },
+    {
+        id: '4',
+        title: 'Renewables',
+        subtitle: '',
+        image: '../assets/renew.jpg',
+        segment: ['Summary','Overview'],
+        article: 'Renewable energy will help us decarbonize our atmosphere, but all technologies have their limits. In this section, we’ll take a look at some of the most popular renewable solutions to find these limitations – in terms of environmental impacts and energy generation potential. Overall, renewable energy alone won’t help make our societies sustainable. If we want to attain sustainability, renewables will help – but are only one part of the solution. The much, much larger part will be reducing our impacts by consuming less of the world’s resources – by lowering both our energy and material demands.'
+        
+    },
+
+    {
+        id: '5',
         title: 'Food',
         subtitle: '',
         image: '../assets/pic7.jpg',
@@ -42,7 +61,7 @@ export const CONTENTS: content[] = [
     },
 
     {
-        id: '4',
+        id: '6',
         title: 'Household Appliances',
         subtitle: '',
         image: '../assets/pic8.jpg',
@@ -52,7 +71,7 @@ export const CONTENTS: content[] = [
     },
 
     {
-        id: '5',
+        id: '7',
         title: 'Industry',
         subtitle: '',
         image: '../assets/pic9.jpg',
