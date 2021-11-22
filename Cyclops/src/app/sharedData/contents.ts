@@ -7,7 +7,7 @@ export const CONTENTS: content[] = [
         subtitle: 'Climate Change and Biodiversity Loss',
         image: '../assets/pic1.jpg',
         segment: ['Intro','Climate Change','Biodiversity Loss'],
-        article: '<h1>Founded</h1> in 1829 on an isthmus between Lake Monona and Lake Mendota, Madison was named the capital of the Wisconsin Territory in 1836.'
+        article: 'Founded in 1829 on an isthmus between Lake Monona and Lake Mendota, Madison was named the capital of the Wisconsin Territory in 1836.'
         
     },
 
