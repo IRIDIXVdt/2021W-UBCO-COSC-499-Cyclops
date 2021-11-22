@@ -3,5 +3,6 @@ export class content {
     title: string;
     subtitle: string;
     image: string;
+    segment: string[];
     article: string;
 }
