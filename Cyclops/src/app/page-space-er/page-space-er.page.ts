@@ -11,5 +11,9 @@ export class PageSpaceErPage implements OnInit {
 
   ngOnInit() {
   }
-
+  slideOptsOne = {
+    initialSlide: 0,
+    slidesPerView: 1,
+    autoplay:true
+   };
 }

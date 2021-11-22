@@ -1,58 +1,62 @@
-#card1{
-    padding-left: 3%;
-    padding-right: 3%;
+
+// #card1{
+//     padding-left: 3%;
+//     padding-right: 3%;
    
     
     
 
-    border-radius: 20px 20px 20px 20px;
-    -moz-border-radius: 20px 20px 20px 20px;
-    -webkit-border-radius: 20px 20px 20px 20px;
-    border: 0px solid #000000;
-    //https://www.cssmatic.com/border-radius
+//     border-radius: 20px 20px 20px 20px;
+//     -moz-border-radius: 20px 20px 20px 20px;
+//     -webkit-border-radius: 20px 20px 20px 20px;
+//     border: 0px solid #000000;
+//     //https://www.cssmatic.com/border-radius
 
-    -webkit-box-shadow: -7px 8px 7px -4px rgba(92,87,92,1);
-    -moz-box-shadow: -7px 8px 7px -4px rgba(92,87,92,1);
-    box-shadow: -7px 8px 7px -4px rgba(92,87,92,1);
-}
+//     -webkit-box-shadow: -7px 8px 7px -4px rgba(92,87,92,1);
+//     -moz-box-shadow: -7px 8px 7px -4px rgba(92,87,92,1);
+//     box-shadow: -7px 8px 7px -4px rgba(92,87,92,1);
+// }
 
-#card2{
-    padding-left: 3%;
-    padding-right: 3%;
+// #card2{
+//     padding-left: 3%;
+//     padding-right: 3%;
    
     
     
 
-    border-radius: 20px 20px 20px 20px;
-    -moz-border-radius: 20px 20px 20px 20px;
-    -webkit-border-radius: 20px 20px 20px 20px;
-    border: 0px solid #000000;
-    //https://www.cssmatic.com/border-radius
+//     border-radius: 20px 20px 20px 20px;
+//     -moz-border-radius: 20px 20px 20px 20px;
+//     -webkit-border-radius: 20px 20px 20px 20px;
+//     border: 0px solid #000000;
+//     //https://www.cssmatic.com/border-radius
 
-    -webkit-box-shadow: -7px 8px 7px -4px rgba(92,87,92,1);
-    -moz-box-shadow: -7px 8px 7px -4px rgba(92,87,92,1);
-    box-shadow: -7px 8px 7px -4px rgba(92,87,92,1);
-}
+//     -webkit-box-shadow: -7px 8px 7px -4px rgba(92,87,92,1);
+//     -moz-box-shadow: -7px 8px 7px -4px rgba(92,87,92,1);
+//     box-shadow: -7px 8px 7px -4px rgba(92,87,92,1);
+// }
 
 
-#card3{
+// #card3{
    
    
     
    
 
-   border-radius: 20px 20px 20px 20px;
-    -moz-border-radius: 20px 20px 20px 20px;
-    -webkit-border-radius: 20px 20px 20px 20px;
-    border: 0px solid #000000;
-    //https://www.cssmatic.com/border-radius 
+//    border-radius: 20px 20px 20px 20px;
+//     -moz-border-radius: 20px 20px 20px 20px;
+//     -webkit-border-radius: 20px 20px 20px 20px;
+//     border: 0px solid #000000;
+//     //https://www.cssmatic.com/border-radius 
  
-    -webkit-box-shadow: -7px 8px 7px -4px rgba(92,87,92,1);
-    -moz-box-shadow: -7px 8px 7px -4px rgba(92,87,92,1);
-    box-shadow: -7px 8px 7px -4px rgba(92,87,92,1);
-}
+//     -webkit-box-shadow: -7px 8px 7px -4px rgba(92,87,92,1);
+//     -moz-box-shadow: -7px 8px 7px -4px rgba(92,87,92,1);
+//     box-shadow: -7px 8px 7px -4px rgba(92,87,92,1);
+// }
 
-ion-slides {
-    --bullet-background: rgb(58, 54, 54);
-    --bullet-background-active: rgb(43, 39, 39);
- }
+// ion-slides {
+//     --bullet-background: rgb(58, 54, 54);
+//     --bullet-background-active: rgb(43, 39, 39);
+//  }
+ion-card{
+    color:'light';
+}
