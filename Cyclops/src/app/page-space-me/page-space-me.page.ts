@@ -14,10 +14,7 @@ import { CONTENTS } from '../sharedData/contents';
   styleUrls: ['./page-space-me.page.scss'],
 })
 export class PageSpaceMePage implements OnInit {
-  content = {
-    title: 'Sample Article',
-    intro: 'Here, we’ll explore 2 of the most important aspects of the environmental crisis: climate change and biodiversity loss. We’ll see why mitigating each ‘sub-crisis’ is important for the planet and its millions of species, including humans. This section should provide a solid foundation before exploring additional sections, where we’ll often allude to greenhouse gas emissions and biodiversity loss. This will help readers understand the severity of emissions and toxic pollution, instead of just reading meaningless numbers.'
-  }
+
   contents: content[] = CONTENTS;
   articleId;
 
@@ -53,13 +50,13 @@ export class PageSpaceMePage implements OnInit {
   openModal() {
     this.modalCtrol.create({
       component: EditModalComponent,
-      componentProps: this.content
+      componentProps: this.contents[this.articleId]
     }).then(modalres => {
       modalres.present();
 
       modalres.onDidDismiss().then(res => {
         if (res.data != null) {
-          this.content = res.data;
+          this.contents[this.articleId] = res.data;
         }
       })
 
