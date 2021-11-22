@@ -43,7 +43,7 @@
     <div [ngSwitch]="status" class="article">
         <!-- default content -->
         <div *ngSwitchDefault>
-            <img src="../../assets/test.jpg">
+            <img src="{{contents[articleId].image}}">
             <p id="intro">
                {{content.intro}}
             </p>

@@ -1,6 +1,7 @@
-export class Dish {
+export class content {
     id: string;
     title: string;
+    subtitle: string;
     image: string;
-    content: string;
+    article: string;
 }
