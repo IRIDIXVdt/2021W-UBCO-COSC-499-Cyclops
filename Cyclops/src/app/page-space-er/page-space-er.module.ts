@@ -17,4 +17,7 @@ import { PageSpaceErPage } from './page-space-er.page';
   ],
   declarations: [PageSpaceErPage]
 })
-export class PageSpaceErPageModule {}
+export class PageSpaceErPageModule {
+
+
+}

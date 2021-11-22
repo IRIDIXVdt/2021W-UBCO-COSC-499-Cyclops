@@ -305,21 +305,20 @@
             </div>
 
             <div *ngSwitchDefault>
-                <ion-list>
-                    <ion-item>
-                        <ion-card color='light'>
-                            <img src="../assets/pic1.jpg" />
+                <ion-list *ngFor ="let content of contents">
+                    <ion-item > 
+                        <ion-card color='light' routerLink = "/tabs/page-space-me/{{content.id}}">
+                            <img src="{{content.image}}" />
                             <ion-card-header>
-                                <ion-card-subtitle>Climate Change and Biodiversity Loss</ion-card-subtitle>
-                                <ion-card-title>Introduction</ion-card-title>
+                                <ion-card-subtitle>{{content.subtitle}}</ion-card-subtitle>
+                                <ion-card-title>{{content.title}}</ion-card-title>
                             </ion-card-header>
                             <ion-card-content>
-                                Founded in 1829 on an isthmus between Lake Monona and Lake Mendota, Madison was named
-                                the capital of the Wisconsin Territory in 1836.
+                                {{content.article}}
                             </ion-card-content>
                         </ion-card>
                     </ion-item>
-                    <ion-item>
+                    <!-- <ion-item>
                         <ion-card color='light'>
                             <img src="../assets/pic2.jpg" />
                             <ion-card-header>
@@ -346,7 +345,7 @@
                                 it’s not only about how we produce energy – it’s also about what we use it for.
                             </ion-card-content>
                         </ion-card>
-                    </ion-item>
+                    </ion-item> -->
                 </ion-list>
             </div>
         </div>
