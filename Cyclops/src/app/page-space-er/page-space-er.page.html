@@ -2,187 +2,185 @@
   <ion-toolbar>
     <!-- <img src="../assets/icon/cyclops.png" style="margin-top: 3%; margin-left: 3%; width: 20%;"/>
      -->
-    <ion-icon src="../assets/icon/cyclops.png"></ion-icon>
+    <ion-icon src="../assets/icon/cyclops_temp.svg" size="large"></ion-icon>
+    
     <ion-title size="large" style="text-align: right;">CyclopediApp</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
 
-    <!-- first section begin -->
- 
-    <ion-slides pager="true">    
-      <ion-slide>
-          <div style="margin-bottom: 5%;">
-            <p>
-              “The best time to plant a tree was 20 years ago. The second best time is now.The second best time is now 20 years ago.”
-              <br>
-              Proverb
-            </p>
-          </div>
-      </ion-slide>
+  <!-- first section begin -->
 
-      <ion-slide>
+  <ion-slides pager="true">    
+    <ion-slide>
         <div style="margin-bottom: 5%;">
           <p>
-            “The best time to plant a tree was 20 years ago. The second best time is now.”
+            “The best time to plant a tree was 20 years ago. The second best time is now.The second best time is now 20 years ago.”
             <br>
             Proverb
           </p>
         </div>
-      </ion-slide>
+    </ion-slide>
 
-      <ion-slide>
-        <div style="margin-bottom: 5%;">
-          <p>
-            “The best time to plant a tree was 20 years ago. The second best time is now.”
-            <br>
-            Proverb
-          </p>
-        </div>
-      </ion-slide>
+    <ion-slide>
+      <div style="margin-bottom: 5%;">
+        <p>
+          “The best time to plant a tree was 20 years ago. The second best time is now.”
+          <br>
+          Proverb
+        </p>
+      </div>
+    </ion-slide>
 
-    </ion-slides> 
+    <ion-slide>
+      <div style="margin-bottom: 5%;">
+        <p>
+          “The best time to plant a tree was 20 years ago. The second best time is now.”
+          <br>
+          Proverb
+        </p>
+      </div>
+    </ion-slide>
 
-    <!-- first section end -->
-    
-    <!-- seconed section begin (title) -->
+  </ion-slides> 
 
-    <h1>Newest Survey</h1>
-
-    <!-- seconed section end(title) -->
-
-    <!-- seconed section begin (content) -->
-    <!-- <ion-slides pager="true" [options]="slideOpts">     -->
-    <ion-slides [options]="slideOptsOne"> 
-      <ion-slide>
-        <ion-card id="card1">
-          <ion-card-header>
-            <ion-card-title>Sample Survey</ion-card-title>
-          </ion-card-header>
-        
-          <ion-card-content>
-            Keep close to Nature's heart... and break clear away, once in awhile,
-            and climb a mountain or spend a week in the woods. Wash your spirit clean.
-          </ion-card-content>
-        </ion-card>
-            
-      </ion-slide>
-
-      <ion-slide>
-        <ion-card id="card1">
-          <ion-card-header>
-            <ion-card-title>Sample Survey 2</ion-card-title>
-          </ion-card-header>
-        
-          <ion-card-content>
-            Keep close to Nature's heart... and break clear away, once in awhile,
-            and climb a mountain or spend a week in the woods. Wash your spirit clean.
-          </ion-card-content>
-        </ion-card>            
-      </ion-slide>
-
-      <ion-slide>
-        <ion-card id="card1">
-          <ion-card-header>
-            <ion-card-title>Sample Survey 3</ion-card-title>
-          </ion-card-header>
-        
-          <ion-card-content>
-            Keep close to Nature's heart... and break clear away, once in awhile,
-            and climb a mountain or spend a week in the woods. Wash your spirit clean.
-          </ion-card-content>
-        </ion-card>            
-      </ion-slide>
-
-    </ion-slides>
-
-    <!-- seconed section end (content) -->
-
-    <!-- third section begin (title) -->
-    <h1>Your ECO score</h1>
-    <!-- third section end (title) -->
-
-    <!-- third section begin (content) -->
-    <ion-card id="card2" routerLink = "/tabs/page-space-su">
-      <ion-card-header>
-        <ion-card-subtitle style="text-align:center; font-size:150%;" >Overall Score</ion-card-subtitle>
-        <ion-card-title style="text-align:center; font-size:400%" fontsize >80%</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <ion-progress-bar color="primary" value="0.8"></ion-progress-bar>
-      </ion-card-content>
-    </ion-card>
-
-    <!-- third section end (content) -->
-    <!-- [options]="slideOptsOne" -->
-    <!-- fourth section begin (title) -->
-    <h1>Newest article</h1>
-    <!-- fourth section end (title) -->
-    
-    <!-- third section begin (content) -->
-
-    <ion-slides pager="true" routerLink = "/tabs/page-space-la">    
-      <ion-slide>
-        <ion-card id="card3" style=" margin-left: 5%; margin-right: 5%;" style=" margin-bottom: 10%;">
-          <img src="../assets/test.jpg"/>
-          <ion-card-header>
-            <ion-card-title style="text-align:center; " fontsize >Sample article 1</ion-card-title>
-          </ion-card-header>
-        
-          <ion-card-content>
-            Hello there! Welcome to CyclopediApp. Here, we explore the numerous industries and habits that contribute to the environmental crisis, especially through climate change and biodiversity loss. 
-            Cyc
-          </ion-card-content>
-        </ion-card>      
-      </ion-slide>
-      <ion-slide>
-        <ion-card id="card3" style=" margin-left: 5%; margin-right: 5%;">
-          <img src="../assets/test.jpg"/>
-          <ion-card-header>
-            <ion-card-title style="text-align:center; " fontsize >Sample article 2</ion-card-title>
-          </ion-card-header>
-        
-          <ion-card-content>
-            Hello there! Welcome to CyclopediApp. Here, we explore the numerous industries and habits that contribute to the environmental crisis, especially through climate change and biodiversity loss. 
-            Cyc
-          </ion-card-content>
-        </ion-card> 
-      </ion-slide>
-
-      <ion-slide>
-        <ion-card id="card3" style=" margin-left: 5%; margin-right: 5%;">
-          <img src="../assets/test.jpg"/>
-          <ion-card-header>
-            <ion-card-title style="text-align:center; " fontsize >Sample article 4</ion-card-title>
-          </ion-card-header>
-        
-          <ion-card-content>
-            Hello there! Welcome to CyclopediApp. Here, we explore the numerous industries and habits that contribute to the environmental crisis, especially through climate change and biodiversity loss. 
-            Cyc
-          </ion-card-content>
-        </ion-card> 
-      </ion-slide>
-      
-      <ion-slide>
-        <ion-card id="card3" style=" margin-left: 5%; margin-right: 5%;">
-          <img src="../assets/test.jpg"/>
-          <ion-card-header>
-            <ion-card-title style="text-align:center; " fontsize >Sample article 5</ion-card-title>
-          </ion-card-header>
-        
-          <ion-card-content>
-            Hello there! Welcome to CyclopediApp. Here, we explore the numerous industries and habits that contribute to the environmental crisis, especially through climate change and biodiversity loss. 
-            Cyc
-          </ion-card-content>
-        </ion-card> 
-      </ion-slide>
-
-    </ion-slides>
-
-    <!-- third section end (content) -->
-    
+  <!-- first section end -->
   
+  <!-- seconed section begin (title) -->
+
+  <h1>Newest Survey</h1>
+
+  <!-- seconed section end(title) -->
+
+  <!-- seconed section begin (content) -->
+  <!-- <ion-slides pager="true" [options]="slideOpts">     -->
+  <ion-slides [options]="slideOptsOne"> 
+    <ion-slide>
+      <ion-card id="card1">
+        <ion-card-header>
+          <ion-card-title>Sample Survey</ion-card-title>
+        </ion-card-header>
+      
+        <ion-card-content>
+          Keep close to Nature's heart... and break clear away, once in awhile,
+          and climb a mountain or spend a week in the woods. Wash your spirit clean.
+        </ion-card-content>
+      </ion-card>
+          
+    </ion-slide>
+
+    <ion-slide>
+      <ion-card id="card1">
+        <ion-card-header>
+          <ion-card-title>Sample Survey 2</ion-card-title>
+        </ion-card-header>
+      
+        <ion-card-content>
+          Keep close to Nature's heart... and break clear away, once in awhile,
+          and climb a mountain or spend a week in the woods. Wash your spirit clean.
+        </ion-card-content>
+      </ion-card>            
+    </ion-slide>
+
+    <ion-slide>
+      <ion-card id="card1">
+        <ion-card-header>
+          <ion-card-title>Sample Survey 3</ion-card-title>
+        </ion-card-header>
+      
+        <ion-card-content>
+          Keep close to Nature's heart... and break clear away, once in awhile,
+          and climb a mountain or spend a week in the woods. Wash your spirit clean.
+        </ion-card-content>
+      </ion-card>            
+    </ion-slide>
+
+  </ion-slides>
+
+  <!-- seconed section end (content) -->
+
+  <!-- third section begin (title) -->
+  <h1>Your ECO score</h1>
+  <!-- third section end (title) -->
+
+  <!-- third section begin (content) -->
+  <ion-card id="card2" routerLink = "/tabs/page-space-su">
+    <ion-card-header>
+      <ion-card-subtitle style="text-align:center; font-size:150%;" >Overall Score</ion-card-subtitle>
+      <ion-card-title style="text-align:center; font-size:400%" fontsize >80%</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-progress-bar color="primary" value="0.8"></ion-progress-bar>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- third section end (content) -->
+  <!-- [options]="slideOptsOne" -->
+  <!-- fourth section begin (title) -->
+  <h1>Newest article</h1>
+  <!-- fourth section end (title) -->
+  
+  <!-- third section begin (content) -->
+
+  <ion-slides pager="true" routerLink = "/tabs/page-space-la">    
+    <ion-slide>
+      <ion-card id="card3" style=" margin-left: 5%; margin-right: 5%;" style=" margin-bottom: 10%;">
+        <img src="../assets/test.jpg"/>
+        <ion-card-header>
+          <ion-card-title style="text-align:center; " fontsize >Sample article 1</ion-card-title>
+        </ion-card-header>
+      
+        <ion-card-content>
+          Hello there! Welcome to CyclopediApp. Here, we explore the numerous industries and habits that contribute to the environmental crisis, especially through climate change and biodiversity loss. 
+          Cyc
+        </ion-card-content>
+      </ion-card>      
+    </ion-slide>
+    <ion-slide>
+      <ion-card id="card3" style=" margin-left: 5%; margin-right: 5%;">
+        <img src="../assets/test.jpg"/>
+        <ion-card-header>
+          <ion-card-title style="text-align:center; " fontsize >Sample article 2</ion-card-title>
+        </ion-card-header>
+      
+        <ion-card-content>
+          Hello there! Welcome to CyclopediApp. Here, we explore the numerous industries and habits that contribute to the environmental crisis, especially through climate change and biodiversity loss. 
+          Cyc
+        </ion-card-content>
+      </ion-card> 
+    </ion-slide>
+
+    <ion-slide>
+      <ion-card id="card3" style=" margin-left: 5%; margin-right: 5%;">
+        <img src="../assets/test.jpg"/>
+        <ion-card-header>
+          <ion-card-title style="text-align:center; " fontsize >Sample article 4</ion-card-title>
+        </ion-card-header>
+      
+        <ion-card-content>
+          Hello there! Welcome to CyclopediApp. Here, we explore the numerous industries and habits that contribute to the environmental crisis, especially through climate change and biodiversity loss. 
+          Cyc
+        </ion-card-content>
+      </ion-card> 
+    </ion-slide>
+    
+    <ion-slide>
+      <ion-card id="card3" style=" margin-left: 5%; margin-right: 5%;">
+        <img src="../assets/test.jpg"/>
+        <ion-card-header>
+          <ion-card-title style="text-align:center; " fontsize >Sample article 5</ion-card-title>
+        </ion-card-header>
+      
+        <ion-card-content>
+          Hello there! Welcome to CyclopediApp. Here, we explore the numerous industries and habits that contribute to the environmental crisis, especially through climate change and biodiversity loss. 
+          Cyc
+        </ion-card-content>
+      </ion-card> 
+    </ion-slide>
+
+  </ion-slides>
+  <!-- third section end (content) -->
 </ion-content>
 
 
