@@ -56,10 +56,7 @@
         <!-- default content -->
         <div *ngSwitchDefault>
             <img src="{{contents[articleId].image}} ">
-            <p id="intro ">
-                {{contents[articleId].segment[0].segmentBody}}
-            </p>
-
+            <div [innerHTML]="contents[articleId].segment[0].segmentBody"> </div>
             <div id="button ">
                 <ion-button expand="block " (click)="openModal() ">Edit Content</ion-button>
                 <ion-button expand="block " (click)="presentModal() ">Send feedback</ion-button>
@@ -69,9 +66,7 @@
 
         <div *ngSwitchCase=" 'segment1' ">
             <img src="{{contents[articleId].image}} ">
-            <p id="intro ">
-                {{contents[articleId].segment[0].segmentBody}}
-            </p>
+            <div [innerHTML]="contents[articleId].segment[0].segmentBody"> </div>
             <div id="button ">
                 <ion-button expand="block " (click)="openModal() ">Edit Content</ion-button>
                 <ion-button expand="block " (click)="presentModal() ">Send feedback</ion-button>
@@ -82,7 +77,7 @@
         <!-- Climate Change content in here -->
 
         <div *ngSwitchCase=" 'segment2' ">
-            {{contents[articleId].segment[1].segmentBody}}
+            <div [innerHTML]="contents[articleId].segment[1].segmentBody"> </div>
             <!-- <p id="intro ">
                 Climate change is not something that occurs overnight. </p>
             <p>
@@ -203,7 +198,7 @@
         <!-- Biodiversity content in here -->
 
         <div *ngSwitchCase=" 'segment3' ">
-            {{contents[articleId].segment[2].segmentBody}}
+            <div [innerHTML]="contents[articleId].segment[2].segmentBody"> </div>
             <!-- <p id="climatechange ">
                 Biodiversity loss may not get as much attention as climate change does, but it’s just as bad. Biodiversity can be defined in a number of ways. Here, we’ll define it as the grouping of the genetic, species, and ecosystem diversities all into one. As we’ll
                 see in this section, these 3 types of diversities are all interconnected and interdependent.
