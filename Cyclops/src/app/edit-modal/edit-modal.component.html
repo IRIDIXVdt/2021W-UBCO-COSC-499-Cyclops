@@ -3,21 +3,31 @@
   <ion-buttons slot="primary" (click)="close()">Close</ion-buttons>
 </ion-toolbar>
 
-<ion-content>
+<ion-content >
   <ion-item>
     <ion-label >
-      Title: 
+      Article Title: 
     </ion-label>
     <ion-input type="text" [(ngModel)]="contentModal.title"></ion-input>
   </ion-item>
+  
+  <div *ngFor="let segment of contentModal.segment">
+    <ion-item>
+      <ion-label >
+        Segment Title: 
+      </ion-label>
+      <ion-input type="text" [(ngModel)]="segment.segmentTitle"></ion-input>
+    </ion-item>
 
+    <ion-item>
+      <ion-label >
+        Segment<br>Body: 
+      </ion-label>
+      <ion-textarea rows="20" cols="20" type="text" [(ngModel)]="segment.segmentBody"></ion-textarea>
+    </ion-item>
+  </div>
 
-  <ion-item>
-    <ion-label >
-      Intro: 
-    </ion-label>
-    <ion-textarea rows="20" cols="20" type="text" [(ngModel)]="contentModal.article"></ion-textarea>
-  </ion-item>
+ 
   <div id="button">
     <ion-button expand="block"   color="tertiary" class="ion-margin-top" (click)="submit()">Edit Content</ion-button>
   </div>
