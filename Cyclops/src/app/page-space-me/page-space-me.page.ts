@@ -5,8 +5,8 @@ import { ModalController } from '@ionic/angular';
 import { FeedbackModalComponent } from '../feedback-modal/feedback-modal.component';
 import { EditModalComponent } from '../edit-modal/edit-modal.component';
 import { ActivatedRoute } from '@angular/router';
-import { content } from '../sharedData/content';
-import { CONTENTS } from '../sharedData/contents';
+import { displayArticle } from '../sharedData/displayArticle';
+import { displayArticles } from '../sharedData/displayArticles';
 
 @Component({
   selector: 'app-page-space-me',
@@ -15,7 +15,7 @@ import { CONTENTS } from '../sharedData/contents';
 })
 export class PageSpaceMePage implements OnInit {
 
-  contents: content[] = CONTENTS;
+  contents: displayArticle[] = displayArticles;
   articleId;
 
   constructor(
