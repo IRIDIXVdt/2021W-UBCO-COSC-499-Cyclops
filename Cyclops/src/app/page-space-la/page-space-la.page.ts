@@ -9,7 +9,7 @@ import { displayArticles } from '../sharedData/displayArticles';
   styleUrls: ['./page-space-la.page.scss'],
 })
 export class PageSpaceLaPage implements OnInit {
-  
+  userInput:string;
   contents: displayArticle[] = displayArticles;
   // contentOri: displayArticle[] = displayArticles;
   contentCol1: displayArticle[] = [];
@@ -54,7 +54,8 @@ export class PageSpaceLaPage implements OnInit {
     
     let items = null;
     // console.log("orignal items length: ",items.length);
-    searchbar.addEventListener('ionInput', handleInput);
+    // searchbar.addEventListener('ionInput', handleInput);
+    // disable event Listener
     function handleInput(event) {
       // items = Array.from(document.querySelector('ion-list').children as HTMLCollectionOf<HTMLElement>);
       items = Array.from(document.querySelector('ion-list').children as HTMLCollectionOf<HTMLElement>);

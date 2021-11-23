@@ -7,12 +7,12 @@
 <ion-content>
     <!-- your code here -->
     <!-- Searchbar with a cancel button and custom cancel button text -->
-    <ion-searchbar placeholder="Search Article" showCancelButton="focus" cancelButtonText="Cancel" animated='true'>
+    <ion-searchbar [(ngModel)]="userInput" placeholder="Search Article" showCancelButton="focus" cancelButtonText="Cancel" animated='true'>
     </ion-searchbar>
     <div  id='requested'>
         <!-- <ion-label color="primary">Primary Label</ion-label> -->
 
-        <ion-list id = 'viewContentTest' *ngFor ="let cardContent of contents" >
+        <ion-list id = 'viewContentTest' *ngFor ="let cardContent of contents  | filter:userInput" >
             <ion-item id = "listItem">
                 <ion-card color='light' routerLink = "/tabs/page-space-me/{{cardContent.id}}">
                     <ion-card-header>

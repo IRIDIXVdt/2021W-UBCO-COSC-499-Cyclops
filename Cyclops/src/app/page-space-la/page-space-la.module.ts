@@ -8,11 +8,13 @@ import { PageSpaceLaPageRoutingModule } from './page-space-la-routing.module';
 
 import { PageSpaceLaPage } from './page-space-la.page';
 
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    Ng2SearchPipeModule,
     PageSpaceLaPageRoutingModule
   ],
   declarations: [PageSpaceLaPage]
