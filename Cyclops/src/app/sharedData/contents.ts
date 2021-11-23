@@ -2,26 +2,6 @@ import{ content } from './content';
 
 export const CONTENTS: content[] = [
     {
-        id: '8',
-        title: 'Introduction',
-        subtitle: 'Climate Change and Biodiversity Loss',
-        image: '../assets/pic1.jpg',
-        segment: [
-            {
-                contentTitle:'Intro',
-                contentBody:'Here, we’ll explore 2 of the most important aspects of the environmental crisis: climate change and biodiversity loss. '
-            },
-            {
-                contentTitle:'Climate Change',
-                contentBody:'Climate change is not something that occurs overnight.'
-            },{
-                contentTitle:'Biodiversity',
-                contentBody:'Biodiversity loss may not get as much attention as climate change does, but it’s just as bad.'
-            }
-        ]
-    },
-
-    {
         id: '0',
         title: 'Introduction',
         subtitle: 'Climate Change and Biodiversity Loss',
