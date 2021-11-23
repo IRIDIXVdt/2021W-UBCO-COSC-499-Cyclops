@@ -185,7 +185,7 @@ export const displayArticles: displayArticle[] = [
             }
         ],
         cardIntroduction: '',
-        columnName:1
+        columnName:2
 
     },{
         id: 4,
@@ -205,7 +205,7 @@ export const displayArticles: displayArticle[] = [
             }
         ],
         cardIntroduction: '',
-        columnName:1
+        columnName:2
 
     },{
         id: 5,
@@ -225,7 +225,7 @@ export const displayArticles: displayArticle[] = [
             }
         ],
         cardIntroduction: '',
-        columnName:1
+        columnName:2
 
     },{
         id: 6,
@@ -245,7 +245,7 @@ export const displayArticles: displayArticle[] = [
             }
         ],
         cardIntroduction: '',
-        columnName:1
+        columnName:3
 
     },{
         id: 7,
@@ -265,7 +265,7 @@ export const displayArticles: displayArticle[] = [
             }
         ],
         cardIntroduction: '',
-        columnName:1
+        columnName:3
 
     },{
         id: 8,
@@ -285,7 +285,7 @@ export const displayArticles: displayArticle[] = [
             }
         ],
         cardIntroduction: '',
-        columnName:1
+        columnName:3
 
     }
 
