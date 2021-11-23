@@ -2,6 +2,27 @@ import{ content } from './content';
 
 export const CONTENTS: content[] = [
     {
+        id: '8',
+        title: 'Introduction',
+        subtitle: 'Climate Change and Biodiversity Loss',
+        image: '../assets/pic1.jpg',
+        article: 'Founded in 1829 on an isthmus between Lake Monona and Lake Mendota',
+        segment: [
+            {
+                contentTitle:'Intro',
+                contentBody:'Here, we’ll explore 2 of the most important aspects of the environmental crisis: climate change and biodiversity loss. '
+            },
+            {
+                contentTitle:'Climate Change',
+                contentBody:'Climate change is not something that occurs overnight.'
+            },{
+                contentTitle:'Biodiversity',
+                contentBody:'Biodiversity loss may not get as much attention as climate change does, but it’s just as bad.'
+            }
+        ]
+    },
+
+    /* {
         id: '0',
         title: 'Introduction',
         subtitle: 'Climate Change and Biodiversity Loss',
@@ -79,7 +100,7 @@ export const CONTENTS: content[] = [
         article: 'Industry was responsible for 24% of the world’s CO2 emissions in 2018 and accounts for 19% of global freshwater withdrawals, while industrial waste generation is over 17 times higher than municipal solid waste.'
         
     }
-
+ */
 
 ]
    

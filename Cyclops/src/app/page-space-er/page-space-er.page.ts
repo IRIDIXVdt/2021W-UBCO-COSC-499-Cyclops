@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { displayArticle } from '../sharedData/displayArticle';
+import { displayArticles } from '../sharedData/displayArticles';
+
 
 @Component({
   selector: 'app-page-space-er',
@@ -6,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./page-space-er.page.scss'],
 })
 export class PageSpaceErPage implements OnInit {
-
+  contents: displayArticle[] = displayArticles;
   constructor() { }
 
   ngOnInit() {
