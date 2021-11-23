@@ -124,64 +124,16 @@
 
   <!-- third section begin (content) -->
 
-  <ion-slides pager="true" routerLink="/tabs/page-space-la">
-    <ion-slide>
-      <ion-card id="card3" style=" margin-left: 5%; margin-right: 5%;" style=" margin-bottom: 10%;"  color = 'light'>
-        <img src="../assets/test.jpg" />
+  <ion-slides pager="true"  id="newsetArticle" >
+    <ion-slide routerLink = "/tabs/page-space-me/{{content.id}}" *ngFor ="let content of contents | slice:0:3 ">
+      <ion-card color='light' routerLink = "/tabs/page-space-me/{{content.id}}"  style="height: 330px;">
+        <img src="{{content.image}}" />
         <ion-card-header>
-          <ion-card-title style="text-align:center; " fontsize>Sample article 1</ion-card-title>
+            <ion-card-subtitle>{{content.subtitle}}</ion-card-subtitle>
+            <ion-card-title>{{content.title}}</ion-card-title>
         </ion-card-header>
 
-        <ion-card-content>
-          Hello there! Welcome to CyclopediApp. Here, we explore the numerous industries and habits that contribute to
-          the environmental crisis, especially through climate change and biodiversity loss.
-          Cyc
-        </ion-card-content>
-      </ion-card>
-    </ion-slide>
-    <ion-slide>
-      <ion-card id="card3" style=" margin-left: 5%; margin-right: 5%;"  color = 'light'>
-        <img src="../assets/test.jpg" />
-        <ion-card-header>
-          <ion-card-title style="text-align:center; " fontsize>Sample article 2</ion-card-title>
-        </ion-card-header>
-
-        <ion-card-content>
-          Hello there! Welcome to CyclopediApp. Here, we explore the numerous industries and habits that contribute to
-          the environmental crisis, especially through climate change and biodiversity loss.
-          Cyc
-        </ion-card-content>
-      </ion-card>
-    </ion-slide>
-
-    <ion-slide>
-      <ion-card id="card3" style=" margin-left: 5%; margin-right: 5%;"  color = 'light'>
-        <img src="../assets/test.jpg" />
-        <ion-card-header>
-          <ion-card-title style="text-align:center; " fontsize>Sample article 4</ion-card-title>
-        </ion-card-header>
-
-        <ion-card-content>
-          Hello there! Welcome to CyclopediApp. Here, we explore the numerous industries and habits that contribute to
-          the environmental crisis, especially through climate change and biodiversity loss.
-          Cyc
-        </ion-card-content>
-      </ion-card>
-    </ion-slide>
-
-    <ion-slide>
-      <ion-card id="card3" style=" margin-left: 5%; margin-right: 5%;"  color = 'light'>
-        <img src="../assets/test.jpg" />
-        <ion-card-header>
-          <ion-card-title style="text-align:center; " fontsize>Sample article 5</ion-card-title>
-        </ion-card-header>
-
-        <ion-card-content>
-          Hello there! Welcome to CyclopediApp. Here, we explore the numerous industries and habits that contribute to
-          the environmental crisis, especially through climate change and biodiversity loss.
-          Cyc
-        </ion-card-content>
-      </ion-card>
+    </ion-card>
     </ion-slide>
 
   </ion-slides>
