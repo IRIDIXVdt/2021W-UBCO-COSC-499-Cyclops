@@ -19,11 +19,17 @@ export class PageSpaceLaPage implements OnInit {
   // JSONObject 
   constructor() { 
   }
-  
-  
+  @ViewChildren('listItem') listItems : QueryList<ElementRef>;
+  getSearch() {
+    this.listItems.forEach((lI: ElementRef) => console.log(lI.nativeElement));
+  }
 
-  ngAfterViewChecked(){}
+  ngAfterViewChecked(){
+    this.getSearch();
+  }
   ngOnInit() {
+    // this.listItems.toArray();
+    console.log("test "+this.listItems);
     for(this.i = 0; this.i<this.contents.length;this.i++){
       const currentArticle = this.contents[this.i];
       if(currentArticle.columnName==1){
@@ -52,15 +58,16 @@ export class PageSpaceLaPage implements OnInit {
     function handleInput(event) {
       // items = Array.from(document.querySelector('ion-list').children as HTMLCollectionOf<HTMLElement>);
       // items = Array.from(document.querySelector('ion-list').children as HTMLCollectionOf<HTMLElement>);
-      items = this.searchresults;
       const query = event.target.value.toLowerCase();
-      console.log(this.searchresults);
-      requestAnimationFrame(() => {
-        items.forEach(item => {
-          const shouldShow = item.textContent.toLowerCase().indexOf(query) > -1;
-          item.style.display = shouldShow ? 'block' : 'none';
-        });
-      });
+      items = this.listItems;
+      console.log("Stage 1 okay")
+      this.getSearch();
+      // requestAnimationFrame(() => {
+      //   items.forEach(item => {
+      //     const shouldShow = item.textContent.toLowerCase().indexOf(query) > -1;
+      //     item.style.display = shouldShow ? 'block' : 'none';
+      //   });
+      // });
     }
 
     searchbar.addEventListener('ionFocus', handleFocus);

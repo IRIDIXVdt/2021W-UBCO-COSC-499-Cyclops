@@ -13,7 +13,7 @@
         <!-- <ion-label color="primary">Primary Label</ion-label> -->
 
         <ion-list id = 'viewContentTest' *ngFor ="let cardContent of contents" >
-            <ion-item #listItem>
+            <ion-item id = "listItem">
                 <ion-card color='light' routerLink = "/tabs/page-space-me/{{cardContent.id}}">
                     <ion-card-header>
                         <ion-card-subtitle>{{cardContent.subtitle}}</ion-card-subtitle>
@@ -226,8 +226,8 @@
             </div>
 
             <div *ngSwitchDefault>
-                <ion-list *ngFor ="let content of contentCol2">
-                    <ion-item> 
+                <ion-list *ngFor ="let content of contentCol1">
+                    <ion-item id = "testList"> 
                         <ion-card color='light' routerLink = "/tabs/page-space-me/{{content.id}}" >
                             <img src="{{content.image}}" />
                             <ion-card-header>
