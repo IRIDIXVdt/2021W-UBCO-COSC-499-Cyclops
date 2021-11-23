@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ModalController,AlertController  } from '@ionic/angular';
+import { ModalController,AlertController, NavParams   } from '@ionic/angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -9,10 +9,15 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class FeedbackModalComponent {
   feedbackForm: FormGroup;
+  submitted = false;
+  userfeedback: any = {};
+
   constructor(private fb: FormBuilder, 
     public modalController: ModalController,
-    public alertController: AlertController) {
+    public alertController: AlertController,
+    private navParams: NavParams) {
     this.createForm();
+    this.userfeedback = this.navParams.data;
   }
 
   async presentAlert() {
@@ -28,10 +33,6 @@ export class FeedbackModalComponent {
 
     const { role } = await alert.onDidDismiss();
     console.log('onDidDismiss resolved with role', role);
-    this.feedbackForm.reset();
-    this.modalController.dismiss({
-      'dismissed': true
-    });
   }
 
   createForm(){
@@ -41,8 +42,9 @@ export class FeedbackModalComponent {
     
   }
   ngOnInit(){
-    // const button = document.querySelector('#userSubmit');
-    // button.addEventListener('click', this.presentAlert);
+    this.feedbackForm = this.fb.group({
+      feedback: ['', Validators.required],
+    });
 
 
   }
@@ -50,14 +52,34 @@ export class FeedbackModalComponent {
     // alert(this.feedbackForm.value);
     console.log(this.feedbackForm.value);
     
-    this.presentAlert();
+    
     
   }
+  onSolution(){
+    this.submitted = true;
+    if (!this.feedbackForm.valid) {
+      console.log('All fields are required.')
+      return false;
+    } else {
+      this.feedbackForm.reset();
+      this.presentAlert();
+      this.modalController.dismiss(this.userfeedback)
+    }
+
+  }
   
-  dismiss() {
+  /*dismiss() {
     this.modalController.dismiss({
       'dismissed': true
     });
+  }*/
+
+  dismissModal() {
+    this.modalController.dismiss();
+
+  }
+  get errorCtr() {
+    return this.feedbackForm.controls;
   }
 
   
