@@ -5,7 +5,7 @@
 
 
 <ion-content>
-  <form novalidate [formGroup]="feedbackForm" (ngSubmit)="onSubmit()">
+  <!-- <form novalidate [formGroup]="feedbackForm" (ngSubmit)="onSubmit()"> -->
     <ion-item>
       <ion-label position="stacked">Tell us what you think about this article!</ion-label>
       <ion-input formControlName="feedback" type="text" required></ion-input>
@@ -13,8 +13,8 @@
 
     <ion-row>
       <ion-col>
-        <ion-button type="submit" color="primary" expand="block">Submit</ion-button>
+        <ion-button type="submit" color="primary" expand="block" (click) = "onSubmit()">Submit</ion-button>
       </ion-col>
     </ion-row>
-  </form>
+  <!-- </form> -->
 </ion-content>
