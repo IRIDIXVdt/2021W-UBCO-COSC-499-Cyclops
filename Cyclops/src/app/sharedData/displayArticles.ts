@@ -154,17 +154,37 @@ export const displayArticles: displayArticle[] = [
         image: '../assets/pic3.jpg',
         segment: [
             {
-            segmentTitle:"",
-            segmentBody:""
+            segmentTitle:"Summary",
+            segmentBody:`Fossil fuels are non-renewable, polluting energy sources that we burn daily to power the world. GHG emissions and toxic compounds are released into the environment as a result, contributing to both global warming and pollution. Cities are no strangers to such pollution, as there are over 1 billion cars on the road that burn fossil fuels every day and decrease urban air quality. Biodiversity is also affected by the air, water, and soil pollution caused by fossil fuel consumption. It’s extremely important that we prevent such contamination, since what harms the environment directly threatens humans.
+
+            Fossil fuels are dominating the global energy and electricity mixes – and it seems as though that will remain the case in the near future. Although a few local electricity mixes are practically fossil-fuel-free, they usually aren’t examples that the rest of the world can follow. Additionally, electricity only represents around a fifth of energy consumption worldwide, so we can’t just focus on electricity mixes if we intend on significantly reducing our emissions.
+            
+            Different sources of energy are used by the different sectors of our societies. We’ll see that in detail in later sections.`
             },{
-            segmentTitle:"",
-            segmentBody:""
-            },{
-            segmentTitle:"",
-            segmentBody:""
+            segmentTitle:"Overview",
+            segmentBody:`While the next few sections of ‘Laying the Foundation’ are focused on energy, it’s important to understand that polluting energy sources are just one part of the problem. We’ll go over numerous examples in the main sections – but for now, just remember that it’s not only about how we produce energy – it’s also about what we use it for.
+
+            Energy
+            Everything needs energy. We need energy to get up on a Monday morning. Plants need energy to grow. Even our tectonic plates need energy to move. These are all intangibles, we will always need food, plants will always need sunlight, and the plates will keep moving as long as the Earth’s core remains a radioactive heat ball.
+            
+            If we look around, we’ll notice other things like our electronics, ovens, light bulbs, beds, or walls. These are all things that needed energy to be manufactured, and some still require a continuous flow of energy during use, like TVs. Since we produce and use so many material objects every day, it shouldn’t come as a surprise that energy production is a major issue worldwide.
+            
+            Fossil Fuels
+            Fossil fuels are non-renewable natural resources such as oil, coal, and natural gas that are burned daily to produce energy. We burn these specific fuels because they have high energy densities, meaning that we can extract a large amount of energy in a small amount of fuel. Combusting them releases that energy as heat, which we harness in different ways depending on the application.
+            
+            When fossil fuels are burned, CO2 is produced in large amounts. As we’ve seen, continuously producing this much CO2 leads to global warming and climate change. Unfortunately, it doesn’t stop there. Fossil fuels can also emit other polluting gases, like NOx and SOx gases, fine particulate matter, volatile organic compounds, or even mercury. These pollutants then contaminate the surrounding environment, although good pollution control processes can make sure the most harmful pollutants are treated. And while some fossil fuels emit less than others once burned, the bottom line remains that they all pollute too much.
+            
+            Largest Fossil Fuel Burners
+            There are over 1 billion miniaturized-fossil-fuel-burning machines on the road every day. Additionally, electricity production at power plants often relies on fossil fuels [as we’ll see below]. Lastly, industries aren’t limited to a supply of electricity from power plants, so many of them choose to burn fossil fuels on-site instead. That means there are loads of industrial-sized factories powered by their own fossil-fueled power plants. Between vehicles, the grid’s power plants, and industry– we continue to burn fossil fuels at an incredible rate.
+            
+            While pollution control regulations are in place in developed countries, other regions of the world aren’t so lucky. And although developed countries have gotten quite good at controlling toxic emissions, we don’t have many pollution control solutions in place for CO2. In fact, it’s sometimes the product of a control process [e.g. methane flaring]. Automobiles also don’t have sufficient pollution control. These little machines zoom around town, polluting densely populated areas from within.
+            
+            Biodiversity is being significantly damaged because of fossil fuel combustion as well. Even though we can’t notice most of them, toxic pollutants released during combustion are present in nearby air, water, and soil – and threaten everyone who depends on breathing, drinking, or eating to survive. These pollutants also cause acid rain, ocean acidification, and eutrophication [which we’ll see in later sections].
+            
+            Since we care almost exclusively about what affects us, we’ll say it again: if our biodiversity falls, so do we.`
             }
         ],
-        cardIntroduction: '',
+        cardIntroduction: 'Fossil fuels are non-renewable, polluting energy sources that we burn daily to power the world. GHG emissions and toxic compounds are released into the environment as a result, contributing to both global warming and pollution. ',
         columnName:1
 
     },{
