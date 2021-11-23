@@ -6,8 +6,8 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-card id="card1" style=" margin-left: 10%; margin-right: 10%;">
+<ion-content class="ion-padding">
+  <ion-card color='light' id="card1" >
     <ion-card-header>
       <ion-card-subtitle style="text-align:center; font-size:150%;" >Overall Score</ion-card-subtitle>
       <ion-card-title style="text-align:center; font-size:400%" fontsize >{{profile.score}}%</ion-card-title>
@@ -27,7 +27,7 @@
   
   
   
-  <ion-card id="card1" style=" margin-left: 10%; margin-right: 10%;">
+  <ion-card color='light'  id="card1">
     <ion-card-header>
       <ion-card-subtitle>
         <span class="text"><h4>{{profile.solution}}</h4></span>
@@ -46,14 +46,15 @@
     </ion-card-content>
   </ion-card>
   
-  <ion-card id="card1" style=" margin-left: 10%; margin-right: 10%;">
+  <ion-card color='light'  id="card1" >
     <ion-card-header>
+      <ion-button  slot="end" class="round"  size="small" shape="round"  color="medium" (click)="notifications()" >  
+        <ion-icon name="help"></ion-icon>
+        </ion-button>
       <ion-card-subtitle>
         <span class="text"><h4>Solution 2</h4></span>
         <p id="right">
-        <ion-button class="round"  size="small" shape="round"  color="medium" (click)="notifications()" >  
-        <ion-icon name="help"></ion-icon>
-        </ion-button>
+        
         </p>
       </ion-card-subtitle>
       <ion-card-title style="text-align:center; font-size:300%" fontsize >70%</ion-card-title>
