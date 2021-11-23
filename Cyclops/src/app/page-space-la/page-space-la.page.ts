@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { displayArticle } from '../sharedData/displayArticle';
 import { displayArticles } from '../sharedData/displayArticles';
 
@@ -9,6 +9,7 @@ import { displayArticles } from '../sharedData/displayArticles';
   styleUrls: ['./page-space-la.page.scss'],
 })
 export class PageSpaceLaPage implements OnInit {
+  userInput:string;
   contents: displayArticle[] = displayArticles;
   // contentOri: displayArticle[] = displayArticles;
   contentCol1: displayArticle[] = [];
@@ -18,8 +19,17 @@ export class PageSpaceLaPage implements OnInit {
   // JSONObject 
   constructor() { 
   }
+  // @ViewChildren('listItem') listItems : QueryList<ElementRef>;
+  // getSearch() {
+  //   this.listItems.forEach((lI: ElementRef) => console.log(lI.nativeElement));
+  // }
 
+  // ngAfterViewChecked(){
+  //   this.getSearch();
+  // }
   ngOnInit() {
+    // this.listItems.toArray();
+    // console.log("test "+this.listItems);
     for(this.i = 0; this.i<this.contents.length;this.i++){
       const currentArticle = this.contents[this.i];
       if(currentArticle.columnName==1){
@@ -42,13 +52,19 @@ export class PageSpaceLaPage implements OnInit {
     const textSpace = document.querySelector('#origin') as HTMLElement;
     const searchbar = document.querySelector('ion-searchbar');
     
-
-
-    searchbar.addEventListener('ionInput', handleInput);
+    let items = null;
+    // console.log("orignal items length: ",items.length);
+    // searchbar.addEventListener('ionInput', handleInput);
+    // disable event Listener
     function handleInput(event) {
-      const items = Array.from(document.querySelector('ion-list').children as HTMLCollectionOf<HTMLElement>);
-
+      // items = Array.from(document.querySelector('ion-list').children as HTMLCollectionOf<HTMLElement>);
+      items = Array.from(document.querySelector('ion-list').children as HTMLCollectionOf<HTMLElement>);
       const query = event.target.value.toLowerCase();
+
+      // console.log("Stage 1 okay")
+
+      // items = this.listItems;
+      // this.getSearch();
       requestAnimationFrame(() => {
         items.forEach(item => {
           const shouldShow = item.textContent.toLowerCase().indexOf(query) > -1;
@@ -61,6 +77,8 @@ export class PageSpaceLaPage implements OnInit {
     function handleFocus(){
       const searchResult = document.querySelector('#requested') as HTMLElement;
       console.log('message Focus emit');
+      items = Array.from(document.querySelector('ion-list').children as HTMLCollectionOf<HTMLElement>);
+      
       requestAnimationFrame(() => {
         textSpace.style.display = 'none';
         searchResult.style.display = 'block';
