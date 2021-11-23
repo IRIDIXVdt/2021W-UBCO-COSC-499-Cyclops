@@ -19,17 +19,17 @@ export class PageSpaceLaPage implements OnInit {
   // JSONObject 
   constructor() { 
   }
-  @ViewChildren('listItem') listItems : QueryList<ElementRef>;
-  getSearch() {
-    this.listItems.forEach((lI: ElementRef) => console.log(lI.nativeElement));
-  }
+  // @ViewChildren('listItem') listItems : QueryList<ElementRef>;
+  // getSearch() {
+  //   this.listItems.forEach((lI: ElementRef) => console.log(lI.nativeElement));
+  // }
 
-  ngAfterViewChecked(){
-    this.getSearch();
-  }
+  // ngAfterViewChecked(){
+  //   this.getSearch();
+  // }
   ngOnInit() {
     // this.listItems.toArray();
-    console.log("test "+this.listItems);
+    // console.log("test "+this.listItems);
     for(this.i = 0; this.i<this.contents.length;this.i++){
       const currentArticle = this.contents[this.i];
       if(currentArticle.columnName==1){
@@ -57,17 +57,19 @@ export class PageSpaceLaPage implements OnInit {
     searchbar.addEventListener('ionInput', handleInput);
     function handleInput(event) {
       // items = Array.from(document.querySelector('ion-list').children as HTMLCollectionOf<HTMLElement>);
-      // items = Array.from(document.querySelector('ion-list').children as HTMLCollectionOf<HTMLElement>);
+      items = Array.from(document.querySelector('ion-list').children as HTMLCollectionOf<HTMLElement>);
       const query = event.target.value.toLowerCase();
-      items = this.listItems;
-      console.log("Stage 1 okay")
-      this.getSearch();
-      // requestAnimationFrame(() => {
-      //   items.forEach(item => {
-      //     const shouldShow = item.textContent.toLowerCase().indexOf(query) > -1;
-      //     item.style.display = shouldShow ? 'block' : 'none';
-      //   });
-      // });
+
+      // console.log("Stage 1 okay")
+
+      // items = this.listItems;
+      // this.getSearch();
+      requestAnimationFrame(() => {
+        items.forEach(item => {
+          const shouldShow = item.textContent.toLowerCase().indexOf(query) > -1;
+          item.style.display = shouldShow ? 'block' : 'none';
+        });
+      });
     }
 
     searchbar.addEventListener('ionFocus', handleFocus);
@@ -79,8 +81,7 @@ export class PageSpaceLaPage implements OnInit {
       requestAnimationFrame(() => {
         textSpace.style.display = 'none';
         searchResult.style.display = 'block';
-        
-        }); 
+      }); 
       
     }
 
