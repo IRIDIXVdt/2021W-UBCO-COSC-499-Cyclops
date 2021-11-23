@@ -334,7 +334,7 @@
 
             <div *ngSwitchDefault>
                 <ion-list *ngFor ="let content of contents">
-                    <ion-item *ngif = "content.columnName == '1'"> 
+                    <ion-item > 
                         <ion-card color='light' routerLink = "/tabs/page-space-me/{{content.id}}" >
                             <img src="{{content.image}}" />
                             <ion-card-header>
@@ -347,7 +347,7 @@
 
                             <ion-card-content  >
                                 {{content.cardIntroduction}} 
-                             </ion-card-content>
+                            </ion-card-content>
                         </ion-card>
                     </ion-item>
                     

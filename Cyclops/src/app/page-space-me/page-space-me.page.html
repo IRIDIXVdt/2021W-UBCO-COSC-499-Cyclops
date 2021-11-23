@@ -17,27 +17,36 @@
 
     <ion-segment color="medium" [(ngModel)]="status" *ngIf="contents[articleId].segment.length ===3">
         <ion-segment-button text-wrap value="segment1">
-            <ion-label>{{contents[articleId].segment[0]}}</ion-label>
+            <ion-label>{{contents[articleId].segment[0].segmentTitle}}</ion-label>
         </ion-segment-button>
         <ion-segment-button text-wrap value="segment2">
-            <ion-label>{{contents[articleId].segment[1]}}</ion-label>
+            <ion-label>{{contents[articleId].segment[1].segmentTitle}}</ion-label>
         </ion-segment-button>
         <ion-segment-button text-wrap value="segment3">
-            <ion-label>{{contents[articleId].segment[2]}}</ion-label>
+            <ion-label>{{contents[articleId].segment[2].segmentTitle}}</ion-label>
         </ion-segment-button>
     </ion-segment>
     <ion-segment color="medium" [(ngModel)]="status" *ngIf="contents[articleId].segment.length ===2">
         <ion-segment-button text-wrap value="segment1">
-            <ion-label>{{contents[articleId].segment[0]}}</ion-label>
+            <ion-label>{{contents[articleId].segment[0].segmentTitle}}</ion-label>
         </ion-segment-button>
         <ion-segment-button text-wrap value="segment2">
-            <ion-label>{{contents[articleId].segment[1]}}</ion-label>
+            <ion-label>{{contents[articleId].segment[1].segmentTitle}}</ion-label>
         </ion-segment-button>
     </ion-segment>
     <!-- no segment used if there's only one section -->
 
     <!-- </ion-toolbar> -->
 
+
+    <!-- <ion-segment color="medium" [(ngModel)]="status" >
+        <div *ngfor = "let segment of contents[articleId].segment">
+            <ion-segment-button text-wrap value="{{segment.segmentTitle}}">
+                <ion-label>{{segment.segmentTitle}}</ion-label>
+            </ion-segment-button>
+        </div>
+        
+    </ion-segment> -->
 
 </ion-header>
 
@@ -48,7 +57,7 @@
         <div *ngSwitchDefault>
             <img src="{{contents[articleId].image}} ">
             <p id="intro ">
-                {{contents[articleId].article}}
+                {{contents[articleId].segment[0].segmentBody}}
             </p>
 
             <div id="button ">
@@ -59,11 +68,9 @@
 
 
         <div *ngSwitchCase=" 'segment1' ">
-            <img src="../../assets/test.jpg ">
+            <img src="{{contents[articleId].image}} ">
             <p id="intro ">
-                Here, we’ll explore 2 of the most important aspects of the environmental crisis: climate change and biodiversity loss. We’ll see why mitigating each ‘sub-crisis’ is important for the planet and its millions of species, including humans. This section should
-                provide a solid foundation before exploring additional sections, where we’ll often allude to greenhouse gas emissions and biodiversity loss. This will help readers understand the severity of emissions and toxic pollution, instead of just
-                reading meaningless numbers.
+                {{contents[articleId].segment[0].segmentBody}}
             </p>
             <div id="button ">
                 <ion-button expand="block " (click)="openModal() ">Edit Content</ion-button>
@@ -75,7 +82,8 @@
         <!-- Climate Change content in here -->
 
         <div *ngSwitchCase=" 'segment2' ">
-            <p id="intro ">
+            {{contents[articleId].segment[1].segmentBody}}
+            <!-- <p id="intro ">
                 Climate change is not something that occurs overnight. </p>
             <p>
                 The atmosphere consists of roughly 78% nitrogen, 21% oxygen, 1% argon – and just
@@ -182,7 +190,7 @@
                 for increasing the likeliness of extreme weather events – but can’t guarantee that they will take place at any given moment. Similarly, a single record-breaking temperature could not confirm climate change is real, nor could a freezing
                 temperature refute it. That being said, when year after year we measure record-breaking daily, weekly, monthly, and annual temperatures [or extreme weather events] in very different parts of the world, it becomes pretty clear that global
                 warming and climate change are already here. It’s no longer the future generation’s problem.
-            </p>
+            </p> -->
 
             <div id="button ">
                 <ion-button expand="block " (click)="openModal() ">Edit Content</ion-button>
@@ -195,7 +203,8 @@
         <!-- Biodiversity content in here -->
 
         <div *ngSwitchCase=" 'segment3' ">
-            <p id="climatechange ">
+            {{contents[articleId].segment[2].segmentBody}}
+            <!-- <p id="climatechange ">
                 Biodiversity loss may not get as much attention as climate change does, but it’s just as bad. Biodiversity can be defined in a number of ways. Here, we’ll define it as the grouping of the genetic, species, and ecosystem diversities all into one. As we’ll
                 see in this section, these 3 types of diversities are all interconnected and interdependent.
             </p>
@@ -247,7 +256,7 @@
                 <ion-text id="popover " (click)="notifications($event) ">The Last Airbender</ion-text>‘s 4 nations, these are all serious types of pollution. Toxicity present in the first 3 elements directly endangers species – especially those that live near sources of pollution. Often overlooked, noise pollution
                 also impacts nearby species, since some of them rely on their hearing for survival and mating calls. It’s not just near cities either. Pollution can occur in remote parts of the world where biodiversity is strong, as shown by the Deepwater
                 Horizon oil spill of 2010. Pollution significantly weakens ecosystems as both its species and their environment are damaged simultaneously.
-            </p>
+            </p> -->
             <div id="button ">
                 <ion-button expand="block " (click)="openModal() ">Edit Content</ion-button>
                 <ion-button expand="block " (click)="presentModal() ">Send feedback</ion-button>
