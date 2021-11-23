@@ -341,8 +341,8 @@
                                 <ion-card-subtitle>{{content.subtitle}}</ion-card-subtitle>
                                 <ion-card-title>{{content.title}}</ion-card-title>
                             </ion-card-header>
-                            <ion-card-content>
-                                {{content.article}}
+                            <ion-card-content *ngFor ="let intro of content.segment | slice:0:1" >
+                               {{intro.contentBody}} 
                             </ion-card-content>
                         </ion-card>
                     </ion-item>
