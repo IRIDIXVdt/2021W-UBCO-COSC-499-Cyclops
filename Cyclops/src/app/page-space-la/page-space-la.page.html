@@ -334,46 +334,23 @@
 
             <div *ngSwitchDefault>
                 <ion-list *ngFor ="let content of contents">
-                    <ion-item > 
-                        <ion-card color='light' routerLink = "/tabs/page-space-me/{{content.id}}">
+                    <ion-item *ngif = "content.columnName == '1'"> 
+                        <ion-card color='light' routerLink = "/tabs/page-space-me/{{content.id}}" >
                             <img src="{{content.image}}" />
                             <ion-card-header>
                                 <ion-card-subtitle>{{content.subtitle}}</ion-card-subtitle>
                                 <ion-card-title>{{content.title}}</ion-card-title>
                             </ion-card-header>
-                            <ion-card-content *ngFor ="let intro of content.segment | slice:0:1" >
-                               {{intro.contentBody}} 
-                            </ion-card-content>
+                            <!-- <ion-card-content *ngFor ="let intro of content.segment | slice:0:1" >
+                               {{intro.segmentBody}} 
+                            </ion-card-content> -->
+
+                            <ion-card-content  >
+                                {{content.cardIntroduction}} 
+                             </ion-card-content>
                         </ion-card>
                     </ion-item>
-                    <!-- <ion-item>
-                        <ion-card color='light'>
-                            <img src="../assets/pic2.jpg" />
-                            <ion-card-header>
-                                <ion-card-title>Resources and the Economy</ion-card-title>
-                            </ion-card-header>
-                            <ion-card-content>
-                                Changing the way we interact with nature is essential to avoid further climate change
-                                and biodiversity loss – but there’s more to it than that. Transitioning our societies
-                                into more sustainable ones helps secure a stable future, by ensuring that everything we
-                                do, we can do forever.
-                            </ion-card-content>
-                        </ion-card>
-                    </ion-item>
-                    <ion-item>
-                        <ion-card color='light'>
-                            <img src="../assets/pic3.jpg" />
-                            <ion-card-header>
-                                <ion-card-title>Fossil Fuels</ion-card-title>
-                            </ion-card-header>
-                            <ion-card-content>
-                                While the next few sections of ‘Laying the Foundation’ are focused on energy, it’s
-                                important to understand that polluting energy sources are just one part of the problem.
-                                We’ll go over numerous examples in the main sections – but for now, just remember that
-                                it’s not only about how we produce energy – it’s also about what we use it for.
-                            </ion-card-content>
-                        </ion-card>
-                    </ion-item> -->
+                    
                 </ion-list>
             </div>
         </div>

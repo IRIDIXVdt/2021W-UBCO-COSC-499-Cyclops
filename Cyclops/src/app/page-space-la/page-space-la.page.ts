@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { content } from '../sharedData/content';
-import { CONTENTS } from '../sharedData/contents';
+import { displayArticle } from '../sharedData/displayArticle';
+import { displayArticles } from '../sharedData/displayArticles';
 
 
 @Component({
@@ -9,7 +9,7 @@ import { CONTENTS } from '../sharedData/contents';
   styleUrls: ['./page-space-la.page.scss'],
 })
 export class PageSpaceLaPage implements OnInit {
-  contents: content[] = CONTENTS;
+  contents: displayArticle[] = displayArticles;
   
   constructor() { 
   }
