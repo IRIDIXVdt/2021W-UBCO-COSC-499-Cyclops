@@ -34,26 +34,26 @@
             <ion-label>{{contents[articleId].segment[1].segmentTitle}}</ion-label>
         </ion-segment-button>
     </ion-segment>
+
     <!-- no segment used if there's only one section -->
 
     <!-- </ion-toolbar> -->
 
 
-    <!-- <ion-segment color="medium" [(ngModel)]="status" >
+<!--     <ion-segment color="medium" [(ngModel)]="status" >
         <div *ngFor = "let segment of contents[articleId].segment">
             <ion-segment-button text-wrap value="{{segment.segmentTitle}}">
                 <ion-label>{{segment.segmentTitle}}</ion-label>
             </ion-segment-button>
         </div>
         
-    </ion-segment> -->
+    </ion-segment>  -->
 
 </ion-header>
 
 <ion-content class="ion-padding ">
 
-    <div [ngSwitch]="status " class="article ">
-        <!-- default content -->
+    <div [ngSwitch]="status" class="article ">
         <div *ngSwitchDefault>
             <img src="{{contents[articleId].image}} ">
             <div [innerHTML]="contents[articleId].segment[0].segmentBody"> </div>
@@ -63,19 +63,27 @@
             </div>
         </div>
 
-
-        <div *ngSwitchCase=" 'segment1' ">
+<!--         <div *ngFor = "let segment of contents[articleId].segment" > 
+            <div *ngSwitchCase="segment.segmentTitle" ngSelected="selected">
+                <img src="{{contents[articleId].image}} ">
+                <div [innerHTML]="segment.segmentBody"> </div>
+                <div id="button ">
+                    <ion-button expand="block " (click)="openModal() ">Edit Content</ion-button>
+                    <ion-button expand="block " (click)="presentModal() ">Send feedback</ion-button>
+                </div>
+            </div>
+        </div> -->
+        
+        <div *ngSwitchCase=" 'segment1' " >
             <img src="{{contents[articleId].image}} ">
             <div [innerHTML]="contents[articleId].segment[0].segmentBody"> </div>
             <div id="button ">
                 <ion-button expand="block " (click)="openModal() ">Edit Content</ion-button>
                 <ion-button expand="block " (click)="presentModal() ">Send feedback</ion-button>
             </div>
-        </div>
+        </div>   
 
-
-        <!-- Climate Change content in here -->
-
+       
         <div *ngSwitchCase=" 'segment2' ">
             <div [innerHTML]="contents[articleId].segment[1].segmentBody"> </div>
             <!-- <p id="intro ">
@@ -195,7 +203,7 @@
 
 
 
-        <!-- Biodiversity content in here -->
+        
 
         <div *ngSwitchCase=" 'segment3' ">
             <div [innerHTML]="contents[articleId].segment[2].segmentBody"> </div>
@@ -256,7 +264,7 @@
                 <ion-button expand="block " (click)="openModal() ">Edit Content</ion-button>
                 <ion-button expand="block " (click)="presentModal() ">Send feedback</ion-button>
             </div>
-        </div>
+        </div> 
 
     </div>
 
