@@ -189,22 +189,22 @@ export const displayArticles: displayArticle[] = [
 
     },{
         id: 3,
-        title: '',
-        subtitle: '',
+        title: 'The 3 Rs',
+        subtitle: 'Reduce, Reuse, Recycle',
         image: '../assets/pic4.jpg',
         segment: [
             {
-            segmentTitle:"",
+            segmentTitle:"Summary",
             segmentBody:""
             },{
-            segmentTitle:"",
+            segmentTitle:"Overview",
             segmentBody:""
             },{
-            segmentTitle:"",
+            segmentTitle:"Solutions",
             segmentBody:""
             }
         ],
-        cardIntroduction: '',
+        cardIntroduction: 'The 3 ‘R’s are the general rules we need to follow to reduce our impacts on the environment, at any scale. We’ll see in other sections that these rules are central pillars to lowering consumption across all sectors of our societies.',
         columnName:2
 
     },{
