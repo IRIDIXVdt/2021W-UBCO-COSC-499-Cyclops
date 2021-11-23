@@ -10,24 +10,44 @@ import { displayArticles } from '../sharedData/displayArticles';
 })
 export class PageSpaceLaPage implements OnInit {
   contents: displayArticle[] = displayArticles;
-  
+  // contentOri: displayArticle[] = displayArticles;
+  contentCol1: displayArticle[] = [];
+  contentCol2: displayArticle[] = [];
+  contentCol3: displayArticle[] = [];
+  i:number = 0;
+  // JSONObject 
   constructor() { 
   }
 
   ngOnInit() {
-
-
-    const searchResult = document.querySelector('#requested') as HTMLElement;
-    searchResult.style.display = 'none';
+    for(this.i = 0; this.i<this.contents.length;this.i++){
+      const currentArticle = this.contents[this.i];
+      if(currentArticle.columnName==1){
+        this.contentCol1.push(currentArticle);
+      }else if(currentArticle.columnName==2){
+        this.contentCol2.push(currentArticle);
+      }else{        
+        this.contentCol3.push(currentArticle);
+      }
+   
+    }
+    console.log(this.contentCol1);
+    console.log(this.contentCol2);
+    console.log(this.contentCol3);
+    console.log(this.contents);
+    
+    const thisNotShow = document.querySelector('#requested') as HTMLElement;
+    thisNotShow.style.display = 'none';
 
     const textSpace = document.querySelector('#origin') as HTMLElement;
     const searchbar = document.querySelector('ion-searchbar');
-    const items = Array.from(document.querySelector('ion-list').children as HTMLCollectionOf<HTMLElement>);
-
+    
 
 
     searchbar.addEventListener('ionInput', handleInput);
     function handleInput(event) {
+      const items = Array.from(document.querySelector('ion-list').children as HTMLCollectionOf<HTMLElement>);
+
       const query = event.target.value.toLowerCase();
       requestAnimationFrame(() => {
         items.forEach(item => {
@@ -39,6 +59,7 @@ export class PageSpaceLaPage implements OnInit {
 
     searchbar.addEventListener('ionFocus', handleFocus);
     function handleFocus(){
+      const searchResult = document.querySelector('#requested') as HTMLElement;
       console.log('message Focus emit');
       requestAnimationFrame(() => {
         textSpace.style.display = 'none';
@@ -50,6 +71,7 @@ export class PageSpaceLaPage implements OnInit {
     
     searchbar.addEventListener('ionBlur',handleBlur);
     function handleBlur() {
+      const searchResult = document.querySelector('#requested') as HTMLElement;
       console.log('message Blur emit');
       requestAnimationFrame(() => {
         textSpace.style.display = 'block';
