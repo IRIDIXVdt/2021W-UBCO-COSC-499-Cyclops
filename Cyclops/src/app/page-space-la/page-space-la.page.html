@@ -12,8 +12,8 @@
     <div  id='requested'>
         <!-- <ion-label color="primary">Primary Label</ion-label> -->
 
-        <ion-list  *ngFor ="let cardContent of contents" >
-            <ion-item>
+        <ion-list id = 'viewContentTest' *ngFor ="let cardContent of contents" >
+            <ion-item #listItem>
                 <ion-card color='light' routerLink = "/tabs/page-space-me/{{cardContent.id}}">
                     <ion-card-header>
                         <ion-card-subtitle>{{cardContent.subtitle}}</ion-card-subtitle>
@@ -24,7 +24,7 @@
                     </ion-card-content>
                 </ion-card>
             </ion-item>
-
+            
 
         </ion-list>
     </div>
