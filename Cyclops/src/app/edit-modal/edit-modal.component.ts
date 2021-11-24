@@ -18,9 +18,10 @@ export class EditModalComponent implements OnInit {
 
   ngOnInit() {}
 
-  close() {
+  onclose() {
+    console.log("modal controler dismiss");
     this.modalController.dismiss();
-  }
+  } 
 
   submit() {
     this.modalController.dismiss(this.contentModal)

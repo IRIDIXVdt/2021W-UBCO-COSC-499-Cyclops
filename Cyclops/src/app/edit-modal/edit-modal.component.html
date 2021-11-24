@@ -1,6 +1,7 @@
 <ion-toolbar>
   <ion-title>Article Edit</ion-title>
-  <ion-buttons slot="primary" (click)="close()">Close</ion-buttons>
+  <ion-buttons slot="primary" (click)="onclose()">Close</ion-buttons> 
+ <!--  <ion-back-button defaultHref="/" slot="start"></ion-back-button> -->
 </ion-toolbar>
 
 <ion-content >
@@ -11,24 +12,24 @@
     <ion-input type="text" [(ngModel)]="contentModal.title"></ion-input>
   </ion-item>
   
-  <div *ngFor="let segment of contentModal.segment">
+  <div *ngFor="let segmentItem of contentModal.segment">
     <ion-item>
       <ion-label >
         Segment Title: 
       </ion-label>
-      <ion-input type="text" [(ngModel)]="segment.segmentTitle"></ion-input>
+      <ion-input type="text" [(ngModel)]="segmentItem.segmentTitle"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label >
         Segment<br>Body: 
       </ion-label>
-      <ion-textarea rows="20" cols="20" type="text" [(ngModel)]="segment.segmentBody"></ion-textarea>
+      <ion-textarea rows="20" cols="20" type="text" [(ngModel)]="segmentItem.segmentBody"></ion-textarea>
     </ion-item>
   </div>
 
  
   <div id="button">
-    <ion-button expand="block"   color="tertiary" class="ion-margin-top" (click)="submit()">Edit Content</ion-button>
+    <ion-button expand="block" color="tertiary" class="ion-margin-top" (click)="submit()">Edit Content</ion-button>
   </div>
 </ion-content>

@@ -67,13 +67,25 @@ export class PageSpaceMePage implements OnInit {
   openModal() {
     this.modalCtrol.create({
       component: EditModalComponent,
-      componentProps: this.contents[this.articleId]
+      componentProps: {
+        id: this.articleId,
+        title: this.contents[this.articleId].title,
+        subtitle: this.contents[this.articleId].subtitle,
+        image: this.contents[this.articleId].image,
+        segment: JSON.parse(JSON.stringify(this.contents[this.articleId].segment)) 
+       
+      }
     }).then(modalres => {
       modalres.present();
 
       modalres.onDidDismiss().then(res => {
         if (res.data != null) {
           this.contents[this.articleId] = res.data;
+          console.log("have data"+this.contents[this.articleId]);
+          console.log(res.data);
+        }else{
+          console.log("no data ");
+          console.log(res.data);
         }
       })
 
