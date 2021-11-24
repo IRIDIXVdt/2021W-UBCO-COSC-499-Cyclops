@@ -8,7 +8,7 @@ export const displayArticles: displayArticle[] = [
         segment: [
             {
                 segmentTitle:"Intro",
-                segmentBody:`Here, we’ll explore 2 of the most important aspects of the environmental crisis: climate change and biodiversity loss. We’ll see why mitigating each ‘sub-crisis’ is important for the planet and its millions of species, including humans. This section should provide a solid foundation before exploring additional sections, where we’ll often allude to greenhouse gas emissions and biodiversity loss. This will help readers understand the severity of emissions and toxic pollution, instead of just reading meaningless numbers.`
+                segmentBody:`<p>Here, we’ll explore 2 of the most important aspects of the environmental crisis: climate change and biodiversity loss. We’ll see why mitigating each ‘sub-crisis’ is important for the planet and its millions of species, including humans. This section should provide a solid foundation before exploring additional sections, where we’ll often allude to greenhouse gas emissions and biodiversity loss. This will help readers understand the severity of emissions and toxic pollution, instead of just reading meaningless numbers.</p>`
             },{
                 segmentTitle:"Climate Change",
                 segmentBody:`<p>Climate change is not something that occurs overnight.</p>
@@ -112,7 +112,8 @@ export const displayArticles: displayArticle[] = [
             {
             segmentTitle:"Summary",
             segmentBody:`<p>Fossil fuels are non-renewable, polluting energy sources that we burn daily to power the world. Cities are no strangers to such pollution, as there are over 1 billion cars on the road that burn fossil fuels every day and decrease urban air quality. Biodiversity is also affected by the air, water, and soil pollution caused by fossil fuel consumption. It&#8217;s extremely important that we prevent such contamination, since what harms the environment directly threatens humans.</p>
-            <p>Fossil fuels are dominating the global energy and electricity mixes – and it seems as though that will remain the case in the near future. Although a few local electricity mixes are practically fossil-fuel-free, they usually aren&#8217;t examples that the rest of the world can follow. Additionally, electricity only represents around a fifth of energy consumption worldwide, so we can&#8217;t just focus on electricity mixes if we intend on significantly reducing our emissions.</p>`
+            <p>Fossil fuels are dominating the global energy and electricity mixes – and it seems as though that will remain the case in the near future. Although a few local electricity mixes are practically fossil-fuel-free, they usually aren&#8217;t examples that the rest of the world can follow. Additionally, electricity only represents around a fifth of energy consumption worldwide, so we can&#8217;t just focus on electricity mixes if we intend on significantly reducing our emissions.</p>
+            <p>Different sources of energy are used by the different sectors of our societies. We&#8217;ll see that in detail in later sections. </p>`
             },{
             segmentTitle:"Overview",
             segmentBody:`<p><em>While the next few sections of &#8216;Laying the Foundation&#8217; are focused on energy, it&#8217;s important to understand that polluting energy sources are just one part of the problem. We&#8217;ll go over numerous examples in the main sections – but for now, just remember that it&#8217;s not only about how we produce energy – it&#8217;s also about what we use it for. </em></p>
