@@ -1,0 +1,24 @@
+<ion-toolbar>
+    <ion-title>Article Feedback</ion-title>
+    <ion-buttons slot="primary" (click)="dismissModal()">Close</ion-buttons>
+</ion-toolbar>
+
+
+<ion-content class="ion-padding">
+    <form [formGroup]="feedbackForm" (ngSubmit)="onSolution()">
+
+        <ion-item>
+            <ion-label position="stacked">Tell us what you think about this article!</ion-label>
+            <ion-input formControlName="feedback" type="text" [(ngModel)]="userfeedback.content"></ion-input>
+        </ion-item>
+        <p id="err">
+            <span class="error" *ngIf="submitted && errorCtr.feedback.errors?.required">
+        Please enter your feedback.
+       </span>
+        </p>
+        <p id="center">
+            <ion-button type="submit" size="small" shape="round" color="tertiary" class="ion-margin-top">Submit</ion-button>
+        </p>
+
+    </form>
+</ion-content>

@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule , ReactiveFormsModule} from '@angular/forms';
 import { PopoverComponent } from '../popover/popover.component';
-
+import { FeedbackModalComponent } from './feedback-modal/feedback-modal.component';
 import { IonicModule } from '@ionic/angular';
 
 import { PageSpaceMePageRoutingModule } from './page-space-me-routing.module';
@@ -15,8 +15,9 @@ import { EditModalComponent } from '../edit-modal/edit-modal.component';
     CommonModule,
     FormsModule,
     IonicModule,
-    PageSpaceMePageRoutingModule
+    PageSpaceMePageRoutingModule, 
+    ReactiveFormsModule
   ],
-  declarations: [PageSpaceMePage, PopoverComponent,EditModalComponent]
+  declarations: [PageSpaceMePage, PopoverComponent,EditModalComponent, FeedbackModalComponent ]
 })
 export class PageSpaceMePageModule { }

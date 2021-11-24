@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
 import { PopoverComponent } from '../popover/popover.component';
 import { ModalController } from '@ionic/angular';
-import { FeedbackModalComponent } from '../feedback-modal/feedback-modal.component';
+import { FeedbackModalComponent } from './feedback-modal/feedback-modal.component';
 import { EditModalComponent } from '../edit-modal/edit-modal.component';
 import { ActivatedRoute } from '@angular/router';
 import { displayArticle } from '../sharedData/displayArticle';
@@ -17,7 +17,9 @@ export class PageSpaceMePage implements OnInit {
 
   contents: displayArticle[] = displayArticles;
   articleId;
-
+  feedback = {
+    content: ""
+  }
   constructor(
     public popover: PopoverController,
     public modalController: ModalController,
@@ -37,11 +39,26 @@ export class PageSpaceMePage implements OnInit {
     });
     return await popover.present();
   }
-  async presentModal() {
+ /* async presentModal() {
     const modal = await this.modalController.create({
       component: FeedbackModalComponent,
     });
     return await modal.present();
+  }*/
+  
+  presentModal(){
+    this.modalCtrol.create({
+      component:FeedbackModalComponent,
+      componentProps: this.feedback
+    }).then(modalres =>{
+      modalres.present();
+
+      modalres.onDidDismiss().then( res =>{
+        if(res.data != null){
+          this.feedback = res.data;
+        }
+      })
+    })
   }
 
   ngOnInit() {
