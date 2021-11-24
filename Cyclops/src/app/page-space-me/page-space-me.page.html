@@ -40,7 +40,7 @@
     <!-- </ion-toolbar> -->
 
 
-<!--     <ion-segment color="medium" [(ngModel)]="status" >
+    <!--     <ion-segment color="medium" [(ngModel)]="status" >
         <div *ngFor = "let segment of contents[articleId].segment">
             <ion-segment-button text-wrap value="{{segment.segmentTitle}}">
                 <ion-label>{{segment.segmentTitle}}</ion-label>
@@ -63,7 +63,7 @@
             </div>
         </div>
 
-<!--         <div *ngFor = "let segment of contents[articleId].segment" > 
+        <!--         <div *ngFor = "let segment of contents[articleId].segment" > 
             <div *ngSwitchCase="segment.segmentTitle" ngSelected="selected">
                 <img src="{{contents[articleId].image}} ">
                 <div [innerHTML]="segment.segmentBody"> </div>
@@ -73,19 +73,29 @@
                 </div>
             </div>
         </div> -->
-        
-        <div *ngSwitchCase=" 'segment1' " >
+
+        <div *ngSwitchCase=" 'segment1' ">
             <img src="{{contents[articleId].image}} ">
             <div [innerHTML]="contents[articleId].segment[0].segmentBody"> </div>
             <div id="button ">
                 <ion-button expand="block " (click)="openModal() ">Edit Content</ion-button>
                 <ion-button expand="block " (click)="presentModal() ">Send feedback</ion-button>
             </div>
-        </div>   
+        </div>
 
-       
+
         <div *ngSwitchCase=" 'segment2' ">
             <div [innerHTML]="contents[articleId].segment[1].segmentBody"> </div>
+            <div class="wp-block-image" *ngIf="contents[articleId].title==='Fossil Fuels'">
+                <figure class="aligncenter size-large"><img data-attachment-id="6924" data-permalink="https://cyclopediapp.org/image-55/" data-orig-file="https://cyclope2.files.wordpress.com/2021/08/image-55.png" data-orig-size="855,596" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}"
+                        data-image-title="image-55" data-image-description="" data-image-caption="" data-medium-file="https://cyclope2.files.wordpress.com/2021/08/image-55.png?w=300" data-large-file="https://cyclope2.files.wordpress.com/2021/08/image-55.png?w=750"
+                        src="https://cyclope2.files.wordpress.com/2021/08/image-55.png?w=855" alt="" class="wp-image-6924" srcset="https://cyclope2.files.wordpress.com/2021/08/image-55.png 855w, https://cyclope2.files.wordpress.com/2021/08/image-55.png?w=150 150w, https://cyclope2.files.wordpress.com/2021/08/image-55.png?w=300 300w, https://cyclope2.files.wordpress.com/2021/08/image-55.png?w=768 768w"
+                        sizes="(max-width: 855px) 100vw, 855px" />
+                    <figcaption>
+                        <ion-text id="popover " (click)="notifications($event) "><span style="text-decoration:underline;">Source: IEA (2021) World Energy Balances. All rights reserved.</span></ion-text>
+                    </figcaption>
+                </figure>
+            </div>
             <!-- <p id="intro ">
                 Climate change is not something that occurs overnight. </p>
             <p>
@@ -203,7 +213,7 @@
 
 
 
-        
+
 
         <div *ngSwitchCase=" 'segment3' ">
             <div [innerHTML]="contents[articleId].segment[2].segmentBody"> </div>
@@ -264,7 +274,7 @@
                 <ion-button expand="block " (click)="openModal() ">Edit Content</ion-button>
                 <ion-button expand="block " (click)="presentModal() ">Send feedback</ion-button>
             </div>
-        </div> 
+        </div>
 
     </div>
 
