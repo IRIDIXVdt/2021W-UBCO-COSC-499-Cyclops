@@ -13,4 +13,7 @@ export class ArticleMainComponent implements OnInit {
 
   ngOnInit() {}
 
+  openCardModal(){
+    console.log("card modal button click message");
+  }
 }
