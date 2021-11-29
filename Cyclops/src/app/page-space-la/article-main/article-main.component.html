@@ -1,17 +1,33 @@
 <!-- <p>{{articleComponent | json}}</p> -->
 
-<ion-list *ngFor ="let content of articleComponent">
-  <ion-item id = "testList"> 
-      <ion-card color='light' routerLink = "/tabs/page-space-me/{{content.id}}" >
-          <img src="{{content.image}}" />
-          <ion-card-header>
-              <ion-card-subtitle>{{content.subtitle}}</ion-card-subtitle>
-              <ion-card-title>{{content.title}}</ion-card-title>
-          </ion-card-header>
+<ion-list *ngFor="let content of articleComponent">
+    <ion-item id="testList">
+        <!-- vertical="top" horizontal="end" slot="fixed" -->
+        <ion-fab horizontal="end" vertical="top">
+            <ion-fab-button color="light">
+                <ion-icon name="reorder-four-outline"></ion-icon>
+            </ion-fab-button>
+            <ion-fab-list side="bottom">
+                <ion-fab-button>
+                    <ion-icon name="share-outline"></ion-icon>
+                </ion-fab-button>
+                <ion-fab-button>
+                    <ion-icon name="create"></ion-icon>
+                </ion-fab-button>
+            </ion-fab-list>
+        </ion-fab>
 
-          <ion-card-content  >
-              {{content.cardIntroduction}} 
-          </ion-card-content>
-      </ion-card>
-  </ion-item>
+        <ion-card color='light' routerLink="/tabs/page-space-me/{{content.id}}">
+
+            <img src="{{content.image}}" />
+            <ion-card-header>
+                <ion-card-subtitle>{{content.subtitle}}</ion-card-subtitle>
+                <ion-card-title>{{content.title}}</ion-card-title>
+            </ion-card-header>
+
+            <ion-card-content>
+                {{content.cardIntroduction}}
+            </ion-card-content>
+        </ion-card>
+    </ion-item>
 </ion-list>
