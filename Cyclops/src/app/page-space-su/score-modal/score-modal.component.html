@@ -16,8 +16,10 @@
 
   <form [formGroup]="myForm">
 
+    <h3 id="slab">Solution 1 Input</h3>
+
     <ion-item>
-      <ion-label position="stacked">Task Completed</ion-label>
+      <ion-label position="stacked">Task 1 Completed</ion-label>
       <ion-input formControlName="task"  type="text" [(ngModel)]="usereco.solution"></ion-input>
     </ion-item>
     <p id="err">
@@ -29,7 +31,7 @@
        </span>
     </p>
     <ion-item>
-      <ion-label position="stacked">Solution Score</ion-label>
+      <ion-label position="stacked">Solution 1 Score</ion-label>
       <ion-input formControlName="score"  type="tel" [(ngModel)]="usereco.score" ></ion-input>
     </ion-item>
     <p id="err"s>
@@ -49,6 +51,46 @@
     <p id="center">
       <ion-button size="small" shape="round"  color="tertiary" class="ion-margin-top" (click)="onSolution()">Submit</ion-button>
     </p>
+
+
+
+    <h3 id="slab">Solution 2 Input</h3>
+
+    <ion-item>
+      <ion-label position="stacked">Task 2 Completed</ion-label>
+      <ion-input formControlName="task1"  type="text" [(ngModel)]="usereco.solution1"></ion-input>
+    </ion-item>
+    <p id="err">
+      <span class="error" *ngIf="submitted && errorCtr.task1.errors?.required">
+        Enter Task.
+       </span>
+       <span class="error" *ngIf="submitted && errorCtr.task1.errors?.pattern">
+        Task input must be text only.
+       </span>
+    </p>
+    <ion-item>
+      <ion-label position="stacked">Solution 2 Score</ion-label>
+      <ion-input formControlName="score1"  type="tel" [(ngModel)]="usereco.score1" ></ion-input>
+    </ion-item>
+    <p id="err"s>
+      <span class="error" *ngIf="submitted && errorCtr.score1.errors?.required">
+        Score is Required.
+      </span>
+      <span class="error" *ngIf="submitted && errorCtr.score1.errors?.pattern">
+        Score must be a number.
+      </span>
+      <span class="error" *ngIf="submitted && errorCtr.score1.errors?.max">
+        Score must be a number between 1-100.
+      </span>
+      <span class="error" *ngIf="submitted && errorCtr.score1.errors?.min">
+        Score must be a number between 1-100.
+      </span>
+    </p>
+    <p id="center">
+      <ion-button size="small" shape="round"  color="tertiary" class="ion-margin-top" (click)="onSolution()">Submit</ion-button>
+    </p>
+
+   
 
   </form>
 
