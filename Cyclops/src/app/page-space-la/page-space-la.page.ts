@@ -1,7 +1,6 @@
 import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { displayArticle } from '../sharedData/displayArticle';
 import { displayArticles } from '../sharedData/displayArticles';
-import { ArticleMainComponent } from './article-main/article-main.component';
 
 @Component({
   selector: 'app-page-space-la',
