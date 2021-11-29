@@ -14,10 +14,16 @@
     <ion-input type="text" [(ngModel)]="contentModal.title"></ion-input>
   </ion-item>
   <ion-item>
+    <ion-label>
+      Article Subtitle: 
+    </ion-label>
+    <ion-input type="text" [(ngModel)]="contentModal.subtitle"></ion-input>
+  </ion-item>
+  <ion-item>
     <ion-label >
       Introduction:
     </ion-label>
-    <ion-textarea rows="20" cols="20" type="text" [(ngModel)]="contentModal.cardIntroduction"></ion-textarea>
+    <ion-textarea rows="10" cols="20" type="text" [(ngModel)]="contentModal.cardIntroduction"></ion-textarea>
   </ion-item>
  
   <div id="button">
