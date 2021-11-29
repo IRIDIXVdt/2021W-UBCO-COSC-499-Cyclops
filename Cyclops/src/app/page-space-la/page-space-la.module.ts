@@ -3,14 +3,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
-
 import { PageSpaceLaPageRoutingModule } from './page-space-la-routing.module';
-
 import { PageSpaceLaPage } from './page-space-la.page';
-
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-
-
 import { ArticleMainComponent } from './article-main/article-main.component';
 
 @NgModule({
@@ -19,9 +14,9 @@ import { ArticleMainComponent } from './article-main/article-main.component';
     FormsModule,
     IonicModule,
     Ng2SearchPipeModule,
-    PageSpaceLaPageRoutingModule,
-    ArticleMainComponent
+    PageSpaceLaPageRoutingModule
   ],
-  declarations: [PageSpaceLaPage]
+  declarations: [PageSpaceLaPage,
+    ArticleMainComponent]
 })
 export class PageSpaceLaPageModule {}
