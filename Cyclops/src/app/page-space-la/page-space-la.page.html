@@ -5,7 +5,6 @@
 </ion-header>
 
 <ion-content>
-    <!-- your code here -->
     <!-- Searchbar with a cancel button and custom cancel button text -->
     <ion-searchbar [(ngModel)]="userInput" placeholder="Search Article" showCancelButton="focus" cancelButtonText="Cancel" animated='true'>
     </ion-searchbar>
@@ -27,7 +26,6 @@
         </ion-list>
     </div>
 
-
     <div id='origin'>
 
         <ion-segment [(ngModel)]="status" scrollable>
@@ -41,8 +39,6 @@
                 <ion-label text-wrap>Bonus Rounds</ion-label>
             </ion-segment-button>
         </ion-segment>
-
-        <!-- <ion-icon id="filter" name="switch"></ion-icon> -->
 
         <div [ngSwitch]="status">
             <div *ngSwitchCase="'Articles p1'">
@@ -62,6 +58,5 @@
             </div>
         </div>
     </div>
-
 
 </ion-content>
