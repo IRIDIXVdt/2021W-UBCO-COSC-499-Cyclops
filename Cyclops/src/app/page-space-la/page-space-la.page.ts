@@ -2,7 +2,6 @@ import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } fro
 import { displayArticle } from '../sharedData/displayArticle';
 import { displayArticles } from '../sharedData/displayArticles';
 
-
 @Component({
   selector: 'app-page-space-la',
   templateUrl: './page-space-la.page.html',
