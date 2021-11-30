@@ -12,7 +12,7 @@
         <!-- <ion-label color="primary">Primary Label</ion-label> -->
 
         <ion-list id = 'viewContentTest' *ngFor ="let cardContent of contents  | filter:userInput" >
-            <ion-item id = "listItem">
+            <ion-item id = "listItem" *ngIf = "cardContent.columnName > 0">
                 <ion-card color='light' routerLink = "/tabs/page-space-me/{{cardContent.id}}">
                     <ion-card-header>
                         <ion-card-subtitle>{{cardContent.subtitle}}</ion-card-subtitle>
