@@ -23,6 +23,7 @@ export class ArticleModalMainComponent implements OnInit {
   }
 
   submit() {
+    console.log("modal controler return information");
     this.modalController.dismiss(this.contentModal)
   }
 }
