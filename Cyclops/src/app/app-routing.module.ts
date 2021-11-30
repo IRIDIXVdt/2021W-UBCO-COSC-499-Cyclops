@@ -28,9 +28,6 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    loadChildren: () => import('./page-space-me/page-space-me.module').then( m => m.PageSpaceMePageModule)
-  },  {
-    path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
   {
@@ -38,14 +35,9 @@ const routes: Routes = [
     loadChildren: () => import('./registration/registration.module').then( m => m.RegistrationPageModule)
   },
   {
-    path: 'forgetpassword',
-    loadChildren: () => import('./forgetpassword/forgetpassword.module').then( m => m.ForgetpasswordPageModule)
-  },
-  {
-    path: 'forget-password',
+    path: 'forgot-password',
     loadChildren: () => import('./forget-password/forget-password.module').then( m => m.ForgetPasswordPageModule)
-  }
-
+  },
 
 ];
 @NgModule({
