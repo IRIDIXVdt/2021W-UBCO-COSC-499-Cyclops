@@ -25,7 +25,32 @@ const routes: Routes = [
   {
     path: 'tabs/page-space-me/:id',
     loadChildren: () => import('./page-space-me/page-space-me.module').then( m => m.PageSpaceMePageModule)
-  }
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'registration',
+    loadChildren: () => import('./registration/registration.module').then( m => m.RegistrationPageModule)
+  },
+  {
+    path: 'find-password',
+    loadChildren: () => import('./find-password/find-password.module').then( m => m.FindPasswordPageModule)
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'registration',
+    loadChildren: () => import('./registration/registration.module').then( m => m.RegistrationPageModule)
+  },
+  {
+    path: 'find-password',
+    loadChildren: () => import('./find-password/find-password.module').then( m => m.FindPasswordPageModule)
+  },
+
 
 ];
 @NgModule({
