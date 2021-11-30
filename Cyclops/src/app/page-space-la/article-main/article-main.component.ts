@@ -10,10 +10,12 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./article-main.component.scss'],
 })
 export class ArticleMainComponent implements OnInit {
-  @Input()
-  articleComponent: displayArticle[];
   // @Input()
-  // inputAllContent: displayArticle[];
+  // articleComponent: displayArticle[];
+  // @Input()
+  // inputArticleId: number;
+  @Input()
+  columNumber: number;
 
   contents: displayArticle[] = displayArticles;
   constructor(
@@ -33,15 +35,20 @@ export class ArticleMainComponent implements OnInit {
         id: articleId,
         title: this.contents[articleId].title,
         subtitle: this.contents[articleId].subtitle,
-        image:this.contents[articleId].image,
+        // image: this.contents[articleId].image,
         cardIntroduction: this.contents[articleId].cardIntroduction
+        
       }
     }).then(modalres => {
       modalres.present();
 
       modalres.onDidDismiss().then(res => {
         if (res.data != null) {
-          this.articleComponent[articleId] = res.data;
+          // this.contents[articleId] = res.data;
+          this.contents[articleId].title = res.data.title;
+          this.contents[articleId].subtitle = res.data.subtitle;
+          this.contents[articleId].cardIntroduction = res.data.cardIntroduction;
+          console.log("update res data successful");
         } else {
           console.log("no data ");
         }

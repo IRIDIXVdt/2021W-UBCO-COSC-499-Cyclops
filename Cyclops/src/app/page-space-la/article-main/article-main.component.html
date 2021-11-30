@@ -1,7 +1,7 @@
 <!-- <p>{{articleComponent | json}}</p> -->
 
-<ion-list *ngFor="let content of articleComponent">
-    <ion-item id="testList">
+<ion-list *ngFor="let content of contents">
+    <ion-item id="testList" *ngIf="content.columnName == columNumber">
         <!-- vertical="top" horizontal="end" slot="fixed" -->
         <ion-fab horizontal="end" vertical="top">
             <ion-fab-button color="light">
