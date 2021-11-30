@@ -42,19 +42,19 @@
 
         <div [ngSwitch]="status">
             <div *ngSwitchCase="'Articles p1'">
-                <app-article-main  [articleComponent] = "contentCol1"></app-article-main>
+                <app-article-main  [columNumber] = "1"></app-article-main>
             </div>
 
             <div *ngSwitchCase="'Articles p2'">
-                <app-article-main  [articleComponent] = "contentCol2"></app-article-main>
+                <app-article-main  [columNumber] = "2"></app-article-main>
             </div>
 
             <div *ngSwitchCase="'Articles p3'">
-                <app-article-main  [articleComponent] = "contentCol3"></app-article-main>
+                <app-article-main  [columNumber] = "3"></app-article-main>
             </div>
 
             <div *ngSwitchDefault>
-                <app-article-main  [articleComponent] = "contentCol1"></app-article-main>
+                <app-article-main  [columNumber] = "1"></app-article-main>
             </div>
         </div>
     </div>

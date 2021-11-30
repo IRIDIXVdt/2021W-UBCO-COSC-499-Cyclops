@@ -80,7 +80,12 @@ export class PageSpaceMePage implements OnInit {
 
       modalres.onDidDismiss().then(res => {
         if (res.data != null) {
-          this.contents[this.articleId] = res.data;
+         /*  this.contents[this.articleId] = res.data; */
+          this.contents[this.articleId].title = res.data.title;
+          this.contents[this.articleId].subtitle = res.data.subtitle;
+          this.contents[this.articleId].image = res.data.image;
+          this.contents[this.articleId].segment = res.data.segment;
+
           console.log("have data"+this.contents[this.articleId]);
           console.log(res.data);
         }else{
