@@ -26,4 +26,9 @@ export class ArticleModalMainComponent implements OnInit {
     console.log("modal controler return information");
     this.modalController.dismiss(this.contentModal)
   }
+
+  removeCard(){
+    console.log("card remove");
+    this.modalController.dismiss("remove content");
+  }
 }

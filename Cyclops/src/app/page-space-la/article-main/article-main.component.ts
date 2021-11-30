@@ -43,7 +43,10 @@ export class ArticleMainComponent implements OnInit {
       modalres.present();
 
       modalres.onDidDismiss().then(res => {
-        if (res.data != null) {
+        if(res.data == "remove content"){
+          
+          this.contents[articleId].columnName = -1;
+        }else if (res.data != null) {
           // this.contents[articleId] = res.data;
           this.contents[articleId].title = res.data.title;
           this.contents[articleId].subtitle = res.data.subtitle;
