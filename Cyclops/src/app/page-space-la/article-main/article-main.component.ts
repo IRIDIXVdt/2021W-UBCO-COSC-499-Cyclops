@@ -12,6 +12,8 @@ import { ModalController } from '@ionic/angular';
 export class ArticleMainComponent implements OnInit {
   @Input()
   articleComponent: displayArticle[];
+  // @Input()
+  // inputAllContent: displayArticle[];
 
   contents: displayArticle[] = displayArticles;
   constructor(
@@ -24,7 +26,7 @@ export class ArticleMainComponent implements OnInit {
 
   openCardModal(articleId: number) {
     // console.log("try edit activated");
-    console.log(this.articleComponent[articleId].title);
+    console.log(this.contents[articleId].title);
     this.modalCtrol.create({
       component: ArticleModalMainComponent,
       componentProps: {
