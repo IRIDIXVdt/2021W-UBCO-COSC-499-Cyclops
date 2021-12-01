@@ -17,7 +17,10 @@ export class PageSpaceSuPage implements OnInit {
 
   profile = {
     solution: "Solution",
-    score : 0
+    score : 0,
+
+    solution1:"Solution",
+    score1: 0
   }
 
   surveyPage: PageSpaceMePage;
@@ -58,11 +61,7 @@ export class PageSpaceSuPage implements OnInit {
   }
     
 
-   // const data = await modal.onWillDismiss();
-    //const data1 = await modal.onWillDismiss();
-    //const data2 = await modal.onWillDismiss();
-
-   // console.log(data);
+   
 
   
 

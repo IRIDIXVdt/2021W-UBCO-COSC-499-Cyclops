@@ -37,7 +37,9 @@ export class ScoreModalComponent implements OnInit  {
   ngOnInit() {
     this.myForm = this.formBuilder.group({
       task: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
-      score: ['', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.max(100), Validators.min(0)]]
+      score: ['', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.max(100), Validators.min(0)]],
+      task1: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
+      score1: ['', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.max(100), Validators.min(0)]]
     });
   }
   
@@ -48,6 +50,8 @@ export class ScoreModalComponent implements OnInit  {
   get errorCtr() {
     return this.myForm.controls;
   }
+
+  
 
   
 
@@ -62,6 +66,8 @@ export class ScoreModalComponent implements OnInit  {
     } else {
       this.modalCtrl.dismiss(this.usereco)
     }
+
+    
 
 
     
