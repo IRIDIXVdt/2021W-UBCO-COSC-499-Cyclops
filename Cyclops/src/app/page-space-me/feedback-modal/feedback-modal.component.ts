@@ -22,7 +22,7 @@ export class FeedbackModalComponent {
     this.userfeedback = this.navParams.data;
   }
 
-  async presentAlert() {
+  async presentCompleteAlert() {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Completed',
@@ -30,24 +30,47 @@ export class FeedbackModalComponent {
       message: 'Thank you for your feedback.',
       buttons: ['OK']
     });
-
     await alert.present();
+  }
 
-    const { role } = await alert.onDidDismiss();
-    console.log('onDidDismiss resolved with role', role);
+  async presentErrorAlert() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Incomplete form',
+      subHeader: '',
+      message: 'Please make sure all fields are filled out.',
+      buttons: ['OK']
+    });
+    await alert.present();
   }
 
   createForm(){
     this.feedbackForm = this.fb.group({
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
-      phoneNumber: ['', [Validators.required]],
-      email: ['', [Validators.required]],
+      phoneNumber: [''],
+      email: [''],
       agree: false,
       contactType:'Email',
       content: ['', [Validators.required]]
     });
+    this.feedbackForm.get('agree').valueChanges.subscribe(value => {
+      if(value) {
+        if(this.feedbackForm.get('contactType').value==='Phone'||this.feedbackForm.get('contactType').value==='Both'){
+          this.feedbackForm.get('phoneNumber').setValidators(Validators.required);
+        }else if(this.feedbackForm.get('contactType').value==='Email'||this.feedbackForm.get('contactType').value==='Both'){
+          this.feedbackForm.get('email').setValidators(Validators.required);
+        }
+      } else {
+        this.feedbackForm.get('email').clearValidators();
+        this.feedbackForm.get('phoneNumber').clearValidators();
+        this.feedbackForm.get('email').updateValueAndValidity();
+        this.feedbackForm.get('phoneNumber').updateValueAndValidity();
+      }
+    });
   }
+
+
   ngOnInit(){
 
    }
@@ -56,12 +79,13 @@ export class FeedbackModalComponent {
     this.submitted = true;
     if (!this.feedbackForm.valid) {
       console.log('All fields are required.')
+      this.presentErrorAlert() ;
       return false;
     } else {
       this.feedback = this.feedbackForm.value;
       console.log(this.feedback);
       this.feedbackForm.reset();
-      this.presentAlert();
+      this.presentCompleteAlert();
       this.modalController.dismiss(this.userfeedback)
     }
 
