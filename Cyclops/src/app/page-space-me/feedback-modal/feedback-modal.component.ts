@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { ModalController,AlertController, NavParams   } from '@ionic/angular';
+import { Component} from '@angular/core';
+import { ModalController,AlertController} from '@ionic/angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Feedback , ContactType} from './feedback';
 @Component({
@@ -11,15 +11,11 @@ export class FeedbackModalComponent {
   feedbackForm: FormGroup;
   feedback:Feedback;
   contactType = ContactType;
-  submitted = false;
-  userfeedback: any = {};
 
   constructor(private fb: FormBuilder, 
     public modalController: ModalController,
-    public alertController: AlertController,
-    private navParams: NavParams) {
+    public alertController: AlertController) {
     this.createForm();
-    this.userfeedback = this.navParams.data;
   }
 
   async presentCompleteAlert() {
@@ -76,7 +72,6 @@ export class FeedbackModalComponent {
    }
 
   onSolution(){
-    this.submitted = true;
     if (!this.feedbackForm.valid) {
       console.log('All fields are required.')
       this.presentErrorAlert() ;
@@ -86,25 +81,14 @@ export class FeedbackModalComponent {
       console.log(this.feedback);
       this.feedbackForm.reset();
       this.presentCompleteAlert();
-      this.modalController.dismiss(this.userfeedback)
+      this.modalController.dismiss();
     }
 
   }
   
-  /*dismiss() {
-    this.modalController.dismiss({
-      'dismissed': true
-    });
-  }*/
-
   dismissModal() {
     this.modalController.dismiss();
-
   }
-  get errorCtr() {
-    return this.feedbackForm.controls;
-  }
-
   
 
 }
