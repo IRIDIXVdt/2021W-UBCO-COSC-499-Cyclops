@@ -563,7 +563,7 @@ export const displayArticles: displayArticle[] = [
         id: 8,
         title: 'Pollution',
         subtitle: '',
-        image: '../assets/pic9.jpg',
+        image: '../assets/pollution.jpg',
         segment: [
             {
             segmentTitle:"Summary",
@@ -614,7 +614,7 @@ export const displayArticles: displayArticle[] = [
         id: 9,
         title: 'Population and Education',
         subtitle: '',
-        image: '../assets/pic9.jpg',
+        image: '../assets/crowd.jpg',
         segment: [
             {
             segmentTitle:"Summary",
@@ -661,12 +661,12 @@ export const displayArticles: displayArticle[] = [
         id: 10,
         title: 'Money',
         subtitle: '',
-        image: '../assets/pic9.jpg',
+        image: '../assets/money.jpg',
         segment: [
             {
                 segmentTitle:"Home",
                 segmentBody:`
-                p>Money&#8217;s going to play a pivotal role in solving the environmental crisis. Money&#8217;s the reason things get done in our capitalist societies, and that&#8217;s great for a lot of people. Unfortunately, it&#8217;s also the reason a lot of eco-friendly solutions don&#8217;t get done – and that impacts everyone and everything on Earth. </p>
+                Money&#8217;s going to play a pivotal role in solving the environmental crisis. Money&#8217;s the reason things get done in our capitalist societies, and that&#8217;s great for a lot of people. Unfortunately, it&#8217;s also the reason a lot of eco-friendly solutions don&#8217;t get done – and that impacts everyone and everything on Earth. </p>
                 <p>While many of the solutions we&#8217;ve presented can help individuals save money, that&#8217;s not always the case. Especially at large scales, where reducing emissions and protecting ecosystems seem to just add costs compared to &#8216;business as usual&#8217; operations [we&#8217;ll see why that&#8217;s not a very fair statement in a later sub-section]. </p>
                 <p>That&#8217;s a problem – but things change quickly in the wild world of finance. In this section, we&#8217;ll discuss 2 ways that money can become a powerful tool to help solve the environmental crises. Combining that with previous sections, we&#8217;ll discuss a few of the challenges that our money-centered societies will face as we attempt to reduce our impacts on the environment.</p>
                 `
@@ -723,10 +723,10 @@ export const displayArticles: displayArticle[] = [
         cardIntroduction: 'Money’s going to play a pivotal role in solving the environmental crisis. Money’s the reason things get done in our capitalist societies, and that’s great for a lot of people. Unfortunately, it’s also the reason a lot of eco-friendly solutions don’t get done – and that impacts everyone and everything on Earth.',
         columnName:3
     },{
-        id: 13,
+        id: 11,
         title: 'Mining',
         subtitle: '',
-        image: '../assets/pic2.jpg',
+        image: '../assets/mine.jpg',
         segment: [
             {
             segmentTitle:"Summary",
@@ -787,14 +787,14 @@ export const displayArticles: displayArticle[] = [
         cardIntroduction: 'There’s no doubt that mining is an extremely important industry that helps our societies develop and grow. Our economies are built around it, as each decade we produce and trade more products than the last. With recycling playing a limited role and metal demand set to increase considerably in the near future, mining activity will boom.',
         columnName:1
     },{
-        id: 14,
+        id: 12,
         title: 'Renewables',
         subtitle: '',
-        image: '../assets/pic2.jpg',
+        image: '../assets/renew.jpg',
         segment: [
             {
             segmentTitle:"Summary",
-            segmentBody:`<<p>Renewable energy is the future. There&#8217;s simply no denying that we have to stop burning fossil fuels if we want to reduce carbon emissions and mitigate climate change. However, renewables have their limits.</p>
+            segmentBody:`<p>Renewable energy is the future. There&#8217;s simply no denying that we have to stop burning fossil fuels if we want to reduce carbon emissions and mitigate climate change. However, renewables have their limits.</p>
             <p>Solar PV, wind, and battery technologies are all made from loads of different metals. As such, many of the components&#8217; production processes are polluting and energy intensive. Some of the metals – arguably the most important ones – are also quite rare and are listed as &#8216;critical&#8217; commodities. Unfortunately, we can&#8217;t just build millions of solar panels and wind turbines to solve the energy production problem for the next 100 years. These technologies have expiration dates, and combined with poor recycling, that means we need to keep extracting and smelting minerals to produce these &#8216;clean&#8217; energy technologies. These limits help explain why solar PV and wind [combined] accounted for less than 8% of the global electricity mix in 2019. Solar thermal has yet to make an impact at the global scale.</p>
             <p>Hydrogen-based technologies also face numerous challenges, ranging from infrastructure,  overall efficiency, and hydrogen production&#8217;s high costs and energy requirements. With an overwhelming majority of industries using steam-methane reforming to produce hydrogen, the lightweight fuel is far from clean right now. Meanwhile, hydrolysis has its fair share of obstacles to overcome before it can start taking a more significant role in hydrogen production worldwide. </p>
             <p>Geothermal, like hydroelectric energy sources, just aren&#8217;t options in many parts of the world. Hydroelectricity continues to dominate energy production amongst renewables, but isn&#8217;t scheduled for a significant increase in energy production in the coming decade. Hydroelectric dams also damage surrounding biodiversity and indirectly emit methane as decaying organic matter accumulates on the reservoir floor. Lastly, dams are at the mercy of precipitation, which is becoming increasingly problematic since climate patterns are becoming less predictable.</p>
@@ -887,10 +887,10 @@ export const displayArticles: displayArticle[] = [
         cardIntroduction: 'Renewable energy will help us decarbonize our atmosphere, but all technologies have their limits. In this section, we’ll take a look at some of the most popular renewable solutions to find these limitations – in terms of environmental impacts and energy generation potential. Overall, renewable energy alone won’t help make our societies sustainable. If we want to attain sustainability, renewables will help – but are only one part of the solution. The much, much larger part will be reducing our impacts by consuming less of the world’s resources – by lowering both our energy and material demands.',
         columnName:1
     },{
-        id: 15,
+        id: 13,
         title: 'Transition Tools',
         subtitle: '',
-        image: '../assets/pic8.jpg',
+        image: '../assets/tools.jpg',
         segment: [
             {
             segmentTitle:"Home",
@@ -991,10 +991,10 @@ export const displayArticles: displayArticle[] = [
         cardIntroduction: 'With renewables and biomass accounting for less than 15% of the world’s energy mix in 2018 and less than 30% of the world’s electricity mix in 2019– a significant transition phase from fossil fuels to greener sources of energy will be necessary. Additionally, we’ve seen that renewables and other green technologies are limited, so we’re going to have to transition our societies into less consuming ones.',
         columnName:1
     },{
-        id: 16,
+        id: 14,
         title: 'Energy Efficiency and Energy Savings',
         subtitle: '',
-        image: '../assets/pic2.jpg',
+        image: '../assets/effec.jpg',
         segment: [
             {
             segmentTitle:"Summary",
@@ -1027,7 +1027,7 @@ export const displayArticles: displayArticle[] = [
         cardIntroduction: 'In a world where fossil fuels threaten to raise global temperatures, we have to turn to renewable energy sources to prevent further GHG emissions. In a world where renewable energy is unable to supply enough energy to replace fossil fuels – and can also lead to pollution and biodiversity loss, what do we do?',
         columnName:1
     },{
-        id: 17,
+        id: 15,
         title: 'Industry',
         subtitle: '',
         image: '../assets/pic9.jpg',
@@ -1069,10 +1069,10 @@ export const displayArticles: displayArticle[] = [
         cardIntroduction: 'Industry was responsible for 24% of the world’s CO2 emissions in 2018, with roughly 8.5 Gt of CO2 being released into the atmosphere [85 billion pandas]. ',
         columnName:3
     },{
-        id: 18,
+        id: 16,
         title: 'Inequality and Responsibility',
         subtitle: '',
-        image: '../assets/pic9.jpg',
+        image: '../assets/resp.jpg',
         segment: [
             {
             segmentTitle:"Summary",
@@ -1118,10 +1118,10 @@ export const displayArticles: displayArticle[] = [
         cardIntroduction: 'This section is unique in the sense that it evaluates our environmental impacts from a different perspective. In previous sections, the ‘blame’ for the environmental crisis was split between governments, companies, and individuals – and large-scale solutions were presented as the most important ones.',
         columnName:3
     },{
-        id: 19,
+        id: 17,
         title: 'Influence',
         subtitle: '',
-        image: '../assets/pic9.jpg',
+        image: '../assets/influence.jpg',
         segment: [
             {
                 segmentTitle:"Summary",
@@ -1164,10 +1164,10 @@ export const displayArticles: displayArticle[] = [
         cardIntroduction: 'We live in an extremely connected world, for better or for worse. We know social media can be dangerous, due to very little fact-checking, cyber-bullying, addictiveness, and other factors that can harm our mental health. However, it can also be an extremely powerful tool in these times of global crises. Online posts circle the globe in an instant and have the potential to unite strangers from different continents to take action for an important cause.',
         columnName:3
     },{
-        id: 20,
+        id: 18,
         title: 'Climate Change Deniers, Greenwashing, Labels',
         subtitle: '',
-        image: '../assets/pic2.jpg',
+        image: '../assets/climate.jpg',
         segment: [
             {
             segmentTitle:"",
@@ -1201,10 +1201,10 @@ export const displayArticles: displayArticle[] = [
         cardIntroduction: 'Climate change deniers are people who either do not believe the climate crisis exists, or that it poses a significant threat to present and future generations [there are also people who are knowledgeable on the subject and just don’t care – we can’t pay too much attention to them].',
         columnName:3
     },{
-        id: 21,
+        id: 19,
         title: 'Hope – Is It Too Late?',
         subtitle: '',
-        image: '../assets/pic2.jpg',
+        image: '../assets/hope.jpg',
         segment: [
             {
             segmentTitle:"",
