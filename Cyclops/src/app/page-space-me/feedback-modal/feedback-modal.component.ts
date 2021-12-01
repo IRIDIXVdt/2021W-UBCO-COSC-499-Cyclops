@@ -52,19 +52,19 @@ export class FeedbackModalComponent {
     });
     this.feedbackForm.get('agree').valueChanges.subscribe(agreeValue => {
       if (agreeValue === true) {
-        console.log(' first email required now');//if true, first set validator of email as required for the default option
+        //if agreed, first set validator of email as required for the default option
         this.feedbackForm.get('email').setValidators(Validators.required);
         this.feedbackForm.get('contactType').valueChanges.subscribe(contactValue => {
-          console.log('mark all fields as untouched whenever there is a contact value change');
+          //mark all fields as untouched whenever there is a contact value change
           this.feedbackForm.get('email').markAsUntouched();
           this.feedbackForm.get('phoneNumber').markAsUntouched();
           if (contactValue === 'Email') {
-            console.log('add validator to email and remove phone validator');
+            //add validator to email and remove phone validator
             this.feedbackForm.get('email').setValidators(Validators.required);
             this.feedbackForm.get('phoneNumber').clearValidators();
             this.feedbackForm.get('phoneNumber').updateValueAndValidity();
           } else if (contactValue === 'Phone') {
-            console.log('add validator to phone and remove email validator');
+            //add validator to phone and remove email validator
             this.feedbackForm.get('phoneNumber').setValidators(Validators.required);
             this.feedbackForm.get('email').clearValidators();
             this.feedbackForm.get('email').updateValueAndValidity();
@@ -75,7 +75,7 @@ export class FeedbackModalComponent {
           }
         });
       } else if (agreeValue === false) {
-        console.log('both email and number validator cleared ')
+        //both email and number validator cleared when agree is false
         this.feedbackForm.get('email').clearValidators();
         this.feedbackForm.get('email').updateValueAndValidity();
         this.feedbackForm.get('phoneNumber').clearValidators();
