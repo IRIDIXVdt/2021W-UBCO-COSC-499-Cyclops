@@ -8,14 +8,55 @@
     <form [formGroup]="feedbackForm" (ngSubmit)="onSolution()">
 
         <ion-item>
-            <ion-label position="stacked">Tell us what you think about this article!</ion-label>
-            <ion-input formControlName="feedback" type="text" [(ngModel)]="userfeedback.content"></ion-input>
+            <ion-label position="stacked">First Name:</ion-label>
+            <ion-input formControlName="firstName" type="text"></ion-input>
+            <span class="error" *ngIf="feedbackForm.get('firstName').hasError('required') && feedbackForm.get('firstName').touched">
+            Please enter your first name.
+           </span>
         </ion-item>
-        <p id="err">
-            <span class="error" *ngIf="submitted && errorCtr.feedback.errors?.required">
-        Please enter your feedback.
-       </span>
-        </p>
+        <ion-item>
+            <ion-label position="stacked">Last Name:</ion-label>
+            <ion-input formControlName="lastName" type="text"></ion-input>
+            <span class="error" *ngIf="feedbackForm.get('lastName').hasError('required') && feedbackForm.get('lastName').touched">
+            Please enter your last name.
+           </span>
+        </ion-item>
+        <ion-item>
+            <ion-label>Would you like us to contact you?</ion-label>
+            <ion-toggle formControlName="agree"></ion-toggle>
+        </ion-item>
+        <div *ngIf="feedbackForm.get('agree').value===true">
+            <ion-item>
+                <ion-label position="stacked">How should we contact you?</ion-label>
+                <ion-select formControlName="contactType">
+                    <ion-select-option *ngFor="let ctype of contactType" [value]="ctype">
+                        {{ ctype }}
+                    </ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item *ngIf="feedbackForm.get('contactType').value==='Phone' || feedbackForm.get('contactType').value==='Both' ">
+                <ion-label position="stacked">Phone Number:</ion-label>
+                <ion-input formControlName="phoneNumber" type="tel"></ion-input>
+                <span class="error" *ngIf="feedbackForm.get('phoneNumber').hasError('required') && feedbackForm.get('phoneNumber').touched">
+            Please enter your number.
+           </span>
+            </ion-item>
+            <ion-item *ngIf="feedbackForm.get('contactType').value==='Email' || feedbackForm.get('contactType').value==='Both' ">
+                <ion-label position="stacked">Email:</ion-label>
+                <ion-input formControlName="email" type="email"></ion-input>
+                <span class="error" *ngIf="feedbackForm.get('email').hasError('required') && feedbackForm.get('email').touched">
+            Please enter your email.
+           </span>
+            </ion-item>
+        </div>
+        <ion-item>
+            <ion-label position="stacked">Your feedback:</ion-label>
+            <ion-input formControlName="content" type="text"></ion-input>
+            <span class="error" *ngIf="feedbackForm.get('content').hasError('required') && feedbackForm.get('content').touched">
+                Please enter your feedback.
+               </span>
+        </ion-item>
+
         <p id="center">
             <ion-button type="submit" size="small" shape="round" color="tertiary" class="ion-margin-top">Submit</ion-button>
         </p>

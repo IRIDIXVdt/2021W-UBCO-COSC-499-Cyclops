@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ModalController,AlertController, NavParams   } from '@ionic/angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import { Feedback , ContactType} from './feedback';
 @Component({
   selector: 'app-feedback-modal',
   templateUrl: './feedback-modal.component.html',
@@ -9,6 +9,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class FeedbackModalComponent {
   feedbackForm: FormGroup;
+  feedback:Feedback;
+  contactType = ContactType;
   submitted = false;
   userfeedback: any = {};
 
@@ -37,30 +39,27 @@ export class FeedbackModalComponent {
 
   createForm(){
     this.feedbackForm = this.fb.group({
-      feedback:''
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
+      phoneNumber: ['', [Validators.required]],
+      email: ['', [Validators.required]],
+      agree: false,
+      contactType:'Email',
+      content: ['', [Validators.required]]
     });
-    
   }
   ngOnInit(){
-    this.feedbackForm = this.fb.group({
-      feedback: ['', Validators.required],
-    });
 
+   }
 
-  }
-  onSubmit() {
-    // alert(this.feedbackForm.value);
-    console.log(this.feedbackForm.value);
-    
-    
-    
-  }
   onSolution(){
     this.submitted = true;
     if (!this.feedbackForm.valid) {
       console.log('All fields are required.')
       return false;
     } else {
+      this.feedback = this.feedbackForm.value;
+      console.log(this.feedback);
       this.feedbackForm.reset();
       this.presentAlert();
       this.modalController.dismiss(this.userfeedback)

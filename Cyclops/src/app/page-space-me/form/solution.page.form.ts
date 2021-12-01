@@ -12,7 +12,11 @@ export class SolutionPageForm{
     }
     private createForm() : FormGroup{
         return this.formBuilder.group({
-            feedback: ['', [Validators.required]]
+            firstName: ['', [Validators.required]],
+            lastName: ['', [Validators.required]],
+            phoneNumber: ['', [Validators.required]],
+            email: ['', [Validators.required]],
+            content: ['', [Validators.required]]
         });
     }
 
