@@ -1,4 +1,4 @@
-import{ displayArticle } from './displayArticle';
+import { displayArticle } from './displayArticle';
 export const displayArticles: displayArticle[] = [
     {
         id: 0,
@@ -7,11 +7,11 @@ export const displayArticles: displayArticle[] = [
         image: '../assets/pic1.jpg',
         segment: [
             {
-                segmentTitle:"Intro",
-                segmentBody:`<p>Here, we’ll explore 2 of the most important aspects of the environmental crisis: climate change and biodiversity loss. We’ll see why mitigating each ‘sub-crisis’ is important for the planet and its millions of species, including humans. This section should provide a solid foundation before exploring additional sections, where we’ll often allude to greenhouse gas emissions and biodiversity loss. This will help readers understand the severity of emissions and toxic pollution, instead of just reading meaningless numbers.</p>`
-            },{
-                segmentTitle:"Climate Change",
-                segmentBody:`<p>Climate change is not something that occurs overnight.</p>
+                segmentTitle: "Intro",
+                segmentBody: `<p>Here, we’ll explore 2 of the most important aspects of the environmental crisis: climate change and biodiversity loss. We’ll see why mitigating each ‘sub-crisis’ is important for the planet and its millions of species, including humans. This section should provide a solid foundation before exploring additional sections, where we’ll often allude to greenhouse gas emissions and biodiversity loss. This will help readers understand the severity of emissions and toxic pollution, instead of just reading meaningless numbers.</p>`
+            }, {
+                segmentTitle: "Climate Change",
+                segmentBody: `<p>Climate change is not something that occurs overnight.</p>
                 <p>The atmosphere consists of roughly 78% nitrogen, 21% oxygen, 1% argon – and just <a href="https://ourworldindata.org/co2-and-other-greenhouse-gas-emissions">0.04</a>% carbon dioxide [CO<sub>2</sub>]. In this section, we&#8217;ll see how this ridiculously small percentage of CO<sub>2</sub>, along with other greenhouse gases [GHGs] in the atmosphere, can have remarkable consequences at the global scale.</p>
                 <h5 id="the-earth-s-energy-balance">The Earth&#8217;s Energy Balance</h5>
                 <p><em>For the following section, think of radiation as energy or heat contained in a ray of light.</em></p>
@@ -36,9 +36,9 @@ export const displayArticles: displayArticle[] = [
                 <p>It&#8217;s important to note that global warming and climate change don&#8217;t imply that every day will be hotter than the last. Weather is not the same as climate. Weather describes short term events and temperatures that don&#8217;t really mean anything on their own – since weather is subject to internal and natural variability [i.e. a certain level of randomness]. </p>
                 <p>On the other hand, climate is pretty much just weather averaged out over longer periods of time. As such, climate change is responsible for increasing the likeliness of extreme weather events – but can&#8217;t guarantee that they will take place at any given moment. Similarly, a single record-breaking temperature could not confirm climate change is real, nor could a freezing temperature refute it. </p>
                 <p>That being said, when year after year we measure record-breaking daily, weekly, monthly, and annual temperatures [or extreme weather events] in very different parts of the world, it becomes pretty clear that global warming and climate change are already here. It&#8217;s no longer the future generation&#8217;s problem.</p>`
-            },{
-                segmentTitle:"Bidodiversity Loss",
-                segmentBody:`<p>Biodiversity loss may not get as much attention as climate change does, but it&#8217;s just as bad. Biodiversity can be defined in a number of ways. Here, we&#8217;ll define it as the grouping of the genetic, species, and ecosystem diversities all into one. As we&#8217;ll see in this section, these 3 types of diversities are all interconnected and interdependent.</p>
+            }, {
+                segmentTitle: "Bidodiversity Loss",
+                segmentBody: `<p>Biodiversity loss may not get as much attention as climate change does, but it&#8217;s just as bad. Biodiversity can be defined in a number of ways. Here, we&#8217;ll define it as the grouping of the genetic, species, and ecosystem diversities all into one. As we&#8217;ll see in this section, these 3 types of diversities are all interconnected and interdependent.</p>
                 <h5>Genetic Diversity</h5>
                 <p>Genetic diversity describes the total number of genetic variations that a species has in its gene pool. For an example of a genetic variation, think of the human gene that determines eye color, where variations can range from black to blue, or even light gray. Strong genetic diversity is driven by numerous different genetic variations that are &#8216;mixed&#8217; together during reproduction. With greater gene pools, the odds that 2 mating individuals will have different genetic codes is higher. Strong genetic diversity within a species is closely related to their strength and ability to survive.&nbsp; As a counterexample, think of 2 siblings that reproduce [whose genetic code is very similar], their children have a higher risk of being born with disabilities.</p>
                 <p>With more diverse individuals, the species will adapt better to their ever-evolving environment, making the species stronger as a whole.</p>
@@ -60,16 +60,16 @@ export const displayArticles: displayArticle[] = [
             }
         ],
         cardIntroduction: 'Founded in 1829 on an isthmus between Lake Monona and Lake Mendota, Madison was named the capital of the Wisconsin Territory in 1836.',
-        columnName:1
-    },{
+        columnName: 1
+    }, {
         id: 1,
         title: 'Resources and the Economy',
         subtitle: '',
         image: '../assets/pic2.jpg',
         segment: [
             {
-            segmentTitle:"",
-            segmentBody:`<p>Changing the way we interact with nature is essential to avoid further climate change and biodiversity loss – but there&#8217;s more to it than that. Transitioning our societies into more sustainable ones helps secure a stable future, by ensuring that everything we do, we can do forever. </p>
+                segmentTitle: "",
+                segmentBody: `<p>Changing the way we interact with nature is essential to avoid further climate change and biodiversity loss – but there&#8217;s more to it than that. Transitioning our societies into more sustainable ones helps secure a stable future, by ensuring that everything we do, we can do forever. </p>
             <h5><strong>Infinite Growth in a Finite World</strong></h5>
             <p>We live in economies that require growth for our societies to function. As the backbone of our economies, companies are drivers of growth. A successful company will expand and hire more employees, leading to growth in the society. The quest for growth is the main reason that companies are always innovating and integrating new markets. If they don&#8217;t and instead stay stagnant with their current products and customers, another company with newer products will leave them in the dust [similarly, financial growth requires that &#8220;your money should be making more money&#8221; with investments – another continuous increase]. </p>
             <p>Unfortunately, maintaining growth isn&#8217;t an easy task. And doing so forever in a finite world constrained by limited resources– well that&#8217;s simply impossible. We&#8217;ll touch more on that later.</p>
@@ -102,21 +102,21 @@ export const displayArticles: displayArticle[] = [
             }
         ],
         cardIntroduction: 'Changing the way we interact with nature is essential to avoid further climate change and biodiversity loss – but there’s more to it than that. Transitioning our societies into more sustainable ones helps secure a stable future, by ensuring that everything we do, we can do forever.',
-        columnName:1
-    },{
+        columnName: 1
+    }, {
         id: 2,
         title: 'Fossil Fuels',
         subtitle: '',
         image: '../assets/pic3.jpg',
         segment: [
             {
-            segmentTitle:"Summary",
-            segmentBody:`<p>Fossil fuels are non-renewable, polluting energy sources that we burn daily to power the world. Cities are no strangers to such pollution, as there are over 1 billion cars on the road that burn fossil fuels every day and decrease urban air quality. Biodiversity is also affected by the air, water, and soil pollution caused by fossil fuel consumption. It&#8217;s extremely important that we prevent such contamination, since what harms the environment directly threatens humans.</p>
+                segmentTitle: "Summary",
+                segmentBody: `<p>Fossil fuels are non-renewable, polluting energy sources that we burn daily to power the world. Cities are no strangers to such pollution, as there are over 1 billion cars on the road that burn fossil fuels every day and decrease urban air quality. Biodiversity is also affected by the air, water, and soil pollution caused by fossil fuel consumption. It&#8217;s extremely important that we prevent such contamination, since what harms the environment directly threatens humans.</p>
             <p>Fossil fuels are dominating the global energy and electricity mixes – and it seems as though that will remain the case in the near future. Although a few local electricity mixes are practically fossil-fuel-free, they usually aren&#8217;t examples that the rest of the world can follow. Additionally, electricity only represents around a fifth of energy consumption worldwide, so we can&#8217;t just focus on electricity mixes if we intend on significantly reducing our emissions.</p>
             <p>Different sources of energy are used by the different sectors of our societies. We&#8217;ll see that in detail in later sections. </p>`
-            },{
-            segmentTitle:"Overview",
-            segmentBody:`<p><em>While the next few sections of &#8216;Laying the Foundation&#8217; are focused on energy, it&#8217;s important to understand that polluting energy sources are just one part of the problem. We&#8217;ll go over numerous examples in the main sections – but for now, just remember that it&#8217;s not only about how we produce energy – it&#8217;s also about what we use it for. </em></p>
+            }, {
+                segmentTitle: "Overview",
+                segmentBody: `<p><em>While the next few sections of &#8216;Laying the Foundation&#8217; are focused on energy, it&#8217;s important to understand that polluting energy sources are just one part of the problem. We&#8217;ll go over numerous examples in the main sections – but for now, just remember that it&#8217;s not only about how we produce energy – it&#8217;s also about what we use it for. </em></p>
             <h5 id="energy"><strong>Energy</strong></h5>
             <p>Everything needs energy. We need energy to get up on a Monday morning. Plants need energy to grow. Even our tectonic plates need energy to move. These are all intangibles, we will always need food, plants will always need sunlight, and the plates will keep moving as long as the Earth&#8217;s core remains a radioactive heat ball. </p>
             <p>If we look around, we&#8217;ll notice other things like our electronics, ovens, light bulbs, beds, or walls. These are all things that needed energy to be manufactured, and some still require a continuous flow of energy during use, like TVs. Since we produce and use so many material objects every day, it shouldn&#8217;t come as a surprise that energy production is a major issue worldwide.  </p>
@@ -144,25 +144,25 @@ export const displayArticles: displayArticle[] = [
             }
         ],
         cardIntroduction: 'Fossil fuels are non-renewable, polluting energy sources that we burn daily to power the world. GHG emissions and toxic compounds are released into the environment as a result, contributing to both global warming and pollution. ',
-        columnName:1
-    },{
+        columnName: 1
+    }, {
         id: 3,
         title: 'The 3 Rs',
         subtitle: 'Reduce, Reuse, Recycle',
         image: '../assets/pic4.jpg',
         segment: [
             {
-            segmentTitle:"Summary",
-            segmentBody:`
+                segmentTitle: "Summary",
+                segmentBody: `
             <p>The 3 Rs are the general rules we need to follow to reduce our impacts on the environment. </p>
             <p>Reducing our resource and energy consumption is essential to mitigate further climate change and biodiversity loss. Reducing by design and improving product quality will be key for companies to reduce their impacts. For individuals, only purchasing necessities is by far the most effective way to reduce our dependence on the natural world. However, that doesn&#8217;t mean we have to stop buying products completely.</p>
             <p>Reuse is key to lower production and waste, while making sure individuals can still enjoy a certain item. As such, it&#8217;s crucial for necessities to be reusable so that we can decrease our impacts on the environment. Companies have an important role to play to encourage the reuse of their products, as they have the reach to set up effective reuse programs. Reuse can be extended to include second-hand purchases on items that weren&#8217;t specifically designed to last multiple uses. As a rule of thumb, it&#8217;s typically safe to assume that reusable items are cheaper for individuals and their wallets in the long run.</p>
             <p>Recycling is without a doubt the most integrated R in our societies, but we&#8217;re not particularly good at it. Efficient recycling systems can help mitigate further resource extraction and energy consumption, but they can&#8217;t phase out the whole production stage like the first 2 Rs can. In addition, recycling has plenty of challenges to overcome before it can take a more meaningful role at the global scale, such as triage, material blends, efficiency, increasing material demand, recycling education, limited recycling cycles, and uncollected waste. </p>
             <p>We can’t reach a 100% circular economy. However, using the 3 Rs simultaneously, we can get as close as possible. On top of reducing waste, this will help us avoid unnecessary resource extraction and energy consumption.</p>
             `
-            },{
-            segmentTitle:"Overview",
-            segmentBody:`
+            }, {
+                segmentTitle: "Overview",
+                segmentBody: `
             <p>The 3 &#8216;R&#8217;s are the general rules we need to follow to reduce our impacts on the environment, at any scale. We&#8217;ll see in other sections that these rules are central pillars to lowering consumption across all sectors of our societies.</p>
             <h5 id="reduce"><strong>Reduce</strong></h5>
             <p>This is the most important of the 3 Rs. Reducing our energy consumption and dependence on material objects directly reduces our environmental impacts. For companies, this means producing higher quality items that can be used for longer. As we&#8217;ll see later in this section, higher quality products can encourage reuse. The first R can also mean reducing the amount of packaging needed for a specific product, or even designing the packaging in such a way that it can be reused or recycled. That&#8217;s called reducing by design.</p>
@@ -185,9 +185,9 @@ export const displayArticles: displayArticle[] = [
             <h5 id="conclusion"><strong>Conclusion</strong></h5>
             <p>We can&#8217;t reach a 100% circular economy. However, employing the 3 Rs simultaneously at all scales can help us get as close as possible. On top of reducing waste, this will help us avoid unnecessary resource extraction and energy consumption. </p>
             `
-            },{
-            segmentTitle:"Solutions",
-            segmentBody:`
+            }, {
+                segmentTitle: "Solutions",
+                segmentBody: `
             <h5 id="individuals"><strong>INDIVIDUALS</strong></h5>
             <p><strong>Reduce</strong></p>
             <ul><li><strong>Don&#8217;t buy stuff you don&#8217;t need.</strong> It&#8217;s the easiest way to reduce. Determine whether the purchase is essential.</li><li><strong>Purchase sustainable products.</strong> Since we still need to buy essentials, we&#8217;ll have to reduce our impacts by purchasing the most sustainable alternatives available [within your price range].</li><li><strong>Think ahead before going out. </strong>This can help avoid relying on last-minute items that are often single-use [e.g. bags, bottles, etc&#8230;].</li><li><strong>Avoid single-use products, except maybe toilet paper.</strong> Cloths vs. paper towels, reusable bottles vs. plastic bottles, and reusable face masks vs. disposable masks are only a few battles of the war on single-use products.</li><li><strong>Reduce your dependence on packaging.</strong> Small plastic coffee capsules aren&#8217;t the only examples of ridiculous packaging strategies.</li><li><strong>Reduce sources of waste. </strong>Without necessarily going through your trash, try to examine which products create the most waste in your life and try to find more sustainable alternatives.</li></ul>
@@ -206,25 +206,25 @@ export const displayArticles: displayArticle[] = [
             }
         ],
         cardIntroduction: 'The 3 ‘R’s are the general rules we need to follow to reduce our impacts on the environment, at any scale. We’ll see in other sections that these rules are central pillars to lowering consumption across all sectors of our societies.',
-        columnName:2
-    },{
+        columnName: 2
+    }, {
         id: 4,
         title: 'Temperature Control',
         subtitle: '',
         image: '../assets/pic5.jpg',
         segment: [
             {
-            segmentTitle:"Summary",
-            segmentBody:`
+                segmentTitle: "Summary",
+                segmentBody: `
             <p>HVAC systems are responsible for&nbsp;57% of residential energy consumption in most developed countries, on average. The average residential sector in the same developed countries accounts for&nbsp;20% of final energy use – so we have the means to reduce a big chunk of our energy consumption by changing our temperature control practices.</p>
             <p>Preventive temperature control is extremely important to reduce the need for reactive control. Improving insulation is one of the most important preventive temperature control measures, as it can significantly reduce HVAC energy consumption. In addition, realizing that we can live comfortably at a wide range of temperatures [e.g. 18-26°C] will help us reduce our HVAC needs. We just need to dress accordingly.</p>
             <p>When preventive control isn&#8217;t sufficient, we rely on HVAC systems. These devices allow us to quickly stabilize space temperatures, but they&#8217;re costly and energy intensive. To reduce our impacts, we&#8217;ll need to pass the right policies, use HVAC systems as little as possible, and replace old systems with more efficient ones once end of life is reached. </p>
             <p>Without any measures in place, the world will see a surge in energy consumption from such devices, especially in warmer climates where many countries are still developing. Global A/C energy demand is expected to triple by 2050.</p>
             <p>Improving preventive temperature control is paramount, as it will help reduce the need for reactive control. Decreasing HVAC energy consumption can help us lower our GHG emissions considerably, hopefully keeping us out of a climate-change-induced vicious circle.</p>
             `
-            },{
-            segmentTitle:"Overview",
-            segmentBody:`
+            }, {
+                segmentTitle: "Overview",
+                segmentBody: `
             <p>HVAC systems [Heating, Ventilation, and Air-Conditioning] are responsible for <a href="https://www.iea.org/reports/energy-efficiency-indicators">57</a>% of residential energy consumption in select <a href="https://www.iea.org/reports/energy-efficiency-indicators">IEA</a> developed countries, on average [excluding water heating – would add another <a href="https://www.iea.org/reports/energy-efficiency-indicators">16</a>%]. Improving temperature control could easily slash household energy consumption significantly, resulting in lower emissions and lower costs. </p>
             <p>For reference, the average residential sector in the same IEA developed countries accounts for <a href="https://www.iea.org/reports/energy-efficiency-indicators">20</a>% of their final energy use – so we have the means to reduce a big chunk of our energy consumption. The environmental upside here is far too important to be ignored. We must adopt better solutions now and make them more affordable. </p>
             <p>Note that residential energy consumption denotes both the electricity and natural gas consumption in a home. Heating is usually sourced with natural gas, while cooling typically consumes electricity. The cleanliness of the local electricity mix can determine whether electricity emits less or more GHGs than natural gas per unit of energy consumed. </p>
@@ -250,9 +250,9 @@ export const displayArticles: displayArticle[] = [
             <p><strong>P.S. –Fireplaces</strong></p>
             <p>Burning wood isn&#8217;t a great alternative to fossil-fueled heating systems. We&#8217;ve already covered why in <a href="https://cyclopediapp.org/renewables/">Renewables</a> when discussing energy production from biomass. </p>
             `
-            },{
-            segmentTitle:"Solutions",
-            segmentBody:`
+            }, {
+                segmentTitle: "Solutions",
+                segmentBody: `
             <h5 id="individuals"><strong>INDIVIDUALS</strong></h5>
             <ul><li><strong>Adapt to temperature fluctuations. </strong>Instead of setting a single temperature year-round, adapt your settings based on the season. During the summer, wearing minimal clothing helps. During winter, you can slap on a hoodie and sweatpants. Remember that it&#8217;s completely normal to be hot in the summer and cold in the winter – and that&#8217;s not necessarily a problem. Same goes for day/night fluctuations. </li><li><strong>Alternatively,  set a loose temperature range. </strong>For example, you could just keep your temperature between 16-27°C. That may sound extreme, so just evaluate what you&#8217;d like your temperature range to be. If you can handle it, you can always add more flexibility later. </li><li><strong>Improve your household&#8217;s insulation.</strong> That includes wall, window, and roof <a href="https://www.energy.gov/energysaver/weatherize/insulation"><span style="text-decoration:underline;">insulation</span></a>. It doesn&#8217;t matter if the walls are already up. Additionally, make sure that the insulator material is made of <a href="https://www.energy.gov/energysaver/weatherize/insulation/insulation-materials"><span style="text-decoration:underline;">recycled</span></a>/recyclable materials in a low pollution process – unlike some types of <a href="https://www.bbc.com/news/science-environment-44738952"><span style="text-decoration:underline;">polyurethane</span></a> insulator foams. This will ensure your good intentions aren&#8217;t counterproductive.</li><li><strong>Have your household optimized by experts.</strong> From blower door tests to insulation assessments, there&#8217;s plenty you can do to pinpoint a few of your preventive temperature control inefficiencies.</li><li><strong>Play around with exterior colors.</strong> If you live in a particularly hot region, paint your house&#8217;s exterior in a light color to avoid absorbing the sunlight heat. For others who live in colder regions, opt for darker shades. This will help you use your house&#8217;s reflectiveness to your advantage.</li><li><strong>Remember that outside air has a different temperature and is free.</strong> To change your space temperature, check the weather and open/close a window if it makes sense to do so. This can help you avoid using HVAC systems when unnecessary. </li><li><strong>Use your blinds and curtains effectively.</strong> To strengthen preventive control, close your blinds and curtains to reduce the sunlight/exterior temperature&#8217;s effect on your household. To improve reactive control, you can always open them up in a flash.</li><li><strong>Use temperature-intensive appliances sparingly.</strong> Anything that requires heating or cooling of large volumes, like saunas and hot-tubs – are heavy energy consumers. </li><li><strong>Stop using your fireplace. </strong>Alternatively, pimp out your <a href="https://www.epa.gov/burnwise/learn-you-burn-wood-what-you-can-do"><span style="text-decoration:underline;">fireplace</span></a>.</li><li><strong>Replace your HVAC systems with more efficient ones. </strong> Try doing this only once the systems have reached the end of their lifecycles to avoid wasting any good years the current system has left. It&#8217;s important to consider the new product&#8217;s lifecycle footprint.</li></ul>
             <h5 id="larger-scales"><strong>LARGER SCALES</strong></h5>
@@ -261,16 +261,16 @@ export const displayArticles: displayArticle[] = [
             }
         ],
         cardIntroduction: 'Improving temperature control could easily slash household energy consumption significantly, resulting in lower emissions and lower costs.',
-        columnName:2
-    },{
+        columnName: 2
+    }, {
         id: 5,
         title: 'Transportation',
         subtitle: '',
         image: '../assets/pic6.jpg',
         segment: [
             {
-            segmentTitle:"Summary",
-            segmentBody:`
+                segmentTitle: "Summary",
+                segmentBody: `
             <p>Transportation accounted for&nbsp;28% of global final energy demand in 2017 and roughly 23% of&nbsp;global CO<sub>2</sub>&nbsp;emissions&nbsp;in 2018. Since vehicles are extremely energy intensive and polluting, the transportation sector is an innovator’s dream.</p>
             <p>Passenger transportation is responsible for around 63% of total transportation energy use, while freight transport accounts for the remaining 37%. Globalization has allowed us to travel and trade goods over great distances, but our environment is once again paying the price. </p>
             <p>Aviation, shipping, and road vehicles have all increased their emissions in recent years, while rail continues to prove it&#8217;s the cleanest motorized transportation mode out there. Unfortunately, expensive train tickets are preventing people from reducing their footprint over long and short distances alike. To reduce environmental impacts, we&#8217;ll need to reevaluate whether eco-friendly public transit methods like buses, streetcars, or rail are really something we want to discourage with expensive fares. </p>
@@ -278,9 +278,9 @@ export const displayArticles: displayArticle[] = [
             <p>Again, prioritizing public transit to reduce the number of cars on the road is the only surefire way to decrease environmental impacts in the long term. That requires much lower fares for long distance rail and city transit. And yes, electrifying public transit will be essential, but only because it makes sense to do so at that scale. Governments and companies can reduce the global transportation sector&#8217;s impacts considerably in the near future, if the right policies and solutions are adopted now.</p>
             <p>Artificial intelligence will also help reduce the number of cars in the world and on the road, although this type of technology is not without impacts on the environment either. With the proper systems in place, driverless vehicles will increase carpooling and make public transit an even better option. However, driverless vehicles aren&#8217;t available yet, with no guarantee of when they&#8217;ll roll out and help streamline public transit – so we&#8217;ll have to stick to proven solutions for now.</p>
             `
-            },{
-            segmentTitle:"Overview",
-            segmentBody:`
+            }, {
+                segmentTitle: "Overview",
+                segmentBody: `
             <p>Transportation accounted for <a href="https://www.iea.org/reports/digitalisation-and-energy">28</a>% of global final energy demand in 2017. The sector released <a href="https://www.iea.org/reports/tracking-transport-2020">8.2</a> Gt [1 Gt = 1 billion tonnes = 1 trillion kg] of CO<sub>2</sub> in 2018 alone, which represents roughly 23% of <a href="https://ourworldindata.org/co2-emissions">global CO<sub>2</sub> emissions</a> across all sectors the same year. Transportation&#8217;s CO<sub>2</sub> emissions have risen by <a href="https://www.iea.org/reports/tracking-transport-2020">41</a>% from 2000-2018. Alas, burning fuel doesn&#8217;t just emit CO<sub>2</sub> – it also releases toxic pollutants.</p>
             <p>Its high energy consumption and pollution make the transportation sector an innovator&#8217;s dream. Between artificial intelligence and electric vehicles, huge investments are being made to make this industry more sustainable. Both these advances have the potential to lower emissions, if applied globally at the proper scale. Unfortunately, we don&#8217;t have the time to wait around until they do. There are many policies and solutions that governments and companies can implement to reduce the sector&#8217;s global impacts effectively, instead of placing the blame solely on individuals. That being said, individuals have lots of opportunities to reduce their personal transportation impacts. </p>
             <p>Individual car needs are often linked to urban expansion and the proportional weakening of public transport services. In other words, as we move further away from the city, a car becomes increasingly necessary. It&#8217;s also true that as a city expands, more amenities get built far from the city center. Thus, urban populations also find themselves wanting cars. Both these factors [and many more] help explain why individuals were responsible for around <a href="https://www.eia.gov/outlooks/ieo/pdf/transportation.pdf">63</a>% of total transportation energy use in 2012.</p>
@@ -346,9 +346,9 @@ export const displayArticles: displayArticle[] = [
             <p>Nonetheless, driverless vehicles could one day revolutionize public transit by driving people that don&#8217;t live near public transit routes to the nearest station. This could help us replace buses that run with little to no passengers with mini shuttles. These driverless shuttles would then operate at lower costs and lower fuel consumption – since they wouldn&#8217;t have drivers and would be much lighter than large buses. </p>
             <p>Autonomous vehicles would also be pivotal for car-sharing applications when public transit isn&#8217;t an option, to reduce the number of cars in the world [by reducing the number of cars not in use]. While this wouldn&#8217;t necessarily reduce the number of cars in use at any given moment, AI algorithms could help with that by making carpooling and car-sharing much more convenient. </p>
             `
-            },{
-            segmentTitle:"Solutions",
-            segmentBody:`
+            }, {
+                segmentTitle: "Solutions",
+                segmentBody: `
             <p>Transportation accounted for&nbsp;28% of global final energy demand in 2017 and roughly 23% of&nbsp;global CO<sub>2</sub>&nbsp;emissions&nbsp;in 2018. Since vehicles are extremely energy intensive and polluting, the transportation sector is an innovator’s dream.</p>
             <p>Passenger transportation is responsible for around 63% of total transportation energy use, while freight transport accounts for the remaining 37%. Globalization has allowed us to travel and trade goods over great distances, but our environment is once again paying the price. </p>
             <p>Aviation, shipping, and road vehicles have all increased their emissions in recent years, while rail continues to prove it&#8217;s the cleanest motorized transportation mode out there. Unfortunately, expensive train tickets are preventing people from reducing their footprint over long and short distances alike. To reduce environmental impacts, we&#8217;ll need to reevaluate whether eco-friendly public transit methods like buses, streetcars, or rail are really something we want to discourage with expensive fares. </p>
@@ -359,16 +359,16 @@ export const displayArticles: displayArticle[] = [
             }
         ],
         cardIntroduction: 'Transportation’s CO2 emissions have risen by 41% from 2000-2018. Alas, burning fuel doesn’t just emit CO2 – it also releases toxic pollutants.',
-        columnName:2
-    },{
+        columnName: 2
+    }, {
         id: 6,
         title: 'Food',
         subtitle: '',
         image: '../assets/pic7.jpg',
         segment: [
             {
-            segmentTitle:"Summary",
-            segmentBody:`
+                segmentTitle: "Summary",
+                segmentBody: `
             <p>In 2018, food systems accounted for roughly&nbsp;33% of our global GHG emissions [note that many reports have more cautious estimates, like the IPCC’s&nbsp;21-37% range]. Unsurprisingly, the farming stage – where crops or animals are grown – is responsible for the majority of our food system&#8217;s emissions. </p>
             <p>On top of these emissions, farmlands [i.e. croplands and pastures] cover around half of the Earth&#8217;s habitable surface. With our current food system, that fraction is projected to rise to satisfy the demands of an increasing and increasingly wealthy population. Unfortunately, there&#8217;s a shortage of arable land in the world, and deforestation for agriculture is not a very good alternative. We&#8217;re going to have to rely on trees and their biodiversity to sequester carbon in the future, so destroying our long-term ally for an immediate result doesn&#8217;t make a whole lot of sense. That is, if there&#8217;s a way to change our current unsustainable food systems.</p>
             <p>Animal-free diets are much better for the environment, in every single way. Between livestock consuming roughly a third of all grown crops, releasing massive amounts of GHGs, and causing roughly 67% of deforestation for agriculture, we have loads of reasons to adapt to different diets. </p>
@@ -377,9 +377,9 @@ export const displayArticles: displayArticle[] = [
             <p>Plant-based diets can help the food industry reduce its land use by several million km<sup>2</sup> by 2050, which would help us restore green ecosystems worldwide. They could also help lower the food system&#8217;s GHG emissions by up to 8.0 Gt of CO<sub>2</sub>e per year by 2050. Developed countries and heavy meat eaters have the opportunity to cut down on their emissions the most, although it will take time. This transition can be facilitated by governments and food companies by effectively communicating food products&#8217; impacts to customers. And as always, buying local, in season, and not wasting are surefire ways to decrease your footprint.</p>
             <p>Food wastage reflects that it&#8217;s not just diets that need to change, it&#8217;s the whole food system. We can&#8217;t keep wasting a third of food produced for humans if our goal is to increase food security – while not destroying precious ecosystems.</p>
             `
-            },{
-            segmentTitle:"Overview",
-            segmentBody:`
+            }, {
+                segmentTitle: "Overview",
+                segmentBody: `
             <p>Food is an extremely polarizing topic due to its importance in our everyday lives and its massive impacts on the environment. In 2018, food systems released about <a href="https://iopscience.iop.org/article/10.1088/1748-9326/ac018e">16</a> Gt of CO<sub>2</sub>e in the atmosphere [160 billion pandas] – equivalent to roughly <a href="https://iopscience.iop.org/article/10.1088/1748-9326/ac018e">33</a>% of our global GHG emissions the same year [note that many reports have more cautious estimates, like the IPCC&#8217;s <a href="https://www.ipcc.ch/srccl/chapter/chapter-5/">21-37</a>% range].</p>
             <p>Including the effects of land use conversion like deforestation, the farming stage [i.e. excluding food transport, supply chains, or waste disposal] accounted for <a href="https://iopscience.iop.org/article/10.1088/1748-9326/ac018e">65</a>% of food&#8217;s GHG emissions in 2018. Unfortunately, there&#8217;s more to it than just GHGs. Our food systems also caused <a href="http://science.sciencemag.org/content/360/6392/987.full?ijkey=ffyeW1F0oSl6k&amp;keytype=ref&amp;siteid=sci">32</a>% of terrestrial acidification and <a href="http://science.sciencemag.org/content/360/6392/987.full?ijkey=ffyeW1F0oSl6k&amp;keytype=ref&amp;siteid=sci">78</a>% of eutrophication in 2018, which can both destroy ecosystems and induce biodiversity loss. </p>
             <p>Many factors can increase a food product&#8217;s footprint, such as cooking methods, transportation, and packaging – but it&#8217;s clear that the farming stage has the highest impacts of them all. So that&#8217;ll be the main focus of this section. </p>
@@ -480,9 +480,9 @@ export const displayArticles: displayArticle[] = [
             <h5 id="conclusion"><strong>Conclusion</strong></h5>
             <p>Governments and companies have a lot of work to do to improve food systems swiftly at the largest scales and should be focused on better policies/farming practices – instead of placing the blame on consumers. However, it has to be clear that we can&#8217;t go on with our unsustainable diets. There&#8217;s simply no way we can keep them up for long – without mentioning the damage they incur to the environment. </p>
             `
-            },{
-            segmentTitle:"Solutions",
-            segmentBody:`
+            }, {
+                segmentTitle: "Solutions",
+                segmentBody: `
             <h5 id="individuals"><strong>INDIVIDUALS</strong></h5>
             <ul><li><strong>Reduce meat consumption.</strong> Adopt a plant-based diet. Alternatively, try a vegetarian diet. If you can&#8217;t swear off meat yet, go flexitarian – a fancy word to say you avoid meat as much as you can. If you can&#8217;t reduce your meat consumption yet, try to aim for the lowest impact meats [i.e. avoid ruminants].</li><li><strong>Forget about the labels.</strong> It&#8217;s easy to get stuck between 2 labels, because your diet doesn&#8217;t really match one of the diets mentioned above. If you need to eat meat once in a while, that doesn&#8217;t mean you can&#8217;t go vegan for the rest of your meals. It doesn&#8217;t make you a phony either. There are 0 constraints when changing your diet to reduce your footprint.</li><li><strong>Try new things.</strong> When changing your diet, the most important step is trying out alternatives. Especially when meat and dairy alternatives are improving every day. Individuals eating 3 meals a day end up eating close to 1,100 meals a year – so it shouldn&#8217;t hurt to try out a few weird-looking plant-based recipes once in a while. If you&#8217;re a fan of specific meat-based recipes, try subbing in another ingredient. If you don&#8217;t like it, that&#8217;s just 1/1,100 meals – keep trying. </li><li><strong>Find your high-impact foods.</strong> Try determining which of the foods you consume are considered high-impact, and see if you can find any better alternatives. </li><li><strong>Buy local and sustainable ingredients directly from the farm [i.e. at a farmer&#8217;s market].</strong> We should note that buying local doesn&#8217;t really help you lower your footprint that much. Instead, it&#8217;s more about encouraging small-scale farming, promoting sustainable producers, reducing food wastage from transport and supermarkets, and boosting your local economy.</li><li><strong>Grow a garden.</strong> Cultivating your own veggies inside or outside is a surefire way to reduce your footprint. Try growing local foods so that no extra irrigation is needed. Small gardens are low maintenance but a very big flex. </li><li><strong>Buy in season.</strong> Keeping up with which veggies grow during which months might seem annoying at first, but remember that this won&#8217;t change too much as time goes on. In other words, getting familiar with vegetable seasons is a life skill. </li><li><strong>Stick to water.</strong> Juices and coffee, among other beverages, are pretty big water consumers when you consider the irrigation needed to harvest the crops. Funny enough, a glass of orange juice needs much more water than a glass of water. Worldwide coffee production also releases a significant amount of GHGs in the atmosphere every year.</li><li><strong>Don&#8217;t waste food or drinking water.</strong> Stay in control of your fridge to make sure ingredients will be used before going bad. If you made excess food, keep it as leftovers. If you have too many leftovers, consider freezing some for later. Donate foods from your shelves that you know you&#8217;ll never eat. Use all the parts of an ingredient [e.g. stems, peels, etc&#8230;].</li><li><strong>Become a responsible consumer. </strong>Buy close-to-expiring foods at the supermarket if you know you&#8217;ll be using the ingredient soon. Also, buy the ugly looking product instead of the perfectly shaped one. These 2 actions will help grocery stores avoid food waste.</li><li><strong>Adopt a &#8216;bulk mentality&#8217;, within reason.</strong> Buying in bulk can reduce packaging and save money, as long as none of it ends up wasted.</li><li><strong>Learn how to properly shotgun a beer.</strong> Some of the videos online are just pathetic. As a helpful hint, if you end up drenched – you&#8217;re probably doing it wrong.</li><li><strong style="background-color:var(--wp--preset--color--background);color:var(--wp--preset--color--foreground);font-family:var(--font-base, &quot;PT Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, &quot;Roboto&quot;, &quot;Oxygen&quot;, &quot;Ubuntu&quot;, &quot;Cantarell&quot;, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif);">Stop cooking with fossil fuels, if possible. </strong><span style="background-color:var(--wp--preset--color--background);color:var(--wp--preset--color--foreground);font-family:var(--font-base, &quot;PT Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, &quot;Roboto&quot;, &quot;Oxygen&quot;, &quot;Ubuntu&quot;, &quot;Cantarell&quot;, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif);">Switch to electrically powered devices if your local electricity mix is cleaner than natural gas [check your electricity emission factor to confirm]. Above all else, avoid cooking with coal.</span></li><li><strong>Research the &#8216;facts&#8217; that sound fishy about plant-based diets.</strong> No, soy milk doesn&#8217;t give you titties. </li><li><strong>Avoid polluting products, not specific ingredients. </strong>Some foods have been unsustainably produced in the past – but that doesn&#8217;t mean we should avoid them. For example, palm oil has been a driver of tropical deforestation for decades. However, it&#8217;s <a href="https://ourworldindata.org/palm-oil"><span style="text-decoration:underline;">such a productive crop</span></a> that replacing palm oil with another type of oil could end up having a greater impact. This is especially true since many palm oil producers have now moved on to more sustainable practices. In any case, looking for sustainability certifications for products that contain these types of ingredients is definitely a good call – since it remains important to avoid products that have not switched to more sustainable practices.</li></ul>
             <h5 id="larger-scales"><strong>LARGER SCALES</strong></h5>
@@ -492,16 +492,16 @@ export const displayArticles: displayArticle[] = [
             }
         ],
         cardIntroduction: 'Food is an extremely polarizing topic due to its importance in our everyday lives and its massive impacts on the environment.',
-        columnName:2
-    },{
+        columnName: 2
+    }, {
         id: 7,
         title: 'Household Appliances',
         subtitle: '',
         image: '../assets/pic8.jpg',
         segment: [
             {
-            segmentTitle:"Summary",
-            segmentBody:`
+                segmentTitle: "Summary",
+                segmentBody: `
             <p>Household appliances are often sneaky energy consumers, far less scrutinized than HVAC systems. It&#8217;s important to understand that anything that heats, cools, lights up, or moves needs energy. For the residential sector, most of that energy is supplied in the form of electricity or natural gas. </p>
             <p>Electronics are important electricity consumers, but luckily there are easy ways to reduce energy waste from these types of devices. Notably, by reducing standby power with better policies for large scales, or by unplugging electronic devices for individuals. </p>
             <p>Then, there are numerous energy-consuming appliances that have made their way into almost every household in developed countries, for no good reason. Dryers are the prime example, as they continue to increase household energy consumption by replacing sustainable drying methods that really don&#8217;t need replacing. </p>
@@ -509,9 +509,9 @@ export const displayArticles: displayArticle[] = [
             <p>Water heaters are tricky. Although reducing the set temperature is an excellent way to reduce emissions, low temperatures can also bring on legionnaire&#8217;s bacteria. It&#8217;s important to follow the recommended settings to lower consumption safely. Doing so will help us reduce water heating&#8217;s energy requirements, which currently stand at around 16% of residential energy consumption in select IEA countries. That large percentage makes sense, because everything that uses hot water in a home or building piggy backs on the water heater.</p>
             <p>Governments can pass numerous policies that would effectively reduce our appliances&#8217; impacts. Companies can also contribute by producing better quality items that use less energy and last longer. As for individuals, we can reduce our consumption by using household appliances sparingly and effectively in our day-to-day lives. And most importantly, before purchasing any household appliance, we should always ask ourselves if we really need it.</p>
             `
-            },{
-            segmentTitle:"Overview",
-            segmentBody:`
+            }, {
+                segmentTitle: "Overview",
+                segmentBody: `
             <p>If we&#8217;re going to discuss how we can improve energy efficiency and reduce material consumption in our everyday lives, we better mention household appliances. In 2019, household appliances were responsible for <a href="https://www.iea.org/reports/appliances-and-equipment">15</a>% of final electricity demand worldwide.</p>
             <p>Most appliances are powered by electricity or natural gas, like fridges, stoves, and most barbeque grills. Along with HVAC systems, this explains why the residential sector&#8217;s energy consumption is dominated by natural gas and electricity use [residential excludes transportation].</p>
             <h5 id="residential-energy-consumption"><strong>Residential Energy Consumption</strong></h5>
@@ -547,9 +547,9 @@ export const displayArticles: displayArticle[] = [
             <p>Governments can pass numerous policies that would effectively reduce our appliances&#8217; impacts. Companies can also contribute by producing better quality items that use less energy and last longer.</p>
             <p>As for individuals, there&#8217;s one common theme across all types of appliances. We can reduce our consumption by using household appliances sparingly and effectively in our day-to-day lives. To do so, we&#8217;ll have to look at our household items and evaluate whether their usage is worth wasting resources for. And most importantly, before purchasing any household appliance, we&#8217;ll have to ask ourselves one single question: do we really need it?</p>
             `
-            },{
-            segmentTitle:"Solutions",
-            segmentBody:`
+            }, {
+                segmentTitle: "Solutions",
+                segmentBody: `
             <h5 id="individuals"><strong>INDIVIDUALS</strong></h5>
             <ul><li><strong>Make a quick inventory of the appliances you own.</strong> This should help you decide if you really need more than that. If yes, then try to define what &#8216;enough&#8217; would look lie – and see if that list gets shorter/longer over time.</li><li><strong>Share appliances.</strong> There&#8217;s no point in everyone having the same appliance if we&#8217;re only ever going to use it a few times a week. Power tools, laundry machines, and gardening tools are a few of the many items that neighborhoods could share to avoid depleting resources.  </li><li><strong>Replace your old bulbs with efficient LEDs.</strong> Also, try to avoid using artificial lighting when you can use sunlight instead. </li><li><strong>Stop purchasing/using high-impact appliances you don&#8217;t need. </strong>The most notable example being dryers. Appliances that use extremely greenhousy refrigerants should also be avoided  and dealt with professionally during disposal.</li><li><strong>Lower your water heater temperature to the safe limit.</strong> Remember to check what your region and manufacturer suggest as a <a href="https://www.energy.gov/energysaver/services/do-it-yourself-energy-savings-projects/savings-project-lower-water-heating"><span style="text-decoration:underline;">safe</span></a> temperature, to avoid legionnaire&#8217;s bacteria.</li><li><strong>Decrease your hot water consumption. </strong>Switching to colder water when washing dishes, clothes, or yourself can help reduce your water heater&#8217;s energy consumption.</li><li><strong>Unplug appliances that are fully charged or not in use.</strong> This is especially important for appliances you rarely use, because you can just unplug them once and forget about them. For other appliances you use more frequently, it&#8217;s up to you. Just check to see if the power cords or plugs aren&#8217;t frayed first, to make sure it&#8217;s safe to do so. Also, make sure to pull on the plug itself and not the cable, to avoid damaging your cables [to be clear – not the metal part &#8211; pull the plastic exterior of the plug].</li><li><strong>Or at the very least turn the appliances off/put them in sleep mode when not in use.</strong></li><li><strong>Increase energy efficiency by avoiding redundancy.</strong> There are many opportunities to reduce energy consumption through increased sharing within a household – like doing a group laundry [instead of having individuals wash their clothes independently].</li><li><strong>Decrease your faucet or nozzle water flow rates.</strong> This essentially just means reducing the water speed from your nozzles or faucets. Consider installing low-flow fixtures to replace current fixtures at the end of their lifetime.</li><li><strong style="background-color:var(--wp--preset--color--background);color:var(--wp--preset--color--foreground);font-family:var(--font-base, &quot;PT Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, &quot;Roboto&quot;, &quot;Oxygen&quot;, &quot;Ubuntu&quot;, &quot;Cantarell&quot;, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif);">Purchase low standby power products.</strong><span style="background-color:var(--wp--preset--color--background);color:var(--wp--preset--color--foreground);font-family:var(--font-base, &quot;PT Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, &quot;Roboto&quot;, &quot;Oxygen&quot;, &quot;Ubuntu&quot;, &quot;Cantarell&quot;, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif);"> An easy way to do this is to look for certifications on products [e.g. the </span><a href="https://www.energystar.gov/"><span style="text-decoration:underline;">ENERGY STAR</span></a><span style="background-color:var(--wp--preset--color--background);color:var(--wp--preset--color--foreground);font-family:var(--font-base, &quot;PT Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, &quot;Roboto&quot;, &quot;Oxygen&quot;, &quot;Ubuntu&quot;, &quot;Cantarell&quot;, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif);"> sticker].</span></li><li><strong>Run electricity consuming appliances at night. </strong>Electricity demand is usually higher and more expensive during the day, so spreading out your demand during night-time could help you save some money depending on how you&#8217;re billed. This can also help avoid wasting renewable electricity generation during the night, and prevent additional fossil fuel burning during the day.</li><li><strong>Measure your bathtub to determine what your shower time equivalent is.</strong> This will simply help you visualize how much hot water a bath uses compared to your shower. Remember to consider the water height and not the tub&#8217;s height – and to check your shower&#8217;s flow rate.</li><li><strong>Compare your local emission factors for electricity vs. natural gas. </strong>An emission factor determines how much CO<sub>2</sub>e your electricity or gas emits per unit of energy. Comparing for both utilities can help you decide which of the 2 your appliances should be relying on. For example, in regions with loads of coal power plants, burning natural gas might actually be greener than relying on the grid&#8217;s electricity. </li><li><strong>Purchase renewable electricity or green certificates. </strong>If you don&#8217;t have the option of purchasing renewable electricity from your provider, you can always purchase <a href="https://www.energy.gov/energysaver/buying-and-making-electricity/buying-clean-electricity"><span style="text-decoration:underline;">green certificates</span></a>. When done right, these certificates essentially fund renewable electricity production elsewhere. </li><li><strong>Visit <a href="https://www.hydroquebec.com/residential/energy-wise/"><span style="text-decoration:underline;">Hydro Quebec</span></a> and <a href="https://www.nrcan.gc.ca/energy-efficiency/homes/make-small-changes-add/21850"><span style="text-decoration:underline;">Natural Resources Canada&#8217;s</span></a> tip pages to help save energy every day.</strong> Keep in mind that some of their solutions suggest purchasing renewables and many sensors. We suggest sticking to solutions that don&#8217;t involve buying new things, as the energy reductions at the individual scale often aren&#8217;t worth the production impacts. </li><li><strong>Fun fact: You can recycle your bath water by connecting it to a toilet&#8217;s upper deck.</strong> If any bath lovers feel bad about their hot water consumption, this is a pretty neat trick that can help them lower their impacts.</li></ul>
             <h5 id="larger-scales"><strong>LARGER SCALES</strong></h5>
@@ -558,23 +558,23 @@ export const displayArticles: displayArticle[] = [
             }
         ],
         cardIntroduction: 'If we’re going to discuss how we can improve energy efficiency and reduce material consumption in our everyday lives, we better mention household appliances. In 2019, household appliances were responsible for 15% of final electricity demand worldwide.',
-        columnName:2
-    },{
+        columnName: 2
+    }, {
         id: 8,
         title: 'Pollution',
         subtitle: '',
         image: '../assets/pollution.jpg',
         segment: [
             {
-            segmentTitle:"Summary",
-            segmentBody:`
+                segmentTitle: "Summary",
+                segmentBody: `
             <p>In general, pollution occurs when elements or compounds [or anything else they form] that harm the environment are released.&nbsp;Whether pollutants are emitted in solid, liquid, or gaseous form, they can induce biodiversity loss and climate change. Air pollution is a particularly deadly threat for urban populations, as it causes roughly 12% of global deaths every year.</p>
             <p>Developed countries require that their factories and power plants meet certain pollution limits to protect nearby populations and the environment. It&#8217;s well past time to enforce that in the manufacturing countries of the world that are being exploited for cheap labor and weak environmental regulations – and that can&#8217;t risk speaking up against our polluting companies.</p>
             <p>While loud noises and artificial lighting are usually associated with urban areas, they’re becoming increasingly common in natural areas as well – due to encroaching human activities.</p>
             `
-            },{
-            segmentTitle:"Overview",
-            segmentBody:`
+            }, {
+                segmentTitle: "Overview",
+                segmentBody: `
             <p>While many view climate change, biodiversity loss, and pollution as 3 distinct yet interconnected parts of the environmental crisis, we decided to split pollution within the first 2 sub-crises. Seeing that pollution usually forces one of climate change or biodiversity loss, it seems redundant to consider it separately. Nonetheless, we&#8217;ll quickly review pollution here to understand how different types of waste infiltrate and damage the environment. </p>
             <p>In general, pollution occurs when elements or compounds [or anything else they form] that harm the environment are released. These chemicals can be emitted as solids, liquids, or gases, but what do they actually do? How are they harmful to nature and to us?</p>
             <p>Well, that depends on the type of pollutant, the environment&#8217;s characteristics, and how both react with one another.</p>
@@ -600,33 +600,33 @@ export const displayArticles: displayArticle[] = [
             <p>Some areas of the world experience such high levels of constant pollution that it&#8217;s visible to the naked eye. In fact, highly populated developing cities in Asia often have such poor air quality that even sunlight has a tough time penetrating the clouds of pollution [i.e. global dimming]. Individuals living in these cities have increased chances of dying prematurely every time they step out of their home.</p>
             <p>It&#8217;s important to note that there are other, less obvious forms of pollution. Particularly, noise and light pollution are inducing biodiversity loss by disrupting many species&#8217; instincts around mating, hunting, and surviving. While loud noises and artificial lighting are usually associated with urban areas, they&#8217;re becoming increasingly common in natural areas as well – due to encroaching human activities. </p>
             `
-            },{
-            segmentTitle:"Solutions",
-            segmentBody:`
+            }, {
+                segmentTitle: "Solutions",
+                segmentBody: `
             <h5 id="all-scales"><strong>ALL SCALES</strong></h5>
             <ul><li><strong>Adopt the 3 Rs.</strong></li><li><strong>Improve temperature control.</strong></li><li><strong>Reduce passenger and freight transportation needs.</strong></li><li><strong>Reduce the food system&#8217;s emissions by producing/purchasing sustainable foods.</strong></li><li><strong>Become a more responsible company by prioritizing sustainable solutions and informing consumers of their purchases&#8217; impacts.</strong> </li><li><strong>Become a more responsible consumer by lowering your need for material possessions.</strong></li><li><strong>Reduce residential and commercial land use to slow down urban expansion.</strong></li><li><strong>Reduce waste and improve waste management.</strong></li><li><strong>Think of a product&#8217;s life-cycle impacts before purchasing it.</strong></li><li><strong>Think solutions through to make sure the environment won&#8217;t suffer long-term side effects.</strong></li><li><strong>Reduce the need for high-tech and replace it with more sustainable low-tech solutions.</strong></li><li><strong> Reduce the agricultural sector&#8217;s pollution to the environment with sustainable practices and eco-friendlier purchases.</strong></li><li><strong>Abandon the fast-fashion mentality.</strong></li><li><strong>Protect forests and other green eco-systems and help remediate those we have already damaged.</strong></li><li><strong>Reduce freshwater consumption, pollution, and waste.</strong></li><li><strong>Think about the dangers of pollution, for both natural environments and humans.</strong></li><li><strong>Provide higher-quality education to populations around the world, without discrimination.</strong></li><li><strong>Reduce the heavy industry&#8217;s emissions with efficiency advances, smarter purchases, or no purchases.</strong></li><li><strong>Use your wealth to help the environment, not to pollute it.</strong></li><li><strong>Use your influence to advocate for change and take action.</strong></li><li><strong>Beware of money-fueled climate change deniers and greenwashing.</strong></li><li><strong>Don&#8217;t lose hope, there&#8217;s no other option.</strong></li></ul>
             `
             }
         ],
         cardIntroduction: 'While many view climate change, biodiversity loss, and pollution as 3 distinct yet interconnected parts of the environmental crisis, we decided to split pollution within the first 2 sub-crises. Seeing that pollution usually forces one of climate change or biodiversity loss, it seems redundant to consider it separately. Nonetheless, we’ll quickly review pollution here to understand how different types of waste infiltrate and damage the environment.',
-        columnName:3
-    },{
+        columnName: 3
+    }, {
         id: 9,
         title: 'Population and Education',
         subtitle: '',
         image: '../assets/crowd.jpg',
         segment: [
             {
-            segmentTitle:"Summary",
-            segmentBody:`
+                segmentTitle: "Summary",
+                segmentBody: `
             <p>Our food, water, and land use systems aren&#8217;t sustainable and fail to provide for all 8 billion of us on Earth. By 2064, the global population is expected to reach its peak, near 9.73 billion. We&#8217;re in for quite the challenge if we don&#8217;t adapt fast.</p>
             <p>A growing population won&#8217;t help us reach sustainability or harmony with nature – but nearing 10 billion people is certainly manageable if we learn to share resources. Not just between humans, but with all the natural world. </p>
             <p>In the future, as birth rates continue to lower, older generations will become much more influential. With that in mind, investing in those generations through education is a necessity. To encourage environmental protection and the pursuit of happiness over greed in our future societies, we need to provide quality education for the generations currently being plopped out. And that includes women and minorities in all parts of the world, especially those that can use education to emancipate themselves from oppressing societies and traditions.</p>
             <p>Education impacts the way we treat one another, and how we co-exist with nature. Once the majority of us clue in that we can&#8217;t live without the natural world, we&#8217;ll start making decisions that make sense. Simply put, better education will help an increasing population shape a better future for itself. </p>
             `
-            },{
-            segmentTitle:"Overview",
-            segmentBody:`
+            }, {
+                segmentTitle: "Overview",
+                segmentBody: `
             <p>As of January 1<sup>st</sup> 2021, there are around <a href="https://www.worldometers.info/world-population/">7.8</a> billion humans on Earth. By 2064, the global population is expected to reach its peak, near <a href="https://www.sciencedirect.com/science/article/pii/S0140673620306772">9.73</a> billion [note that another estimate predicts <a href="https://population.un.org/wpp/Publications/Files/WPP2019_Highlights.pdf">10.9</a> billion by 2100].</p>
             <p>We&#8217;ve talked about agriculture, transportation, waste management, and many more important topics. In each section, the bottom line has always been that we need to reduce our energy/resource consumption to decrease our impacts on the environment. Successfully doing so would mean mitigating climate change and biodiversity loss. Additionally, most of the solutions we&#8217;ve presented stem from a basic concept that we were taught in kindergarten: sharing is caring. </p>
             <p>A growing population won&#8217;t help us reach sustainability or harmony with nature – but nearing 10 billion people is certainly manageable if we learn to share resources. Not just between humans, but with all the natural world.</p>
@@ -647,32 +647,32 @@ export const displayArticles: displayArticle[] = [
             <h5 id="conclusion"><strong>Conclusion</strong></h5>
             <p>Once the majority of us clue in that we can&#8217;t live without nature, we&#8217;ll start making decisions that make sense. Unfortunately, the world has other problems than just the environmental crisis right now – but nothing that better education and increased sharing of our resources can&#8217;t fix. Simply put, better education will help an increasing population shape a better future for itself.</p>
             `
-        },{
-            segmentTitle:"Solutions",
-            segmentBody:`
+            }, {
+                segmentTitle: "Solutions",
+                segmentBody: `
             <h5 id="individuals-larger-scales"><strong>INDIVIDUALS – LARGER SCALES</strong></h5>
             <ul><li><strong>Prioritize quality education.</strong> Especially in developing and under-developed countries. However, we shouldn&#8217;t forget to improve education in developed countries that are seeing waves of fascism and nationalism emerge. A few history lessons should suffice to show that there&#8217;s only 1 outcome if we keep going down this path.</li><li><strong>Implement better sex education programs and improve access to contraceptives.</strong> It doesn&#8217;t take a genius to figure out that better sex education and more contraceptives result in less surprise pregnancies. That can help young women continue their education before choosing if they want to become a mother.</li><li><strong>Reject oppressing &#8216;traditions&#8217;.</strong> It&#8217;s not that hard to tell when traditions cross the line. By looking at individuals from different genders, races, and religions – and comparing the opportunities they&#8217;re given, we can easily tell if some traditions are keeping minorities grounded. </li><li><strong>Increase the quality of life to reduce birth rates.</strong> Better quality of life is strongly linked to better education. Notably, it can help women decide for themselves how many children they want over the course of their &#8216;productive years&#8217;. Unsurprisingly, women in developed countries aren&#8217;t usually looking for 5+ children in that 25 to 40-year span. Better quality of life implies having better access to contraceptives as well, which combined with sex education can develop into powerful baby repellant.</li><li><strong>Don&#8217;t be an idiot.</strong> Opinions aren&#8217;t anybody else&#8217;s concerns, so inform yourself before spreading fallacies over the internet.</li></ul>
             `
             }
         ],
         cardIntroduction: 'As of January 1st 2021, there are around 7.8 billion humans on Earth. By 2064, the global population is expected to reach its peak, near 9.73 billion [note that another estimate predicts 10.9 billion by 2100].',
-        columnName:3
-    },{
+        columnName: 3
+    }, {
         id: 10,
         title: 'Money',
         subtitle: '',
         image: '../assets/money.jpg',
         segment: [
             {
-                segmentTitle:"Home",
-                segmentBody:`
+                segmentTitle: "Home",
+                segmentBody: `
                 Money&#8217;s going to play a pivotal role in solving the environmental crisis. Money&#8217;s the reason things get done in our capitalist societies, and that&#8217;s great for a lot of people. Unfortunately, it&#8217;s also the reason a lot of eco-friendly solutions don&#8217;t get done – and that impacts everyone and everything on Earth. </p>
                 <p>While many of the solutions we&#8217;ve presented can help individuals save money, that&#8217;s not always the case. Especially at large scales, where reducing emissions and protecting ecosystems seem to just add costs compared to &#8216;business as usual&#8217; operations [we&#8217;ll see why that&#8217;s not a very fair statement in a later sub-section]. </p>
                 <p>That&#8217;s a problem – but things change quickly in the wild world of finance. In this section, we&#8217;ll discuss 2 ways that money can become a powerful tool to help solve the environmental crises. Combining that with previous sections, we&#8217;ll discuss a few of the challenges that our money-centered societies will face as we attempt to reduce our impacts on the environment.</p>
                 `
-                },{
-                segmentTitle:"Carbon Offsets",
-                segmentBody:`
+            }, {
+                segmentTitle: "Carbon Offsets",
+                segmentBody: `
                 <p>Some GHG-reducing projects can have important capital/operating costs. In those scenarios, the company that manages the project can enter contracts with other individuals/companies/municipalities that wish to help fund these projects – in return for tonnes of CO<sub>2</sub>e removed [carbon credits]. </p>
                 <p>For example, a company can fund a forestation project at a pre-defined cost per tonne of CO<sub>2</sub>e removed [e.g. $20/tonne]. This way the company that manages the forestation project can afford to continue planting trees and expand operations, in exchange for some carbon credits.</p>
                 <h5 id="why-purchase-carbon-credits"><strong>Why Purchase Carbon Credits?</strong></h5>
@@ -693,9 +693,9 @@ export const displayArticles: displayArticle[] = [
                 <p>Carbon offsets offer a false sense of security that can lead to inaction in our fight against climate change. Inaction is simply not an option. Capturing most of the carbon we&#8217;ve emitted in the past few centuries with green ecosystems will be hard enough. If we continue to justify our current GHG emissions based on the carbon storing potential of vegetation [e.g. through forestation-type carbon offsets], then we won&#8217;t even get close to reducing GHG atmospheric concentrations. At best, we&#8217;d only be ensuring they don&#8217;t increase [in a hypothetical net-zero emissions scenario that is still very far away]. </p>
                 <p>While carbon offsets can and will help reduce emissions, we have to use them responsibly – only after on-site emission reduction measures have been taken, as a &#8216;top-up&#8217;. </p>
                 `
-            },{
-                segmentTitle:"Green Investments",
-                segmentBody:`
+            }, {
+                segmentTitle: "Green Investments",
+                segmentBody: `
                 <p>Green investments are investments that help promote eco-friendly companies. Whether that&#8217;s achieved by investing more heavily in low-impact companies [weighting] or refusing to invest in high-impact companies completely [negative screening] – the goal is the same. And while negative screening is usually more effective than weighting to reduce our impacts, both methods can help individuals and companies invest more responsibly– and can be used simultaneously. </p>
                 <p>Green investing is becoming increasingly popular nowadays, especially for long-term investments. It&#8217;s a relatively easy way to make a significant difference. And with large companies switching to more sustainable practices, it&#8217;s becoming less risky and more profitable than it was decades ago. </p>
                 <p>With more and more investors taking an interest in sustainability, it&#8217;s only a matter of time before extremely polluting investments are dropped – when looking at long-term options at least. Betting on unsustainable companies just doesn&#8217;t make sense when shaping a sustainable future.</p>
@@ -708,9 +708,9 @@ export const displayArticles: displayArticle[] = [
                 <h5 id="conclusion"><strong>Conclusion</strong></h5>
                 <p>There&#8217;s no question that green investing will be extremely important as we move forward. For now, we can rely on removing the most polluting companies from our investment portfolios to stop supporting them with our investments. This relates to the expression: &#8220;If you&#8217;re not investing responsibly, you&#8217;re investing irresponsibly&#8221;. However, to take that a step further and truly promote sustainable companies while avoiding wasting time/money on other companies – sustainability metrics are going to have to improve considerably to allow green investors to make informed decisions.</p>
                 `
-                },{
-                segmentTitle:"Challenges",
-                segmentBody:`
+            }, {
+                segmentTitle: "Challenges",
+                segmentBody: `
                 <p><em>Note that this short sub-section refers to many concepts we&#8217;ve already discussed in the <a href="https://cyclopediapp.org/energy-and-the-economy/">Resources and the Economy</a> section.</em></p>
                 <p>As we&#8217;ve seen in the previous sub-sections, a few &#8216;money-centered&#8217; solutions already exist and can help us reduce our impacts on the environment. Unfortunately, each have their own set of challenges – most notably the lack of certainty that the offset/invested money really ends up making a difference. </p>
                 <p>To transition our societies into more sustainable ones, we&#8217;re going to need to make massive investments to restructure our energy supply, cities, and food/water systems. While some of those investments may pay off, it&#8217;s important to understand that highly sustainable societies won&#8217;t increase GDPs. Being mindful of our planet&#8217;s finite resources just isn&#8217;t compatible with economies built for infinite growth – it&#8217;s the exact opposite.</p>
@@ -718,27 +718,27 @@ export const displayArticles: displayArticle[] = [
                 <p>Effective transitions require enormous investments from governments and significant consumption reductions from companies and individuals. As we&#8217;ve seen in numerous sections, large-scale solutions will be crucial to affect meaningful change swiftly – but we can&#8217;t forget that they&#8217;re reliant on support from the population. As such, it&#8217;s up to individuals to stand up for more sustainable policies to influence large-scale decision making. Alas, even then there are a few obstacles – such as political lobbying by polluting companies, or well-intentioned decision makers that have no expertise on sustainability [e.g. politicians, CEOs, large investors] and can end up doing more harm than good. </p>
                 <p>In any case, we shouldn&#8217;t be afraid of spending trillions of dollars to solve the environmental crisis. After all, the more we spend now to reduce our impacts, the less we&#8217;ll have to spend later to supply populations with food/water – or to clean up after increasingly frequent and intense natural disasters [e.g. in 2019, floods alone caused $<a href="https://unesdoc.unesco.org/in/documentViewer.xhtml?v=2.1.196&amp;id=p::usmarcdef_0000375724&amp;file=/in/rest/annotationSVC/DownloadWatermarkedAttachment/attach_import_db06f7c4-b33f-4833-be56-bbf54afdee3f%3F_%3D375724eng.pdf&amp;updateUrl=updateUrl6935&amp;ark=/ark:/48223/pf0000375724/PDF/375724eng.pdf.multi&amp;fullScreen=true&amp;locale=en">36.8</a> billion USD in economic losses worldwide]. And very importantly, we&#8217;ll avoid irreversible damage to our environment and save countless human lives by transitioning to more sustainable societies as soon as possible.</p>
                                 `
-                }
+            }
         ],
         cardIntroduction: 'Money’s going to play a pivotal role in solving the environmental crisis. Money’s the reason things get done in our capitalist societies, and that’s great for a lot of people. Unfortunately, it’s also the reason a lot of eco-friendly solutions don’t get done – and that impacts everyone and everything on Earth.',
-        columnName:3
-    },{
+        columnName: 3
+    }, {
         id: 11,
         title: 'Mining',
         subtitle: '',
         image: '../assets/mine.jpg',
         segment: [
             {
-            segmentTitle:"Summary",
-            segmentBody:`<p>There&#8217;s no doubt that mining is an extremely important industry that helps our societies develop and grow. Our economies are built around it, as each decade we produce and trade more products than the last. With recycling playing a limited role and metal demand set to increase considerably in the near future, mining activity will boom.</p>
+                segmentTitle: "Summary",
+                segmentBody: `<p>There&#8217;s no doubt that mining is an extremely important industry that helps our societies develop and grow. Our economies are built around it, as each decade we produce and trade more products than the last. With recycling playing a limited role and metal demand set to increase considerably in the near future, mining activity will boom.</p>
             <p>Currently, mining and refining pollutes. The steel &amp; iron industry alone accounted for 5.8% of global CO<sub>2</sub> emissions in 2018 – while mining sites for all metals find ways to pollute locally as well. Additionally, metals are natural resources, so extracting them will deplete available stocks and increase metal costs as mining companies move on to extract the next deposit.</p>
             <p>Renewables and high-tech will be partly responsible for this increased mining activity, and many governments&#8217; proposed climate action plans will have serious consequences. Renewable technologies require many different metals, including rare earth metals that are hard to substitute. With the energy transition having barely begun at a global scale, mining is set to become the industry of the future.</p>
             <p>Unfortunately, higher mining activity will increase energy consumption and cause even more pollution. Especially as metal reserves deplete and commodities become more valuable – which will enable the mining of lower-grade deposits.</p>
             <p>The bottom line is that while renewables can and will help reduce carbon emissions compared to fossil fuels, we can&#8217;t extract metals forever. And that means we can&#8217;t produce renewable technologies at our current rates forever either.</p>
             <p>We need to reduce energy demand to help the transition to renewables make sense – and to give us time to transition to even lower energy-consuming societies in the future. </p>`
-        },{
-            segmentTitle:"Overview",
-            segmentBody:`
+            }, {
+                segmentTitle: "Overview",
+                segmentBody: `
             <p>Mining is an extremely important primary industry that supports our modern societies during development. Mining is the first step before building, expanding, and growing civilizations. It&#8217;s also the backbone of the modern global economy, since inventing new products is one of the main drivers of growth in our societies. </p>
             <p>Aside from metals, there aren&#8217;t that many strong materials we can use to make durable stuff – so many products rely heavily on mining activity. The most notable exceptions are products made of wood/plants, animals, or plastic – but these aren&#8217;t great alternatives in times where deforestation induces biodiversity loss, livestock increase food demand, and plastic waste pollutes many ecosystems. In addition, different metals have specific properties that can make them the ideal material for many products [e.g. electricity conductors in high-tech devices]. </p>
             <p>Our economies are based on growth and expansion, which means we&#8217;re going to keep pumping out products at an ever-increasing rate. Especially as developing countries continue to grow and their populations get richer. This will undoubtedly increase metal demand.</p>
@@ -785,25 +785,25 @@ export const displayArticles: displayArticle[] = [
             }
         ],
         cardIntroduction: 'There’s no doubt that mining is an extremely important industry that helps our societies develop and grow. Our economies are built around it, as each decade we produce and trade more products than the last. With recycling playing a limited role and metal demand set to increase considerably in the near future, mining activity will boom.',
-        columnName:1
-    },{
+        columnName: 1
+    }, {
         id: 12,
         title: 'Renewables',
         subtitle: '',
         image: '../assets/renew.jpg',
         segment: [
             {
-            segmentTitle:"Summary",
-            segmentBody:`<p>Renewable energy is the future. There&#8217;s simply no denying that we have to stop burning fossil fuels if we want to reduce carbon emissions and mitigate climate change. However, renewables have their limits.</p>
+                segmentTitle: "Summary",
+                segmentBody: `<p>Renewable energy is the future. There&#8217;s simply no denying that we have to stop burning fossil fuels if we want to reduce carbon emissions and mitigate climate change. However, renewables have their limits.</p>
             <p>Solar PV, wind, and battery technologies are all made from loads of different metals. As such, many of the components&#8217; production processes are polluting and energy intensive. Some of the metals – arguably the most important ones – are also quite rare and are listed as &#8216;critical&#8217; commodities. Unfortunately, we can&#8217;t just build millions of solar panels and wind turbines to solve the energy production problem for the next 100 years. These technologies have expiration dates, and combined with poor recycling, that means we need to keep extracting and smelting minerals to produce these &#8216;clean&#8217; energy technologies. These limits help explain why solar PV and wind [combined] accounted for less than 8% of the global electricity mix in 2019. Solar thermal has yet to make an impact at the global scale.</p>
             <p>Hydrogen-based technologies also face numerous challenges, ranging from infrastructure,  overall efficiency, and hydrogen production&#8217;s high costs and energy requirements. With an overwhelming majority of industries using steam-methane reforming to produce hydrogen, the lightweight fuel is far from clean right now. Meanwhile, hydrolysis has its fair share of obstacles to overcome before it can start taking a more significant role in hydrogen production worldwide. </p>
             <p>Geothermal, like hydroelectric energy sources, just aren&#8217;t options in many parts of the world. Hydroelectricity continues to dominate energy production amongst renewables, but isn&#8217;t scheduled for a significant increase in energy production in the coming decade. Hydroelectric dams also damage surrounding biodiversity and indirectly emit methane as decaying organic matter accumulates on the reservoir floor. Lastly, dams are at the mercy of precipitation, which is becoming increasingly problematic since climate patterns are becoming less predictable.</p>
             <p>Biomass and renewable natural gas can both be great options to convert waste into energy. However, that&#8217;s really as far as it should go. Intentionally cutting down vegetation for that purpose just doesn&#8217;t make much sense from a carbon emission perspective. </p>
             <p>While all these renewable energy sources/technologies will be necessary to phase out fossil fuels, they each have their limits. To reduce our energy consumption&#8217;s impacts, it&#8217;ll take more than just switching energy sources. We&#8217;ll need to reduce our consumption significantly to help the energy mix make a quick transition from a domination of fossil fuels to a majority of renewables. </p>
             <p>For people living on the grid, it&#8217;s usually best to avoid purchasing individualized solutions. Instead, reducing consumption while demanding change at larger scales [e.g. governments, businesses] is a much more effective solution.</p>`
-        },{
-            segmentTitle:"Overview",
-            segmentBody:`
+            }, {
+                segmentTitle: "Overview",
+                segmentBody: `
             <p>Renewable energy will help us decarbonize our atmosphere, but all technologies have their limits. In this section, we&#8217;ll take a look at some of the most popular renewable solutions to find these limitations – in terms of environmental impacts and energy generation potential. Overall, renewable energy alone won&#8217;t help make our societies sustainable. If we want to attain sustainability, renewables will help – but are only one part of the solution. The much, much larger part will be reducing our impacts by consuming less of the world&#8217;s resources – by lowering both our energy and material demands.</p>
             <p>When evaluating each of these technologies, remember that everything we make requires extracted materials and energy to be manufactured/transported. Green technology is a prime example for showing the importance of life-cycle assessments [which we&#8217;ll talk about in a later section]. While most green technologies are still being called &#8216;clean&#8217; because they don&#8217;t pollute while generating electricity, we&#8217;ll see that other stages of their life-cycle can have significant impacts.</p>
             <h5 id="solar-wind-and-batteries"><strong>S</strong>olar, Wind, and Batteries</h5>
@@ -885,23 +885,23 @@ export const displayArticles: displayArticle[] = [
             }
         ],
         cardIntroduction: 'Renewable energy will help us decarbonize our atmosphere, but all technologies have their limits. In this section, we’ll take a look at some of the most popular renewable solutions to find these limitations – in terms of environmental impacts and energy generation potential. Overall, renewable energy alone won’t help make our societies sustainable. If we want to attain sustainability, renewables will help – but are only one part of the solution. The much, much larger part will be reducing our impacts by consuming less of the world’s resources – by lowering both our energy and material demands.',
-        columnName:1
-    },{
+        columnName: 1
+    }, {
         id: 13,
         title: 'Transition Tools',
         subtitle: '',
         image: '../assets/tools.jpg',
         segment: [
             {
-            segmentTitle:"Home",
-            segmentBody:`
+                segmentTitle: "Home",
+                segmentBody: `
             <p>With renewables and biomass accounting for less than <a href="https://href.li/?https://www.iea.org/reports/key-world-energy-statistics-2020">15</a>% of the world&#8217;s energy mix in 2018 and less than <a href="https://www.iea.org/reports/electricity-information-overview/electricity-production">30</a>% of the world&#8217;s electricity mix in 2019– a significant transition phase from fossil fuels to greener sources of energy will be necessary. Additionally, we&#8217;ve seen that renewables and other green technologies are limited, so we&#8217;re going to have to transition our societies into less consuming ones. </p>
             <p>Both of these transitions will take time, especially if we plan on maintaining the current quality of life levels in developed countries, and spreading that across the globe. There&#8217;s no sugar-coating it, that&#8217;s a problem. We&#8217;re running short on time and have to reduce our fossil fuel consumption considerably in the near future. With that in mind, we have to consider other energy sources, GHG-reducing processes, and automated energy optimizing software.</p>
             <p>In the following sections, we&#8217;ll take a look at some of the tools that can help us reduce our impacts while we transition into more sustainable societies – and for some tools, even afterward.</p>
             `
-            },{
-            segmentTitle:"Nuclear Technologies",
-            segmentBody:`
+            }, {
+                segmentTitle: "Nuclear Technologies",
+                segmentBody: `
             <p>Decarbonizing our societies won&#8217;t be enough to prevent further global warming and avoid irreversible damage from occurring to our ecosystems. While it will surely help mitigate the effects of both crises, the concentration of GHGs in our atmosphere is already too high. We need ways to pull GHGs out of the atmosphere to start reversing global warming [with negative GHG emissions], not just slow it down. Numerous carbon capture solutions can help with that during our transition from fossil fuels to renewables, and afterward.</p>
             <h5 id="carbon-capture-technologies"><strong>Carbon Capture Technologies</strong></h5>
             <p>Switching from fossil fuels to renewable sources of energy will take time, especially since it&#8217;ll depend on how fast we can reduce our energy consumption. Even then, completely phasing out fossil fuels will likely be impossible [in the near future] since we&#8217;d need every country in the world to get on board – and frankly, some underdeveloped countries have bigger fish to fry right now.</p>
@@ -936,9 +936,9 @@ export const displayArticles: displayArticle[] = [
             <p>Unfortunately, there are more financial incentives out there to destroy ecosystems than to protect them. That&#8217;s not really something that can be fixed by innovation. At some point, governments are going to have to look at the long-term carbon goals they&#8217;ve voluntarily signed up for, and make smarter decisions. For example, subsidizing carbon-to-fuel technologies with government funding seems unproductive when stronger regulations could force fossil fuel companies to invest in these lower-emission technologies out of their own pockets – instead of taxpayer reserves. As for carbon storage, governments will have to play a large role to make sure CO<sub>2</sub> capture becomes the norm quickly, either through positive [carbon credits] or negative [higher taxes and fees] reinforcement.</p>
             <p>In the future, we&#8217;ll need to adopt <a href="https://www.ipcc.ch/report/ar6/wg1/downloads/report/IPCC_AR6_WGI_Full_Report.pdf">all carbon capture technologies</a> available to mitigate climate change – with a special focus on natural carbon sinks. If we don&#8217;t act fast enough to help our ecosystems remove carbon from the atmosphere, we&#8217;ll end up paying for it. While these ecosystem protection and strengthening measures certainly have a cost, it only represents a fraction of what we&#8217;d need to clean up after decades of climate-change-induced disasters. </p>
             `
-            },{
-                segmentTitle:"Carbon Capture",
-                segmentBody:`
+            }, {
+                segmentTitle: "Carbon Capture",
+                segmentBody: `
                 <p>If we&#8217;re going to discuss how we can improve energy efficiency and reduce material consumption in our everyday lives, we better mention household appliances. In 2019, household appliances were responsible for <a href="https://www.iea.org/reports/appliances-and-equipment">15</a>% of final electricity demand worldwide.</p>
                 <p>Most appliances are powered by electricity or natural gas, like fridges, stoves, and most barbeque grills. Along with HVAC systems, this explains why the residential sector&#8217;s energy consumption is dominated by natural gas and electricity use [residential excludes transportation].</p>
                 <h5 id="residential-energy-consumption"><strong>Residential Energy Consumption</strong></h5>
@@ -974,9 +974,9 @@ export const displayArticles: displayArticle[] = [
                 <p>Governments can pass numerous policies that would effectively reduce our appliances&#8217; impacts. Companies can also contribute by producing better quality items that use less energy and last longer.</p>
                 <p>As for individuals, there&#8217;s one common theme across all types of appliances. We can reduce our consumption by using household appliances sparingly and effectively in our day-to-day lives. To do so, we&#8217;ll have to look at our household items and evaluate whether their usage is worth wasting resources for. And most importantly, before purchasing any household appliance, we&#8217;ll have to ask ourselves one single question: do we really need it?</p>
                 `
-                },{
-            segmentTitle:"Artifical Intelligence",
-            segmentBody:`
+            }, {
+                segmentTitle: "Artifical Intelligence",
+                segmentBody: `
             <p>While switching from fossil fuels to renewable sources of energy is crucial – it can&#8217;t be done until we reduce our consumption significantly. We&#8217;ll definitely have to reduce our demand across a multitude of industries to help with that, but there are also some essential activities/facilities in our societies that require energy, and always will. In those situations, to help reduce energy consumption while maintaining the current quality of life and services, we&#8217;re going to need energy efficiency.</p>
             <p>Artificial intelligence [AI] can be a fantastic tool to achieve energy efficiency at large scales. In this section, we&#8217;ll refer to AI as systems that perform data analytics to automate controls – not those that attempt to replicate human consciousness [wouldn&#8217;t be relevant to energy efficiency]. </p>
             <p>Typically, AI systems are optimizers. By collecting data and analyzing trends, AI algorithms [that humans have programmed] are able to &#8216;learn&#8217; cause/effect relationships. Consequently, by looking at data for previous activity/events and what&#8217;s happened after those events, AI systems can help &#8216;predict&#8217; what&#8217;ll happen in the future in similar situations. It&#8217;s pretty much a statistic-based guessing software. </p>
@@ -989,22 +989,22 @@ export const displayArticles: displayArticle[] = [
             }
         ],
         cardIntroduction: 'With renewables and biomass accounting for less than 15% of the world’s energy mix in 2018 and less than 30% of the world’s electricity mix in 2019– a significant transition phase from fossil fuels to greener sources of energy will be necessary. Additionally, we’ve seen that renewables and other green technologies are limited, so we’re going to have to transition our societies into less consuming ones.',
-        columnName:1
-    },{
+        columnName: 1
+    }, {
         id: 14,
         title: 'Energy Efficiency and Energy Savings',
         subtitle: '',
         image: '../assets/effec.jpg',
         segment: [
             {
-            segmentTitle:"Summary",
-            segmentBody:`<p>Fossil fuels and renewables both have their challenges. If one thing is clear, it&#8217;s that there isn&#8217;t an obvious solution to the energy production problem, since renewables have limited energy generation potential and rely on finite resources. </p>
+                segmentTitle: "Summary",
+                segmentBody: `<p>Fossil fuels and renewables both have their challenges. If one thing is clear, it&#8217;s that there isn&#8217;t an obvious solution to the energy production problem, since renewables have limited energy generation potential and rely on finite resources. </p>
             <p>Fossil fuel energy production is becoming less efficient every year, as we continue to deplete easily accessible reservoirs. Renewables, on the other hand, are becoming more efficient every year. We just need to be careful that improving their efficiency doesn&#8217;t damage the environment during the technology&#8217;s fabrication stage. In the near future, we will need to use both types of fuels to power our societies, until we can reduce energy demand enough to depend on renewables alone [i.e. once fossil fuels account for a negligible share of the global energy mix].</p>
             <p>There are numerous individualized solutions that we can adopt in our everyday lives to reduce our impacts on the environment and save money. Individuals that live on ends meet can find sustainable ways to save – to make living from paycheck to paycheck a little bit easier. Individuals that are in more comfortable financial situations can reduce their impacts even further, simply because they have the resources to do so. As we apply eco-friendly solutions, we&#8217;ll just have to make sure we avoid the rebound effect – to truly help lower resource and energy consumption worldwide.</p>
             <p>We&#8217;ll also have to remember that individualized solutions are only one small part of the solution. After all, systemic issues require systemic solutions. </p>`
-        },{
-            segmentTitle:"Overview",
-            segmentBody:`
+            }, {
+                segmentTitle: "Overview",
+                segmentBody: `
             In a world where fossil fuels threaten to raise global temperatures, we have to turn to renewable energy sources to prevent further GHG emissions. In a world where renewable energy is unable to supply enough energy to replace fossil fuels – and can also lead to pollution and biodiversity loss, what do we do?</p>
             <p>We reduce our demand as much as possible while striving for energy efficiency.</p>
             <h5 id="energy-extraction"><strong>Energy Extraction</strong></h5>
@@ -1025,23 +1025,23 @@ export const displayArticles: displayArticle[] = [
             }
         ],
         cardIntroduction: 'In a world where fossil fuels threaten to raise global temperatures, we have to turn to renewable energy sources to prevent further GHG emissions. In a world where renewable energy is unable to supply enough energy to replace fossil fuels – and can also lead to pollution and biodiversity loss, what do we do?',
-        columnName:1
-    },{
+        columnName: 1
+    }, {
         id: 15,
         title: 'Industry',
         subtitle: '',
         image: '../assets/pic9.jpg',
         segment: [
             {
-            segmentTitle:"Summary",
-            segmentBody:`
+                segmentTitle: "Summary",
+                segmentBody: `
             <p>Industry was responsible for&nbsp;24% of the world’s CO<sub>2</sub>&nbsp;emissions in 2018 and&nbsp;accounts for 19% of global freshwater withdrawals, while industrial waste generation is over&nbsp;17&nbsp;times higher than&nbsp;municipal solid waste.</p>
             <p>The iron &amp; steel, cement, chemicals &amp; petrochemicals industries are responsible for over 65% of industrial CO<sub>2</sub> emissions. To align with the SDS, industry needs to reduce emissions on average by&nbsp;1.2% per year until 2030, but that won&#8217;t be easy at our current production rate. </p>
             <p>That being said, if we decrease energy and material demand by implementing the right policies, then we can easily reduce emissions. In addition, if we transition industry&#8217;s energy mix away from fossil fuels and toward a larger share of renewables, then we can easily reduce emissions. And if we do both – while making efficiency improvements here and there, then we should have no problem reducing emissions in the near future.</p>
             `
-            },{
-            segmentTitle:"Overview",
-            segmentBody:`
+            }, {
+                segmentTitle: "Overview",
+                segmentBody: `
             <p>Industry was responsible for <a href="https://www.iea.org/reports/tracking-industry-2020">24</a>% of the world&#8217;s CO<sub>2</sub> emissions in 2018, with roughly <a href="https://www.iea.org/reports/tracking-industry-2020">8.5</a> Gt of CO<sub>2</sub> being released into the atmosphere [85 billion pandas]. As a whole, industry is responsible for <a href="https://cyclopediapp.org/water/">19</a>% of global freshwater withdrawals, while industrial waste generation is over <a href="https://openknowledge.worldbank.org/handle/10986/30317">17</a> times higher than <a href="https://cyclopediapp.org/waste-management/">municipal solid waste</a> [with high-income countries generating the <a href="https://openknowledge.worldbank.org/handle/10986/30317">most</a> industrial waste]. </p>
             <p>It&#8217;s difficult to evaluate all industries at once, since they all have different energy intensities and pollution levels. It&#8217;s also hard to evaluate all of them separately, because many industries aren&#8217;t well monitored – so estimating emissions and energy consumption is tricky. For those reasons, we&#8217;ll just go over a few of the most important industries that we haven&#8217;t seen already.</p>
             <p>The iron &amp; steel, cement, chemicals &amp; petrochemicals, pulp &amp; paper, and aluminum industries emit the most CO<sub>2</sub>. The first 3 alone are responsible for over <a href="https://www.iea.org/reports/tracking-industry-2020">65</a>% of industrial CO<sub>2</sub> emissions.</p>
@@ -1056,9 +1056,9 @@ export const displayArticles: displayArticle[] = [
             <p>While we reduce our consumption at all scales, it&#8217;ll be essential for energy-intensive industries to make use of the best available technologies to maximize efficiency. At such an enormous scale, the slightest improvements can help reduce CO<sub>2</sub> emissions considerably. Remember that industries are nowhere near our individual scale, where our quest for more efficient products can easily end up polluting more.</p>
             <p>Better policies will be crucial to ensure that industries reduce their impacts swiftly.</p>
             `
-            },{
-            segmentTitle:"Solutions",
-            segmentBody:`
+            }, {
+                segmentTitle: "Solutions",
+                segmentBody: `
             <h5 id="individuals"><strong>INDIVIDUALS</strong></h5>
             <ul><li><strong>Adopt the 3 Rs.</strong> Focus on reducing your demand of extremely polluting materials.</li></ul>
             <h5 id="larger-scales"><strong>LARGER SCALES</strong></h5>
@@ -1067,16 +1067,16 @@ export const displayArticles: displayArticle[] = [
             }
         ],
         cardIntroduction: 'Industry was responsible for 24% of the world’s CO2 emissions in 2018, with roughly 8.5 Gt of CO2 being released into the atmosphere [85 billion pandas]. ',
-        columnName:3
-    },{
+        columnName: 3
+    }, {
         id: 16,
         title: 'Inequality and Responsibility',
         subtitle: '',
         image: '../assets/resp.jpg',
         segment: [
             {
-            segmentTitle:"Summary",
-            segmentBody:`
+                segmentTitle: "Summary",
+                segmentBody: `
             <p><em>This section is unique in the sense that it evaluates our environmental impacts from a different perspective – by placing all the blame on the individual. </em></p>
             <p>The top earners of the world emit much more than others, on average. As such, we can’t just blame population growth for the destruction of the environment – our unsustainable lifestyles are also a big problem.</p>
             <p>To lower our impacts on the environment, the top income earners will have to reduce their impacts. Of course, middle and bottom earners can adopt more sustainable practices as well, but the responsibility of reducing our impacts has to fall on the top earners. Quite simply, because they have the most potential for reducing their impacts and the resources to do so. Government policies and other large-scale solutions will have to make sure that the top income earners of the world reduce their individual impacts from non-essential activities.&nbsp;</p>
@@ -1084,9 +1084,9 @@ export const displayArticles: displayArticle[] = [
             <p>Despite frequent efficiency improvements across all sectors, the world continues to consume more of the natural world, while emitting more GHGs in the process. With increasingly wealthy and demanding middle classes in developing countries, that makes sense. However, that&#8217;s only one part of the explanation. The other, much more worrying, is that developed countries continue to produce useless products at a furious pace – and consumers continue to purchase them. </p>
             <p>To decrease our consumption and our emissions, we’ll first have to stabilize the shifting baseline. Large-scale solutions will have an important role to play in that regard. They’ll have to help focus research, energy, and finite resources on things that can help close the gap between the top and bottom earners of the world – as well as secure a sustainable future for present and upcoming generations.</p>
             `
-            },{
-            segmentTitle:"Overview",
-            segmentBody:`
+            }, {
+                segmentTitle: "Overview",
+                segmentBody: `
                         <p><em>This section is unique in the sense that it evaluates our environmental impacts from a different perspective. In previous sections, the &#8216;blame&#8217; for the environmental crisis was split between governments, companies, and individuals – and large-scale solutions were presented as the most important ones. </em></p>
             <p><em>While that remains true, this section evaluates our impacts by shifting all the &#8216;blame&#8217; onto individuals instead. This will help us find out which &#8216;categories&#8217; of individuals have the highest impacts on the environment due to their unsustainable purchases and habits – even though this 100%-consumer-at-fault assumption isn&#8217;t very fair. </em></p>
             <h5 id="the-gap"><strong>The Gap</strong></h5>
@@ -1116,24 +1116,24 @@ export const displayArticles: displayArticle[] = [
             }
         ],
         cardIntroduction: 'This section is unique in the sense that it evaluates our environmental impacts from a different perspective. In previous sections, the ‘blame’ for the environmental crisis was split between governments, companies, and individuals – and large-scale solutions were presented as the most important ones.',
-        columnName:3
-    },{
+        columnName: 3
+    }, {
         id: 17,
         title: 'Influence',
         subtitle: '',
         image: '../assets/influence.jpg',
         segment: [
             {
-                segmentTitle:"Summary",
-                segmentBody:`
+                segmentTitle: "Summary",
+                segmentBody: `
                 <p>We live in an extremely connected world, for better or for worse.&nbsp;Celebrities, politicians, and other types of influencers can communicate with their millions of followers in an instant. Their posts and messages can reach all continents and spread love, false information, or incite violence.</p>
                 <p>To help change polluting mentalities and reduce impacts worldwide, it&#8217;s crucial that the leaders of our societies use their influence the right way. Spreading reliable facts about the environmental crisis and encouraging action are 2 easy ways to affect positive change. Knowing what to share with the world can be tricky, but there are plenty of helpful resources at our disposal – including the ‘<a href="https://cyclopediapp.org/shareables/">Shareables</a>‘ sub-section. </p>
                 <p>For individuals, getting informed about the current crises by equipping ourselves with reliable facts is definitely a good and logical first step to reduce our impacts. Only then can we start making better choices as consumers, community members, and electors to help shape a sustainable future.</p>
                 </div><!-- .entry-content -->
                 `
-                },{
-                segmentTitle:"Overview",
-                segmentBody:`
+            }, {
+                segmentTitle: "Overview",
+                segmentBody: `
                 <p>We live in an extremely connected world, for better or for worse. We know social media can be dangerous, due to very little fact-checking, cyber-bullying, addictiveness, and other factors that can harm our mental health. However, it can also be an extremely powerful tool in these times of global crises. Online posts circle the globe in an instant and have the potential to unite strangers from different continents to take action for an important cause.</p>
                 <p>The number of internet users <a href="https://cyclopediapp.org/high-tech-and-the-digital-realm/">rises</a> every day and it seems that influencers are spawning from every corner of the Earth just as fast. Celebrities, politicians, and other leaders of our societies benefit from an unprecedented reach to the world, and with that comes immense responsibility.</p>
                 <p>These leaders have such an important influence on their fanbase that using their social media accounts is likely the best thing they can do for the planet. Between that and their small fortunes, they have the power and responsibility to encourage [and take] environmental action at the largest scales.</p>
@@ -1150,28 +1150,28 @@ export const displayArticles: displayArticle[] = [
                 <p>To answer that question, we&#8217;ll have to keep looking at the policies that are being passed and crunch the numbers. That can help us determine which governments actually back up their sustainability goals and which don&#8217;t – instead of rating how much everyone &#8216;cares&#8217; based on empty promises. </p>
                 <p>In the end, it will come down to how much we want to achieve versus how scared we are of getting involved and taking action. For individuals to have an impact at larger scales, we have to voice our support for better policies and vote for governments that listen. </p>
                 `
-                },{
-                segmentTitle:"Shareables",
-                segmentBody:`
+            }, {
+                segmentTitle: "Shareables",
+                segmentBody: `
                 <p>Deciding what to share online is a struggle, especially when trying to share reliable facts that stand out from the loads of crap on social media. Luckily, others have already made ready-to-share images that can help spread awareness of environmental issues – and their small-scale solutions. </p>
                 <p>The UNEP [United Nations Environment Programme] and UnSchool of Disruptive Design partnered on a project to encourage individuals to share powerful statistics and individualized solutions to spark change. <a href="https://anatomyofaction.org/">The Anatomy of Action</a> aims to inform individuals of their impacts by focusing on 5 sectors: food, stuff, move, money, and fun. </p>
                 <p>The &#8216;shareables&#8217; below are just 2 of the many images prepared by <a href="https://anatomyofaction.org/">The Anatomy of Action</a>. Raising awareness of environmental issues with reliably sourced information has never been easier. While many of their individualized solutions won&#8217;t help affect meaningful change on their own, they can be useful for individuals that wish to reduce their personal impacts.</p>
                 <div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img loading="lazy" data-attachment-id="4309" data-permalink="https://cyclopediapp.org/image-4-4/" data-orig-file="https://cyclope2.files.wordpress.com/2021/07/image-4.png" data-orig-size="826,828" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="image-4" data-image-description="" data-image-caption="" data-medium-file="https://cyclope2.files.wordpress.com/2021/07/image-4.png?w=300" data-large-file="https://cyclope2.files.wordpress.com/2021/07/image-4.png?w=750" src="https://cyclope2.files.wordpress.com/2021/07/image-4.png?w=826" alt="" class="wp-image-4309" width="578" height="578" srcset="https://cyclope2.files.wordpress.com/2021/07/image-4.png?w=578 578w, https://cyclope2.files.wordpress.com/2021/07/image-4.png?w=150 150w, https://cyclope2.files.wordpress.com/2021/07/image-4.png?w=300 300w, https://cyclope2.files.wordpress.com/2021/07/image-4.png 826w" sizes="(max-width: 578px) 100vw, 578px" /><figcaption><a href="https://anatomyofaction.org/food/"><span style="text-decoration:underline;">Source</span></a></figcaption></figure></div>
                 <div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img loading="lazy" data-attachment-id="4310" data-permalink="https://cyclopediapp.org/image-5-9/" data-orig-file="https://cyclope2.files.wordpress.com/2021/07/image-5.png" data-orig-size="833,832" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="image-5" data-image-description="" data-image-caption="" data-medium-file="https://cyclope2.files.wordpress.com/2021/07/image-5.png?w=300" data-large-file="https://cyclope2.files.wordpress.com/2021/07/image-5.png?w=750" src="https://cyclope2.files.wordpress.com/2021/07/image-5.png?w=833" alt="" class="wp-image-4310" width="574" height="573" srcset="https://cyclope2.files.wordpress.com/2021/07/image-5.png?w=574 574w, https://cyclope2.files.wordpress.com/2021/07/image-5.png?w=150 150w, https://cyclope2.files.wordpress.com/2021/07/image-5.png?w=300 300w, https://cyclope2.files.wordpress.com/2021/07/image-5.png?w=768 768w, https://cyclope2.files.wordpress.com/2021/07/image-5.png 833w" sizes="(max-width: 574px) 100vw, 574px" /><figcaption><a href="https://anatomyofaction.org/food/"><span style="text-decoration:underline;">Source</span></a></figcaption></figure></div>
                                 `
-                }
+            }
         ],
         cardIntroduction: 'We live in an extremely connected world, for better or for worse. We know social media can be dangerous, due to very little fact-checking, cyber-bullying, addictiveness, and other factors that can harm our mental health. However, it can also be an extremely powerful tool in these times of global crises. Online posts circle the globe in an instant and have the potential to unite strangers from different continents to take action for an important cause.',
-        columnName:3
-    },{
+        columnName: 3
+    }, {
         id: 18,
         title: 'Climate Change Deniers, Greenwashing, Labels',
         subtitle: '',
         image: '../assets/climate.jpg',
         segment: [
             {
-            segmentTitle:"",
-            segmentBody:`<p>Climate change deniers are people who either do not believe the climate crisis exists, or that it poses a significant threat to present and future generations [there are also people who are knowledgeable on the subject and just don&#8217;t care – we can&#8217;t pay too much attention to them]. </p>
+                segmentTitle: "",
+                segmentBody: `<p>Climate change deniers are people who either do not believe the climate crisis exists, or that it poses a significant threat to present and future generations [there are also people who are knowledgeable on the subject and just don&#8217;t care – we can&#8217;t pay too much attention to them]. </p>
             <p>For one reason or another, they&#8217;ve managed to persuade themselves that the climate crisis is made up – or that it&#8217;s a liberal movement. It&#8217;s important to understand that climate change deniers don&#8217;t base their arguments on reliable facts, so hearing them out really can&#8217;t hurt. </p>
             <p>In fact, we encourage climate change &#8216;acceptors&#8217; to have open-minded discussions with climate deniers so that they can identify at which point the difference in the thought process begins. Only then will we be able to present facts that matter, instead of always repeating the same truths [e.g. differentiating climate and weather instead of always  repeating that global temperatures are increasing].</p>
             <p>It&#8217;s also important to understand that most climate deniers don&#8217;t use what we&#8217;ll call &#8216;primary&#8217; sources of information. Instead, many rely on arguments made by influential climate change deniers, who themselves source their faulty information from other &#8216;secondary&#8217; sources of information, like social media posts and blogs. That&#8217;s a problem, as we&#8217;re now seeing climate change deniers comfort each other with terrible information that makes loops and loops within their online feeds. Lies are recycled within their &#8216;woke&#8217; community with different fonts and wording – but that doesn&#8217;t make the pseudo-scientific arguments any less wrong. </p>
@@ -1199,16 +1199,16 @@ export const displayArticles: displayArticle[] = [
             }
         ],
         cardIntroduction: 'Climate change deniers are people who either do not believe the climate crisis exists, or that it poses a significant threat to present and future generations [there are also people who are knowledgeable on the subject and just don’t care – we can’t pay too much attention to them].',
-        columnName:3
-    },{
+        columnName: 3
+    }, {
         id: 19,
         title: 'Hope – Is It Too Late?',
         subtitle: '',
         image: '../assets/hope.jpg',
         segment: [
             {
-            segmentTitle:"",
-            segmentBody:`<p>Year after year, reports show that we need to act now to mitigate climate change and biodiversity loss, or it will be too late. Year after year, we don&#8217;t meet the goals we had set for ourselves. So how late is too late?</p>
+                segmentTitle: "",
+                segmentBody: `<p>Year after year, reports show that we need to act now to mitigate climate change and biodiversity loss, or it will be too late. Year after year, we don&#8217;t meet the goals we had set for ourselves. So how late is too late?</p>
             <p>That depends on your definition. It&#8217;s too late to prevent irreversible damage to many ecosystems, but it isn&#8217;t too late to prevent most of them from collapsing. It&#8217;s too late to prevent further global warming, but it isn&#8217;t too late to curb it to the +2°C goal. That&#8217;s both a blessing and a curse. </p>
             <p>The good side of the deal is that we haven&#8217;t dug ourselves a deep enough hole that we can&#8217;t get out of. That means there&#8217;s still time to save ecosystems and millions of species. The bad side is that we humans tend to procrastinate. It&#8217;s probably what we do best. For our environment that means we won&#8217;t take action until we feel threatened. And we won&#8217;t feel threatened until millions of human lives are in immediate danger, at which point it will already be too late save billions. </p>
             <p>The issue with global warming, climate change, and biodiversity loss is that they act in a similar way to how the Covid-19 pandemic spreads, all be it at a much slower pace. Infections may be occurring at any given moment, but it&#8217;s only weeks later that we find out the true impact of an outbreak. Similarly, the damage dealt to the environment now will have serious repercussions on the future state of the planet.</p>
@@ -1222,6 +1222,59 @@ export const displayArticles: displayArticle[] = [
             }
         ],
         cardIntroduction: 'How Late Is Too Late?',
-        columnName:3
+        columnName: 3
+    }, {
+        id: 20,
+        title: 'Urban Expansion and Land Use',
+        subtitle: '',
+        image: '../assets/pic10.jpg',
+        segment: [
+            {
+                segmentTitle: "Summary",
+                segmentBody: `<p>Land only takes up 29% of the Earth’s surface, of which 29% is not habitable. Of that, roughly half was used for agriculture in 2019, while forests and shrubs combined for just under the other half. Unfortunately, a rising urban population threatens to destroy ecosystems around the world, as cities will be forced to expand. That is, with our current methods of dealing with urban population increases.</p>
+                <p>The Earth has a limited amount of land, but we need more space for food production and urban expansion. To make room for these, we’ve been destroying ecosystems. Currently, we’re expanding our cities much faster than urban population is increasing, indicating that we’re building large houses along the city limits instead of preparing for future population growth with smaller units.</p>
+                <p>It’s not just about future population growth. In 2020, an estimated 1.6 billion people lived in inadequate housing conditions, equivalent to over 20% of the global population the same year.</p>
+                <p>Building taller, instead of falling back to urban expansion is the only way to house increasing urban populations without converting natural areas. Not only would it help protect surrounding green ecosystems, it would also save loads of resources that are usually required by urban expansion.</p>
+                <p>Apartment buildings can free up space for urban green areas as well, which can significantly improve air quality and storm water runoff. In turn, that can help large cities save hundreds of millions of USD every year.</p>`
+            },
+            {
+                segmentTitle: "Overview",
+                segmentBody: `<p>Land only takes up <a href="https://ourworldindata.org/land-use">29</a>% of the Earth&#8217;s surface. Of that, some areas are not habitable [hot/cold/rocky deserts], some are used for agriculture, while others are populated by vegetation, freshwater bodies, or humans.</p>
+                <div class="wp-block-image"><figure class="aligncenter size-large"><img data-attachment-id="6794" data-permalink="https://cyclopediapp.org/long-term-change-in-land-use/" data-orig-file="https://cyclope2.files.wordpress.com/2021/08/long-term-change-in-land-use.png" data-orig-size="3214,2900" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="long-term-change-in-land-use" data-image-description="" data-image-caption="" data-medium-file="https://cyclope2.files.wordpress.com/2021/08/long-term-change-in-land-use.png?w=300" data-large-file="https://cyclope2.files.wordpress.com/2021/08/long-term-change-in-land-use.png?w=750" src="https://cyclope2.files.wordpress.com/2021/08/long-term-change-in-land-use.png?w=1024" alt="" class="wp-image-6794" srcset="https://cyclope2.files.wordpress.com/2021/08/long-term-change-in-land-use.png?w=1024 1024w, https://cyclope2.files.wordpress.com/2021/08/long-term-change-in-land-use.png?w=2048 2048w, https://cyclope2.files.wordpress.com/2021/08/long-term-change-in-land-use.png?w=150 150w, https://cyclope2.files.wordpress.com/2021/08/long-term-change-in-land-use.png?w=300 300w, https://cyclope2.files.wordpress.com/2021/08/long-term-change-in-land-use.png?w=768 768w" sizes="(max-width: 1024px) 100vw, 1024px" /><figcaption><span style="text-decoration:underline;"><a href="https://ourworldindata.org/deforestation">Source: Our World in Data (2021) Deforestation and Forest Loss. Licensed under CC-BY.</a></span></figcaption></figure></div>
+                <p>In 2018, <a href="https://www.un.org/development/desa/en/news/population/2018-revision-of-world-urbanization-prospects.html">55</a>% of the world&#8217;s population lived in urban areas. This is projected to increase to <a href="https://www.un.org/development/desa/en/news/population/2018-revision-of-world-urbanization-prospects.html">68</a>% by 2050. A scary thought for those who live in already extremely dense cities. However, if we can expand our cities the right way, in the right direction, then we&#8217;ll all fit just fine – while increasing energy efficiency and reducing biodiversity loss.</p>
+                <p>Worldwide, urban land expansion is happening at a <a href="https://iopscience.iop.org/article/10.1088/1748-9326/ab6669/pdf">faster</a> rate than urban population growth rates. This shows that as we move further away from city centers, we start building larger houses and neighborhoods instead of apartments and condos. This corroborates the idea that someone living downtown is likely taking up less room than others who live near the city limits [some <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3158103/">studies</a> have attempted to quantify this &#8216;urban sprawl&#8217; and have found that urban area growth rate is over twice the urban population growth rate].</p>
+                <h5 id="agriculture-and-energy-delivery"><strong>Agriculture and Energy Delivery</strong> </h5>
+                <p>In 2019, agriculture [i.e. crop and livestock farming] occupied roughly <a href="https://ourworldindata.org/land-use">50</a>% of the Earth&#8217;s habitable land area. As food production <a href="https://encyclopedia2.com/food/">booms</a>, this percentage is bound to increase if we continue with our unsustainable food systems. The main problem with agricultural expansion is that it directly competes with areas that are already populated [e.g. green ecosystems, cities, etc&#8230;]. And since food production is an immediate necessity, it usually takes precedence over the preservation of our environment. It&#8217;s estimated that agriculture was responsible for around <a href="http://www.fao.org/3/ca8642en/online/ca8642en.html#chapter-5_1">73</a>% of tropical deforestation worldwide from 2000-2010 [with tropical deforestation accounting for roughly <a href="https://ourworldindata.org/what-are-drivers-deforestation">95</a>% of total deforestation].</p>
+                <p>Energy delivery is another necessity that can compete with populations for land area, as pipelines are being built across ecosystems and local communities – like the 670 km Coastal GasLink pipeline in Western Canada that <a href="https://www.bbc.com/news/world-us-canada-51452217">sparked</a> protests across the nation.</p>
+                <p>Unfortunately, land use conversion of our green ecosystems releases billions of tonnes of GHGs into the atmosphere every year – and induces significant biodiversity loss through habitat loss.</p>
+                <h5 id="human-land-space"><strong>Human Land Space</strong></h5>
+                <p>Humans don&#8217;t take up that much space for housing and infrastructure compared to agriculture. Even with almost <a href="https://cyclopediapp.org/population-and-education/">8</a> billion people on Earth in 2021 [projected to peak at <a href="https://www.sciencedirect.com/science/article/pii/S0140673620306772">9.73</a> billion by 2064], only <a href="https://ourworldindata.org/land-use">1</a>% of habitable land is considered &#8220;urban and built-up&#8221;. Regardless, we need shelter to live in humane conditions. And if the global population is expected to grow by close to 2 billion people in less than 30 years, we&#8217;re going to have to expand our cities.</p>
+                <p>But we&#8217;re getting ahead of ourselves. We&#8217;re already unable to secure good living conditions for the world&#8217;s current population. In 2020, an estimated <a href="https://www.un.org/development/desa/dspd/2020/03/resolution-homelessness/">1.6</a> billion people lived in inadequate housing conditions [adequate includes a minimum of the following <a href="https://www.ohchr.org/en/issues/housing/toolkit/pages/righttoadequatehousingtoolkit.aspx">elements</a>: legal security of tenure, affordability, habitability,  accessibility, proximity to services, availability of infrastructure, and cultural adequacy]. That was equivalent to over 20% of the global population at the time.</p>
+                <p>In addition, a 2005 U.N. report established that approximately <a href="https://documents-dds-ny.un.org/doc/UNDOC/GEN/G05/117/55/PDF/G0511755.pdf?OpenElement">100</a> million people were homeless. This has surely <a href="https://yaleglobal.yale.edu/content/cities-grow-so-do-numbers-homeless">increased</a> since, <a href="https://undocs.org/A/75/148">especially</a> with the COVID-19 pandemic. </p>
+                <p>Combining the problems listed above with the fact that middle classes of highly populated developing countries continue to get richer, the demand for more space keeps increasing [since higher income almost always leads to more spacious housing]. The most widespread solution so far has been urban expansion.</p>
+                <p>Unfortunately, there are 2 major problems with this:</p>
+                <ul type="1"><li>As cities expand, the new homes will need to be connected to the rest of the world with water and gas pipes, roads, electricity, and more. The infrastructure required to expand our cities requires loads of money, materials, and energy. The longer commutes to CBDs [central business districts –where most people work or go for leisure] would also increase GHG and toxic emissions from transportation.</li><li>If our cities expand, then they&#8217;re expanding into a previously occupied area. Most of the time, that ends up being forests, grasslands, or other green ecosystems. These &#8216;expendables&#8217; that surround our cities will continue to be chopped down as cities grow, as they have been in the past. Urban expansion caused roughly <a href="http://www.fao.org/3/ca8642en/online/ca8642en.html#chapter-5_1">10</a>% of tropical deforestation from 2000-2010.</li></ul>
+                <h5 id="slowing-urban-expansion"><strong>Slowing Urban Expansion</strong></h5>
+                <p>To avoid spreading into green ecosystems and depleting resources, we&#8217;ll need to adopt more efficient housing strategies. We&#8217;ve got some examples in the solutions, but we&#8217;ll go over the most important large-scale solutions here.</p>
+                <p>As a no-brainer, we&#8217;ll need to discourage people from owning [and not renting] multiple homes. Especially those located in urban areas – remote cottages are a bit different. To do so, we&#8217;ll have to change the current notion that wasting valuable land [i.e. owning secondary urban homes] is a sign of success. In truth, it&#8217;s extremely concerning that individuals are allowed to play Monopoly while homeless people roam the streets. Stronger policies and regulations can help dissuade anyone from owning more than one home in urban areas.</p>
+                <p>On top of that, owning a vacant second home roughly doubles our land use footprint, which has consequences in urban areas. Since these homes are off the market, a trickle-down effect [e.g. wealthy individuals can&#8217;t buy a home in the city center, so they might settle for a home near the city&#8217;s periphery, and so on] eventually forces less fortunate individuals to move away from the city center to find an affordable home – contributing to urban expansion. </p>
+                <p>In the same boat as making sure all homes are occupied, we have its square footage. Evidently, if a large house is built on twice the area of a standard house, then from a pure land use perspective – the effects are essentially the same as owning a second house. This is why apartment buildings are fantastic as far as land use efficiency. Building higher, as opposed to larger, means our individual land use footprint would be incredibly small.</p>
+                <p>For example, imagine a tall apartment building that can accommodate over 200 families, while only occupying the land area of 4 standard houses. In this scenario, each apartment ends up occupying just 2% of the area of 1 standard house. That&#8217;s a lot less than the 200-house alternative. And to compensate for the lack of backyards, we could easily have large green areas like parks and gardens nearby. All we have to do is expand higher instead of spreading.</p>
+                <p>More urban green areas would also be extremely helpful for air/noise pollution control and water management. Vegetation and soil can absorb pollutants and reduce precipitation runoff during storms to help large cities save <a href="https://www.sciencedirect.com/science/article/pii/S0304380017300960">hundreds</a> of millions of USD every year. The more green spaces there are, the more a city can save.</p>
+                <p>Additionally, if we lived closer to one another in apartment buildings, we&#8217;d be reducing the amount of resources we consume in our day-to-day lives. Examples feature lower gasoline consumption due to smaller commutes [and increased public transit use], less pressurization required for natural gas and water transport, and less electricity losses. Without forgetting the enormous quantities of metal, asphalt, and concrete we can save by not extending roads, water mains, gas pipes, and electricity transmission networks. We&#8217;ll also be able to share more, which will reduce our material consumption. For example, apartment buildings can have shared laundry machines, game consoles, pools, and even cars [e.g. with a simple online booking system].</p>
+                <h5 id="conclusion"><strong>Conclusion</strong></h5>
+                <p>Decreasing our individual living area is necessary, as ecosystems around the world are suffering from land use conversion. As our population and individual demands grow, we will be faced with a choice. We can keep expanding into our environment and depleting natural resources while losing energy efficiency, or we can show restraint and change our way of thinking about housing. Building higher will lead us to lower individual land use and carbon footprints. It will also free up more space for nature to grow in urban areas, allowing more sustainable agriculture to take place locally. All the while avoiding further land use conversion. Everyone stands to benefit from more green spaces in urban areas, even city budgets.</p>`
+            },
+            {
+                segmentTitle: "Solutions",
+                segmentBody: `<h5 id="individuals"><strong>INDIVIDUALS</strong></h5>
+                <ul><li><strong>Live in an apartment.</strong> It&#8217;s never too late to make the switch, and this can help you share a small patch of land with hundreds of others. </li><li><strong>Split your house into multiple apartments.</strong> This can help you make some extra money while considerably reducing your land use.</li><li><strong>Alternatively, get roommates. </strong>This is another effective way of reducing your land use.</li><li><strong>Make the most out of your backyard.</strong> Grow a garden or just let nature do its thing. Cutting the grass weekly or having concrete laid overtop the soil both waste significant amounts of space – as far as the environment is concerned.</li><li><strong>Work remotely if you can.</strong> If possible, show your company you&#8217;d prefer working at home. This will help your company downsize their buildings, where the freed-up space could be converted into apartments.</li><li><strong>Sell or rent your second house.</strong> Especially if it&#8217;s in an urban area. Short term renting while you&#8217;re away is a decent start – but selling or renting long term will allow people to settle in for a while, which reduces the need for urban expansion.</li></ul>
+                <p><em>Note that owning land in the middle of nowhere isn&#8217;t always an issue, depending on what you make of it. Having a second house in a natural environment to plant trees, crops, and restore any previous damage is a fantastic way to chip in and offset your environmental impacts. However, if the plan is to build a house near the city limits and flip it for profit when city limits reach your land, then that just sounds like premature urban expansion.</em></p>
+                <h5 id="larger-scales"><strong>LARGER SCALES</strong></h5>            
+                <ul><li><strong><em>Businesses: </em>Enforce or encourage working from home.</strong> Companies that encourage their employees to work from home can help reduce commuter emissions, while downsizing into smaller offices. In fact, companies can save big on rent if they move into smaller buildings – or if they simply rent out the vacant floors to other businesses.</li><li><strong><em>Governments &amp; Businesses: </em>Free up urban space to design tall apartment buildings. </strong>Constructing loads of apartment buildings would be especially useful downtown, where people have access to a lot of shared amenities. This should also help lower the cost of living downtown. In any case, densification will surely reduce the need for urban expansion.</li><li><strong><em><strong><em>Businesses &amp; Governments: </em></strong></em>Take advantage of &#8216;free space&#8217; to avoid further land use conversion.</strong> For example, electricity grids can install their solar panels on available rooftops in the city. This can help reduce losses, improve grid reliability, and avoid having to build land-consuming solar farms.</li><li><strong><strong><em>Governments: </em></strong>Ban deforestation near city limits and/or make land use conversion expensive.</strong> Increasing the environment&#8217;s value can help incur additional costs to land developers that are looking to expand cities – which can help guide them toward densification instead.</li><li><strong><strong><em>Governments: </em></strong>Increase the number of green spaces in cities.</strong> There&#8217;s loads of room for all kinds of green spaces in urban areas – and we could free up a lot more room with better transportation management. Green spaces improve air quality and water management systems in urban areas.</li><li><strong><strong><em>Governments: </em></strong>Increase taxes on individuals that own multiple homes.</strong> Especially if the homes are vacant and within city limits. This will force individuals to share the Earth instead of playing Monopoly with people&#8217;s livelihoods.</li><li><strong><strong><em>Governments: </em></strong>Lower taxes even further for people who live in apartments.</strong> Either the occupant isn&#8217;t very wealthy and lives in an apartment, in which case lower taxes are well received – or the occupant is wealthy but chooses to live in a smaller home, in which case lower taxes are a reward for an eco-friendly decision.</li><li><strong><strong><em>Governments: </em></strong>Subsidize house-to-apartment renovations.</strong> This will incentivize house owners to reduce their land use. These renovations would also be a great time for them to beef up their house&#8217;s insulation materials to reduce their footprint even further.</li><li><strong><strong><em>Governments: </em></strong>Impose a higher tax on lone house occupants.</strong> Taxes would vary based on your individual land use footprint. Getting a few roommates would be an easy way to avoid this tax.</li><li><strong><strong><em>Governments: </em></strong>Adopt better urban transportation management. </strong>Improving public transit, banning cars in city centers, and getting rid of parking areas are just a few of the many solutions that can help free up space downtown, all the while reducing the transportation sector&#8217;s impacts. As mentioned previously, this would also improve air quality in dense cities. </li></ul>`
+            }
+        ],
+        cardIntroduction: 'Land only takes up 29% of the Earth’s surface, of which 29% is not habitable. Of that, roughly half was used for agriculture in 2019, while forests and shrubs combined for just under the other half. Unfortunately, a rising urban population threatens to destroy ecosystems around the world, as cities will be forced to expand.',
+        columnName: 2
     }
 ]
