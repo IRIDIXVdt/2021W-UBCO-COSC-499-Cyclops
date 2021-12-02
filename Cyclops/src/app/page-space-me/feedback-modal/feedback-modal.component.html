@@ -11,15 +11,21 @@
             <ion-label position="stacked">First Name:</ion-label>
             <ion-input formControlName="firstName" type="text"></ion-input>
             <span class="error" *ngIf="feedbackForm.get('firstName').hasError('required') && feedbackForm.get('firstName').touched">
-            Please enter your first name.
-           </span>
+                Please enter your first name.
+            </span>
+            <span class="error" *ngIf="!feedbackForm.get('firstName').hasError('required') && feedbackForm.get('firstName').hasError('emptyspace') && feedbackForm.get('firstName').touched">
+                First name cannot be blank space.
+            </span>
         </ion-item>
         <ion-item>
             <ion-label position="stacked">Last Name:</ion-label>
             <ion-input formControlName="lastName" type="text"></ion-input>
             <span class="error" *ngIf="feedbackForm.get('lastName').hasError('required') && feedbackForm.get('lastName').touched">
-            Please enter your last name.
-           </span>
+                Please enter your last name.
+            </span>
+            <span class="error" *ngIf="!feedbackForm.get('lastName').hasError('required') && feedbackForm.get('lastName').hasError('emptyspace') && feedbackForm.get('lastName').touched">
+                Last name cannot be blank space.
+            </span>
         </ion-item>
         <ion-item>
             <ion-label>Would you like us to contact you?</ion-label>
@@ -38,15 +44,24 @@
                 <ion-label position="stacked">Phone Number:</ion-label>
                 <ion-input formControlName="phoneNumber" type="tel"></ion-input>
                 <span class="error" *ngIf="feedbackForm.get('phoneNumber').hasError('required') && feedbackForm.get('phoneNumber').touched">
-            Please enter your number.
-           </span>
+                    Please enter your number.
+                </span>
+                <span class="error" *ngIf="feedbackForm.get('phoneNumber').hasError('pattern')&& feedbackForm.get('phoneNumber').touched">
+                Please enter numeric values only.
+            </span>
+                <span class="error" *ngIf="(feedbackForm.get('phoneNumber').hasError('minlength')||feedbackForm.get('phoneNumber').hasError('maxlength'))&& feedbackForm.get('phoneNumber').touched">
+                Phone number must be between 5 and 12 digits.
+            </span>
             </ion-item>
             <ion-item *ngIf="feedbackForm.get('contactType').value==='Email' || feedbackForm.get('contactType').value==='Both' ">
                 <ion-label position="stacked">Email:</ion-label>
                 <ion-input formControlName="email" type="email"></ion-input>
                 <span class="error" *ngIf="feedbackForm.get('email').hasError('required') && feedbackForm.get('email').touched">
-            Please enter your email.
-           </span>
+                    Please enter your email.
+                </span>
+                <span class="error" *ngIf="feedbackForm.get('email').hasError('email') && feedbackForm.get('email').touched">
+                Please enter a valid email.
+            </span>
             </ion-item>
         </div>
         <ion-item>
@@ -54,11 +69,15 @@
             <ion-input formControlName="content" type="text"></ion-input>
             <span class="error" *ngIf="feedbackForm.get('content').hasError('required') && feedbackForm.get('content').touched">
                 Please enter your feedback.
-               </span>
+            </span>
+            <span class="error" *ngIf="!feedbackForm.get('content').hasError('required') && feedbackForm.get('content').hasError('emptyspace') && feedbackForm.get('content').touched">
+                Feedback cannot be blank space.
+            </span>
         </ion-item>
 
         <p id="center">
-            <ion-button type="submit" size="small" shape="round" color="tertiary" class="ion-margin-top">Submit</ion-button>
+            <ion-button type="submit" size="small" shape="round" color="tertiary" class="ion-margin-top">Submit
+            </ion-button>
         </p>
 
     </form>
