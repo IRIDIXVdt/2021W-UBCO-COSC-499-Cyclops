@@ -7,9 +7,12 @@ import { IonicModule } from '@ionic/angular';
 import { EditingToolTestPagePageRoutingModule } from './editing-tool-test-page-routing.module';
 
 import { EditingToolTestPagePage } from './editing-tool-test-page.page';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 @NgModule({
   imports: [
+    CKEditorModule,
+    //add CKEditorModule to modules whose components will be using the <ckeditor> component in their templates.
     CommonModule,
     FormsModule,
     IonicModule,

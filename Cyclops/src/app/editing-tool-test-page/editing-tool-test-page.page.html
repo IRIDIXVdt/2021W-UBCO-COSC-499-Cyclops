@@ -1,11 +1,13 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>EditingToolTestPage</ion-title>
+    <ion-title>Editing Tool Demo</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 <p>
-  this works 
+  Text Editing Space
 </p>
+
+<ckeditor [editor]="Editor" data="<p>Hello, world!</p>"></ckeditor>
 </ion-content>
