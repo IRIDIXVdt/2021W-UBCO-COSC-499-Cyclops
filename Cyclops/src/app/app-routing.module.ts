@@ -49,8 +49,9 @@ const routes: Routes = [
   {
     path: 'find-password',
     loadChildren: () => import('./find-password/find-password.module').then( m => m.FindPasswordPageModule)
-  },  {
-    path: 'editing-tool-test-page',
+  },
+  {
+    path: 'TextEdit',
     loadChildren: () => import('./editing-tool-test-page/editing-tool-test-page.module').then( m => m.EditingToolTestPagePageModule)
   },
 
