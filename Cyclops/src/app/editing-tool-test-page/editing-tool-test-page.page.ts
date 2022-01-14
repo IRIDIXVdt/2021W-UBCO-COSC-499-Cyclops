@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { ChangeEvent } from '@ckeditor/ckeditor5-angular/ckeditor.component';
 
 @Component({
   selector: 'app-editing-tool-test-page',
@@ -9,6 +10,16 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 export class EditingToolTestPagePage implements OnInit {
   public Editor = ClassicEditor;
   //Import the editor build in your Angular component and assign it to a public property to make it accessible from the template:
+  
+  public model = {
+    editorData: '<p>Test Text</p>'
+  };
+
+  public onChange( { editor }: ChangeEvent ) {
+    const data = editor.getData();
+
+    console.log( data );
+  }
 
   constructor() { }
 
