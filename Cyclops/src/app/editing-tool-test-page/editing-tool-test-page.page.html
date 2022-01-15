@@ -4,10 +4,10 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class = "ion-padding">
-<p>
-  Text Editing Space
-</p>
+<ion-content class="ion-padding">
+  <p>
+    Text Editing Space
+  </p>
 
-<ckeditor [(ngModel)]="model.editorData" [editor]="Editor" (change)="onChange($event)"></ckeditor>
+  <ckeditor [(ngModel)]="model.editorData" [editor]="Editor" (change)="onChange($event)"></ckeditor>
 </ion-content>
