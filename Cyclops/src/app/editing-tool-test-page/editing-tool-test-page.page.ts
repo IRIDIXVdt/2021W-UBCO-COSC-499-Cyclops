@@ -15,28 +15,28 @@ export class EditingToolTestPagePage implements OnInit {
   contents: displayArticle[] = displayArticles;
   //get access to a specific article (with the provided id passes from page space la)
   articleId;
-  
-  public Editor = ClassicEditor;
-  //Import the editor build in your Angular component and assign it to a public property to make it accessible from the template:
-  
-  public model = {
+  public model = {//model specifies the information the page would get
     editorData: this.contents[0].segment[1].segmentBody
   };
-
-  public onChange( { editor }: ChangeEvent ) {
-    const data = editor.getData();
-
-    console.log( data );
-  }
 
   constructor(
     private activatedrouter: ActivatedRoute
   ) {
-
     this.articleId = this.activatedrouter.snapshot.paramMap.get('id');
+    //fetch article id from the other side and store it in articleId
+
+    // this.
+  }
+
+  //Import the editor build in your Angular component and assign it to a public property to make it accessible from the template
+  public Editor = ClassicEditor;
+
+  public onChange( { editor }: ChangeEvent ) {
+    const data = editor.getData();
+    console.log( data );
   }
 
   ngOnInit() {
   }
 
-}
+}   
