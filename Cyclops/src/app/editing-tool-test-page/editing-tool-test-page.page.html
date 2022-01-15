@@ -7,7 +7,7 @@
     <ion-title>Editing Tool Demo </ion-title>
   </ion-toolbar>
   <ion-toolbar>
-    <ion-chip *ngFor="let segmentItem of contents[articleId].segment" (click)="onChipClick()">
+    <ion-chip *ngFor="let segmentItem of contents[articleId].segment;let indexOfelement=index;" (click)="onChipClick(indexOfelement)">
       <ion-label color="dark">{{segmentItem.segmentTitle}}</ion-label>
     </ion-chip>
     <ion-chip>
@@ -28,5 +28,6 @@
   </p>
 
 
-  <ckeditor [(ngModel)]="model.editorData" [editor]="Editor" (change)="onChange($event)"></ckeditor>
+  <ckeditor #editor [(ngModel)]="model.editorData" [editor]="Editor" (change)="onChange($event)"></ckeditor>
+  
 </ion-content>
