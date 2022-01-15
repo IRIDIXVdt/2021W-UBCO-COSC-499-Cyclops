@@ -3,7 +3,7 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { ChangeEvent } from '@ckeditor/ckeditor5-angular/ckeditor.component';
 import { displayArticle } from '../sharedData/displayArticle';
 import { displayArticles } from '../sharedData/displayArticles';
-
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-editing-tool-test-page',
@@ -13,7 +13,9 @@ import { displayArticles } from '../sharedData/displayArticles';
 export class EditingToolTestPagePage implements OnInit {
   //get access to all the articles
   contents: displayArticle[] = displayArticles;
-
+  //get access to a specific article (with the provided id passes from page space la)
+  articleId;
+  
   public Editor = ClassicEditor;
   //Import the editor build in your Angular component and assign it to a public property to make it accessible from the template:
   
@@ -27,7 +29,12 @@ export class EditingToolTestPagePage implements OnInit {
     console.log( data );
   }
 
-  constructor() { }
+  constructor(
+    private activatedrouter: ActivatedRoute
+  ) {
+
+    this.articleId = this.activatedrouter.snapshot.paramMap.get('id');
+  }
 
   ngOnInit() {
   }
