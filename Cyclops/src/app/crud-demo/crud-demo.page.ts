@@ -7,9 +7,10 @@ import {ServiceService} from '../service.service';
 })
 export class CRUDDemoPage implements OnInit {
   name: any;
+  users: any;
   constructor(
     public service: ServiceService
-  ) {}
+  ) {this.getName()}
 
   addStudent(){
     console.log(this.name);
@@ -19,11 +20,22 @@ export class CRUDDemoPage implements OnInit {
 
     this.service.addStudent(data).subscribe((res:any) =>{
       console.log("SUCCESS ===",res);
+      this.name='';
+      alert("SUCCESS");
+      this.getName();
     },(error:any) => {
       console.log("ERROR ===",error);
     })
   } 
 
+  getName(){
+    this.service.getName().subscribe((res:any) =>{
+      console.log("getName SUCCESS ===",res);
+      this.users=res;
+    },(error:any) => {
+      console.log("getName ERROR ===",error);
+    })
+  }
 
   ngOnInit() {
   }

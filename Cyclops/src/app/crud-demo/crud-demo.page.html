@@ -17,4 +17,15 @@
     </ion-row>
   </ion-list>
 
+  <ion-list>
+    <ion-list-header>Name List</ion-list-header>
+
+    <ion-item lines="inset" *ngFor="let user of users">
+      <ion-label>
+        <h4>{{user.id}} ---- {{user.name}}</h4>
+      </ion-label>
+    </ion-item>
+    
+  </ion-list>
+
 </ion-content>
