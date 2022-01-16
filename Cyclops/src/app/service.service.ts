@@ -17,6 +17,6 @@ export class ServiceService {
   
 
   addStudent(data){
-    return this.http.post('http://localhost/Cyclops/backend/create.php',data);
+    return this.http.post('http://localhost:4430/Cyclops/backend/create.php',data);
   }
 }
