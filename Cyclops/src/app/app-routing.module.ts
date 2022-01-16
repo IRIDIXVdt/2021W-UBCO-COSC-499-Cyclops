@@ -53,7 +53,11 @@ const routes: Routes = [
   {
     path: 'TextEdit',
     loadChildren: () => import('./editing-tool-test-page/editing-tool-test-page.module').then( m => m.EditingToolTestPagePageModule)
+  },  {
+    path: 'crud-demo',
+    loadChildren: () => import('./crud-demo/crud-demo.module').then( m => m.CRUDDemoPageModule)
   },
+
 
 
 
