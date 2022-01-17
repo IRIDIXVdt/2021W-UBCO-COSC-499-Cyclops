@@ -26,6 +26,11 @@ export class ArticleMainComponent implements OnInit {
 
   ngOnInit() { }
 
+  openNewTextEdit(articleId: number){
+    //this function handles the event of redirecting the app user to the new Editing Page
+    
+  }
+
   openCardModal(articleId: number) {
     // console.log("try edit activated");
     console.log(this.contents[articleId].title);
