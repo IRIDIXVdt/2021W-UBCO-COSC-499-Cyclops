@@ -24,17 +24,26 @@ export class EditingToolTestPagePage implements OnInit {
   currentSeg: number;
   //get access to a specific article (with the provided id passes from page space la)
   articleId;
+  //specify data for CKEditor
   public model;
+  //get ionic input data
+  TitleInput: string;
 
   constructor(
     private activatedrouter: ActivatedRoute
   ) {
+    if(this.contents[this.articleId].segment.length == 0){
+      //this is persumably a new Segment with no segment component, so we increase a new one
+      this.onChipAdd();
+    }
+    //we start reading the first element
     this.currentSeg = 0;
     //fetch article id from the other side and store it in articleId
     this.articleId = this.activatedrouter.snapshot.paramMap.get('id');
     this.model = {//model specifies the information the page would get
       editorData: this.contents[this.articleId].segment[this.currentSeg].segmentBody
     };
+    this.TitleInput = this.contents[this.articleId].segment[this.currentSeg].segmentTitle;
     // this.content.addCssClass("no-scroll");
   }
 
@@ -73,13 +82,25 @@ export class EditingToolTestPagePage implements OnInit {
     console.log(data);
   }
 
-  public removeArticle(){
+  public removeArticle() {
     console.log("remove segment article id: " + this.currentSeg);
-    this.contents[this.articleId].segment.splice(this.currentSeg,1);
+    this.contents[this.articleId].segment.splice(this.currentSeg, 1);
     this.currentSeg = 0;
-    if(this.contents[this.articleId].segment.length == 0){
+    if (this.contents[this.articleId].segment.length == 0) {
+      //empty segment here, increase one
       this.onChipAdd();
     }
+  }
+
+  public saveChanges() {
+    console.log("save article change id: " + this.currentSeg);
+    //now we fetch the necessary information
+    const newSegmentTitle: string = this.TitleInput;
+    const newSegmentBody: string = this.editorComponent.editorInstance.getData();
+    //store the data
+    this.contents[this.articleId].segment[this.currentSeg].segmentTitle = newSegmentTitle;
+    this.contents[this.articleId].segment[this.currentSeg].segmentBody = newSegmentBody;
+    //we need to show animation to let user know there are changes
   }
 
   ngOnInit() {
