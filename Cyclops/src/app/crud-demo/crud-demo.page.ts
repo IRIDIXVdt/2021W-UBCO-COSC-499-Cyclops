@@ -12,13 +12,13 @@ export class CRUDDemoPage implements OnInit {
     public service: ServiceService
   ) {this.getName()}
 
-  addStudent(){
+  addName(){
     console.log(this.name);
     let data = {
       name: this.name
     }
 
-    this.service.addStudent(data).subscribe((res:any) =>{
+    this.service.addName(data).subscribe((res:any) =>{
       console.log("SUCCESS ===",res);
       this.name='';
       alert("SUCCESS");
