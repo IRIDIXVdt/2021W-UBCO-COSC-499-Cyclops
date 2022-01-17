@@ -18,7 +18,7 @@ export class CRUDDemoPage implements OnInit {
       name: this.name
     }
 
-    this.service.addName(data).subscribe((res:any) =>{
+    this.service.addNameService(data).subscribe((res:any) =>{
       console.log("SUCCESS ===",res);
       this.name='';
       alert("SUCCESS");
@@ -29,7 +29,7 @@ export class CRUDDemoPage implements OnInit {
   } 
 
   getName(){
-    this.service.getName().subscribe((res:any) =>{
+    this.service.getNameService().subscribe((res:any) =>{
       console.log("getName SUCCESS ===",res);
       this.users=res;
     },(error:any) => {

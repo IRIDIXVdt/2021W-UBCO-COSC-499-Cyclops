@@ -16,11 +16,11 @@ export class ServiceService {
 
   
 
-  addName(data){
+  addNameService(data){
     return this.http.post('http://localhost:4430/Cyclops/backend/create.php',data);
   }
 
-  getName(){
+  getNameService(){
     return this.http.get('http://localhost:4430/Cyclops/backend/getName.php');
   }
 }
