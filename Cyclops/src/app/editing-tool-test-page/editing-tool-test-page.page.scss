@@ -1,0 +1,15 @@
+// ckeditorckeditor
+// :host ::ng-deep .ck-editor__editable_classic{
+//     min-height: 200px;
+// }
+// .no-scroll .scroll-content{
+//     overflow: hidden;
+// }
+//this attribute is here intending to disable scrolling on this page (so that the CKEditor is sized)
+//the reference is here: https://github.com/ionic-team/ionic-framework/issues/7644
+
+// .focusClass{
+//     --color:"primary";
+// }
+//this is a custom [ngClass]
+//the reference is here: https://medium.com/swlh/6-ways-to-dynamically-style-angular-components-b43e037852fa
