@@ -32,14 +32,15 @@ export class EditingToolTestPagePage implements OnInit {
   constructor(
     private activatedrouter: ActivatedRoute
   ) {
-    if(this.contents[this.articleId].segment.length == 0){
-      //this is persumably a new Segment with no segment component, so we increase a new one
-      this.onChipAdd();
-    }
     //we start reading the first element
     this.currentSeg = 0;
     //fetch article id from the other side and store it in articleId
     this.articleId = this.activatedrouter.snapshot.paramMap.get('id');
+
+    if(this.contents[this.articleId].segment.length == 0){
+      //this is persumably a new Segment with no segment component, so we increase a new one
+      this.onChipAdd();
+    }
     this.model = {//model specifies the information the page would get
       editorData: this.contents[this.articleId].segment[this.currentSeg].segmentBody
     };
