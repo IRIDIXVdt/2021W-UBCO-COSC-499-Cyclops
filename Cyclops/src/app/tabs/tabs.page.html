@@ -1,20 +1,6 @@
-<ion-tabs>
+<ion-tabs *ngIf="!isDesktop">
 
   <ion-tab-bar slot="bottom">
-    <!-- <ion-tab-button tab="tab1">
-      <ion-icon name="triangle"></ion-icon>
-      <ion-label>Tab 1</ion-label>
-    </ion-tab-button> -->
-
-    <!-- <ion-tab-button tab="tab2">
-      <ion-icon name="ellipse"></ion-icon>
-      <ion-label>Tab 2</ion-label>
-    </ion-tab-button>
-
-    <ion-tab-button tab="tab3">
-      <ion-icon name="square"></ion-icon>
-      <ion-label>Tab 3</ion-label>
-    </ion-tab-button> -->
 
     <ion-tab-button tab="page-space-er">
       <ion-icon name="compass"></ion-icon>
@@ -26,11 +12,6 @@
       <ion-label>Articles</ion-label>
     </ion-tab-button>
 
-    <!-- <ion-tab-button tab="page-space-me">
-      <ion-icon name="bar-chart-outline"></ion-icon>
-      <ion-label>Tab Megan</ion-label>
-    </ion-tab-button> -->
-
     <ion-tab-button tab="page-space-su">
       <ion-icon name="leaf"></ion-icon>
       <ion-label>Eco Tracker</ion-label>
@@ -38,3 +19,39 @@
   </ion-tab-bar>
 
 </ion-tabs>
+
+
+
+<div *ngIf="isDesktop" class="desktop">
+  <ion-header mode="ios">
+    <ion-toolbar>
+      <ion-row class="ion-align-items-center">
+        <ion-col size="10">
+          <div class="navbar" class="ion-text-center">
+            <ion-button fill="clear" routerLink="/tabs/page-space-er" routerDirection="root" routerLinkActive="active-link"
+              class="link">
+              Home
+            </ion-button>
+            <ion-button fill="clear" routerLink="/tabs/page-space-la" routerDirection="root" routerLinkActive="active-link"
+              class="link">
+              Articles
+            </ion-button>
+            <ion-button fill="clear" routerLink="/tabs/page-space-su" routerDirection="root" routerLinkActive="active-link"
+              class="link">
+              Eco Tracker
+            </ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-toolbar>
+  </ion-header>
+
+ 
+  <ion-router-outlet class="desktop-wrapper"></ion-router-outlet>
+
+</div>
+
+
+
+
+
