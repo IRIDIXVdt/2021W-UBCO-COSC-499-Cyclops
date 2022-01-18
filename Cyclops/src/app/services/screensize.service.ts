@@ -13,7 +13,7 @@ export class ScreensizeService {
  
   onResize(size) {    
     console.log('size: ', size)
-    if (size < 768) {
+    if (size < 1024) {
       this.isDesktop.next(false);
     } else {
       this.isDesktop.next(true);
