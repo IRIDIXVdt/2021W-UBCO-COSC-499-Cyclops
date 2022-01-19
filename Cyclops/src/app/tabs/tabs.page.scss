@@ -1,11 +1,7 @@
-.desktop {
-    width: 100%;
-    display: inline-block;
-    height: 50px;
+.sidebar{
 
-    border: none;
-    padding: 0;
-    display: contents;
-
-    text-align: left;
+  width: 120px !important;
+  height: 100% !important;
+  flex-direction: column;
+  
 }
