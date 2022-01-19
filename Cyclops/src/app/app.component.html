@@ -1,17 +1,15 @@
 <ion-app>
 
-    <ion-split-pane contentId="main" class="split">
+    <ion-split-pane contentId="main" class="invis">
         <!--  the side menu  -->
         <ion-menu contentId="main">
-          <ion-header>
-            <ion-toolbar>
-              <ion-title>Navigation</ion-title>
-            </ion-toolbar>
-          </ion-header>
+         
 
-          <ion-content>
+          <ion-content class="split">
 
-
+            <ion-item button href ="page-space-er" routerDirection="root">Home</ion-item>
+            <ion-item button href ="page-space-la" routerDirection="root">Articles</ion-item>
+            <ion-item button href ="page-space-su" routerDirection="root">Eco Tracker</ion-item>
 
           </ion-content>
 
