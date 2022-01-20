@@ -1,3 +1,10 @@
 ion-segment {
     height: 100px;
 }
+.split{
+    position: absolute !important;
+    right: 0;
+    left: 0;
+    top: 50%;
+    margin-top: -23px !important;
+}
