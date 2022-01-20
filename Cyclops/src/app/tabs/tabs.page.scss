@@ -1,1 +1,13 @@
+.sidebar{
 
+  width: 120px !important;
+  height: 100% !important;
+  flex-direction: column;
+  
+}
+.tabsize{
+  --width: 60px;
+  --height: 60px;
+  color: black;
+  font-size: x-large;
+}

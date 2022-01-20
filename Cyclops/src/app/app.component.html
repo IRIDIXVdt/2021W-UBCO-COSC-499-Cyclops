@@ -1,3 +1,31 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+
+    <ion-split-pane contentId="main" class="invis" no-border>
+        <!--  the side menu  -->
+        <ion-menu contentId="main" no-lines>
+
+         
+         
+
+          <ion-content>
+
+            <div class="split">
+
+            <ion-item lines="none" button href ="" ><ion-icon name="compass"></ion-icon>Home</ion-item>
+            <ion-item lines="none" button href ="" ><ion-icon name="reader"></ion-icon>Articles</ion-item>
+            <ion-item lines="none" button href ="" ><ion-icon name="leaf"></ion-icon>Eco</ion-item>
+
+                
+            </div>
+
+
+          </ion-content>
+
+          
+        </ion-menu>
+      
+        <!-- the main content -->
+        <ion-router-outlet id="main"></ion-router-outlet>
+      </ion-split-pane>
+
 </ion-app>
