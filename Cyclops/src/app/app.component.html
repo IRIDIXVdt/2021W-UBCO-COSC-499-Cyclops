@@ -2,7 +2,7 @@
 
     <ion-split-pane contentId="main" class="invis" no-border>
         <!--  the side menu  -->
-        <ion-menu contentId="main">
+        <ion-menu contentId="main" no-lines>
 
          
          
@@ -11,9 +11,9 @@
 
             <div class="split">
 
-            <ion-item button href ="page-space-er" routerDirection="root">Home</ion-item>
-            <ion-item button href ="page-space-la" routerDirection="root">Articles</ion-item>
-            <ion-item button href ="page-space-su" routerDirection="root">Eco Tracker</ion-item>
+            <ion-item lines="none" button href ="page-space-er" routerDirection="root"><ion-icon name="compass"></ion-icon></ion-item>
+            <ion-item lines="none" button href ="page-space-la" routerDirection="root"><ion-icon name="reader"></ion-icon></ion-item>
+            <ion-item lines="none" button href ="page-space-su" routerDirection="root"><ion-icon name="leaf"></ion-icon></ion-item>
 
                 
             </div>
