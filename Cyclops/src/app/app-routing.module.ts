@@ -27,6 +27,10 @@ const routes: Routes = [
     loadChildren: () => import('./page-space-me/page-space-me.module').then( m => m.PageSpaceMePageModule)
   },
   {
+    path: 'tabs/TextEdit/:id',
+    loadChildren: () => import('./editing-tool-test-page/editing-tool-test-page.module').then( m => m.EditingToolTestPagePageModule)
+  },
+  {
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
@@ -53,14 +57,12 @@ const routes: Routes = [
   {
     path: 'TextEdit',
     loadChildren: () => import('./editing-tool-test-page/editing-tool-test-page.module').then( m => m.EditingToolTestPagePageModule)
-  },  {
+  },
+  {
     path: 'crud-demo',
     loadChildren: () => import('./crud-demo/crud-demo.module').then( m => m.CRUDDemoPageModule)
-  },
 
-
-
-
+  }
 ];
 @NgModule({
   imports: [

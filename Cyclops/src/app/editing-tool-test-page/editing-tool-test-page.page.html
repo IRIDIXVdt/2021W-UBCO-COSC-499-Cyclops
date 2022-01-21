@@ -1,13 +1,51 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Editing Tool Demo</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title>Editing Tool Demo </ion-title>
+
+  </ion-toolbar>
+  <!-- <ion-progress-bar  ></ion-progress-bar> -->
+  <ion-toolbar>
+    <ion-chip *ngFor="let segmentItem of contents[articleId].segment;let indexOfelement=index;"
+      (click)="onChipClick(indexOfelement)">
+      <ion-label color="dark">{{segmentItem.segmentTitle}}</ion-label>
+    </ion-chip>
+    <ion-chip (click)="onChipAdd()">
+      <ion-label>Add Segment</ion-label>
+      <ion-icon name="add-circle-outline" color="danger"></ion-icon>
+    </ion-chip>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-<p>
-  Text Editing Space
-</p>
+<ion-content class="ion-padding">
+  <ion-fab vertical="top" horizontal="end" slot="fixed" >
+    <ion-fab-button>
+      <ion-icon name="settings"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="bottom">
+      <ion-fab-button (click)="removeArticle()"><ion-icon color = "danger" name="trash-outline"></ion-icon></ion-fab-button>
+      <ion-fab-button (click)="saveChanges()"><ion-icon color = "primary" name="cloud-upload-outline"></ion-icon></ion-fab-button>
+      
+      <ion-fab-button (click)="onChipAdd()">
+          <ion-icon name="add-circle-outline" color="primary"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+  <!-- <p class = "testT">testText</p> -->
+  <ion-toolbar>
+    <ion-item>
+      <ion-label text-wrap position="floating">
+        Text Editing Space for
+        "{{contents[articleId].title}}" section
+      </ion-label>
+      <ion-input  [(ngModel)]="TitleInput" placeholder="Input Title Here" value="{{contents[articleId].segment[currentSeg].segmentTitle}}"></ion-input>
+    </ion-item>
+  </ion-toolbar>
 
-<ckeditor [editor]="Editor" data="<p>Hello, world!</p>"></ckeditor>
+  <ckeditor max-height="20%" #editor [(ngModel)]="model.editorData" [editor]="Editor" (change)="onChange($event)">
+  </ckeditor>
+
 </ion-content>

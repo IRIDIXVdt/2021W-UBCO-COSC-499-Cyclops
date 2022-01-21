@@ -36,6 +36,10 @@ const routes: Routes = [
         loadChildren: () => import('../page-space-su/page-space-su.module').then(m => m.PageSpaceSuPageModule)
       },
       {
+        path: 'TextEdit',
+        loadChildren: () => import('../editing-tool-test-page/editing-tool-test-page.module').then(m => m.EditingToolTestPagePageModule)
+      },
+      {
         path: '',
         redirectTo: '/tabs/page-space-er',
         pathMatch: 'full'
