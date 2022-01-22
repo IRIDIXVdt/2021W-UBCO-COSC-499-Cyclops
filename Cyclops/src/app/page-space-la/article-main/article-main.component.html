@@ -1,37 +1,39 @@
 <!-- <p>{{articleComponent | json}}</p> -->
 
-<ion-list *ngFor="let content of contents">
-    <ion-item id="testList" *ngIf="content.columnName == columNumber">
-        <!-- vertical="top" horizontal="end" slot="fixed" -->
-        <ion-fab horizontal="end" vertical="top">
-            <ion-fab-button color="light">
-                <ion-icon name="reorder-four-outline"></ion-icon>
-            </ion-fab-button>
-            <ion-fab-list side="bottom">
-                <ion-fab-button>
-                    <ion-icon name="share-outline"></ion-icon>
+<ion-grid>
+    <ion-row id="testList">
+        <ion-col size-xs="12" size-sm="6" size-md="4" size-lg="3" *ngFor="let content of contentCol">
+            <!-- vertical="top" horizontal="end" slot="fixed" -->
+            <ion-fab horizontal="end" vertical="top">
+                <ion-fab-button color="light">
+                    <ion-icon name="reorder-four-outline"></ion-icon>
                 </ion-fab-button>
-                <ion-fab-button (click)="openCardModal(content.id)">
-                    <ion-icon name="create"></ion-icon>
-                </ion-fab-button>
-                <ion-fab-button routerLink="/tabs/TextEdit/{{content.id}}">
-                    <!--  routerLink="/tabs/page-space-me/{{content.id}}" -->
-                    <ion-icon name="document-text-outline"></ion-icon>
-                </ion-fab-button>
-            </ion-fab-list>
-        </ion-fab>
+                <ion-fab-list side="bottom">
+                    <ion-fab-button>
+                        <ion-icon name="share-outline"></ion-icon>
+                    </ion-fab-button>
+                    <ion-fab-button (click)="openCardModal(content.id)">
+                        <ion-icon name="create"></ion-icon>
+                    </ion-fab-button>
+                    <ion-fab-button routerLink="/tabs/TextEdit/{{content.id}}">
+                        <!--  routerLink="/tabs/page-space-me/{{content.id}}" -->
+                        <ion-icon name="document-text-outline"></ion-icon>
+                    </ion-fab-button>
+                </ion-fab-list>
+            </ion-fab>
 
-        <ion-card color='light' routerLink="/tabs/page-space-me/{{content.id}}">
+            <ion-card color='light' routerLink="/tabs/page-space-me/{{content.id}}" style="height:50vh;">
+                <ion-img src="{{content.image}} "></ion-img>
 
-            <img src="{{content.image}}" />
-            <ion-card-header>
-                <ion-card-subtitle>{{content.subtitle}}</ion-card-subtitle>
-                <ion-card-title>{{content.title}}</ion-card-title>
-            </ion-card-header>
+                <ion-card-header>
+                    <ion-card-subtitle>{{content.subtitle}}</ion-card-subtitle>
+                    <ion-card-title>{{content.title}}</ion-card-title>
+                </ion-card-header>
 
-            <ion-card-content>
-                {{content.cardIntroduction}}
-            </ion-card-content>
-        </ion-card>
-    </ion-item>
-</ion-list>
+                <ion-card-content>
+                    {{content.cardIntroduction}}
+                </ion-card-content>
+            </ion-card>
+        </ion-col>
+    </ion-row>
+</ion-grid>

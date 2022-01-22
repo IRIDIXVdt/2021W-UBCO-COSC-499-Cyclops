@@ -18,13 +18,22 @@ export class ArticleMainComponent implements OnInit {
   columNumber: number;
 
   contents: displayArticle[] = displayArticles;
+  contentCol: displayArticle[] = [];
+  i:number = 0;
   constructor(
     private modalCtrol: ModalController,
   ) {
 
   }
 
-  ngOnInit() { }
+  ngOnInit() { 
+    for(this.i = 0; this.i<this.contents.length;this.i++){
+      const currentArticle = this.contents[this.i];
+      if(currentArticle.columnName==this.columNumber){
+        this.contentCol.push(currentArticle);
+      }
+    }
+  }
 
   openNewTextEdit(articleId: number){
     //this function handles the event of redirecting the app user to the new Editing Page

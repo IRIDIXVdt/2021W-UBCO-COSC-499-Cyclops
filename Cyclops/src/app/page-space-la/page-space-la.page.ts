@@ -35,7 +35,7 @@ export class PageSpaceLaPage implements OnInit {
         this.contentCol1.push(currentArticle);
       }else if(currentArticle.columnName==2){
         this.contentCol2.push(currentArticle);
-      }else{        
+      }else if(currentArticle.columnName==3){        
         this.contentCol3.push(currentArticle);
       }
    
@@ -57,7 +57,7 @@ export class PageSpaceLaPage implements OnInit {
     // disable event Listener
     function handleInput(event) {
       // items = Array.from(document.querySelector('ion-list').children as HTMLCollectionOf<HTMLElement>);
-      items = Array.from(document.querySelector('ion-list').children as HTMLCollectionOf<HTMLElement>);
+      items = Array.from(document.querySelector('ion-grid').children as HTMLCollectionOf<HTMLElement>);
       const query = event.target.value.toLowerCase();
 
       // console.log("Stage 1 okay")
@@ -76,7 +76,7 @@ export class PageSpaceLaPage implements OnInit {
     function handleFocus(){
       const searchResult = document.querySelector('#requested') as HTMLElement;
       console.log('message Focus emit');
-      items = Array.from(document.querySelector('ion-list').children as HTMLCollectionOf<HTMLElement>);
+      items = Array.from(document.querySelector('ion-grid').children as HTMLCollectionOf<HTMLElement>);
       
       requestAnimationFrame(() => {
         textSpace.style.display = 'none';
