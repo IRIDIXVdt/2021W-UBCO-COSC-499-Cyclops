@@ -22,7 +22,7 @@
                 </ion-fab-list>
             </ion-fab>
 
-            <ion-card color='light' routerLink="/tabs/page-space-me/{{content.id}}" style="height:50vh;">
+            <ion-card color='light' routerLink="/tabs/page-space-me/{{content.id}}" style="height:100%;">
                 <ion-img src="{{content.image}} "></ion-img>
 
                 <ion-card-header>
@@ -30,7 +30,7 @@
                     <ion-card-title>{{content.title}}</ion-card-title>
                 </ion-card-header>
 
-                <ion-card-content>
+                <ion-card-content style="width:100%; overflow: hidden;text-overflow: ellipsis;">
                     {{content.cardIntroduction}}
                 </ion-card-content>
             </ion-card>
