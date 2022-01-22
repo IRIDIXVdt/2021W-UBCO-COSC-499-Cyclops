@@ -37,7 +37,7 @@ export class EditingToolTestPagePage implements OnInit {
     //fetch article id from the other side and store it in articleId
     this.articleId = this.activatedrouter.snapshot.paramMap.get('id');
 
-    if(this.contents[this.articleId].segment.length == 0){
+    if (this.contents[this.articleId].segment.length == 0) {
       //this is persumably a new Segment with no segment component, so we increase a new one
       this.onChipAdd();
     }
@@ -83,6 +83,10 @@ export class EditingToolTestPagePage implements OnInit {
     console.log(data);
   }
 
+  private updateArticle() {
+    this.editorComponent.editorInstance.setData(this.contents[this.articleId].segment[this.currentSeg].segmentBody)
+  }
+
   public removeArticle() {
     console.log("remove segment article id: " + this.currentSeg);
     this.contents[this.articleId].segment.splice(this.currentSeg, 1);
@@ -92,8 +96,9 @@ export class EditingToolTestPagePage implements OnInit {
       //this initialized a new Chip
       this.onChipAdd();
       //this updates the CKEditor Directly, this is not good practice
-      this.editorComponent.editorInstance.setData("Body Paragraph");
-      
+      // this.editorComponent.editorInstance.setData("Body Paragraph");
+      this.updateArticle();
+
     }
   }
 
