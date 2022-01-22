@@ -23,4 +23,8 @@ export class ServiceService {
   getNameService(){
     return this.http.get('http://localhost:4430/Cyclops/backend/getName.php');
   }
+
+  deleteNameService(id){
+    return this.http.delete('http://localhost:4430/Cyclops/backend/delete.php?='+id);
+  }
 }
