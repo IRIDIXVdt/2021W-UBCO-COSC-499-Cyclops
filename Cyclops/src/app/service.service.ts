@@ -27,4 +27,8 @@ export class ServiceService {
   deleteNameService(id){
     return this.http.delete('http://localhost:4430/Cyclops/backend/delete.php?='+id);
   }
+
+  updateNameService(data){
+    return this.http.delete('http://localhost:4430/Cyclops/backend/updatename.php',data);
+  }
 }
