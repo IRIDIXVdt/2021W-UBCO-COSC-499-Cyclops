@@ -15,7 +15,7 @@
             <ion-row id="listItem">
                 <ion-col size-xs="12" size-sm="6" size-md="4" size-lg="3" *ngFor="let cardContent of contents  | filter:userInput">
                     <ion-card color='light' routerLink="/tabs/page-space-me/{{cardContent.id}}">
-                        <img src="{{cardContent.image}}" />
+                        <ion-img src="{{cardContent.image}}"></ion-img>
                         <ion-card-header>
                             <ion-card-subtitle>{{cardContent.subtitle}}</ion-card-subtitle>
                             <ion-card-title>{{cardContent.title}}</ion-card-title>
