@@ -89,7 +89,11 @@ export class EditingToolTestPagePage implements OnInit {
     this.currentSeg = 0;
     if (this.contents[this.articleId].segment.length == 0) {
       //empty segment here, increase one
+      //this initialized a new Chip
       this.onChipAdd();
+      //this updates the CKEditor Directly, this is not good practice
+      this.editorComponent.editorInstance.setData("Body Paragraph");
+      
     }
   }
 
