@@ -8,22 +8,25 @@
     <!-- Searchbar with a cancel button and custom cancel button text -->
     <ion-searchbar [(ngModel)]="userInput" placeholder="Search Article" showCancelButton="focus" cancelButtonText="Cancel" animated='true'>
     </ion-searchbar>
-    <div  id='requested'>
+    <div id='requested'>
         <!-- <ion-label color="primary">Primary Label</ion-label> -->
 
-        <ion-list id = 'viewContentTest' *ngFor ="let cardContent of contents  | filter:userInput" >
-            <ion-item id = "listItem" *ngIf = "cardContent.columnName > 0">
-                <ion-card color='light' routerLink = "/tabs/page-space-me/{{cardContent.id}}">
-                    <ion-card-header>
-                        <ion-card-subtitle>{{cardContent.subtitle}}</ion-card-subtitle>
-                        <ion-card-title>{{cardContent.title}}</ion-card-title>
-                    </ion-card-header>
-                    <ion-card-content>
-                        {{cardContent.cardIntroduction}} 
-                    </ion-card-content>
-                </ion-card>
-            </ion-item>
-        </ion-list>
+        <ion-grid id='viewContentTest'>
+            <ion-row id="listItem">
+                <ion-col size-xs="12" size-sm="6" size-md="4" size-lg="3" *ngFor="let cardContent of contents  | filter:userInput">
+                    <ion-card color='light' routerLink="/tabs/page-space-me/{{cardContent.id}}">
+                        <img src="{{cardContent.image}}" />
+                        <ion-card-header>
+                            <ion-card-subtitle>{{cardContent.subtitle}}</ion-card-subtitle>
+                            <ion-card-title>{{cardContent.title}}</ion-card-title>
+                        </ion-card-header>
+                        <ion-card-content>
+                            {{cardContent.cardIntroduction}}
+                        </ion-card-content>
+                    </ion-card>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
     </div>
 
     <div id='origin'>
@@ -41,19 +44,19 @@
 
         <div [ngSwitch]="status">
             <div *ngSwitchCase="'Articles p1'">
-                <app-article-main  [columNumber] = "1"></app-article-main>
+                <app-article-main [columNumber]="1"></app-article-main>
             </div>
 
             <div *ngSwitchCase="'Articles p2'">
-                <app-article-main  [columNumber] = "2"></app-article-main>
+                <app-article-main [columNumber]="2"></app-article-main>
             </div>
 
             <div *ngSwitchCase="'Articles p3'">
-                <app-article-main  [columNumber] = "3"></app-article-main>
+                <app-article-main [columNumber]="3"></app-article-main>
             </div>
 
             <div *ngSwitchDefault>
-                <app-article-main  [columNumber] = "1"></app-article-main>
+                <app-article-main [columNumber]="1"></app-article-main>
             </div>
         </div>
     </div>
