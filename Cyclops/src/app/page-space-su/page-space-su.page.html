@@ -1,85 +1,95 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title style="font-size: 150%;">
-      ECO Tracker
-    </ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title style="font-size: 150%;">
+            ECO Tracker
+        </ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
-  <ion-card color='light' id="card1" >
-    <ion-card-header>
-      <ion-card-subtitle style="text-align:center; font-size:150%;" >Overall Score</ion-card-subtitle>
-      <ion-card-title style="text-align:center; font-size:400%" fontsize >{{profile.score}}%</ion-card-title>
-    </ion-card-header>
-  
-    <ion-card-content>
-      <ion-progress-bar color="primary" value="0.8"></ion-progress-bar>
-    </ion-card-content>
-  </ion-card>
+    <ion-card color='light' id="card1">
+        <ion-card-header>
+            <ion-card-subtitle style="text-align:center; font-size:150%;">Overall Score</ion-card-subtitle>
+            <ion-card-title style="text-align:center; font-size:400%" fontsize>{{profile.score}}%</ion-card-title>
+        </ion-card-header>
 
-  <div id="button">
-    <section id ="surveycenter">
-      <ion-button expand="block" (click)= "openModal()" >Submit Solution</ion-button>
-    </section>
-  </div>
-  
-  
-  
-  
-  <ion-card color='light'  id="card1">
-    <ion-card-header>
-      <ion-card-subtitle>
-        <span class="text"><h4>{{profile.solution}}</h4></span>
-        <p id="right">
-        <ion-button class="round"  size="small" shape="round"  color="medium" (click)="notifications()" >  
-        <ion-icon name="help"></ion-icon>
-        </ion-button>
-        </p>
-      </ion-card-subtitle>
-    
-      <ion-card-title style="text-align:center; font-size:300%" fontsize>{{profile.score}}%</ion-card-title>
-    </ion-card-header>
-  
-    <ion-card-content>
-      <ion-progress-bar color="primary" value="0.4"></ion-progress-bar>
-    </ion-card-content>
-  </ion-card>
-  
-  <ion-card color='light'  id="card1" >
-    <ion-card-header>
-     
-      <ion-card-subtitle>
-        <span class="text"><h4>{{profile.solution1}}</h4></span>
-        <p id="right">
-          <ion-button  slot="end" class="round"  size="small" shape="round"  color="medium" (click)="notifications()" >  
-            <ion-icon name="help"></ion-icon>
-            </ion-button>
-        </p>
-      </ion-card-subtitle>
-      
-      <ion-card-title style="text-align:center; font-size:300%" fontsize >{{profile.score1}}%</ion-card-title>
-    </ion-card-header>
-  
-    <ion-card-content>
-      <ion-progress-bar color="primary" value="0.7"></ion-progress-bar>
-    </ion-card-content>
-  </ion-card>
-  
+        <ion-card-content>
+            <ion-progress-bar color="primary" value="0.8"></ion-progress-bar>
+        </ion-card-content>
+    </ion-card>
+
+    <div id="button">
+        <section id="surveycenter">
+            <ion-button expand="block" (click)="openModal()">Submit Solution</ion-button>
+        </section>
+    </div>
 
 
+    <ion-grid>
+        <ion-row>
+            <ion-col size-xs="12" size-sm="6" size-md="4" size-lg="3">
+                <ion-card color='light' id="card1">
+                    <ion-card-header>
+                        <ion-card-subtitle>
+                            <span class="text">
+        <h4>{{profile.solution}}</h4>
+      </span>
+                            <p id="right">
+                                <ion-button class="round" size="small" shape="round" color="medium" (click)="notifications()">
+                                    <ion-icon name="help"></ion-icon>
+                                </ion-button>
+                            </p>
+                        </ion-card-subtitle>
+
+                        <ion-card-title style="text-align:center; font-size:300%" fontsize>{{profile.score}}%</ion-card-title>
+                    </ion-card-header>
+
+                    <ion-card-content>
+                        <ion-progress-bar color="primary" value="0.4"></ion-progress-bar>
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+            <ion-col size-xs="12" size-sm="6" size-md="4" size-lg="3">
+                <ion-card color='light' id="card1">
+                    <ion-card-header>
+
+                        <ion-card-subtitle>
+                            <span class="text">
+        <h4>{{profile.solution1}}</h4>
+      </span>
+                            <p id="right">
+                                <ion-button slot="end" class="round" size="small" shape="round" color="medium" (click)="notifications()">
+                                    <ion-icon name="help"></ion-icon>
+                                </ion-button>
+                            </p>
+                        </ion-card-subtitle>
+
+                        <ion-card-title style="text-align:center; font-size:300%" fontsize>{{profile.score1}}%</ion-card-title>
+                    </ion-card-header>
+
+                    <ion-card-content>
+                        <ion-progress-bar color="primary" value="0.7"></ion-progress-bar>
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 
 
 
 
 
-  <div id="button">
-    <section id ="surveycenter">
-      <ion-button expand="block"  >Survey(peer testing 2)</ion-button>
-      <!-- <ion-button expand="block" (click)="goSurvey()" >Survey(peer testing 2)</ion-button> -->
-    </section>
-  </div>
-  
+
+
+
+
+    <div id="button">
+        <section id="surveycenter">
+            <ion-button expand="block">Survey(peer testing 2)</ion-button>
+            <!-- <ion-button expand="block" (click)="goSurvey()" >Survey(peer testing 2)</ion-button> -->
+        </section>
+    </div>
+
 
 
 </ion-content>
