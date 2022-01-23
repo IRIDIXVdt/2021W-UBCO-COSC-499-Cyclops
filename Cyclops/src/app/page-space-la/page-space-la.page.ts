@@ -9,11 +9,10 @@ import { displayArticles } from '../sharedData/displayArticles';
 })
 export class PageSpaceLaPage implements OnInit {
   userInput:string;
-  contents: displayArticle[] = displayArticles;
-  // contentOri: displayArticle[] = displayArticles;
-  contentCol1: displayArticle[] = [];
-  contentCol2: displayArticle[] = [];
-  contentCol3: displayArticle[] = [];
+  // contents: displayArticle[] = displayArticles;
+  // contentCol1: displayArticle[] = [];
+  // contentCol2: displayArticle[] = [];
+  // contentCol3: displayArticle[] = [];
   i:number = 0;
   // JSONObject 
   constructor() { 
@@ -29,24 +28,24 @@ export class PageSpaceLaPage implements OnInit {
   ngOnInit() {
     // this.listItems.toArray();
     // console.log("test "+this.listItems);
-    for(this.i = 0; this.i<this.contents.length;this.i++){
-      const currentArticle = this.contents[this.i];
-      if(currentArticle.columnName==1){
-        this.contentCol1.push(currentArticle);
-      }else if(currentArticle.columnName==2){
-        this.contentCol2.push(currentArticle);
-      }else if(currentArticle.columnName==3){        
-        this.contentCol3.push(currentArticle);
-      }
+    // for(this.i = 0; this.i<this.contents.length;this.i++){
+    //   const currentArticle = this.contents[this.i];
+    //   if(currentArticle.columnName==1){
+    //     this.contentCol1.push(currentArticle);
+    //   }else if(currentArticle.columnName==2){
+    //     this.contentCol2.push(currentArticle);
+    //   }else if(currentArticle.columnName==3){        
+    //     this.contentCol3.push(currentArticle);
+    //   }
    
-    }
-    console.log(this.contentCol1);
-    console.log(this.contentCol2);
-    console.log(this.contentCol3);
-    console.log(this.contents);
+    // }
+    // console.log(this.contentCol1);
+    // console.log(this.contentCol2);
+    // console.log(this.contentCol3);
+    // console.log(this.contents);
     
-    const thisNotShow = document.querySelector('#requested') as HTMLElement;
-    thisNotShow.style.display = 'none';
+    // const thisNotShow = document.querySelector('#requested') as HTMLElement;
+    // thisNotShow.style.display = 'none';
 
     const textSpace = document.querySelector('#origin') as HTMLElement;
     const searchbar = document.querySelector('ion-searchbar');

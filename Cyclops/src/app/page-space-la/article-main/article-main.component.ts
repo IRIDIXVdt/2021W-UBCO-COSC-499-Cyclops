@@ -10,57 +10,55 @@ import { FirebaseService } from 'src/app/firebase.service';
   templateUrl: './article-main.component.html',
   styleUrls: ['./article-main.component.scss'],
 })
-
-  type fetchArticle = {
-    codId: string;
-    id: number;
-    title: string;
-    subtitle: string;
-    image: string;
-    cardIntroduction: string;
-    columnName: number;
-  }
-
 export class ArticleMainComponent implements OnInit {
   @Input()
   columNumber: number;
-  articles: fetchArticle[];
+  contents: fetchArticle[];
   // contents: displayArticle[] = displayArticles;
-  contentCol: displayArticle[] = [];
+  contentCol: fetchArticle[];
   i: number = 0;
 
   constructor(
     private modalCtrol: ModalController,
     public firebaseService: FirebaseService
   ) {
-    this.loadData()
+    this.loadData();
+
   }
 
   // constructor(public firebaseService: FirebaseService) { this.loadData() }
 
   async loadData() {
     this.firebaseService.getDataServiceMainPage().subscribe((res) => {
-      this.articles = res.map(e => {
+      this.contents = res.map(e => {
         return {
-          docId: e.payload.doc.id,
+          id: e.payload.doc.id,
+          //notice this is not id in the shared folder
+          //this is the id generated from Firebase
           image: e.payload.doc.data()['image'],
           title: e.payload.doc.data()['title'],
-          subtitle: e.payload.doc.data()['subtitle']
+          subtitle: e.payload.doc.data()['subtitle'],
+          cardIntroduction: e.payload.doc.data()['cardIntroduction'],
+          columnName: e.payload.doc.data()['columnName']
         }
       })
-      console.log(this.articles);
+      console.log("load complete");
+      console.log(this.contents);
+
+      this.contentCol = [];
+      for (this.i = 0; this.i < this.contents.length; this.i++) {
+        const currentArticle = this.contents[this.i];
+        if (currentArticle.columnName == this.columNumber) {
+          this.contentCol.push(currentArticle);
+        }
+      }
     }, (err: any) => {
       console.log(err);
     })
   }
 
   ngOnInit() {
-    for (this.i = 0; this.i < this.contents.length; this.i++) {
-      const currentArticle = this.contents[this.i];
-      if (currentArticle.columnName == this.columNumber) {
-        this.contentCol.push(currentArticle);
-      }
-    }
+
   }
 
   openNewTextEdit(articleId: number) {
@@ -79,14 +77,12 @@ export class ArticleMainComponent implements OnInit {
         subtitle: this.contents[articleId].subtitle,
         // image: this.contents[articleId].image,
         cardIntroduction: this.contents[articleId].cardIntroduction
-
       }
     }).then(modalres => {
       modalres.present();
 
       modalres.onDidDismiss().then(res => {
         if (res.data == "remove content") {
-
           this.contents[articleId].columnName = -1;
         } else if (res.data != null) {
           // this.contents[articleId] = res.data;
@@ -101,4 +97,12 @@ export class ArticleMainComponent implements OnInit {
 
     })
   }
+}
+type fetchArticle = {
+  id: string;
+  title: string;
+  subtitle: string;
+  image: string;
+  cardIntroduction: string;
+  columnName: number;
 }
