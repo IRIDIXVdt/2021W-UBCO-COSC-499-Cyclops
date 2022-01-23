@@ -34,6 +34,10 @@ getDataByIdService(docId){
   return this.db.collection('articles').doc(docId).snapshotChanges();
 }
 
+updateDataByIdService(docId,data){
+  return this.db.collection('articles').doc(docId).set(data);
+}
+
 }
 
 
