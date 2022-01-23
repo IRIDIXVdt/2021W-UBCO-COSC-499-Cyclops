@@ -1,120 +1,124 @@
 <ion-header>
     <ion-toolbar>
         <ion-buttons slot="start">
-            <!-- <ion-back-button defaultHref="/tabs/page-space-la"></ion-back-button> -->
-
-            <!-- <ion-button  href="/tabs/page-space-la" >
-                <ion-icon name="arrow-undo-circle"></ion-icon>
-            </ion-button> -->
             <ion-back-button defaultHref="/">
             </ion-back-button>
-
         </ion-buttons>
-        <ion-title style="font-size: 150%;">{{contents.title}}</ion-title>
+        <div *ngIf="contents">
+            <ion-title style="font-size: 150%;">{{contents.title}}</ion-title>
+        </div>
+        <div *ngIf="!contents">
+            <ion-title style="font-size: 150%;">
+                <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+            </ion-title>
+        </div>
     </ion-toolbar>
 
-    <!-- <ion-toolbar> -->
-
-    <ion-segment color="medium" [(ngModel)]="status" *ngIf="contents.segment.length ===3">
-        <ion-segment-button text-wrap value="segment1">
-            <ion-label>{{contents.segment[0].segmentTitle}}</ion-label>
-        </ion-segment-button>
-        <ion-segment-button text-wrap value="segment2">
-            <ion-label>{{contents.segment[1].segmentTitle}}</ion-label>
-        </ion-segment-button>
-        <ion-segment-button text-wrap value="segment3">
-            <ion-label>{{contents.segment[2].segmentTitle}}</ion-label>
-        </ion-segment-button>
-    </ion-segment>
-    
-    <ion-segment color="medium" [(ngModel)]="status" *ngIf="contents.segment.length ===2">
-        <ion-segment-button text-wrap value="segment1">
-            <ion-label>{{contents.segment[0].segmentTitle}}</ion-label>
-        </ion-segment-button>
-        <ion-segment-button text-wrap value="segment2">
-            <ion-label>{{contents.segment[1].segmentTitle}}</ion-label>
-        </ion-segment-button>
-    </ion-segment>
-
-    <!-- no segment used if there's only one section -->
-
-    <!-- </ion-toolbar> -->
-
-
-    <!--     <ion-segment color="medium" [(ngModel)]="status" >
-        <div *ngFor = "let segment of contents[articleId].segment">
-            <ion-segment-button text-wrap value="{{segment.segmentTitle}}">
-                <ion-label>{{segment.segmentTitle}}</ion-label>
+    <div *ngIf="contents">
+        <ion-segment color="medium" [(ngModel)]="status" *ngIf="contents.segment.length ===3">
+            <ion-segment-button text-wrap value="segment1">
+                <ion-label>{{contents.segment[0].segmentTitle}}</ion-label>
             </ion-segment-button>
-        </div>
-        
-    </ion-segment>  -->
+            <ion-segment-button text-wrap value="segment2">
+                <ion-label>{{contents.segment[1].segmentTitle}}</ion-label>
+            </ion-segment-button>
+            <ion-segment-button text-wrap value="segment3">
+                <ion-label>{{contents.segment[2].segmentTitle}}</ion-label>
+            </ion-segment-button>
+        </ion-segment>
+
+        <ion-segment color="medium" [(ngModel)]="status" *ngIf="contents.segment.length ===2">
+            <ion-segment-button text-wrap value="segment1">
+                <ion-label>{{contents.segment[0].segmentTitle}}</ion-label>
+            </ion-segment-button>
+            <ion-segment-button text-wrap value="segment2">
+                <ion-label>{{contents.segment[1].segmentTitle}}</ion-label>
+            </ion-segment-button>
+        </ion-segment>
+    </div>
+
+    <div *ngIf="!contents">
+        <ion-segment>
+            <ion-segment-button>
+                <ion-label>
+                    <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                </ion-label>
+            </ion-segment-button>
+            <ion-segment-button>
+                <ion-label>
+                    <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                </ion-label>
+            </ion-segment-button>
+        </ion-segment>
+    </div>
 
 </ion-header>
 
 <ion-content class="ion-padding ">
 
-    <div [ngSwitch]="status" class="article ">
+    <div [ngSwitch]="status" class="article " *ngIf="contents">
         <div *ngSwitchDefault>
             <img src="{{contents.image}} ">
             <div [innerHTML]="contents.segment[0].segmentBody"> </div>
-            <div id="button ">
-                <ion-button expand="block " (click)="openModal() ">Edit Content</ion-button>
-                <ion-button expand="block " (click)="presentModal() ">Send feedback</ion-button>
-            </div>
-        </div>
 
-        <!--         <div *ngFor = "let segment of contents[articleId].segment" > 
-            <div *ngSwitchCase="segment.segmentTitle" ngSelected="selected">
-                <img src="{{contents[articleId].image}} ">
-                <div [innerHTML]="segment.segmentBody"> </div>
-                <div id="button ">
-                    <ion-button expand="block " (click)="openModal() ">Edit Content</ion-button>
-                    <ion-button expand="block " (click)="presentModal() ">Send feedback</ion-button>
-                </div>
-            </div>
-        </div> -->
+        </div>
 
         <div *ngSwitchCase=" 'segment1' ">
             <img src="{{contents.image}} ">
             <div [innerHTML]="contents.segment[0].segmentBody"> </div>
-            <div id="button ">
-                <ion-button expand="block " (click)="openModal() ">Edit Content</ion-button>
-                <ion-button expand="block " (click)="presentModal() ">Send feedback</ion-button>
-            </div>
+
         </div>
 
 
         <div *ngSwitchCase=" 'segment2' ">
             <div [innerHTML]="contents.segment[1].segmentBody"> </div>
             <div class="wp-block-image" *ngIf="contents.title==='Fossil Fuels'">
-                <figure class="aligncenter size-large"><img data-attachment-id="6924" data-permalink="https://cyclopediapp.org/image-55/" data-orig-file="https://cyclope2.files.wordpress.com/2021/08/image-55.png" data-orig-size="855,596" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}"
-                        data-image-title="image-55" data-image-description="" data-image-caption="" data-medium-file="https://cyclope2.files.wordpress.com/2021/08/image-55.png?w=300" data-large-file="https://cyclope2.files.wordpress.com/2021/08/image-55.png?w=750"
-                        src="https://cyclope2.files.wordpress.com/2021/08/image-55.png?w=855" alt="" class="wp-image-6924" srcset="https://cyclope2.files.wordpress.com/2021/08/image-55.png 855w, https://cyclope2.files.wordpress.com/2021/08/image-55.png?w=150 150w, https://cyclope2.files.wordpress.com/2021/08/image-55.png?w=300 300w, https://cyclope2.files.wordpress.com/2021/08/image-55.png?w=768 768w"
+                <figure class="aligncenter size-large"><img data-attachment-id="6924"
+                        data-permalink="https://cyclopediapp.org/image-55/"
+                        data-orig-file="https://cyclope2.files.wordpress.com/2021/08/image-55.png"
+                        data-orig-size="855,596" data-comments-opened="0"
+                        data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}"
+                        data-image-title="image-55" data-image-description="" data-image-caption=""
+                        data-medium-file="https://cyclope2.files.wordpress.com/2021/08/image-55.png?w=300"
+                        data-large-file="https://cyclope2.files.wordpress.com/2021/08/image-55.png?w=750"
+                        src="https://cyclope2.files.wordpress.com/2021/08/image-55.png?w=855" alt=""
+                        class="wp-image-6924"
+                        srcset="https://cyclope2.files.wordpress.com/2021/08/image-55.png 855w, https://cyclope2.files.wordpress.com/2021/08/image-55.png?w=150 150w, https://cyclope2.files.wordpress.com/2021/08/image-55.png?w=300 300w, https://cyclope2.files.wordpress.com/2021/08/image-55.png?w=768 768w"
                         sizes="(max-width: 855px) 100vw, 855px" />
                     <figcaption>
-                        <ion-text id="popover " (click)="notifications($event) "><span style="text-decoration:underline;">Source: IEA (2021) World Energy Balances. All rights reserved.</span></ion-text>
+                        <ion-text id="popover " (click)="notifications($event) "><span
+                                style="text-decoration:underline;">Source: IEA (2021) World Energy Balances. All rights
+                                reserved.</span></ion-text>
                     </figcaption>
                 </figure>
             </div>
-           
 
-            <div id="button ">
-                <ion-button expand="block " (click)="openModal() ">Edit Content</ion-button>
-                <ion-button expand="block " (click)="presentModal() ">Send feedback</ion-button>
-            </div>
         </div>
 
 
         <div *ngSwitchCase=" 'segment3' ">
             <div [innerHTML]="contents.segment[2].segmentBody"> </div>
-           
-            <div id="button ">
-                <ion-button expand="block " (click)="openModal() ">Edit Content</ion-button>
-                <ion-button expand="block " (click)="presentModal() ">Send feedback</ion-button>
-            </div>
+
         </div>
 
+    </div>
+    <div *ngIf="!contents">
+        <ion-label>
+            <h3>
+                <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+            </h3>
+            <p>
+                <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+            </p>
+            <p>
+                <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+            </p>
+        </ion-label>
+    </div>
+
+    <div id="button" class="ion-padding">
+        <ion-button expand="block " (click)="openModal() ">Edit Content</ion-button>
+        <ion-button expand="block " (click)="presentModal() ">Send feedback</ion-button>
     </div>
 
 </ion-content>

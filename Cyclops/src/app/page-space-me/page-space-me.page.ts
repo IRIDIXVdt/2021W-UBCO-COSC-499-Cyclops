@@ -19,23 +19,23 @@ export class PageSpaceMePage implements OnInit {
   //contents = displayArticles[0];
  
 
-  contents= {
-    id: '',
-    title: '',
-    subtitle: '',
-    image: '',
-    segment: [{
-      segmentBody:'',
-      segmentTitle:''
+  // contents= {
+  //   id: '',
+  //   title: '',
+  //   subtitle: '',
+  //   image: '',
+  //   segment: [{
+  //     segmentBody:'',
+  //     segmentTitle:''
 
-    },{
-      segmentBody:'',
-      segmentTitle:''
-     }],
-    cardIntroduction: '',
-    columnName: '',
-  }
-
+  //   },{
+  //     segmentBody:'',
+  //     segmentTitle:''
+  //    }],
+  //   cardIntroduction: '',
+  //   columnName: '',
+  // }
+  contents :any;
   docId:any;
   feedback = {
     content: ""
