@@ -5,27 +5,8 @@
 </ion-header>
 
 <ion-content>
-    <!-- Searchbar with a cancel button and custom cancel button text -->
     <ion-searchbar [(ngModel)]="userInput" placeholder="Search Article" showCancelButton="focus" cancelButtonText="Cancel" animated='true'>
     </ion-searchbar>
-    <!-- <div id='requested'>
-        <ion-grid id='viewContentTest'>
-            <ion-row id="listItem">
-                <ion-col size-xs="12" size-sm="6" size-md="4" size-lg="3" *ngFor="let cardContent of contents  | filter:userInput">
-                    <ion-card color='light' routerLink="/tabs/page-space-me/{{cardContent.id}}" style="height:50vh;">
-                        <ion-img src="{{cardContent.image}}"></ion-img>
-                        <ion-card-header>
-                            <ion-card-subtitle>{{cardContent.subtitle}}</ion-card-subtitle>
-                            <ion-card-title>{{cardContent.title}}</ion-card-title>
-                        </ion-card-header>
-                        <ion-card-content style="width:100%; overflow: hidden;text-overflow: ellipsis;">
-                            {{cardContent.cardIntroduction}}
-                        </ion-card-content>
-                    </ion-card>
-                </ion-col>
-            </ion-row>
-        </ion-grid>
-    </div> -->
 
     <div id='origin'>
         <ion-segment [(ngModel)]="status" scrollable>
