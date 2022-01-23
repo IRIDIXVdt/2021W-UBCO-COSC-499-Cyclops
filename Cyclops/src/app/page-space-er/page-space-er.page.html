@@ -140,19 +140,28 @@
   <!-- fourth section end (title) -->
 
   <!-- third section begin (content) -->
-
-  <ion-slides pager="true"  id="newsetArticle" >
-    <ion-slide routerLink = "/tabs/page-space-me/{{content.docId}}" *ngFor ="let content of articles | slice:0:3 ">
-      <ion-card color='light' routerLink = "/tabs/page-space-me/{{content.docId}}"  style="height: 330px;">
-        <img src="{{content.image}}" />
-        <ion-card-header>
-            <ion-card-subtitle>{{content.subtitle}}</ion-card-subtitle>
-            <ion-card-title>{{content.title}}</ion-card-title>
-        </ion-card-header>
-
-    </ion-card>
-    </ion-slide>
-
+  <div *ngIf = "articles">
+    <ion-slides pager="true"  id="newsetArticle" >
+    
+      <ion-slide *ngFor ="let content of articles | slice:0:3 ">
+        <ion-card color='light' routerLink = "/tabs/page-space-me/{{content.docId}}"  style="height: 330px;">
+          <img src="{{content.image}}" />
+  
+          <ion-card-header>
+              <ion-card-subtitle>{{content.subtitle}}</ion-card-subtitle>
+              <ion-card-title>{{content.title}}</ion-card-title>
+          </ion-card-header>
+  
+      </ion-card>
+      </ion-slide>
   </ion-slides>
+  </div>
+  <div *ngIf = "!articles">
+    <ion-spinner></ion-spinner>
+  </div>
+
+  
+
+  
   <!-- third section end (content) -->
 </ion-content>
