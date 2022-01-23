@@ -62,7 +62,11 @@ const routes: Routes = [
     path: 'crud-demo',
     loadChildren: () => import('./crud-demo/crud-demo.module').then( m => m.CRUDDemoPageModule)
 
+  },  {
+    path: 'add-data',
+    loadChildren: () => import('./add-data/add-data.module').then( m => m.AddDataPageModule)
   }
+
 ];
 @NgModule({
   imports: [
