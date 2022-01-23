@@ -25,7 +25,12 @@ ion-split-pane {
     font-size: 80px;
     text-align: center;
   }
-  .bottom-pane{
-    
+  // .bottom-pane{
+  //   border-top: none !important;
+  // }
+
+  .ion-no-border{
+    padding-bottom: 20px;
+    padding-top: 10px;
   }
   
