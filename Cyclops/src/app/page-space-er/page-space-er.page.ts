@@ -16,6 +16,7 @@ export class PageSpaceErPage implements OnInit {
 
   ngOnInit() {
   }
+
   slideOptsOne = {
     initialSlide: 0,
     slidesPerView: 1,
@@ -30,7 +31,6 @@ export class PageSpaceErPage implements OnInit {
           image:e.payload.doc.data()['image'],
           title:e.payload.doc.data()['title'],
           subtitle:e.payload.doc.data()['subtitle']
-          
         }
       })
       console.log(this.articles);

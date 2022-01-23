@@ -3,41 +3,69 @@ import { displayArticle } from '../../sharedData/displayArticle';
 import { displayArticles } from '../../sharedData/displayArticles';
 import { ArticleModalMainComponent } from '../article-modal-main/article-modal-main.component';
 import { ModalController } from '@ionic/angular';
+import { FirebaseService } from 'src/app/firebase.service';
 
 @Component({
   selector: 'app-article-main',
   templateUrl: './article-main.component.html',
   styleUrls: ['./article-main.component.scss'],
 })
-export class ArticleMainComponent implements OnInit {
-  // @Input()
-  // articleComponent: displayArticle[];
-  // @Input()
-  // inputArticleId: number;
-  @Input()
-  columNumber: number;
 
-  contents: displayArticle[] = displayArticles;
-  contentCol: displayArticle[] = [];
-  i:number = 0;
-  constructor(
-    private modalCtrol: ModalController,
-  ) {
-
+  type fetchArticle = {
+    codId: string;
+    id: number;
+    title: string;
+    subtitle: string;
+    image: string;
+    cardIntroduction: string;
+    columnName: number;
   }
 
-  ngOnInit() { 
-    for(this.i = 0; this.i<this.contents.length;this.i++){
+export class ArticleMainComponent implements OnInit {
+  @Input()
+  columNumber: number;
+  articles: fetchArticle[];
+  // contents: displayArticle[] = displayArticles;
+  contentCol: displayArticle[] = [];
+  i: number = 0;
+
+  constructor(
+    private modalCtrol: ModalController,
+    public firebaseService: FirebaseService
+  ) {
+    this.loadData()
+  }
+
+  // constructor(public firebaseService: FirebaseService) { this.loadData() }
+
+  async loadData() {
+    this.firebaseService.getDataServiceMainPage().subscribe((res) => {
+      this.articles = res.map(e => {
+        return {
+          docId: e.payload.doc.id,
+          image: e.payload.doc.data()['image'],
+          title: e.payload.doc.data()['title'],
+          subtitle: e.payload.doc.data()['subtitle']
+        }
+      })
+      console.log(this.articles);
+    }, (err: any) => {
+      console.log(err);
+    })
+  }
+
+  ngOnInit() {
+    for (this.i = 0; this.i < this.contents.length; this.i++) {
       const currentArticle = this.contents[this.i];
-      if(currentArticle.columnName==this.columNumber){
+      if (currentArticle.columnName == this.columNumber) {
         this.contentCol.push(currentArticle);
       }
     }
   }
 
-  openNewTextEdit(articleId: number){
+  openNewTextEdit(articleId: number) {
     //this function handles the event of redirecting the app user to the new Editing Page
-    
+
   }
 
   openCardModal(articleId: number) {
@@ -51,16 +79,16 @@ export class ArticleMainComponent implements OnInit {
         subtitle: this.contents[articleId].subtitle,
         // image: this.contents[articleId].image,
         cardIntroduction: this.contents[articleId].cardIntroduction
-        
+
       }
     }).then(modalres => {
       modalres.present();
 
       modalres.onDidDismiss().then(res => {
-        if(res.data == "remove content"){
-          
+        if (res.data == "remove content") {
+
           this.contents[articleId].columnName = -1;
-        }else if (res.data != null) {
+        } else if (res.data != null) {
           // this.contents[articleId] = res.data;
           this.contents[articleId].title = res.data.title;
           this.contents[articleId].subtitle = res.data.subtitle;

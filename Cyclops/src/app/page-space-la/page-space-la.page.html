@@ -8,9 +8,7 @@
     <!-- Searchbar with a cancel button and custom cancel button text -->
     <ion-searchbar [(ngModel)]="userInput" placeholder="Search Article" showCancelButton="focus" cancelButtonText="Cancel" animated='true'>
     </ion-searchbar>
-    <div id='requested'>
-        <!-- <ion-label color="primary">Primary Label</ion-label> -->
-
+    <!-- <div id='requested'>
         <ion-grid id='viewContentTest'>
             <ion-row id="listItem">
                 <ion-col size-xs="12" size-sm="6" size-md="4" size-lg="3" *ngFor="let cardContent of contents  | filter:userInput">
@@ -27,7 +25,7 @@
                 </ion-col>
             </ion-row>
         </ion-grid>
-    </div>
+    </div> -->
 
     <div id='origin'>
         <ion-segment [(ngModel)]="status" scrollable>
