@@ -17,12 +17,7 @@ import { FirebaseService } from '../firebase.service';
 export class PageSpaceMePage implements OnInit {
 
   //contents = displayArticles[0];
- /*  contents= {
-    title: '',
-    subtitle:'',
-    image: '',
-    segment: ''
-  } */
+ 
 
   contents= {
     id: '',
@@ -40,6 +35,7 @@ export class PageSpaceMePage implements OnInit {
     cardIntroduction: '',
     columnName: '',
   }
+
   docId:any;
   feedback = {
     content: ""
