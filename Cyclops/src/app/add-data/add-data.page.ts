@@ -9,6 +9,7 @@ import { displayArticles } from '../sharedData/displayArticles';
 })
 export class AddDataPage implements OnInit {
   articles: any = displayArticles;
+  contents:any;
   constructor(private firebaseService:FirebaseService) { 
      
   }
@@ -30,4 +31,25 @@ export class AddDataPage implements OnInit {
     }
     alert("scussess");
   }
+
+  loadData(){
+    this.firebaseService.getDataByIdService('mzV9kW2MvD4qINJD8J4p').subscribe(
+      res => {
+        this.contents= { 
+          
+          id:res.payload.data()['id'],
+          image:res.payload.data()['image'],
+          title:res.payload.data()['title'],
+          subtitle:res.payload.data()['subtitle'],
+          segment:res.payload.data()['segment'],          
+        
+        };
+
+        console.log(this.contents.segment.length);
+      },
+      err => {
+        console.debug(err);
+      }
+    )
+   }
 }

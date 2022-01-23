@@ -7,6 +7,7 @@ import { EditModalComponent } from '../edit-modal/edit-modal.component';
 import { ActivatedRoute } from '@angular/router';
 import { displayArticle } from '../sharedData/displayArticle';
 import { displayArticles } from '../sharedData/displayArticles';
+import { FirebaseService } from '../firebase.service';
 
 @Component({
   selector: 'app-page-space-me',
@@ -15,8 +16,31 @@ import { displayArticles } from '../sharedData/displayArticles';
 })
 export class PageSpaceMePage implements OnInit {
 
-  contents: displayArticle[] = displayArticles;
-  articleId;
+  //contents = displayArticles[0];
+ /*  contents= {
+    title: '',
+    subtitle:'',
+    image: '',
+    segment: ''
+  } */
+
+  contents= {
+    id: '',
+    title: '',
+    subtitle: '',
+    image: '',
+    segment: [{
+      segmentBody:'',
+      segmentTitle:''
+
+    },{
+      segmentBody:'',
+      segmentTitle:''
+     }],
+    cardIntroduction: '',
+    columnName: '',
+  }
+  docId:any;
   feedback = {
     content: ""
   }
@@ -24,11 +48,42 @@ export class PageSpaceMePage implements OnInit {
     public popover: PopoverController,
     public modalController: ModalController,
     private modalCtrol: ModalController,
-    private activatedrouter: ActivatedRoute
+    private activatedrouter: ActivatedRoute,
+    public firebaseService: FirebaseService
   ) {
 
-    this.articleId = this.activatedrouter.snapshot.paramMap.get('id');
+    this.docId = this.activatedrouter.snapshot.paramMap.get('docId');
+    //console.log("docid------",this.activatedrouter.snapshot.paramMap.get('docId'));
+    this.loadDataById();
   }
+
+  loadDataById(){
+    this.firebaseService.getDataByIdService(this.docId).subscribe(
+      e => {
+        this.contents= { 
+          
+          /* image:e.payload.data()['image'],
+          title:e.payload.data()['title'],
+          subtitle:e.payload.data()['subtitle'],
+          segment:e.payload.data()['segment']  */
+          
+          id: e.payload.data()['id'],
+          title: e.payload.data()['title'],
+          subtitle:e.payload.data()['subtitle'],
+          image: e.payload.data()['image'],
+          segment: e.payload.data()['segment'],
+          cardIntroduction: e.payload.data()['cardIntroduction'],
+          columnName: e.payload.data()['columnName'],
+        
+        };
+
+        console.log(this.contents);
+      },
+      err => {
+        console.debug(err);
+      }
+    )
+   }
 
   async notifications(event) {
     const popover = await this.popover.create({
@@ -68,11 +123,12 @@ export class PageSpaceMePage implements OnInit {
     this.modalCtrol.create({
       component: EditModalComponent,
       componentProps: {
-        id: this.articleId,
-        title: this.contents[this.articleId].title,
-        subtitle: this.contents[this.articleId].subtitle,
-        image: this.contents[this.articleId].image,
-        segment: JSON.parse(JSON.stringify(this.contents[this.articleId].segment)) 
+        // send data to modal
+        id: this.docId,
+        title: this.contents.title,
+        subtitle: this.contents.subtitle,
+        image: this.contents.image,
+        segment: JSON.parse(JSON.stringify(this.contents.segment)) 
        
       }
     }).then(modalres => {
@@ -81,12 +137,12 @@ export class PageSpaceMePage implements OnInit {
       modalres.onDidDismiss().then(res => {
         if (res.data != null) {
          /*  this.contents[this.articleId] = res.data; */
-          this.contents[this.articleId].title = res.data.title;
-          this.contents[this.articleId].subtitle = res.data.subtitle;
-          this.contents[this.articleId].image = res.data.image;
-          this.contents[this.articleId].segment = res.data.segment;
-
-          console.log("have data"+this.contents[this.articleId]);
+          this.contents.title = res.data.title;
+          this.contents.subtitle = res.data.subtitle;
+          this.contents.image = res.data.image;
+          this.contents.segment = res.data.segment;
+          //update data here
+          console.log("have data"+this.contents[this.docId]);
           console.log(res.data);
         }else{
           console.log("no data ");
