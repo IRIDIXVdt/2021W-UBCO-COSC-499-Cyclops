@@ -22,7 +22,7 @@ export class PageSpaceErPage implements OnInit {
     autoplay:true
    };
 
-   loadData(){
+   async loadData(){
     this.firebaseService.getDataServiceMainPage().subscribe((res) => {
       this.articles = res.map(e => {
         return {         

@@ -12,26 +12,26 @@
   <ion-fab-button color="light">
     <ion-icon name="add-outline"></ion-icon>
   </ion-fab-button>
-  
+
   <ion-fab-list side="bottom">
     <ion-fab-button>
-        <ion-icon name="log-in-outline" routerLink="/login"></ion-icon>
+      <ion-icon name="log-in-outline" routerLink="/login"></ion-icon>
     </ion-fab-button>
     <ion-fab-button>
-        <ion-icon name="settings-outline" routerLink="/crud-demo"></ion-icon>
+      <ion-icon name="settings-outline" routerLink="/crud-demo"></ion-icon>
     </ion-fab-button>
   </ion-fab-list>
 </ion-fab>
 
 
-<ion-content class="ion-padding" >
+<ion-content class="ion-padding">
 
 
   <!-- first section begin -->
 
-  <ion-slides pager="true" >
+  <ion-slides pager="true">
     <ion-slide>
-      <div style="margin-bottom: 5%;" >
+      <div style="margin-bottom: 5%;">
         <p>
           “The best time to plant a tree was 20 years ago. The second best time is now.The second best time is now 20
           years ago.”
@@ -75,7 +75,7 @@
   <!-- <ion-slides pager="true" [options]="slideOpts">     -->
   <ion-slides [options]="slideOptsOne">
     <ion-slide>
-      <ion-card id="card1" color = 'light'>
+      <ion-card id="card1" color='light'>
         <ion-card-header>
           <ion-card-title>Sample Survey</ion-card-title>
         </ion-card-header>
@@ -89,7 +89,7 @@
     </ion-slide>
 
     <ion-slide>
-      <ion-card id="card1" color = 'light'>
+      <ion-card id="card1" color='light'>
         <ion-card-header>
           <ion-card-title>Sample Survey 2</ion-card-title>
         </ion-card-header>
@@ -102,7 +102,7 @@
     </ion-slide>
 
     <ion-slide>
-      <ion-card id="card1"  color = 'light'>
+      <ion-card id="card1" color='light'>
         <ion-card-header>
           <ion-card-title>Sample Survey 3</ion-card-title>
         </ion-card-header>
@@ -123,7 +123,7 @@
   <!-- third section end (title) -->
 
   <!-- third section begin (content) -->
-  <ion-card id="card2" routerLink="/tabs/page-space-su"  color = 'light'>
+  <ion-card id="card2" routerLink="/tabs/page-space-su" color='light'>
     <ion-card-header>
       <ion-card-subtitle style="text-align:center; font-size:150%;">Overall Score</ion-card-subtitle>
       <ion-card-title style="text-align:center; font-size:400%" fontsize>80%</ion-card-title>
@@ -140,19 +140,32 @@
   <!-- fourth section end (title) -->
 
   <!-- third section begin (content) -->
-
-  <ion-slides pager="true"  id="newsetArticle" >
-    <ion-slide routerLink = "/tabs/page-space-me/{{content.docId}}" *ngFor ="let content of articles | slice:0:3 ">
-      <ion-card color='light' routerLink = "/tabs/page-space-me/{{content.docId}}"  style="height: 330px;">
-        <img src="{{content.image}}" />
-        <ion-card-header>
+  <div *ngIf="articles">
+    <ion-slides pager="true" id="newsetArticle">
+      <ion-slide *ngFor="let content of articles | slice:0:3 ">
+        <ion-card color='light' routerLink="/tabs/page-space-me/{{content.docId}}" style="height: 330px;">
+          <img src="{{content.image}}" />
+          <ion-card-header>
             <ion-card-subtitle>{{content.subtitle}}</ion-card-subtitle>
             <ion-card-title>{{content.title}}</ion-card-title>
-        </ion-card-header>
+          </ion-card-header>
+        </ion-card>
+      </ion-slide>
+    </ion-slides>
+  </div>
+  <div *ngIf="!articles">
+    <!-- <ion-spinner></ion-spinner> -->
+    <ion-card>
+      <!-- <ion-spinner></ion-spinner> -->
+      
+      <ion-progress-bar type="indeterminate"></ion-progress-bar>
+      <!-- <ion-skeleton-text animated></ion-skeleton-text> -->
 
     </ion-card>
-    </ion-slide>
+  </div>
 
-  </ion-slides>
+
+
+
   <!-- third section end (content) -->
 </ion-content>
