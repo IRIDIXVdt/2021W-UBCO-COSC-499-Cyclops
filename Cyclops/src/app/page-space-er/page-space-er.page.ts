@@ -11,7 +11,6 @@ import { displayArticles } from '../sharedData/displayArticles';
 })
 export class PageSpaceErPage implements OnInit {
   //contents: displayArticle[] = displayArticles;
-
   articles:any;
   constructor(public firebaseService: FirebaseService) { this.loadData() }
 
@@ -27,7 +26,7 @@ export class PageSpaceErPage implements OnInit {
     this.firebaseService.getDataServiceMainPage().subscribe((res) => {
       this.articles = res.map(e => {
         return {         
-          docId: e.payload.doc.id,
+          docId:e.payload.doc.id,
           image:e.payload.doc.data()['image'],
           title:e.payload.doc.data()['title'],
           subtitle:e.payload.doc.data()['subtitle']
@@ -40,3 +39,5 @@ export class PageSpaceErPage implements OnInit {
     })
    }
 }
+
+

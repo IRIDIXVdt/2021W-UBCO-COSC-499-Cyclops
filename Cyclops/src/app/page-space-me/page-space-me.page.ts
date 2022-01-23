@@ -16,9 +16,31 @@ import { FirebaseService } from '../firebase.service';
 })
 export class PageSpaceMePage implements OnInit {
 
-  //contents: displayArticle[] = displayArticles;
-  contents:any;
-  docId='';
+  //contents = displayArticles[0];
+ /*  contents= {
+    title: '',
+    subtitle:'',
+    image: '',
+    segment: ''
+  } */
+
+  contents= {
+    id: '',
+    title: '',
+    subtitle: '',
+    image: '',
+    segment: [{
+      segmentBody:'',
+      segmentTitle:''
+
+    },{
+      segmentBody:'',
+      segmentTitle:''
+     }],
+    cardIntroduction: '',
+    columnName: '',
+  }
+  docId:any;
   feedback = {
     content: ""
   }
@@ -31,18 +53,27 @@ export class PageSpaceMePage implements OnInit {
   ) {
 
     this.docId = this.activatedrouter.snapshot.paramMap.get('docId');
-    console.log("docid------",this.activatedrouter.snapshot.paramMap.get('docId'));
-    
+    //console.log("docid------",this.activatedrouter.snapshot.paramMap.get('docId'));
+    this.loadDataById();
   }
 
   loadDataById(){
     this.firebaseService.getDataByIdService(this.docId).subscribe(
-      res => {
+      e => {
         this.contents= { 
           
-          image:res.payload.data()['image'],
-          title:res.payload.data()['title'],
-          segment:res.payload.data()['segment']        
+          /* image:e.payload.data()['image'],
+          title:e.payload.data()['title'],
+          subtitle:e.payload.data()['subtitle'],
+          segment:e.payload.data()['segment']  */
+          
+          id: e.payload.data()['id'],
+          title: e.payload.data()['title'],
+          subtitle:e.payload.data()['subtitle'],
+          image: e.payload.data()['image'],
+          segment: e.payload.data()['segment'],
+          cardIntroduction: e.payload.data()['cardIntroduction'],
+          columnName: e.payload.data()['columnName'],
         
         };
 
