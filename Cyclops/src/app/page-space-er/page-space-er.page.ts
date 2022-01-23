@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { displayArticle } from '../sharedData/displayArticle';
 import { displayArticles } from '../sharedData/displayArticles';
+import { Platform } from '@ionic/angular';
 
 
 @Component({
@@ -10,7 +11,7 @@ import { displayArticles } from '../sharedData/displayArticles';
 })
 export class PageSpaceErPage implements OnInit {
   contents: displayArticle[] = displayArticles;
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
   }
