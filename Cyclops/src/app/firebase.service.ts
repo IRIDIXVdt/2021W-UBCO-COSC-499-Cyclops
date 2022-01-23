@@ -30,6 +30,10 @@ getDataServiceMainPage(){
   ref.orderBy('id','asc')).snapshotChanges();
 }
 
+getDataByIdService(docId){
+  return this.db.collection('articles').doc(docId).snapshotChanges();
+}
+
 }
 
 

@@ -23,7 +23,7 @@ const routes: Routes = [
     loadChildren: () => import('./page-space-me/page-space-me.module').then( m => m.PageSpaceMePageModule)
   },
   {
-    path: 'tabs/page-space-me/:id',
+    path: 'tabs/page-space-me/:docId',
     loadChildren: () => import('./page-space-me/page-space-me.module').then( m => m.PageSpaceMePageModule)
   },
   {
@@ -62,7 +62,8 @@ const routes: Routes = [
     path: 'crud-demo',
     loadChildren: () => import('./crud-demo/crud-demo.module').then( m => m.CRUDDemoPageModule)
 
-  },  {
+  },
+  {
     path: 'add-data',
     loadChildren: () => import('./add-data/add-data.module').then( m => m.AddDataPageModule)
   }

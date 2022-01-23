@@ -27,8 +27,7 @@ export class PageSpaceErPage implements OnInit {
     this.firebaseService.getDataServiceMainPage().subscribe((res) => {
       this.articles = res.map(e => {
         return {         
-          docID: e.payload.doc.id,
-          id:e.payload.doc.data()['id'],
+          docId: e.payload.doc.id,
           image:e.payload.doc.data()['image'],
           title:e.payload.doc.data()['title'],
           subtitle:e.payload.doc.data()['subtitle']
