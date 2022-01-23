@@ -21,10 +21,12 @@ export class CRUDDemoPage implements OnInit {
       this.displayArticle = res.map(e => {
         return {
           // articleId: e.payload.doc.id,
-          articleId: e.payload.doc.data()['id'],
+          docID: e.payload.doc.id,
+          //docID refers to the auto generated ID by Firebase
+          Id: e.payload.doc.data()['id'],
           //in case this is reading document id, we read by doc.data instead
-          articleTitle: e.payload.doc.data()['title'],
-          articleSegment: e.payload.doc.data()['segment1']
+          Name: e.payload.doc.data()['name']
+          
           //read document from firebase
         }
       })
