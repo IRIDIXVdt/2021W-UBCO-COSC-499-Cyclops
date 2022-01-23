@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from '../firebase.service';
+import { displayArticles } from '../sharedData/displayArticles';
 
 @Component({
   selector: 'app-add-data',
@@ -7,13 +8,9 @@ import { FirebaseService } from '../firebase.service';
   styleUrls: ['./add-data.page.scss'],
 })
 export class AddDataPage implements OnInit {
-  data={
-    id : '2',
-    name : "larry"
-
-  }
+  articles: any = displayArticles;
   constructor(private firebaseService:FirebaseService) { 
-    // this.addData(this.data)
+     
   }
   // await setDoc(doc(db, "cities", "LA"), {
   //   name: "Los Angeles",
@@ -25,9 +22,12 @@ export class AddDataPage implements OnInit {
   
 
 
-  addData(data){
-    this.firebaseService.addDataService(data).then((res:any) => {
-      console.log(res);
-    })
+  addData(){
+    for (let article of this.articles){
+      this.firebaseService.addDataService(article).then((res:any) => {
+        console.log(res);
+      })
+    }
+    alert("scussess");
   }
 }
