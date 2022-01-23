@@ -81,6 +81,14 @@ export class PageSpaceMePage implements OnInit {
     )
    }
 
+  updateDataById(docId,data){
+    this.firebaseService.updateDataByIdService(docId,data).then((res:any) => {
+      console.log(res);
+    })
+  
+    alert("scussess");
+  }
+
   async notifications(event) {
     const popover = await this.popover.create({
       event,
@@ -140,6 +148,7 @@ export class PageSpaceMePage implements OnInit {
           //update data here
           console.log("have data"+this.contents[this.docId]);
           console.log(res.data);
+          this.updateDataById(this.docId,this.contents)
         }else{
           console.log("no data ");
           console.log(res.data);
