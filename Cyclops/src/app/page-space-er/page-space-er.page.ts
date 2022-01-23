@@ -28,6 +28,7 @@ export class PageSpaceErPage implements OnInit {
       this.articles = res.map(e => {
         return {         
           docID: e.payload.doc.id,
+          id:e.payload.doc.data()['id'],
           image:e.payload.doc.data()['image'],
           title:e.payload.doc.data()['title'],
           subtitle:e.payload.doc.data()['subtitle']
