@@ -18,7 +18,7 @@ export class PageSpaceMePage implements OnInit {
 
   //contents: displayArticle[] = displayArticles;
   contents:any;
-  docId='mzV9kW2MvD4qINJD8J4p';
+  docId='';
   feedback = {
     content: ""
   }
@@ -32,7 +32,7 @@ export class PageSpaceMePage implements OnInit {
 
     this.docId = this.activatedrouter.snapshot.paramMap.get('docId');
     console.log("docid------",this.activatedrouter.snapshot.paramMap.get('docId'));
-    this.loadDataById();
+    
   }
 
   loadDataById(){
