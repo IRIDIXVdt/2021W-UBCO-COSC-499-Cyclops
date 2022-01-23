@@ -25,7 +25,10 @@ removeDataService(id){
   return this.db.doc("test" + "/" + id).delete();
 }
 
-
+getDataServiceMainPage(){
+  return this.db.collection("articles", ref => 
+  ref.orderBy('id','asc')).snapshotChanges();
+}
 
 }
 
