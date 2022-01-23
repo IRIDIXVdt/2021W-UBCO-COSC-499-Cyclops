@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { Platform } from '@ionic/angular';
 import { displayArticle } from '../sharedData/displayArticle';
 import { displayArticles } from '../sharedData/displayArticles';
-import { Platform } from '@ionic/angular';
+import { ScreensizeService } from './services/screensize.service';
 
 
 @Component({
@@ -10,8 +11,29 @@ import { Platform } from '@ionic/angular';
   styleUrls: ['./page-space-er.page.scss'],
 })
 export class PageSpaceErPage implements OnInit {
+  isDesktop: boolean;
   contents: displayArticle[] = displayArticles;
-  constructor() {}
+  constructor(private screensizeService: ScreensizeService, private platform: Platform) {
+    this.initializeApp();
+
+    this.screensizeService.isDesktopView().subscribe(isDesktop => {
+      if (this.isDesktop && !isDesktop) {
+        
+      }
+ 
+      this.isDesktop = isDesktop;
+    });
+
+  }
+  initializeApp() {
+    this.platform.ready().then(() => {
+      this.screensizeService.onResize(this.platform.width());
+    });
+  }
+  @HostListener('window:resize', ['$event'])
+  private onResize(event) {
+    this.screensizeService.onResize(event.target.innerWidth);
+  }
 
   ngOnInit() {
   }
