@@ -18,7 +18,7 @@ getDataService(){
 }
 
 addDataService(data){
-  return this.db.collection('test').add(data);
+  return this.db.collection('articles').add(data);
 }
 
 removeDataService(id){

@@ -1,5 +1,5 @@
 import { displayArticle } from './displayArticle';
-export const displayArticles: displayArticle[] = [
+export const displayArticles = [
     {
         id: 0,
         title: 'Introduction',
