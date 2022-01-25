@@ -1,0 +1,249 @@
+Error: src/app/add-data/add-data.page.html:11:24 - error TS2339: Property 'articleRemoveById' does not exist on type 'AddDataPage'.
+
+11   <ion-button (click)="articleRemoveById()">
+                          ~~~~~~~~~~~~~~~~~
+
+  src/app/add-data/add-data.page.ts:7:16
+    7   templateUrl: './add-data.page.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component AddDataPage.
+
+
+Error: src/app/app.module.ts:26:50 - error TS2339: Property 'firebaseConfig' does not exist on type '{ production: boolean; }'.
+
+26      AngularFireModule.initializeApp(environment.firebaseConfig)
+                                                    ~~~~~~~~~~~~~~
+
+
+Error: src/app/page-space-er/page-space-er.page.html:146:75 - error TS2339: Property 'docId' does not exist on type 'unknown'.
+
+146         <ion-card color='light' routerLink="/tabs/page-space-me/{{content.docId}}" style="height: 330px;">
+                                                                              ~~~~~
+
+  src/app/page-space-er/page-space-er.page.ts:9:16
+    9   templateUrl: './page-space-er.page.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PageSpaceErPage.
+
+
+Error: src/app/page-space-er/page-space-er.page.html:147:31 - error TS2339: Property 'image' does not exist on type 'unknown'.
+
+147           <img src="{{content.image}}" />
+                                  ~~~~~
+
+  src/app/page-space-er/page-space-er.page.ts:9:16
+    9   templateUrl: './page-space-er.page.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PageSpaceErPage.
+
+
+Error: src/app/page-space-er/page-space-er.page.html:149:42 - error TS2339: Property 'subtitle' does not exist on type 'unknown'.
+
+149             <ion-card-subtitle>{{content.subtitle}}</ion-card-subtitle>
+                                             ~~~~~~~~
+
+  src/app/page-space-er/page-space-er.page.ts:9:16
+    9   templateUrl: './page-space-er.page.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PageSpaceErPage.
+
+
+Error: src/app/page-space-er/page-space-er.page.html:150:39 - error TS2339: Property 'title' does not exist on type 'unknown'.
+
+150             <ion-card-title>{{content.title}}</ion-card-title>
+                                          ~~~~~
+
+  src/app/page-space-er/page-space-er.page.ts:9:16
+    9   templateUrl: './page-space-er.page.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PageSpaceErPage.
+
+
+Error: src/app/page-space-la/article-main/article-main.component.html:19:60 - error TS2345: Argument of type 'string' is not assignable to parameter of type 'number'.
+
+19                     <ion-fab-button (click)="openCardModal(content.id)">
+                                                              ~~~~~~~~~~
+
+  src/app/page-space-la/article-main/article-main.component.ts:10:16
+    10   templateUrl: './article-main.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component ArticleMainComponent.
+
+
+Error: src/app/page-space-la/page-space-la.page.html:12:35 - error TS2339: Property 'status' does not exist on type 'PageSpaceLaPage'.
+
+12         <ion-segment [(ngModel)]="status" scrollable>
+                                     ~~~~~~
+
+  src/app/page-space-la/page-space-la.page.ts:7:16
+    7   templateUrl: './page-space-la.page.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PageSpaceLaPage.
+
+
+Error: src/app/page-space-la/page-space-la.page.html:12:35 - error TS2339: Property 'status' does not exist on type 'PageSpaceLaPage'.
+
+12         <ion-segment [(ngModel)]="status" scrollable>
+                                     ~~~~~~
+
+  src/app/page-space-la/page-space-la.page.ts:7:16
+    7   templateUrl: './page-space-la.page.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PageSpaceLaPage.
+
+
+Error: src/app/page-space-la/page-space-la.page.html:24:26 - error TS2339: Property 'status' does not exist on type 'PageSpaceLaPage'.
+
+24         <div [ngSwitch]="status">
+                            ~~~~~~
+
+  src/app/page-space-la/page-space-la.page.ts:7:16
+    7   templateUrl: './page-space-la.page.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PageSpaceLaPage.
+
+
+Error: src/app/page-space-me/page-space-me.page.html:93m18:50 - error TS2339: Property 'status' does not exist on type 'PageSpaceMePage'.
+
+18         <ion-segment color="medium" [(ngModel)]="status" *ngIf="contents.segment.length ===3">
+                                                    ~~~~~~
+
+  src/app/page-space-me/page-space-me.page.ts:14:16
+    14   templateUrl: './page-space-me.page.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PageSpaceMePage.
+
+
+Error: src/app/page-space-me/page-space-me.page.html:18:50 - error TS2339: Property 'status' does not exist on type 'PageSpaceMePage'.
+
+18         <ion-segment color="medium" [(ngModel)]="status" *ngIf="contents.segment.length ===3">
+                                                    ~~~~~~
+
+  src/app/page-space-me/page-space-me.page.ts:14:16
+    14   templateUrl: './page-space-me.page.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PageSpaceMePage.
+
+
+Error: src/app/page-space-me/page-space-me.page.html:30:50 - error TS2339: Property 'status' does not exist on type 'PageSpaceMePage'.
+
+30         <ion-segment color="medium" [(ngModel)]="status" *ngIf="contents.segment.length ===2">
+                                                    ~~~~~~
+
+  src/app/page-space-me/page-space-me.page.ts:14:16
+    14   templateUrl: './page-space-me.page.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PageSpaceMePage.
+
+
+Error: src/app/page-space-me/page-space-me.page.html:30:50 - error TS2339: Property 'status' does not exist on type 'PageSpaceMePage'.
+
+30         <ion-segment color="medium" [(ngModel)]="status" *ngIf="contents.segment.length ===2">
+                                                    ~~~~~~
+
+  src/app/page-space-me/page-space-me.page.ts:14:16
+    14   templateUrl: './page-space-me.page.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PageSpaceMePage.
+
+
+Error: src/app/page-space-me/page-space-me.page.html:59:22 - error TS2339: Property 'status' does not exist on type 'PageSpaceMePage'.
+
+59     <div [ngSwitch]="status" class="article " *ngIf="contents">
+                        ~~~~~~
+
+  src/app/page-space-me/page-space-me.page.ts:14:16
+    14   templateUrl: './page-space-me.page.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PageSpaceMePage.
+
+
+Error: src/app/page-space-su/eco-popover/eco-popover.component.html:1:1 - error NG8001: 'ion-content' is not a known element:
+1. If 'ion-content' is an Angular component, then verify that it is part of this module.
+2. If 'ion-content' is a Web Component then add 'CUSTOM_ELEMENTS_SCHEMA' to the '@NgModule.schemas' of this component to suppress this message.
+
+1 <ion-content class="ion-no-margin ion-no-padding">
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/page-space-su/eco-popover/eco-popover.component.ts:6:16
+    6   templateUrl: './eco-popover.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component EcoPopoverComponent.
+
+
+Error: src/app/page-space-su/eco-popover/eco-popover.component.html:2:3 - error NG8001: 'ion-list-header' is not a known element:
+1. If 'ion-list-header' is an Angular component, then verify that it is part of this module.
+2. If 'ion-list-header' is a Web Component then add 'CUSTOM_ELEMENTS_SCHEMA' to the '@NgModule.schemas' of this component to suppress this message.
+
+2   <ion-list-header>
+    ~~~~~~~~~~~~~~~~~
+
+  src/app/page-space-su/eco-popover/eco-popover.component.ts:6:16
+    6   templateUrl: './eco-popover.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component EcoPopoverComponent.
+
+
+Error: src/app/page-space-su/eco-popover/eco-popover.component.html:6:3 - error NG8001: 'ion-item' is not a known element:
+1. If 'ion-item' is an Angular component, then verify that it is part of this module.
+2. If 'ion-item' is a Web Component then add 'CUSTOM_ELEMENTS_SCHEMA' to the '@NgModule.schemas' of this component to suppress this message.
+
+6   <ion-item color="light" class="text-10">
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  src/app/page-space-su/eco-popover/eco-popover.component.ts:6:16
+    6   templateUrl: './eco-popover.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component EcoPopoverComponent.
+
+
+Error: src/app/page-space-su/page-space-su.page.html:38:110 - error TS2554: Expected 1 arguments, but got 0.
+
+38                                 <ion-button class="round" size="small" shape="round" color="medium" (click)="notifications()">
+                                                                                                                ~~~~~~~~~~~~~
+
+  src/app/page-space-su/page-space-su.page.ts:13:16
+    13   templateUrl: './page-space-su.page.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PageSpaceSuPage.
+
+
+Error: src/app/page-space-su/page-space-su.page.html:61:121 - error TS2554: Expected 1 arguments, but got 0.
+
+61                                 <ion-button slot="end" class="round" size="small" shape="round" color="medium" (click)="notifications()">
+                                                                                                                           ~~~~~~~~~~~~~
+
+  src/app/page-space-su/page-space-su.page.ts:13:16
+    13   templateUrl: './page-space-su.page.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component PageSpaceSuPage.
+
+
+Error: src/app/page-space-su/progress-indicators/progress-indicators.component.html:19:86 - error TS2554: Expected 1 arguments, but got 0.
+
+19       <ion-button class="round"  size="small" shape="round"  color="medium" (click)="notifications()" >
+                                                                                        ~~~~~~~~~~~~~
+
+  src/app/page-space-su/progress-indicators/progress-indicators.component.ts:10:16
+    10   templateUrl: './progress-indicators.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component ProgressIndicatorsComponent.
+
+
+Error: src/app/page-space-su/progress-indicators/progress-indicators.component.html:39:86 - error TS2554: Expected 1 arguments, but got 0.
+
+39       <ion-button class="round"  size="small" shape="round"  color="medium" (click)="notifications()" >
+                                                                                        ~~~~~~~~~~~~~
+
+  src/app/page-space-su/progress-indicators/progress-indicators.component.ts:10:16
+    10   templateUrl: './progress-indicators.component.html',
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component ProgressIndicatorsComponent.
+
+
+
+[ERROR] An error occurred while running subprocess ng.
+
+        ng.cmd run app:build:production exited with exit code 1.
+
+        Re-running this command with the --verbose flag may provide more information.
