@@ -86,7 +86,7 @@ export class PageSpaceMePage implements OnInit {
       console.log(res);
     })
   
-    alert("scussess");
+    alert("successful");
   }
 
   async notifications(event) {
