@@ -14,6 +14,7 @@ import { FirebaseService } from '../firebase.service';
 })
 export class EditingToolTestPagePage implements OnInit {
   @ViewChild('editor') editorComponent: CKEditorComponent;
+  // @ViewChild('titleInput') 
   // @Input("content") protected content: Content;
 
   // testTitleClass:string = "focusClass";//an attempt to set properties using [ngClass]
@@ -43,8 +44,11 @@ export class EditingToolTestPagePage implements OnInit {
     this.loadEditorDataById();//update data by id
   }
 
-  private receiveSegment(): segmentItem[] {
-    return null;
+  private updateDataById(docId, data) {
+    this.firebaseService.updateDataByIdService(docId, data).then((res: any) => {
+      console.log(res);
+    })
+    // alert("successful");
   }
 
 
@@ -59,6 +63,7 @@ export class EditingToolTestPagePage implements OnInit {
         console.log(this.contents);
         if (this.contents.segment.length == 0) {
           //this is persumably a new Segment with no segment component, so we increase a new one
+          console.log("***Unexpected error: article with zero segments")
           this.onChipAdd();
         }
         this.model = {//model specifies the information the page would get
@@ -78,6 +83,7 @@ export class EditingToolTestPagePage implements OnInit {
   //Import the editor build in your Angular component and assign it to a public property to make it accessible from the template
   public Editor = ClassicEditor;
   public onChipClick(index: number) {
+    // this.saveChangesLocal();
     console.log("change segment to new page " + index);
     this.currentSeg = index;
 
@@ -101,13 +107,27 @@ export class EditingToolTestPagePage implements OnInit {
     this.contents.segment.push({
       segmentTitle: "New Segment",
       segmentBody: "Body Paragraph"
-    }
-    );
+    });
+    // this.saveChangesLocal();
+    //update it to the local one
+    this.currentSeg = this.contents.segment.length-1;
+    //title input space updates automatically
+    //manually update editor input area here
+    this.updateArticle();
   }
 
   public onChange({ editor }: ChangeEvent) {
-    const data = editor.getData();
-    console.log(data);
+    // const data = editor.getData();
+    // console.log(data);
+    const newSegmentBody: string = this.editorComponent.editorInstance.getData();
+    //store the data
+    this.contents.segment[this.currentSeg].segmentBody = newSegmentBody;
+    console.log("Changes saved locally!");
+  }
+
+  private onTitleEditorChange() {
+    console.log("current title is: " + this.TitleInput);
+    this.contents.segment[this.currentSeg].segmentTitle = this.TitleInput;
   }
 
   private updateArticle() {
@@ -127,17 +147,33 @@ export class EditingToolTestPagePage implements OnInit {
       this.updateArticle();
 
     }
+    this.updateArticle();
+    // this.updateDataById(this.articleId, this.contents);
+    // this.loadEditorDataById();
   }
 
-  public saveChanges() {
-    console.log("save article change id: " + this.currentSeg);
-    //now we fetch the necessary information
-    const newSegmentTitle: string = this.TitleInput;
-    const newSegmentBody: string = this.editorComponent.editorInstance.getData();
-    //store the data
-    this.contents.segment[this.currentSeg].segmentTitle = newSegmentTitle;
-    this.contents.segment[this.currentSeg].segmentBody = newSegmentBody;
+  private reloadPage() {
+    this.contents = null;
+    this.loadEditorDataById();
+  }
+
+  private saveChangesToCloud() {
+    this.saveChangesLocal();
     //we need to show animation to let user know there are changes
+    this.updateDataById(this.articleId, this.contents);
+    this.reloadPage();
+    console.log("Changes saved to cloud!")
+  }
+
+  private saveChangesLocal() {
+    console.log("save seg change id: " + this.currentSeg);
+    //now we fetch the necessary information
+    // const newSegmentTitle: string = this.TitleInput;
+    // this.contents.segment[this.currentSeg].segmentTitle = newSegmentTitle;
+    // ion input onchange is already handling it
+
+
+
   }
 
   ngOnInit() {
