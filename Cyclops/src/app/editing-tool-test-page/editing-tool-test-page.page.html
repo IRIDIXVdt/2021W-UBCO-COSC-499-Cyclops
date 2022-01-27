@@ -5,7 +5,10 @@
       </ion-back-button>
     </ion-buttons>
     <ion-title>Editing Tool Demo </ion-title>
-
+    <ion-button slot="end" color = "light" fill="outline" (click)="saveChangesToCloud()">
+      <ion-icon name="cloud-upload-outline" color = "primary" ></ion-icon>
+      <ion-label color = "primary">&nbsp;&nbsp;Save</ion-label>
+    </ion-button>
   </ion-toolbar>
   <!-- <ion-progress-bar  ></ion-progress-bar> -->
   <ion-toolbar *ngIf="contents">
@@ -39,9 +42,9 @@
       <ion-fab-button (click)="removeArticle()">
         <ion-icon color="danger" name="trash-outline"></ion-icon>
       </ion-fab-button>
-      <ion-fab-button (click)="saveChanges()">
+      <!-- <ion-fab-button (click)="saveChanges()">
         <ion-icon color="primary" name="cloud-upload-outline"></ion-icon>
-      </ion-fab-button>
+      </ion-fab-button> -->
 
       <ion-fab-button (click)="onChipAdd()">
         <ion-icon name="add-circle-outline" color="primary"></ion-icon>
@@ -63,6 +66,6 @@
     <ckeditor max-height="20%" #editor [(ngModel)]="model.editorData" [editor]="Editor" (change)="onChange($event)">
     </ckeditor>
   </div>
-  
+
 
 </ion-content>

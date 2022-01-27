@@ -43,8 +43,11 @@ export class EditingToolTestPagePage implements OnInit {
     this.loadEditorDataById();//update data by id
   }
 
-  private receiveSegment(): segmentItem[] {
-    return null;
+  private updateDataById(docId, data) {
+    this.firebaseService.updateDataByIdService(docId, data).then((res: any) => {
+      console.log(res);
+    })
+    // alert("successful");
   }
 
 
@@ -59,6 +62,7 @@ export class EditingToolTestPagePage implements OnInit {
         console.log(this.contents);
         if (this.contents.segment.length == 0) {
           //this is persumably a new Segment with no segment component, so we increase a new one
+          console.log("***Unexpected error: article with zero segments")
           this.onChipAdd();
         }
         this.model = {//model specifies the information the page would get
@@ -78,6 +82,7 @@ export class EditingToolTestPagePage implements OnInit {
   //Import the editor build in your Angular component and assign it to a public property to make it accessible from the template
   public Editor = ClassicEditor;
   public onChipClick(index: number) {
+    this.saveChanges();
     console.log("change segment to new page " + index);
     this.currentSeg = index;
 
@@ -127,9 +132,25 @@ export class EditingToolTestPagePage implements OnInit {
       this.updateArticle();
 
     }
+    this.updateArticle();
+    // this.updateDataById(this.articleId, this.contents);
+    // this.loadEditorDataById();
   }
 
-  public saveChanges() {
+  private reloadPage() {
+    this.contents = null;
+    this.loadEditorDataById();
+  }
+
+  private saveChangesToCloud() {
+    this.saveChanges();
+    //we need to show animation to let user know there are changes
+    this.updateDataById(this.articleId, this.contents);
+    this.reloadPage();
+    console.log("Changes saved to cloud!")
+  }
+
+  private saveChanges() {
     console.log("save article change id: " + this.currentSeg);
     //now we fetch the necessary information
     const newSegmentTitle: string = this.TitleInput;
@@ -137,7 +158,8 @@ export class EditingToolTestPagePage implements OnInit {
     //store the data
     this.contents.segment[this.currentSeg].segmentTitle = newSegmentTitle;
     this.contents.segment[this.currentSeg].segmentBody = newSegmentBody;
-    //we need to show animation to let user know there are changes
+    console.log("Changes saved locally!");
+
   }
 
   ngOnInit() {
