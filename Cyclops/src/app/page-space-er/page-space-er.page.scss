@@ -70,4 +70,8 @@
 //     border-style: solid;
 //     border-radius:5%;
 // }
-
+@media (min-width: 1024px){
+  .hidden-lg-down{
+    display: none !important;
+  }
+}
