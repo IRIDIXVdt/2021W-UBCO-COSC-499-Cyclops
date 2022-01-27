@@ -8,9 +8,9 @@ ion-segment {
 //     top: 50%;
 //     margin-top: -23px !important;
 // }
-.split-pane-visible > .split-pane-side {
-    border-right: none !important;
-}
+// .split-pane-visible > .split-pane-side {
+//     border-right: none !important;
+// }
 
 .menu-inner ion-content {
     border-right: 1px solid #dedede;
@@ -18,7 +18,7 @@ ion-segment {
 }
 ion-split-pane {
     --side-min-width: 50px;
-    --side-max-width: 120px;
+    --side-max-width: 148px;
     --side-width: 300px;
   }
   .cIcon{
