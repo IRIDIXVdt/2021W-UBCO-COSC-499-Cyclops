@@ -21,3 +21,15 @@ ion-split-pane {
     --side-max-width: 120px;
     --side-width: 300px;
   }
+  .cIcon{
+    font-size: 80px;
+    text-align: center;
+  }
+  // .bottom-pane{
+  //   border-top: none !important;
+  // }
+
+  .ion-no-border{
+    padding-bottom: 20px;
+    padding-top: 10px;
+  }
