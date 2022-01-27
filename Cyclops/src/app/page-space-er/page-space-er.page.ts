@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Platform } from '@ionic/angular';
 import { FirebaseService } from '../firebase.service';
 import { displayArticle } from '../sharedData/displayArticle';
 import { displayArticles } from '../sharedData/displayArticles';
-
+import { ScreensizeService } from './services/screensize.service';
 
 @Component({
   selector: 'app-page-space-er',
@@ -12,7 +13,7 @@ import { displayArticles } from '../sharedData/displayArticles';
 export class PageSpaceErPage implements OnInit {
   //contents: displayArticle[] = displayArticles;
   articles:any;
-  constructor(public firebaseService: FirebaseService) { this.loadData() }
+  constructor(public firebaseService: FirebaseService, private screensizeService: ScreensizeService, private platform: Platform) { this.loadData() }
 
   ngOnInit() {
   }
