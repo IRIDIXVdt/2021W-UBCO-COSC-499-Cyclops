@@ -27,7 +27,8 @@ const routes: Routes = [
     loadChildren: () => import('./page-space-me/page-space-me.module').then( m => m.PageSpaceMePageModule)
   },
   {
-    path: 'tabs/TextEdit/:id',
+    path: 'tabs/TextEdit/:docId',
+    // different from the id we had before, this new docId is from FireStore
     loadChildren: () => import('./editing-tool-test-page/editing-tool-test-page.module').then( m => m.EditingToolTestPagePageModule)
   },
   {
