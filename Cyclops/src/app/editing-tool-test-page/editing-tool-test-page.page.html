@@ -8,8 +8,8 @@
 
   </ion-toolbar>
   <!-- <ion-progress-bar  ></ion-progress-bar> -->
-  <ion-toolbar>
-    <ion-chip *ngFor="let segmentItem of contents[articleId].segment;let indexOfelement=index;"
+  <ion-toolbar *ngIf="contents">
+    <ion-chip *ngFor="let segmentItem of contents.segment;let indexOfelement=index;"
       (click)="onChipClick(indexOfelement)">
       <ion-label color="dark">{{segmentItem.segmentTitle}}</ion-label>
     </ion-chip>
@@ -18,34 +18,51 @@
       <ion-icon name="add-circle-outline" color="danger"></ion-icon>
     </ion-chip>
   </ion-toolbar>
+  <div *ngIf="!contents">
+    <ion-progress-bar type="indeterminate"></ion-progress-bar>
+  </div>
+  <!-- <ion-toolbar *ngIf = "!contents">
+    <ion-label>
+      <ion-skeleton-text animated style="width: 20%"></ion-skeleton-text>
+    </ion-label>
+  </ion-toolbar> -->
 </ion-header>
 
 <ion-content class="ion-padding">
-  <ion-fab vertical="top" horizontal="end" slot="fixed" >
+  <ion-fab vertical="top" horizontal="end" slot="fixed">
     <ion-fab-button>
       <ion-icon name="settings"></ion-icon>
     </ion-fab-button>
-    <ion-fab-list side="bottom">
-      <ion-fab-button (click)="removeArticle()"><ion-icon color = "danger" name="trash-outline"></ion-icon></ion-fab-button>
-      <ion-fab-button (click)="saveChanges()"><ion-icon color = "primary" name="cloud-upload-outline"></ion-icon></ion-fab-button>
-      
+
+    <ion-fab-list side="bottom" *ngIf="contents">
+      <!-- only display it if contents variable exists -->
+      <ion-fab-button (click)="removeArticle()">
+        <ion-icon color="danger" name="trash-outline"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button (click)="saveChanges()">
+        <ion-icon color="primary" name="cloud-upload-outline"></ion-icon>
+      </ion-fab-button>
+
       <ion-fab-button (click)="onChipAdd()">
-          <ion-icon name="add-circle-outline" color="primary"></ion-icon>
+        <ion-icon name="add-circle-outline" color="primary"></ion-icon>
       </ion-fab-button>
     </ion-fab-list>
   </ion-fab>
   <!-- <p class = "testT">testText</p> -->
-  <ion-toolbar>
+  <ion-toolbar *ngIf="contents">
     <ion-item>
       <ion-label text-wrap position="floating">
         Text Editing Space for
-        "{{contents[articleId].title}}" section
+        "{{contents.title}}" section
       </ion-label>
-      <ion-input  [(ngModel)]="TitleInput" placeholder="Input Title Here" value="{{contents[articleId].segment[currentSeg].segmentTitle}}"></ion-input>
+      <ion-input [(ngModel)]="TitleInput" placeholder="Input Title Here"
+        value="{{contents.segment[currentSeg].segmentTitle}}"></ion-input>
     </ion-item>
   </ion-toolbar>
-
-  <ckeditor max-height="20%" #editor [(ngModel)]="model.editorData" [editor]="Editor" (change)="onChange($event)">
-  </ckeditor>
+  <div *ngIf="contents">
+    <ckeditor max-height="20%" #editor [(ngModel)]="model.editorData" [editor]="Editor" (change)="onChange($event)">
+    </ckeditor>
+  </div>
+  
 
 </ion-content>

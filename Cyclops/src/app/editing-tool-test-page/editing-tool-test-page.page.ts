@@ -5,7 +5,7 @@ import { displayArticle, segmentItem } from '../sharedData/displayArticle';
 import { displayArticles } from '../sharedData/displayArticles';
 import { ActivatedRoute } from '@angular/router';
 // import { Content } from '@angular/compiler/src/render3/r3_ast';
-
+import { FirebaseService } from '../firebase.service';
 
 @Component({
   selector: 'app-editing-tool-test-page',
@@ -19,34 +19,61 @@ export class EditingToolTestPagePage implements OnInit {
   // testTitleClass:string = "focusClass";//an attempt to set properties using [ngClass]
 
   //get access to all the articles
-  contents: displayArticle[] = displayArticles;
+  contents: EditPageArticle;
+  // Update how we fetch contents, now using receiveSegment()
+
   //sepcify the segment section
   currentSeg: number;
   //get access to a specific article (with the provided id passes from page space la)
-  articleId;
+  articleId: String;
   //specify data for CKEditor
   public model;
   //get ionic input data
   TitleInput: string;
 
+
   constructor(
-    private activatedrouter: ActivatedRoute
+    private activatedrouter: ActivatedRoute,
+    public firebaseService: FirebaseService
   ) {
     //we start reading the first element
     this.currentSeg = 0;
     //fetch article id from the other side and store it in articleId
-    this.articleId = this.activatedrouter.snapshot.paramMap.get('id');
-
-    if (this.contents[this.articleId].segment.length == 0) {
-      //this is persumably a new Segment with no segment component, so we increase a new one
-      this.onChipAdd();
-    }
-    this.model = {//model specifies the information the page would get
-      editorData: this.contents[this.articleId].segment[this.currentSeg].segmentBody
-    };
-    this.TitleInput = this.contents[this.articleId].segment[this.currentSeg].segmentTitle;
-    // this.content.addCssClass("no-scroll");
+    this.articleId = this.activatedrouter.snapshot.paramMap.get('docId');
+    this.loadEditorDataById();//update data by id
   }
+
+  private receiveSegment(): segmentItem[] {
+    return null;
+  }
+
+
+  private loadEditorDataById() {
+    this.firebaseService.getDataByIdService(this.articleId).subscribe(
+      e => {
+        this.contents = {
+          title: e.payload.data()['title'],
+          segment: e.payload.data()['segment'],
+        };
+        console.log("load editor data by id message from " + this.articleId);
+        console.log(this.contents);
+        if (this.contents.segment.length == 0) {
+          //this is persumably a new Segment with no segment component, so we increase a new one
+          this.onChipAdd();
+        }
+        this.model = {//model specifies the information the page would get
+          editorData: this.contents.segment[this.currentSeg].segmentBody
+        };
+        this.TitleInput = this.contents.segment[this.currentSeg].segmentTitle;
+        // this.content.addCssClass("no-scroll");
+      },
+      err => {
+        console.debug(err);
+      }
+    )
+
+  }
+
 
   //Import the editor build in your Angular component and assign it to a public property to make it accessible from the template
   public Editor = ClassicEditor;
@@ -57,7 +84,7 @@ export class EditingToolTestPagePage implements OnInit {
     // this.model.editorData= this.contents[this.articleId].segment[this.currentSeg].segmentBody;
     // console.log(this.editorComponent.editorInstance);\
     //update the content in the CKEditor
-    this.editorComponent.editorInstance.setData(this.contents[this.articleId].segment[this.currentSeg].segmentBody)
+    this.editorComponent.editorInstance.setData(this.contents.segment[this.currentSeg].segmentBody)
     // const el: HTMLElement = document.querySelector('ion-chip');
     // el.style.setProperty('', '#36454f');
   }
@@ -71,7 +98,7 @@ export class EditingToolTestPagePage implements OnInit {
     }
     //add segment to contents
     console.log("the current article id is: " + this.articleId);
-    this.contents[this.articleId].segment.push({
+    this.contents.segment.push({
       segmentTitle: "New Segment",
       segmentBody: "Body Paragraph"
     }
@@ -84,14 +111,14 @@ export class EditingToolTestPagePage implements OnInit {
   }
 
   private updateArticle() {
-    this.editorComponent.editorInstance.setData(this.contents[this.articleId].segment[this.currentSeg].segmentBody)
+    this.editorComponent.editorInstance.setData(this.contents.segment[this.currentSeg].segmentBody)
   }
 
   public removeArticle() {
     console.log("remove segment article id: " + this.currentSeg);
-    this.contents[this.articleId].segment.splice(this.currentSeg, 1);
+    this.contents.segment.splice(this.currentSeg, 1);
     this.currentSeg = 0;
-    if (this.contents[this.articleId].segment.length == 0) {
+    if (this.contents.segment.length == 0) {
       //empty segment here, increase one
       //this initialized a new Chip
       this.onChipAdd();
@@ -108,12 +135,16 @@ export class EditingToolTestPagePage implements OnInit {
     const newSegmentTitle: string = this.TitleInput;
     const newSegmentBody: string = this.editorComponent.editorInstance.getData();
     //store the data
-    this.contents[this.articleId].segment[this.currentSeg].segmentTitle = newSegmentTitle;
-    this.contents[this.articleId].segment[this.currentSeg].segmentBody = newSegmentBody;
+    this.contents.segment[this.currentSeg].segmentTitle = newSegmentTitle;
+    this.contents.segment[this.currentSeg].segmentBody = newSegmentBody;
     //we need to show animation to let user know there are changes
   }
 
   ngOnInit() {
   }
 
-}   
+}
+type EditPageArticle = {
+  title: string;
+  segment: segmentItem[];
+}
