@@ -5,16 +5,21 @@
       </ion-back-button>
     </ion-buttons>
     <ion-title>Editing Tool Demo </ion-title>
-    <ion-button slot="end" color = "light" fill="outline" (click)="saveChangesToCloud()">
-      <ion-icon name="cloud-upload-outline" color = "primary" ></ion-icon>
-      <ion-label color = "primary">&nbsp;&nbsp;Save</ion-label>
+    <ion-button slot="end" color="light" fill="outline" (click)="saveChangesToCloud()">
+      <ion-icon name="cloud-upload-outline" color="primary"></ion-icon>
+      <ion-label color="primary">&nbsp;&nbsp;Save</ion-label>
     </ion-button>
   </ion-toolbar>
   <!-- <ion-progress-bar  ></ion-progress-bar> -->
   <ion-toolbar *ngIf="contents">
     <ion-chip *ngFor="let segmentItem of contents.segment;let indexOfelement=index;"
       (click)="onChipClick(indexOfelement)">
-      <ion-label color="dark">{{segmentItem.segmentTitle}}</ion-label>
+      <div *ngIf="indexOfelement != currentSeg">
+        <ion-label color="dark">{{segmentItem.segmentTitle}}</ion-label>
+      </div>
+      <div *ngIf="indexOfelement == currentSeg">
+        <ion-label color="primary">{{segmentItem.segmentTitle}}</ion-label>
+      </div>
     </ion-chip>
     <ion-chip (click)="onChipAdd()">
       <ion-label>Add Segment</ion-label>
@@ -54,12 +59,11 @@
   <!-- <p class = "testT">testText</p> -->
   <ion-toolbar *ngIf="contents">
     <ion-item>
-      <ion-label text-wrap position="floating">
-        Text Editing Space for
-        "{{contents.title}}" section
+      <ion-label text-wrap position="stacked">
+        Title of this Segment:
       </ion-label>
-      <ion-input [(ngModel)]="TitleInput" placeholder="Input Title Here"
-        value="{{contents.segment[currentSeg].segmentTitle}}"></ion-input>
+      <ion-input #titleInput [(ngModel)]="TitleInput" placeholder="Input Title Here"
+        value="{{contents.segment[currentSeg].segmentTitle}}" (ionChange)="onTitleEditorChange()"></ion-input>
     </ion-item>
   </ion-toolbar>
   <div *ngIf="contents">
