@@ -4,10 +4,10 @@
       <ion-back-button defaultHref="/">
       </ion-back-button>
     </ion-buttons>
-    <ion-title *ngIf = "contents">
-      <p>Editing Tool for {{contents.title}}</p>
+    <ion-title *ngIf="contents">
+      <p>Editing "{{contents.title}}"</p>
     </ion-title>
-    <ion-title *ngIf = "!contents">
+    <ion-title *ngIf="!contents">
       <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
     </ion-title>
     <ion-button slot="end" color="light" fill="outline" (click)="saveChangesToCloud()">
@@ -17,19 +17,32 @@
   </ion-toolbar>
   <!-- <ion-progress-bar  ></ion-progress-bar> -->
   <ion-toolbar *ngIf="contents">
-    <ion-chip *ngFor="let segmentItem of contents.segment;let indexOfelement=index;"
-      (click)="onChipClick(indexOfelement)">
-      <div *ngIf="indexOfelement != currentSeg">
-        <ion-label color="dark">{{segmentItem.segmentTitle}}</ion-label>
-      </div>
-      <div *ngIf="indexOfelement == currentSeg">
-        <ion-label color="primary">{{segmentItem.segmentTitle}}</ion-label>
-      </div>
+    <span *ngFor="let segmentItem of contents.segment;let indexOfelement=index;">
+
+      <span *ngIf="indexOfelement != currentSeg">
+        <ion-chip (click)="onChipClick(indexOfelement)">
+          <ion-label color="dark">{{segmentItem.segmentTitle}}</ion-label>
+        </ion-chip>
+      </span>
+
+      <span *ngIf="indexOfelement == currentSeg">
+        <!-- if this is the selected option -->
+        <ion-chip (click)="onChipClick(indexOfelement)">
+          <ion-label color="primary">{{segmentItem.segmentTitle}}</ion-label>
+        </ion-chip>
+        <ion-chip color = "light" (click)="removeArticle()">
+          <ion-icon color="danger" name="trash-outline"></ion-icon>
+          <ion-label></ion-label>
+        </ion-chip>
+      </span>
+    </span>
+
+    <ion-chip (click)="onChipAdd()" color = "light">
+      <!-- <ion-label>Add Segment</ion-label> -->
+      <ion-icon name="add-circle-outline" color="primary"></ion-icon>
+      <ion-label></ion-label>
     </ion-chip>
-    <ion-chip (click)="onChipAdd()">
-      <ion-label>Add Segment</ion-label>
-      <ion-icon name="add-circle-outline" color="danger"></ion-icon>
-    </ion-chip>
+
   </ion-toolbar>
   <div *ngIf="!contents">
     <ion-progress-bar type="indeterminate"></ion-progress-bar>
@@ -52,9 +65,9 @@
       <ion-fab-button (click)="removeArticle()">
         <ion-icon color="danger" name="trash-outline"></ion-icon>
       </ion-fab-button>
-      <!-- <ion-fab-button (click)="saveChanges()">
+      <ion-fab-button (click)="saveChanges()">
         <ion-icon color="primary" name="cloud-upload-outline"></ion-icon>
-      </ion-fab-button> -->
+      </ion-fab-button>
 
       <ion-fab-button (click)="onChipAdd()">
         <ion-icon name="add-circle-outline" color="primary"></ion-icon>
