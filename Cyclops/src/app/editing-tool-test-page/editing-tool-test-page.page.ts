@@ -41,16 +41,6 @@ export class EditingToolTestPagePage implements OnInit {
     //fetch article id from the other side and store it in articleId
     this.articleId = this.activatedrouter.snapshot.paramMap.get('docId');
     this.loadEditorDataById();//update data by id
-    
-    if (this.contents.segment.length == 0) {
-      //this is persumably a new Segment with no segment component, so we increase a new one
-      this.onChipAdd();
-    }
-    this.model = {//model specifies the information the page would get
-      editorData: this.contents.segment[this.currentSeg].segmentBody
-    };
-    this.TitleInput = this.contents.segment[this.currentSeg].segmentTitle;
-    // this.content.addCssClass("no-scroll");
   }
 
   private receiveSegment(): segmentItem[] {
@@ -67,11 +57,21 @@ export class EditingToolTestPagePage implements OnInit {
         };
         console.log("load editor data by id message from " + this.articleId);
         console.log(this.contents);
+        if (this.contents.segment.length == 0) {
+          //this is persumably a new Segment with no segment component, so we increase a new one
+          this.onChipAdd();
+        }
+        this.model = {//model specifies the information the page would get
+          editorData: this.contents.segment[this.currentSeg].segmentBody
+        };
+        this.TitleInput = this.contents.segment[this.currentSeg].segmentTitle;
+        // this.content.addCssClass("no-scroll");
       },
       err => {
         console.debug(err);
       }
     )
+
   }
 
 
