@@ -4,7 +4,12 @@
       <ion-back-button defaultHref="/">
       </ion-back-button>
     </ion-buttons>
-    <ion-title>Editing Tool Demo </ion-title>
+    <ion-title *ngIf = "contents">
+      <p>Editing Tool for {{contents.title}}</p>
+    </ion-title>
+    <ion-title *ngIf = "!contents">
+      <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+    </ion-title>
     <ion-button slot="end" color="light" fill="outline" (click)="saveChangesToCloud()">
       <ion-icon name="cloud-upload-outline" color="primary"></ion-icon>
       <ion-label color="primary">&nbsp;&nbsp;Save</ion-label>
