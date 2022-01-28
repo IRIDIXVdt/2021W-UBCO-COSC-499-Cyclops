@@ -2,26 +2,30 @@
     <ion-toolbar>
         <!-- <img src="../assets/icon/cyclops.png" style="margin-top: 3%; margin-left: 3%; width: 20%;"/>
      -->
-        <ion-icon src="../assets/icon/cyclops_temp.svg" id="cIcon"></ion-icon>
+        <div class="hidden-lg-down">
+            <ion-icon src="../assets/icon/cyclops_temp.svg" id="cIcon"></ion-icon>
+        </div>
 
         <ion-title style="text-align: right;" style="font-size: 150%;">CyclopediApp</ion-title>
     </ion-toolbar>
 </ion-header>
 
-<ion-fab vertical="top" horizontal="end" slot="fixed">
-    <ion-fab-button color="light">
-        <ion-icon name="add-outline"></ion-icon>
-    </ion-fab-button>
+<div *ngIf="!isDesktop">
+    <ion-fab vertical="top" horizontal="end" slot="fixed">
+        <ion-fab-button color="light">
+            <ion-icon name="add-outline"></ion-icon>
+        </ion-fab-button>
 
-    <ion-fab-list side="bottom">
-        <ion-fab-button>
-            <ion-icon name="log-in-outline" routerLink="/login"></ion-icon>
-        </ion-fab-button>
-        <ion-fab-button>
-            <ion-icon name="settings-outline" routerLink="/crud-demo"></ion-icon>
-        </ion-fab-button>
-    </ion-fab-list>
-</ion-fab>
+        <ion-fab-list side="bottom">
+            <ion-fab-button>
+                <ion-icon name="log-in-outline" routerLink="/login"></ion-icon>
+            </ion-fab-button>
+            <ion-fab-button routte>
+                <ion-icon name="settings-outline"></ion-icon>
+            </ion-fab-button>
+        </ion-fab-list>
+    </ion-fab>
+</div>
 
 
 <ion-content class="ion-padding">

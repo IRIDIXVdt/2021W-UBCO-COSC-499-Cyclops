@@ -35,7 +35,9 @@ getDataByIdService(docId){
 }
 
 updateDataByIdService(docId,data){
-  return this.db.collection('articles').doc(docId).set(data);
+  // return this.db.collection('articles').doc(docId).set(data);
+  
+  return this.db.collection('articles').doc(docId).update(data);
 }
 
 }

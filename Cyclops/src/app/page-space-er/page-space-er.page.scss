@@ -59,3 +59,9 @@ ion-slides {
         display: none;
     }
 }
+
+@media (min-width: 1024px) {
+    .hidden-lg-down {
+        display: none !important;
+    }
+}

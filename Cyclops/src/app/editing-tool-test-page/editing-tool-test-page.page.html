@@ -4,48 +4,90 @@
       <ion-back-button defaultHref="/">
       </ion-back-button>
     </ion-buttons>
-    <ion-title>Editing Tool Demo </ion-title>
-
+    <ion-title *ngIf="contents">
+      <p>Editing "{{contents.title}}"</p>
+    </ion-title>
+    <ion-title *ngIf="!contents">
+      <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+    </ion-title>
+    <ion-button slot="end" color="light" fill="outline" (click)="saveChangesToCloud()">
+      <ion-icon name="cloud-upload-outline" color="primary"></ion-icon>
+      <ion-label color="primary">&nbsp;&nbsp;Save</ion-label>
+    </ion-button>
   </ion-toolbar>
   <!-- <ion-progress-bar  ></ion-progress-bar> -->
-  <ion-toolbar>
-    <ion-chip *ngFor="let segmentItem of contents[articleId].segment;let indexOfelement=index;"
-      (click)="onChipClick(indexOfelement)">
-      <ion-label color="dark">{{segmentItem.segmentTitle}}</ion-label>
+  <ion-toolbar *ngIf="contents">
+    <span *ngFor="let segmentItem of contents.segment;let indexOfelement=index;">
+
+      <span *ngIf="indexOfelement != currentSeg">
+        <ion-chip (click)="onChipClick(indexOfelement)">
+          <ion-label color="dark">{{segmentItem.segmentTitle}}</ion-label>
+        </ion-chip>
+      </span>
+
+      <span *ngIf="indexOfelement == currentSeg">
+        <!-- if this is the selected option -->
+        <ion-chip (click)="onChipClick(indexOfelement)">
+          <ion-label color="primary">{{segmentItem.segmentTitle}}</ion-label>
+        </ion-chip>
+        <ion-chip color = "light" (click)="removeArticle()">
+          <ion-icon color="danger" name="trash-outline"></ion-icon>
+          <ion-label></ion-label>
+        </ion-chip>
+      </span>
+    </span>
+
+    <ion-chip (click)="onChipAdd()" color = "light">
+      <!-- <ion-label>Add Segment</ion-label> -->
+      <ion-icon name="add-circle-outline" color="primary"></ion-icon>
+      <ion-label></ion-label>
     </ion-chip>
-    <ion-chip (click)="onChipAdd()">
-      <ion-label>Add Segment</ion-label>
-      <ion-icon name="add-circle-outline" color="danger"></ion-icon>
-    </ion-chip>
+
   </ion-toolbar>
+  <div *ngIf="!contents">
+    <ion-progress-bar type="indeterminate"></ion-progress-bar>
+  </div>
+  <!-- <ion-toolbar *ngIf = "!contents">
+    <ion-label>
+      <ion-skeleton-text animated style="width: 20%"></ion-skeleton-text>
+    </ion-label>
+  </ion-toolbar> -->
 </ion-header>
 
 <ion-content class="ion-padding">
-  <ion-fab vertical="top" horizontal="end" slot="fixed" >
+  <ion-fab vertical="top" horizontal="end" slot="fixed">
     <ion-fab-button>
       <ion-icon name="settings"></ion-icon>
     </ion-fab-button>
-    <ion-fab-list side="bottom">
-      <ion-fab-button (click)="removeArticle()"><ion-icon color = "danger" name="trash-outline"></ion-icon></ion-fab-button>
-      <ion-fab-button (click)="saveChanges()"><ion-icon color = "primary" name="cloud-upload-outline"></ion-icon></ion-fab-button>
-      
+
+    <ion-fab-list side="bottom" *ngIf="contents">
+      <!-- only display it if contents variable exists -->
+      <ion-fab-button (click)="removeArticle()">
+        <ion-icon color="danger" name="trash-outline"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button (click)="saveChanges()">
+        <ion-icon color="primary" name="cloud-upload-outline"></ion-icon>
+      </ion-fab-button>
+
       <ion-fab-button (click)="onChipAdd()">
-          <ion-icon name="add-circle-outline" color="primary"></ion-icon>
+        <ion-icon name="add-circle-outline" color="primary"></ion-icon>
       </ion-fab-button>
     </ion-fab-list>
   </ion-fab>
   <!-- <p class = "testT">testText</p> -->
-  <ion-toolbar>
+  <ion-toolbar *ngIf="contents">
     <ion-item>
-      <ion-label text-wrap position="floating">
-        Text Editing Space for
-        "{{contents[articleId].title}}" section
+      <ion-label text-wrap position="stacked">
+        Title of this Segment:
       </ion-label>
-      <ion-input  [(ngModel)]="TitleInput" placeholder="Input Title Here" value="{{contents[articleId].segment[currentSeg].segmentTitle}}"></ion-input>
+      <ion-input #titleInput [(ngModel)]="TitleInput" placeholder="Input Title Here"
+        value="{{contents.segment[currentSeg].segmentTitle}}" (ionChange)="onTitleEditorChange()"></ion-input>
     </ion-item>
   </ion-toolbar>
+  <div *ngIf="contents">
+    <ckeditor max-height="20%" #editor [(ngModel)]="model.editorData" [editor]="Editor" (change)="onChange($event)">
+    </ckeditor>
+  </div>
 
-  <ckeditor max-height="20%" #editor [(ngModel)]="model.editorData" [editor]="Editor" (change)="onChange($event)">
-  </ckeditor>
 
 </ion-content>
