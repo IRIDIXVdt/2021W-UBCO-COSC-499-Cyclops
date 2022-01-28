@@ -82,10 +82,23 @@ export class EditingToolTestPagePage implements OnInit {
       },
       err => {
         console.debug(err);
-        this.displayMessage("err");
+        this.presentErr("err");
       }
     )
 
+  }
+
+  async presentErr(errMessage: string){
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Err',
+      subHeader: 'Message:',
+      message: 'errMessage',
+      // buttons: ['OK']
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
 
   async presentAlert() {
@@ -95,7 +108,7 @@ export class EditingToolTestPagePage implements OnInit {
       // subHeader: 'Subtitle',
       message: 'This is Article Edit Page. You can edit, add and remove article here.',
       // buttons: ['OK']
-      buttons: ['Cancel', 'Open Modal', 'Delete']
+      buttons: ['OK']
     });
 
     await alert.present();
@@ -229,7 +242,7 @@ export class EditingToolTestPagePage implements OnInit {
     if (role == "cancel") {
       console.log("cancel!");
     } else {
-      this.saveChangesLocal();
+      // this.saveChangesLocal();
       //we need to show animation to let user know there are changes
       this.updateDataById(this.articleId, this.contents);
       this.reloadPage();
@@ -250,16 +263,16 @@ export class EditingToolTestPagePage implements OnInit {
     await alert2.present();
   }
 
-  private saveChangesLocal() {
-    console.log("save seg change id: " + this.currentSeg);
-    //now we fetch the necessary information
-    // const newSegmentTitle: string = this.TitleInput;
-    // this.contents.segment[this.currentSeg].segmentTitle = newSegmentTitle;
-    // ion input onchange is already handling it
+  // private saveChangesLocal() {
+  //   console.log("save seg change id: " + this.currentSeg);
+  //   //now we fetch the necessary information
+  //   // const newSegmentTitle: string = this.TitleInput;
+  //   // this.contents.segment[this.currentSeg].segmentTitle = newSegmentTitle;
+  //   // ion input onchange is already handling it
 
 
 
-  }
+  // }
 
   ngOnInit() {
   }
