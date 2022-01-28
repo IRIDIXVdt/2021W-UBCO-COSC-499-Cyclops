@@ -12,9 +12,13 @@
     <ion-title *ngIf="!contents">
       <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
     </ion-title>
-    <ion-button slot="end" color="light" fill="outline" (click)="saveChangesToCloud()">
+    <ion-button slot="end" color="light" fill="outline" (click)="saveChangesToCloud()" *ngIf = "needSaving">
       <ion-icon name="cloud-upload-outline" color="primary"></ion-icon>
       <ion-label color="primary">&nbsp;&nbsp;Save</ion-label>
+    </ion-button>
+    <ion-button slot="end" color="light" fill="outline" *ngIf = "!needSaving" disabled = "true">
+      <ion-icon name="cloud-upload-outline" color="medium"></ion-icon>
+      <ion-label color="medium">&nbsp;&nbsp;Saved</ion-label>
     </ion-button>
   </ion-toolbar>
   <!-- <ion-progress-bar  ></ion-progress-bar> -->

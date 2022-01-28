@@ -19,6 +19,8 @@ export class EditingToolTestPagePage implements OnInit {
   // @Input("content") protected content: Content;
 
   // testTitleClass:string = "focusClass";//an attempt to set properties using [ngClass]
+  //needSaving describes if the current version is the latest version
+  needSaving: boolean = false;
 
   //get access to all the articles
   contents: EditPageArticle;
@@ -75,6 +77,8 @@ export class EditingToolTestPagePage implements OnInit {
         };
         this.TitleInput = this.contents.segment[this.currentSeg].segmentTitle;
         // this.content.addCssClass("no-scroll");
+        this.needSaving = false;
+        console.log("need saving to false from loadEditorDataById");
       },
       err => {
         console.debug(err);
@@ -147,11 +151,17 @@ export class EditingToolTestPagePage implements OnInit {
     //store the data
     this.contents.segment[this.currentSeg].segmentBody = newSegmentBody;
     console.log("Changes saved locally!");
+    //change saving state to open
+    this.needSaving = true;
+    console.log("need Saving on Content Editor Change");
   }
 
   private onTitleEditorChange() {
     console.log("current title is: " + this.TitleInput);
     this.contents.segment[this.currentSeg].segmentTitle = this.TitleInput;
+    //change saving state to open
+    this.needSaving = true;
+    console.log("need Saving on Title Editor Change");
   }
 
   private updateArticle() {
@@ -225,6 +235,9 @@ export class EditingToolTestPagePage implements OnInit {
       this.reloadPage();
       console.log("Changes saved to cloud!");
       this.displayMessage("Upload Success");
+      //change saving state to close
+      this.needSaving = false;
+      console.log("need saving to false");
     }
   }
 
