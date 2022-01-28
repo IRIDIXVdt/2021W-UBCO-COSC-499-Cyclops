@@ -156,22 +156,33 @@ export class EditingToolTestPagePage implements OnInit {
     this.editorComponent.editorInstance.setData(this.contents.segment[this.currentSeg].segmentBody)
   }
 
-  public removeArticle() {
-    console.log("remove segment article id: " + this.currentSeg);
-    this.contents.segment.splice(this.currentSeg, 1);
-    this.currentSeg = 0;
-    if (this.contents.segment.length == 0) {
-      //empty segment here, increase one
-      //this initialized a new Chip
-      this.onChipAdd();
-      //this updates the CKEditor Directly, this is not good practice
-      // this.editorComponent.editorInstance.setData("Body Paragraph");
+  public async removeArticle() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      message: 'Do you want to remove ' + this.contents.segment[this.currentSeg].segmentTitle + "?",
+      buttons: ['Cancel', 'OK']
+    });
+    await alert.present();
+    const { role } = await alert.onDidDismiss();
+    if (role == "cancel") {
+      console.log("cancel!");
+    } else {
+      console.log("remove segment article id: " + this.currentSeg);
+      this.contents.segment.splice(this.currentSeg, 1);
+      this.currentSeg = 0;
+      if (this.contents.segment.length == 0) {
+        //empty segment here, increase one
+        //this initialized a new Chip
+        this.onChipAdd();
+        //this updates the CKEditor Directly, this is not good practice
+        // this.editorComponent.editorInstance.setData("Body Paragraph");
+      }
       this.updateArticle();
-
+      // this.updateDataById(this.articleId, this.contents);
+      // this.loadEditorDataById();
+      console.log("Delete Success");
+      // this.displayMessage("Delete Success");
     }
-    this.updateArticle();
-    // this.updateDataById(this.articleId, this.contents);
-    // this.loadEditorDataById();
   }
 
   private reloadPage() {
@@ -199,7 +210,7 @@ export class EditingToolTestPagePage implements OnInit {
     }
   }
 
-  async displayMessage(inputMessage:string){
+  async displayMessage(inputMessage: string) {
     const alert2 = await this.alertController.create({
       cssClass: 'my-custom-class',
       message: inputMessage,
