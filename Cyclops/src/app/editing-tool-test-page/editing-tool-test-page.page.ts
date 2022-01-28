@@ -76,6 +76,7 @@ export class EditingToolTestPagePage implements OnInit {
       },
       err => {
         console.debug(err);
+        this.displayMessage("err");
       }
     )
 
@@ -100,34 +101,6 @@ export class EditingToolTestPagePage implements OnInit {
     console.log('onDidDismiss resolved with role', role);
 
   }
-
-  async presentAlertConfirm() {
-    // const alert = await this.alertController.create({
-    //   cssClass: 'my-custom-class',
-    //   header: 'Confirm!',
-    //   message: 'Message <strong>text</strong>!!!',
-    //   buttons: [
-    //     {
-    //       text: 'Cancel',
-    //       role: 'cancel',
-    //       cssClass: 'secondary',
-    //       id: 'cancel-button',
-    //       handler: (blah) => {
-    //         console.log('Confirm Cancel: blah');
-    //       }
-    //     }, {
-    //       text: 'Okay',
-    //       id: 'confirm-button',
-    //       handler: () => {
-    //         console.log('Confirm Okay');
-    //       }
-    //     }
-    //   ]
-    // });
-
-    // await alert.present();
-  }
-
 
   //Import the editor build in your Angular component and assign it to a public property to make it accessible from the template
   public Editor = ClassicEditor;
@@ -206,12 +179,33 @@ export class EditingToolTestPagePage implements OnInit {
     this.loadEditorDataById();
   }
 
-  private saveChangesToCloud() {
-    this.saveChangesLocal();
-    //we need to show animation to let user know there are changes
-    this.updateDataById(this.articleId, this.contents);
-    this.reloadPage();
-    console.log("Changes saved to cloud!")
+  private async saveChangesToCloud() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      message: 'Do you want to save all changes to Cloud?',
+      buttons: ['Cancel', 'OK']
+    });
+    await alert.present();
+    const { role } = await alert.onDidDismiss();
+    if (role == "cancel") {
+      console.log("cancel!");
+    } else {
+      this.saveChangesLocal();
+      //we need to show animation to let user know there are changes
+      this.updateDataById(this.articleId, this.contents);
+      this.reloadPage();
+      console.log("Changes saved to cloud!");
+      this.displayMessage("Upload Success");
+    }
+  }
+
+  async displayMessage(inputMessage:string){
+    const alert2 = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      message: inputMessage,
+      buttons: ['OK']
+    });
+    await alert2.present();
   }
 
   private saveChangesLocal() {
