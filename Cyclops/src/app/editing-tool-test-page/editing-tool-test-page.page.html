@@ -1,8 +1,10 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/">
-      </ion-back-button>
+      <ion-button (click)="backArticle()">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+        Back
+      </ion-button>
     </ion-buttons>
     <ion-title *ngIf="contents">
       <p>Editing "{{contents.title}}"</p>
@@ -30,14 +32,14 @@
         <ion-chip (click)="onChipClick(indexOfelement)">
           <ion-label color="primary">{{segmentItem.segmentTitle}}</ion-label>
         </ion-chip>
-        <ion-chip color = "light" (click)="removeArticle()">
+        <ion-chip color="light" (click)="removeArticle()">
           <ion-icon color="danger" name="trash-outline"></ion-icon>
           <ion-label></ion-label>
         </ion-chip>
       </span>
     </span>
 
-    <ion-chip (click)="onChipAdd()" color = "light">
+    <ion-chip (click)="onChipAdd()" color="light">
       <!-- <ion-label>Add Segment</ion-label> -->
       <ion-icon name="add-circle-outline" color="primary"></ion-icon>
       <ion-label></ion-label>

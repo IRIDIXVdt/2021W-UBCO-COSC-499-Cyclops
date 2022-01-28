@@ -6,7 +6,7 @@ import { displayArticles } from '../sharedData/displayArticles';
 import { ActivatedRoute } from '@angular/router';
 // import { Content } from '@angular/compiler/src/render3/r3_ast';
 import { FirebaseService } from '../firebase.service';
-import { AlertController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-editing-tool-test-page',
@@ -32,13 +32,15 @@ export class EditingToolTestPagePage implements OnInit {
   public model;
   //get ionic input data
   TitleInput: string;
-
+  navControl: NavController;
 
   constructor(
     private activatedrouter: ActivatedRoute,
     public firebaseService: FirebaseService,
-    public alertController: AlertController
+    public alertController: AlertController,
+    public navCtrl: NavController
   ) {
+    this.navControl = navCtrl;
     //we start reading the first element
     this.currentSeg = 0;
     //fetch article id from the other side and store it in articleId
@@ -154,6 +156,22 @@ export class EditingToolTestPagePage implements OnInit {
 
   private updateArticle() {
     this.editorComponent.editorInstance.setData(this.contents.segment[this.currentSeg].segmentBody)
+  }
+
+  public async backArticle() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      message: 'Do you want to go back to main page? All unsaved changes will be lost.',
+      buttons: ['Cancel', 'OK']
+    });
+    await alert.present();
+    const { role } = await alert.onDidDismiss();
+    if (role == "cancel") {
+      console.log("cancel!");
+    } else {
+      this.navControl.back();
+      console.log("back success");
+    }
   }
 
   public async removeArticle() {
