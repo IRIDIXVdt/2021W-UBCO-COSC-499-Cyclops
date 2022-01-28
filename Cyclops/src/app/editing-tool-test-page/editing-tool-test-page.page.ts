@@ -6,6 +6,7 @@ import { displayArticles } from '../sharedData/displayArticles';
 import { ActivatedRoute } from '@angular/router';
 // import { Content } from '@angular/compiler/src/render3/r3_ast';
 import { FirebaseService } from '../firebase.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-editing-tool-test-page',
@@ -35,7 +36,8 @@ export class EditingToolTestPagePage implements OnInit {
 
   constructor(
     private activatedrouter: ActivatedRoute,
-    public firebaseService: FirebaseService
+    public firebaseService: FirebaseService,
+    public alertController: AlertController
   ) {
     //we start reading the first element
     this.currentSeg = 0;
