@@ -81,6 +81,53 @@ export class EditingToolTestPagePage implements OnInit {
 
   }
 
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      // header: '',
+      // subHeader: 'Subtitle',
+      message: 'This is Article Edit Page. You can edit, add and remove article here.',
+      // buttons: ['OK']
+      buttons: ['Cancel', 'Open Modal', 'Delete']
+    });
+
+    await alert.present();
+
+    const { role } = await alert.onDidDismiss();
+    if (role == "cancel") {
+      console.log("yes it is cancel")
+    }
+    console.log('onDidDismiss resolved with role', role);
+
+  }
+
+  async presentAlertConfirm() {
+    // const alert = await this.alertController.create({
+    //   cssClass: 'my-custom-class',
+    //   header: 'Confirm!',
+    //   message: 'Message <strong>text</strong>!!!',
+    //   buttons: [
+    //     {
+    //       text: 'Cancel',
+    //       role: 'cancel',
+    //       cssClass: 'secondary',
+    //       id: 'cancel-button',
+    //       handler: (blah) => {
+    //         console.log('Confirm Cancel: blah');
+    //       }
+    //     }, {
+    //       text: 'Okay',
+    //       id: 'confirm-button',
+    //       handler: () => {
+    //         console.log('Confirm Okay');
+    //       }
+    //     }
+    //   ]
+    // });
+
+    // await alert.present();
+  }
+
 
   //Import the editor build in your Angular component and assign it to a public property to make it accessible from the template
   public Editor = ClassicEditor;
@@ -112,7 +159,7 @@ export class EditingToolTestPagePage implements OnInit {
     });
     // this.saveChangesLocal();
     //update it to the local one
-    this.currentSeg = this.contents.segment.length-1;
+    this.currentSeg = this.contents.segment.length - 1;
     //title input space updates automatically
     //manually update editor input area here
     this.updateArticle();
