@@ -7,7 +7,7 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-    <ion-card color='light' id="card1">
+    <ion-card color='light' id="card1" class="card-web">
         <ion-card-header>
             <ion-card-subtitle style="text-align:center; font-size:150%;">Overall Score</ion-card-subtitle>
             <ion-card-title style="text-align:center; font-size:400%" fontsize>{{profile.score}}%</ion-card-title>
@@ -18,7 +18,7 @@
         </ion-card-content>
     </ion-card>
 
-    <div id="button">
+    <div id="button-web">
         <section id="surveycenter">
             <ion-button expand="block" (click)="openModal()">Submit Solution</ion-button>
         </section>
@@ -83,7 +83,7 @@
 
 
 
-    <div id="button">
+    <div id="button-web">
         <section id="surveycenter">
             <ion-button expand="block">Survey(peer testing 2)</ion-button>
             <!-- <ion-button expand="block" (click)="goSurvey()" >Survey(peer testing 2)</ion-button> -->
