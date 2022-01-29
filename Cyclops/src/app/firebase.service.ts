@@ -17,8 +17,8 @@ getDataService(){
 
 }
 
-addDataService(data){
-  return this.db.collection('articles').add(data);
+addDataService(collection,data){
+  return this.db.collection(collection).add(data);
 }
 
 removeDataService(id){
@@ -40,10 +40,14 @@ updateDataByIdService(docId,data){
   return this.db.collection('articles').doc(docId).update(data);
 }
 
-deleteArticleDocByIdService(docId){
-  return this.db.collection('articles').doc(docId).delete();
+deleteDocByIdService(collection,docId){
+  return this.db.collection(collection).doc(docId).delete();
 }
 
+
+getUserDataService(){
+  return this.db.collection("users").snapshotChanges();
+}
 
 
 }

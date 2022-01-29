@@ -5,16 +5,22 @@
 </ion-header>
 
 <ion-content>
-  <ion-button (click)="addData()">
-    initialize database
+  <ion-button (click)="deleteAllData()" expand="block ">
+    delete all article data
   </ion-button>
-  <ion-button (click)="articleRemoveById()">
-    remove article in the database
+
+
+  <ion-button (click)="addData()" expand="block ">
+    initialize database(article data)
   </ion-button>
-  <ion-button (click)="loadData()">
-    display a given article by id
+  
+  <ion-button (click)="deleteUser()" expand="block ">
+    delete all users
   </ion-button>
-  <ion-button>
-    update article in the database
+
+  <ion-button (click)="userInitialization()" expand="block ">
+    initialize admin user
   </ion-button>
+
+  
 </ion-content>
