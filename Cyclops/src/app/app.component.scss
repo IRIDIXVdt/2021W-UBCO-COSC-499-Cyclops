@@ -1,6 +1,7 @@
 ion-segment {
     height: 100px;
 }
+
 // .split{
 //      position: absolute !important;
 //      right: 0;
@@ -11,25 +12,29 @@ ion-segment {
 // .split-pane-visible > .split-pane-side {
 //     border-right: none !important;
 // }
-
 .menu-inner ion-content {
     border-right: 1px solid #dedede;
-    
 }
+
 ion-split-pane {
     --side-min-width: 50px;
     --side-max-width: 148px;
     --side-width: 300px;
-  }
-  .cIcon{
+}
+
+.cIcon {
     font-size: 80px;
     text-align: center;
-  }
-  // .bottom-pane{
-  //   border-top: none !important;
-  // }
+}
 
-  .ion-no-border{
+// .bottom-pane{
+//   border-top: none !important;
+// }
+.ion-no-border {
     padding-bottom: 20px;
     padding-top: 10px;
-  }
+}
+
+ion-button {
+    max-width: 100px;
+}
