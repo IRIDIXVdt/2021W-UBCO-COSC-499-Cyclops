@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from '../firebase.service';
 import { displayArticles } from '../sharedData/displayArticles';
 
+
+
 @Component({
   selector: 'app-add-data',
   templateUrl: './add-data.page.html',
@@ -10,8 +12,9 @@ import { displayArticles } from '../sharedData/displayArticles';
 export class AddDataPage implements OnInit {
   articles: any = displayArticles;
   contents:any;
+  docIds=[];
   constructor(private firebaseService:FirebaseService) { 
-     
+    this.loadDocId();
   }
   // await setDoc(doc(db, "cities", "LA"), {
   //   name: "Los Angeles",
@@ -24,14 +27,39 @@ export class AddDataPage implements OnInit {
 
 
   addData(){
+
+    //delete all doc in collection
+    for (let doc of this.docIds){
+      this.firebaseService.deleteArticleDocByIdService(doc.docId).then((res:any) => console.log(res," ",doc.docId))      
+    }
+
+    //add doc in collection
     for (let article of this.articles){
       this.firebaseService.addDataService(article).then((res:any) => {
         console.log(res);
       })
     }
-    alert("scussess");
+    alert("successful"); 
   }
 
+
+  // get all docid from collection
+  loadDocId(){
+    this.firebaseService.getDataServiceMainPage().subscribe((res) => {
+      this.docIds = res.map(e => {
+        return {         
+          docId:e.payload.doc.id,
+        }
+      })
+      console.log(this.docIds);
+    }, (err: any) => {
+      console.log(err);
+    })
+
+    
+  }
+
+  
   loadData(){
     this.firebaseService.getDataByIdService('mzV9kW2MvD4qINJD8J4p').subscribe(
       res => {

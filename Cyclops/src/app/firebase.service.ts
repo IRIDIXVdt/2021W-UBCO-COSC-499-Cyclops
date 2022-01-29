@@ -40,6 +40,12 @@ updateDataByIdService(docId,data){
   return this.db.collection('articles').doc(docId).update(data);
 }
 
+deleteArticleDocByIdService(docId){
+  return this.db.collection('articles').doc(docId).delete();
+}
+
+
+
 }
 
 
