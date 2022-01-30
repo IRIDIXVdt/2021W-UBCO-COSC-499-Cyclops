@@ -8,7 +8,7 @@ import {PageSpaceErPage} from '../page-space-er/page-space-er.page';
 })
 export class LoginPage implements OnInit {
 
-  email ="";
+  /* email ="";
   password="";
   
   currentUser:any;
@@ -30,19 +30,19 @@ export class LoginPage implements OnInit {
     if (!value2) {
       this.focused2 = false;
     }
-  }
+  } */
 
   constructor(public afAuth:AngularFireAuth) { 
-    if(this.afAuth.currentUser){
+    /* if(this.afAuth.currentUser){
       
-    }
+    } */
   }
 
   ngOnInit() {
   }
 
 
-  async login(){
+  /* async login(){
     
     try{
       const res= await this.afAuth.signInWithEmailAndPassword(this.email,this.password);
@@ -58,6 +58,6 @@ export class LoginPage implements OnInit {
     }catch(err){
       console.log(err);
     }
-  } 
+  }  */
 
 }
