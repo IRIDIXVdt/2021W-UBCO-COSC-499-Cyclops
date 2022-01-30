@@ -35,11 +35,12 @@
         <!-- if this is the selected option -->
         <ion-chip (click)="onChipClick(indexOfelement)">
           <ion-label color="primary">{{segmentItem.segmentTitle}}</ion-label>
+          <ion-icon color="danger" name="trash-outline" (click)="removeArticle()"></ion-icon>
         </ion-chip>
-        <ion-chip color="light" (click)="removeArticle()">
+        <!-- <ion-chip color="light" (click)="removeArticle()">
           <ion-icon color="danger" name="trash-outline"></ion-icon>
           <ion-label></ion-label>
-        </ion-chip>
+        </ion-chip> -->
       </span>
     </span>
 
