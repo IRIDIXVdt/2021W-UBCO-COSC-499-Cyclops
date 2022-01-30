@@ -4,38 +4,35 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content>
-    <ion-searchbar [(ngModel)]="userInput" placeholder="Search Article" showCancelButton="focus" cancelButtonText="Cancel" animated='true'>
+<ion-content fullscreen>
+    <ion-searchbar [(ngModel)]="userInput" placeholder="Search Article" showCancelButton="focus"
+        cancelButtonText="Cancel" animated='true'>
     </ion-searchbar>
 
     <div id='origin'>
-        <ion-segment [(ngModel)]="status" scrollable>
-            <ion-segment-button value="Articles p1">
-                <ion-label text-wrap>Laying the Foundation</ion-label>
-            </ion-segment-button>
-            <ion-segment-button value="Articles p2">
-                <ion-label text-wrap>Main Sections</ion-label>
-            </ion-segment-button>
-            <ion-segment-button value="Articles p3">
-                <ion-label text-wrap>Bonus Rounds</ion-label>
-            </ion-segment-button>
-        </ion-segment>
+        <ion-toolbar>
+            <ion-segment scrollable (ionChange)="segmentChanged($event)" [(ngModel)]="status1" color="medium">
+                <ion-segment-button value="Articles p1">
+                    <ion-label text-wrap>Laying the Foundation</ion-label>
+                </ion-segment-button>
+                <ion-segment-button value="Articles p2">
+                    <ion-label text-wrap>Main Sections</ion-label>
+                </ion-segment-button>
+                <ion-segment-button value="Articles p3">
+                    <ion-label text-wrap>Bonus Rounds</ion-label>
+                </ion-segment-button>
+            </ion-segment>
+        </ion-toolbar>
 
-        <div [ngSwitch]="status">
+        <div [ngSwitch]="status1">
             <div *ngSwitchCase="'Articles p1'">
                 <app-article-main [columNumber]="1"></app-article-main>
             </div>
-
             <div *ngSwitchCase="'Articles p2'">
                 <app-article-main [columNumber]="2"></app-article-main>
             </div>
-
             <div *ngSwitchCase="'Articles p3'">
                 <app-article-main [columNumber]="3"></app-article-main>
-            </div>
-
-            <div *ngSwitchDefault>
-                <app-article-main [columNumber]="1"></app-article-main>
             </div>
         </div>
     </div>

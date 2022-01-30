@@ -11,8 +11,15 @@ export class PageSpaceLaPage implements OnInit {
   userInput: string;
   // userInput string is used for search bar input
   i: number = 0;
+  status1: any;
+  segmentChanged(ev: any) {
+    console.log('Segment changed', ev);
+    console.log('current segment is', this.status1);
+  }
 
-  constructor() {}
+  constructor() {
+    this.status1 = "Articles p1";
+  }
   ngOnInit() {
     const textSpace = document.querySelector('#origin') as HTMLElement;
     const searchbar = document.querySelector('ion-searchbar');
