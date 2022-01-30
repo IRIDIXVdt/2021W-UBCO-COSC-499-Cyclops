@@ -10,7 +10,7 @@
     </ion-searchbar>
 
     <div id='origin'>
-        <ion-segment scrollable value="Articles p1" (ionChange)="segmentChanged($event)">
+        <ion-segment scrollable (ionChange)="segmentChanged($event)" [(ngModel)]="status1">
             <ion-segment-button value="Articles p1">
                 <ion-label text-wrap>Laying the Foundation</ion-label>
             </ion-segment-button>
@@ -22,23 +22,17 @@
             </ion-segment-button>
         </ion-segment>
 
-        <!-- <div [ngSwitch]="status">
+        <div [ngSwitch]="status1">
             <div *ngSwitchCase="'Articles p1'">
                 <app-article-main [columNumber]="1"></app-article-main>
             </div>
-
             <div *ngSwitchCase="'Articles p2'">
                 <app-article-main [columNumber]="2"></app-article-main>
             </div>
-
             <div *ngSwitchCase="'Articles p3'">
                 <app-article-main [columNumber]="3"></app-article-main>
             </div>
-
-            <div *ngSwitchDefault>
-                <app-article-main [columNumber]="1"></app-article-main>
-            </div>
-        </div> -->
+        </div>
     </div>
 
 </ion-content>
