@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import {PageSpaceErPage} from '../page-space-er/page-space-er.page';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -10,6 +11,7 @@ export class LoginPage implements OnInit {
   email ="";
   password="";
   
+  currentUser:any;
 
   focused: boolean;
   focused2: boolean;
@@ -30,7 +32,11 @@ export class LoginPage implements OnInit {
     }
   }
 
-  constructor(public afAuth:AngularFireAuth) { }
+  constructor(public afAuth:AngularFireAuth) { 
+    if(this.afAuth.currentUser){
+      
+    }
+  }
 
   ngOnInit() {
   }
@@ -41,7 +47,13 @@ export class LoginPage implements OnInit {
     try{
       const res= await this.afAuth.signInWithEmailAndPassword(this.email,this.password);
       if(res.user.uid){
-        console.log(res.user.uid)
+        console.log(res.user.uid,"  ")
+        if(this.afAuth.currentUser){
+          this.currentUser = (await this.afAuth.currentUser).email
+          console.log(this.afAuth.currentUser)
+        }else{
+          console.log("no")
+        }
       }
     }catch(err){
       console.log(err);
