@@ -13,15 +13,18 @@
 <div *ngIf="!isDesktop">
     <ion-fab vertical="top" horizontal="end" slot="fixed">
         <ion-fab-button color="light">
-            <ion-icon name="add-outline"></ion-icon>
+            <ion-icon name="add-outline" ></ion-icon>
         </ion-fab-button>
 
         <ion-fab-list side="bottom">
-            <ion-fab-button>
+            <!-- <ion-fab-button>
                 <ion-icon name="log-in-outline" routerLink="/login"></ion-icon>
             </ion-fab-button>
             <ion-fab-button routte>
                 <ion-icon name="settings-outline"></ion-icon>
+            </ion-fab-button> -->
+            <ion-fab-button *ngFor="let b of getActive()">
+                <ion-icon name={{b.iconName}} routerLink={{b.routerLink}} (click)=b.clickMethod></ion-icon>
             </ion-fab-button>
         </ion-fab-list>
     </ion-fab>
