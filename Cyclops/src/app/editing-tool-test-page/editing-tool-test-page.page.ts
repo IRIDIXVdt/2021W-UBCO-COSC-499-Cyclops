@@ -6,6 +6,7 @@ import { displayArticles } from '../sharedData/displayArticles';
 import { ActivatedRoute } from '@angular/router';
 // import { Content } from '@angular/compiler/src/render3/r3_ast';
 import { FirebaseService } from '../firebase.service';
+import { AlertController, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-editing-tool-test-page',
@@ -18,6 +19,8 @@ export class EditingToolTestPagePage implements OnInit {
   // @Input("content") protected content: Content;
 
   // testTitleClass:string = "focusClass";//an attempt to set properties using [ngClass]
+  //needSaving describes if the current version is the latest version
+  needSaving: boolean = false;
 
   //get access to all the articles
   contents: EditPageArticle;
@@ -31,12 +34,15 @@ export class EditingToolTestPagePage implements OnInit {
   public model;
   //get ionic input data
   TitleInput: string;
-
+  navControl: NavController;
 
   constructor(
     private activatedrouter: ActivatedRoute,
-    public firebaseService: FirebaseService
+    public firebaseService: FirebaseService,
+    public alertController: AlertController,
+    public navCtrl: NavController
   ) {
+    this.navControl = navCtrl;
     //we start reading the first element
     this.currentSeg = 0;
     //fetch article id from the other side and store it in articleId
@@ -71,14 +77,49 @@ export class EditingToolTestPagePage implements OnInit {
         };
         this.TitleInput = this.contents.segment[this.currentSeg].segmentTitle;
         // this.content.addCssClass("no-scroll");
+        this.needSaving = false;
+        console.log("need saving to false from loadEditorDataById");
       },
       err => {
         console.debug(err);
+        this.presentErr("err");
       }
     )
 
   }
 
+  async presentErr(errMessage: string){
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Err',
+      subHeader: 'Message:',
+      message: 'errMessage',
+      // buttons: ['OK']
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      // header: '',
+      // subHeader: 'Subtitle',
+      message: 'This is Article Edit Page. You can edit, add and remove article here.',
+      // buttons: ['OK']
+      buttons: ['OK']
+    });
+
+    await alert.present();
+
+    const { role } = await alert.onDidDismiss();
+    if (role == "cancel") {
+      console.log("yes it is cancel")
+    }
+    console.log('onDidDismiss resolved with role', role);
+
+  }
 
   //Import the editor build in your Angular component and assign it to a public property to make it accessible from the template
   public Editor = ClassicEditor;
@@ -110,7 +151,7 @@ export class EditingToolTestPagePage implements OnInit {
     });
     // this.saveChangesLocal();
     //update it to the local one
-    this.currentSeg = this.contents.segment.length-1;
+    this.currentSeg = this.contents.segment.length - 1;
     //title input space updates automatically
     //manually update editor input area here
     this.updateArticle();
@@ -123,33 +164,66 @@ export class EditingToolTestPagePage implements OnInit {
     //store the data
     this.contents.segment[this.currentSeg].segmentBody = newSegmentBody;
     console.log("Changes saved locally!");
+    //change saving state to open
+    this.needSaving = true;
+    console.log("need Saving on Content Editor Change");
   }
 
   private onTitleEditorChange() {
     console.log("current title is: " + this.TitleInput);
     this.contents.segment[this.currentSeg].segmentTitle = this.TitleInput;
+    //change saving state to open
+    this.needSaving = true;
+    console.log("need Saving on Title Editor Change");
   }
 
   private updateArticle() {
     this.editorComponent.editorInstance.setData(this.contents.segment[this.currentSeg].segmentBody)
   }
 
-  public removeArticle() {
-    console.log("remove segment article id: " + this.currentSeg);
-    this.contents.segment.splice(this.currentSeg, 1);
-    this.currentSeg = 0;
-    if (this.contents.segment.length == 0) {
-      //empty segment here, increase one
-      //this initialized a new Chip
-      this.onChipAdd();
-      //this updates the CKEditor Directly, this is not good practice
-      // this.editorComponent.editorInstance.setData("Body Paragraph");
-      this.updateArticle();
-
+  public async backArticle() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      message: 'Do you want to go back to main page? All unsaved changes will be lost.',
+      buttons: ['Cancel', 'OK']
+    });
+    await alert.present();
+    const { role } = await alert.onDidDismiss();
+    if (role == "cancel") {
+      console.log("cancel!");
+    } else {
+      this.navControl.back();
+      console.log("back success");
     }
-    this.updateArticle();
-    // this.updateDataById(this.articleId, this.contents);
-    // this.loadEditorDataById();
+  }
+
+  public async removeArticle() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      message: 'Do you want to remove ' + this.contents.segment[this.currentSeg].segmentTitle + "?",
+      buttons: ['Cancel', 'OK']
+    });
+    await alert.present();
+    const { role } = await alert.onDidDismiss();
+    if (role == "cancel") {
+      console.log("cancel!");
+    } else {
+      console.log("remove segment article id: " + this.currentSeg);
+      this.contents.segment.splice(this.currentSeg, 1);
+      this.currentSeg = 0;
+      if (this.contents.segment.length == 0) {
+        //empty segment here, increase one
+        //this initialized a new Chip
+        this.onChipAdd();
+        //this updates the CKEditor Directly, this is not good practice
+        // this.editorComponent.editorInstance.setData("Body Paragraph");
+      }
+      this.updateArticle();
+      // this.updateDataById(this.articleId, this.contents);
+      // this.loadEditorDataById();
+      console.log("Delete Success");
+      // this.displayMessage("Delete Success");
+    }
   }
 
   private reloadPage() {
@@ -157,24 +231,48 @@ export class EditingToolTestPagePage implements OnInit {
     this.loadEditorDataById();
   }
 
-  private saveChangesToCloud() {
-    this.saveChangesLocal();
-    //we need to show animation to let user know there are changes
-    this.updateDataById(this.articleId, this.contents);
-    this.reloadPage();
-    console.log("Changes saved to cloud!")
+  private async saveChangesToCloud() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      message: 'Do you want to save all changes to Cloud?',
+      buttons: ['Cancel', 'OK']
+    });
+    await alert.present();
+    const { role } = await alert.onDidDismiss();
+    if (role == "cancel") {
+      console.log("cancel!");
+    } else {
+      // this.saveChangesLocal();
+      //we need to show animation to let user know there are changes
+      this.updateDataById(this.articleId, this.contents);
+      this.reloadPage();
+      console.log("Changes saved to cloud!");
+      this.displayMessage("Upload Success");
+      //change saving state to close
+      this.needSaving = false;
+      console.log("need saving to false");
+    }
   }
 
-  private saveChangesLocal() {
-    console.log("save seg change id: " + this.currentSeg);
-    //now we fetch the necessary information
-    // const newSegmentTitle: string = this.TitleInput;
-    // this.contents.segment[this.currentSeg].segmentTitle = newSegmentTitle;
-    // ion input onchange is already handling it
-
-
-
+  async displayMessage(inputMessage: string) {
+    const alert2 = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      message: inputMessage,
+      buttons: ['OK']
+    });
+    await alert2.present();
   }
+
+  // private saveChangesLocal() {
+  //   console.log("save seg change id: " + this.currentSeg);
+  //   //now we fetch the necessary information
+  //   // const newSegmentTitle: string = this.TitleInput;
+  //   // this.contents.segment[this.currentSeg].segmentTitle = newSegmentTitle;
+  //   // ion input onchange is already handling it
+
+
+
+  // }
 
   ngOnInit() {
   }
