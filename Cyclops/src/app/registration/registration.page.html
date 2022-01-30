@@ -14,22 +14,22 @@
 
     <div class="form-field">
       <ion-label [ngClass]="focused ? 'label-focused' : ''">User name</ion-label>
-      <ion-input  (ionFocus)="focused = true" (ionBlur)="onBlur($event)" [(ngModel)] = "email"> </ion-input>
+      <ion-input  (ionFocus)="focused = true" (ionBlur)="onBlur($event)" > </ion-input>
     </div>
 
     <div class="form-field" >
       <ion-label [ngClass]="focused2 ? 'label-focused' : ''">Email</ion-label>
-      <ion-input  (ionFocus)="focused2 = true" (ionBlur)="onBlur2($event)" [(ngModel)] = "Email"> </ion-input>
+      <ion-input  (ionFocus)="focused2 = true" (ionBlur)="onBlur2($event)" #userEmail required> </ion-input>
     </div>
 
     <div class="form-field" >
       <ion-label [ngClass]="focused3 ? 'label-focused' : ''">Password</ion-label>
-      <ion-input  (ionFocus)="focused3 = true" (ionBlur)="onBlur3($event)" [(ngModel)] = "password" type="password"> </ion-input>
+      <ion-input  (ionFocus)="focused3 = true" (ionBlur)="onBlur3($event)"  type="password" #userPwd required> </ion-input>
     </div>
        
     
 
-    <ion-button expand='block' class="login">Sign Up</ion-button>
+    <ion-button expand='block' class="login" (click)="authService.SignUp(userEmail.value, userPwd.value)">Sign Up</ion-button>
 
     <app-icon-button icon='logo-facebook' label='Connect with Facebook'></app-icon-button>  
   

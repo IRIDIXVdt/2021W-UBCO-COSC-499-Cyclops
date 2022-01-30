@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
-import {PageSpaceErPage} from '../page-space-er/page-space-er.page';
+import { AuthService } from '../auth/auth.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -32,7 +32,7 @@ export class LoginPage implements OnInit {
     }
   } */
 
-  constructor(public afAuth:AngularFireAuth) { 
+  constructor( public authService: AuthService) { 
     /* if(this.afAuth.currentUser){
       
     } */
