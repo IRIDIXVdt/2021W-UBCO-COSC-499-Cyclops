@@ -1,7 +1,7 @@
 import { Injectable,NgZone } from '@angular/core';
 
 import { User } from "../sharedData/user";
-/* import { firebase } from 'firebase/app'; */
+/*  import { firebase } from '@firebase/app'; */ 
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { Router } from "@angular/router";
@@ -59,11 +59,11 @@ export class AuthService {
   }
 
   // Send email verfificaiton when new user sign up
-  SendVerificationMail() {
-    /* return this.afAuth.currentUser.sendEmailVerification()
+  async SendVerificationMail() {
+    return (await (this.afAuth.currentUser)).sendEmailVerification()
     .then(() => {
-      this.router.navigate(['verify-email-address']);
-    }) */
+      this.router.navigate(['verify-email']);
+    })
   }
 
   // Reset Forggot password

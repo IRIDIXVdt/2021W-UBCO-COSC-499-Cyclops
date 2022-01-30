@@ -1,0 +1,46 @@
+.displayTable {
+    display: table;
+    width: 100%;
+    height: 100%;
+    
+  }
+  
+  .displayTableCell {
+    display: table-cell;
+    vertical-align: middle;
+    width: 100%;
+    height: 100%;
+  }
+
+  .authBlock {
+    margin: 0 auto;
+    max-width: 400px;
+    background: white;
+    padding: 30px 40px 10px;
+    overflow: hidden;
+    -webkit-box-shadow: 0 0 4px 0 rgb(0, 0, 0);
+    box-shadow: 0 0 4px 0 rgb(0, 0, 0);
+  }
+  .formGroup {
+    margin-bottom: 20px;
+    float: left;
+    width: 100%;
+  }
+
+  .redirectToLogin .redirect {
+    cursor: pointer;
+    color: #1156d4;
+    text-decoration: underline;
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  .redirectToLogin {
+    padding: 15px 0 0;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 450;
+    display: block;
+    color: rgb(0, 0, 0);
+  }
+  
