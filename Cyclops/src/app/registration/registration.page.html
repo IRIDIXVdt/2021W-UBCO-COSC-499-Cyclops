@@ -9,8 +9,33 @@
 <ion-content class="ion-padding">
   <h1>Create Account,</h1>
   <h3>Sign up to get started!</h3>
+  
+  <div class="part">
 
-  <form>
+    <div class="form-field">
+      <ion-label [ngClass]="focused ? 'label-focused' : ''">User name</ion-label>
+      <ion-input  (ionFocus)="focused = true" (ionBlur)="onBlur($event)" > </ion-input>
+    </div>
+
+    <div class="form-field" >
+      <ion-label [ngClass]="focused2 ? 'label-focused' : ''">Email</ion-label>
+      <ion-input  (ionFocus)="focused2 = true" (ionBlur)="onBlur2($event)" #userEmail required> </ion-input>
+    </div>
+
+    <div class="form-field" >
+      <ion-label [ngClass]="focused3 ? 'label-focused' : ''">Password</ion-label>
+      <ion-input  (ionFocus)="focused3 = true" (ionBlur)="onBlur3($event)"  type="password" #userPwd required> </ion-input>
+    </div>
+       
+    
+
+    <ion-button expand='block' class="login" (click)="authService.SignUp(userEmail.value, userPwd.value)">Sign Up</ion-button>
+
+    <app-icon-button icon='logo-facebook' label='Connect with Facebook'></app-icon-button>  
+  
+    <p class="footer-text">I'm already a member, <a routerLink="/login">Sign In</a></p>
+  </div>
+  <!-- <form>
     <app-input label="User Name"></app-input>
     <app-input label="Email"></app-input>
     <app-input label="Password" type="password"></app-input>
@@ -19,5 +44,5 @@
     <app-icon-button icon='logo-facebook' label='Connect with Facebook'></app-icon-button>
   </form>
 
-  <p class="footer-text">I'm already a member, <a routerLink="/login">Sign In</a></p>
+   -->
 </ion-content>

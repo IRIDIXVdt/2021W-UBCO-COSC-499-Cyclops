@@ -67,7 +67,11 @@ const routes: Routes = [
   {
     path: 'add-data',
     loadChildren: () => import('./add-data/add-data.module').then( m => m.AddDataPageModule)
+  },  {
+    path: 'verify-email',
+    loadChildren: () => import('./verify-email/verify-email.module').then( m => m.VerifyEmailPageModule)
   }
+
 
 ];
 @NgModule({

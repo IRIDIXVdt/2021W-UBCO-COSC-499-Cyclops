@@ -7,6 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class InputComponent implements OnInit {
   @Input() label: string;
+  @Input() label2: string;
   @Input() type = 'text'; // set default type be text
 
   focused: boolean;

@@ -1,10 +1,8 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { FirebaseService } from '../firebase.service';
-import { displayArticle } from '../sharedData/displayArticle';
-import { displayArticles } from '../sharedData/displayArticles';
 import { ScreensizeService } from './services/screensize.service';
-
+import { AuthService } from '../auth/auth.service';
 @Component({
   selector: 'app-page-space-er',
   templateUrl: './page-space-er.page.html',
@@ -14,7 +12,16 @@ export class PageSpaceErPage implements OnInit {
   isDesktop: boolean;
   //contents: displayArticle[] = displayArticles;
   articles:any;
-  constructor(public firebaseService: FirebaseService, private screensizeService: ScreensizeService, private platform: Platform) {
+
+  authentication:boolean; // validate user is logged in or not 
+
+  fButtons= [ // false: have not logged in authentication = false.   true: already Logged in 
+    { iconName: "log-in-outline",   routerLink: "/login", clickMethod:"",    isActive : false },
+    { iconName: "remove-circle-outline",  routerLink: "", clickMethod:"authService.SignOut()",    isActive : true },
+    { iconName: "person-circle-outline", routerLink: "", clickMethod:"",      isActive : true }
+  ];
+  
+  constructor(public firebaseService: FirebaseService, private screensizeService: ScreensizeService, private platform: Platform, public authService: AuthService) {
      this.loadData();
      this.initializeApp();
 
@@ -26,6 +33,7 @@ export class PageSpaceErPage implements OnInit {
       this.isDesktop = isDesktop;
     });
     
+    this.isLoggedIn(); // return T/F to authentication
     }
     initializeApp() {
       this.platform.ready().then(() => {
@@ -61,6 +69,32 @@ export class PageSpaceErPage implements OnInit {
       console.log(err);
     })
    }
+
+   isLoggedIn(){
+    const user = JSON.parse(localStorage.getItem('user'));
+    if(user !== null) {
+      this.authentication = true;
+      console.log("authentication",this.authentication);
+    }else{
+      this.authentication = false;
+      console.log("authentication",this.authentication);
+      
+    }
+  }
+
+
+  getActive() {
+    if(this.authentication){
+      return this.fButtons.filter((i:any) => {
+        return i.isActive === true
+      })
+    }else{
+      return this.fButtons.filter((i:any) => {
+        return i.isActive === false;
+      })
+    }
+    
+  }
+    
+
 }
-
-
