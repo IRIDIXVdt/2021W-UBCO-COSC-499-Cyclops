@@ -12,6 +12,10 @@ export class PageSpaceLaPage implements OnInit {
   // userInput string is used for search bar input
   i: number = 0;
 
+  segmentChanged(ev: any) {
+    console.log('Segment changed', ev);
+  }
+
   constructor() {}
   ngOnInit() {
     const textSpace = document.querySelector('#origin') as HTMLElement;

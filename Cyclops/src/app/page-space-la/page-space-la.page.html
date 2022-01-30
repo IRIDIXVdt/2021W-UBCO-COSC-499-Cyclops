@@ -4,12 +4,13 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content>
-    <ion-searchbar [(ngModel)]="userInput" placeholder="Search Article" showCancelButton="focus" cancelButtonText="Cancel" animated='true'>
+<ion-content fullscreen>
+    <ion-searchbar [(ngModel)]="userInput" placeholder="Search Article" showCancelButton="focus"
+        cancelButtonText="Cancel" animated='true'>
     </ion-searchbar>
 
     <div id='origin'>
-        <ion-segment [(ngModel)]="status" scrollable>
+        <ion-segment scrollable value="Articles p1" (ionChange)="segmentChanged($event)">
             <ion-segment-button value="Articles p1">
                 <ion-label text-wrap>Laying the Foundation</ion-label>
             </ion-segment-button>
@@ -21,7 +22,7 @@
             </ion-segment-button>
         </ion-segment>
 
-        <div [ngSwitch]="status">
+        <!-- <div [ngSwitch]="status">
             <div *ngSwitchCase="'Articles p1'">
                 <app-article-main [columNumber]="1"></app-article-main>
             </div>
@@ -37,7 +38,7 @@
             <div *ngSwitchDefault>
                 <app-article-main [columNumber]="1"></app-article-main>
             </div>
-        </div>
+        </div> -->
     </div>
 
 </ion-content>
