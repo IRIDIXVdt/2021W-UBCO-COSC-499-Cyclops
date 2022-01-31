@@ -8,27 +8,39 @@
 
         <ion-title style="text-align: right;" style="font-size: 150%;">CyclopediApp</ion-title>
     </ion-toolbar>
+
 </ion-header>
 
 <div *ngIf="!isDesktop">
-    <ion-fab vertical="top" horizontal="end" slot="fixed">
-        <ion-fab-button color="light">
-            <ion-icon name="add-outline" ></ion-icon>
-        </ion-fab-button>
+    <div *ngIf="authService.authentication">
+        <ion-fab vertical="top" horizontal="end" slot="fixed">
+            <ion-fab-button color="light">
+                <ion-icon name="person-circle-outline" ></ion-icon>
+            </ion-fab-button>
 
-        <ion-fab-list side="bottom">
+            <ion-fab-list side="bottom">
             <!-- <ion-fab-button>
                 <ion-icon name="log-in-outline" routerLink="/login"></ion-icon>
             </ion-fab-button>
             <ion-fab-button routte>
                 <ion-icon name="settings-outline"></ion-icon>
             </ion-fab-button> -->
-            <ion-fab-button *ngFor="let b of getActive()">
-                <ion-icon name={{b.iconName}} routerLink={{b.routerLink}} (click)=b.clickMethod></ion-icon>
-            </ion-fab-button>
-        </ion-fab-list>
-    </ion-fab>
+                <ion-fab-button>
+                    <ion-icon name="person-circle-outline" ></ion-icon>
+                </ion-fab-button>
+                <ion-fab-button>
+                    <ion-icon name="remove-circle-outline" (click)="this.authService.SignOut()"></ion-icon>
+                </ion-fab-button>
+            </ion-fab-list>
+        </ion-fab>
+    </div>
+    <ion-item vertical="top" slot="end" *ngIf="!authService.authentication">
+        <ion-icon name="log-in-outline"  routerLink="/login"></ion-icon>
+    </ion-item>
+    
 </div>
+
+
 
 
 <ion-content class="ion-padding">

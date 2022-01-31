@@ -5,18 +5,20 @@ import { User } from "../sharedData/user";
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { Router } from "@angular/router";
+import { AlertController } from '@ionic/angular';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
   userData: any; // Save logged in user data
-
+  authentication:boolean;
   constructor(
     public afs: AngularFirestore,   // Inject Firestore service
     public afAuth: AngularFireAuth, // Inject Firebase auth service
     public router: Router,  
-    public ngZone: NgZone // NgZone service to remove outside scope warning
+    public ngZone: NgZone, // NgZone service to remove outside scope warning
+    public alertController: AlertController
   ) {    
     /* Saving user data in localstorage when 
     logged in and setting up null when logged out */
@@ -25,9 +27,15 @@ export class AuthService {
         this.userData = user;
         localStorage.setItem('user', JSON.stringify(this.userData));
         JSON.parse(localStorage.getItem('user'));
+
+        this.authentication = true;
+        localStorage.setItem('authentication', JSON.stringify(this.authentication));
       } else {
         localStorage.setItem('user', null);
         JSON.parse(localStorage.getItem('user'));
+
+        this.authentication = false;
+        localStorage.setItem('authentication', JSON.stringify(this.authentication));
       }
     })
   }
@@ -37,12 +45,24 @@ export class AuthService {
     return this.afAuth.signInWithEmailAndPassword(email, password)
       .then((result) => {
         this.ngZone.run(() => {
-          this.router.navigate(['page-space-er']);
+          this.router.navigate(['tabs/page-space-er']);
         });
         this.SetUserData(result.user);
       }).catch((error) => {
-        window.alert(error.message)
+        console.log(error.message);
+        this.signInErrorAlert();
       })
+  }
+
+  async signInErrorAlert() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Invalid',
+      subHeader: '',
+      message: 'Invalid Password Or Email.',
+      buttons: ['Retry']
+    });
+    await alert.present();
   }
 
   // Sign up with email/password
@@ -92,7 +112,7 @@ export class AuthService {
     return this.afAuth.signInWithPopup(provider)
     .then((result) => {
        this.ngZone.run(() => {
-          this.router.navigate(['page-space-er']);
+          this.router.navigate(['tabs/page-space-er']);
         })
       this.SetUserData(result.user);
     }).catch((error) => {
@@ -121,7 +141,21 @@ export class AuthService {
   SignOut() {
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
-      /* this.router.navigate(['page-space-er']); */
+      this.router.navigate(['tabs/page-space-er']); 
     })
   }
+
+   refresh() {
+    this.ngZone.run(() => {
+      console.log('force update the screen');
+    });
+  }
+
+  newSignOut() {
+    this.afAuth.signOut().then(() => {
+      localStorage.removeItem('user');
+    })
+  }
+
+
 }
