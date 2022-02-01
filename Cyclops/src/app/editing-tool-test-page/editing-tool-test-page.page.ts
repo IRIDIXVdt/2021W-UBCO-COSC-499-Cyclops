@@ -72,6 +72,7 @@ export class EditingToolTestPagePage implements OnInit {
       e => {
         this.contents = {
           title: e.payload.data()['title'],
+          image: e.payload.data()['image'],
           segment: e.payload.data()['segment'],
         };
         console.log("load editor data by id message from " + this.articleId);
@@ -275,5 +276,6 @@ export class EditingToolTestPagePage implements OnInit {
 }
 type EditPageArticle = {
   title: string;
+  image: string;
   segment: segmentItem[];
 }
