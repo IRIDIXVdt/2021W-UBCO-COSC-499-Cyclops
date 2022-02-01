@@ -42,6 +42,21 @@ export class PageSpaceErPage implements OnInit {
     });
 
     /*  this.isLoggedIn(); // return T/F to authentication */
+
+    this.authService.afAuth.authState.subscribe(user => {
+      if (user) {
+        
+        //console.log("user",this.userData);
+        
+        console.log("user2",JSON.stringify(user));
+        
+
+        
+        
+      } else {
+        console.log("Null user",JSON.stringify(user));
+      }
+    })
   }
   initializeApp() {
     this.platform.ready().then(() => {

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from '../firebase.service';
 import { displayArticles } from '../sharedData/displayArticles';
-
-
+import { AuthService } from '../auth/auth.service';
+/* import { initializeApp } from 'firebase-admin/app'; */
 
 @Component({
   selector: 'app-add-data',
@@ -21,7 +21,12 @@ export class AddDataPage implements OnInit {
       email:"123@gmail.com"
     }
   ]
-  constructor(private firebaseService:FirebaseService) { 
+  profile={
+    emailVerified:true,
+    isAnonymous:true,
+    displayName:"Admin"
+  }
+  constructor(private firebaseService:FirebaseService,public authService: AuthService, ) { 
     this.loadDocId();
     this.loadUserDocId();
   }
@@ -33,7 +38,10 @@ export class AddDataPage implements OnInit {
   ngOnInit() {
   }
   
-
+  async setAdmin(profile){
+   /*  const admin = initializeApp();
+    admin.name */
+  }
 
   addData(){
     this.deleteAllData();

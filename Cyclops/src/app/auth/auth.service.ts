@@ -13,53 +13,69 @@ export class AuthService {
 
   userData: any; // Save logged in user data
   authentication:boolean;
+  adminAuth:boolean;
   constructor(
     public afs: AngularFirestore,   // Inject Firestore service
     public afAuth: AngularFireAuth, // Inject Firebase auth service
     public router: Router,  
     public ngZone: NgZone, // NgZone service to remove outside scope warning
     public alertController: AlertController
-  ) {    
-    /* Saving user data in localstorage when 
-    logged in and setting up null when logged out */
+  ) {  
     this.afAuth.authState.subscribe(user => {
       if (user) {
+        console.log("has user logged in ");
+      } else {
+        this.userData = null;
+      }
+    })
+    /* Saving user data in localstorage when 
+    logged in and setting up null when logged out */
+    /* this.afAuth.authState.subscribe(user => {
+      if (user) {
         this.userData = user;
+         console.log("user",this.userData);
         localStorage.setItem('user', JSON.stringify(this.userData));
+        console.log("user2",JSON.stringify(this.userData));
         JSON.parse(localStorage.getItem('user'));
 
         this.authentication = true;
-        localStorage.setItem('authentication', JSON.stringify(this.authentication));
+        localStorage.setItem('authentication', JSON.stringify(this.authentication)); 
+        
       } else {
-        localStorage.setItem('user', null);
+         localStorage.setItem('user', null);
         JSON.parse(localStorage.getItem('user'));
 
         this.authentication = false;
-        localStorage.setItem('authentication', JSON.stringify(this.authentication));
+        localStorage.setItem('authentication', JSON.stringify(this.authentication)); 
+        this.userData = null;
       }
-    })
+    }) */
   }
 
   // Sign in with email/password
   SignIn(email, password) {
     return this.afAuth.signInWithEmailAndPassword(email, password)
       .then((result) => {
-        this.ngZone.run(() => {
-          this.router.navigate(['tabs/page-space-er']);
-        });
-        this.SetUserData(result.user);
+        if(result.user.emailVerified) {
+          this.userData = result.user;
+          this.router.navigate(['tabs/page-space-er']);          
+        } else {
+          this.signInErrorAlert("Email is not verified");
+          return false;
+        }
       }).catch((error) => {
-        console.log(error.message);
-        this.signInErrorAlert();
+        this.userData = null;
+        console.log("Login error: ",error);
+        this.signInErrorAlert("Invalid username/password");
       })
   }
 
-  async signInErrorAlert() {
+  async signInErrorAlert(message) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Invalid',
       subHeader: '',
-      message: 'Invalid Password Or Email.',
+      message: message,
       buttons: ['Retry']
     });
     await alert.present();
@@ -72,7 +88,7 @@ export class AuthService {
         /* Call the SendVerificaitonMail() function when new user sign 
         up and returns promise */
         this.SendVerificationMail();
-        this.SetUserData(result.user);
+        /* this.SetUserData(result.user); */
       }).catch((error) => {
         window.alert(error.message)
       })
@@ -130,7 +146,8 @@ export class AuthService {
       email: user.email,
       displayName: user.displayName,
       photoURL: user.photoURL,
-      emailVerified: user.emailVerified
+      emailVerified: user.emailVerified,
+      isAnonymous: user.isAnonymous
     }
     return userRef.set(userData, {
       merge: true
@@ -140,7 +157,8 @@ export class AuthService {
   // Sign out 
   SignOut() {
     return this.afAuth.signOut().then(() => {
-      localStorage.removeItem('user');
+      /* localStorage.removeItem('user'); */
+      this.userData = null;
       this.router.navigate(['tabs/page-space-er']); 
     })
   }
