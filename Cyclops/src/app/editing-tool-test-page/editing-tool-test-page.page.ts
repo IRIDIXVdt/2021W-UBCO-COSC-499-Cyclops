@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+// import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import * as InlineEditor from '@ckeditor/ckeditor5-build-inline';
 import { ChangeEvent, CKEditorComponent } from '@ckeditor/ckeditor5-angular/ckeditor.component';
 import { displayArticle, segmentItem } from '../sharedData/displayArticle';
 import { displayArticles } from '../sharedData/displayArticles';
@@ -122,7 +123,8 @@ export class EditingToolTestPagePage implements OnInit {
   }
 
   //Import the editor build in your Angular component and assign it to a public property to make it accessible from the template
-  public Editor = ClassicEditor;
+  // public Editor = ClassicEditor;
+  public Editor = InlineEditor;
   public onChipClick(index: number) {
     // this.saveChangesLocal();
     console.log("change segment to new page " + index);
