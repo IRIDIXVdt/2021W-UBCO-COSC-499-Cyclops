@@ -37,6 +37,10 @@ export class EditingToolTestPagePage implements OnInit {
   TitleInput: string;
   navControl: NavController;
 
+  //Import the editor build in your Angular component and assign it to a public property to make it accessible from the template
+  // public Editor = ClassicEditor;
+  public Editor = InlineEditor;
+
   constructor(
     private activatedrouter: ActivatedRoute,
     public firebaseService: FirebaseService,
@@ -48,7 +52,11 @@ export class EditingToolTestPagePage implements OnInit {
     this.currentSeg = 0;
     //fetch article id from the other side and store it in articleId
     this.articleId = this.activatedrouter.snapshot.paramMap.get('docId');
+  }
+
+  ngOnInit() {
     this.loadEditorDataById();//update data by id
+    this.presentAlert();
   }
 
   private updateDataById(docId, data) {
@@ -80,6 +88,7 @@ export class EditingToolTestPagePage implements OnInit {
         // this.content.addCssClass("no-scroll");
         this.needSaving = false;
         console.log("need saving to false from loadEditorDataById");
+        // this.editorComponent.focus;
       },
       err => {
         console.debug(err);
@@ -89,7 +98,7 @@ export class EditingToolTestPagePage implements OnInit {
 
   }
 
-  async presentErr(errMessage: string){
+  async presentErr(errMessage: string) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Err',
@@ -122,9 +131,7 @@ export class EditingToolTestPagePage implements OnInit {
 
   }
 
-  //Import the editor build in your Angular component and assign it to a public property to make it accessible from the template
-  // public Editor = ClassicEditor;
-  public Editor = InlineEditor;
+
   public onChipClick(index: number) {
     // this.saveChangesLocal();
     console.log("change segment to new page " + index);
@@ -263,20 +270,6 @@ export class EditingToolTestPagePage implements OnInit {
       buttons: ['OK']
     });
     await alert2.present();
-  }
-
-  // private saveChangesLocal() {
-  //   console.log("save seg change id: " + this.currentSeg);
-  //   //now we fetch the necessary information
-  //   // const newSegmentTitle: string = this.TitleInput;
-  //   // this.contents.segment[this.currentSeg].segmentTitle = newSegmentTitle;
-  //   // ion input onchange is already handling it
-
-
-
-  // }
-
-  ngOnInit() {
   }
 
 }
