@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+// import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import * as InlineEditor from '@ckeditor/ckeditor5-build-inline';
 import { ChangeEvent, CKEditorComponent } from '@ckeditor/ckeditor5-angular/ckeditor.component';
 import { displayArticle, segmentItem } from '../sharedData/displayArticle';
 import { displayArticles } from '../sharedData/displayArticles';
@@ -36,6 +37,10 @@ export class EditingToolTestPagePage implements OnInit {
   TitleInput: string;
   navControl: NavController;
 
+  //Import the editor build in your Angular component and assign it to a public property to make it accessible from the template
+  // public Editor = ClassicEditor;
+  public Editor = InlineEditor;
+
   constructor(
     private activatedrouter: ActivatedRoute,
     public firebaseService: FirebaseService,
@@ -47,7 +52,11 @@ export class EditingToolTestPagePage implements OnInit {
     this.currentSeg = 0;
     //fetch article id from the other side and store it in articleId
     this.articleId = this.activatedrouter.snapshot.paramMap.get('docId');
+  }
+
+  ngOnInit() {
     this.loadEditorDataById();//update data by id
+    this.presentAlert();
   }
 
   private updateDataById(docId, data) {
@@ -63,6 +72,7 @@ export class EditingToolTestPagePage implements OnInit {
       e => {
         this.contents = {
           title: e.payload.data()['title'],
+          image: e.payload.data()['image'],
           segment: e.payload.data()['segment'],
         };
         console.log("load editor data by id message from " + this.articleId);
@@ -79,6 +89,7 @@ export class EditingToolTestPagePage implements OnInit {
         // this.content.addCssClass("no-scroll");
         this.needSaving = false;
         console.log("need saving to false from loadEditorDataById");
+        // this.editorComponent.focus;
       },
       err => {
         console.debug(err);
@@ -88,7 +99,7 @@ export class EditingToolTestPagePage implements OnInit {
 
   }
 
-  async presentErr(errMessage: string){
+  async presentErr(errMessage: string) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Err',
@@ -121,8 +132,7 @@ export class EditingToolTestPagePage implements OnInit {
 
   }
 
-  //Import the editor build in your Angular component and assign it to a public property to make it accessible from the template
-  public Editor = ClassicEditor;
+
   public onChipClick(index: number) {
     // this.saveChangesLocal();
     console.log("change segment to new page " + index);
@@ -263,22 +273,9 @@ export class EditingToolTestPagePage implements OnInit {
     await alert2.present();
   }
 
-  // private saveChangesLocal() {
-  //   console.log("save seg change id: " + this.currentSeg);
-  //   //now we fetch the necessary information
-  //   // const newSegmentTitle: string = this.TitleInput;
-  //   // this.contents.segment[this.currentSeg].segmentTitle = newSegmentTitle;
-  //   // ion input onchange is already handling it
-
-
-
-  // }
-
-  ngOnInit() {
-  }
-
 }
 type EditPageArticle = {
   title: string;
+  image: string;
   segment: segmentItem[];
 }
