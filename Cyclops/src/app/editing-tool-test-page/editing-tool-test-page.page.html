@@ -62,7 +62,12 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <ion-fab vertical="top" horizontal="end" slot="fixed">
+  <ion-toolbar *ngIf = "contents">
+    <!-- space for image {{contents.image}} -->
+    <ion-img [src] = "contents.image" class = "custome-image"></ion-img>
+    <!-- <img src = "{{contents.image}}" class = "custome-image"> -->
+  </ion-toolbar>
+  <ion-fab vertical="top" horizontal="end" slot="fixed" class = "custome-item">
     <ion-fab-button>
       <ion-icon name="settings"></ion-icon>
     </ion-fab-button>
@@ -89,7 +94,7 @@
   <ion-toolbar *ngIf="contents">
     <ion-item>
       <ion-label text-wrap position="stacked">
-        Title of this Segment:
+        Title of this Segment: 
       </ion-label>
       <ion-input #titleInput [(ngModel)]="TitleInput" placeholder="Input Title Here"
         value="{{contents.segment[currentSeg].segmentTitle}}" (ionChange)="onTitleEditorChange()"></ion-input>
