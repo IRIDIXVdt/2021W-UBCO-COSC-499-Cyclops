@@ -1,0 +1,12 @@
+ion-card-content {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    /* number of lines to show */
+    line-height: 2;
+    /* fallback */
+    height: 50px;
+    /* fallback */
+}
