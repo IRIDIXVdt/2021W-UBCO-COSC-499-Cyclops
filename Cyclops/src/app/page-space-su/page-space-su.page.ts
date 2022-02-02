@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController, PopoverController } from '@ionic/angular';
 import { EcoPopoverComponent } from './eco-popover/eco-popover.component';
 import { ScoreModalComponent } from './score-modal/score-modal.component';
+import { StarModalComponent } from './star-modal/star-modal.component';
 import { NavController } from '@ionic/angular';
 import { PageSpaceMePage } from '../page-space-me/page-space-me.page';
 import { Router } from '@angular/router';
@@ -47,7 +48,7 @@ export class PageSpaceSuPage implements OnInit {
 
   openModal(){
     this.modalCtrol.create({
-      component:ScoreModalComponent,
+      component:StarModalComponent,
       componentProps: this.profile
     }).then(modalres =>{
       modalres.present();
