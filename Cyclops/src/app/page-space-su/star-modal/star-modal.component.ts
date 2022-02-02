@@ -16,6 +16,9 @@ export class StarModalComponent implements OnInit {
     this.modalCtrl.dismiss();
 
   }
+  onSolution(){
+    this.modalCtrl.dismiss();
+  }
 
   
 
