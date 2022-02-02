@@ -26,13 +26,13 @@
                 </ion-fab-list>
             </ion-fab>
 
-            <ion-card color='light' routerLink="/tabs/page-space-me/{{content.id}}">
+            <ion-card color='light' routerLink="/tabs/page-space-me/{{content.id}}" style="height: 330px;">
                 <img src="{{content.image}}" style="width: 600px; height:180px;object-fit: cover" />
                 <ion-card-header>
                     <ion-card-subtitle>{{content.subtitle}}</ion-card-subtitle>
                     <ion-card-title>{{content.title}}</ion-card-title>
                 </ion-card-header>
-                <ion-card-content style="width:100%; overflow: hidden;">
+                <ion-card-content style="overflow: hidden; white-space: pre; text-overflow: ellipsis;">
                     {{content.cardIntroduction}}
                 </ion-card-content>
             </ion-card>
