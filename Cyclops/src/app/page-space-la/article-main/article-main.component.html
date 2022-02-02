@@ -20,14 +20,14 @@
                         <ion-icon name="create"></ion-icon>
                     </ion-fab-button>
                     <ion-fab-button routerLink="/tabs/TextEdit/{{content.id}}">
-                        
+
                         <ion-icon name="document-text-outline"></ion-icon>
                     </ion-fab-button>
                 </ion-fab-list>
             </ion-fab>
 
-            <ion-card color='light' routerLink="/tabs/page-space-me/{{content.id}}" style="height:100%;">
-                <ion-img src="{{content.image}}"></ion-img>
+            <ion-card color='light' routerLink="/tabs/page-space-me/{{content.id}}">
+                <img src="{{content.image}}" style="width: 600px; height:180px;object-fit: cover" />
                 <ion-card-header>
                     <ion-card-subtitle>{{content.subtitle}}</ion-card-subtitle>
                     <ion-card-title>{{content.title}}</ion-card-title>
