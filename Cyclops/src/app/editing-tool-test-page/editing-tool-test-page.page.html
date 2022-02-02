@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-button (click)="backArticle()"  color = "primary">
+      <ion-button (click)="backArticle()" color="primary">
         <ion-icon name="chevron-back-outline"></ion-icon>
         Back
       </ion-button>
@@ -26,26 +26,23 @@
     <span *ngFor="let segmentItem of contents.segment;let indexOfelement=index;">
 
       <span *ngIf="indexOfelement != currentSeg">
+        <!-- default chip -->
         <ion-chip (click)="onChipClick(indexOfelement)">
           <ion-label color="dark">{{segmentItem.segmentTitle}}</ion-label>
         </ion-chip>
       </span>
 
       <span *ngIf="indexOfelement == currentSeg">
-        <!-- if this is the selected option -->
+        <!-- if this is the selected option, highlight the chip and include a remove button -->
         <ion-chip (click)="onChipClick(indexOfelement)">
           <ion-label color="primary">{{segmentItem.segmentTitle}}</ion-label>
           <ion-icon color="danger" name="trash-outline" (click)="removeArticle()"></ion-icon>
         </ion-chip>
-        <!-- <ion-chip color="light" (click)="removeArticle()">
-          <ion-icon color="danger" name="trash-outline"></ion-icon>
-          <ion-label></ion-label>
-        </ion-chip> -->
       </span>
     </span>
 
     <ion-chip (click)="onChipAdd()" color="light">
-      <!-- <ion-label>Add Segment</ion-label> -->
+      <!-- This is the button for adding segments -->
       <ion-icon name="add-circle-outline" color="primary"></ion-icon>
       <ion-label></ion-label>
     </ion-chip>
@@ -62,12 +59,12 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <ion-toolbar *ngIf = "contents">
+  <ion-toolbar *ngIf="contents">
     <!-- space for image {{contents.image}} -->
-    <ion-img [src] = "contents.image" class = "custome-image"></ion-img>
+    <ion-img [src]="contents.image" class="custome-image"></ion-img>
     <!-- <img src = "{{contents.image}}" class = "custome-image"> -->
   </ion-toolbar>
-  <ion-fab vertical="top" horizontal="end" slot="fixed" class = "custome-item">
+  <ion-fab vertical="top" horizontal="end" slot="fixed" class="custome-item">
     <ion-fab-button>
       <ion-icon name="settings"></ion-icon>
     </ion-fab-button>
@@ -94,7 +91,7 @@
   <ion-toolbar *ngIf="contents">
     <ion-item>
       <ion-label text-wrap position="stacked">
-        Title of this Segment: 
+        Title of this Segment:
       </ion-label>
       <ion-input #titleInput [(ngModel)]="TitleInput" placeholder="Input Title Here"
         value="{{contents.segment[currentSeg].segmentTitle}}" (ionChange)="onTitleEditorChange()"></ion-input>
