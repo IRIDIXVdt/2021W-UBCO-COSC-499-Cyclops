@@ -9,22 +9,22 @@
 </ion-header>
 <ion-content class="ion-padding"> 
 
-<h1 class ="logo">
-  <img src="../assets/icon/cyclops.png"/>
+  <h1 class ="logo">
+    <img src="../assets/icon/cyclops.png"/>
 
-  <div>
-    Solution
-  </div>
+    <div>
+      Solution
+    </div>
     
 
   </h1>
 
+  
+
  
 
   <form [formGroup]="myForm">
-
-
-
+    
     <div class="level">
 
     <div class="menu">
@@ -80,6 +80,20 @@
 
     <div class="stars">
 
+      <ion-item>
+        <ion-icon *ngIf="myRating>=1" name="star"></ion-icon>
+        <ion-icon *ngIf="myRating>=2" name="star"></ion-icon>
+        <ion-icon *ngIf="myRating>=3" name="star"></ion-icon>
+        <ion-icon *ngIf="myRating>=4" name="star"></ion-icon>
+        <ion-icon *ngIf="myRating>=5" name="star"></ion-icon>
+        <ion-icon *ngIf="myRating%1!=0" name="star-half"></ion-icon>
+        <ion-icon *ngIf="myRating==0" name="star-outline"></ion-icon>
+        <ion-icon *ngIf="myRating<=1" name="star-outline"></ion-icon>
+        <ion-icon *ngIf="myRating<=2" name="star-outline"></ion-icon>
+        <ion-icon *ngIf="myRating<=3" name="star-outline"></ion-icon>
+        <ion-icon *ngIf="myRating<=4" name="star-outline"></ion-icon>
+      </ion-item>
+      
     </div>
 
     <p id="center">
@@ -93,6 +107,7 @@
 
 
   </form>
+  
 
 
 </ion-content>

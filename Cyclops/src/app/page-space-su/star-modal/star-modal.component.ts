@@ -8,7 +8,9 @@ import { ModalController } from '@ionic/angular';
 })
 export class StarModalComponent implements OnInit {
 
-  constructor(private modalCtrl: ModalController) { }
+  constructor(private modalCtrl: ModalController) {
+
+   }
 
   ngOnInit() {}
 
@@ -19,6 +21,8 @@ export class StarModalComponent implements OnInit {
   onSolution(){
     this.modalCtrl.dismiss();
   }
+  
+  
 
   
 
