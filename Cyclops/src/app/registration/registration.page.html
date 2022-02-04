@@ -3,36 +3,38 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title >Sign Up</ion-title>
+    <ion-title>Sign Up</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content class="ion-padding">
   <h1>Create Account,</h1>
   <h3>Sign up to get started!</h3>
-  
+
   <div class="part">
 
     <div class="form-field">
       <ion-label [ngClass]="focused ? 'label-focused' : ''">User name</ion-label>
-      <ion-input  (ionFocus)="focused = true" (ionBlur)="onBlur($event)" > </ion-input>
+      <ion-input (ionFocus)="focused = true" (ionBlur)="onBlur($event)" type = "text"> </ion-input>
     </div>
 
-    <div class="form-field" >
+    <div class="form-field">
       <ion-label [ngClass]="focused2 ? 'label-focused' : ''">Email</ion-label>
-      <ion-input  (ionFocus)="focused2 = true" (ionBlur)="onBlur2($event)" #userEmail required> </ion-input>
+      <ion-input (ionFocus)="focused2 = true" (ionBlur)="onBlur2($event)" type="email" #userEmail required> </ion-input>
     </div>
 
-    <div class="form-field" >
+    <div class="form-field">
       <ion-label [ngClass]="focused3 ? 'label-focused' : ''">Password</ion-label>
-      <ion-input  (ionFocus)="focused3 = true" (ionBlur)="onBlur3($event)"  type="password" #userPwd required> </ion-input>
+      <ion-input (ionFocus)="focused3 = true" (ionBlur)="onBlur3($event)" type="password" #userPwd required>
+      </ion-input>
     </div>
-       
-    
 
-    <ion-button expand='block' class="login" (click)="authService.SignUp(userEmail.value, userPwd.value)">Sign Up</ion-button>
 
-    <app-icon-button icon='logo-facebook' label='Connect with Facebook'></app-icon-button>  
-  
+
+    <ion-button expand='block' class="login" (click)="authService.SignUp(userEmail.value, userPwd.value)">Sign Up
+    </ion-button>
+
+    <app-icon-button icon='logo-facebook' label='Connect with Facebook'></app-icon-button>
+
     <p class="footer-text">I'm already a member, <a routerLink="/login">Sign In</a></p>
   </div>
   <!-- <form>

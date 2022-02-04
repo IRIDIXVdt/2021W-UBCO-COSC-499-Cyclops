@@ -1,0 +1,99 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title> ECO Tracker Input</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismissModal()">Close</ion-button>
+
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding"> 
+
+  <h1 class ="logo">
+    <img src="../assets/icon/cyclops.png"/>
+
+    <div>
+      Solution
+    </div>
+    
+
+  </h1>
+
+  
+
+ 
+
+  <form [formGroup]="myForm">
+    
+    <div class="level">
+
+    <div class="menu">
+      <ion-list>
+        <ion-item >
+          <ion-label> <h1 id="leveltag">Star Level</h1></ion-label>
+          <ion-select value="brown" okText="Okay" cancelText="Dismiss" placeholder="Select Score Level">
+            <ion-select-option value="1">1</ion-select-option>
+            <ion-select-option value="2">2</ion-select-option>
+            <ion-select-option value="3">3</ion-select-option>
+            <ion-select-option value="4">4</ion-select-option>
+            <ion-select-option value="5">5</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+    </div>
+
+    </div>
+
+    <div class="section">
+      <div class="menu">
+        <ion-list>
+          <ion-item >
+            <ion-label> <h1 id="leveltag">Section</h1></ion-label>
+            <ion-select value="brown" okText="Okay" cancelText="Dismiss" placeholder="Select Section">
+              <ion-select-option value="1">Food</ion-select-option>
+              <ion-select-option value="2">Fossil Fuels</ion-select-option>
+              <ion-select-option value="3">Mining</ion-select-option>
+              <ion-select-option value="4">Transportation</ion-select-option>
+              <ion-select-option value="5">Temperature Control</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+      </div>
+    </div>
+
+    <div class="solution">
+      <div class="menu">
+        <ion-list>
+          <ion-item >
+            <ion-label> <h1 id="leveltag">Solution</h1></ion-label>
+            <ion-select value="brown" okText="Okay" cancelText="Dismiss" placeholder="Select Solution">
+              <ion-select-option value="1">Reduce Meat Consumption</ion-select-option>
+              <ion-select-option value="2">Forget about the labels</ion-select-option>
+              <ion-select-option value="3">Try New things</ion-select-option>
+              <ion-select-option value="4">Find your high-impact foods</ion-select-option>
+              <ion-select-option value="5">Grow a Garden</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+      </div>
+    </div>
+
+    <div class="stars">
+
+    </div>
+
+    <p id="center">
+      <ion-button size="small" shape="round"  color="tertiary" class="ion-margin-top" (click)="onSolution()">Submit Solution</ion-button>
+    </p>
+
+
+
+
+
+
+
+  </form>
+  
+
+
+</ion-content>

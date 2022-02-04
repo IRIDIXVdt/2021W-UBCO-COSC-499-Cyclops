@@ -32,6 +32,7 @@
     "@ckeditor/ckeditor5-build-inline": "^32.0.0",
     "@ionic/angular": "^5.5.2",
     "firebase": "^9.6.4",
+    "firebase-admin": "^10.0.2",
     "ng2-search-filter": "^0.5.1",
     "rxfire": "^6.0.0",
     "rxjs": "~6.6.0",

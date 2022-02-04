@@ -2,33 +2,54 @@
     <ion-toolbar>
         <!-- <img src="../assets/icon/cyclops.png" style="margin-top: 3%; margin-left: 3%; width: 20%;"/>
      -->
-        <div class="hidden-lg-down">
-            <ion-icon src="../assets/icon/cyclops_temp.svg" id="cIcon"></ion-icon>
-        </div>
+        <span disable="true" class="hidden-lg-down" slot="start">
+            <ion-icon src="../assets/icon/cyclops_temp.svg" id="cIcon"> </ion-icon>
+        </span>
 
-        <ion-title style="text-align: right;" style="font-size: 150%;">CyclopediApp</ion-title>
+        <ion-title style="font-size: 150%;">
+            <p>
+                CyclopediApp
+            </p>
+        </ion-title>
+        <ion-button *ngIf="!isDesktop && !authService.userData" slot="end" routerLink="/login" color="light">
+
+            <ion-icon name="log-in-outline" color="primary"></ion-icon>
+
+        </ion-button>
+
     </ion-toolbar>
+
 </ion-header>
 
 <div *ngIf="!isDesktop">
-    <ion-fab vertical="top" horizontal="end" slot="fixed">
-        <ion-fab-button color="light">
-            <ion-icon name="add-outline"></ion-icon>
-        </ion-fab-button>
+    <!-- isDesktop == false  small screen size  -->
+    <div *ngIf="authService.userData">
+        <ion-fab vertical="top" horizontal="end" slot="fixed">
+            <ion-fab-button color="light">
+                <ion-icon name="person-circle-outline"></ion-icon>
+            </ion-fab-button>
 
-        <ion-fab-list side="bottom">
-            <!-- <ion-fab-button>
+            <ion-fab-list side="bottom">
+                <!-- <ion-fab-button>
                 <ion-icon name="log-in-outline" routerLink="/login"></ion-icon>
             </ion-fab-button>
             <ion-fab-button routte>
                 <ion-icon name="settings-outline"></ion-icon>
             </ion-fab-button> -->
-            <ion-fab-button *ngFor="let b of getActive()">
-                <ion-icon name={{b.iconName}} routerLink={{b.routerLink}} (click)=b.clickMethod></ion-icon>
-            </ion-fab-button>
-        </ion-fab-list>
-    </ion-fab>
+                <ion-fab-button>
+                    <ion-icon name="person-circle-outline"></ion-icon>
+                </ion-fab-button>
+                <ion-fab-button>
+                    <ion-icon name="remove-circle-outline" (click)="this.authService.SignOut()"></ion-icon>
+                </ion-fab-button>
+            </ion-fab-list>
+        </ion-fab>
+    </div>
+
+
 </div>
+
+
 
 
 <ion-content class="ion-padding">
@@ -38,7 +59,8 @@
             equip them with reliable facts, and suggest concrete solutions to the common question: “Well how can I possibly help the environment?” We will give overviews of each issue and how they impact the environment, and explore all that can be done
             by businesses, communities, cities, and countries around the world. While large-scale solutions are certainly the most important ones, we will also provide solutions for individuals that want to reduce the impacts of their everyday lives.</p>
         <p>In the next version of CyclopediApp, you will be able to measure your progress as you explore the various issues and solutions – and contribute to change at the larger scales. CyclopediApp will also have multiple features that help individual
-            voices reach large scale audiences, to allow you to easily affect meaningful change. This will be available soon.</p>
+            voices reach large scale audiences, to allow you to easily affect meaningful change. This will be available soon.
+        </p>
         <p>As mentioned, CyclopediApp focuses on the major contributors of climate change and biodiversity loss. We’ll see why these matter in the intro.</p>
         <p>We’ve broken down the polluting sectors of our societies into sections. The first few sections focus on laying the foundation, to make sure everyone can keep up when we get to the main sections. For each of these main sections, solutions to reduce
             impacts at all scales are listed. In addition, a summary is provided to help readers remember the most important topics discussed in each overview – without having to read the whole thing over again. The last few sections are bonus rounds,
