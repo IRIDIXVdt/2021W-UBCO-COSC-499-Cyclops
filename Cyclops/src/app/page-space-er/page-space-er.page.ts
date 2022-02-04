@@ -43,20 +43,11 @@ export class PageSpaceErPage implements OnInit {
 
     /*  this.isLoggedIn(); // return T/F to authentication */
 
-    this.authService.afAuth.authState.subscribe(user => {
-      if (user) {
-        
-        //console.log("user",this.userData);
-        
-        console.log("user2",JSON.stringify(user));
-        
-
-        
-        
-      } else {
-        console.log("Null user",JSON.stringify(user));
-      }
-    })
+    if(authService.userData){
+      console.log("Has User",authService.isLogin())
+    }else{
+      console.log("No User",authService.isLogin())
+    }
   }
   initializeApp() {
     this.platform.ready().then(() => {
@@ -139,5 +130,8 @@ export class PageSpaceErPage implements OnInit {
     });
   }
 
+  isAdmin(){
 
+
+  }
 }

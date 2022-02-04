@@ -8,6 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 import { displayArticle } from '../sharedData/displayArticle';
 import { displayArticles } from '../sharedData/displayArticles';
 import { FirebaseService } from '../firebase.service';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-page-space-me',
@@ -45,7 +46,8 @@ export class PageSpaceMePage implements OnInit {
     public modalController: ModalController,
     private modalCtrol: ModalController,
     private activatedrouter: ActivatedRoute,
-    public firebaseService: FirebaseService
+    public firebaseService: FirebaseService,
+    public authService: AuthService
   ) {
 
     this.docId = this.activatedrouter.snapshot.paramMap.get('docId');
