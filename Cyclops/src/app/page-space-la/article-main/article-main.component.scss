@@ -3,10 +3,16 @@ ion-card-content {
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    /* number of lines to show */
-    line-height: 2;
-    /* fallback */
-    height: 50px;
-    /* fallback */
+    -webkit-line-clamp: 3;
+    height: 68px;
+}
+
+ion-card {
+    height: 370px;
+}
+
+ion-card img {
+    width: 600px;
+    height: 200px;
+    object-fit: cover
 }

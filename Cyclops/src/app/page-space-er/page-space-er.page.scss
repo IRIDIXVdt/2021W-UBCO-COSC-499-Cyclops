@@ -65,3 +65,22 @@ ion-slides {
         display: none !important;
     }
 }
+
+ion-card-content {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    height: 68px;
+}
+
+ion-card.article-card {
+    height: 370px;
+}
+
+ion-card img {
+    width: 600px;
+    height: 200px;
+    object-fit: cover;
+}

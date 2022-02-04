@@ -76,7 +76,8 @@ export class PageSpaceErPage implements OnInit {
           docId: e.payload.doc.id,
           image: e.payload.doc.data()['image'],
           title: e.payload.doc.data()['title'],
-          subtitle: e.payload.doc.data()['subtitle']
+          subtitle: e.payload.doc.data()['subtitle'],
+          cardIntroduction: e.payload.doc.data()['cardIntroduction']
         }
       })
       console.log(this.articles);

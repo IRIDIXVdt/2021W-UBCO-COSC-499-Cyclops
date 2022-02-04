@@ -6,7 +6,7 @@
 
 <ion-grid *ngIf="contentCol">
     <ion-row id="testList">
-        <ion-col size-xs="12" size-sm="6" size-md="4" size-lg="3" *ngFor="let content of contentCol">
+        <ion-col size-xs="12" size-sm="6" size-md="6" size-lg="4" *ngFor="let content of contentCol">
             <!-- vertical="top" horizontal="end" slot="fixed" -->
             <ion-fab horizontal="end" vertical="top">
                 <ion-fab-button color="light">
@@ -26,8 +26,8 @@
                 </ion-fab-list>
             </ion-fab>
 
-            <ion-card color='light' routerLink="/tabs/page-space-me/{{content.id}}" style="height: 330px;">
-                <img src="{{content.image}}" style="width: 600px; height:180px;object-fit: cover" />
+            <ion-card color='light' routerLink="/tabs/page-space-me/{{content.id}}">
+                <img src="{{content.image}}" />
                 <ion-card-header>
                     <ion-card-subtitle>{{content.subtitle}}</ion-card-subtitle>
                     <ion-card-title>{{content.title}}</ion-card-title>
