@@ -14,6 +14,8 @@ export class AuthService {
   userData: any; // Save logged in user data
   authentication:boolean;
   adminAuth:boolean;
+  admin:boolean;
+  Login:boolean;
   constructor(
     public afs: AngularFirestore,   // Inject Firestore service
     public afAuth: AngularFireAuth, // Inject Firebase auth service
@@ -21,44 +23,50 @@ export class AuthService {
     public ngZone: NgZone, // NgZone service to remove outside scope warning
     public alertController: AlertController
   ) {  
-    this.afAuth.authState.subscribe(user => {
-      if (user) {
-        console.log("has user logged in ");
-      } else {
-        this.userData = null;
-      }
-    })
-    /* Saving user data in localstorage when 
-    logged in and setting up null when logged out */
     /* this.afAuth.authState.subscribe(user => {
       if (user) {
-        this.userData = user;
-         console.log("user",this.userData);
-        localStorage.setItem('user', JSON.stringify(this.userData));
-        console.log("user2",JSON.stringify(this.userData));
-        JSON.parse(localStorage.getItem('user'));
-
-        this.authentication = true;
-        localStorage.setItem('authentication', JSON.stringify(this.authentication)); 
+        console.log("Get user info from firebase ");
         
       } else {
-         localStorage.setItem('user', null);
-        JSON.parse(localStorage.getItem('user'));
-
-        this.authentication = false;
-        localStorage.setItem('authentication', JSON.stringify(this.authentication)); 
         this.userData = null;
       }
     }) */
+
+    this.afAuth.authState.subscribe(user => {
+      if (user) {
+        if(user.emailVerified){
+          /* localStorage.setItem('user', JSON.stringify(user.emailVerified)); */
+        }else{
+          localStorage.setItem('user', null);
+        }
+        
+      } else {
+        localStorage.setItem('user', null);
+      }
+    })
+    
+    
   }
 
+
+  //return true if has logged in
+  isLogin(){
+    /* console.log("login check ",localStorage.getItem('user')) */
+    if(!JSON.parse(localStorage.getItem('user'))){
+      return false;
+    }else{
+      return true;
+    }
+  }
   // Sign in with email/password
   SignIn(email, password) {
     return this.afAuth.signInWithEmailAndPassword(email, password)
       .then((result) => {
         if(result.user.emailVerified) {
           this.userData = result.user;
-          this.router.navigate(['tabs/page-space-er']);          
+          localStorage.setItem('user', JSON.stringify(this.userData)); 
+          this.router.navigate(['tabs/page-space-er']);  
+          this.isAdmin();        
         } else {
           this.signInErrorAlert("Email is not verified");
           return false;
@@ -98,7 +106,16 @@ export class AuthService {
   async SendVerificationMail() {
     return (await (this.afAuth.currentUser)).sendEmailVerification()
     .then(() => {
-      this.router.navigate(['verify-email']);
+      console.log("send email")
+       this.router.navigate(['verify-email']); 
+    })
+  }
+
+  async reSendVerificationMail() {
+    return (await (this.afAuth.currentUser)).sendEmailVerification()
+    .then(() => {
+      console.log("re-send email")
+      
     })
   }
 
@@ -159,21 +176,57 @@ export class AuthService {
     return this.afAuth.signOut().then(() => {
       /* localStorage.removeItem('user'); */
       this.userData = null;
+      localStorage.setItem('user', null);
       this.router.navigate(['tabs/page-space-er']); 
     })
   }
 
-   refresh() {
-    this.ngZone.run(() => {
-      console.log('force update the screen');
+   
+
+  isAdmin(){
+    if(this.userData){ 
+      this.afs.collection("adminUsers", ref => ref.where('email', '==', this.userData.email)).snapshotChanges().subscribe(res => {
+        if (res.length > 0)
+        {
+        console.log("Match found.");
+        this.admin=true;
+        }
+        else
+        {
+        /* this.notAdminAlert(); */
+        console.log("Does not exist.");
+        this.admin=false;
+        }
     });
+      /* console.log("isAdmin: ",admin); */
+    }
+    else{
+      /* this.noLoginAlert(); */
+      console.log("Have not logged in ");
+    }
+    
   }
 
-  newSignOut() {
-    this.afAuth.signOut().then(() => {
-      localStorage.removeItem('user');
-    })
+  async notAdminAlert() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Warring',
+      subHeader: '',
+      message: 'You are not administrator, you can not edit articles. Contact cyclops@gmail.com for more info',
+      buttons: ['Ok']
+    });
+    await alert.present();
   }
 
-
+  async noLoginAlert() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Warring',
+      subHeader: '',
+      message: "Please Log in",
+      buttons: ['Ok']
+    });
+    await alert.present();
+  }
+  
 }
