@@ -268,7 +268,7 @@
                 <ion-grid>
                     <ion-row>
                         <ion-col *ngFor="let content of articles | slice:0:3 ">
-                            <ion-card class="article-card" color='light' routerLink="/tabs/page-space-me/{{content.id}}">
+                            <ion-card class="article-card" color='light' routerLink="/tabs/page-space-me/{{content.docId}}">
                                 <img src="{{content.image}}" />
                                 <ion-card-header>
                                     <ion-card-title>{{content.title}}</ion-card-title>
