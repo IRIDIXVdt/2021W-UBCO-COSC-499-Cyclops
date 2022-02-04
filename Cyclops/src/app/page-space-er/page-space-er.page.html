@@ -11,7 +11,7 @@
                 CyclopediApp
             </p>
         </ion-title>
-        <ion-button *ngIf="!isDesktop && !authService.userData" slot="end" routerLink="/login" color = "light">
+        <ion-button *ngIf="!isDesktop && !authService.isLogin()" slot="end" routerLink="/login" color = "light">
 
             <ion-icon name="log-in-outline" color = "primary"></ion-icon>
 
@@ -23,7 +23,7 @@
 
 <div *ngIf="!isDesktop">
     <!-- isDesktop == false  small screen size  -->
-    <div *ngIf="authService.userData">
+    <div *ngIf="authService.isLogin()">
         <ion-fab vertical="top" horizontal="end" slot="fixed">
             <ion-fab-button color="light">
                 <ion-icon name="person-circle-outline"></ion-icon>
