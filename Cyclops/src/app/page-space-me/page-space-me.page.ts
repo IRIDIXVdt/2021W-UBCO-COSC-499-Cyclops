@@ -100,12 +100,6 @@ export class PageSpaceMePage implements OnInit {
     });
     return await popover.present();
   }
- /* async presentModal() {
-    const modal = await this.modalController.create({
-      component: FeedbackModalComponent,
-    });
-    return await modal.present();
-  }*/
   
   presentModal(){
     this.modalCtrol.create({
