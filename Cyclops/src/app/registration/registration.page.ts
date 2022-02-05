@@ -28,9 +28,9 @@ export class RegistrationPage implements OnInit {
       {
         type:'maxlength', message:'Your password should be less than 20 character.'
       },
-      {
+      /* {
         type:'pattern', message:'Should contains at least one letter and one number.'
-      }
+      } */
     ],
     confirmPassword: [
       {
@@ -50,7 +50,7 @@ export class RegistrationPage implements OnInit {
         Validators.required,
         Validators.minLength(6),
         Validators.maxLength(20),
-        Validators.pattern("^(?=.*[a-zA-Z])(?=.*[0-9])")
+        /* Validators.pattern("^(?=.*[a-zA-Z])(?=.*[0-9])") */
       ]),
       confirmFormPassword: new FormControl('', Validators.compose([
         Validators.required,
