@@ -66,7 +66,8 @@ export class AuthService {
           this.userData = result.user;
           localStorage.setItem('user', JSON.stringify(this.userData)); 
           this.router.navigate(['tabs/page-space-er']);  
-          this.isAdmin();        
+          this.isAdmin();  
+          this.SetUserData(result.user);     
         } else {
           this.signInErrorAlert("Email is not verified");
           return false;
@@ -163,8 +164,7 @@ export class AuthService {
       email: user.email,
       displayName: user.displayName,
       photoURL: user.photoURL,
-      emailVerified: user.emailVerified,
-      isAnonymous: user.isAnonymous
+      emailVerified: user.emailVerified
     }
     return userRef.set(userData, {
       merge: true
