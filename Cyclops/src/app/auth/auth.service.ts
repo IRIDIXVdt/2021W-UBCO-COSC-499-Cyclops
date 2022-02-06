@@ -1,11 +1,14 @@
 import { Injectable,NgZone } from '@angular/core';
 
 import { User } from "../sharedData/user";
-/*  import { firebase } from '@firebase/app'; */ 
+import firebase from 'firebase/compat/app';
+
+
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { Router } from "@angular/router";
 import { AlertController } from '@ionic/angular';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -150,7 +153,7 @@ export class AuthService {
 
   // Sign in with Google
   GoogleAuth() {
-   /*  return this.AuthLogin(new auth.GoogleAuthProvider()); */
+     return this.AuthLogin(new firebase.auth.GoogleAuthProvider()); 
   }
 
   // Auth logic to run auth providers
@@ -158,7 +161,10 @@ export class AuthService {
     return this.afAuth.signInWithPopup(provider)
     .then((result) => {
        this.ngZone.run(() => {
-          this.router.navigate(['tabs/page-space-er']);
+          this.userData = result.user;
+          localStorage.setItem('user', JSON.stringify(this.userData)); 
+          this.router.navigate(['tabs/page-space-er']);  
+          this.isAdmin(); 
         })
       this.SetUserData(result.user);
     }).catch((error) => {
@@ -188,6 +194,7 @@ export class AuthService {
     return this.afAuth.signOut().then(() => {
       /* localStorage.removeItem('user'); */
       this.userData = null;
+      this.admin = false;
       localStorage.setItem('user', null);
       this.router.navigate(['tabs/page-space-er']); 
     })
