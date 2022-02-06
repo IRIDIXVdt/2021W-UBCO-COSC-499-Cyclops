@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalController, NavParams } from '@ionic/angular';
 import { SolutionPageForm } from '../form/solution.page.form';
@@ -10,6 +10,9 @@ import { COLORS } from './enum';
   styleUrls: ['./score-modal.component.scss'],
 })
 export class ScoreModalComponent implements OnInit  {
+
+  @Input() rating: number ;
+  @Output() ratingChange: EventEmitter<number> = new EventEmitter();;
 
   myForm: FormGroup;
   submitted = false;
@@ -72,6 +75,8 @@ export class ScoreModalComponent implements OnInit  {
     } else {
       this.modalCtrl.dismiss(this.usereco)
     }
+  }
+  
 
     
 
@@ -92,6 +97,6 @@ export class ScoreModalComponent implements OnInit  {
 
    
 
-  }
+  
 
 }
