@@ -1,16 +1,61 @@
+// #center{
+//     text-align: center;
+// }
+// .error{
+//     color: red;
+    
+// }
+// #err{
+//     text-align: center;
+// }
+// #logo{
+//     text-align: center;
+// }
+// #slab{
+//     text-align: center;
+// }
+.logo{
+    text-align: center;
+}
+.level{
+    padding-bottom: 50px;
+    display: inline;
+}
+.section{
+    padding-bottom: 50px;
+    display: inline;
+}
+.solution{
+    display: inline;
+}
 #center{
     text-align: center;
 }
-.error{
-    color: red;
-    
+.lvl{
+    text-align: right;
 }
-#err{
-    text-align: center;
+.menu{
+    text-align: right;
 }
-#logo{
+.stars{
     text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
 }
-#slab{
-    text-align: center;
+.default{
+    --ion-background-color:red;;
+
+}
+.onetwo{
+    --color: red;
+
+}
+.three{
+    color: green;
+
+}
+.fourfive{
+    color: yellow;
+
 }
