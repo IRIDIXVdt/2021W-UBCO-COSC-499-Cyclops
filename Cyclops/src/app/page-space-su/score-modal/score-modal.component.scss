@@ -14,3 +14,48 @@
 // #slab{
 //     text-align: center;
 // }
+.logo{
+    text-align: center;
+}
+.level{
+    padding-bottom: 50px;
+    display: inline;
+}
+.section{
+    padding-bottom: 50px;
+    display: inline;
+}
+.solution{
+    display: inline;
+}
+#center{
+    text-align: center;
+}
+.lvl{
+    text-align: right;
+}
+.menu{
+    text-align: right;
+}
+.stars{
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+}
+.default{
+    --ion-background-color:red;;
+
+}
+.onetwo{
+    --color: red;
+
+}
+.three{
+    color: green;
+
+}
+.fourfive{
+    color: yellow;
+
+}
