@@ -61,7 +61,7 @@
     <ion-button expand='block' class="login" (click)="authService.SignUp(userEmail.value, userPwd.value)" [disabled]="signUpForm.invalid">Sign Up
     </ion-button>
 
-    <app-icon-button icon='logo-facebook' label='Connect with Facebook'></app-icon-button>
+    <app-icon-button icon='logo-google' label='Connect with Google' (click)="authService.GoogleAuth()"></app-icon-button>
 
     <p class="footer-text">I'm already a member, <a routerLink="/login">Sign In</a></p>
   </form>

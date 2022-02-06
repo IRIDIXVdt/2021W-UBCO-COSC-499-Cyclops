@@ -39,7 +39,7 @@
     <a routerLink="#" class="forgot-password-link">Forgot Password?</a>
 
     <ion-button (click)="authService.SignIn(userEmail.value, userPwd.value)" [disabled]="signInForm.invalid" expand='block'>Login</ion-button>
-    <app-icon-button icon='logo-facebook' label='Connect with Facebook'></app-icon-button>
+    <app-icon-button icon='logo-google' label='Connect with Google' (click)="authService.GoogleAuth()"></app-icon-button>
   </form>
 
   <p class="footer-text">I'm a new user, <a routerLink="/registration">Sign Up</a></p>
