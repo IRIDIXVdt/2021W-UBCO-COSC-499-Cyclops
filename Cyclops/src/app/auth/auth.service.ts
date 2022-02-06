@@ -124,10 +124,22 @@ export class AuthService {
   ForgotPassword(passwordResetEmail) {
     return this.afAuth.sendPasswordResetEmail(passwordResetEmail)
     .then(() => {
-      window.alert('Password reset email sent, check your inbox.');
+      this.resetPasswordAlert('Thank you',"A reset password email has been send to you");
     }).catch((error) => {
-      window.alert(error)
+      console.log(error)
+      this.resetPasswordAlert('Sorry',"Check your internet Connection");
     })
+  }
+
+  async resetPasswordAlert(title, message) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: title,
+      subHeader: '',
+      message: message,
+      buttons: ['Ok']
+    });
+    await alert.present();
   }
 
   // Returns true when user is looged in and email is verified
