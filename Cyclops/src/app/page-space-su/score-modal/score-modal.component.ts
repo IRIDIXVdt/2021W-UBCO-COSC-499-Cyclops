@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalController, NavParams } from '@ionic/angular';
 import { SolutionPageForm } from '../form/solution.page.form';
+import { COLORS } from './enum';
 
 @Component({
   selector: 'app-score-modal',
