@@ -36,7 +36,7 @@
       </ng-container>
     </div> 
 
-    <a routerLink="#" class="forgot-password-link">Forgot Password?</a>
+    <a routerLink="/reset-password" class="forgot-password-link">Forgot Password?</a>
 
     <ion-button (click)="authService.SignIn(userEmail.value, userPwd.value)" [disabled]="signInForm.invalid" expand='block'>Login</ion-button>
     <app-icon-button icon='logo-google' label='Connect with Google' (click)="authService.GoogleAuth()"></app-icon-button>
