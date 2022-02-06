@@ -13,6 +13,11 @@ export class ScoreModalComponent implements OnInit  {
 
   myForm: FormGroup;
   submitted = false;
+  public colors = COLORS;
+  public grey = COLORS.GREY;
+  public green = COLORS.GREEN;
+  public red = COLORS.RED;
+  public yellow = COLORS.YELLOW;
 
 
 
