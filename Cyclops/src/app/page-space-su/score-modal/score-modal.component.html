@@ -123,7 +123,24 @@
   </h1>
 
 
+
   <form [formGroup]="myForm">
+
+    <ion-list>
+      <ion-item lines="none">
+        <ion-select (ionChange)="getSolutionsForSelectedSections($event.target.value)" name="Section">
+        <ion-select-option *ngFor="let se of sections">{{se}}</ion-select-option>
+      </ion-select>
+      </ion-item>
+    </ion-list>
+  
+    <ion-list>
+      <ion-item lines="none">
+        <ion-select (ionChange)="getSolutionsForSelectedSections($event.target.value)" name="Solution">
+        <ion-select-option *ngFor="let s of solutions">{{s}}</ion-select-option>
+      </ion-select>
+      </ion-item>
+    </ion-list>
     
     <div class="level">
 

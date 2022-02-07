@@ -50,8 +50,8 @@ export class ScoreModalComponent implements OnInit  {
   ngOnInit() {
     console.log(SectionSolution.sections);
     this.sections= SectionSolution.sections;
-    console.log(SectionSolution.solutions);
-    this.solutions= SectionSolution.solutions;
+    console.log(SectionSolution.solution);
+    this.solutions= SectionSolution.solution;
 
     this.myForm = this.formBuilder.group({
       task: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
@@ -126,9 +126,9 @@ export class ScoreModalComponent implements OnInit  {
     // function is called from the getColor function.
     return index > this.rating;
   }
-  // getSolutionsForSelectedSections(val:string){
-  //   this.solutions = SectionSolution.solutions.find(s=> s.section.trim() == val.trim()).solution;
-  // }
+  getSolutionsForSelectedSections(val:string){
+    this.solutions = SectionSolution.solution.find(s=> s.section.trim() == val.trim()).solutions;
+  }
 
 
   
