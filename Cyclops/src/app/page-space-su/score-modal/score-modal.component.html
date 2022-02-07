@@ -138,7 +138,7 @@
     <ion-list>
       <ion-item lines="none">
         <ion-label> <h1 id="leveltag">Solution Testing</h1></ion-label>
-        <ion-select (ionChange)="getSolutionsForSelectedSections($event.target.value)" name="Solution">
+        <ion-select [(ngModel)] = "selectedSolution" [ngModelOptions]="{standalone: true}" name="Solution" placeholder="Solutions">
         <ion-select-option *ngFor="let s of solutions">{{s}}</ion-select-option>
       </ion-select>
       </ion-item>
