@@ -3,6 +3,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 import { ModalController, NavParams } from '@ionic/angular';
 import { SolutionPageForm } from '../form/solution.page.form';
 import { COLORS } from './enum';
+import { SectionSolution } from './SectionSolution';
 
 @Component({
   selector: 'app-score-modal',
@@ -10,6 +11,9 @@ import { COLORS } from './enum';
   styleUrls: ['./score-modal.component.scss'],
 })
 export class ScoreModalComponent implements OnInit  {
+
+  sections: any=[];
+  solutions: any=[];
 
   @Input() rating: number ;
   @Output() ratingChange: EventEmitter<number> = new EventEmitter();;
@@ -44,6 +48,11 @@ export class ScoreModalComponent implements OnInit  {
   }
 
   ngOnInit() {
+    console.log(SectionSolution.sections);
+    this.sections= SectionSolution.sections;
+    console.log(SectionSolution.solutions);
+    this.solutions= SectionSolution.solutions;
+
     this.myForm = this.formBuilder.group({
       task: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
       score: ['', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.max(100), Validators.min(0)]],
@@ -117,6 +126,10 @@ export class ScoreModalComponent implements OnInit  {
     // function is called from the getColor function.
     return index > this.rating;
   }
+  // getSolutionsForSelectedSections(val:string){
+  //   this.solutions = SectionSolution.solutions.find(s=> s.section.trim() == val.trim()).solution;
+  // }
+
 
   
 
