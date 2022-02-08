@@ -1,5 +1,5 @@
 ion-segment {
-    height: 100px;
+  height: 100px;
 }
 
 // .split{
@@ -13,28 +13,39 @@ ion-segment {
 //     border-right: none !important;
 // }
 .menu-inner ion-content {
-    border-right: 1px solid #dedede;
+  border-right: 1px solid #dedede;
 }
 
 ion-split-pane {
-    --side-min-width: 50px;
-    --side-max-width: 148px;
-    --side-width: 300px;
+  --side-min-width: 50px;
+  --side-max-width: 148px;
+  --side-width: 300px;
 }
 
 .cIcon {
-    font-size: 80px;
-    text-align: center;
+  font-size: 80px;
+  text-align: center;
 }
 
 // .bottom-pane{
 //   border-top: none !important;
 // }
 .ion-no-border {
-    padding-bottom: 20px;
-    padding-top: 10px;
+  padding-bottom: 20px;
+  padding-top: 10px;
 }
 
 ion-button {
-    max-width: 100px;
+  max-width: 100px;
+}
+
+@media (max-width: 1023px) {
+  .phone {
+    display: block;
+  }
+}
+@media (min-width: 1024px) {
+  .phone {
+    display: none;
+  }
 }
