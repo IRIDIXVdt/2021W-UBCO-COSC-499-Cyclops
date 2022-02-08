@@ -8,15 +8,11 @@
       </div>
       <ion-content>
         <ion-header class="ion-no-border">
-          <ion-item lines="none" button routerLink="/tabs/page-space-er">
-            <ion-icon name="compass"></ion-icon>Home
-          </ion-item>
-          <ion-item lines="none" button routerLink="/tabs/page-space-la">
-            <ion-icon name="reader"></ion-icon>Articles
-          </ion-item>
-          <ion-item lines="none" button routerLink="/tabs/page-space-su">
-            <ion-icon name="leaf"></ion-icon>Eco Tracker
-          </ion-item>
+          <div *ngFor="let item of list">
+            <ion-item lines="none" button routerLink="{{item.link}}">
+              <ion-icon name="{{item.icon}}"></ion-icon>{{item.name}}
+            </ion-item>
+          </div>
         </ion-header>
       </ion-content>
       <ion-footer class="ion-no-border">
