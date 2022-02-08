@@ -13,6 +13,7 @@ export class AppComponent {
   ngOnInit() {
     console.log('this.router.url', this.router.url);
   }
+
   list = [
     {
       "link": "/tabs/page-space-er",
@@ -28,6 +29,9 @@ export class AppComponent {
       "name": "Eco Tracker"
     }
   ]
+  menuClick() {
+    console.log('Split Pane Button on click, this.router.url', this.router.url);
+  }
 
 }
 
