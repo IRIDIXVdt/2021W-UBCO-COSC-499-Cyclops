@@ -1,7 +1,6 @@
 
-import { Component, HostListener} from '@angular/core';
-import { Platform } from '@ionic/angular';
-import { ScreensizeService } from './services/screensize.service';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -9,19 +8,30 @@ import { ScreensizeService } from './services/screensize.service';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor(private screensizeService: ScreensizeService, private platform: Platform) {
+  constructor(private router: Router) { }
 
-    this.initializeApp();
+  ngOnInit() {
+    console.log('this.router.url', this.router.url);
   }
 
-  initializeApp() {
-    this.platform.ready().then(() => {
-      this.screensizeService.onResize(this.platform.width());
-    });
+  list = [
+    {
+      "link": "/tabs/page-space-er",
+      "icon": "compass",
+      "name": "Home"
+    }, {
+      "link": "/tabs/page-space-la",
+      "icon": "reader",
+      "name": "Articles"
+    }, {
+      "link": "/tabs/page-space-su",
+      "icon": "leaf",
+      "name": "Eco Tracker"
+    }
+  ]
+  menuClick() {
+    console.log('Split Pane Button on click, this.router.url', this.router.url);
   }
-  @HostListener('window:resize', ['$event'])
-  private onResize(event) {
-    this.screensizeService.onResize(event.target.innerWidth);
-  }
+
 }
 

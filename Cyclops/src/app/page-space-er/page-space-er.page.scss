@@ -60,9 +60,19 @@ ion-slides {
     }
 }
 
+@media (max-width: 1023px) {
+    .phone{
+        display: block;
+    }
+}
+
+
 @media (min-width: 1024px) {
     .hidden-lg-down {
         display: none !important;
+    }
+    .phone{
+        display: none;
     }
 }
 

@@ -1,7 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { FirebaseService } from '../firebase.service';
-import { ScreensizeService } from './services/screensize.service';
+
 import { AuthService } from '../auth/auth.service';
 import { NgZone } from '@angular/core';
 @Component({
@@ -24,24 +24,12 @@ export class PageSpaceErPage implements OnInit {
 
   constructor(
     public firebaseService: FirebaseService,
-    private screensizeService: ScreensizeService,
+    // private screensizeService: ScreensizeService,
     private platform: Platform,
     public authService: AuthService,
     private zone: NgZone) {
     console.log("constructor run");
     this.loadData();
-
-    this.initializeApp();
-
-    this.screensizeService.isDesktopView().subscribe(isDesktop => {
-      if (this.isDesktop && !isDesktop) {
-
-      }
-
-      this.isDesktop = isDesktop;
-    });
-
-    /*  this.isLoggedIn(); // return T/F to authentication */
 
     if(authService.userData){
       console.log("Has User",authService.isLogin())
@@ -49,15 +37,7 @@ export class PageSpaceErPage implements OnInit {
       console.log("No User",authService.isLogin())
     }
   }
-  initializeApp() {
-    this.platform.ready().then(() => {
-      this.screensizeService.onResize(this.platform.width());
-    });
-  }
-  @HostListener('window:resize', ['$event'])
-  private onResize(event) {
-    this.screensizeService.onResize(event.target.innerWidth);
-  }
+
 
   ngOnInit() {
 
@@ -97,33 +77,6 @@ export class PageSpaceErPage implements OnInit {
 
     }
   }
-
-  // async isLoggedIn() {
-  //   const auth = JSON.parse(localStorage.getItem('authentication'));
-  //   if (auth) {
-  //     this.authentication = true;
-  //     console.log("authentication", this.authentication);
-  //   } else {
-  //     this.authentication = false;
-  //     console.log("authentication", this.authentication);
-
-  //   }
-  // }
-
-
-
-  /* getActive() {
-    if(this.authentication){
-      return this.fButtons.filter((i:any) => {
-        return i.isActive === true
-      })
-    }else{
-      return this.fButtons.filter((i:any) => {
-        return i.isActive === false;
-      })
-    }
-    
-  } */
 
   refresh() {
     this.zone.run(() => {
