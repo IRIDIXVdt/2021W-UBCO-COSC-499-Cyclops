@@ -11,7 +11,7 @@
     </div>
 
     <div id='requested'>
-        <p>this is the requested field</p>
+        <!-- <p>this is the requested field</p> -->
         <ion-list id='viewContentTest' *ngFor="let cardContent of dummySearchField  | filter:userInput ">
             <ion-item id="listItem" *ngIf="cardContent.columnName > 0">
                 <ion-card color='light' routerLink="/tabs/page-space-me/{{cardContent.id}}">
