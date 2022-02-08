@@ -54,7 +54,7 @@
 
 </ion-header>
 
-<ion-content class="ion-padding ">
+<ion-content class="ion-padding " [scrollEvents]="true" (ionScroll)="onScroll($event)">
 
     <div [ngSwitch]="status" class="article " *ngIf="contents">
         <div *ngSwitchDefault>

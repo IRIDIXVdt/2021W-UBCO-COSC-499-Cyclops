@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { PopoverController } from '@ionic/angular';
 import { PopoverComponent } from '../popover/popover.component';
 import { ModalController } from '@ionic/angular';
@@ -18,7 +18,7 @@ import { AuthService } from '../auth/auth.service';
 export class PageSpaceMePage implements OnInit {
 
   //contents = displayArticles[0];
- 
+
 
   // contents= {
   //   id: '',
@@ -36,11 +36,12 @@ export class PageSpaceMePage implements OnInit {
   //   cardIntroduction: '',
   //   columnName: '',
   // }
-  contents :any;
-  docId:any;
+  contents: any;
+  docId: any;
   feedback = {
     content: ""
   }
+  scrolling: boolean;
   constructor(
     public popover: PopoverController,
     public modalController: ModalController,
@@ -53,26 +54,30 @@ export class PageSpaceMePage implements OnInit {
     this.docId = this.activatedrouter.snapshot.paramMap.get('docId');
     //console.log("docid------",this.activatedrouter.snapshot.paramMap.get('docId'));
     this.loadDataById();
+    this.scrolling = false;
   }
+ onScroll(event) {
+console.log("scrolling");
+}
 
-  loadDataById(){
+  loadDataById() {
     this.firebaseService.getDataByIdService(this.docId).subscribe(
       e => {
-        this.contents= { 
-          
+        this.contents = {
+
           /* image:e.payload.data()['image'],
           title:e.payload.data()['title'],
           subtitle:e.payload.data()['subtitle'],
           segment:e.payload.data()['segment']  */
-          
+
           id: e.payload.data()['id'],
           title: e.payload.data()['title'],
-          subtitle:e.payload.data()['subtitle'],
+          subtitle: e.payload.data()['subtitle'],
           image: e.payload.data()['image'],
           segment: e.payload.data()['segment'],
           cardIntroduction: e.payload.data()['cardIntroduction'],
           columnName: e.payload.data()['columnName'],
-        
+
         };
 
         console.log(this.contents);
@@ -81,13 +86,13 @@ export class PageSpaceMePage implements OnInit {
         console.debug(err);
       }
     )
-   }
+  }
 
-  updateDataById(docId,data){
-    this.firebaseService.updateDataByIdService(docId,data).then((res:any) => {
+  updateDataById(docId, data) {
+    this.firebaseService.updateDataByIdService(docId, data).then((res: any) => {
       console.log(res);
     })
-  
+
     alert("successful");
   }
 
@@ -100,16 +105,16 @@ export class PageSpaceMePage implements OnInit {
     });
     return await popover.present();
   }
-  
-  presentModal(){
+
+  presentModal() {
     this.modalCtrol.create({
-      component:FeedbackModalComponent,
+      component: FeedbackModalComponent,
       componentProps: this.feedback
-    }).then(modalres =>{
+    }).then(modalres => {
       modalres.present();
 
-      modalres.onDidDismiss().then( res =>{
-        if(res.data != null){
+      modalres.onDidDismiss().then(res => {
+        if (res.data != null) {
           this.feedback = res.data;
         }
       })
@@ -118,6 +123,7 @@ export class PageSpaceMePage implements OnInit {
 
   ngOnInit() {
   }
+
 
   openModal() {
     this.modalCtrol.create({
@@ -128,24 +134,24 @@ export class PageSpaceMePage implements OnInit {
         title: this.contents.title,
         subtitle: this.contents.subtitle,
         image: this.contents.image,
-        segment: JSON.parse(JSON.stringify(this.contents.segment)) 
-       
+        segment: JSON.parse(JSON.stringify(this.contents.segment))
+
       }
     }).then(modalres => {
       modalres.present();
 
       modalres.onDidDismiss().then(res => {
         if (res.data != null) {
-         /*  this.contents[this.articleId] = res.data; */
+          /*  this.contents[this.articleId] = res.data; */
           this.contents.title = res.data.title;
           this.contents.subtitle = res.data.subtitle;
           this.contents.image = res.data.image;
           this.contents.segment = res.data.segment;
           //update data here
-          console.log("have data"+this.contents[this.docId]);
+          console.log("have data" + this.contents[this.docId]);
           console.log(res.data);
-          this.updateDataById(this.docId,this.contents)
-        }else{
+          this.updateDataById(this.docId, this.contents)
+        } else {
           console.log("no data ");
           console.log(res.data);
         }
