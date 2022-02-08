@@ -11,3 +11,20 @@
   color: black;
   font-size: x-large;
 }
+
+@media(max-width: 1023px){
+  .phone{
+    display: block;
+  }
+  .phoneTab{
+    display: block;
+  }
+}
+@media(min-width: 1024px){
+  .phone{
+    display: none;
+  }
+  .phoneTab{
+    display: none;
+  }
+}
