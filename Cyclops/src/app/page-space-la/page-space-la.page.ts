@@ -13,7 +13,7 @@ export class PageSpaceLaPage implements OnInit {
   // userInput string is used for search bar input
   i: number = 0;
   status1: any;
-  searchField: displayArticle[];
+  searchField: fetchArticle[];
   segmentChanged(ev: any) {
     console.log('Segment changed', ev);
     console.log('current segment is', this.status1);
@@ -23,6 +23,7 @@ export class PageSpaceLaPage implements OnInit {
 
   constructor(public firebaseService: FirebaseService) {
     this.status1 = "Articles p1";
+    // (document.querySelector('#requested') as HTMLElement).style.display = "none";
   }
 
   async loadData() {
@@ -30,18 +31,14 @@ export class PageSpaceLaPage implements OnInit {
     this.firebaseService.getDataServiceMainPage().subscribe((res) => {
       this.searchField = res.map(e => {
         return {
-          id: e.payload.doc.data()['id'],
-          //notice this is not id in the shared folder
-          //this is the id generated from Firebase
-          image: e.payload.doc.data()['image'],
+          id: e.payload.doc.id,
           title: e.payload.doc.data()['title'],
           subtitle: e.payload.doc.data()['subtitle'],
           segment: e.payload.doc.data()['segment'],
-          cardIntroduction: e.payload.doc.data()['cardIntroduction'],
-          columnName: e.payload.doc.data()['columnName']
+          cardIntroduction: e.payload.doc.data()['cardIntroduction']
         }
       })
-      console.log("load complete");
+      console.log("Search Field Loaded");
       console.log(this.searchField);
 
 

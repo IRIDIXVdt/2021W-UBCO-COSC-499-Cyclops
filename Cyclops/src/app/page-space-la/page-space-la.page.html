@@ -8,16 +8,19 @@
     <ion-searchbar [(ngModel)]="userInput" placeholder="Search Article" showCancelButton="focus"
         cancelButtonText="Cancel" animated='true'>
     </ion-searchbar>
-    <div id = 'requested'>
-        <ion-list id = 'viewContentTest' *ngFor ="let cardContent of contents  | filter:userInput" >
-            <ion-item id = "listItem" *ngIf = "cardContent.columnName > 0">
-                <ion-card color='light' routerLink = "/tabs/page-space-me/{{cardContent.id}}">
+    <div id='requested'>
+        <p>this is the requested field</p>
+        <ion-list id='viewContentTest' *ngFor="let cardContent of searchField ">
+            <!--  | filter:userInput -->
+            <ion-item id="listItem" *ngIf="cardContent.columnName > 0">
+                <p>we have result</p>
+                <ion-card color='light' routerLink="/tabs/page-space-me/{{cardContent.id}}">
                     <ion-card-header>
                         <ion-card-subtitle>{{cardContent.subtitle}}</ion-card-subtitle>
                         <ion-card-title>{{cardContent.title}}</ion-card-title>
                     </ion-card-header>
                     <ion-card-content>
-                        {{cardContent.cardIntroduction}} 
+                        {{cardContent.cardIntroduction}}
                     </ion-card-content>
                 </ion-card>
             </ion-item>
