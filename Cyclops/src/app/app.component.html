@@ -3,19 +3,18 @@
   <ion-split-pane contentId="main" no-border when="(min-width: 1024px)">
     <!--  the side menu  -->
     <ion-menu contentId="main" no-lines>
-
       <div class="cIcon">
         <ion-icon text-center src="../assets/icon/cyclops_temp.svg"></ion-icon>
       </div>
       <ion-content>
         <ion-header class="ion-no-border">
-          <ion-item lines="none" button routerLink="/page-space-er">
+          <ion-item lines="none" button routerLink="/tabs/page-space-er">
             <ion-icon name="compass"></ion-icon>Home
           </ion-item>
-          <ion-item lines="none" button routerLink="/page-space-la">
+          <ion-item lines="none" button routerLink="/tabs/page-space-la">
             <ion-icon name="reader"></ion-icon>Articles
           </ion-item>
-          <ion-item lines="none" button routerLink="/page-space-su">
+          <ion-item lines="none" button routerLink="/tabs/page-space-su">
             <ion-icon name="leaf"></ion-icon>Eco Tracker
           </ion-item>
         </ion-header>
@@ -31,5 +30,4 @@
     </ion-menu>
     <ion-router-outlet id="main"></ion-router-outlet>
   </ion-split-pane>
-
 </ion-app>
