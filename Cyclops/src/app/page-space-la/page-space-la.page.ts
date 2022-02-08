@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { displayArticle } from '../sharedData/displayArticle';
 import { displayArticles } from '../sharedData/displayArticles';
+import { FirebaseService } from 'src/app/firebase.service';
 
 @Component({
   selector: 'app-page-space-la',
@@ -12,14 +13,42 @@ export class PageSpaceLaPage implements OnInit {
   // userInput string is used for search bar input
   i: number = 0;
   status1: any;
+  searchField: displayArticle[];
   segmentChanged(ev: any) {
     console.log('Segment changed', ev);
     console.log('current segment is', this.status1);
   }
 
-  constructor() {
+  
+
+  constructor(public firebaseService: FirebaseService) {
     this.status1 = "Articles p1";
   }
+
+  async loadData() {
+    this.firebaseService.getDataServiceMainPage().subscribe((res) => {
+      this.searchField = res.map(e => {
+        return {
+          id: e.payload.doc.data()['id'],
+          //notice this is not id in the shared folder
+          //this is the id generated from Firebase
+          image: e.payload.doc.data()['image'],
+          title: e.payload.doc.data()['title'],
+          subtitle: e.payload.doc.data()['subtitle'],
+          segment: e.payload.doc.data()['segment'],
+          cardIntroduction: e.payload.doc.data()['cardIntroduction'],
+          columnName: e.payload.doc.data()['columnName']
+        }
+      })
+      console.log("load complete");
+      console.log(this.searchField);
+
+
+    }, (err: any) => {
+      console.log(err);
+    })
+  }
+
   ngOnInit() {
     const textSpace = document.querySelector('#origin') as HTMLElement;
     const searchbar = document.querySelector('ion-searchbar');
