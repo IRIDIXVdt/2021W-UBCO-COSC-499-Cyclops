@@ -13,13 +13,15 @@ export class PageSpaceLaPage implements OnInit {
   // userInput string is used for search bar input
   i: number = 0;
   status1: any;
+  dummySearchField: fetchArticle[];
   searchField: fetchArticle[];
+  contents: displayArticle[];
   segmentChanged(ev: any) {
     console.log('Segment changed', ev);
     console.log('current segment is', this.status1);
   }
 
-  
+
 
   constructor(public firebaseService: FirebaseService) {
     this.status1 = "Articles p1";
@@ -41,28 +43,42 @@ export class PageSpaceLaPage implements OnInit {
       console.log("Search Field Loaded");
       console.log(this.searchField);
 
-
+      this.dummySearchField = this.searchField;
+      console.log('Display: dsf');
+      console.log(this.dummySearchField);
     }, (err: any) => {
       console.log(err);
     })
   }
+  searchBarOnclick() {
+    this.dummySearchField = this.searchField;
+    console.log("clicked");
+    this.contents = displayArticles;
+    
+  }
 
   ngOnInit() {
-    const textSpace = document.querySelector('#origin') as HTMLElement;
-    const searchbar = document.querySelector('ion-searchbar');
+    
     this.loadData();
+
     let items = null;
     // disable event Listener
-    function handleInput(event) {
-      items = Array.from(document.querySelector('ion-grid').children as HTMLCollectionOf<HTMLElement>);
-      const query = event.target.value.toLowerCase();
-      requestAnimationFrame(() => {
-        items.forEach(item => {
-          const shouldShow = item.textContent.toLowerCase().indexOf(query) > -1;
-          item.style.display = shouldShow ? 'block' : 'none';
-        });
-      });
-    }
+
+    const thisNotShow = document.querySelector('#requested') as HTMLElement;
+    thisNotShow.style.display = 'none';
+
+    const textSpace = document.querySelector('#origin') as HTMLElement;
+    const searchbar = document.querySelector('ion-searchbar');
+    // function handleInput(event) {
+    //   items = Array.from(document.querySelector('ion-grid').children as HTMLCollectionOf<HTMLElement>);
+    //   const query = event.target.value.toLowerCase();
+    //   requestAnimationFrame(() => {
+    //     items.forEach(item => {
+    //       const shouldShow = item.textContent.toLowerCase().indexOf(query) > -1;
+    //       item.style.display = shouldShow ? 'block' : 'none';
+    //     });
+    //   });
+    // }
 
     searchbar.addEventListener('ionFocus', handleFocus);
     //searchbar focus, hide other things
@@ -95,5 +111,5 @@ type fetchArticle = {
   title: string;
   subtitle: string;
   cardIntroduction: string;
-  segment:segmentItem[];
+  segment: segmentItem[];
 }
