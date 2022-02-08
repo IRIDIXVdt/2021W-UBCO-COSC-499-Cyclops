@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { displayArticle } from '../sharedData/displayArticle';
+import { displayArticle, segmentItem } from '../sharedData/displayArticle';
 import { displayArticles } from '../sharedData/displayArticles';
 import { FirebaseService } from 'src/app/firebase.service';
 
@@ -26,6 +26,7 @@ export class PageSpaceLaPage implements OnInit {
   }
 
   async loadData() {
+    // loadData loads all article information into the searchField Component
     this.firebaseService.getDataServiceMainPage().subscribe((res) => {
       this.searchField = res.map(e => {
         return {
@@ -52,6 +53,7 @@ export class PageSpaceLaPage implements OnInit {
   ngOnInit() {
     const textSpace = document.querySelector('#origin') as HTMLElement;
     const searchbar = document.querySelector('ion-searchbar');
+    this.loadData();
     let items = null;
     // disable event Listener
     function handleInput(event) {
@@ -91,4 +93,10 @@ export class PageSpaceLaPage implements OnInit {
   }
 }
 
-
+type fetchArticle = {
+  id: string;
+  title: string;
+  subtitle: string;
+  cardIntroduction: string;
+  segment:segmentItem[];
+}
