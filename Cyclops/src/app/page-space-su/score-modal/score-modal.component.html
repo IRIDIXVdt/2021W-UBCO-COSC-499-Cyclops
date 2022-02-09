@@ -144,7 +144,7 @@
       <ion-item lines="none" *ngIf="solution && solution.length > 0">
         <ion-label> <h1 id="leveltag">Article Solution</h1></ion-label>
         <ion-select [(ngModel)] = "selectedSolution" [ngModelOptions]="{standalone: true}" name="Solution" placeholder="Solutions">
-        <ion-select-option class="sowidth" *ngFor="let s of solutions">{{s}}</ion-select-option>
+        <ion-select-option *ngFor="let s of solutions">{{s}}</ion-select-option>
         </ion-select>
       </ion-item>
     </ion-list>
