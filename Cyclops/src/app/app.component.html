@@ -19,12 +19,24 @@
         </ion-header>
       </ion-content>
       <ion-footer class="ion-no-border">
+        <ng-container *ngIf="!authService.isLogin()">  <!-- have not logged in  -->
         <ion-item lines="none" button routerLink="/login">
           <ion-icon name="log-in"></ion-icon>Login
         </ion-item>
-        <ion-item lines="none" button routerLink="/login">
+        <!-- <ion-item lines="none" button routerLink="/login">
           <ion-icon name="settings"></ion-icon>Settings
+        </ion-item> -->
+      </ng-container>
+
+      <ng-container *ngIf="authService.isLogin()"> <!-- have logged in  -->
+        <ion-item lines="none" button routerLink="">
+          <ion-icon name="person-circle-outline"></ion-icon>Profile
         </ion-item>
+        <ion-item lines="none" (click)="this.authService.SignOut()">
+          <ion-icon name="remove-circle-outline" ></ion-icon>Logout
+        </ion-item>
+      </ng-container>
+      
       </ion-footer>
     </ion-menu>
     <ion-router-outlet id="main"></ion-router-outlet>
