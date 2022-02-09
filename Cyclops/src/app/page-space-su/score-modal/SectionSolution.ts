@@ -12,7 +12,7 @@ export const SectionSolution = {
     },
     {
         "section": "Transportation",
-        "solutions": [ "Example 1", "Example 2", "Example 3", "Example 4", "Example 5"
+        "solutions": [ "Live carlessly", "Reduce car use", "Buy low emission vehicle", "Fill your car seats when you ride", "Remember that everything a car powers depends on burning gasoline"
 
         ]
     }
