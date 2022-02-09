@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
 import { PopoverComponent } from '../popover/popover.component';
 import { ModalController } from '@ionic/angular';
@@ -41,7 +41,7 @@ export class PageSpaceMePage implements OnInit {
   feedback = {
     content: ""
   }
-  scrolling: boolean;
+  private pageRead = false;
   constructor(
     public popover: PopoverController,
     public modalController: ModalController,
@@ -54,11 +54,31 @@ export class PageSpaceMePage implements OnInit {
     this.docId = this.activatedrouter.snapshot.paramMap.get('docId');
     //console.log("docid------",this.activatedrouter.snapshot.paramMap.get('docId'));
     this.loadDataById();
-    this.scrolling = false;
   }
- onScroll(event) {
-console.log("scrolling");
-}
+  async onScroll($event) {
+    //only log page read once 
+    if(this.pageRead) {
+      return;
+    }
+    const scrollElement = await $event.target.getScrollElement();
+
+    //scrollHeight: height of content, clientHeight: height of view port
+    //track only scrolltop when bottom of page reached
+    //articleHeight changes with responsive screen sizes
+    const articleHeight = scrollElement.scrollHeight - scrollElement.clientHeight;
+
+    const currentScrollDepth = $event.detail.scrollTop;
+    const targetPercent = 90;
+
+    let triggerDepth = ((articleHeight / 100) * targetPercent);
+
+    if(currentScrollDepth >= triggerDepth) {
+      console.log(`Scrolled to ${targetPercent}%`);
+      // this ensures that the event only triggers once
+      this.pageRead = true;
+      // do your analytics tracking here
+    }
+  }
 
   loadDataById() {
     this.firebaseService.getDataByIdService(this.docId).subscribe(
