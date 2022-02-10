@@ -3,6 +3,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 import { ModalController, NavParams } from '@ionic/angular';
 import { SolutionPageForm } from '../form/solution.page.form';
 import { COLORS } from './enum';
+import { SectionSolution } from './SectionSolution';
 
 @Component({
   selector: 'app-score-modal',
@@ -10,6 +11,12 @@ import { COLORS } from './enum';
   styleUrls: ['./score-modal.component.scss'],
 })
 export class ScoreModalComponent implements OnInit  {
+
+  sections: any=[];
+  solutions: any=[];
+  sol: any=[];
+  sec: any=[];
+  level: any=[];
 
   @Input() rating: number ;
   @Output() ratingChange: EventEmitter<number> = new EventEmitter();;
@@ -44,11 +51,17 @@ export class ScoreModalComponent implements OnInit  {
   }
 
   ngOnInit() {
+    console.log(SectionSolution.sections);
+    this.sections= SectionSolution.sections;
+    console.log(SectionSolution.solution);
+    this.solutions= SectionSolution.solution;
+
     this.myForm = this.formBuilder.group({
       task: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
       score: ['', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.max(100), Validators.min(0)]],
       task1: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
       score1: ['', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.max(100), Validators.min(0)]]
+      
     });
   }
   
@@ -74,6 +87,8 @@ export class ScoreModalComponent implements OnInit  {
       return false;
     } else {
       this.modalCtrl.dismiss(this.usereco)
+      console.log(this.sec);
+      console.log(this.sol);
     }
   }
   rate(index: number) {
@@ -117,6 +132,22 @@ export class ScoreModalComponent implements OnInit  {
     // function is called from the getColor function.
     return index > this.rating;
   }
+  getSolutionsForSelectedSections(val:string){
+    this.solutions = SectionSolution.solution.find(s=> s.section.trim() == val.trim()).solutions;
+  }
+  selectedSolution($event) {
+    this.sol = ($event.target.value);
+    console.log(this.sol);
+  }
+  selectedSection($event) {
+    this.sec = ($event.target.value);
+    console.log(this.sec);
+  }
+  selectedLevel($event) {
+    this.level = ($event.target.value);
+    console.log(this.level);
+  }
+
 
   
 
