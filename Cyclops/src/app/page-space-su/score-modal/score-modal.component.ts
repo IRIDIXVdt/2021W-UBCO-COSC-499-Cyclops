@@ -57,11 +57,12 @@ export class ScoreModalComponent implements OnInit  {
     this.solutions= SectionSolution.solution;
 
     this.myForm = this.formBuilder.group({
-      task: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
-      score: ['', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.max(100), Validators.min(0)]],
-      task1: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
-      score1: ['', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.max(100), Validators.min(0)]]
-      
+      // task: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
+      // score: ['', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.max(100), Validators.min(0)]],
+      // task1: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
+      // score1: ['', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.max(100), Validators.min(0)]],
+      Select_Section : ['', Validators.required],
+      Select_Solution : ['', Validators.required]
     });
   }
   
