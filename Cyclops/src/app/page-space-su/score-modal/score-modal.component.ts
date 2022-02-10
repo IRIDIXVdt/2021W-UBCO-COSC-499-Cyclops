@@ -130,6 +130,9 @@ export class ScoreModalComponent implements OnInit  {
   getSolutionsForSelectedSections(val:string){
     this.solutions = SectionSolution.solution.find(s=> s.section.trim() == val.trim()).solutions;
   }
+  selectedSolution($event) {
+    console.log($event.target.value) ;
+}
 
 
   

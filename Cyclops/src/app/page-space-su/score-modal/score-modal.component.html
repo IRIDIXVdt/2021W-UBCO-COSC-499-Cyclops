@@ -134,7 +134,7 @@
     <ion-list>
       <ion-item lines="none">
         <ion-label> <h2 id="leveltag">Article Section</h2></ion-label>
-        <ion-select [(ngModel)] = "solution" [ngModelOptions]="{standalone: true}" (ionChange)="getSolutionsForSelectedSections($event.target.value)" name="Section" placeholder="Sections">
+        <ion-select [(ngModel)] = "section" [ngModelOptions]="{standalone: true}" (ionChange)="getSolutionsForSelectedSections($event.target.value)" name="Section" placeholder="Sections">
         <ion-select-option value="{{se}}" *ngFor="let se of sections">{{se}}</ion-select-option>
         </ion-select>
       </ion-item>
@@ -143,8 +143,8 @@
     <ion-list>
       <ion-item lines="none" *ngIf="solution && solution.length > 0">
         <ion-label> <h2 id="leveltag">Article Solution</h2></ion-label>
-        <ion-select [(ngModel)] = "selectedSolution" [ngModelOptions]="{standalone: true}" name="Solution" placeholder="Solutions">
-        <ion-select-option *ngFor="let s of solutions">{{s}}</ion-select-option>
+        <ion-select [(ngModel)] = "solution" [ngModelOptions]="{standalone: true}" (ionChange)="selectedSolution($event)" name="Solution" placeholder="Solutions">
+        <ion-select-option value="{{s}}" *ngFor="let s of solutions">{{s}}</ion-select-option>
         </ion-select>
       </ion-item>
     </ion-list>
