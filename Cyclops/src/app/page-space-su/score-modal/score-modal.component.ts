@@ -16,6 +16,7 @@ export class ScoreModalComponent implements OnInit  {
   solutions: any=[];
   sol: any=[];
   sec: any=[];
+  level: any=[];
 
   @Input() rating: number ;
   @Output() ratingChange: EventEmitter<number> = new EventEmitter();;
@@ -86,6 +87,8 @@ export class ScoreModalComponent implements OnInit  {
       return false;
     } else {
       this.modalCtrl.dismiss(this.usereco)
+      console.log(this.sec);
+      console.log(this.sol);
     }
   }
   rate(index: number) {
@@ -139,6 +142,10 @@ export class ScoreModalComponent implements OnInit  {
   selectedSection($event) {
     this.sec = ($event.target.value);
     console.log(this.sec);
+  }
+  selectedLevel($event) {
+    this.level = ($event.target.value);
+    console.log(this.level);
   }
 
 
