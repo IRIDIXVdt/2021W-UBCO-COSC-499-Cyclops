@@ -5,13 +5,13 @@
 export const environment = {
   production: false,
   firebaseConfig : {
-    apiKey: "AIzaSyC-ampaVcVGJAodJfmjZXg2T-1LtLsDwuQ",
-    authDomain: "cyclops-685bd.firebaseapp.com",
-    projectId: "cyclops-685bd",
-    storageBucket: "cyclops-685bd.appspot.com",
-    messagingSenderId: "221719889500",
-    appId: "1:221719889500:web:f65f0d5264d2b5ddcd0899",
-    measurementId: "G-RX37JZ220N"
+    apiKey: "AIzaSyDDxR7YMdfUDzyn32yABhmyLQKsnrPTQiE",
+    authDomain: "cyclopediapp.firebaseapp.com",
+    projectId: "cyclopediapp",
+    storageBucket: "cyclopediapp.appspot.com",
+    messagingSenderId: "479942657915",
+    appId: "1:479942657915:web:6ae360a4d852d55f629fde",
+    measurementId: "G-8W7F7VBKLD"
   }
 };
 

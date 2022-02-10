@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 
 
 
+
 @Component({
   selector: 'app-page-space-su',
   templateUrl: './page-space-su.page.html',
