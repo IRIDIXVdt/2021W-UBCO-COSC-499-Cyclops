@@ -15,6 +15,7 @@ export class ScoreModalComponent implements OnInit  {
   sections: any=[];
   solutions: any=[];
   sol: any=[];
+  sec: any=[];
 
   @Input() rating: number ;
   @Output() ratingChange: EventEmitter<number> = new EventEmitter();;
@@ -134,7 +135,11 @@ export class ScoreModalComponent implements OnInit  {
   selectedSolution($event) {
     this.sol = ($event.target.value);
     console.log(this.sol);
-}
+  }
+  selectedSection($event) {
+    this.sec = ($event.target.value);
+    console.log(this.sec);
+  }
 
 
   
