@@ -91,6 +91,8 @@ export class ScoreModalComponent implements OnInit  {
       this.modalCtrl.dismiss(this.usereco)
       console.log(this.sec);
       console.log(this.sol);
+      console.log(this.level);
+      console.log(this.rating);
     }
   }
   rate(index: number) {
