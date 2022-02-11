@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } fro
 import { displayArticle, segmentItem } from '../sharedData/displayArticle';
 import { displayArticles } from '../sharedData/displayArticles';
 import { FirebaseService } from 'src/app/firebase.service';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-page-space-la',
@@ -9,6 +10,7 @@ import { FirebaseService } from 'src/app/firebase.service';
   styleUrls: ['./page-space-la.page.scss'],
 })
 export class PageSpaceLaPage implements OnInit {
+  articleProgress:number = 0;
   userInput: string;
   // userInput string is used for search bar input
   i: number = 0;
@@ -20,11 +22,13 @@ export class PageSpaceLaPage implements OnInit {
     console.log('current segment is', this.status1);
   }
 
-  constructor(public firebaseService: FirebaseService) {
+  constructor(
+    public firebaseService: FirebaseService,
+    public authService: AuthService) {
     this.status1 = "Articles p1";
   }
 
-  async loadData(searchbarComponent:HTMLElement) {
+  async loadData(searchbarComponent: HTMLElement) {
     // loadData loads all article information into the searchField Component
     this.firebaseService.getDataServiceMainPage().subscribe((res) => {
       this.searchField = res.map(e => {
@@ -39,7 +43,7 @@ export class PageSpaceLaPage implements OnInit {
       })
       console.log("Search Field Loaded");
       console.log(this.searchField);
-      
+
       searchbarComponent.style.display = "block";
     }, (err: any) => {
       console.log(err);
@@ -50,7 +54,23 @@ export class PageSpaceLaPage implements OnInit {
     console.log("clicked");
   }
 
+  async readArticles() {
+    let currentUserData = (await this.firebaseService.getCurrentUserData()).data();
+    let segmentData: any[] = currentUserData.readArticles;
+    let totalArticles = segmentData.length;
+    let readArticles = 0;
+    for (let segment of segmentData) {
+      if(segment['readAll']){
+        console.log(segment['readAll']);
+        ++readArticles;
+      }
+    }
+    console.log('current user progess:', readArticles,'/',totalArticles, (readArticles/totalArticles));
+    this.articleProgress = readArticles/totalArticles;
+  }
+
   ngOnInit() {
+    this.readArticles();
     const thisNotShow = document.querySelector('#requested') as HTMLElement;
     thisNotShow.style.display = 'none';
 

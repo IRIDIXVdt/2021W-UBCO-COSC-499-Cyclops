@@ -6,9 +6,10 @@
 
 <ion-content fullscreen>
     <div (click)="searchBarOnclick()">
-        <ion-searchbar [(ngModel)]="userInput" placeholder="Search Article" showCancelButton="focus"
-            cancelButtonText="Cancel" animated='true'></ion-searchbar>
+        <ion-searchbar [(ngModel)]="userInput" placeholder="Search Article" showCancelButton="focus" cancelButtonText="Cancel" animated='true'></ion-searchbar>
     </div>
+
+
 
     <div id='requested'>
         <!-- <p>this is the requested field</p> -->
@@ -41,6 +42,14 @@
                 </ion-segment-button>
             </ion-segment>
         </ion-toolbar>
+        <ion-item *ngIf="authService['isLoggedIn']">
+            <ion-label>articles read</ion-label>
+            <ion-progress-bar value="{{articleProgress}}"></ion-progress-bar>
+        </ion-item>
+
+        <div>
+
+        </div>
 
         <div [ngSwitch]="status1">
             <div *ngSwitchCase="'Articles p1'">

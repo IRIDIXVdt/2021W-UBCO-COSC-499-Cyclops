@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from '../firebase.service';
 import { displayArticles } from '../sharedData/displayArticles';
-import { AuthService } from '../auth/auth.service';
-import { collection, getFirestore, doc, setDoc, getDocs } from "firebase/firestore";
+import { getFirestore } from "firebase/firestore";
 /* import { initializeApp } from 'firebase-admin/app'; */
 const db = getFirestore();
 @Component({
@@ -28,7 +27,7 @@ export class AddDataPage implements OnInit {
     isAnonymous: true,
     displayName: "Admin"
   }
-  constructor(private firebaseService: FirebaseService, public authService: AuthService,) {
+  constructor(private firebaseService: FirebaseService) {
     this.loadDocId();
     this.loadUserDocId();
   }
@@ -65,15 +64,15 @@ export class AddDataPage implements OnInit {
     let articles = this.firebaseService.getAllArticlesService();
     (await articles).forEach((articleDoc) => {
       //let segmentsLength= articleDoc.data()['segment'].length;
-      let newData = { id: articleDoc.id, totalSegments: false };//initalize all article read to be false
+      let newData = { id: articleDoc.id, readAll: false };//initalize all article read to be false
       data.push(newData);
     });
     console.log(data);
 
     (await users).forEach((userDoc) => {
-      if (userDoc.id == 'P4nhCbiKyeeGpCAw3wOaIQkG3Za2') {
+      if (userDoc.id == 'M18cUNzBqoPPM8tAm68ckUKb06w2') {
         console.log(userDoc.data());
-        this.firebaseService.updateUserDataByIdService(userDoc.id, { readArticles: data })
+        this.firebaseService.updateUserDataByIdService(userDoc.id, { readArticles: data, capital:true });
       }
     });
   }
