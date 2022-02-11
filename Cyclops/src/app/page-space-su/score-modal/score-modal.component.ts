@@ -89,10 +89,11 @@ export class ScoreModalComponent implements OnInit  {
       return false;
     } else {
       this.modalCtrl.dismiss(this.usereco)
-      console.log(this.sec);
-      console.log(this.sol);
-      console.log(this.level);
-      console.log(this.rating);
+      console.log(this.usereco);
+      // console.log(this.sec);
+      // console.log(this.sol);
+      // console.log(this.level);
+      // console.log(this.rating);
     }
   }
   rate(index: number) {
