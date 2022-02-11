@@ -134,8 +134,8 @@
     <ion-list>
       <ion-item lines="none">
         <ion-label> <h2 id="leveltag">Article Section</h2></ion-label>
-        <ion-select [(ngModel)] = "usereco.section" formControlName="Select_Section" (ionChange)="selectedSection($event)" (ionChange)="getSolutionsForSelectedSections($event.target.value)" name="Section" placeholder="Sections">
-        <ion-select-option value="{{se}}" *ngFor="let se of sections">{{se}}</ion-select-option>
+        <ion-select okText="Okay" cancelText="Dismiss" formControlName="Select_Section" [(ngModel)] = "usereco.section" (ionChange)="selectedSection($event)" (ionChange)="getSolutionsForSelectedSections($event.target.value)" name="Section" placeholder="Sections">
+        <ion-select-option *ngFor="let se of sections">{{se}}</ion-select-option>
         </ion-select>
       </ion-item>
     </ion-list>
@@ -148,8 +148,8 @@
     <ion-list>
       <ion-item lines="none" *ngIf="solution && solution.length > 0">
         <ion-label> <h2 id="leveltag">Article Solution</h2></ion-label>
-        <ion-select [(ngModel)] = "usereco.solution" (ionChange)="selectedSolution($event)"  formControlName="Select_Solution" name="Solution" placeholder="Solutions">
-        <ion-select-option value="{{s}}" *ngFor="let s of solutions">{{s}}</ion-select-option>
+        <ion-select okText="Okay" cancelText="Dismiss" formControlName="Select_Solution" [(ngModel)] = "usereco.solution" (ionChange)="selectedSolution($event)" name="Solution" placeholder="Solutions">
+        <ion-select-option *ngFor="let s of solutions">{{s}}</ion-select-option>
         </ion-select>
       </ion-item>
     </ion-list>
