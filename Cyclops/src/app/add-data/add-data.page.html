@@ -1,26 +1,31 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>addData</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>addData</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-button (click)="deleteAllData()" expand="block ">
-    delete all article data
-  </ion-button>
+    <ion-button (click)="deleteAllData()" expand="block ">
+        delete all article data
+    </ion-button>
 
 
-  <ion-button (click)="addData()" expand="block ">
-    initialize database(article data)
-  </ion-button>
-  
-  <ion-button (click)="deleteUser()" expand="block ">
-    delete all users
-  </ion-button>
+    <ion-button (click)="addData()" expand="block ">
+        initialize database(article data)
+    </ion-button>
 
-  <ion-button (click)="setAdmin()" expand="block ">
-    Update current user as admin
-  </ion-button>
+    <ion-button (click)="deleteUser()" expand="block ">
+        delete all users
+    </ion-button>
 
-  
+    <ion-button (click)="setAdmin()" expand="block ">
+        Update current user as admin
+    </ion-button>
+
+    <!--updates users with article tracking information-->
+    <ion-button (click)="updateUserReadArticles()" expand="block ">
+        Update users article progress information
+    </ion-button>
+
+
 </ion-content>

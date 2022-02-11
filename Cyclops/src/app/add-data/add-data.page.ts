@@ -55,6 +55,18 @@ export class AddDataPage implements OnInit {
     alert("successful"); 
   }
 
+  //updates users with article tracking information
+  async updateUserReadArticles(){
+    let allUsers=await this.firebaseService.getUsersService();
+    allUsers.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
+      console.log(doc.id, " => ", doc.data());
+    });
+
+    //for each user
+    //this.firebaseService.updateUserDataByIdService(userId,data);
+  }
+
   deleteAllData(){
     //delete all doc in collection
     for (let doc of this.docIds){
