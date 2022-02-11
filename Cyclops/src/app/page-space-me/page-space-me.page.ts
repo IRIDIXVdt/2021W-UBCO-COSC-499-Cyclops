@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { PopoverController } from '@ionic/angular';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { PopoverController, IonContent } from '@ionic/angular';
 import { PopoverComponent } from '../popover/popover.component';
 import { ModalController } from '@ionic/angular';
 import { FeedbackModalComponent } from './feedback-modal/feedback-modal.component';
@@ -42,6 +42,29 @@ export class PageSpaceMePage implements OnInit {
     content: ""
   }
   private pageRead = false;
+
+  @ViewChild(IonContent) content: IonContent;
+  status: any;
+  segmentDepth: number[] = [0, 0, 0];
+  currentSegment = 0;
+  segmentChanged(ev: any) {
+    console.log('current segment is', this.status);
+    switch (this.status) {
+      case 'segment1':
+        this.currentSegment = 0;
+        break;
+      case 'segment2':
+        this.currentSegment = 1;
+        break;
+      case 'segment3':
+        this.currentSegment = 2;
+        break;
+    }
+    this.content.scrollToPoint(0,this.segmentDepth[this.currentSegment]);
+
+  }
+
+
   constructor(
     public popover: PopoverController,
     public modalController: ModalController,
@@ -56,10 +79,6 @@ export class PageSpaceMePage implements OnInit {
     this.loadDataById();
   }
   async onScroll($event) {
-    //only log page read once 
-    if(this.pageRead) {
-      return;
-    }
     const scrollElement = await $event.target.getScrollElement();
 
     //scrollHeight: height of content, clientHeight: height of view port
@@ -68,12 +87,13 @@ export class PageSpaceMePage implements OnInit {
     const articleHeight = scrollElement.scrollHeight - scrollElement.clientHeight;
 
     const currentScrollDepth = $event.detail.scrollTop;
+    this.segmentDepth[this.currentSegment]=currentScrollDepth;
     const targetPercent = 90;
 
     let triggerDepth = ((articleHeight / 100) * targetPercent);
 
-    if(currentScrollDepth >= triggerDepth) {
-      console.log(`Scrolled to ${targetPercent}%`);
+    if (currentScrollDepth >= triggerDepth) {
+      console.log(`Scrolled to ${targetPercent}% on `,this.currentSegment);
       // this ensures that the event only triggers once
       this.pageRead = true;
       // do your analytics tracking here
