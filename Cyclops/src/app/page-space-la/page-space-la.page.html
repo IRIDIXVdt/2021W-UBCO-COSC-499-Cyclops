@@ -42,10 +42,15 @@
                 </ion-segment-button>
             </ion-segment>
         </ion-toolbar>
-        <ion-item *ngIf="authService['isLoggedIn']">
-            <ion-label>articles read</ion-label>
-            <ion-progress-bar value="{{articleProgress}}"></ion-progress-bar>
-        </ion-item>
+        <div style="  display: flex; flex-direction: column;align-items: flex-end;">
+            <ion-item *ngIf="authService['isLoggedIn']" style="width:40vh">
+                <ion-label>
+                    <h2>Articles Read: {{finishedArticles}}/{{totalArticles}}</h2>
+                </ion-label>
+                <ion-progress-bar value="{{articleProgress}}" style="width:55%"></ion-progress-bar>
+            </ion-item>
+        </div>
+
 
         <div>
 
