@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { collection, query, where, getDocs } from "firebase/firestore";
-
+import { collection, setDoc, doc, getDocs, getFirestore } from "firebase/firestore";
+const db = getFirestore();
 @Injectable({
   providedIn: 'root'
 })
@@ -37,9 +37,13 @@ export class FirebaseService {
   }
 
   //return all users
-  async getUsersService() {
-    const users = await getDocs(this.db.collection("users").ref);
-    return users;
+  async getAllUsersService() {
+    return await getDocs(collection(db, "users")); //access fields of returned document with .data()
+  }
+
+  //return all articles
+  async getAllArticlesService() {
+    return await getDocs(collection(db, "articles")); //access fields of returned document with .data()
   }
 
   updateDataByIdService(docId, data) {
@@ -48,8 +52,11 @@ export class FirebaseService {
     return this.db.collection('articles').doc(docId).update(data);
   }
 
-  updateUserDataByIdService(userId, data) { //currently used to update user information with list of existing articles
-    return this.db.collection('users').doc(userId).update(data);
+  //add data to user document specified by userId
+  async updateUserDataByIdService(userId, data) {
+    const userDoc = doc(db, 'users', userId);
+    console.log('updating user:', userDoc.id, ' with:', data);
+    setDoc(userDoc, data, { merge: true });//set new user information, merge:true specifies to amend and not overwrite document
   }
 
 
