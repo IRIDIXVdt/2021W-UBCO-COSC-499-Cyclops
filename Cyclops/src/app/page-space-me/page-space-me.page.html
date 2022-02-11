@@ -15,7 +15,7 @@
     </ion-toolbar>
 
     <div *ngIf="contents">
-        <ion-segment color="medium" [(ngModel)]="status" *ngIf="contents.segment.length ===3">
+        <ion-segment (ionChange)="segmentChanged($event)" color="medium" [(ngModel)]="status" *ngIf="contents.segment.length ===3">
             <ion-segment-button text-wrap value="segment1">
                 <ion-label>{{contents.segment[0].segmentTitle}}</ion-label>
             </ion-segment-button>
@@ -27,7 +27,7 @@
             </ion-segment-button>
         </ion-segment>
 
-        <ion-segment color="medium" [(ngModel)]="status" *ngIf="contents.segment.length ===2">
+        <ion-segment (ionChange)="segmentChanged($event)" (ionChange)="segmentChanged($event)" color="medium" [(ngModel)]="status" *ngIf="contents.segment.length ===2">
             <ion-segment-button text-wrap value="segment1">
                 <ion-label>{{contents.segment[0].segmentTitle}}</ion-label>
             </ion-segment-button>
@@ -54,7 +54,7 @@
 
 </ion-header>
 
-<ion-content class="ion-padding ">
+<ion-content class="ion-padding " [scrollEvents]="true" (ionScroll)="onScroll($event)">
 
     <div [ngSwitch]="status" class="article " *ngIf="contents">
         <div *ngSwitchDefault>
