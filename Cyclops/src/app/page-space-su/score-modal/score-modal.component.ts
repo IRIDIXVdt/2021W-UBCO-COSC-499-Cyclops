@@ -64,6 +64,7 @@ export class ScoreModalComponent implements OnInit  {
       Select_Section : ['', Validators.required],
       Select_Solution : ['', Validators.required],
       Select_Level : ['', Validators.required],
+      Select_Rating : ['', Validators.required],
     });
   }
   
