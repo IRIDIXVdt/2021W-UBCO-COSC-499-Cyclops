@@ -96,7 +96,7 @@ export class ScoreModalComponent implements OnInit  {
   rate(index: number) {
     // function used to change the value of our rating 
     // triggered when user, clicks a star to change the rating
-    this.usereco.rating = this.rating = index;
+    this.usereco.rating = this.rating = index; // Value to database
     console.log(index);
     this.ratingChange.emit(this.rating);
  }
@@ -118,9 +118,9 @@ export class ScoreModalComponent implements OnInit  {
    switch (this.rating){
      case 1:
      case 2:
-       return this.green;
+       return this.red;
     case 3:
-      return this.green;
+      return this.yellow;
     case 4:
     case 5:
       return this.green;
@@ -138,15 +138,15 @@ export class ScoreModalComponent implements OnInit  {
     this.solutions = SectionSolution.solution.find(s=> s.section.trim() == val.trim()).solutions;
   }
   selectedSection($event) {
-    this.usereco.section = ($event.target.value);
+    this.usereco.section = ($event.target.value); // Value to database
     console.log(this.usereco.section)
   }
   selectedSolution($event) {
-    this.usereco.solution = ($event.target.value);
+    this.usereco.solution = ($event.target.value); // Value to database
     console.log(this.usereco.solution)
   }
   selectedLevel($event) {
-    this.usereco.level = ($event.target.value);
+    this.usereco.level = ($event.target.value); // Value to database
     console.log(this.usereco.level)
   }
   
