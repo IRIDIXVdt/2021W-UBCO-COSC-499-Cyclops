@@ -96,9 +96,8 @@ export class ScoreModalComponent implements OnInit  {
   rate(index: number) {
     // function used to change the value of our rating 
     // triggered when user, clicks a star to change the rating
-    this.rating = index;
-    index = this.usereco.rating;
-    console.log(this.usereco.rating);
+    this.usereco.rating = this.rating = index;
+    console.log(index);
     this.ratingChange.emit(this.rating);
  }
 
