@@ -18,7 +18,8 @@ export class PageSpaceSuPage implements OnInit {
   profile = {
     solution: "Solution",
     section : "Section",
-    rating : 0
+    rating : 0,
+    level : 0
   }
 
   surveyPage: PageSpaceMePage;
