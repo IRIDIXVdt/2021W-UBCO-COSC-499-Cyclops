@@ -97,7 +97,8 @@ export class ScoreModalComponent implements OnInit  {
     // function used to change the value of our rating 
     // triggered when user, clicks a star to change the rating
     this.rating = index;
-    console.log(index);
+    index = this.usereco.rating;
+    console.log(this.usereco.rating);
     this.ratingChange.emit(this.rating);
  }
 
@@ -137,18 +138,19 @@ export class ScoreModalComponent implements OnInit  {
   getSolutionsForSelectedSections(val:string){
     this.solutions = SectionSolution.solution.find(s=> s.section.trim() == val.trim()).solutions;
   }
-  selectedSolution($event) {
-    this.usereco.solution = ($event.target.value);
-    console.log(this.sol);
-  }
   selectedSection($event) {
     this.usereco.section = ($event.target.value);
-    console.log(this.sec);
+    console.log(this.usereco.section)
+  }
+  selectedSolution($event) {
+    this.usereco.solution = ($event.target.value);
+    console.log(this.usereco.solution)
   }
   selectedLevel($event) {
     this.usereco.level = ($event.target.value);
-    console.log(this.level);
+    console.log(this.usereco.level)
   }
+  
   
 
 
