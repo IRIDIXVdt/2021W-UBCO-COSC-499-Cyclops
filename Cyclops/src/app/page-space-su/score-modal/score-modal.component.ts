@@ -63,8 +63,7 @@ export class ScoreModalComponent implements OnInit  {
       // score1: ['', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.max(100), Validators.min(0)]],
       Select_Section : ['', Validators.required],
       Select_Solution : ['', Validators.required],
-      Select_Level : ['', Validators.required],
-      Select_Rating : ['', Validators.required],
+      Select_Level : ['', Validators.required]
     });
   }
   
@@ -98,7 +97,7 @@ export class ScoreModalComponent implements OnInit  {
     // function used to change the value of our rating 
     // triggered when user, clicks a star to change the rating
     this.rating = index;
-    console.log(this.rating);
+    console.log(index);
     this.ratingChange.emit(this.rating);
  }
 
