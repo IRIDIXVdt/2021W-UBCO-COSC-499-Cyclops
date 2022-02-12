@@ -138,15 +138,15 @@ export class ScoreModalComponent implements OnInit  {
     this.solutions = SectionSolution.solution.find(s=> s.section.trim() == val.trim()).solutions;
   }
   selectedSolution($event) {
-    this.sol = ($event.target.value);
+    this.usereco.solution = ($event.target.value);
     console.log(this.sol);
   }
   selectedSection($event) {
-    this.sec = ($event.target.value);
+    this.usereco.section = ($event.target.value);
     console.log(this.sec);
   }
   selectedLevel($event) {
-    this.level = ($event.target.value);
+    this.usereco.level = ($event.target.value);
     console.log(this.level);
   }
   
