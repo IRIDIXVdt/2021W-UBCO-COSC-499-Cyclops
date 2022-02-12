@@ -19,7 +19,7 @@ export class PageSpaceSuPage implements OnInit {
     solution: "Solution",
     section : "Section",
     rating : 0,
-    level : 0
+    level : 0,
   }
 
   surveyPage: PageSpaceMePage;
