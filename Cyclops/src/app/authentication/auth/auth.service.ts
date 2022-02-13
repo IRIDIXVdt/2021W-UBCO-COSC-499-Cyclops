@@ -283,6 +283,10 @@ export class AuthService {
         localStorage.setItem('user', null);
         loading.dismiss();
         this.router.navigate(['tabs/page-space-er']); 
+      }).catch((error) => {
+        console.log(error);
+        loading.dismiss();
+        this.resetPasswordAlert("Check your internet Connection");
       })
     }
 
