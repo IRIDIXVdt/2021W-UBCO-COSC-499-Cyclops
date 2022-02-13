@@ -190,16 +190,33 @@ export class AuthService {
   }
 
   // Sign out 
-  SignOut() {
-    return this.afAuth.signOut().then(() => {
-      /* localStorage.removeItem('user'); */
-      this.userData = null;
-      this.admin = false;
-      localStorage.setItem('user', null);
-      this.router.navigate(['tabs/page-space-er']); 
-    })
+  async SignOut() {
+
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      message: 'Do you want to sign-out?',
+      buttons: ['Cancel', 'Yes']
+    });
+    await alert.present();
+    const { role } = await alert.onDidDismiss();
+    if (role == "cancel") {
+      console.log("cancel!");
+    } else { // if user confirm to logout
+      return this.afAuth.signOut().then(() => {
+        /* localStorage.removeItem('user'); */
+        this.userData = null;
+        this.admin = false;
+        localStorage.setItem('user', null);
+        this.router.navigate(['tabs/page-space-er']); 
+      })
+    }
+
+    
   }
 
+  SignOutAlertMessage(){
+    
+  }
    
 
   isAdmin(){
