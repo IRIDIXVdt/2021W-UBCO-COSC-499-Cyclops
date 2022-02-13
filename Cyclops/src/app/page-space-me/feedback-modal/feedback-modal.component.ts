@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { ModalController, AlertController } from '@ionic/angular';
+import { ModalController, AlertController, LoadingController } from '@ionic/angular';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Feedback, ContactType } from './feedback';
+import { FirebaseService } from 'src/app/FirebaseService/firebase.service';
 @Component({
   selector: 'app-feedback-modal',
   templateUrl: './feedback-modal.component.html',
@@ -14,7 +15,9 @@ export class FeedbackModalComponent {
 
   constructor(private fb: FormBuilder,
     public modalController: ModalController,
-    public alertController: AlertController) {
+    public alertController: AlertController,
+    public firebaseService: FirebaseService,
+    public loadingController: LoadingController) {
     this.createForm();
   }
 
@@ -108,20 +111,80 @@ export class FeedbackModalComponent {
 
   }
 
-  onSolution() {
+  async onSolution() {
     if (!this.feedbackForm.valid) {
       console.log('All fields are required.')
       this.presentErrorAlert();
       return false;
     } else {
       this.feedback = this.feedbackForm.value;
-      console.log(this.feedback);
-      this.feedbackForm.reset();
-      this.presentCompleteAlert();
-      this.modalController.dismiss();
+      await this.storeFeedback(this.feedback)
+     
     }
 
   }
+
+  feedbackData = {
+    agree: true,
+    contactType: "",
+    content: "",
+    email: "",
+    firstName: "",
+    lastName: "",
+    phoneNumber: "" ,
+    userUid:''
+  }
+
+  async storeFeedback(data){
+    this.feedbackData.agree = data.agree;
+    this.feedbackData.contactType = data.contactType;
+    this.feedbackData.content = data.content;
+    this.feedbackData.email = data.email;
+    this.feedbackData.firstName = data.firstName;
+    this.feedbackData.lastName = data.lastName;
+    this.feedbackData.phoneNumber = data.phoneNumber;
+    this.feedbackData.userUid = JSON.parse(localStorage.getItem('user')).uid;
+
+    const loading = await this.loadingController.create({
+      message: 'Please wait...',
+    });
+    loading.present(); 
+
+    this.firebaseService.addDataService('feedback',this.feedbackData).then((res: any) => {
+      loading.dismiss();
+      console.log(res);
+      /* console.log(this.feedback); */
+      this.feedbackForm.reset();
+      this.presentCompleteAlert();
+      this.modalController.dismiss();
+    }).catch((error) => {
+      loading.dismiss();
+      console.log(error);
+      this.errorAlert('Failed to submit','Check your internet connection')
+      
+    })
+
+  }
+
+  async errorAlert(header,message) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header:header,
+      subHeader: '',
+      message: message,
+      buttons: ['Ok']
+    });
+    await alert.present();
+  }
+
+
+/*   agree: true
+contactType: "Email"
+content: "asdasd"
+email: "970849953@qq.com"
+firstName: "sad"
+lastName: "asdas"
+phoneNumber: "" */
 
   dismissModal() {
     this.modalController.dismiss();
