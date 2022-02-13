@@ -8,9 +8,30 @@ import { AuthService } from '../auth/auth.service';
 })
 export class VerifyEmailPage implements OnInit {
 
-  constructor( public authService: AuthService) { }
+  constructor( public authService: AuthService) { this.startTimer()}
 
   ngOnInit() {
   }
+
+  timeLeft: number = 60;
+  interval;
+  block:boolean =true;
+  resetTimeLeft(){
+    this.timeLeft =60;
+  }
+  startTimer() {
+    return this.interval = setInterval(() => {
+      if(this.timeLeft > 0) {
+        this.block = true;
+        this.timeLeft= this.timeLeft-1;
+        
+      } else {       
+        this.block = false;
+        return false;
+      }
+    },1000)
+  }
+
+
 
 }
