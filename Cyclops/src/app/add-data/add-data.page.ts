@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseService } from '../firebase.service';
+import { FirebaseService } from '../FirebaseService/firebase.service';
 import { displayArticles } from '../sharedData/displayArticles';
 
 import { collection, getFirestore, doc, setDoc, getDocs } from "firebase/firestore";

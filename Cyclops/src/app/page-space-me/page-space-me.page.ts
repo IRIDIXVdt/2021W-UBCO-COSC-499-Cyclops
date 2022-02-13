@@ -7,7 +7,7 @@ import { EditModalComponent } from '../edit-modal/edit-modal.component';
 import { ActivatedRoute } from '@angular/router';
 import { displayArticle } from '../sharedData/displayArticle';
 import { displayArticles } from '../sharedData/displayArticles';
-import { FirebaseService } from '../firebase.service';
+import { FirebaseService } from '../FirebaseService/firebase.service';
 import { AuthService } from '../authentication/auth/auth.service';
 
 @Component({
