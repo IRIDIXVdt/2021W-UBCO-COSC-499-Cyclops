@@ -39,7 +39,7 @@ export class ResetPasswordPage implements OnInit {
  
   startTimer() {
     console.log('start')
-    this.timeLeft = 5;
+    this.timeLeft = 20;
     this.interval = setInterval(() => {
       if(this.timeLeft > 0) {
         this.block = true;
