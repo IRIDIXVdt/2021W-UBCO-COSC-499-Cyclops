@@ -7,7 +7,7 @@ import firebase from 'firebase/compat/app';
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { Router } from "@angular/router";
-import { AlertController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +24,8 @@ export class AuthService {
     public afAuth: AngularFireAuth, // Inject Firebase auth service
     public router: Router,  
     public ngZone: NgZone, // NgZone service to remove outside scope warning
-    public alertController: AlertController
+    public alertController: AlertController,
+    public loadingController: LoadingController
   ) {  
     /* this.afAuth.authState.subscribe(user => {
       if (user) {
@@ -62,24 +63,40 @@ export class AuthService {
     }
   }
   // Sign in with email/password
-  SignIn(email, password) {
+  async SignIn(email, password) {
+
+    const loading = await this.loadingController.create({
+      message: 'Please wait...',
+    });
+    loading.present();
     return this.afAuth.signInWithEmailAndPassword(email, password)
       .then((result) => {
+        loading.dismiss();
         if(result.user.emailVerified) {
           this.userData = result.user;
           localStorage.setItem('user', JSON.stringify(this.userData)); 
           this.router.navigate(['tabs/page-space-er']);  
           this.isAdmin();  
-          this.SetUserData(result.user);     
+          this.SetUserData(result.user);  
+             
         } else {
           this.signInErrorAlert("Email is not verified");
           return false;
         }
       }).catch((error) => {
+        loading.dismiss();
         this.userData = null;
         console.log("Login error: ",error);
-        this.signInErrorAlert("Invalid username/password");
+        if(error == 'FirebaseError: Firebase: The password is invalid or the user does not have a password. (auth/wrong-password).'){
+          this.signInErrorAlert('The email or password is invalid');
+        }else{
+          this.signInErrorAlert('Check your internet connection.');
+        }
+        
       })
+
+      
+      
   }
 
   async signInErrorAlert(message) {
