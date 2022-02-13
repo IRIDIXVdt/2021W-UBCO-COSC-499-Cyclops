@@ -101,6 +101,7 @@ export class PageSpaceMePage implements OnInit {
   }
 
   loadDataById() {
+    console.log("run loadDataById()");
     this.firebaseService.getDataByIdService(this.docId).subscribe(
       e => {
         this.contents = {
