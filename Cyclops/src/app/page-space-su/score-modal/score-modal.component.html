@@ -187,15 +187,15 @@
 
       <p>Enter Rating Below:</p>
     
-      <ion-icon name = "leaf"style="zoom:2.0;"  *ngFor="let num of [1,2,3,4,5]"
+      <ion-icon name = "leaf"style="zoom:2.0;" *ngFor="let num of [1,2,3,4,5]"
         (click)="rate(num)" [ngStyle]="{'color':getColor(num)}">
       </ion-icon>
      
-      <p id="err">
+      <!-- <p id="err">
         <span class="error" *ngIf="submitted && errorCtr.Select_Rating.errors?.required">
           Please Select a Rating
          </span>
-      </p>
+      </p> -->
 
     </div>
 
