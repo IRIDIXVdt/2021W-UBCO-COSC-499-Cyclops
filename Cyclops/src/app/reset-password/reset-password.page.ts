@@ -32,22 +32,22 @@ export class ResetPasswordPage implements OnInit {
   ngOnInit() {
   }
 
-  timeLeft: number = 20;
+  timeLeft: number;
   interval;
   block:boolean =false;
-  resetTimeLeft(){
-    this.timeLeft =20;
-  }
+ 
+ 
   startTimer() {
-    this.timeLeft = 20;
-    return this.interval = setInterval(() => {
+    console.log('start')
+    this.timeLeft = 5;
+    this.interval = setInterval(() => {
       if(this.timeLeft > 0) {
         this.block = true;
-        this.timeLeft= this.timeLeft-1;
-        
+        this.timeLeft = this.timeLeft-1;
+
       } else {       
         this.block = false;
-        return false;
+        clearInterval(this.interval);
       }
     },1000)
   }

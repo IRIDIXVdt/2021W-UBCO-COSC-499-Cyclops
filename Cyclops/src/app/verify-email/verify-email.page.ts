@@ -27,6 +27,7 @@ export class VerifyEmailPage implements OnInit {
         
       } else {       
         this.block = false;
+        clearInterval(this.interval);
         return false;
       }
     },1000)
