@@ -11,7 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import{AngularFireModule} from '@angular/fire/compat';
 import { environment } from 'src/environments/environment';
-import { AuthService } from "./auth/auth.service";
+import { AuthService } from "./authentication/auth/auth.service";
 
 @NgModule({
   declarations: [AppComponent],
