@@ -1,6 +1,6 @@
 import { Injectable,NgZone } from '@angular/core';
 
-import { User } from "../sharedData/user";
+import { User } from "../../sharedData/user";
 import firebase from 'firebase/compat/app';
 
 

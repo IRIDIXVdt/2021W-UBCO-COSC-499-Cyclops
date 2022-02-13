@@ -1,8 +1,8 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
-import { FirebaseService } from '../firebase.service';
+import { FirebaseService } from '../FirebaseService/firebase.service';
 
-import { AuthService } from '../auth/auth.service';
+import { AuthService } from '../authentication/auth/auth.service';
 import { NgZone } from '@angular/core';
 @Component({
   selector: 'app-page-space-er',
