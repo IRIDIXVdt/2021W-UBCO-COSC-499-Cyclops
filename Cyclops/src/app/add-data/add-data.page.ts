@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from '../firebase.service';
 import { displayArticles } from '../sharedData/displayArticles';
-import { AuthService } from '../auth/auth.service';
+
 import { collection, getFirestore, doc, setDoc, getDocs } from "firebase/firestore";
+import { AuthService } from '../authentication/auth/auth.service';
 /* import { initializeApp } from 'firebase-admin/app'; */
 const db = getFirestore();
 @Component({
