@@ -7,7 +7,7 @@ import firebase from 'firebase/compat/app';
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { Router } from "@angular/router";
-import { AlertController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +24,8 @@ export class AuthService {
     public afAuth: AngularFireAuth, // Inject Firebase auth service
     public router: Router,  
     public ngZone: NgZone, // NgZone service to remove outside scope warning
-    public alertController: AlertController
+    public alertController: AlertController,
+    public loadingController: LoadingController
   ) {  
     /* this.afAuth.authState.subscribe(user => {
       if (user) {
@@ -62,24 +63,43 @@ export class AuthService {
     }
   }
   // Sign in with email/password
-  SignIn(email, password) {
-    return this.afAuth.signInWithEmailAndPassword(email, password)
+  async SignIn(email, password) {
+    // create a loading animation
+    const loading = await this.loadingController.create({
+      message: 'Please wait...',
+    });
+    loading.present();  // present loading animation
+    this.afAuth.signInWithEmailAndPassword(email, password)
       .then((result) => {
-        if(result.user.emailVerified) {
-          this.userData = result.user;
-          localStorage.setItem('user', JSON.stringify(this.userData)); 
-          this.router.navigate(['tabs/page-space-er']);  
-          this.isAdmin();  
-          this.SetUserData(result.user);     
+        if(result.user.emailVerified) { // if user's account has been verified
+          this.userData = result.user; // stored user's info in to local variable (refresh page will reset this variable)
+          localStorage.setItem('user', JSON.stringify(this.userData)); // stored user's info in to local database (refresh page will not reset) 
+          this.isAdmin();  // check the user is admin or not
+          this.SetUserData(result.user);  // update user's info to remote database
+
+          loading.dismiss(); //stop the loading animation
+
+          this.router.navigate(['tabs/page-space-er']); 
+             
         } else {
+          loading.dismiss(); //stop the loading animation
           this.signInErrorAlert("Email is not verified");
-          return false;
+          
         }
       }).catch((error) => {
+        loading.dismiss();
         this.userData = null;
         console.log("Login error: ",error);
-        this.signInErrorAlert("Invalid username/password");
+        if(error == 'FirebaseError: Firebase: The password is invalid or the user does not have a password. (auth/wrong-password).'){
+          this.signInErrorAlert('The email or password is invalid');
+        }else{
+          this.signInErrorAlert('Check your internet connection');
+        }
+        
       })
+
+      
+      
   }
 
   async signInErrorAlert(message) {
@@ -94,50 +114,98 @@ export class AuthService {
   }
 
   // Sign up with email/password
-  SignUp(email, password) {
+  async SignUp(email, password) {
+    // create a loading animation
+    const loading = await this.loadingController.create({
+      message: 'Please wait...',
+    });
+    loading.present();  // present loading animation
     return this.afAuth.createUserWithEmailAndPassword(email, password)
       .then((result) => {
         /* Call the SendVerificaitonMail() function when new user sign 
         up and returns promise */
+        loading.dismiss(); // when get result from firebase, stop the loading animation
         this.SendVerificationMail();
-        /* this.SetUserData(result.user); */
       }).catch((error) => {
-        window.alert(error.message)
+        loading.dismiss();
+        console.log(error);
+        if(error == 'FirebaseError: Firebase: The email address is already in use by another account. (auth/email-already-in-use).'){
+          this.signInErrorAlert('The email address is already in use by another account, try another one');
+        }
+        else{
+          this.signInErrorAlert('Check your internet connection');
+        }
+        
       })
   }
 
   // Send email verfificaiton when new user sign up
   async SendVerificationMail() {
+    const loading = await this.loadingController.create({
+      message: 'Please wait...',
+    });
+    loading.present();  // present loading animation
     return (await (this.afAuth.currentUser)).sendEmailVerification()
     .then(() => {
+      loading.dismiss();
       console.log("send email")
-       this.router.navigate(['verify-email']); 
+      this.router.navigate(['verify-email']); 
     })
   }
 
   async reSendVerificationMail() {
-    return (await (this.afAuth.currentUser)).sendEmailVerification()
+    const loading = await this.loadingController.create({
+      message: 'Please wait...',
+    });
+    loading.present();  // present loading animation
+    (await (this.afAuth.currentUser)).sendEmailVerification()
     .then(() => {
-      console.log("re-send email")
+      loading.dismiss();
+      this.VerificationMailAlert('A new verify email has been send to your email address');
+      console.log("re-send email");
       
+    }).catch((error) => {
+      loading.dismiss();
+      this.VerificationMailAlert('The request is too frequent. Please try again later');
     })
+  }
+
+  async VerificationMailAlert(message) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      subHeader: '',
+      message: message,
+      buttons: ['Ok']
+    });
+    await alert.present();
   }
 
   // Reset Forggot password
-  ForgotPassword(passwordResetEmail) {
+  async ForgotPassword(passwordResetEmail) {
+    const loading = await this.loadingController.create({
+      message: 'Please wait...',
+    });
+    loading.present();  // present loading animation
     return this.afAuth.sendPasswordResetEmail(passwordResetEmail)
     .then(() => {
-      this.resetPasswordAlert('Thank you',"A reset password email has been send to you");
+      loading.dismiss();
+      this.resetPasswordAlert("A reset password email has been send to you");
     }).catch((error) => {
+      loading.dismiss();
       console.log(error)
-      this.resetPasswordAlert('Sorry',"Check your internet Connection");
+      if(error == 'FirebaseError: Firebase: There is no user record corresponding to this identifier. The user may have been deleted. (auth/user-not-found).'){
+        this.resetPasswordAlert("The email address has not been registered");
+      }
+      else{
+        this.resetPasswordAlert("Check your internet Connection");
+      }
+     
     })
   }
 
-  async resetPasswordAlert(title, message) {
+  async resetPasswordAlert( message) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
-      header: title,
       subHeader: '',
       message: message,
       buttons: ['Ok']
@@ -190,28 +258,46 @@ export class AuthService {
   }
 
   // Sign out 
-  SignOut() {
-    return this.afAuth.signOut().then(() => {
-      /* localStorage.removeItem('user'); */
-      this.userData = null;
-      this.admin = false;
-      localStorage.setItem('user', null);
-      this.router.navigate(['tabs/page-space-er']); 
-    })
+  async SignOut() {
+
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      message: 'Do you want to sign-out?',
+      buttons: ['Cancel', 'Yes']
+    });
+    await alert.present();
+    const { role } = await alert.onDidDismiss();
+    if (role == "cancel") {
+      console.log("cancel!");
+    } else { // if user confirm to logout
+
+      const loading = await this.loadingController.create({
+        message: 'Please wait...',
+      });
+      loading.present();  // present loading animation
+
+      return this.afAuth.signOut().then(() => {
+        /* localStorage.removeItem('user'); */
+        this.userData = null;
+        this.admin = false;
+        localStorage.setItem('user', null);
+        loading.dismiss();
+        this.router.navigate(['tabs/page-space-er']); 
+      })
+    }
+
+    
   }
 
-   
 
   isAdmin(){
     if(this.userData){ 
       this.afs.collection("adminUsers", ref => ref.where('email', '==', this.userData.email)).snapshotChanges().subscribe(res => {
-        if (res.length > 0)
-        {
+        if (res.length > 0){
         console.log("Match found.");
         this.admin=true;
         }
-        else
-        {
+        else{
         /* this.notAdminAlert(); */
         console.log("Does not exist.");
         this.admin=false;

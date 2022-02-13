@@ -19,7 +19,8 @@
         <!-- Calling SendVerificationMail() method using authService Api -->
         <div class="formGroup">
           <p class="p1">Not received?</p>
-          <ion-button type="button"  expand="block " (click)="authService.reSendVerificationMail()">
+          <small *ngIf="block">{{timeLeft}} Seconds Left....</small>
+          <ion-button type="button"  expand="block " [disabled]="block" (click)="authService.reSendVerificationMail()" (click)="this.resetTimeLeft()">
             
             Resend Verification Email
           </ion-button>
@@ -30,7 +31,10 @@
       <div class="redirectToLogin">
         <span>Go back to?  <span class="redirect" routerLink="/tabs/page-space-er"> Sign in</span></span>
       </div>
-  
+      
+
+
+      
     </div>
   </div>
 </ion-content>

@@ -21,6 +21,7 @@ export class ResetPasswordPage implements OnInit {
 
   resetForm: FormGroup;
   constructor(public authService: AuthService) {
+    
     this.resetForm = new FormGroup({
       formEmail: new FormControl('',[
         Validators.required,
@@ -29,6 +30,26 @@ export class ResetPasswordPage implements OnInit {
    }
 
   ngOnInit() {
+  }
+
+  timeLeft: number = 20;
+  interval;
+  block:boolean =false;
+  resetTimeLeft(){
+    this.timeLeft =20;
+  }
+  startTimer() {
+    this.timeLeft = 20;
+    return this.interval = setInterval(() => {
+      if(this.timeLeft > 0) {
+        this.block = true;
+        this.timeLeft= this.timeLeft-1;
+        
+      } else {       
+        this.block = false;
+        return false;
+      }
+    },1000)
   }
 
 }
