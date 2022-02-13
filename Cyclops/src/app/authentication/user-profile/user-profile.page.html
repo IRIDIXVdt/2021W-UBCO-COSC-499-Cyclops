@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>User Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <div class="userInfo">
+
+        Hello, {{userData.email}}
+
+    </div>
+
+
+    <div routerLink="/reset-password">
+      <ion-item >Reset My Password  <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>  </ion-item>
+    </div>
+    
+    <div>
+      <ion-item (click)="this.authService.SignOut()">Sign-out  <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>  </ion-item>
+    </div>
+    
+  </ion-list>
+
+</ion-content>

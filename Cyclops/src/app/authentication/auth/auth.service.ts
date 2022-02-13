@@ -236,7 +236,7 @@ export class AuthService {
         })
       this.SetUserData(result.user);
     }).catch((error) => {
-      window.alert(error)
+      this.signInErrorAlert('Failed login with google');
     })
   }
 
@@ -280,9 +280,15 @@ export class AuthService {
         /* localStorage.removeItem('user'); */
         this.userData = null;
         this.admin = false;
+        console.log('admin ',this.admin)
         localStorage.setItem('user', null);
+        
         loading.dismiss();
         this.router.navigate(['tabs/page-space-er']); 
+      }).catch((error) => {
+        console.log(error);
+        loading.dismiss();
+        this.resetPasswordAlert("Check your internet Connection");
       })
     }
 
@@ -291,23 +297,31 @@ export class AuthService {
 
 
   isAdmin(){
-    if(this.userData){ 
-      this.afs.collection("adminUsers", ref => ref.where('email', '==', this.userData.email)).snapshotChanges().subscribe(res => {
+    if(this.isLogin() ){ 
+      return this.afs.collection("adminUsers", ref => ref.where('email', '==', JSON.parse(localStorage.getItem('user')).email)).snapshotChanges().subscribe(res => {
         if (res.length > 0){
-        console.log("Match found.");
-        this.admin=true;
+          if(this.isLogin()){
+            console.log(" Match found.");
+            this.admin=true;
+            console.log(this.admin);
+            return true;
+          }
+        
         }
         else{
-        /* this.notAdminAlert(); */
         console.log("Does not exist.");
         this.admin=false;
+        return false;
         }
     });
       /* console.log("isAdmin: ",admin); */
     }
     else{
       /* this.noLoginAlert(); */
+      this.admin=false;
+      
       console.log("Have not logged in ");
+      return false;
     }
     
   }
