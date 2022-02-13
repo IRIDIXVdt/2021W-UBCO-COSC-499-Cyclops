@@ -62,7 +62,11 @@ const routes: Routes = [
   {
     path: 'reset-password',
     loadChildren: () => import('./authentication/reset-password/reset-password.module').then( m => m.ResetPasswordPageModule)
+  },  {
+    path: 'user-profile',
+    loadChildren: () => import('./authentication/user-profile/user-profile.module').then( m => m.UserProfilePageModule)
   }
+
 
 
 
