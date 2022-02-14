@@ -8,6 +8,7 @@ import { AngularFireAuth } from "@angular/fire/compat/auth";
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { Router } from "@angular/router";
 import { AlertController, LoadingController } from '@ionic/angular';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -27,15 +28,6 @@ export class AuthService {
     public alertController: AlertController,
     public loadingController: LoadingController
   ) {
-    /* this.afAuth.authState.subscribe(user => {
-      if (user) {
-        console.log("Get user info from firebase ");
-        
-      } else {
-        this.userData = null;
-      }
-    }) */
-
     this.afAuth.authState.subscribe(user => {
       if (user) {
         if (user.emailVerified) {
@@ -43,13 +35,10 @@ export class AuthService {
         } else {
           localStorage.setItem('user', null);
         }
-
       } else {
         localStorage.setItem('user', null);
       }
     })
-
-
   }
 
 
@@ -298,18 +287,18 @@ export class AuthService {
 
   isAdmin() {
     if (this.isLogin()) {
-      this.afs.collection("adminUsers", ref => ref.where('email', '==', JSON.parse(localStorage.getItem('user')).email)).snapshotChanges().subscribe(res => {
+      const adminAccess = this.afs.collection("adminUsers", ref => ref.where('email', '==', JSON.parse(localStorage.getItem('user')).email)).snapshotChanges();
+      const subscription = adminAccess.subscribe(res => {
         if (res.length > 0) {
-          if (this.isLogin()) {
-            console.log(" Match found.");
-            this.admin = true;
-            console.log(this.admin);
-          }
-        }
-        else {
+          console.log(" Match found.");
+          this.admin = true;
+          console.log(this.admin);
+        } else {
           console.log("Does not exist.");
           this.admin = false;
         }
+        console.log("isAdmin Access Success, unsubscribe")
+        subscription.unsubscribe();
       });
     }
     else {
