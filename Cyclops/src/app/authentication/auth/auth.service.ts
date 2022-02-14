@@ -1,4 +1,4 @@
-import { Injectable,NgZone } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 
 import { User } from "../../sharedData/user";
 import firebase from 'firebase/compat/app';
@@ -15,18 +15,18 @@ import { AlertController, LoadingController } from '@ionic/angular';
 export class AuthService {
 
   userData: any; // Save logged in user data
-  authentication:boolean;
-  adminAuth:boolean;
-  admin:boolean;
-  Login:boolean;
+  authentication: boolean;
+  adminAuth: boolean;
+  admin: boolean;
+  Login: boolean;
   constructor(
     public afs: AngularFirestore,   // Inject Firestore service
     public afAuth: AngularFireAuth, // Inject Firebase auth service
-    public router: Router,  
+    public router: Router,
     public ngZone: NgZone, // NgZone service to remove outside scope warning
     public alertController: AlertController,
     public loadingController: LoadingController
-  ) {  
+  ) {
     /* this.afAuth.authState.subscribe(user => {
       if (user) {
         console.log("Get user info from firebase ");
@@ -38,27 +38,27 @@ export class AuthService {
 
     this.afAuth.authState.subscribe(user => {
       if (user) {
-        if(user.emailVerified){
+        if (user.emailVerified) {
           /* localStorage.setItem('user', JSON.stringify(user.emailVerified)); */
-        }else{
+        } else {
           localStorage.setItem('user', null);
         }
-        
+
       } else {
         localStorage.setItem('user', null);
       }
     })
-    
-    
+
+
   }
 
 
   //return true if has logged in
-  isLogin(){
+  isLogin() {
     /* console.log("login check ",localStorage.getItem('user')) */
-    if(!JSON.parse(localStorage.getItem('user'))){
+    if (!JSON.parse(localStorage.getItem('user'))) {
       return false;
-    }else{
+    } else {
       return true;
     }
   }
@@ -71,7 +71,7 @@ export class AuthService {
     loading.present();  // present loading animation
     this.afAuth.signInWithEmailAndPassword(email, password)
       .then((result) => {
-        if(result.user.emailVerified) { // if user's account has been verified
+        if (result.user.emailVerified) { // if user's account has been verified
           this.userData = result.user; // stored user's info in to local variable (refresh page will reset this variable)
           localStorage.setItem('user', JSON.stringify(this.userData)); // stored user's info in to local database (refresh page will not reset) 
           this.isAdmin();  // check the user is admin or not
@@ -79,27 +79,27 @@ export class AuthService {
 
           loading.dismiss(); //stop the loading animation
 
-          this.router.navigate(['tabs/page-space-er']); 
-             
+          this.router.navigate(['tabs/page-space-er']);
+
         } else {
           loading.dismiss(); //stop the loading animation
           this.signInErrorAlert("Email is not verified");
-          
+
         }
       }).catch((error) => {
         loading.dismiss();
         this.userData = null;
-        console.log("Login error: ",error);
-        if(error == 'FirebaseError: Firebase: The password is invalid or the user does not have a password. (auth/wrong-password).'){
+        console.log("Login error: ", error);
+        if (error == 'FirebaseError: Firebase: The password is invalid or the user does not have a password. (auth/wrong-password).') {
           this.signInErrorAlert('The email or password is invalid');
-        }else{
+        } else {
           this.signInErrorAlert('Check your internet connection');
         }
-        
+
       })
 
-      
-      
+
+
   }
 
   async signInErrorAlert(message) {
@@ -129,13 +129,13 @@ export class AuthService {
       }).catch((error) => {
         loading.dismiss();
         console.log(error);
-        if(error == 'FirebaseError: Firebase: The email address is already in use by another account. (auth/email-already-in-use).'){
+        if (error == 'FirebaseError: Firebase: The email address is already in use by another account. (auth/email-already-in-use).') {
           this.signInErrorAlert('The email address is already in use by another account, try another one');
         }
-        else{
+        else {
           this.signInErrorAlert('Check your internet connection');
         }
-        
+
       })
   }
 
@@ -146,11 +146,11 @@ export class AuthService {
     });
     loading.present();  // present loading animation
     return (await (this.afAuth.currentUser)).sendEmailVerification()
-    .then(() => {
-      loading.dismiss();
-      console.log("send email")
-      this.router.navigate(['verify-email']); 
-    })
+      .then(() => {
+        loading.dismiss();
+        console.log("send email")
+        this.router.navigate(['verify-email']);
+      })
   }
 
   async reSendVerificationMail() {
@@ -159,15 +159,15 @@ export class AuthService {
     });
     loading.present();  // present loading animation
     (await (this.afAuth.currentUser)).sendEmailVerification()
-    .then(() => {
-      loading.dismiss();
-      this.VerificationMailAlert('A new verify email has been send to your email address');
-      console.log("re-send email");
-      
-    }).catch((error) => {
-      loading.dismiss();
-      this.VerificationMailAlert('The request is too frequent. Please try again later');
-    })
+      .then(() => {
+        loading.dismiss();
+        this.VerificationMailAlert('A new verify email has been send to your email address');
+        console.log("re-send email");
+
+      }).catch((error) => {
+        loading.dismiss();
+        this.VerificationMailAlert('The request is too frequent. Please try again later');
+      })
   }
 
   async VerificationMailAlert(message) {
@@ -187,23 +187,23 @@ export class AuthService {
     });
     loading.present();  // present loading animation
     return this.afAuth.sendPasswordResetEmail(passwordResetEmail)
-    .then(() => {
-      loading.dismiss();
-      this.resetPasswordAlert("A reset password email has been send to you");
-    }).catch((error) => {
-      loading.dismiss();
-      console.log(error)
-      if(error == 'FirebaseError: Firebase: There is no user record corresponding to this identifier. The user may have been deleted. (auth/user-not-found).'){
-        this.resetPasswordAlert("The email address has not been registered");
-      }
-      else{
-        this.resetPasswordAlert("Check your internet Connection");
-      }
-     
-    })
+      .then(() => {
+        loading.dismiss();
+        this.resetPasswordAlert("A reset password email has been send to you");
+      }).catch((error) => {
+        loading.dismiss();
+        console.log(error)
+        if (error == 'FirebaseError: Firebase: There is no user record corresponding to this identifier. The user may have been deleted. (auth/user-not-found).') {
+          this.resetPasswordAlert("The email address has not been registered");
+        }
+        else {
+          this.resetPasswordAlert("Check your internet Connection");
+        }
+
+      })
   }
 
-  async resetPasswordAlert( message) {
+  async resetPasswordAlert(message) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       subHeader: '',
@@ -221,23 +221,23 @@ export class AuthService {
 
   // Sign in with Google
   GoogleAuth() {
-     return this.AuthLogin(new firebase.auth.GoogleAuthProvider()); 
+    return this.AuthLogin(new firebase.auth.GoogleAuthProvider());
   }
 
   // Auth logic to run auth providers
   AuthLogin(provider) {
     return this.afAuth.signInWithPopup(provider)
-    .then((result) => {
-       this.ngZone.run(() => {
+      .then((result) => {
+        this.ngZone.run(() => {
           this.userData = result.user;
-          localStorage.setItem('user', JSON.stringify(this.userData)); 
-          this.router.navigate(['tabs/page-space-er']);  
-          this.isAdmin(); 
+          localStorage.setItem('user', JSON.stringify(this.userData));
+          this.router.navigate(['tabs/page-space-er']);
+          this.isAdmin();
         })
-      this.SetUserData(result.user);
-    }).catch((error) => {
-      this.signInErrorAlert('Failed login with google');
-    })
+        this.SetUserData(result.user);
+      }).catch((error) => {
+        this.signInErrorAlert('Failed login with google');
+      })
   }
 
   /* Setting up user data when sign in with username/password, 
@@ -280,11 +280,11 @@ export class AuthService {
         /* localStorage.removeItem('user'); */
         this.userData = null;
         this.admin = false;
-        console.log('admin ',this.admin)
+        console.log('admin ', this.admin)
         localStorage.setItem('user', null);
-        
+
         loading.dismiss();
-        this.router.navigate(['tabs/page-space-er']); 
+        this.router.navigate(['tabs/page-space-er']);
       }).catch((error) => {
         console.log(error);
         loading.dismiss();
@@ -292,38 +292,30 @@ export class AuthService {
       })
     }
 
-    
+
   }
 
 
-  isAdmin(){
-    if(this.isLogin() ){ 
-      return this.afs.collection("adminUsers", ref => ref.where('email', '==', JSON.parse(localStorage.getItem('user')).email)).snapshotChanges().subscribe(res => {
-        if (res.length > 0){
-          if(this.isLogin()){
+  isAdmin() {
+    if (this.isLogin()) {
+      this.afs.collection("adminUsers", ref => ref.where('email', '==', JSON.parse(localStorage.getItem('user')).email)).snapshotChanges().subscribe(res => {
+        if (res.length > 0) {
+          if (this.isLogin()) {
             console.log(" Match found.");
-            this.admin=true;
+            this.admin = true;
             console.log(this.admin);
-            return true;
           }
-        
         }
-        else{
-        console.log("Does not exist.");
-        this.admin=false;
-        return false;
+        else {
+          console.log("Does not exist.");
+          this.admin = false;
         }
-    });
-      /* console.log("isAdmin: ",admin); */
+      });
     }
-    else{
-      /* this.noLoginAlert(); */
-      this.admin=false;
-      
+    else {
+      this.admin = false;
       console.log("Have not logged in ");
-      return false;
     }
-    
   }
 
   async notAdminAlert() {
@@ -347,5 +339,5 @@ export class AuthService {
     });
     await alert.present();
   }
-  
+
 }
