@@ -1,3 +1,4 @@
+import { SectionSolutionTags } from "./SectionSolutionTags"
 export const SectionSolution = {
     "sections" : ["Transportation", "Food"
 ],
