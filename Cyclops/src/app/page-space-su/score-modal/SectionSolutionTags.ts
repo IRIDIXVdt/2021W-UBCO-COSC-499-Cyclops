@@ -3,5 +3,5 @@ export class SectionSolutionTags{
     solution : {
         section : string;
         solutions : string[];
-    }
+    }[];
 }
