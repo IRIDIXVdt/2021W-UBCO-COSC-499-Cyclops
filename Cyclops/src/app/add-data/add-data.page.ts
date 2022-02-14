@@ -106,7 +106,7 @@ export class AddDataPage implements OnInit {
     })
   }
 
-  loadUserDocId() {
+  loadUserDocId() {//const subscription =
     this.firebaseService.getUserDataService().subscribe((res) => {
       this.userIds = res.map(e => {
         return {
