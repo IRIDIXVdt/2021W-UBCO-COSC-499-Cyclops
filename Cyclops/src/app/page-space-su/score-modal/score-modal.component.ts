@@ -57,11 +57,13 @@ export class ScoreModalComponent implements OnInit  {
     this.solutions= SectionSolution.solution;
 
     this.myForm = this.formBuilder.group({
-      task: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
-      score: ['', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.max(100), Validators.min(0)]],
-      task1: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
-      score1: ['', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.max(100), Validators.min(0)]]
-      
+      // task: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
+      // score: ['', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.max(100), Validators.min(0)]],
+      // task1: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
+      // score1: ['', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.max(100), Validators.min(0)]],
+      Select_Section : ['', Validators.required],
+      Select_Solution : ['', Validators.required],
+      Select_Level : ['', Validators.required]
     });
   }
   
@@ -87,15 +89,15 @@ export class ScoreModalComponent implements OnInit  {
       return false;
     } else {
       this.modalCtrl.dismiss(this.usereco)
-      console.log(this.sec);
-      console.log(this.sol);
+      console.log(this.usereco)
+    
     }
   }
   rate(index: number) {
     // function used to change the value of our rating 
     // triggered when user, clicks a star to change the rating
-    this.rating = index;
-    console.log(this.rating);
+    this.usereco.rating = this.rating = index; //  index is Value to database
+    console.log(index);
     this.ratingChange.emit(this.rating);
  }
 
@@ -116,9 +118,9 @@ export class ScoreModalComponent implements OnInit  {
    switch (this.rating){
      case 1:
      case 2:
-       return this.green;
+       return this.red;
     case 3:
-      return this.green;
+      return this.yellow;
     case 4:
     case 5:
       return this.green;
@@ -135,18 +137,20 @@ export class ScoreModalComponent implements OnInit  {
   getSolutionsForSelectedSections(val:string){
     this.solutions = SectionSolution.solution.find(s=> s.section.trim() == val.trim()).solutions;
   }
-  selectedSolution($event) {
-    this.sol = ($event.target.value);
-    console.log(this.sol);
-  }
   selectedSection($event) {
-    this.sec = ($event.target.value);
-    console.log(this.sec);
+    this.usereco.section = ($event.target.value); // Value to database
+    console.log(this.usereco.section)
+  }
+  selectedSolution($event) {
+    this.usereco.solution = ($event.target.value); // Value to database
+    console.log(this.usereco.solution)
   }
   selectedLevel($event) {
-    this.level = ($event.target.value);
-    console.log(this.level);
+    this.usereco.level = ($event.target.value); // Value to database
+    console.log(this.usereco.level)
   }
+  
+  
 
 
   
