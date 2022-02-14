@@ -4,6 +4,7 @@ import { ModalController, NavParams } from '@ionic/angular';
 import { SolutionPageForm } from '../form/solution.page.form';
 import { COLORS } from './enum';
 import { SectionSolution } from './SectionSolution';
+import { SectionSolutionTags } from "./SectionSolutionTags"
 
 @Component({
   selector: 'app-score-modal',
