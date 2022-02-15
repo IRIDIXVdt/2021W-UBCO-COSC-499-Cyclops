@@ -7,11 +7,10 @@
 }
 
 ion-label {
-  
   font-family: Montserrat;
 }
 
-h12 {
+h1 {
   margin-top: 15%;
   margin-bottom: 10px;
   font-size: 32px;
@@ -76,13 +75,21 @@ ion-item.item-has-focus > ion-label {
 }
 
 form,
-ion-button {
+.login-button{
   margin-top: 10%;
 }
+.google-connect {
+  --box-shadow: none;
+  --border-radius: 10px;
+  --background: #ebeef4;
+  
+  font-size: 1rem;
+  color: #123681;
+  
+  margin-bottom: 0.7rem;
+  text-transform: initial;
+  ion-icon {
+    margin-right: 0.5rem;
+  }
+}
 
-ion-content {
-  // max-width: 600px;
-}
-ion-item {
-  margin-left: -5%;
-}

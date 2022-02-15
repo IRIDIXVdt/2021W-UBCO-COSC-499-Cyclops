@@ -10,15 +10,13 @@
   <div class="form-display-area">
     <h1>Welcome,</h1>
     <h3>Sign in to continue!</h3>
-    <ion-title>Welcome,</ion-title>
-    <ion-title>Sign in to continue!</ion-title>
 
     <form [formGroup]="signInForm">
       <!-- <app-input label="Email ID" #userEmail required></app-input>
       <app-input label="Password" type="password" #userPwd required></app-input> -->
 
-      <ion-item class="ion-align-items-center">
-        <ion-label position="floating ">Welcome</ion-label>
+      <ion-item class="ion-align-items-center" class="ion-no-padding">
+        <ion-label position="floating">Email</ion-label>
         <ion-input type="email" formControlName="formEmail" #userEmail> </ion-input>
       </ion-item>
 
@@ -30,7 +28,7 @@
         </ng-container>
       </div>
 
-      <ion-item class="ion-align-items-center">
+      <ion-item class="ion-align-items-center" class="ion-no-padding">
         <ion-label position="floating ">Password</ion-label>
         <ion-input type="password" formControlName="formPassword" #userPwd></ion-input>
       </ion-item>
@@ -46,10 +44,13 @@
 
       <a routerLink="/reset-password" class="forgot-password-link">Forgot Password?</a>
 
-      <ion-button (click)="authService.SignIn(userEmail.value, userPwd.value)" [disabled]="signInForm.invalid"
-        expand='block'>Login</ion-button>
-      <app-icon-button icon='logo-google' label='Connect with Google' (click)="authService.GoogleAuth()">
-      </app-icon-button>
+      <ion-button class="login-button" (click)="authService.SignIn(userEmail.value, userPwd.value)"
+        [disabled]="signInForm.invalid" expand='block'>
+        Login
+      </ion-button>
+      <ion-button class="google-connect" expand='block' (click)="authService.GoogleAuth()">
+        <ion-icon name='logo-google'></ion-icon> Connect with Google
+      </ion-button>
     </form>
 
     <!-- <p class="footer-text">I'm a new user, <a routerLink="/registration">Sign Up</a></p> -->
