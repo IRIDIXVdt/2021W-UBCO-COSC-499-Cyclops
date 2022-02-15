@@ -3,44 +3,58 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title >Sign In</ion-title>
+    <ion-title>Sign In</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content class="ion-padding">
-  <h1>Welcome,</h1>
-  <h3>Sign in to continue!</h3>
+<ion-content>
+  <div class="form-display-area">
+    <h1>Welcome,</h1>
+    <h3>Sign in to continue!</h3>
 
-  <form [formGroup]="signInForm">
-    <!-- <app-input label="Email ID" #userEmail required></app-input>
-    <app-input label="Password" type="password" #userPwd required></app-input> -->
+    <form [formGroup]="signInForm">
+      <!-- <app-input label="Email ID" #userEmail required></app-input>
+      <app-input label="Password" type="password" #userPwd required></app-input> -->
 
-    <ion-item class="ion-align-items-center">
-      <ion-label position ="floating " >Email</ion-label>
-      <ion-input type="email" formControlName="formEmail"   #userEmail > </ion-input>
-    </ion-item>
+      <ion-item class="ion-align-items-center" class="ion-no-padding">
+        <ion-label position="floating">Email</ion-label>
+        <ion-input type="email" formControlName="formEmail" #userEmail> </ion-input>
+      </ion-item>
 
-    <div *ngFor=" let error of errorMessages.email "> 
-      <ng-container *ngIf=" signInForm.get('formEmail').hasError(error.type) && signInForm.get('formEmail').touched">
-        <small class ="error-message" ><ion-icon name="information-circle-outline"></ion-icon>{{error.message}}</small>
-      </ng-container>
-    </div> 
+      <div *ngFor=" let error of errorMessages.email ">
+        <ng-container *ngIf=" signInForm.get('formEmail').hasError(error.type) && signInForm.get('formEmail').touched">
+          <small class="error-message">
+            <ion-icon name="information-circle-outline"></ion-icon>{{error.message}}
+          </small>
+        </ng-container>
+      </div>
 
-    <ion-item class="ion-align-items-center">
-      <ion-label position ="floating ">Password</ion-label>
-      <ion-input  type="password"  formControlName="formPassword" #userPwd ></ion-input>
-    </ion-item>
+      <ion-item class="ion-align-items-center" class="ion-no-padding">
+        <ion-label position="floating ">Password</ion-label>
+        <ion-input type="password" formControlName="formPassword" #userPwd></ion-input>
+      </ion-item>
 
-    <div *ngFor=" let error of errorMessages.password "> 
-      <ng-container *ngIf=" signInForm.get('formPassword').hasError(error.type) && signInForm.get('formPassword').touched">
-        <small class ="error-message" ><ion-icon name="information-circle-outline"></ion-icon>{{error.message}}</small>
-      </ng-container>
-    </div> 
+      <div *ngFor=" let error of errorMessages.password ">
+        <ng-container
+          *ngIf=" signInForm.get('formPassword').hasError(error.type) && signInForm.get('formPassword').touched">
+          <small class="error-message">
+            <ion-icon name="information-circle-outline"></ion-icon>{{error.message}}
+          </small>
+        </ng-container>
+      </div>
 
-    <a routerLink="/reset-password" class="forgot-password-link">Forgot Password?</a>
+      <a routerLink="/reset-password" class="forgot-password-link">Forgot Password?</a>
 
-    <ion-button (click)="authService.SignIn(userEmail.value, userPwd.value)" [disabled]="signInForm.invalid" expand='block'>Login</ion-button>
-    <app-icon-button icon='logo-google' label='Connect with Google' (click)="authService.GoogleAuth()"></app-icon-button>
-  </form>
+      <ion-button class="login-button" (click)="authService.SignIn(userEmail.value, userPwd.value)"
+        [disabled]="signInForm.invalid" expand='block'>
+        Login
+      </ion-button>
+      <ion-button class="google-connect" expand='block' (click)="authService.GoogleAuth()">
+        <ion-icon name='logo-google'></ion-icon> Connect with Google
+      </ion-button>
+    </form>
 
-  <p class="footer-text">I'm a new user, <a routerLink="/registration">Sign Up</a></p>
+    <p class="footer-text">I'm a new user, <a routerLink="/registration">Sign Up</a></p>
+ 
+  </div>
+
 </ion-content>
