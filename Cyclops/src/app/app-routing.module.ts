@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guard/auth.guard';
 
 const routes: Routes = [
   {
@@ -62,8 +63,10 @@ const routes: Routes = [
   {
     path: 'reset-password',
     loadChildren: () => import('./authentication/reset-password/reset-password.module').then( m => m.ResetPasswordPageModule)
-  },  {
+  },
+  {
     path: 'user-profile',
+    canActivate:[AuthGuard],
     loadChildren: () => import('./authentication/user-profile/user-profile.module').then( m => m.UserProfilePageModule)
   }
 
