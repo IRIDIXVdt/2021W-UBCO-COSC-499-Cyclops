@@ -171,6 +171,7 @@ export class AuthService {
         loading.dismiss();
         this.resetPasswordAlert("A reset password email has been send to you");
       }).catch((error) => {
+        this.SignOutRestPassword();
         loading.dismiss();
         console.log(error)
         if (error == 'FirebaseError: Firebase: There is no user record corresponding to this identifier. The user may have been deleted. (auth/user-not-found).') {
