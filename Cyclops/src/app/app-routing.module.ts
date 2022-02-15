@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guard/auth.guard';
+import { LoginGuard } from './guard/login.guard';
 
 const routes: Routes = [
   {
@@ -28,20 +30,18 @@ const routes: Routes = [
   },
   {
     path: 'tabs/TextEdit/:docId',
+    canActivate:[AuthGuard],
     // different from the id we had before, this new docId is from FireStore
     loadChildren: () => import('./editing-tool-test-page/editing-tool-test-page.module').then( m => m.EditingToolTestPagePageModule)
   },
   {
     path: 'login',
+    canActivate:[LoginGuard],
     loadChildren: () => import('./authentication/login/login.module').then( m => m.LoginPageModule)
   },
   {
     path: 'registration',
     loadChildren: () => import('./authentication/registration/registration.module').then( m => m.RegistrationPageModule)
-  },
-  {
-    path: 'login',
-    loadChildren: () => import('./authentication/login/login.module').then( m => m.LoginPageModule)
   },
   {
     path: 'registration',
@@ -62,8 +62,10 @@ const routes: Routes = [
   {
     path: 'reset-password',
     loadChildren: () => import('./authentication/reset-password/reset-password.module').then( m => m.ResetPasswordPageModule)
-  },  {
+  },
+  {
     path: 'user-profile',
+    canActivate:[AuthGuard],
     loadChildren: () => import('./authentication/user-profile/user-profile.module').then( m => m.UserProfilePageModule)
   }
 
