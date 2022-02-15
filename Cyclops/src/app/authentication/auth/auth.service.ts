@@ -177,6 +177,7 @@ export class AuthService {
     loading.present();  // present loading animation
     return this.afAuth.sendPasswordResetEmail(passwordResetEmail)
       .then(() => {
+        this.SignOutRestPassword();
         loading.dismiss();
         this.resetPasswordAlert("A reset password email has been send to you");
       }).catch((error) => {
@@ -190,6 +191,18 @@ export class AuthService {
         }
 
       })
+  }
+  
+  SignOutRestPassword(){
+    return this.afAuth.signOut().then(() => {
+      this.userData = null;
+      this.admin = false;
+      console.log('admin ', this.admin)
+      localStorage.setItem('user', null);
+    }).catch((error) => {
+      console.log(error);
+      this.resetPasswordAlert("Check your internet Connection");
+    })
   }
 
   async resetPasswordAlert(message) {
