@@ -28,7 +28,7 @@ export class AuthService {
     public alertController: AlertController,
     public loadingController: LoadingController
   ) {
-    
+
   }
 
 
@@ -161,26 +161,61 @@ export class AuthService {
 
   // Reset Forggot password
   async ForgotPassword(passwordResetEmail) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      message: 'For security reasons, you will be sign-out. Do you want to continue?',
+      buttons: ['Cancel', 'Yes']
+    });
+
     const loading = await this.loadingController.create({
       message: 'Please wait...',
     });
-    loading.present();  // present loading animation
-    return this.afAuth.sendPasswordResetEmail(passwordResetEmail)
-      .then(() => {
-        this.SignOutRestPassword();
-        loading.dismiss();
-        this.resetPasswordAlert("A reset password email has been send to you");
-      }).catch((error) => {
-        loading.dismiss();
-        console.log(error)
-        if (error == 'FirebaseError: Firebase: There is no user record corresponding to this identifier. The user may have been deleted. (auth/user-not-found).') {
-          this.resetPasswordAlert("The email address has not been registered");
-        }
-        else {
-          this.resetPasswordAlert("Check your internet Connection");
-        }
 
-      })
+    if (this.isLogin) {
+      await alert.present();
+      const { role } = await alert.onDidDismiss();
+      if (role == "cancel") {
+        console.log("cancel!");
+      } else {
+        loading.present();  // present loading animation
+        return this.afAuth.sendPasswordResetEmail(passwordResetEmail)
+          .then(() => {
+            this.SignOutRestPassword();
+            loading.dismiss();
+            this.resetPasswordAlert("A reset password email has been send to you");
+          }).catch((error) => {
+            loading.dismiss();
+            console.log(error)
+            if (error == 'FirebaseError: Firebase: There is no user record corresponding to this identifier. The user may have been deleted. (auth/user-not-found).') {
+              this.resetPasswordAlert("The email address has not been registered");
+            }
+            else {
+              this.resetPasswordAlert("Check your internet Connection");
+            }
+
+          })
+      }
+    } else {
+      loading.present();  // present loading animation
+      return this.afAuth.sendPasswordResetEmail(passwordResetEmail)
+        .then(() => {
+          this.SignOutRestPassword();
+          loading.dismiss();
+          this.resetPasswordAlert("A reset password email has been send to you");
+        }).catch((error) => {
+          loading.dismiss();
+          console.log(error)
+          if (error == 'FirebaseError: Firebase: There is no user record corresponding to this identifier. The user may have been deleted. (auth/user-not-found).') {
+            this.resetPasswordAlert("The email address has not been registered");
+          }
+          else {
+            this.resetPasswordAlert("Check your internet Connection");
+          }
+
+        })
+
+    }
+
   }
 
   SignOutRestPassword() {
@@ -205,11 +240,7 @@ export class AuthService {
     await alert.present();
   }
 
-  // Returns true when user is looged in and email is verified
-  get isLoggedIn(): boolean {
-    const user = JSON.parse(localStorage.getItem('user'));
-    return (user !== null && user.emailVerified !== false) ? true : false;
-  }
+
 
   // Sign in with Google
   GoogleAuth() {
@@ -353,24 +384,25 @@ export class AuthService {
     }).catch((error) => {
       console.log(error);
       loading.dismiss();
+
       this.resetPasswordAlert("Check your internet Connection");
     });
 
 
   }
 
-  updateUserData(){
+  updateUserData() {
     this.afAuth.authState.subscribe(user => {
       if (user) {
         if (user.emailVerified) {
-          this.userData= user;
+          this.userData = user;
           localStorage.setItem('user', JSON.stringify(user));
         } else {
-          this.userData= null;
+          this.userData = null;
           localStorage.setItem('user', null);
         }
       } else {
-        this.userData= null;
+        this.userData = null;
         localStorage.setItem('user', null);
       }
     })
