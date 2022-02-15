@@ -29,6 +29,7 @@ const routes: Routes = [
   },
   {
     path: 'tabs/TextEdit/:docId',
+    canActivate:[AuthGuard],
     // different from the id we had before, this new docId is from FireStore
     loadChildren: () => import('./editing-tool-test-page/editing-tool-test-page.module').then( m => m.EditingToolTestPagePageModule)
   },

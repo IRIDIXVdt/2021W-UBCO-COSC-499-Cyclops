@@ -192,7 +192,7 @@ export class AuthService {
 
       })
   }
-  
+
   SignOutRestPassword(){
     return this.afAuth.signOut().then(() => {
       this.userData = null;
@@ -306,17 +306,21 @@ export class AuthService {
           console.log(" Match found.");
           this.admin = true;
           console.log(this.admin);
+          subscription.unsubscribe();
+          return true;
         } else {
           console.log("Does not exist.");
           this.admin = false;
+          subscription.unsubscribe();
+          return false;
         }
-        console.log("isAdmin Access Success, unsubscribe")
-        subscription.unsubscribe();
+        
       });
     }
     else {
       this.admin = false;
       console.log("Have not logged in ");
+      return false;
     }
   }
 
