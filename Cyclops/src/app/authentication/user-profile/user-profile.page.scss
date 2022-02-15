@@ -1,11 +1,11 @@
 .main_content_div {
     width: 100%;
-
+    background: linear-gradient(to right, #5d94c2, #148dd3);
     .user_div {
         padding: 20px;
         width: 100%;
         height: 260px;
-        background: linear-gradient(to right, #5d94c2, #148dd3);
+        
         display: flex;
         justify-content: space-between;
         padding-top: 40px;
@@ -32,7 +32,7 @@
     }
 
     .content_div{
-        background:white;
+        background:rgb(255, 255, 255);
         width: 100%;
         border-top-left-radius: 75px;
         margin-top: -50px;
@@ -40,17 +40,23 @@
         padding-top: 30px;
 
         .test_details{
+            border-top-left-radius: 70px;
+            border-top-right-radius: 5px;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+            background:rgb(255, 255, 255);
             width: 100%;
-            border-radius: 5px;
-            box-shadow: 0px 3px 6px rgba(0,0,0,0.3);
+            /* border-radius: 5px; */
+            box-shadow: 0px 1px 2px rgba(0,0,0,0.3);
         }
     }
 
     .list_div{
+        background:rgb(255, 255, 255);
         display: flex;
         justify-content: space-between;
         border-radius: 5px;
-        box-shadow: 0px 3px 6px rgba(0,0,0,0.3);
+      box-shadow: 0px 1px 2px rgba(0,0,0,0.3);
         margin-top: 20px;
         padding: 15px;
     }
