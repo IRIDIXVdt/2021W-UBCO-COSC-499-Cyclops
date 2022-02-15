@@ -346,4 +346,12 @@ export class AuthService {
     await alert.present();
   }
 
+  async updateUserName(displayName){
+    const profile = {
+      displayName: 'displayName',
+      photoURL: "https://example.com/jane-q-user/profile.jpg"
+  }
+  console.log('profile run')
+  return (await this.afAuth.currentUser).updateProfile(profile);
+  }
 }
