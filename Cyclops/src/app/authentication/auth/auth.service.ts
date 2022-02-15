@@ -28,17 +28,7 @@ export class AuthService {
     public alertController: AlertController,
     public loadingController: LoadingController
   ) {
-    this.afAuth.authState.subscribe(user => {
-      if (user) {
-        if (user.emailVerified) {
-          /* localStorage.setItem('user', JSON.stringify(user.emailVerified)); */
-        } else {
-          localStorage.setItem('user', null);
-        }
-      } else {
-        localStorage.setItem('user', null);
-      }
-    })
+    
   }
 
 
@@ -193,7 +183,7 @@ export class AuthService {
       })
   }
 
-  SignOutRestPassword(){
+  SignOutRestPassword() {
     return this.afAuth.signOut().then(() => {
       this.userData = null;
       this.admin = false;
@@ -314,7 +304,7 @@ export class AuthService {
           subscription.unsubscribe();
           return false;
         }
-        
+
       });
     }
     else {
@@ -346,4 +336,43 @@ export class AuthService {
     await alert.present();
   }
 
+  async updateUserName(displayName) {
+    const loading = await this.loadingController.create({
+      message: 'Please wait...',
+    });
+    loading.present();  // present loading animation
+
+    const profile = {
+      displayName: displayName,
+    };
+
+    (await this.afAuth.currentUser).updateProfile(profile).then(() => {
+      console.log('updated userName');
+      this.updateUserData();
+      loading.dismiss();
+    }).catch((error) => {
+      console.log(error);
+      loading.dismiss();
+      this.resetPasswordAlert("Check your internet Connection");
+    });
+
+
+  }
+
+  updateUserData(){
+    this.afAuth.authState.subscribe(user => {
+      if (user) {
+        if (user.emailVerified) {
+          this.userData= user;
+          localStorage.setItem('user', JSON.stringify(user));
+        } else {
+          this.userData= null;
+          localStorage.setItem('user', null);
+        }
+      } else {
+        this.userData= null;
+        localStorage.setItem('user', null);
+      }
+    })
+  }
 }
