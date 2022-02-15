@@ -14,7 +14,7 @@
     <div class="user_div">
       <div class="first_div">
         <ion-label class="username" *ngIf="userData.displayName == null">{{userData.email}}</ion-label>
-        <ion-label class="username" *ngIf="userData.displayName != null">{{userData.displayName}}</ion-label>
+        <ion-label class="username" *ngIf="userData.displayName != null">{{name}}</ion-label>
       </div>
       <div *ngIf="userData.photoURL == null" class="user_back" [style.backgroundImage]="'url(../../../assets/default-user-image.png)'"></div>
       <div *ngIf="userData.photoURL != null" class="user_back" [style.backgroundImage]="'url({{userData.photoURL}})'"></div>    

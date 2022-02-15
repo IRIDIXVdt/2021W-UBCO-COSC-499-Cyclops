@@ -11,11 +11,15 @@ export class UserProfilePage implements OnInit {
 
   userData = JSON.parse(localStorage.getItem('user'));
 
+  name: string;
+
 
 
   constructor(public authService: AuthService, public alertController: AlertController) { }
 
   ngOnInit() {
+     this.name = JSON.parse(localStorage.getItem('user')).displayName;
+    /* this.name = "testname"; */
   }
 
   async editUsername() {
@@ -26,6 +30,8 @@ export class UserProfilePage implements OnInit {
         {
           name: 'userName',
           type: 'text',
+          min: 3,
+          max: 10,
           placeholder: 'Current UserName: ' + this.userData.displayName
         },
       ],
@@ -40,10 +46,13 @@ export class UserProfilePage implements OnInit {
         }, {
           text: 'Save',
           handler: data => {
-            if (this.validateUserName(data)) {
+            if (true) {
               console.log("run-------------")
               this.authService.updateUserName(data.userName);
               this.userData = JSON.parse(localStorage.getItem('user'));
+              // this.name = JSON.parse(localStorage.getItem('user')).displayName;
+              this.name = data.userName;
+              
             } else {
               this.alertError('You have reached the max length 10');
             }
@@ -63,14 +72,11 @@ export class UserProfilePage implements OnInit {
         message: ''
       };
     } else {
-      return {
-        isValid: false,
-        message: 'Email address is required'
-      }
+      return false;
     }
   }
 
-  async alertError(message){
+  async alertError(message) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       message: message,
