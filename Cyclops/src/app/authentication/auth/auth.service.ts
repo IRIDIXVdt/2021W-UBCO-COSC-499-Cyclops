@@ -10,7 +10,6 @@ import { Router } from "@angular/router";
 import { AlertController, LoadingController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -162,28 +161,61 @@ export class AuthService {
 
   // Reset Forggot password
   async ForgotPassword(passwordResetEmail) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      message: 'For security reasons, you will be sign-out. Do you want to continue?',
+      buttons: ['Cancel', 'Yes']
+    });
 
     const loading = await this.loadingController.create({
       message: 'Please wait...',
     });
-    loading.present();  // present loading animation
-    return this.afAuth.sendPasswordResetEmail(passwordResetEmail)
-      .then(() => {
-        this.SignOutRestPassword();
-        loading.dismiss();
-        this.resetPasswordAlert("A reset password email has been send to you");
-      }).catch((error) => {
-        this.SignOutRestPassword();
-        loading.dismiss();
-        console.log(error)
-        if (error == 'FirebaseError: Firebase: There is no user record corresponding to this identifier. The user may have been deleted. (auth/user-not-found).') {
-          this.resetPasswordAlert("The email address has not been registered");
-        }
-        else {
-          this.resetPasswordAlert("Failed to request, Check your internet Connection");
-        }
 
-      })
+    if (this.isLogin) {
+      await alert.present();
+      const { role } = await alert.onDidDismiss();
+      if (role == "cancel") {
+        console.log("cancel!");
+      } else {
+        loading.present();  // present loading animation
+        return this.afAuth.sendPasswordResetEmail(passwordResetEmail)
+          .then(() => {
+            this.SignOutRestPassword();
+            loading.dismiss();
+            this.resetPasswordAlert("A reset password email has been send to you");
+          }).catch((error) => {
+            loading.dismiss();
+            console.log(error)
+            if (error == 'FirebaseError: Firebase: There is no user record corresponding to this identifier. The user may have been deleted. (auth/user-not-found).') {
+              this.resetPasswordAlert("The email address has not been registered");
+            }
+            else {
+              this.resetPasswordAlert("Check your internet Connection");
+            }
+
+          })
+      }
+    } else {
+      loading.present();  // present loading animation
+      return this.afAuth.sendPasswordResetEmail(passwordResetEmail)
+        .then(() => {
+          this.SignOutRestPassword();
+          loading.dismiss();
+          this.resetPasswordAlert("A reset password email has been send to you");
+        }).catch((error) => {
+          loading.dismiss();
+          console.log(error)
+          if (error == 'FirebaseError: Firebase: There is no user record corresponding to this identifier. The user may have been deleted. (auth/user-not-found).') {
+            this.resetPasswordAlert("The email address has not been registered");
+          }
+          else {
+            this.resetPasswordAlert("Check your internet Connection");
+          }
+
+        })
+
+    }
+
   }
 
   SignOutRestPassword() {
