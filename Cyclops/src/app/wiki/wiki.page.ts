@@ -58,7 +58,7 @@ export class WikiPage implements OnInit {
     this.editMode = true;
   }
   private loadEditorDataById() {
-    this.firebaseService.getDataByIdService(this.articleId).subscribe(
+    const subscription = this.firebaseService.getDataByIdService(this.articleId).subscribe(
       e => {
         this.contents = {
           title: e.payload.data()['title'],
@@ -80,6 +80,7 @@ export class WikiPage implements OnInit {
         this.needSaving = false;
         console.log("need saving to false from loadEditorDataById");
         // this.editorComponent.focus;
+        subscription.unsubscribe();
       },
       err => {
         console.debug(err);
@@ -211,7 +212,7 @@ export class WikiPage implements OnInit {
       console.log("cancel!");
     } else {
       this.updateDataById(this.articleId, this.contents);
-      this.reloadPage();
+      // this.reloadPage();
       console.log("Changes saved to cloud!");
       this.displayMessage("Upload Success");
       //change saving state to close
