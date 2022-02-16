@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guard/auth.guard';
+import { FeedbackDetailsGuard } from './guard/feedback-details.guard';
 import { LoginGuard } from './guard/login.guard';
 
 
@@ -72,6 +73,7 @@ const routes: Routes = [
   },
   {
     path: 'display-feedback-details',
+    
     loadChildren: () => import('./userProfile/display-feedback-details/display-feedback-details.module').then( m => m.DisplayFeedbackDetailsPageModule)
   },
   {
