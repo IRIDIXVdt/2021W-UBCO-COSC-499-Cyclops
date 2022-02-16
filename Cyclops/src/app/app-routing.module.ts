@@ -67,7 +67,11 @@ const routes: Routes = [
     path: 'user-profile',
     canActivate:[AuthGuard],
     loadChildren: () => import('./authentication/user-profile/user-profile.module').then( m => m.UserProfilePageModule)
+  },  {
+    path: 'wiki',
+    loadChildren: () => import('./wiki/wiki.module').then( m => m.WikiPageModule)
   }
+
 
 
 
