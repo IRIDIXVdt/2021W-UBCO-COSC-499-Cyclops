@@ -376,4 +376,11 @@ export class AuthService {
       }
     })
   }
+
+  getTime(){
+    const myTimestamp = firebase.firestore.FieldValue.serverTimestamp();
+    console.log(myTimestamp);
+
+
+  }
 }

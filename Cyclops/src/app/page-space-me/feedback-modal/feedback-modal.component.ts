@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { ModalController, AlertController, LoadingController } from '@ionic/angular';
+import { ModalController, AlertController, LoadingController, NavParams } from '@ionic/angular';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Feedback, ContactType } from './feedback';
 import { FirebaseService } from 'src/app/FirebaseService/firebase.service';
+
 @Component({
   selector: 'app-feedback-modal',
   templateUrl: './feedback-modal.component.html',
@@ -12,14 +13,21 @@ export class FeedbackModalComponent {
   feedbackForm: FormGroup;
   feedback: Feedback;
   contactType = ContactType;
+  articleTitle:any;
 
   constructor(private fb: FormBuilder,
     public modalController: ModalController,
     public alertController: AlertController,
     public firebaseService: FirebaseService,
-    public loadingController: LoadingController) {
+    public loadingController: LoadingController,private navParams:NavParams) {
     this.createForm();
+    this.articleTitle = this.navParams.data;
   }
+
+  
+    
+
+  
 
   async presentCompleteAlert() {
     const alert = await this.alertController.create({
@@ -132,7 +140,8 @@ export class FeedbackModalComponent {
     firstName: "",
     lastName: "",
     phoneNumber: "" ,
-    userUid:''
+    userUid:'',
+    articleTitle:''
   }
 
   async storeFeedback(data){
@@ -144,11 +153,13 @@ export class FeedbackModalComponent {
     this.feedbackData.lastName = data.lastName;
     this.feedbackData.phoneNumber = data.phoneNumber;
     this.feedbackData.userUid = JSON.parse(localStorage.getItem('user')).uid;
+    this.feedbackData.articleTitle = this.articleTitle.title;
 
     const loading = await this.loadingController.create({
       message: 'Please wait...',
     });
     loading.present(); 
+
 
     this.firebaseService.addDataService('feedback',this.feedbackData).then((res: any) => {
       loading.dismiss();

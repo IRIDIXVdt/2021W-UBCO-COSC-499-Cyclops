@@ -150,7 +150,9 @@ export class PageSpaceMePage implements OnInit {
   presentModal() {
     this.modalCtrol.create({
       component: FeedbackModalComponent,
-      componentProps: this.feedback
+      componentProps: {
+        title: this.contents.title,
+      }
     }).then(modalres => {
       modalres.present();
 
