@@ -21,33 +21,7 @@
       <ion-label color="medium">&nbsp;&nbsp;Saved</ion-label>
     </ion-button>
   </ion-toolbar>
-  <!-- <ion-progress-bar  ></ion-progress-bar> -->
-  <ion-toolbar *ngIf="contents">
-    <span *ngFor="let segmentItem of contents.segment;let indexOfelement=index;">
 
-      <span *ngIf="indexOfelement != currentSeg">
-        <!-- default chip -->
-        <ion-chip (click)="onChipClick(indexOfelement)">
-          <ion-label color="dark">{{segmentItem.segmentTitle}}</ion-label>
-        </ion-chip>
-      </span>
-
-      <span *ngIf="indexOfelement == currentSeg">
-        <!-- if this is the selected option, highlight the chip and include a remove button -->
-        <ion-chip (click)="onChipClick(indexOfelement)">
-          <ion-label color="primary">{{segmentItem.segmentTitle}}</ion-label>
-          <ion-icon color="danger" name="trash-outline" (click)="removeArticle()"></ion-icon>
-        </ion-chip>
-      </span>
-    </span>
-
-    <ion-chip (click)="onChipAdd()" color="light">
-      <!-- This is the button for adding segments -->
-      <ion-icon name="add-circle-outline" color="primary"></ion-icon>
-      <ion-label></ion-label>
-    </ion-chip>
-
-  </ion-toolbar>
   <div *ngIf="!contents">
     <ion-progress-bar type="indeterminate"></ion-progress-bar>
   </div>
@@ -56,4 +30,22 @@
 
 <ion-content>
 
+  <ion-accordion-group multiple="true" id="multiple" *ngIf="contents">
+    <ng-container *ngFor = "let segmentItem of contents.segment;let indexOfelement=index;">
+      <ion-accordion>
+        <ion-item slot="header">
+          <ion-label>{{segmentItem.segmentTitle}}</ion-label>
+        </ion-item>
+
+        <ion-list slot="content">
+          <ion-item>
+            <div [innerHTML] = "segmentItem.segmentBody"></div>
+          </ion-item>
+        </ion-list>
+      </ion-accordion>
+    </ng-container>
+
+  </ion-accordion-group>
+
 </ion-content>
+

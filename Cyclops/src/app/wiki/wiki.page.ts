@@ -2,9 +2,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as InlineEditor from '@ckeditor/ckeditor5-build-inline';
 import { ChangeEvent, CKEditorComponent } from '@ckeditor/ckeditor5-angular';
-import { AlertController, NavController } from '@ionic/angular';
+import { AlertController, NavController, IonAccordionGroup } from '@ionic/angular';
 import { FirebaseService } from '../FirebaseService/firebase.service';
 import { segmentItem } from '../sharedData/displayArticle';
+// import { IonAccordionGroup } from '@ionic/angular';
 
 @Component({
   selector: 'app-wiki',
@@ -12,6 +13,7 @@ import { segmentItem } from '../sharedData/displayArticle';
   styleUrls: ['./wiki.page.scss'],
 })
 export class WikiPage implements OnInit {
+  @ViewChild(IonAccordionGroup, { static: true }) accordionGroup: IonAccordionGroup;
   @ViewChild('editor') editorComponent: CKEditorComponent;
   needSaving: boolean = false;
   contents: EditPageArticle;
@@ -35,9 +37,17 @@ export class WikiPage implements OnInit {
     this.articleId = this.activatedrouter.snapshot.paramMap.get('docId');
   }
   ngOnInit() {
-    this.loadEditorDataById();//update data by id
-    this.presentAlert();
+    this.loadEditorDataById();
+    // this.presentAlert();
   }
+
+  // logAccordionValue() {
+  //   console.log(this.accordionGroup.value);
+  // }
+
+  // closeAccordion() {
+  //   this.accordionGroup.value = undefined;
+  // }
 
   private updateDataById(docId, data) {
     this.firebaseService.updateDataByIdService(docId, data).then((res: any) => {

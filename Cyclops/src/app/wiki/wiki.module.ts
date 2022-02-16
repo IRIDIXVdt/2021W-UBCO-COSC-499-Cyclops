@@ -15,6 +15,7 @@ import { WikiPage } from './wiki.page';
     IonicModule,
     WikiPageRoutingModule
   ],
-  declarations: [WikiPage]
+  declarations: [WikiPage],
+  // schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class WikiPageModule {}
+export class WikiPageModule { }
