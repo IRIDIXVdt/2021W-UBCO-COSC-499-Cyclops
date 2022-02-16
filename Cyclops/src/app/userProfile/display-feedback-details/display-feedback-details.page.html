@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ng-container >
+    <ng-container>
       <ion-title>Feedback Details</ion-title>
     </ng-container>
 
@@ -37,12 +37,9 @@
         </ion-item >
 
         <ion-item class="ion-no-padding">       
-          <ion-text>
-            
+          <ion-text>          
             <ion-label>Contact Name</ion-label>
-            <p>{{currentFeedback.firstName}}</p>
-            <p>{{currentFeedback.lastName}}</p>
-  
+            <p>{{currentFeedback.firstName}} {{currentFeedback.lastName}}</p>
           </ion-text>
         </ion-item >
         <ion-item class="ion-no-padding">
@@ -64,11 +61,8 @@
 
         <ion-item class="ion-no-padding">       
           <ion-text>
-            
             <ion-label>Contact Name:</ion-label>
             <p>{{currentFeedback.firstName}} {{currentFeedback.lastName}}</p>
-
-  
           </ion-text>
         </ion-item>
 
