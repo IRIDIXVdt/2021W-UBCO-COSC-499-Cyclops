@@ -53,10 +53,10 @@ export class ScoreModalComponent implements OnInit  {
   }
 
   ngOnInit() {
-    console.log(SectionSolution.sections);
-    console.log(SectionSolution.solution);
-    this.sections = SectionSolution.sections;
-    this.solutions = SectionSolution.solution;
+    console.log(SectionSolution[0].sections);
+    console.log(SectionSolution[0].solution);
+    this.sections = SectionSolution[0].sections;
+    this.solutions = SectionSolution[0].solution;
 
     this.myForm = this.formBuilder.group({
       // task: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
@@ -137,7 +137,7 @@ export class ScoreModalComponent implements OnInit  {
     return index > this.rating;
   }
   getSolutionsForSelectedSections(val:string){
-    this.solutions = SectionSolution.solution.find(s=> s.section.trim() == val.trim()).solutions;
+    this.solutions = SectionSolution[0].solution.find(s=> s.section.trim() == val.trim()).solutions;
   }
   selectedSection($event) {
     this.usereco.section = ($event.target.value); // Value to database
