@@ -4,6 +4,7 @@ import { ModalController, NavParams } from '@ionic/angular';
 import { SolutionPageForm } from '../form/solution.page.form';
 import { COLORS } from './enum';
 import { SectionSolution } from './SectionSolution';
+import { SectionSolutionTags } from "./SectionSolutionTags"
 
 @Component({
   selector: 'app-score-modal',
@@ -11,9 +12,10 @@ import { SectionSolution } from './SectionSolution';
   styleUrls: ['./score-modal.component.scss'],
 })
 export class ScoreModalComponent implements OnInit  {
-
-  sections: any=[];
+  tags :any;
+  Tags: FetchTags[];
   solutions: any=[];
+  sections: any=[];
   sol: any=[];
   sec: any=[];
   level: any=[];
@@ -51,10 +53,10 @@ export class ScoreModalComponent implements OnInit  {
   }
 
   ngOnInit() {
-    console.log(SectionSolution.sections);
-    this.sections= SectionSolution.sections;
-    console.log(SectionSolution.solution);
-    this.solutions= SectionSolution.solution;
+    console.log(SectionSolution[0].sections);
+    console.log(SectionSolution[0].solution);
+    this.sections = SectionSolution[0].sections;
+    this.solutions = SectionSolution[0].solution;
 
     this.myForm = this.formBuilder.group({
       // task: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
@@ -88,7 +90,7 @@ export class ScoreModalComponent implements OnInit  {
       console.log('All fields are required.')
       return false;
     } else {
-      this.modalCtrl.dismiss(this.usereco)
+      this.modalCtrl.dismiss(this.usereco) //Sends all modal data to eco tracker tab
       console.log(this.usereco)
     
     }
@@ -135,7 +137,7 @@ export class ScoreModalComponent implements OnInit  {
     return index > this.rating;
   }
   getSolutionsForSelectedSections(val:string){
-    this.solutions = SectionSolution.solution.find(s=> s.section.trim() == val.trim()).solutions;
+    this.solutions = SectionSolution[0].solution.find(s=> s.section.trim() == val.trim()).solutions;
   }
   selectedSection($event) {
     this.usereco.section = ($event.target.value); // Value to database
@@ -149,6 +151,8 @@ export class ScoreModalComponent implements OnInit  {
     this.usereco.level = ($event.target.value); // Value to database
     console.log(this.usereco.level)
   }
+ 
+  
   
   
 
@@ -177,3 +181,10 @@ export class ScoreModalComponent implements OnInit  {
   
 
 }
+ type FetchTags = {
+    sections : string[];
+    solution : {
+        section : string;
+        solutions : string[];
+    }[];
+  }
