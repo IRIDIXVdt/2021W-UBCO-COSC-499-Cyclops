@@ -7,8 +7,8 @@ import { EditModalComponent } from '../edit-modal/edit-modal.component';
 import { ActivatedRoute } from '@angular/router';
 import { displayArticle } from '../sharedData/displayArticle';
 import { displayArticles } from '../sharedData/displayArticles';
-import { FirebaseService } from '../firebase.service';
-import { AuthService } from '../auth/auth.service';
+import { FirebaseService } from '../FirebaseService/firebase.service';
+import { AuthService } from '../authentication/auth/auth.service';
 
 @Component({
   selector: 'app-page-space-me',
@@ -60,7 +60,7 @@ export class PageSpaceMePage implements OnInit {
         this.currentSegment = 2;
         break;
     }
-    this.content.scrollToPoint(0,this.segmentDepth[this.currentSegment]);
+    this.content.scrollToPoint(0, this.segmentDepth[this.currentSegment]);
 
   }
 
@@ -87,13 +87,13 @@ export class PageSpaceMePage implements OnInit {
     const articleHeight = scrollElement.scrollHeight - scrollElement.clientHeight;
 
     const currentScrollDepth = $event.detail.scrollTop;
-    this.segmentDepth[this.currentSegment]=currentScrollDepth;
+    this.segmentDepth[this.currentSegment] = currentScrollDepth;
     const targetPercent = 90;
 
     let triggerDepth = ((articleHeight / 100) * targetPercent);
 
     if (currentScrollDepth >= triggerDepth) {
-      console.log(`Scrolled to ${targetPercent}% on `,this.currentSegment);
+      console.log(`Scrolled to ${targetPercent}% on `, this.currentSegment);
       // this ensures that the event only triggers once
       this.pageRead = true;
       // do your analytics tracking here
@@ -101,7 +101,8 @@ export class PageSpaceMePage implements OnInit {
   }
 
   loadDataById() {
-    this.firebaseService.getDataByIdService(this.docId).subscribe(
+    console.log("run loadDataById()");
+    const subscription = this.firebaseService.getDataByIdService(this.docId).subscribe(
       e => {
         this.contents = {
 
@@ -119,8 +120,8 @@ export class PageSpaceMePage implements OnInit {
           columnName: e.payload.data()['columnName'],
 
         };
-
-        console.log(this.contents);
+        subscription.unsubscribe();
+        console.log('unsubscribe success, with this content loaded:', this.contents);
       },
       err => {
         console.debug(err);

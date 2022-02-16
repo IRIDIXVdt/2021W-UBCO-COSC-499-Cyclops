@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseService } from '../firebase.service';
+import { FirebaseService } from '../FirebaseService/firebase.service';
 import { displayArticles } from '../sharedData/displayArticles';
-import { getFirestore } from "firebase/firestore";
+
+import { collection, getFirestore, doc, setDoc, getDocs } from "firebase/firestore";
+import { AuthService } from '../authentication/auth/auth.service';
 /* import { initializeApp } from 'firebase-admin/app'; */
 const db = getFirestore();
 @Component({
@@ -104,7 +106,7 @@ export class AddDataPage implements OnInit {
     })
   }
 
-  loadUserDocId() {
+  loadUserDocId() {//const subscription =
     this.firebaseService.getUserDataService().subscribe((res) => {
       this.userIds = res.map(e => {
         return {

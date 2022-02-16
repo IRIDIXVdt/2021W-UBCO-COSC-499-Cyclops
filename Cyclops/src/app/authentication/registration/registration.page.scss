@@ -1,0 +1,108 @@
+.form-display-area {
+  max-width: 600px;
+  padding: 16px;
+  left: 50%;
+  position: relative;
+  transform: translate(-50%, 0);
+}
+h1 {
+  margin-top: 15%;
+  margin-bottom: 10px;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+h3 {
+  color: #939fab;
+  font-weight: 600;
+}
+
+.footer-text {
+  text-align: center;
+  font-size: 17px;
+  margin-top: 45%;
+
+  a {
+    text-decoration: none;
+    font-weight: 600;
+    color: rgb(74, 128, 255);
+  }
+}
+form {
+  margin-top: 6rem;
+
+  .forgot-password-link {
+    text-decoration: none;
+    display: inline-block;
+    width: 100%;
+    text-align: right;
+    font-weight: 600;
+    font-size: 14px;
+    color: #4a4a4a;
+    margin-top: 7%;
+  }
+
+  app-button {
+    display: block;
+    margin-top: 3rem;
+  }
+}
+
+
+.footer-text {
+  text-align: center;
+  font-size: 17px;
+  margin-top: 30%;
+
+  a {
+    text-decoration: none;
+    font-weight: 600;
+    color: rgb(74, 128, 255);
+  }
+}
+
+.error-message {
+  color: var(--ion-color-danger);
+}
+
+/* ion-item {
+    --border-color: var(--ion-color-primary);
+  } */
+
+ion-item.ion-invalid.ion-touched {
+  --border-color: var(--ion-color-danger);
+}
+
+ion-item.ion-valid.ion-touched {
+  --border-color: var(--ion-color-primary);
+}
+
+ion-item.item-has-focus > ion-label {
+  --color: var(--ion-color-primary);
+}
+
+form {
+  // margin-top: 10%;
+}
+.login-button {
+  margin-top: 10%;
+}
+.google-connect {
+  --box-shadow: none;
+  --border-radius: 10px;
+  --background: #ebeef4;
+
+  font-size: 1rem;
+  color: #123681;
+
+  margin-bottom: 0.7rem;
+  text-transform: initial;
+  ion-icon {
+    margin-right: 0.5rem;
+  }
+}
+
+/*  ion-item{
+    width: 90%;
+    align-items: center
+  } */

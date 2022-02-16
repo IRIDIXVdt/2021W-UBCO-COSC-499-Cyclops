@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guard/auth.guard';
+import { LoginGuard } from './guard/login.guard';
 
 const routes: Routes = [
   {
@@ -28,41 +30,26 @@ const routes: Routes = [
   },
   {
     path: 'tabs/TextEdit/:docId',
+    canActivate:[AuthGuard],
     // different from the id we had before, this new docId is from FireStore
     loadChildren: () => import('./editing-tool-test-page/editing-tool-test-page.module').then( m => m.EditingToolTestPagePageModule)
   },
   {
     path: 'login',
-    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+    canActivate:[LoginGuard],
+    loadChildren: () => import('./authentication/login/login.module').then( m => m.LoginPageModule)
   },
   {
     path: 'registration',
-    loadChildren: () => import('./registration/registration.module').then( m => m.RegistrationPageModule)
-  },
-  {
-    path: 'find-password',
-    loadChildren: () => import('./find-password/find-password.module').then( m => m.FindPasswordPageModule)
-  },
-  {
-    path: 'login',
-    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () => import('./authentication/registration/registration.module').then( m => m.RegistrationPageModule)
   },
   {
     path: 'registration',
-    loadChildren: () => import('./registration/registration.module').then( m => m.RegistrationPageModule)
-  },
-  {
-    path: 'find-password',
-    loadChildren: () => import('./find-password/find-password.module').then( m => m.FindPasswordPageModule)
+    loadChildren: () => import('./authentication/registration/registration.module').then( m => m.RegistrationPageModule)
   },
   {
     path: 'TextEdit',
     loadChildren: () => import('./editing-tool-test-page/editing-tool-test-page.module').then( m => m.EditingToolTestPagePageModule)
-  },
-  {
-    path: 'crud-demo',
-    loadChildren: () => import('./crud-demo/crud-demo.module').then( m => m.CRUDDemoPageModule)
-
   },
   {
     path: 'add-data',
@@ -70,11 +57,18 @@ const routes: Routes = [
   },
   {
     path: 'verify-email',
-    loadChildren: () => import('./verify-email/verify-email.module').then( m => m.VerifyEmailPageModule)
-  },  {
+    loadChildren: () => import('./authentication/verify-email/verify-email.module').then( m => m.VerifyEmailPageModule)
+  },
+  {
     path: 'reset-password',
-    loadChildren: () => import('./reset-password/reset-password.module').then( m => m.ResetPasswordPageModule)
+    loadChildren: () => import('./authentication/reset-password/reset-password.module').then( m => m.ResetPasswordPageModule)
+  },
+  {
+    path: 'user-profile',
+    canActivate:[AuthGuard],
+    loadChildren: () => import('./authentication/user-profile/user-profile.module').then( m => m.UserProfilePageModule)
   }
+
 
 
 

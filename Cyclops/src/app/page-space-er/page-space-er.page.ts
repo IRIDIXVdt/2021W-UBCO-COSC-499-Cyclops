@@ -1,8 +1,8 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
-import { FirebaseService } from '../firebase.service';
+import { FirebaseService } from '../FirebaseService/firebase.service';
 
-import { AuthService } from '../auth/auth.service';
+import { AuthService } from '../authentication/auth/auth.service';
 import { NgZone } from '@angular/core';
 @Component({
   selector: 'app-page-space-er',
@@ -50,6 +50,7 @@ export class PageSpaceErPage implements OnInit {
   };
 
   async loadData() {
+    console.log("run loadData");
     this.firebaseService.getDataServiceMainPage().subscribe((res) => {
       this.articles = res.map(e => {
         return {
@@ -66,26 +67,5 @@ export class PageSpaceErPage implements OnInit {
     })
   }
 
-  async isLoggedIn() {
-    const user = JSON.parse(localStorage.getItem('user'));
-    if (user !== null) {
-      this.authentication = true;
-      console.log("authentication", this.authentication);
-    } else {
-      this.authentication = false;
-      console.log("authentication", this.authentication);
 
-    }
-  }
-
-  refresh() {
-    this.zone.run(() => {
-      console.log('force update the screen');
-    });
-  }
-
-  isAdmin(){
-
-
-  }
 }

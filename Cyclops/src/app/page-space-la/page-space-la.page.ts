@@ -1,8 +1,8 @@
 import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { displayArticle, segmentItem } from '../sharedData/displayArticle';
 import { displayArticles } from '../sharedData/displayArticles';
-import { FirebaseService } from 'src/app/firebase.service';
-import { AuthService } from '../auth/auth.service';
+import { FirebaseService } from 'src/app/FirebaseService/firebase.service';
+import { AuthService } from '../authentication/auth/auth.service';
 
 @Component({
   selector: 'app-page-space-la',

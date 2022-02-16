@@ -1,0 +1,85 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Sign Up</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="form-display-area">
+    <h1>Create Account,</h1>
+    <h3>Sign up to get started!</h3>
+
+    <form [formGroup]="signUpForm">
+      <ion-item class="ion-align-items-center" class="ion-no-padding">
+        <ion-label position="floating ">Email</ion-label>
+        <ion-input type="email" formControlName="formEmail" #userEmail> </ion-input>
+      </ion-item>
+
+      <div *ngFor=" let error of errorMessages.email ">
+        <ng-container *ngIf=" signUpForm.get('formEmail').hasError(error.type) && signUpForm.get('formEmail').touched">
+          <small class="error-message">
+            <ion-icon name="information-circle-outline"></ion-icon>{{error.message}}
+          </small>
+        </ng-container>
+      </div>
+
+      <ion-item class="ion-align-items-center" class="ion-no-padding">
+        <ion-label position="floating ">Password</ion-label>
+        <ion-input type="password" formControlName="formPassword" #userPwd>
+        </ion-input>
+      </ion-item>
+
+      <div *ngFor=" let error of errorMessages.password ">
+        <ng-container
+          *ngIf=" signUpForm.get('formPassword').hasError(error.type) && signUpForm.get('formPassword').touched">
+          <small class="error-message">
+            <ion-icon name="information-circle-outline"></ion-icon>{{error.message}}
+          </small>
+        </ng-container>
+      </div>
+
+      <ion-item class="ion-align-items-center" class="ion-no-padding">
+        <ion-label position="floating ">Confirm Password</ion-label>
+        <ion-input type="password" formControlName="confirmFormPassword"> </ion-input>
+      </ion-item>
+
+      <div *ngFor="let error of errorMessages.confirmPassword">
+        <ng-container
+          *ngIf="signUpForm.get('confirmFormPassword').hasError(error.type) && signUpForm.get('confirmFormPassword').touched">
+          <small class="error-message">
+            <ion-icon name="information-circle-outline"></ion-icon>{{error.message}}
+          </small>
+        </ng-container>
+        <ng-container
+          *ngIf="!signUpForm.get('confirmFormPassword').errors && signUpForm.hasError('passwordNotMatch') && signUpForm.get('confirmFormPassword').touched">
+          <small class="error-message">
+            <ion-icon name="information-circle-outline"></ion-icon>Password and Confirm Password fields should match
+          </small>
+        </ng-container>
+      </div>
+      
+      <ion-button class="login-button" expand='block' (click)="authService.SignUp(userEmail.value, userPwd.value)"
+        [disabled]="signUpForm.invalid">Sign Up
+      </ion-button>
+
+      <ion-button class="google-connect" expand='block' (click)="authService.GoogleAuth()">
+        <ion-icon name='logo-google'></ion-icon> Connect with Google
+      </ion-button>
+
+      <p class="footer-text">I'm already a member, <a routerLink="/login">Sign In</a></p>
+    </form>
+  </div>
+
+  <!-- <form>
+    <app-input label="User Name"></app-input>
+    <app-input label="Email"></app-input>
+    <app-input label="Password" type="password"></app-input>
+
+    <app-button label='Register'></app-button>
+    <app-icon-button icon='logo-facebook' label='Connect with Facebook'></app-icon-button>
+  </form>
+
+   -->
+</ion-content>

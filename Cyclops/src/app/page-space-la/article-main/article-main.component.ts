@@ -3,7 +3,7 @@ import { displayArticle } from '../../sharedData/displayArticle';
 import { displayArticles } from '../../sharedData/displayArticles';
 import { ArticleModalMainComponent } from '../article-modal-main/article-modal-main.component';
 import { ModalController } from '@ionic/angular';
-import { FirebaseService } from 'src/app/firebase.service';
+import { FirebaseService } from 'src/app/FirebaseService/firebase.service';
 
 @Component({
   selector: 'app-article-main',

@@ -29,11 +29,11 @@
       </ng-container>
 
       <ng-container *ngIf="authService.isLogin()"> <!-- have logged in  -->
-        <ion-item lines="none" button routerLink="">
+        <ion-item lines="none" button routerLink="/user-profile">
           <ion-icon name="person-circle-outline"></ion-icon>Profile
         </ion-item>
-        <ion-item lines="none" (click)="this.authService.SignOut()">
-          <ion-icon name="remove-circle-outline" ></ion-icon>Logout
+        <ion-item lines="none" button routerLink="" (click)="this.authService.SignOut()">
+          <ion-icon name="remove-circle-outline" ></ion-icon>Sign-out
         </ion-item>
       </ng-container>
       
