@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth/auth.service';
+
 import { AlertController } from '@ionic/angular';
+import { AuthService } from 'src/app/authentication/auth/auth.service';
 
 @Component({
   selector: 'app-user-profile',

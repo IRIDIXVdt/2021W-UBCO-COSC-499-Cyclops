@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-buttons slot="start">
+    <ion-back-button></ion-back-button>
+  </ion-buttons>
+  <ion-toolbar>
+    <ion-title>Display Feedback</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="" class="mobile-display">
+    <ion-slides pager="true" id="newsetArticle">
+        <ion-slide *ngFor="let content of articles | slice:0:3 ">
+            <ion-card class="article-card" color='light' routerLink="/tabs/page-space-me/{{content.docId}}">
+                <ion-card-header>
+                    <ion-card-subtitle>{{content.subtitle}}</ion-card-subtitle>
+                    <ion-card-title>{{content.title}}</ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+                    {{content.cardIntroduction}}
+                </ion-card-content>
+            </ion-card>
+        </ion-slide>
+    </ion-slides>
+</div>
+
+</ion-content>

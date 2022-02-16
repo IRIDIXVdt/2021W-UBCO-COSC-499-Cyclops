@@ -3,6 +3,8 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guard/auth.guard';
 import { LoginGuard } from './guard/login.guard';
 
+
+
 const routes: Routes = [
   {
     path: '',
@@ -44,10 +46,6 @@ const routes: Routes = [
     loadChildren: () => import('./authentication/registration/registration.module').then( m => m.RegistrationPageModule)
   },
   {
-    path: 'registration',
-    loadChildren: () => import('./authentication/registration/registration.module').then( m => m.RegistrationPageModule)
-  },
-  {
     path: 'TextEdit',
     loadChildren: () => import('./editing-tool-test-page/editing-tool-test-page.module').then( m => m.EditingToolTestPagePageModule)
   },
@@ -66,8 +64,13 @@ const routes: Routes = [
   {
     path: 'user-profile',
     canActivate:[AuthGuard],
-    loadChildren: () => import('./authentication/user-profile/user-profile.module').then( m => m.UserProfilePageModule)
+    loadChildren: () => import('./userProfile/user-profile/user-profile.module').then( m => m.UserProfilePageModule)
+  },
+  {
+    path: 'display-feedback',
+    loadChildren: () => import('./userProfile/display-feedback/display-feedback.module').then( m => m.DisplayFeedbackPageModule)
   }
+
 
 
 
