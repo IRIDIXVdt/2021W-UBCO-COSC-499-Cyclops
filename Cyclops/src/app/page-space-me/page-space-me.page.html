@@ -108,8 +108,8 @@
     </div>
 
     <div id="button-web" class="ion-padding">
-        <ion-button expand="block " (click)="openModal() " *ngIf="authService.admin">Edit Content</ion-button>
-        <ion-button expand="block " (click)="presentModal() ">Send feedback</ion-button>
+        <ion-button expand="block " (click)="openModal() " *ngIf="this.authService.isAdmin()">Edit Content</ion-button>
+        <ion-button expand="block " (click)="presentModal()" *ngIf="this.authService.isLogin()">Send feedback</ion-button>
     </div>
 
 </ion-content>

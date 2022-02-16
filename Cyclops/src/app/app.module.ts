@@ -12,6 +12,8 @@ import { HttpClientModule } from '@angular/common/http';
 import{AngularFireModule} from '@angular/fire/compat';
 import { environment } from 'src/environments/environment';
 import { AuthService } from "./authentication/auth/auth.service";
+import { DisplayFeedbackDetailsPage } from './userProfile/display-feedback-details/display-feedback-details.page';
+
 
 @NgModule({
   declarations: [AppComponent],
