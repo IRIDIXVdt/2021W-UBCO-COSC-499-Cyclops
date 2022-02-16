@@ -66,7 +66,7 @@
         </div>
         <ion-item>
             <ion-label position="stacked">Your feedback:</ion-label>
-            <ion-input formControlName="content" type="text"></ion-input>
+            <ion-textarea formControlName="content" type="text" autoGrow="true"></ion-textarea>
             <span class="error" *ngIf="feedbackForm.get('content').hasError('required') && feedbackForm.get('content').touched">
                 Please enter your feedback.
             </span>

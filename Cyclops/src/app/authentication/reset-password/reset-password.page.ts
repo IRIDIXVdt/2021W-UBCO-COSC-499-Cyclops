@@ -41,7 +41,7 @@ export class ResetPasswordPage implements OnInit {
     if(this.authService.isLogin()){
       const alert = await this.alertController.create({
         cssClass: 'my-custom-class',
-        message: 'Do you want to sign-out?',
+        message: 'For security reasons, you will be sign-out. Do you want to continue?',
         buttons: ['Cancel', 'Yes']
       });
       await alert.present();
