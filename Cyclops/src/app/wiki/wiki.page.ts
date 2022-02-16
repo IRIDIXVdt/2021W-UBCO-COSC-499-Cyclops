@@ -16,19 +16,19 @@ export class WikiPage implements OnInit {
   @ViewChild(IonAccordionGroup, { static: true }) accordionGroup: IonAccordionGroup;
   @ViewChild('editor') editorComponent: CKEditorComponent;
   needSaving: boolean = false;
+  editMode: boolean = true;//edit mode decides whether we are in edit mode or not
   contents: EditPageArticle;
   currentSeg: number;
   articleId: String;
   public model;
   public Editor = InlineEditor;
-  TitleInput: string;
   navControl: NavController;
 
   constructor(
     private activatedrouter: ActivatedRoute,
     public firebaseService: FirebaseService,
     public alertController: AlertController,
-    public navCtrl: NavController
+    public navCtrl: NavController,
   ) {
     this.navControl = navCtrl;
     //we start reading the first element
@@ -40,21 +40,23 @@ export class WikiPage implements OnInit {
     this.loadEditorDataById();
     // this.presentAlert();
   }
-
-  // logAccordionValue() {
-  //   console.log(this.accordionGroup.value);
-  // }
-
-  // closeAccordion() {
-  //   this.accordionGroup.value = undefined;
-  // }
-
+  private newEditor() {
+    const Edi = InlineEditor;
+    return Edi;
+  }
   private updateDataById(docId, data) {
     this.firebaseService.updateDataByIdService(docId, data).then((res: any) => {
       console.log(res);
     })
   }
-
+  private startPreview(){
+    console.log("startPreview");
+    this.editMode = false;
+  }
+  private endPreview(){
+    console.log("endPreview");
+    this.editMode = true;
+  }
   private loadEditorDataById() {
     this.firebaseService.getDataByIdService(this.articleId).subscribe(
       e => {
@@ -73,8 +75,8 @@ export class WikiPage implements OnInit {
         this.model = {//model specifies the information the page would get
           editorData: this.contents.segment[this.currentSeg].segmentBody
         };
-        this.TitleInput = this.contents.segment[this.currentSeg].segmentTitle;
-        // this.content.addCssClass("no-scroll");
+
+
         this.needSaving = false;
         console.log("need saving to false from loadEditorDataById");
         // this.editorComponent.focus;
@@ -137,18 +139,17 @@ export class WikiPage implements OnInit {
   }
 
   public onChange({ editor }: ChangeEvent) {
-    const newSegmentBody: string = this.editorComponent.editorInstance.getData();
-    this.contents.segment[this.currentSeg].segmentBody = newSegmentBody;
-    console.log("Changes saved locally!");
+    // const newSegmentBody: string = this.editorComponent.editorInstance.getData();
+    // this.contents.segment[this.currentSeg].segmentBody = newSegmentBody;
+    // console.log("Changes saved locally!");
     this.needSaving = true;
     console.log("need Saving on Content Editor Change");
   }
 
-  private onTitleEditorChange() {
-    console.log("current title is: " + this.TitleInput);
-    this.contents.segment[this.currentSeg].segmentTitle = this.TitleInput;
+  private onTitleEditorChange(data: string) {
+    // const newTitle: string = document.getElementById(data).value;
     this.needSaving = true;
-    console.log("need Saving on Title Editor Change");
+    console.log("need Saving on Title Editor Change", data);
   }
 
   private updateArticle() {

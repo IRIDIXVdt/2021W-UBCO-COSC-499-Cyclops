@@ -3,7 +3,6 @@
 }
 
 @media (max-width: 767px) {
-    
 }
 @media (min-width: 768px) {
     .custome-image {
@@ -11,4 +10,10 @@
         top: 50%;
         transform: translate(0, -50%);
     }
+}
+.displayArea {
+    max-width: 1440px;
+    left: 50%;
+    position: relative;
+    transform: translate(-50%, 0);
 }

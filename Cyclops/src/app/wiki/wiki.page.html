@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar class="ion-padding-end">
     <ion-buttons slot="start">
       <ion-button (click)="backArticle()" color="primary">
         <ion-icon name="chevron-back-outline"></ion-icon>
@@ -12,13 +12,25 @@
     <ion-title *ngIf="!contents">
       <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
     </ion-title>
-    <ion-button slot="end" color="light" fill="outline" (click)="saveChangesToCloud()" *ngIf="needSaving">
-      <ion-icon name="cloud-upload-outline" color="primary"></ion-icon>
-      <ion-label color="primary">&nbsp;&nbsp;Save</ion-label>
-    </ion-button>
-    <ion-button slot="end" color="light" fill="outline" *ngIf="!needSaving">
-      <ion-icon name="cloud-upload-outline" color="medium"></ion-icon>
-      <ion-label color="medium">&nbsp;&nbsp;Saved</ion-label>
+
+    <ng-container *ngIf="editMode">
+      <ion-button slot="end" color="light" fill="outline" (click)="saveChangesToCloud()" *ngIf="needSaving">
+        <ion-icon name="cloud-upload-outline" color="primary"></ion-icon>
+        <ion-label color="primary">&nbsp;&nbsp;Save Changes</ion-label>
+      </ion-button>
+      <ion-button slot="end" color="light" fill="outline" *ngIf="!needSaving">
+        <ion-icon name="cloud-upload-outline" color="medium"></ion-icon>
+        <ion-label color="medium">&nbsp;&nbsp;Saved</ion-label>
+      </ion-button>
+      <ion-button slot="end" fill="outline" (click)="startPreview()">
+        <ion-icon name="eye-outline"></ion-icon>
+        <ion-label>&nbsp;&nbsp;Preview</ion-label>
+      </ion-button>
+    </ng-container>
+
+    <ion-button slot="end" fill="outline" *ngIf="!editMode" (click)="endPreview()">
+      <ion-icon name="eye-off-outline"></ion-icon>
+      <ion-label>&nbsp;&nbsp;Exit Preview</ion-label>
     </ion-button>
   </ion-toolbar>
 
@@ -28,27 +40,43 @@
 
 </ion-header>
 
-<ion-content>
-  <ion-toolbar *ngIf="contents">
-    <!-- space for image {{contents.image}} -->
-    <ion-img [src]="contents.image" class="custome-image"></ion-img>
-    <!-- <img src = "{{contents.image}}" class = "custome-image"> -->
-  </ion-toolbar>
-  <ion-accordion-group multiple="true" id="multiple" *ngIf="contents">
-    <ng-container *ngFor="let segmentItem of contents.segment;let indexOfelement=index;">
-      <ion-accordion>
-        <ion-item slot="header">
-          <ion-label>{{segmentItem.segmentTitle}}</ion-label>
-        </ion-item>
+<ion-content class="ion-padding">
+  <div class="displayArea">
 
-        <ion-list slot="content">
-          <ion-item>
-            <div [innerHTML]="segmentItem.segmentBody"></div>
+    <ion-toolbar *ngIf="contents">
+      <!-- space for image {{contents.image}} -->
+      <ion-img [src]="contents.image" class="custome-image"></ion-img>
+      <!-- <img src = "{{contents.image}}" class = "custome-image"> -->
+    </ion-toolbar>
+    <ion-accordion-group multiple="true" id="multiple" *ngIf="contents">
+      <ng-container *ngFor="let segmentItem of contents.segment;let indexOfelement=index;">
+        <ion-accordion>
+          <ion-item slot="header">
+            <ion-label *ngIf="!editMode">{{segmentItem.segmentTitle}}</ion-label>
+            <ng-container *ngIf="editMode">
+              <ion-label text-wrap position="fixed" color="medium">
+                New Title:
+              </ion-label>
+              <ion-input placeholder="Input Title Here" [(ngModel)]="contents.segment[indexOfelement].segmentTitle"
+                (ionChange)="onTitleEditorChange('InputId'+indexOfelement)">
+              </ion-input>
+
+            </ng-container>
+
           </ion-item>
-        </ion-list>
-      </ion-accordion>
-    </ng-container>
 
-  </ion-accordion-group>
+          <ion-list slot="content">
+            <ion-item>
+              <div *ngIf="!editMode" [innerHTML]="segmentItem.segmentBody"></div>
+              <ckeditor *ngIf="editMode" [editor]="Editor" [(ngModel)]="contents.segment[indexOfelement].segmentBody">
+                <!--  (change)="onChange($event)" -->
+              </ckeditor>
+            </ion-item>
+          </ion-list>
+        </ion-accordion>
+      </ng-container>
+
+    </ion-accordion-group>
+  </div>
 
 </ion-content>
