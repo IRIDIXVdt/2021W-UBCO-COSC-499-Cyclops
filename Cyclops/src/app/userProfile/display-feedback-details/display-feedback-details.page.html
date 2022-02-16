@@ -1,9 +1,103 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>display-feedback-details</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ng-container >
+      <ion-title>Feedback Details</ion-title>
+    </ng-container>
+
+    <!-- <ng-container *ngIf="!currentFeedback">
+      <ion-card>
+        <ion-progress-bar type="indeterminate"></ion-progress-bar>
+      </ion-card>
+    </ng-container> -->
+    
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+  <ion-list>
+
+    <ng-container *ngIf="!currentFeedback">
+      <ion-card>
+        <ion-progress-bar type="indeterminate"></ion-progress-bar>
+      </ion-card>
+    </ng-container>
+
+
+    <ng-container *ngIf="currentFeedback">
+      <ng-container *ngIf="!currentFeedback.agree">
+        <ion-item class="ion-no-padding">       
+          <ion-text>
+            <ion-label>Article Title:</ion-label>
+            <p>{{currentFeedback.articleTitle}}</p>
+          </ion-text>
+        </ion-item >
+
+        <ion-item class="ion-no-padding">       
+          <ion-text>
+            
+            <ion-label>Contact Name</ion-label>
+            <p>{{currentFeedback.firstName}}</p>
+            <p>{{currentFeedback.lastName}}</p>
+  
+          </ion-text>
+        </ion-item >
+        <ion-item class="ion-no-padding">
+          <ion-text>
+            <ion-label>Feedback Content:</ion-label>
+             <p>{{currentFeedback.content}}</p>
+          </ion-text>
+           
+        </ion-item> 
+      </ng-container>
+
+      <ng-container *ngIf="currentFeedback.agree">
+        <ion-item class="ion-no-padding">       
+          <ion-text>
+            <ion-label>Article Title:</ion-label>
+            <p>{{currentFeedback.articleTitle}}</p>
+          </ion-text>
+        </ion-item >
+
+        <ion-item class="ion-no-padding">       
+          <ion-text>
+            
+            <ion-label>Contact Name:</ion-label>
+            <p>{{currentFeedback.firstName}} {{currentFeedback.lastName}}</p>
+
+  
+          </ion-text>
+        </ion-item>
+
+        <ion-item *ngIf="currentFeedback.contactType == 'Phone' " class="ion-no-padding">       
+          <ion-text>       
+            <ion-label>Phone Number:</ion-label>
+            <p>{{currentFeedback.phoneNumber}}</p>  
+          </ion-text>
+        </ion-item>
+
+        <ion-item *ngIf="currentFeedback.contactType == 'Email' " class="ion-no-padding">       
+          <ion-text>       
+            <ion-label>Email:</ion-label>
+            <p>{{currentFeedback.email}}</p>  
+          </ion-text>
+        </ion-item>
+
+
+        <ion-item class="ion-no-padding">
+          <ion-text>
+            <ion-label>Feedback Content:</ion-label>
+             <p>{{currentFeedback.content}}</p>
+          </ion-text>
+           
+        </ion-item> 
+      </ng-container>
+          
+
+    </ng-container>
+  </ion-list>
 
 </ion-content>

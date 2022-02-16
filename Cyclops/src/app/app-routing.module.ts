@@ -73,6 +73,10 @@ const routes: Routes = [
   {
     path: 'display-feedback-details',
     loadChildren: () => import('./userProfile/display-feedback-details/display-feedback-details.module').then( m => m.DisplayFeedbackDetailsPageModule)
+  },
+  {
+    path: 'display-feedback-details/:id',
+    loadChildren: () => import('./userProfile/display-feedback-details/display-feedback-details.module').then( m => m.DisplayFeedbackDetailsPageModule)
   }
 
 

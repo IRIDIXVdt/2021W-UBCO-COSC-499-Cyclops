@@ -19,7 +19,7 @@
 
 
     <ng-container *ngIf="feedback && this.authService.isAdmin()">
-      <ion-card *ngFor="let data of feedback ">
+      <ion-card *ngFor="let data of feedback " routerLink="/display-feedback-details/{{data.docId}}" >
         <ion-card-header>
           <ion-card-title>{{data.articleTitle}}</ion-card-title>
         </ion-card-header>
@@ -42,7 +42,7 @@
 
     <ng-container *ngIf="feedback && !this.authService.isAdmin()">
       <ng-container *ngFor="let data of feedback ">
-        <ion-card *ngIf="data.userUid == userData.uid">
+        <ion-card *ngIf="data.userUid == userData.uid"  routerLink="/display-feedback-details/{{data.docId}}">
           <ion-card-header>
             <ion-card-title> {{data.articleTitle}}</ion-card-title>
           </ion-card-header>

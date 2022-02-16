@@ -78,6 +78,15 @@ export class FirebaseService {
     return this.db.collection(name).snapshotChanges();
 
   }
+
+  getFeedbackByIDService(id) {
+    return this.db.collection('feedback').doc(id).snapshotChanges();
+  
+  }
+
+
 }
+
+
 
 
