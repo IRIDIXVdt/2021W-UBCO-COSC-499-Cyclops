@@ -77,7 +77,8 @@ export class AuthService {
         loading.dismiss();
         this.userData = null;
         console.log("Login error: ", error);
-        if (error == 'FirebaseError: Firebase: The password is invalid or the user does not have a password. (auth/wrong-password).') {
+        if (error == 'FirebaseError: Firebase: The password is invalid or the user does not have a password. (auth/wrong-password).'
+        || error =='FirebaseError: Firebase: There is no user record corresponding to this identifier. The user may have been deleted. (auth/user-not-found).') {
           this.signInErrorAlert('The email or password is invalid');
         } else {
           this.signInErrorAlert('Check your internet connection');
@@ -194,9 +195,7 @@ export class AuthService {
 
   SignOutRestPassword() {
     return this.afAuth.signOut().then(() => {
-      this.userData = null;
-      this.admin = false;
-      console.log('admin ', this.admin)
+      localStorage.setItem('admin', JSON.stringify(false));
       localStorage.setItem('user', null);
     }).catch((error) => {
       console.log(error);
