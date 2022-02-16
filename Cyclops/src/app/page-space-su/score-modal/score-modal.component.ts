@@ -12,9 +12,10 @@ import { SectionSolutionTags } from "./SectionSolutionTags"
   styleUrls: ['./score-modal.component.scss'],
 })
 export class ScoreModalComponent implements OnInit  {
-
-  sections: any=[];
+  tags :any;
+  Tags: FetchTags[];
   solutions: any=[];
+  sections: any=[];
   sol: any=[];
   sec: any=[];
   level: any=[];
@@ -53,9 +54,9 @@ export class ScoreModalComponent implements OnInit  {
 
   ngOnInit() {
     console.log(SectionSolution.sections);
-    this.sections= SectionSolution.sections;
     console.log(SectionSolution.solution);
-    this.solutions= SectionSolution.solution;
+    this.sections = SectionSolution.sections;
+    this.solutions = SectionSolution.solution;
 
     this.myForm = this.formBuilder.group({
       // task: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
@@ -89,7 +90,7 @@ export class ScoreModalComponent implements OnInit  {
       console.log('All fields are required.')
       return false;
     } else {
-      this.modalCtrl.dismiss(this.usereco)
+      this.modalCtrl.dismiss(this.usereco) //Sends all modal data to eco tracker tab
       console.log(this.usereco)
     
     }
@@ -150,6 +151,8 @@ export class ScoreModalComponent implements OnInit  {
     this.usereco.level = ($event.target.value); // Value to database
     console.log(this.usereco.level)
   }
+ 
+  
   
   
 
@@ -178,3 +181,10 @@ export class ScoreModalComponent implements OnInit  {
   
 
 }
+ type FetchTags = {
+    sections : string[];
+    solution : {
+        section : string;
+        solutions : string[];
+    }[];
+  }
