@@ -132,7 +132,7 @@
   <form [formGroup]="myForm" >
 
     <ion-list>
-      <ion-item lines="none">
+      <ion-item>
         <ion-label> <h2 id="leveltag">Article Section</h2></ion-label>
         <ion-select  okText="Okay" cancelText="Dismiss" formControlName="Select_Section" (ionChange)="selectedSection($event)" (ionChange)="getSolutionsForSelectedSections($event.target.value)" name="Section" placeholder="Sections">
         <ion-select-option *ngFor="let se of sections">{{se}}</ion-select-option>
@@ -146,7 +146,7 @@
     </p>
   
     <ion-list>
-      <ion-item lines="none" *ngIf="solution && solution.length > 0">
+      <ion-item *ngIf="solution && solution.length > 0">
         <ion-label> <h2 id="leveltag">Article Solution</h2></ion-label>
         <ion-select  okText="Okay" cancelText="Dismiss" formControlName="Select_Solution" (ionChange)="selectedSolution($event)" name="Solution" placeholder="Solutions">
         <ion-select-option *ngFor="let s of solutions">{{s}}</ion-select-option>
@@ -199,17 +199,17 @@
 
     </div> -->
 
-    <ion-item>
-      <ion-range min="0" max="5" step="1" value="1" snaps color="success" formControlName="Select_Range">
-        <ion-icon slot="start" size="small" color="success" name="leaf"></ion-icon>
-        <ion-icon slot="end" color="success" name="leaf"></ion-icon>
-      </ion-range>
-    </ion-item>
-    <p id="err">
-      <span class="error" *ngIf="submitted && errorCtr.Select_Range.errors?.required">
-        Please Select a Value from Range Input
-       </span>
-    </p>
+    <div class="range">
+        <ion-range min="0" max="5" step="1" value="1" snaps color="success" formControlName="Select_Range">
+          <ion-icon slot="start" size="small" color="success" name="leaf"></ion-icon>
+          <ion-icon slot="end" color="success" name="leaf"></ion-icon>
+        </ion-range>
+      <p id="err">
+        <span class="error" *ngIf="submitted && errorCtr.Select_Range.errors?.required">
+          Please Select a Value from Range Input
+         </span>
+      </p>
+    </div>
 
     <p id="center">
       <ion-button size="small" shape="round"  color="tertiary" class="ion-margin-top" (click)="onSolution()">Submit Solution</ion-button>
