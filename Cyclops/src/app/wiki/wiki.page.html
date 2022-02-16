@@ -29,9 +29,13 @@
 </ion-header>
 
 <ion-content>
-
+  <ion-toolbar *ngIf="contents">
+    <!-- space for image {{contents.image}} -->
+    <ion-img [src]="contents.image" class="custome-image"></ion-img>
+    <!-- <img src = "{{contents.image}}" class = "custome-image"> -->
+  </ion-toolbar>
   <ion-accordion-group multiple="true" id="multiple" *ngIf="contents">
-    <ng-container *ngFor = "let segmentItem of contents.segment;let indexOfelement=index;">
+    <ng-container *ngFor="let segmentItem of contents.segment;let indexOfelement=index;">
       <ion-accordion>
         <ion-item slot="header">
           <ion-label>{{segmentItem.segmentTitle}}</ion-label>
@@ -39,7 +43,7 @@
 
         <ion-list slot="content">
           <ion-item>
-            <div [innerHTML] = "segmentItem.segmentBody"></div>
+            <div [innerHTML]="segmentItem.segmentBody"></div>
           </ion-item>
         </ion-list>
       </ion-accordion>
@@ -48,4 +52,3 @@
   </ion-accordion-group>
 
 </ion-content>
-
