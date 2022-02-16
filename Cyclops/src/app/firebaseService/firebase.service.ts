@@ -73,6 +73,11 @@ export class FirebaseService {
     return this.db.collection("adminUsers").where
   } */
 
+
+  getCollectionByNameService(name) {
+    return this.db.collection(name).snapshotChanges();
+
+  }
 }
 
 
