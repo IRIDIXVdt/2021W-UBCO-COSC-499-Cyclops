@@ -40,6 +40,10 @@ const routes: Routes = [
         loadChildren: () => import('../editing-tool-test-page/editing-tool-test-page.module').then(m => m.EditingToolTestPagePageModule)
       },
       {
+        path: 'wiki',
+        loadChildren: () => import('../wiki/wiki.module').then(m => m.WikiPageModule)
+      },
+      {
         path: '',
         redirectTo: '/tabs/page-space-er',
         pathMatch: 'full'
