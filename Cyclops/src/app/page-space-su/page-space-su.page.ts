@@ -18,7 +18,7 @@ export class PageSpaceSuPage implements OnInit {
   profile = {
     solution: "Solution", // retrives solution from score modal
     section : "Section", // retrives section from score modal
-    rating : 0, // retrives rating from score modal
+    range : 0, // retrives value from score modal
     level : 0, // retrives level from score modal
   }
 

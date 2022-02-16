@@ -19,6 +19,7 @@ export class ScoreModalComponent implements OnInit  {
   sol: any=[];
   sec: any=[];
   level: any=[];
+  range:any=[];
 
   @Input() rating: number ;
   @Output() ratingChange: EventEmitter<number> = new EventEmitter();;
@@ -65,7 +66,8 @@ export class ScoreModalComponent implements OnInit  {
       // score1: ['', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.max(100), Validators.min(0)]],
       Select_Section : ['', Validators.required],
       Select_Solution : ['', Validators.required],
-      Select_Level : ['', Validators.required]
+      Select_Level : ['', Validators.required],
+      Select_Range : ['', Validators.required]
     });
   }
   
@@ -135,6 +137,10 @@ export class ScoreModalComponent implements OnInit  {
     // returns whether or not the selected index is above ,the current rating
     // function is called from the getColor function.
     return index > this.rating;
+  }
+  customFormatter(value: number) {
+    this.usereco.range = value; //Value to database
+    console.log(this.usereco.value);
   }
   getSolutionsForSelectedSections(val:string){
     this.solutions = SectionSolution[0].solution.find(s=> s.section.trim() == val.trim()).solutions;
