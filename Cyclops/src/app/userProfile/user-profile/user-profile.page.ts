@@ -12,7 +12,7 @@ export class UserProfilePage implements OnInit {
 
   userData = JSON.parse(localStorage.getItem('user'));
 
-  name: string;
+  name= JSON.parse(localStorage.getItem('user')).displayName;
 
 
 
@@ -33,7 +33,7 @@ export class UserProfilePage implements OnInit {
           type: 'text',
           min: 3,
           max: 10,
-          placeholder: 'Current UserName: ' + this.userData.displayName
+          placeholder: 'Current UserName: ' + this.name
         },
       ],
       buttons: [
