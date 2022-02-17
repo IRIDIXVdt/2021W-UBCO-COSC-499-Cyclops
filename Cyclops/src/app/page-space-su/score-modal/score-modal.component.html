@@ -200,16 +200,17 @@
     </div> -->
 
     <div class="range">
-        <ion-range min="0" max="5" step="1" value="1"color="success" formControlName="Select_Range" (ionChange)="rangeChange($event)" pin="true" snaps="true">
+      <p>Slide to Select a Solution Score:</p>
+        <ion-range deounce='500' min="0" max="5" step="1" value="1" color="success" formControlName="Select_Range" (ionChange)="rangeChange($event)" pin="true" snaps="true">
           <ion-icon slot="start" size="small" color="success" name="leaf"></ion-icon>
           <ion-icon slot="end" color="success" name="leaf"></ion-icon>
         </ion-range>
-      <p id="err">
-        <span class="error" *ngIf="submitted && errorCtr.Select_Range.errors?.required">
-          Please Select a Value from Range Input
-         </span>
-      </p>
     </div>
+    <p id="err">
+      <span class="error" *ngIf="submitted && errorCtr.Select_Range.errors?.required">
+        Please Select a Value from Range Input
+       </span>
+    </p>
 
     <p id="center">
       <ion-button size="small" shape="round"  color="tertiary" class="ion-margin-top" (click)="onSolution()">Submit Solution</ion-button>

@@ -68,3 +68,22 @@ ion-select{
 ion-select-option{
     max-width: 100% !important;
 }
+ion-range::part(tick) {
+    height: 10px;
+    width: 1px;
+    top: 17px;
+    // border-radius: 50%;
+}
+ion-range::part(tick-active) {
+    height: 10px;
+    width: 1px;
+    top: 17px;
+    // border-radius: 50%;
+}
+.range{
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+}
+
