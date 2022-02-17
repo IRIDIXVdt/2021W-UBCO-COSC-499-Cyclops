@@ -14,6 +14,8 @@ export class PageSpaceLaPage implements OnInit {
   totalArticles: number = 0;
   finishedArticles: number = 0;
   userInput: string;
+  userId: any;
+  userData: any;
   // userInput string is used for search bar input
   i: number = 0;
   status1: any;
@@ -28,6 +30,7 @@ export class PageSpaceLaPage implements OnInit {
     public firebaseService: FirebaseService,
     public authService: AuthService) {
     this.status1 = "Articles p1";
+    this.userId=JSON.parse(localStorage.getItem('user'))['uid'];
   }
 
   async loadData(searchbarComponent: HTMLElement) {
@@ -56,8 +59,8 @@ export class PageSpaceLaPage implements OnInit {
     console.log("clicked");
   }
 
-  async readArticles() {
-    let currentUserData = (await this.firebaseService.getCurrentUserData()).data();
+  readArticles() {
+    /*let currentUserData = (await this.firebaseService.getCurrentUserData()).data();
     let segmentData: any[] = currentUserData.readArticles;
     this.totalArticles = segmentData.length;
     for (let segment of segmentData) {
@@ -67,8 +70,28 @@ export class PageSpaceLaPage implements OnInit {
       }
     }
     console.log('current user progess:', this.finishedArticles, '/', this.totalArticles, (this.finishedArticles / this.totalArticles));
-    this.articleProgress = this.finishedArticles / this.totalArticles;
+    this.articleProgress = this.finishedArticles / this.totalArticles;*/
+    const subscription = this.firebaseService.getUserByIdService(this.userId).subscribe(
+      e => {
+        this.userData = e.payload.data()['readArticles'];
+        this.totalArticles=this.userData.length;
+        this.finishedArticles=0;
+        for(let i=0;i<this.userData.length;i++){
+         if(this.areAllTrue(this.userData[i]['segment'])){
+           console.log(this.userData[i]['segment'])
+           ++this.finishedArticles;
+         }
+        }
+        console.log('current user progess:', this.finishedArticles, '/', this.totalArticles, (this.finishedArticles / this.totalArticles));
+        this.articleProgress = this.finishedArticles / this.totalArticles;
+        //subscription.unsubscribe();
+      },
+      err => {
+        console.debug(err);
+      }
+    )
   }
+
   areAllTrue(array) {
     for (let b of array) if (!b) return false;
     return true;
