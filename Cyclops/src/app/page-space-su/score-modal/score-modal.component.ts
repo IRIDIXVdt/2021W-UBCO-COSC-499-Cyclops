@@ -19,7 +19,7 @@ export class ScoreModalComponent implements OnInit  {
   sol: any=[];
   sec: any=[];
   level: any=[];
-  range:any=[];
+  range: any=[];
 
   @Input() rating: number ;
   @Output() ratingChange: EventEmitter<number> = new EventEmitter();;
@@ -138,9 +138,9 @@ export class ScoreModalComponent implements OnInit  {
     // function is called from the getColor function.
     return index > this.rating;
   }
-  customFormatter(value: number) {
-    this.usereco.range = value; //Value to database
-    console.log(this.usereco.value);
+  rangeChange($event) {
+    this.usereco.range = ($event.target.value); //Value to database
+    console.log(this.usereco.range);
   }
   getSolutionsForSelectedSections(val:string){
     this.solutions = SectionSolution[0].solution.find(s=> s.section.trim() == val.trim()).solutions;
