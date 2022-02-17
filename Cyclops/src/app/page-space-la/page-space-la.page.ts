@@ -10,9 +10,9 @@ import { AuthService } from '../authentication/auth/auth.service';
   styleUrls: ['./page-space-la.page.scss'],
 })
 export class PageSpaceLaPage implements OnInit {
-  articleProgress:number = 0;
-  totalArticles:number =0;
-  finishedArticles:number=0;
+  articleProgress: number = 0;
+  totalArticles: number = 0;
+  finishedArticles: number = 0;
   userInput: string;
   // userInput string is used for search bar input
   i: number = 0;
@@ -61,13 +61,17 @@ export class PageSpaceLaPage implements OnInit {
     let segmentData: any[] = currentUserData.readArticles;
     this.totalArticles = segmentData.length;
     for (let segment of segmentData) {
-      if(segment['readAll']){
-        console.log(segment['readAll']);
+      console.log(segment['segment']);
+      if (this.areAllTrue(segment['segment'])) {
         ++this.finishedArticles;
       }
     }
-    console.log('current user progess:', this.finishedArticles,'/',this.totalArticles, (this.finishedArticles/this.totalArticles));
-    this.articleProgress = this.finishedArticles/this.totalArticles;
+    console.log('current user progess:', this.finishedArticles, '/', this.totalArticles, (this.finishedArticles / this.totalArticles));
+    this.articleProgress = this.finishedArticles / this.totalArticles;
+  }
+  areAllTrue(array) {
+    for (let b of array) if (!b) return false;
+    return true;
   }
 
   ngOnInit() {

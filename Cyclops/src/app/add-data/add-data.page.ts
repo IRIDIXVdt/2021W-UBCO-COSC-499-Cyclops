@@ -65,8 +65,9 @@ export class AddDataPage implements OnInit {
 
     let articles = this.firebaseService.getAllArticlesService();
     (await articles).forEach((articleDoc) => {
-      //let segmentsLength= articleDoc.data()['segment'].length;
-      let newData = { id: articleDoc.id, readAll: false };//initalize all article read to be false
+      let segmentsLength= articleDoc.data()['segment'].length;
+      let segmentRead = Array(segmentsLength).fill(false);//initalize all segments read to be false
+      let newData = { id: articleDoc.id, segment:segmentRead };
       data.push(newData);
     });
     console.log(data);
@@ -74,7 +75,7 @@ export class AddDataPage implements OnInit {
     (await users).forEach((userDoc) => {
       if (userDoc.id == 'M18cUNzBqoPPM8tAm68ckUKb06w2') {
         console.log(userDoc.data());
-        this.firebaseService.updateUserDataByIdService(userDoc.id, { readArticles: data, capital:true });
+        this.firebaseService.updateUserDataByIdService(userDoc.id, { readArticles: data});
       }
     });
   }

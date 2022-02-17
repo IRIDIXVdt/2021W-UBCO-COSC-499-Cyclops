@@ -9,7 +9,7 @@ import { displayArticle } from '../sharedData/displayArticle';
 import { displayArticles } from '../sharedData/displayArticles';
 import { FirebaseService } from '../FirebaseService/firebase.service';
 import { AuthService } from '../authentication/auth/auth.service';
-
+import { segment } from '../sharedData/segment';
 @Component({
   selector: 'app-page-space-me',
   templateUrl: './page-space-me.page.html',
@@ -23,7 +23,8 @@ export class PageSpaceMePage implements OnInit {
   feedback = {
     content: ""
   }
-  private pageRead = false;
+  userData: any;
+  pageRead: boolean;
 
 
 
@@ -49,6 +50,7 @@ export class PageSpaceMePage implements OnInit {
   }
 
 
+
   constructor(
     public popover: PopoverController,
     public modalController: ModalController,
@@ -60,29 +62,14 @@ export class PageSpaceMePage implements OnInit {
 
     this.docId = this.activatedrouter.snapshot.paramMap.get('docId');
     //console.log("docid------",this.activatedrouter.snapshot.paramMap.get('docId'));
+    console.log(this.docId);
     this.loadDataById();
+    this.loadUserData();
+    //get user data: id and segment information
+
+
   }
-  async onScroll($event) {
-    const scrollElement = await $event.target.getScrollElement();
 
-    //scrollHeight: height of content, clientHeight: height of view port
-    //track only scrolltop when bottom of page reached
-    //articleHeight changes with responsive screen sizes
-    const articleHeight = scrollElement.scrollHeight - scrollElement.clientHeight;
-
-    const currentScrollDepth = $event.detail.scrollTop;
-    this.segmentDepth[this.currentSegment] = currentScrollDepth;
-    const targetPercent = 90;
-
-    let triggerDepth = ((articleHeight / 100) * targetPercent);
-
-    if (currentScrollDepth >= triggerDepth) {
-      console.log(`Scrolled to ${targetPercent}% on `, this.currentSegment);
-      // this ensures that the event only triggers once
-      this.pageRead = true;
-      // do your analytics tracking here
-    }
-  }
 
   loadDataById() {
     console.log("run loadDataById()");
@@ -111,6 +98,21 @@ export class PageSpaceMePage implements OnInit {
         console.debug(err);
       }
     )
+  }
+
+  async loadUserData() {
+    console.log("run loadData");
+    this.firebaseService.getUserDataService().subscribe((res) => {
+      this.userData = res.map(e => {
+        return {
+          userId: e.payload.doc.id,
+          segments: e.payload.doc.data()['readArticles']
+        }
+      })
+      console.log(this.userData.userId);
+    }, (err: any) => {
+      console.log(err);
+    })
   }
 
   updateDataById(docId, data) {
@@ -150,6 +152,52 @@ export class PageSpaceMePage implements OnInit {
 
   ngOnInit() {
   }
+
+  async onScroll($event) {
+    //this.segmentRead= Array((this.contents.segment).length).fill(false);
+    const scrollElement = await $event.target.getScrollElement();
+    //scrollHeight: height of content, clientHeight: height of view port
+    //track only scrolltop when bottom of page reached
+    //articleHeight changes with responsive screen sizes
+    const articleHeight = scrollElement.scrollHeight - scrollElement.clientHeight;
+
+    const currentScrollDepth = $event.detail.scrollTop;
+    this.segmentDepth[this.currentSegment] = currentScrollDepth;
+    const targetPercent = 90;
+
+    let triggerDepth = ((articleHeight / 100) * targetPercent);
+
+    if (currentScrollDepth >= triggerDepth) {
+      let pageRead = true;
+      console.log(`This segment read, scrolled to ${targetPercent}% on `, this.currentSegment);
+
+      // this ensures that the event only triggers once
+      if (pageRead) {
+        console.log('updating database');
+        //get user data: id and segment information
+
+        /*let currentUserData = (await this.firebaseService.getCurrentUserData()).data();
+        let segmentData: any[] = currentUserData.readArticles;
+        
+       
+
+
+
+        for(let i=0;i<segmentData.length;i++){
+          if(segmentData[i]['id']==this.docId){
+            segmentData[i]['segment'][this.currentSegment]=true;
+            console.log(segmentData[i]);
+            let currentUser=JSON.parse(localStorage.getItem('user'));
+            this.firebaseService.updateUserDataByIdService(currentUser['uid'],{ readArticles: segmentData});
+          }
+        }*/
+        return;
+      }
+      // do your analytics tracking here
+    }
+  }
+
+
 
 
   openModal() {
