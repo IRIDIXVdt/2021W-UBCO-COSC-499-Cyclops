@@ -23,8 +23,10 @@ export class PageSpaceMePage implements OnInit {
   feedback = {
     content: ""
   }
-  userData: any;
+  currentSegments: any;//array of boolean values corresponding to which segment the user has read
   pageRead: boolean;
+  userId: any;
+  userData: any;
 
 
 
@@ -32,22 +34,7 @@ export class PageSpaceMePage implements OnInit {
   status: any;
   segmentDepth: number[] = [0, 0, 0];
   currentSegment = 0;
-  segmentChanged(ev: any) {
-    console.log('current segment is', this.status);
-    switch (this.status) {
-      case 'segment1':
-        this.currentSegment = 0;
-        break;
-      case 'segment2':
-        this.currentSegment = 1;
-        break;
-      case 'segment3':
-        this.currentSegment = 2;
-        break;
-    }
-    this.content.scrollToPoint(0, this.segmentDepth[this.currentSegment]);
 
-  }
 
 
 
@@ -64,13 +51,33 @@ export class PageSpaceMePage implements OnInit {
     //console.log("docid------",this.activatedrouter.snapshot.paramMap.get('docId'));
     console.log(this.docId);
     this.loadDataById();
-    this.loadUserData();
+    this.userId=JSON.parse(localStorage.getItem('user'))['uid'];
+    this.loadUserSegmentsById();
     //get user data: id and segment information
+
 
 
   }
 
+  loadUserSegmentsById(){
+    console.log("run loadUserById()");
+    const subscription = this.firebaseService.getUserByIdService(this.userId).subscribe(
+      e => {
+        this.userData = e.payload.data()['readArticles'];
+        for(let i=0;i<this.userData.length;i++){
+         if(this.userData[i]['id']==this.docId){
+           this.currentSegments=this.userData[i]['segment']
+         }
+        }
+        subscription.unsubscribe();
+        console.log('unsubscribe success, with this user segment content loaded:', this.currentSegments);
+      },
+      err => {
+        console.debug(err);
+      }
+    )
 
+  }
   loadDataById() {
     console.log("run loadDataById()");
     const subscription = this.firebaseService.getDataByIdService(this.docId).subscribe(
@@ -100,19 +107,21 @@ export class PageSpaceMePage implements OnInit {
     )
   }
 
-  async loadUserData() {
-    console.log("run loadData");
-    this.firebaseService.getUserDataService().subscribe((res) => {
-      this.userData = res.map(e => {
-        return {
-          userId: e.payload.doc.id,
-          segments: e.payload.doc.data()['readArticles']
-        }
-      })
-      console.log(this.userData.userId);
-    }, (err: any) => {
-      console.log(err);
-    })
+  segmentChanged(ev: any) {
+    console.log('current segment is', this.status);
+    switch (this.status) {
+      case 'segment1':
+        this.currentSegment = 0;
+        break;
+      case 'segment2':
+        this.currentSegment = 1;
+        break;
+      case 'segment3':
+        this.currentSegment = 2;
+        break;
+    }
+    this.content.scrollToPoint(0, this.segmentDepth[this.currentSegment]);
+
   }
 
   updateDataById(docId, data) {
@@ -171,26 +180,22 @@ export class PageSpaceMePage implements OnInit {
       let pageRead = true;
       console.log(`This segment read, scrolled to ${targetPercent}% on `, this.currentSegment);
 
-      // this ensures that the event only triggers once
-      if (pageRead) {
+      // this ensures that the database is only changed if the page has been read and the database doesn't already say true
+      if (pageRead&&!this.currentSegments[this.currentSegment]) {
         console.log('updating database');
-        //get user data: id and segment information
-
-        /*let currentUserData = (await this.firebaseService.getCurrentUserData()).data();
-        let segmentData: any[] = currentUserData.readArticles;
+        //get user data: id and segment informatio
         
        
 
 
 
-        for(let i=0;i<segmentData.length;i++){
-          if(segmentData[i]['id']==this.docId){
-            segmentData[i]['segment'][this.currentSegment]=true;
-            console.log(segmentData[i]);
-            let currentUser=JSON.parse(localStorage.getItem('user'));
-            this.firebaseService.updateUserDataByIdService(currentUser['uid'],{ readArticles: segmentData});
+        for(let i=0;i<this.userData.length;i++){
+          if(this.userData[i]['id']==this.docId){
+            this.userData[i]['segment'][this.currentSegment]=true;
+            console.log(this.userData[i]);
+            this.firebaseService.updateUserDataByIdService(this.userId,{ readArticles: this.userData});
           }
-        }*/
+        }
         return;
       }
       // do your analytics tracking here

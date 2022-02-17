@@ -36,6 +36,10 @@ export class FirebaseService {
     return this.db.collection('articles').doc(docId).snapshotChanges();
   }
 
+  getUserByIdService(userId){
+    return this.db.collection('users').doc(userId).snapshotChanges();
+  }
+
   //return all users
   async getAllUsersService() {
     return await getDocs(collection(db, "users")); //access fields of returned document with .data()
@@ -69,7 +73,7 @@ export class FirebaseService {
     return await getDocFromServer(doc(db,"users",currentUser['uid']));
   }
 
-  getUserDataService() {
+  getUserDataService() {//collection of ALL users
     return this.db.collection("users").snapshotChanges();
   }
 
