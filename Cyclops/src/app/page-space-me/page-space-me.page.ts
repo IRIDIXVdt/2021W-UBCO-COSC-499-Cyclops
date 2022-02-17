@@ -17,31 +17,15 @@ import { AuthService } from '../authentication/auth/auth.service';
 })
 export class PageSpaceMePage implements OnInit {
 
-  //contents = displayArticles[0];
-
-
-  // contents= {
-  //   id: '',
-  //   title: '',
-  //   subtitle: '',
-  //   image: '',
-  //   segment: [{
-  //     segmentBody:'',
-  //     segmentTitle:''
-
-  //   },{
-  //     segmentBody:'',
-  //     segmentTitle:''
-  //    }],
-  //   cardIntroduction: '',
-  //   columnName: '',
-  // }
+ 
   contents: any;
   docId: any;
   feedback = {
     content: ""
   }
   private pageRead = false;
+
+
 
   @ViewChild(IonContent) content: IonContent;
   status: any;
@@ -150,7 +134,9 @@ export class PageSpaceMePage implements OnInit {
   presentModal() {
     this.modalCtrol.create({
       component: FeedbackModalComponent,
-      componentProps: this.feedback
+      componentProps: {
+        title: this.contents.title,
+      }
     }).then(modalres => {
       modalres.present();
 

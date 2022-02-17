@@ -41,6 +41,14 @@ export class AuthService {
       return true;
     }
   }
+
+  isAdmin(){
+    if (!JSON.parse(localStorage.getItem('admin'))) {
+      return false;
+    } else {
+      return true;
+    }
+  }
   // Sign in with email/password
   async SignIn(email, password) {
     // create a loading animation
@@ -53,7 +61,7 @@ export class AuthService {
         if (result.user.emailVerified) { // if user's account has been verified
           this.userData = result.user; // stored user's info in to local variable (refresh page will reset this variable)
           localStorage.setItem('user', JSON.stringify(this.userData)); // stored user's info in to local database (refresh page will not reset) 
-          this.isAdmin();  // check the user is admin or not
+          this.getIsAdmin() ;  // check the user is admin or not
           this.SetUserData(result.user);  // update user's info to remote database
 
           loading.dismiss(); //stop the loading animation
@@ -69,7 +77,8 @@ export class AuthService {
         loading.dismiss();
         this.userData = null;
         console.log("Login error: ", error);
-        if (error == 'FirebaseError: Firebase: The password is invalid or the user does not have a password. (auth/wrong-password).') {
+        if (error == 'FirebaseError: Firebase: The password is invalid or the user does not have a password. (auth/wrong-password).'
+        || error =='FirebaseError: Firebase: There is no user record corresponding to this identifier. The user may have been deleted. (auth/user-not-found).') {
           this.signInErrorAlert('The email or password is invalid');
         } else {
           this.signInErrorAlert('Check your internet connection');
@@ -186,9 +195,7 @@ export class AuthService {
 
   SignOutRestPassword() {
     return this.afAuth.signOut().then(() => {
-      this.userData = null;
-      this.admin = false;
-      console.log('admin ', this.admin)
+      localStorage.setItem('admin', JSON.stringify(false));
       localStorage.setItem('user', null);
     }).catch((error) => {
       console.log(error);
@@ -225,7 +232,7 @@ export class AuthService {
           this.userData = result.user;
           localStorage.setItem('user', JSON.stringify(this.userData));
           this.router.navigate(['tabs/page-space-er']);
-          this.isAdmin();
+          this.getIsAdmin() ;
         })
         this.SetUserData(result.user);
       }).catch((error) => {
@@ -272,8 +279,7 @@ export class AuthService {
       return this.afAuth.signOut().then(() => {
         /* localStorage.removeItem('user'); */
         this.userData = null;
-        this.admin = false;
-        console.log('admin ', this.admin)
+        localStorage.setItem('admin', JSON.stringify(false));
         localStorage.setItem('user', null);
 
         loading.dismiss();
@@ -289,19 +295,18 @@ export class AuthService {
   }
 
 
-  isAdmin() {
+  getIsAdmin() {
     if (this.isLogin()) {
       const adminAccess = this.afs.collection("adminUsers", ref => ref.where('email', '==', JSON.parse(localStorage.getItem('user')).email)).snapshotChanges();
       const subscription = adminAccess.subscribe(res => {
         if (res.length > 0) {
           console.log(" Match found.");
-          this.admin = true;
-          console.log(this.admin);
+          localStorage.setItem('admin', JSON.stringify(true));
           subscription.unsubscribe();
           return true;
         } else {
           console.log("Does not exist.");
-          this.admin = false;
+          localStorage.setItem('admin', JSON.stringify(false));
           subscription.unsubscribe();
           return false;
         }
@@ -309,7 +314,7 @@ export class AuthService {
       });
     }
     else {
-      this.admin = false;
+      localStorage.setItem('admin', JSON.stringify(false));
       console.log("Have not logged in ");
       return false;
     }
@@ -375,5 +380,12 @@ export class AuthService {
         localStorage.setItem('user', null);
       }
     })
+  }
+
+  getTime(){
+    const myTimestamp = firebase.firestore.FieldValue.serverTimestamp();
+    console.log(myTimestamp);
+
+
   }
 }

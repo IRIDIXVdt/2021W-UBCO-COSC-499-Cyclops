@@ -42,11 +42,21 @@
         </ion-grid>
       </div>
 
-      <div class="list_div" routerLink="">
-        <ion-label>View Feedback</ion-label>
-        <ion-icon name="chevron-forward-outline" slot="end"></ion-icon> 
-      </div>
 
+      <ng-container *ngIf="this.authService.isAdmin()">
+        <div class="list_div" routerLink="/display-feedback">
+          <ion-label>All Feedback</ion-label>
+          <ion-icon name="chevron-forward-outline" slot="end"></ion-icon> 
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="!this.authService.isAdmin()">
+        <div class="list_div" routerLink="/display-feedback">
+          <ion-label>My Feedback</ion-label>
+          <ion-icon name="chevron-forward-outline" slot="end"></ion-icon> 
+        </div>
+      </ng-container>
+     
       <div class="list_div" (click)="this.editUsername()">
         <ion-label>Edit User Name</ion-label>
         <ion-icon name="chevron-forward-outline" slot="end"></ion-icon> 
