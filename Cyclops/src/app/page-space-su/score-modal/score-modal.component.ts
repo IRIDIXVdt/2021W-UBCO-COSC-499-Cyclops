@@ -19,6 +19,7 @@ export class ScoreModalComponent implements OnInit  {
   sol: any=[];
   sec: any=[];
   level: any=[];
+  range: any=[];
 
   @Input() rating: number ;
   @Output() ratingChange: EventEmitter<number> = new EventEmitter();;
@@ -34,6 +35,7 @@ export class ScoreModalComponent implements OnInit  {
 
 
   usereco: any = {};
+  public buttonClicked: boolean=false;
 
 
   //@Input() solution: string;
@@ -51,6 +53,12 @@ export class ScoreModalComponent implements OnInit  {
 
     
   }
+  public onButtonClick(){
+
+      this.buttonClicked = !this.buttonClicked;
+    
+    
+  }
 
   ngOnInit() {
     console.log(SectionSolution[0].sections);
@@ -65,7 +73,8 @@ export class ScoreModalComponent implements OnInit  {
       // score1: ['', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.max(100), Validators.min(0)]],
       Select_Section : ['', Validators.required],
       Select_Solution : ['', Validators.required],
-      Select_Level : ['', Validators.required]
+      // Select_Level : ['', Validators.required],
+      // Select_Range : ['', Validators.required]
     });
   }
   
@@ -136,10 +145,15 @@ export class ScoreModalComponent implements OnInit  {
     // function is called from the getColor function.
     return index > this.rating;
   }
+  rangeChange($event) {
+    this.usereco.range = ($event.target.value); //Value to database
+    console.log(this.usereco.range);
+  }
   getSolutionsForSelectedSections(val:string){
     this.solutions = SectionSolution[0].solution.find(s=> s.section.trim() == val.trim()).solutions;
   }
   selectedSection($event) {
+    // this.buttonClicked = !this.buttonClicked;
     this.usereco.section = ($event.target.value); // Value to database
     console.log(this.usereco.section)
   }
