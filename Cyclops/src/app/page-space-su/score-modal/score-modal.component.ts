@@ -35,6 +35,7 @@ export class ScoreModalComponent implements OnInit  {
 
 
   usereco: any = {};
+  public buttonClicked: boolean=false;
 
 
   //@Input() solution: string;
@@ -50,6 +51,12 @@ export class ScoreModalComponent implements OnInit  {
 
     this.usereco = this.navParams.data;
 
+    
+  }
+  public onButtonClick(){
+
+      this.buttonClicked = !this.buttonClicked;
+    
     
   }
 
@@ -146,6 +153,7 @@ export class ScoreModalComponent implements OnInit  {
     this.solutions = SectionSolution[0].solution.find(s=> s.section.trim() == val.trim()).solutions;
   }
   selectedSection($event) {
+    // this.buttonClicked = !this.buttonClicked;
     this.usereco.section = ($event.target.value); // Value to database
     console.log(this.usereco.section)
   }
