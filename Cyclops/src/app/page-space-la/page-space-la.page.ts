@@ -30,7 +30,9 @@ export class PageSpaceLaPage implements OnInit {
     public firebaseService: FirebaseService,
     public authService: AuthService) {
     this.status1 = "Articles p1";
-    this.userId=JSON.parse(localStorage.getItem('user'))['uid'];
+    if(this.authService.isLogin()){
+      this.userId=JSON.parse(localStorage.getItem('user'))['uid'];
+    }
   }
 
   async loadData(searchbarComponent: HTMLElement) {
@@ -97,7 +99,9 @@ export class PageSpaceLaPage implements OnInit {
   }
 
   ngOnInit() {
-    this.readArticles();
+    if(this.authService.isLogin()){
+      this.readArticles();
+    }
     const thisNotShow = document.querySelector('#requested') as HTMLElement;
     thisNotShow.style.display = 'none';
 
