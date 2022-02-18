@@ -73,10 +73,9 @@ export class AddDataPage implements OnInit {
     console.log(data);
 
     (await users).forEach((userDoc) => {
-      if (userDoc.id == 'M18cUNzBqoPPM8tAm68ckUKb06w2') {
         console.log(userDoc.data());
         this.firebaseService.updateUserDataByIdService(userDoc.id, { readArticles: data});
-      }
+
     });
   }
 
