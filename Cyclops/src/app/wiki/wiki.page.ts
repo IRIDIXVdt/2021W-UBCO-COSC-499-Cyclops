@@ -40,6 +40,9 @@ export class WikiPage implements OnInit {
     this.loadEditorDataById();
     // this.presentAlert();
   }
+  ngOnDestroy(){
+    this.contents = null;
+  }
   private newEditor() {
     const Edi = InlineEditor;
     return Edi;
@@ -76,11 +79,11 @@ export class WikiPage implements OnInit {
           editorData: this.contents.segment[this.currentSeg].segmentBody
         };
 
-
+        subscription.unsubscribe();
         this.needSaving = false;
         console.log("need saving to false from loadEditorDataById");
         // this.editorComponent.focus;
-        subscription.unsubscribe();
+        
       },
       err => {
         console.debug(err);
