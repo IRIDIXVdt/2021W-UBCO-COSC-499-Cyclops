@@ -2,7 +2,7 @@ import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } fro
 import { FirebaseService } from '../FirebaseService/firebase.service';
 import { displayArticle, segmentItem } from '../sharedData/displayArticle';
 import { displayArticles } from '../sharedData/displayArticles';
-
+import { AuthService } from '../authentication/auth/auth.service';
 
 @Component({
   selector: 'app-page-space-la',
@@ -10,7 +10,12 @@ import { displayArticles } from '../sharedData/displayArticles';
   styleUrls: ['./page-space-la.page.scss'],
 })
 export class PageSpaceLaPage implements OnInit {
+  articleProgress: number = 0;
+  totalArticles: number = 0;
+  finishedArticles: number = 0;
   userInput: string;
+  userId: any;
+  userData: any;
   // userInput string is used for search bar input
   i: number = 0;
   status1: any;
@@ -21,11 +26,14 @@ export class PageSpaceLaPage implements OnInit {
     console.log('current segment is', this.status1);
   }
 
-  constructor(public firebaseService: FirebaseService) {
+  constructor(
+    public firebaseService: FirebaseService,
+    public authService: AuthService) {
     this.status1 = "Articles p1";
+    this.userId=JSON.parse(localStorage.getItem('user'))['uid'];
   }
 
-  async loadData(searchbarComponent:HTMLElement) {
+  async loadData(searchbarComponent: HTMLElement) {
     // loadData loads all article information into the searchField Component
     this.firebaseService.getDataServiceMainPage().subscribe((res) => {
       this.searchField = res.map(e => {
@@ -40,7 +48,7 @@ export class PageSpaceLaPage implements OnInit {
       })
       console.log("Search Field Loaded");
       console.log(this.searchField);
-      
+
       searchbarComponent.style.display = "block";
     }, (err: any) => {
       console.log(err);
@@ -51,7 +59,45 @@ export class PageSpaceLaPage implements OnInit {
     console.log("clicked");
   }
 
+  readArticles() {
+    /*let currentUserData = (await this.firebaseService.getCurrentUserData()).data();
+    let segmentData: any[] = currentUserData.readArticles;
+    this.totalArticles = segmentData.length;
+    for (let segment of segmentData) {
+      console.log(segment['segment']);
+      if (this.areAllTrue(segment['segment'])) {
+        ++this.finishedArticles;
+      }
+    }
+    console.log('current user progess:', this.finishedArticles, '/', this.totalArticles, (this.finishedArticles / this.totalArticles));
+    this.articleProgress = this.finishedArticles / this.totalArticles;*/
+    const subscription = this.firebaseService.getUserByIdService(this.userId).subscribe(
+      e => {
+        this.userData = e.payload.data()['readArticles'];
+        this.totalArticles=this.userData.length;
+        this.finishedArticles=0;
+        for(let i=0;i<this.userData.length;i++){
+         if(this.areAllTrue(this.userData[i]['segment'])){
+           ++this.finishedArticles;
+         }
+        }
+        console.log('current user progess:', this.finishedArticles, '/', this.totalArticles, (this.finishedArticles / this.totalArticles));
+        this.articleProgress = this.finishedArticles / this.totalArticles;
+        //subscription.unsubscribe();
+      },
+      err => {
+        console.debug(err);
+      }
+    )
+  }
+
+  areAllTrue(array) {
+    for (let b of array) if (!b) return false;
+    return true;
+  }
+
   ngOnInit() {
+    this.readArticles();
     const thisNotShow = document.querySelector('#requested') as HTMLElement;
     thisNotShow.style.display = 'none';
 
