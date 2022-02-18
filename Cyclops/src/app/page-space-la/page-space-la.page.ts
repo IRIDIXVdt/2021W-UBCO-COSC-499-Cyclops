@@ -78,7 +78,6 @@ export class PageSpaceLaPage implements OnInit {
         this.finishedArticles=0;
         for(let i=0;i<this.userData.length;i++){
          if(this.areAllTrue(this.userData[i]['segment'])){
-           console.log(this.userData[i]['segment'])
            ++this.finishedArticles;
          }
         }
