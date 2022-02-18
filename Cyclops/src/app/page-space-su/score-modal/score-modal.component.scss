@@ -86,4 +86,16 @@ ion-range::part(tick-active) {
     padding-bottom: 20px;
 
 }
-
+#tickmarks {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 25px;
+    }
+ 
+    #tickmarks p {
+     position: relative;
+     display: flex;
+     justify-content: center;
+     text-align: center;
+   
+    }

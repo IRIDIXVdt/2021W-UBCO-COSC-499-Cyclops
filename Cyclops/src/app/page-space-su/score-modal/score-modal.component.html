@@ -145,8 +145,9 @@
        </span>
     </p>
     <!-- <button ion-button full round (click)="onButtonClick()">Click</button> -->
+    <!-- *ngIf="buttonClicked" -->
   
-    <div *ngIf="buttonClicked">
+    <div>   
       <ion-list>
         <ion-item *ngIf="solution && solution.length > 0">
           <ion-label> <h2 id="leveltag">Article Solution</h2></ion-label>
@@ -203,13 +204,15 @@
   
       <div class="range">
         <h5>Slide to Select a Solution Completion Score:</h5>
-        <div class="workdone">
-          <p>Score of 0 : Not doing it or No decision made</p><p>Score of 1 - 3 : Working on it!</p> <p>Score of 4 - 5 : Doing it!</p>
-        </div>
-          <ion-range deounce='500' min="0" max="5" step="1" value="0"  (ionChange)="rangeChange($event)" pin="true" snaps="true" grid="true" snaps color="success">
+          <ion-range deounce='500' min="0" max="100" step="50" value="0"  (ionChange)="rangeChange($event)" pin="true" snaps="true" grid="true" snaps color="success" list='tickmarks'>
             <ion-icon slot="start" color="success" name="leaf"></ion-icon>
             <ion-icon slot="end" color="success" name="leaf"></ion-icon>
           </ion-range>
+          <div id="tickmarks" class="tick-position">
+            <p>Not doing it</p>
+            <p>Working on it!</p>
+            <p>Doing it!</p>
+        </div>
       </div>
       <!-- <p id="err">
         <span class="error" *ngIf="submitted && errorCtr.Select_Range.errors?.required">
