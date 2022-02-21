@@ -124,114 +124,27 @@
     <!-- <ion-slides pager="true" [options]="slideOpts">     -->
     <ion-slides [options]="slideOptsOne" class="web-display">
         <ion-slide>
-            <ion-card id="card1" color='light'>
-                <ion-card-header>
-                    <ion-card-title>Sample Survey</ion-card-title>
+            <ion-card id="card1" color='light' *ngFor="let data of survey">
+                <ion-card-header  >
+                    <ion-router-link href="{{data.surveyLink}}" color="dark">
+                        <ion-card-title>{{data.surveyTitle}}</ion-card-title>
+                    </ion-router-link>
                 </ion-card-header>
-
-                <ion-card-content>
-                    Keep close to Nature's heart... and break clear away, once in awhile, and climb a mountain or spend
-                    a week in the woods. Wash your spirit clean.
-                </ion-card-content>
-            </ion-card>
-            <ion-card id="card1" color='light'>
-                <ion-card-header>
-                    <ion-card-title>Sample Survey</ion-card-title>
-                </ion-card-header>
-
-                <ion-card-content>
-                    Keep close to Nature's heart... and break clear away, once in awhile, and climb a mountain or spend
-                    a week in the woods. Wash your spirit clean.
-                </ion-card-content>
-            </ion-card>
-            <ion-card id="card1" color='light'>
-                <ion-card-header>
-                    <ion-card-title>Sample Survey</ion-card-title>
-                </ion-card-header>
-
-                <ion-card-content>
-                    Keep close to Nature's heart... and break clear away, once in awhile, and climb a mountain or spend
-                    a week in the woods. Wash your spirit clean.
-                </ion-card-content>
             </ion-card>
         </ion-slide>
-        <ion-slide>
-            <ion-card id="card1" color='light'>
-                <ion-card-header>
-                    <ion-card-title>Sample Survey</ion-card-title>
-                </ion-card-header>
-
-                <ion-card-content>
-                    Keep close to Nature's heart... and break clear away, once in awhile, and climb a mountain or spend
-                    a week in the woods. Wash your spirit clean.
-                </ion-card-content>
-            </ion-card>
-            <ion-card id="card1" color='light'>
-                <ion-card-header>
-                    <ion-card-title>Sample Survey</ion-card-title>
-                </ion-card-header>
-
-                <ion-card-content>
-                    Keep close to Nature's heart... and break clear away, once in awhile, and climb a mountain or spend
-                    a week in the woods. Wash your spirit clean.
-                </ion-card-content>
-            </ion-card>
-            <ion-card id="card1" color='light'>
-                <ion-card-header>
-                    <ion-card-title>Sample Survey</ion-card-title>
-                </ion-card-header>
-
-                <ion-card-content>
-                    Keep close to Nature's heart... and break clear away, once in awhile, and climb a mountain or spend
-                    a week in the woods. Wash your spirit clean.
-                </ion-card-content>
-            </ion-card>
-        </ion-slide>
-
-
-
     </ion-slides>
+
+
     <ion-slides [options]="slideOptsOne" class="mobile-display">
         <ion-slide>
-            <ion-card id="card1" color='light'>
-                <ion-card-header>
-                    <ion-card-title>Sample Survey</ion-card-title>
+            <ion-card id="card1" color='light' *ngFor="let data of survey">
+                <ion-card-header  >
+                    <ion-router-link href="{{data.surveyLink}}" color="dark">
+                        <ion-card-title>{{data.surveyTitle}}</ion-card-title>
+                    </ion-router-link>
                 </ion-card-header>
-
-                <ion-card-content>
-                    Keep close to Nature's heart... and break clear away, once in awhile, and climb a mountain or spend
-                    a week in the woods. Wash your spirit clean.
-                </ion-card-content>
-            </ion-card>
-
-        </ion-slide>
-
-        <ion-slide>
-            <ion-card id="card1" color='light'>
-                <ion-card-header>
-                    <ion-card-title>Sample Survey 2</ion-card-title>
-                </ion-card-header>
-
-                <ion-card-content>
-                    Keep close to Nature's heart... and break clear away, once in awhile, and climb a mountain or spend
-                    a week in the woods. Wash your spirit clean.
-                </ion-card-content>
             </ion-card>
         </ion-slide>
-
-        <ion-slide>
-            <ion-card id="card1" color='light'>
-                <ion-card-header>
-                    <ion-card-title>Sample Survey 3</ion-card-title>
-                </ion-card-header>
-
-                <ion-card-content>
-                    Keep close to Nature's heart... and break clear away, once in awhile, and climb a mountain or spend
-                    a week in the woods. Wash your spirit clean.
-                </ion-card-content>
-            </ion-card>
-        </ion-slide>
-
     </ion-slides>
 
 

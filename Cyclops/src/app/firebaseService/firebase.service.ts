@@ -93,6 +93,11 @@ export class FirebaseService {
   }
 
 
+  getSurveyService() {//collection of ALL users
+    return this.db.collection("survey").snapshotChanges();
+  }
+
+
 }
 
 

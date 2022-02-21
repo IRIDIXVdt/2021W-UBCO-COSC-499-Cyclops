@@ -7,7 +7,11 @@ const routes: Routes = [
   {
     path: '',
     component: PageSpaceErPage
+  },  {
+    path: 'survey',
+    loadChildren: () => import('./survey/survey.module').then( m => m.SurveyPageModule)
   }
+
 ];
 
 @NgModule({
