@@ -24,7 +24,7 @@
 
             <ion-fab-list side="bottom">
                 <ion-fab-button>
-                    <ion-icon name="person-circle-outline" routerLink="/user-profile" ></ion-icon>
+                    <ion-icon name="person-circle-outline" routerLink="/user-profile"></ion-icon>
                 </ion-fab-button>
                 <ion-fab-button>
                     <ion-icon name="remove-circle-outline" (click)="this.authService.SignOut()"></ion-icon>
@@ -112,40 +112,49 @@
         </ion-slides>
     </div>
 
-    <!-- first section end -->
-
-    <!-- seconed section begin (title) -->
 
     <h1>Newest Survey</h1>
+    <ng-container *ngIf="!survey">
+        <ion-card>
+            <ion-progress-bar type="indeterminate"></ion-progress-bar>
+        </ion-card>
+    </ng-container>
 
-    <!-- seconed section end(title) -->
+    <ng-container *ngIf="survey">
+        <ion-slides [options]="slideOptsOne" class="web-display">
+            <ion-slide>
+                <ion-grid>
+                    <ion-row>
+                        <ion-col *ngFor="let data of survey">
+                            <ion-card id="card1" color='light'>
+                                <ion-card-header>
+                                    <ion-router-link href="{{data.surveyLink}}" color="dark">
+                                        <ion-card-title>{{data.surveyTitle}}</ion-card-title>
+                                    </ion-router-link>
+                                </ion-card-header>
+                            </ion-card>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-slide>
+        </ion-slides>
 
-    <!-- seconed section begin (content) -->
-    <!-- <ion-slides pager="true" [options]="slideOpts">     -->
-    <ion-slides [options]="slideOptsOne" class="web-display">
-        <ion-slide>
-            <ion-card id="card1" color='light' *ngFor="let data of survey">
-                <ion-card-header  >
-                    <ion-router-link href="{{data.surveyLink}}" color="dark">
-                        <ion-card-title>{{data.surveyTitle}}</ion-card-title>
-                    </ion-router-link>
-                </ion-card-header>
-            </ion-card>
-        </ion-slide>
-    </ion-slides>
+
+        <ion-slides [options]="slideOptsOne" class="mobile-display">
+            <ion-slide class="surveyCard-mobile" *ngFor="let data of survey">
+                <ion-card color='light'>
+                    <ion-card-header>
+                        <ion-router-link href="{{data.surveyLink}}" color="dark">
+                            <ion-card-title>{{data.surveyTitle}}</ion-card-title>
+                        </ion-router-link>
+                    </ion-card-header>
+                </ion-card>
+            </ion-slide>
+        </ion-slides>
+
+    </ng-container>
 
 
-    <ion-slides [options]="slideOptsOne" class="mobile-display">
-        <ion-slide>
-            <ion-card id="card1" color='light' *ngFor="let data of survey">
-                <ion-card-header  >
-                    <ion-router-link href="{{data.surveyLink}}" color="dark">
-                        <ion-card-title>{{data.surveyTitle}}</ion-card-title>
-                    </ion-router-link>
-                </ion-card-header>
-            </ion-card>
-        </ion-slide>
-    </ion-slides>
 
 
     <!-- seconed section end (content) -->

@@ -86,6 +86,26 @@ export class EditSurveyPage implements OnInit {
   }
 
 
+  async deleteSurvey(docId){
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      message: 'Do you want delete this survey?',
+      buttons: ['Cancel', 'Yes']
+    });
+    await alert.present();
+    const { role } = await alert.onDidDismiss();
+    if (role == "cancel") {
+      console.log("cancel!");
+    } else {
+      this.firebaseService.deleteDocByIdService('survey', docId).then((res: any) => {
+        console.log(res);
+      }).catch((error) => {
+        console.log("error",error);
+      })
+    }
+    
+  }
+
 
 }
 

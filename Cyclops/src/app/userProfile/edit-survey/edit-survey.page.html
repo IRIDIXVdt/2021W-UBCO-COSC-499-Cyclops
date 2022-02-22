@@ -3,7 +3,13 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>Edit Survey</ion-title>
+    
+    <ion-button class="phone" *ngIf="this.authService.isAdmin()" slot="end" (click)="addSurvey()" color="light">
+      <ion-icon name="log-in-outline" color="primary"></ion-icon>
+      <p>Add Survey</p>
+    </ion-button>
+
+    <ion-title>Survey List</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -30,7 +36,7 @@
                     <ion-fab-button >
                         <ion-icon name="create"></ion-icon>
                     </ion-fab-button>
-                    <ion-fab-button routerLink="">
+                    <ion-fab-button (click)="deleteSurvey(data.docId)">
                         <ion-icon name="trash-outline"></ion-icon>
                     </ion-fab-button>
                 </ion-fab-list>
@@ -51,8 +57,30 @@
             </ion-col>
           </ion-row>
         </ion-grid>
+        <ion-button expand="block" id="button-web" (click)="addSurvey()">Add Survey</ion-button>
       </ng-container>
+
+
+      <ng-container *ngIf="!this.authService.isAdmin()">
+        <ion-grid>
+          <ion-row>
+            <ion-col size-xs="12" size-sm="6" size-md="6" size-lg="4" *ngFor="let data of survey">
+
+              <ion-router-link href="{{data.surveyLink}}" color="dark">
+                <ion-card>
+                  <ion-card-header>
+                    <ion-card-title>{{data.surveyTitle}}</ion-card-title>
+                  </ion-card-header>
+                </ion-card>
+              </ion-router-link>
+
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+       
+      </ng-container>
+
     </ng-container>
-    <ion-button expand="block" id="button-web" (click)="addSurvey()">Add Survey</ion-button>
+    
   </ion-list>
 </ion-content>

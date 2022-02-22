@@ -13,8 +13,7 @@
 
     <div class="user_div">
       <div class="first_div">
-        <ion-label class="username" *ngIf="userData.displayName == null">{{userData.email}}</ion-label>
-        <ion-label class="username" *ngIf="userData.displayName != null">{{name}}</ion-label>
+        <ion-label class="username" >{{displayName}}</ion-label>
       </div>
       <div *ngIf="userData.photoURL == null" class="user_back" [style.backgroundImage]="'url(../../../assets/default-user-image.png)'"></div>
       <div *ngIf="userData.photoURL != null" class="user_back" [style.backgroundImage]="'url({{userData.photoURL}})'"></div>    
@@ -45,6 +44,13 @@
       <ng-container *ngIf="this.authService.isAdmin()">
         <div class="list_div" routerLink="/edit-survey">
           <ion-label>Edit Survey</ion-label>
+          <ion-icon name="chevron-forward-outline" slot="end"></ion-icon> 
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="!this.authService.isAdmin()">
+        <div class="list_div" routerLink="/edit-survey">
+          <ion-label>All Survey</ion-label>
           <ion-icon name="chevron-forward-outline" slot="end"></ion-icon> 
         </div>
       </ng-container>
