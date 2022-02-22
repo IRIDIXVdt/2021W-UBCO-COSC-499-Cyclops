@@ -69,3 +69,33 @@
         margin-right: auto;
     }
 }
+.sdisplay{
+    overflow: hidden; /* add this to contain floated children */
+    text-align: center;
+}
+.sdisplay1{
+    display: inline-block;
+   
+}  
+.sdisplay2{
+    display: inline-block;
+    font-size: 175%;
+    padding-left: 5px;
+    color: green;
+  
+}
+.odisplay{
+    overflow: hidden; /* add this to contain floated children */
+    text-align: center;
+}
+.odisplay1{
+    display: inline-block;
+   
+}  
+.odisplay2{
+    display: inline-block;
+    font-size: 200%;
+    padding-left: 5px;
+    color: green;
+  
+}
