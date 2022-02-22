@@ -93,6 +93,24 @@ export class FirebaseService {
   }
 
 
+  getSurveyService() {//collection of ALL users
+    return this.db.collection("survey").snapshotChanges();
+  }
+
+
+  getSurveyByIdService(docId) {
+    return this.db.collection('survey').doc(docId).snapshotChanges();
+  }
+
+
+
+  updateSurveyByIdService(docId, data) {
+    return this.db.collection('survey').doc(docId).update(data);
+  }
+
+
+
+
 }
 
 

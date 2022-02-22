@@ -12,15 +12,28 @@ export class UserProfilePage implements OnInit {
 
   userData = JSON.parse(localStorage.getItem('user'));
 
-  name= JSON.parse(localStorage.getItem('user')).displayName;
+  displayName:any;
 
 
 
-  constructor(public authService: AuthService, public alertController: AlertController) { }
+  constructor(public authService: AuthService, public alertController: AlertController) { 
+    if(JSON.parse(localStorage.getItem('user')).displayName != null){
+      this.displayName= JSON.parse(localStorage.getItem('user')).displayName;
+    }else{
+      this.displayName= JSON.parse(localStorage.getItem('user')).email;
+      console.log(this.displayName);
+    }
+
+
+  }
 
   ngOnInit() {
-     this.name = JSON.parse(localStorage.getItem('user')).displayName;
-    /* this.name = "testname"; */
+    if(JSON.parse(localStorage.getItem('user')).displayName != null){
+      this.displayName= JSON.parse(localStorage.getItem('user')).displayName;
+    }else{
+      this.displayName= JSON.parse(localStorage.getItem('user')).email;
+      console.log(this.displayName);
+    }
   }
 
   async editUsername() {
@@ -33,7 +46,7 @@ export class UserProfilePage implements OnInit {
           type: 'text',
           min: 3,
           max: 10,
-          placeholder: 'Current UserName: ' + this.name
+          placeholder: 'Current UserName: ' + this.displayName
         },
       ],
       buttons: [
@@ -47,15 +60,15 @@ export class UserProfilePage implements OnInit {
         }, {
           text: 'Save',
           handler: data => {
-            if (true) {
-              console.log("run-------------")
+            if (data.userName != '') {               /*  data.userName != '' */
+              console.log(data)
               this.authService.updateUserName(data.userName);
               this.userData = JSON.parse(localStorage.getItem('user'));
-              // this.name = JSON.parse(localStorage.getItem('user')).displayName;
-              this.name = data.userName;
+              JSON.parse(localStorage.getItem('user')).displayName = data.userName;
+              this.displayName = data.userName;
               
             } else {
-              this.alertError('You have reached the max length 10');
+              this.alertError('Can not be empty!');
             }
           }
         }
@@ -66,16 +79,6 @@ export class UserProfilePage implements OnInit {
     console.log(this.userData.displayName);
   }
 
-  validateUserName(data) {
-    if (false) {
-      return {
-        isValid: true,
-        message: ''
-      };
-    } else {
-      return false;
-    }
-  }
 
   async alertError(message) {
     const alert = await this.alertController.create({

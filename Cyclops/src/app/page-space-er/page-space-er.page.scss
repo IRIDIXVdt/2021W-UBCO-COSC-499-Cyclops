@@ -94,3 +94,22 @@ ion-card img {
     height: 200px;
     object-fit: cover;
 }
+
+
+.surveyCard-mobile{
+    height: 120px;
+    width: 100% !important;
+    ion-card{
+        height: 100px;
+        width: 100%;
+    }
+}
+
+.surveyCard-web{
+    height: 120px;
+    width: 100% !important;
+    ion-card{
+        height: 80px;
+        width: 100%;
+    }
+}

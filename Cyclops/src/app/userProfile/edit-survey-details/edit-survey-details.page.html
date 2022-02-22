@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Edit Survey</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+
+   <!--  <ion-button *ngIf="this.authService.isAdmin()" slot="end" (click)="save(title.value,link.value)" color="light">
+      <ion-icon name="save-outline" color="primary"></ion-icon>
+    </ion-button> -->
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ng-container *ngIf="!currentSurvey">
+      <ion-card>
+        <ion-progress-bar type="indeterminate"></ion-progress-bar>
+      </ion-card>
+    </ng-container>
+
+
+    <ng-container *ngIf="currentSurvey">
+
+        <ion-item class="ion-no-padding" id="first-ion-item">
+          <ion-label>
+            Survey Title:
+          </ion-label>
+          <ion-input type="text" [(ngModel)]="currentSurvey.surveyTitle" #title></ion-input>
+        </ion-item>
+  
+        <ion-item class="ion-no-padding">
+          <ion-label>
+            Survey Link:
+          </ion-label>
+          <ion-textarea [(ngModel)]="currentSurvey.surveyLink" autoGrow="true" #link></ion-textarea>
+        </ion-item>
+  
+        <ion-button expand="block" id="button" (click)="save(title.value,link.value)">Save Changes</ion-button>
+
+      
+    </ng-container>
+
+    
+  </ion-list>
+
+
+
+
+
+
+  
+  
+  
+</ion-content>

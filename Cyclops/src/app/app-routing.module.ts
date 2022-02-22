@@ -84,7 +84,23 @@ const routes: Routes = [
   {
     path: 'display-feedback-details/:id',
     loadChildren: () => import('./userProfile/display-feedback-details/display-feedback-details.module').then( m => m.DisplayFeedbackDetailsPageModule)
+  },
+  {
+    path: 'edit-survey',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./userProfile/edit-survey/edit-survey.module').then( m => m.EditSurveyPageModule)
+  },
+  {
+    path: 'edit-survey-details',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./userProfile/edit-survey-details/edit-survey-details.module').then( m => m.EditSurveyDetailsPageModule)
+  },
+  {
+    path: 'edit-survey-details/:id',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./userProfile/edit-survey-details/edit-survey-details.module').then( m => m.EditSurveyDetailsPageModule)
   }
+
 
 
 ];

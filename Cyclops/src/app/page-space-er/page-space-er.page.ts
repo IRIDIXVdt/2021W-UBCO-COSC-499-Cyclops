@@ -15,6 +15,8 @@ export class PageSpaceErPage implements OnInit {
   //contents: displayArticle[] = displayArticles;
   articles: any;
 
+  survey: any;
+
   authentication: boolean; // validate user is logged in or not 
 
   fButtons = [ // false: have not logged in authentication = false.   true: already Logged in 
@@ -22,6 +24,8 @@ export class PageSpaceErPage implements OnInit {
     { iconName: "remove-circle-outline", routerLink: "", clickMethod: "authService.SignOut()", isActive: true },
     { iconName: "person-circle-outline", routerLink: "", clickMethod: "", isActive: true }
   ];
+
+
 
   constructor(
     public firebaseService: FirebaseService,
@@ -31,6 +35,7 @@ export class PageSpaceErPage implements OnInit {
     private zone: NgZone) {
     console.log("constructor run");
     this.loadData();
+    this.loadSurveyData();
 
     if(authService.userData){
       console.log("Has User",authService.isLogin())
@@ -67,6 +72,26 @@ export class PageSpaceErPage implements OnInit {
       console.log(err);
     })
   }
+
+
+  async loadSurveyData() {
+    console.log("run loadData");
+    this.firebaseService.getSurveyService().subscribe((res) => {
+      this.survey = res.map(e => {
+        return {
+          docId: e.payload.doc.id,
+          surveyTitle: e.payload.doc.data()['surveyTitle'],
+          surveyLink: e.payload.doc.data()['surveyLink'],
+        }
+      })
+      console.log(this.survey);
+    }, (err: any) => {
+      console.log(err);
+    })
+  }
+
+
+  
 
 
 }
