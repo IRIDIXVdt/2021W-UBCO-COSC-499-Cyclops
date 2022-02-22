@@ -45,7 +45,7 @@
     <!-- <button ion-button full round (click)="onButtonClick()">Click</button> -->
     <!-- *ngIf="buttonClicked" -->
   
-    <div>   
+    <div *ngIf="buttonClicked">   
       <ion-list>
         <ion-item *ngIf="solution && solution.length > 0">
           <ion-label> <h2 id="leveltag">Article Solution</h2></ion-label>
@@ -59,6 +59,7 @@
           Please Select a Solution
          </span>
       </p>
+    </div>
       
       <!-- <div class="level">
   
@@ -126,7 +127,7 @@
       </p>
   
   
-    </div>
+    
 
 
 

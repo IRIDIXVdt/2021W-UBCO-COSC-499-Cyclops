@@ -152,10 +152,12 @@ export class ScoreModalComponent implements OnInit  {
     console.log(this.usereco.updatedscore) // Value to database
   }
   getSolutionsForSelectedSections(val:string){
+    this.buttonClicked = !this.buttonClicked;
     this.solutions = SectionSolution[0].solution.find(s=> s.section.trim() == val.trim()).solutions;
   }
   selectedSection($event) {
     // this.buttonClicked = !this.buttonClicked;
+    this.buttonClicked=null;
     this.usereco.section = ($event.target.value); // Value to database
     console.log(this.usereco.section)
   }
