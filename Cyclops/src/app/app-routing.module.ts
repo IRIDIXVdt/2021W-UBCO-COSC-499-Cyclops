@@ -84,7 +84,11 @@ const routes: Routes = [
   {
     path: 'display-feedback-details/:id',
     loadChildren: () => import('./userProfile/display-feedback-details/display-feedback-details.module').then( m => m.DisplayFeedbackDetailsPageModule)
+  },  {
+    path: 'edit-survey',
+    loadChildren: () => import('./userProfile/edit-survey/edit-survey.module').then( m => m.EditSurveyPageModule)
   }
+
 
 
 ];

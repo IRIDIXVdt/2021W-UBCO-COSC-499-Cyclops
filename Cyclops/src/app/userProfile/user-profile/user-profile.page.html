@@ -42,6 +42,12 @@
         </ion-grid>
       </div>
 
+      <ng-container *ngIf="this.authService.isAdmin()">
+        <div class="list_div" routerLink="/edit-survey">
+          <ion-label>Edit Survey</ion-label>
+          <ion-icon name="chevron-forward-outline" slot="end"></ion-icon> 
+        </div>
+      </ng-container>
 
       <ng-container *ngIf="this.authService.isAdmin()">
         <div class="list_div" routerLink="/display-feedback">
