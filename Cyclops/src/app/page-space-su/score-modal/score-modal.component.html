@@ -86,7 +86,7 @@
   
       <div class="stars">
   
-        <h5>Enter Solution Weighting Below:</h5>
+        <h5>Enter Weight of Solution Below:</h5>
         <div class="rater">
           <ion-icon name = "leaf"style="zoom:2.0;" *ngFor="let num of [1,2,3,4,5]"
           (click)="rate(num)" [ngStyle]="{'color':getColor(num)}">
@@ -103,7 +103,7 @@
       </div>
   
       <div class="range">
-        <h5>Slide to Select a Solution Completion Score:</h5>
+        <h5>Slide to Select Completion for Solution:</h5>
           <ion-range deounce='500' min="-0.5" max="1" step="0.5" value="0"  (ionChange)="rangeChange($event)"  snaps="true" grid="true" snaps color="success" list='tickmarks'>
             <ion-icon slot="start" color="success" name="leaf"></ion-icon>
             <ion-icon slot="end" color="success" name="leaf"></ion-icon>
