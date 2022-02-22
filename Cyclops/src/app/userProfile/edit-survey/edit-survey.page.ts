@@ -38,18 +38,17 @@ export class EditSurveyPage implements OnInit {
 
   async addSurvey() {
     const alert = await this.alertController.create({
-      cssClass: 'my-custom-class',
+      cssClass: 'addSurvey',
       header: 'Add Survey',
       inputs: [
         {
           name: 'surveyTitle',
-          type: 'text',       
+          type: 'text',   
           placeholder: 'Enter Survey Title'
         },
         {
           name: 'surveyLink',
           type: 'textarea',
-          autoGrow: "true",
           placeholder: 'Enter Survey Link'
         },
       ],
@@ -65,7 +64,12 @@ export class EditSurveyPage implements OnInit {
           text: 'Save',
           handler: data => {
             if (true) {
-              console.log("run-------------")
+              this.firebaseService.addDataService('survey', data).then((res: any) => {
+                console.log(res);
+              }).catch((error) => {
+                console.log("error",error);
+        
+              })
 
 
 
