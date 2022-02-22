@@ -15,26 +15,14 @@
     </ion-toolbar>
 
     <div *ngIf="contents">
-        <ion-segment (ionChange)="segmentChanged($event)" color="medium" [(ngModel)]="status" *ngIf="contents.segment.length ===3">
-            <ion-segment-button text-wrap value="segment1">
-                <ion-label>{{contents.segment[0].segmentTitle}}</ion-label>
-            </ion-segment-button>
-            <ion-segment-button text-wrap value="segment2">
-                <ion-label>{{contents.segment[1].segmentTitle}}</ion-label>
-            </ion-segment-button>
-            <ion-segment-button text-wrap value="segment3">
-                <ion-label>{{contents.segment[2].segmentTitle}}</ion-label>
-            </ion-segment-button>
+        <ion-segment (ionChange)="segmentChanged($event)" color="medium" [(ngModel)]="status">
+            <ng-container *ngFor="let contentSeg of contents.segment; let indexOfSeg = index;">
+                <ion-segment-button text-wrap value = {{indexOfSeg}}>
+                    <ion-label>{{contentSeg.segmentTitle}}</ion-label>
+                </ion-segment-button>
+            </ng-container>
         </ion-segment>
 
-        <ion-segment (ionChange)="segmentChanged($event)" (ionChange)="segmentChanged($event)" color="medium" [(ngModel)]="status" *ngIf="contents.segment.length ===2">
-            <ion-segment-button text-wrap value="segment1">
-                <ion-label>{{contents.segment[0].segmentTitle}}</ion-label>
-            </ion-segment-button>
-            <ion-segment-button text-wrap value="segment2">
-                <ion-label>{{contents.segment[1].segmentTitle}}</ion-label>
-            </ion-segment-button>
-        </ion-segment>
     </div>
 
     <div *ngIf="!contents">
@@ -56,41 +44,10 @@
 
 <ion-content class="ion-padding " [scrollEvents]="true" (ionScroll)="onScroll($event)">
 
-    <div [ngSwitch]="status" class="article " *ngIf="contents">
-        <div *ngSwitchDefault>
-            <img src="{{contents.image}} ">
-            <div [innerHTML]="contents.segment[0].segmentBody"> </div>
+    <div class="article " *ngIf="contents">
 
-        </div>
-
-        <div *ngSwitchCase=" 'segment1' ">
-            <img src="{{contents.image}} ">
-            <div [innerHTML]="contents.segment[0].segmentBody"> </div>
-
-        </div>
-
-
-        <div *ngSwitchCase=" 'segment2' ">
-            <div [innerHTML]="contents.segment[1].segmentBody"> </div>
-            <div class="wp-block-image" *ngIf="contents.title==='Fossil Fuels'">
-                <figure class="aligncenter size-large"><img data-attachment-id="6924" data-permalink="https://cyclopediapp.org/image-55/" data-orig-file="https://cyclope2.files.wordpress.com/2021/08/image-55.png" data-orig-size="855,596" data-comments-opened="0" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}"
-                        data-image-title="image-55" data-image-description="" data-image-caption="" data-medium-file="https://cyclope2.files.wordpress.com/2021/08/image-55.png?w=300" data-large-file="https://cyclope2.files.wordpress.com/2021/08/image-55.png?w=750"
-                        src="https://cyclope2.files.wordpress.com/2021/08/image-55.png?w=855" alt="" class="wp-image-6924" srcset="https://cyclope2.files.wordpress.com/2021/08/image-55.png 855w, https://cyclope2.files.wordpress.com/2021/08/image-55.png?w=150 150w, https://cyclope2.files.wordpress.com/2021/08/image-55.png?w=300 300w, https://cyclope2.files.wordpress.com/2021/08/image-55.png?w=768 768w"
-                        sizes="(max-width: 855px) 100vw, 855px" />
-                    <figcaption>
-                        <ion-text id="popover " (click)="notifications($event) "><span style="text-decoration:underline;">Source: IEA (2021) World Energy Balances. All rights
-                                reserved.</span></ion-text>
-                    </figcaption>
-                </figure>
-            </div>
-
-        </div>
-
-
-        <div *ngSwitchCase=" 'segment3' ">
-            <div [innerHTML]="contents.segment[2].segmentBody"> </div>
-
-        </div>
+        <img src="{{contents.image}} ">
+        <div [innerHTML]="contents.segment[status].segmentBody"> </div>
 
     </div>
     <div *ngIf="!contents">
@@ -109,7 +66,8 @@
 
     <div id="button-web" class="ion-padding">
         <ion-button expand="block " (click)="openModal() " *ngIf="this.authService.isAdmin()">Edit Content</ion-button>
-        <ion-button expand="block " (click)="presentModal()" *ngIf="this.authService.isLogin()">Send feedback</ion-button>
+        <ion-button expand="block " (click)="presentModal()" *ngIf="this.authService.isLogin()">Send feedback
+        </ion-button>
     </div>
 
 </ion-content>
