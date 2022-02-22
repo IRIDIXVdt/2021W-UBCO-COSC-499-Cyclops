@@ -60,7 +60,7 @@
          </span>
       </p>
       
-      <div class="level">
+      <!-- <div class="level">
   
       <div class="menu">
         <ion-list>
@@ -75,30 +75,30 @@
             </ion-select>
           </ion-item>
         </ion-list>
-        <!-- <p id="err">
+        <p id="err">
           <span class="error" *ngIf="submitted && errorCtr.Select_Level.errors?.required">
             Please Select a Star Level
            </span>
-        </p> -->
+        </p>
       </div>
   
-      </div>
+      </div> -->
   
-      <!-- <div class="stars">
+      <div class="stars">
   
-        <p>Enter Rating Below:</p>
+        <p>Enter Solution Weighting Below:</p>
       
         <ion-icon name = "leaf"style="zoom:2.0;" *ngFor="let num of [1,2,3,4,5]"
           (click)="rate(num)" [ngStyle]="{'color':getColor(num)}">
         </ion-icon>
        
-        <p id="err">
+        <!-- <p id="err">
           <span class="error" *ngIf="submitted && errorCtr.Select_Rating.errors?.required">
             Please Select a Rating
            </span>
-        </p>
+        </p> -->
   
-      </div> -->
+      </div>
   
       <div class="range">
         <h5>Slide to Select a Solution Completion Score:</h5>
