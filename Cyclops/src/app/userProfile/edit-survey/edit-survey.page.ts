@@ -63,7 +63,7 @@ export class EditSurveyPage implements OnInit {
         },{
           text: 'Save',
           handler: data => {
-            if (true) {
+            if (data.surveyTitle!='' && data.surveyLink!='') {
               this.firebaseService.addDataService('survey', data).then((res: any) => {
                 console.log(res);
               }).catch((error) => {
@@ -71,10 +71,8 @@ export class EditSurveyPage implements OnInit {
         
               })
 
-
-
             } else {
-
+              this.alertError('Can not be empty!');
             }
           }
         }
@@ -83,6 +81,14 @@ export class EditSurveyPage implements OnInit {
 
     await alert.present();
 
+  }
+  async alertError(message) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      message: message,
+      buttons: ['Ok']
+    });
+    await alert.present();
   }
 
 
