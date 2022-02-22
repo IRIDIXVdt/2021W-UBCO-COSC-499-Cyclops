@@ -148,7 +148,7 @@ export class ScoreModalComponent implements OnInit  {
   rangeChange($event) {
     this.usereco.range = ($event.target.value); //Value to database
     console.log(this.usereco.range);
-    this.usereco.updatedscore = this.usereco.level*this.usereco.range;
+    this.usereco.updatedscore = this.usereco.rating*this.usereco.range;
     console.log(this.usereco.updatedscore) // Value to database
   }
   getSolutionsForSelectedSections(val:string){
