@@ -15,9 +15,9 @@
     </ion-toolbar>
 
     <div *ngIf="contents">
-        <ion-segment mode = "md" scrollable (ionChange)="segmentChanged($event)" color="medium" [(ngModel)]="status">
+        <ion-segment mode="md" scrollable (ionChange)="segmentChanged($event)" color="medium" [(ngModel)]="status">
             <ng-container *ngFor="let contentSeg of contents.segment; let indexOfSeg = index;">
-                <ion-segment-button text-wrap value = {{indexOfSeg}}>
+                <ion-segment-button text-wrap value={{indexOfSeg}}>
                     <ion-label text-wrap>{{contentSeg.segmentTitle}}</ion-label>
                 </ion-segment-button>
             </ng-container>
@@ -44,11 +44,17 @@
 
 <ion-content class="ion-padding " [scrollEvents]="true" (ionScroll)="onScroll($event)">
 
-    <div class="article " *ngIf="contents">
-
-        <img src="{{contents.image}} ">
+    <div class="displayAreaContent" *ngIf="contents">
+        <ion-toolbar>
+            <ion-img [src]="contents.image" class="custome-image-article"></ion-img>
+        </ion-toolbar>
         <div [innerHTML]="contents.segment[status].segmentBody"> </div>
-
+        <div>
+            <!-- <ion-button expand="block " (click)="openModal() " *ngIf="this.authService.isAdmin()">Edit Content
+            </ion-button> -->
+            <ion-button expand="block " (click)="presentModal()" *ngIf="this.authService.isLogin()">Send feedback
+            </ion-button>
+        </div>
     </div>
     <div *ngIf="!contents">
         <ion-label>
@@ -64,10 +70,6 @@
         </ion-label>
     </div>
 
-    <div id="button-web" class="ion-padding">
-        <ion-button expand="block " (click)="openModal() " *ngIf="this.authService.isAdmin()">Edit Content</ion-button>
-        <ion-button expand="block " (click)="presentModal()" *ngIf="this.authService.isLogin()">Send feedback
-        </ion-button>
-    </div>
+
 
 </ion-content>
