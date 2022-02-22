@@ -98,6 +98,17 @@ export class FirebaseService {
   }
 
 
+  getSurveyByIdService(docId) {
+    return this.db.collection('survey').doc(docId).snapshotChanges();
+  }
+
+
+
+  updateSurveyByIdService(docId, data) {
+    return this.db.collection('survey').doc(docId).update(data);
+  }
+
+
 
 
 }

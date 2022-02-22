@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
 import { AuthService } from 'src/app/authentication/auth/auth.service';
 import { FirebaseService } from 'src/app/FirebaseService/firebase.service';
 
@@ -11,7 +11,7 @@ import { FirebaseService } from 'src/app/FirebaseService/firebase.service';
 export class EditSurveyPage implements OnInit {
   survey: any;
 
-  constructor(public authService: AuthService, public firebaseService: FirebaseService,public alertController: AlertController) {
+  constructor(public authService: AuthService, public firebaseService: FirebaseService,public alertController: AlertController,public loadingController: LoadingController) {
     this.loadSurveyData();
   }
 
@@ -103,9 +103,19 @@ export class EditSurveyPage implements OnInit {
     if (role == "cancel") {
       console.log("cancel!");
     } else {
+
+      const loading = await this.loadingController.create({
+        message: 'Please wait...',
+      });
+      loading.present();
+
       this.firebaseService.deleteDocByIdService('survey', docId).then((res: any) => {
+        loading.dismiss();
+        this.alertError('Successful!');
         console.log(res);
       }).catch((error) => {
+        loading.dismiss();
+        this.alertError('Can not delete, Try again');
         console.log("error",error);
       })
     }

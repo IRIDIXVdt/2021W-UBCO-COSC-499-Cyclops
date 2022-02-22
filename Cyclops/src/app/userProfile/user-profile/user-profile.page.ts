@@ -79,16 +79,6 @@ export class UserProfilePage implements OnInit {
     console.log(this.userData.displayName);
   }
 
-  validateUserName(data) {
-    if (false) {
-      return {
-        isValid: true,
-        message: ''
-      };
-    } else {
-      return false;
-    }
-  }
 
   async alertError(message) {
     const alert = await this.alertController.create({
