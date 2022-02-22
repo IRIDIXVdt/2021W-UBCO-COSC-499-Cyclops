@@ -20,6 +20,7 @@ export class PageSpaceSuPage implements OnInit {
     section : "Section", // retrives section from score modal
     range : 0, // retrives value from score modal
     level : 0, // retrives level from score modal
+    updatedscore: 0 // retrives level*range
   }
 
   surveyPage: PageSpaceMePage;
