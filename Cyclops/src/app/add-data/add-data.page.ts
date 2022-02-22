@@ -29,7 +29,7 @@ export class AddDataPage implements OnInit {
     isAnonymous: true,
     displayName: "Admin"
   }
-  constructor(private firebaseService: FirebaseService, public authService: AuthService,) {
+  constructor(private firebaseService: FirebaseService) {
     this.loadDocId();
     this.loadUserDocId();
   }
@@ -65,17 +65,17 @@ export class AddDataPage implements OnInit {
 
     let articles = this.firebaseService.getAllArticlesService();
     (await articles).forEach((articleDoc) => {
-      //let segmentsLength= articleDoc.data()['segment'].length;
-      let newData = { id: articleDoc.id, totalSegments: false };//initalize all article read to be false
+      let segmentsLength= articleDoc.data()['segment'].length;
+      let segmentRead = Array(segmentsLength).fill(false);//initalize all segments read to be false
+      let newData = { id: articleDoc.id, segment:segmentRead };
       data.push(newData);
     });
     console.log(data);
 
     (await users).forEach((userDoc) => {
-      if (userDoc.id == 'P4nhCbiKyeeGpCAw3wOaIQkG3Za2') {
         console.log(userDoc.data());
-        this.firebaseService.updateUserDataByIdService(userDoc.id, { readArticles: data })
-      }
+        this.firebaseService.updateUserDataByIdService(userDoc.id, { readArticles: data});
+
     });
   }
 

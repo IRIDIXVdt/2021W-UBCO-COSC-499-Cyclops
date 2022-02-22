@@ -16,10 +16,10 @@ import { Router } from '@angular/router';
 export class PageSpaceSuPage implements OnInit {
 
   profile = {
-    solution: "Solution",
-    section : "Section",
-    rating : 0,
-    level : 0,
+    solution: "Solution", // retrives solution from score modal
+    section : "Section", // retrives section from score modal
+    range : 0, // retrives value from score modal
+    level : 0, // retrives level from score modal
   }
 
   surveyPage: PageSpaceMePage;

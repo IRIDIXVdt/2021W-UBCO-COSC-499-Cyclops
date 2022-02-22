@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { collection, setDoc, doc, getDocs, getFirestore } from "firebase/firestore";
+import { collection, setDoc, doc, getDocs, getFirestore , getDocFromServer} from "firebase/firestore";
 const db = getFirestore();
 @Injectable({
   providedIn: 'root'
@@ -36,6 +36,10 @@ export class FirebaseService {
     return this.db.collection('articles').doc(docId).snapshotChanges();
   }
 
+  getUserByIdService(userId){
+    return this.db.collection('users').doc(userId).snapshotChanges();
+  }
+
   //return all users
   async getAllUsersService() {
     return await getDocs(collection(db, "users")); //access fields of returned document with .data()
@@ -52,7 +56,7 @@ export class FirebaseService {
     return this.db.collection('articles').doc(docId).update(data);
   }
 
-  //add data to user document specified by userId
+  //append data to user document specified by userId
   async updateUserDataByIdService(userId, data) {
     const userDoc = doc(db, 'users', userId);
     console.log('updating user:', userDoc.id, ' with:', data);
@@ -64,8 +68,12 @@ export class FirebaseService {
     return this.db.collection(collection).doc(docId).delete();
   }
 
+  async getCurrentUserData(){
+    let currentUser=JSON.parse(localStorage.getItem('user'));
+    return await getDocFromServer(doc(db,"users",currentUser['uid']));
+  }
 
-  getUserDataService() {
+  getUserDataService() {//collection of ALL users
     return this.db.collection("users").snapshotChanges();
   }
 

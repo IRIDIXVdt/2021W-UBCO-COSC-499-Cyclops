@@ -68,3 +68,34 @@ ion-select{
 ion-select-option{
     max-width: 100% !important;
 }
+ion-range::part(tick) {
+    height: 10px;
+    width: 1px;
+    top: 17px;
+    // border-radius: 50%;
+}
+ion-range::part(tick-active) {
+    height: 20px;
+    width: 1px;
+    top: 12px;
+    // border-radius: 50%;
+}
+.range{
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+}
+#tickmarks {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 25px;
+}
+ 
+#tickmarks p {
+     position: relative;
+     display: flex;
+     justify-content: center;
+     text-align: center;
+   
+}
