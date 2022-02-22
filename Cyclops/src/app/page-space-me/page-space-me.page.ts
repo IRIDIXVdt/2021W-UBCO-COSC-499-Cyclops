@@ -47,7 +47,7 @@ export class PageSpaceMePage implements OnInit {
     public firebaseService: FirebaseService,
     public authService: AuthService
   ) {
-
+    this.status = 0;
     this.docId = this.activatedrouter.snapshot.paramMap.get('docId');
     //console.log("docid------",this.activatedrouter.snapshot.paramMap.get('docId'));
     console.log(this.docId);
