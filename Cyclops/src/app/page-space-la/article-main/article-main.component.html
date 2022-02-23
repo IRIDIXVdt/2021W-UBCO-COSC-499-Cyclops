@@ -1,10 +1,4 @@
-<!-- <p>{{articleComponent | json}}</p> -->
-
-<div *ngIf="!contentCol">
-    <ion-progress-bar type="indeterminate"></ion-progress-bar>
-</div>
-
-<ion-grid *ngIf="contentCol">
+<ion-grid>
     <ion-row id="testList">
         <ion-col size-xs="12" size-sm="6" size-md="6" size-lg="4" *ngFor="let content of contentCol">
             <!-- vertical="top" horizontal="end" slot="fixed" -->
@@ -14,7 +8,6 @@
                 </ion-fab-button>
                 <ion-fab-list side="bottom">
                     <ion-fab-button routerLink="/tabs/TextEdit/{{content.id}}">
-
                         <ion-icon name="document-text-outline"></ion-icon>
                     </ion-fab-button>
                     <ion-fab-button routerLink="/tabs/wiki/{{content.id}}">

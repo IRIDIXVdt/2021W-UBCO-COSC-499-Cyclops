@@ -16,7 +16,8 @@ export class PageSpaceLaPage implements OnInit {
   userInput: string;
   userId: any;
   userData: any;
-  articleCol: fetchArticle[][] = [[], [], []];
+  articleCol: fetchArticle[][];
+  editMode: boolean = false;
   // userInput string is used for search bar input
   i: number = 0;
   status1: any;
@@ -47,14 +48,14 @@ export class PageSpaceLaPage implements OnInit {
           subtitle: e.payload.doc.data()['subtitle'],
           segment: e.payload.doc.data()['segment'],
           cardIntroduction: e.payload.doc.data()['cardIntroduction'],
-          image:e.payload.doc.data()['image']
+          image: e.payload.doc.data()['image']
         }
       })
       console.log("Search Field Loaded");
       console.log(this.searchField);
 
       searchbarComponent.style.display = "block";
-
+      this.articleCol = [[], [], []];
       for (this.i = 0; this.i < this.searchField.length; this.i++) {
         //load data into each column
         const currentArticle = this.searchField[this.i];
@@ -148,6 +149,10 @@ export class PageSpaceLaPage implements OnInit {
         searchResult.style.display = 'none';
       });
     }
+  }
+
+  editModeOnchange(state) {
+    this.editMode = state;
   }
 }
 
