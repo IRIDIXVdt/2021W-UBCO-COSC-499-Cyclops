@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy} from '@angular/core';
 import { PopoverController, IonContent } from '@ionic/angular';
 import { PopoverComponent } from '../popover/popover.component';
 import { ModalController } from '@ionic/angular';
@@ -108,18 +108,19 @@ export class PageSpaceMePage implements OnInit {
   }
 
   segmentChanged(ev: any) {
-    console.log('current segment is', this.status);
+    console.log('current segment status is', this.status);
     switch (this.status) {
-      case 'segment1':
+      case '0':
         this.currentSegment = 0;
         break;
-      case 'segment2':
+      case '1':
         this.currentSegment = 1;
         break;
-      case 'segment3':
+      case '2':
         this.currentSegment = 2;
         break;
     }
+    console.log('this.currentSegment: ',this.currentSegment);
     this.content.scrollToPoint(0, this.segmentDepth[this.currentSegment]);
     this.checkForScrollbar();//check for scrollbar everytime the segment changes
 
@@ -161,6 +162,15 @@ export class PageSpaceMePage implements OnInit {
   }
 
   ngOnInit() {
+
+  }
+  ngOnDestroy(){
+    console.log('page closing, saving article read information');
+    let position = 0;
+    if(this.hasScrollbar){
+      position = this.segmentDepth[this.currentSegment];
+    }
+    this.firebaseService.updateUserDataByIdService(this.userId, { latestRead: {id:this.docId, segment: this.currentSegment, depth: position}});
 
   }
 
@@ -208,8 +218,8 @@ export class PageSpaceMePage implements OnInit {
         this.firebaseService.updateUserDataByIdService(this.userId, { readArticles: this.userData });
       }
     }
-
   }
+
 
   openModal() {
     this.modalCtrol.create({
