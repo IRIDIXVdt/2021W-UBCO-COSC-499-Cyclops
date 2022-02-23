@@ -6,7 +6,8 @@
 
 <ion-content fullscreen>
     <div (click)="searchBarOnclick()">
-        <ion-searchbar [(ngModel)]="userInput" placeholder="Search Article" showCancelButton="focus" cancelButtonText="Cancel" animated='true'></ion-searchbar>
+        <ion-searchbar [(ngModel)]="userInput" placeholder="Search Article" showCancelButton="focus"
+            cancelButtonText="Cancel" animated='true'></ion-searchbar>
     </div>
 
 
@@ -56,15 +57,15 @@
 
         </div>
 
-        <div [ngSwitch]="status1">
+        <div [ngSwitch]="status1" >
             <div *ngSwitchCase="'Articles p1'">
-                <app-article-main [columNumber]="1"></app-article-main>
+                <app-article-main [contentCol]="articleCol[0]"></app-article-main>
             </div>
             <div *ngSwitchCase="'Articles p2'">
-                <app-article-main [columNumber]="2"></app-article-main>
+                <app-article-main [contentCol]="articleCol[1]"></app-article-main>
             </div>
             <div *ngSwitchCase="'Articles p3'">
-                <app-article-main [columNumber]="3"></app-article-main>
+                <app-article-main [contentCol]="articleCol[2]"></app-article-main>
             </div>
         </div>
     </div>

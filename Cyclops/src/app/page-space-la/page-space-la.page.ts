@@ -16,7 +16,7 @@ export class PageSpaceLaPage implements OnInit {
   userInput: string;
   userId: any;
   userData: any;
-  articleCol: fetchArticle[][];
+  articleCol: fetchArticle[][] = [[], [], []];
   // userInput string is used for search bar input
   i: number = 0;
   status1: any;
@@ -46,7 +46,8 @@ export class PageSpaceLaPage implements OnInit {
           title: e.payload.doc.data()['title'],
           subtitle: e.payload.doc.data()['subtitle'],
           segment: e.payload.doc.data()['segment'],
-          cardIntroduction: e.payload.doc.data()['cardIntroduction']
+          cardIntroduction: e.payload.doc.data()['cardIntroduction'],
+          image:e.payload.doc.data()['image']
         }
       })
       console.log("Search Field Loaded");
@@ -57,17 +58,16 @@ export class PageSpaceLaPage implements OnInit {
       for (this.i = 0; this.i < this.searchField.length; this.i++) {
         //load data into each column
         const currentArticle = this.searchField[this.i];
-        switch (currentArticle.columnName) {
-          // this.contentCol.push(currentArticle);
-          case '1': {
-            this.articleCol[0].push(currentArticle);
-          } case '2': {
-            this.articleCol[1].push(currentArticle);
-          } case '3': {
-            this.articleCol[2].push(currentArticle);
-          }
+        if (currentArticle.columnName == '1') {
+          this.articleCol[0].push(currentArticle);
+        } else if (currentArticle.columnName == '2') {
+          this.articleCol[1].push(currentArticle);
+        } else if (currentArticle.columnName == '3') {
+          this.articleCol[2].push(currentArticle);
         }
       }
+      this.i = 0;
+      console.log("independent data loaded!", this.articleCol);
     }, (err: any) => {
       console.log(err);
     })
@@ -158,6 +158,7 @@ type fetchArticle = {
   cardIntroduction: string;
   segment: segmentItem[];
   columnName: string;
+  image: string;
   //we still need the columnName for displaying, columnName less than 0 means it is deleted
 }
 
