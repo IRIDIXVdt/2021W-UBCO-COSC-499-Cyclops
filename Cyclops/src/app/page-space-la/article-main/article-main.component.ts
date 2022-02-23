@@ -7,7 +7,7 @@ import { segmentItem } from '../../sharedData/displayArticle';
 })
 export class ArticleMainComponent implements OnInit {
   @Input() contentCol: fetchArticle[];
-
+  @Input() editMode: boolean;
   constructor() { }
   ngOnInit() { }
 
