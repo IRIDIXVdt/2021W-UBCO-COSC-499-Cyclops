@@ -6,12 +6,12 @@ import { AuthService } from '../authentication/auth/auth.service';
 @Injectable({
   providedIn: 'root'
 })
-export class LoginGuard implements CanActivate {
+export class LoginPageGuard implements CanActivate {
 
-  // this guard check user logged in or not.  if user have not logged in, they can not go to some page
+  // this guard only for login page.  if user already login, they can not go to login page
   constructor(public authService: AuthService){}
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot):boolean{
-    return this.authService.isLogin() ;
+    return !this.authService.isLogin() ;
   }
   
 }

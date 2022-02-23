@@ -4,6 +4,8 @@ import { AuthGuard } from './guard/auth.guard';
 import { FeedbackDetailsGuard } from './guard/feedback-details.guard';
 import { LoginGuard } from './guard/login.guard';
 
+import {LoginPageGuard} from './guard/login-page.guard';
+
 
 
 const routes: Routes = [
@@ -44,7 +46,7 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    canActivate: [LoginGuard],
+    canActivate: [LoginPageGuard],
     loadChildren: () => import('./authentication/login/login.module').then(m => m.LoginPageModule)
   },
   {
@@ -69,7 +71,7 @@ const routes: Routes = [
   },
   {
     path: 'user-profile',
-    canActivate:[AuthGuard],
+    canActivate:[LoginGuard],
     loadChildren: () => import('./userProfile/user-profile/user-profile.module').then( m => m.UserProfilePageModule)
   },
   {
