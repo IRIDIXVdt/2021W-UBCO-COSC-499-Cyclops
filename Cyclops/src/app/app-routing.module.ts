@@ -89,7 +89,7 @@ const routes: Routes = [
   },
   {
     path: 'edit-survey',
-    canActivate: [AuthGuard],
+    canActivate: [LoginGuard],
     loadChildren: () => import('./userProfile/edit-survey/edit-survey.module').then( m => m.EditSurveyPageModule)
   },
   {
