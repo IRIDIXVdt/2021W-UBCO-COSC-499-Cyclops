@@ -7,7 +7,7 @@ import { displayArticles } from '../sharedData/displayArticles';
 import { ActivatedRoute } from '@angular/router';
 // import { Content } from '@angular/compiler/src/render3/r3_ast';
 import { FirebaseService } from '../FirebaseService/firebase.service';
-import { AlertController, NavController } from '@ionic/angular';
+import { AlertController, LoadingController, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-editing-tool-test-page',
@@ -16,6 +16,7 @@ import { AlertController, NavController } from '@ionic/angular';
 })
 export class EditingToolTestPagePage implements OnInit {
   @ViewChild('editor') editorComponent: CKEditorComponent;
+
   // @ViewChild('titleInput') 
   // @Input("content") protected content: Content;
 
@@ -45,7 +46,8 @@ export class EditingToolTestPagePage implements OnInit {
     private activatedrouter: ActivatedRoute,
     public firebaseService: FirebaseService,
     public alertController: AlertController,
-    public navCtrl: NavController
+    public navCtrl: NavController,
+    public loadingController: LoadingController
   ) {
     this.navControl = navCtrl;
     //we start reading the first element
@@ -62,10 +64,19 @@ export class EditingToolTestPagePage implements OnInit {
   private updateDataById(docId, data) {
     this.firebaseService.updateDataByIdService(docId, data).then((res: any) => {
       console.log(res);
+    }).catch((error) => {
+      this.alertMessage('Failed to save changes, Try again! ');
+      console.log("error", error);
     })
-    // alert("successful");
   }
-
+  async alertMessage(message) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      message: message,
+      buttons: ['Ok']
+    });
+    await alert.present();
+  }
 
   private loadEditorDataById() {
     this.firebaseService.getDataByIdService(this.articleId).subscribe(
@@ -252,15 +263,30 @@ export class EditingToolTestPagePage implements OnInit {
     if (role == "cancel") {
       console.log("cancel!");
     } else {
+      const loading = await this.loadingController.create({
+        message: 'Please wait...',
+      });
+      loading.present();
       // this.saveChangesLocal();
       //we need to show animation to let user know there are changes
-      this.updateDataById(this.articleId, this.contents);
-      this.reloadPage();
-      console.log("Changes saved to cloud!");
-      this.displayMessage("Upload Success");
-      //change saving state to close
-      this.needSaving = false;
-      console.log("need saving to false");
+      // this.updateDataById(this.articleId, this.contents);
+      this.firebaseService.updateDataByIdService(this.articleId, this.contents).then((res: any) => {
+        console.log(res);
+        this.reloadPage();
+
+        console.log("Changes saved to cloud!");
+
+        this.displayMessage("Upload Success");
+        loading.dismiss();
+        //change saving state to close
+        this.needSaving = false;
+        console.log("need saving to false");
+      }).catch((error) => {
+        loading.dismiss();
+        this.alertMessage('Failed to save changes, Try again! ');
+        console.log("error", error);
+      })
+
     }
   }
 
