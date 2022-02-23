@@ -1,6 +1,10 @@
 <ion-header [translucent]="true">
     <ion-toolbar>
-        <ion-title style="font-size: 150%;">Articles</ion-title>
+        <ion-title style="font-size: 150%;" *ngIf="!editMode">Articles</ion-title>
+        <ion-button slot="start" class="ion-padding-start" (click)="editModeOnchange(false)" *ngIf="editMode">
+            <ion-icon name="chevron-back-outline"></ion-icon>
+            <ion-label>&nbsp;&nbsp;Exit Edit</ion-label>
+        </ion-button>
         <ion-button slot="end" class="ion-padding-end" (click)="editModeOnchange(true)" *ngIf="!editMode">
             <ion-icon name="settings-outline"></ion-icon>
             <ion-label>&nbsp;&nbsp;Edit</ion-label>
