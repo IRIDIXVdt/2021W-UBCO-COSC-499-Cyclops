@@ -13,6 +13,7 @@ import { FirebaseService } from 'src/app/FirebaseService/firebase.service';
 export class ArticleMainComponent implements OnInit {
   @Input()
   columNumber: number;
+  @Input() step: fetchArticle[];
   contents: fetchArticle[];
   // contents: displayArticle[] = displayArticles;
   contentCol: fetchArticle[];

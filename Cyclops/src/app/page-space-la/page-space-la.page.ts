@@ -16,6 +16,7 @@ export class PageSpaceLaPage implements OnInit {
   userInput: string;
   userId: any;
   userData: any;
+  articleCol: fetchArticle[][];
   // userInput string is used for search bar input
   i: number = 0;
   status1: any;
@@ -30,8 +31,8 @@ export class PageSpaceLaPage implements OnInit {
     public firebaseService: FirebaseService,
     public authService: AuthService) {
     this.status1 = "Articles p1";
-    if(this.authService.isLogin()){
-      this.userId=JSON.parse(localStorage.getItem('user'))['uid'];
+    if (this.authService.isLogin()) {
+      this.userId = JSON.parse(localStorage.getItem('user'))['uid'];
     }
   }
 
@@ -52,6 +53,21 @@ export class PageSpaceLaPage implements OnInit {
       console.log(this.searchField);
 
       searchbarComponent.style.display = "block";
+
+      for (this.i = 0; this.i < this.searchField.length; this.i++) {
+        //load data into each column
+        const currentArticle = this.searchField[this.i];
+        switch (currentArticle.columnName) {
+          // this.contentCol.push(currentArticle);
+          case '1': {
+            this.articleCol[0].push(currentArticle);
+          } case '2': {
+            this.articleCol[1].push(currentArticle);
+          } case '3': {
+            this.articleCol[2].push(currentArticle);
+          }
+        }
+      }
     }, (err: any) => {
       console.log(err);
     })
@@ -76,12 +92,12 @@ export class PageSpaceLaPage implements OnInit {
     const subscription = this.firebaseService.getUserByIdService(this.userId).subscribe(
       e => {
         this.userData = e.payload.data()['readArticles'];
-        this.totalArticles=this.userData.length;
-        this.finishedArticles=0;
-        for(let i=0;i<this.userData.length;i++){
-         if(this.areAllTrue(this.userData[i]['segment'])){
-           ++this.finishedArticles;
-         }
+        this.totalArticles = this.userData.length;
+        this.finishedArticles = 0;
+        for (let i = 0; i < this.userData.length; i++) {
+          if (this.areAllTrue(this.userData[i]['segment'])) {
+            ++this.finishedArticles;
+          }
         }
         console.log('current user progess:', this.finishedArticles, '/', this.totalArticles, (this.finishedArticles / this.totalArticles));
         this.articleProgress = this.finishedArticles / this.totalArticles;
@@ -99,7 +115,7 @@ export class PageSpaceLaPage implements OnInit {
   }
 
   ngOnInit() {
-    if(this.authService.isLogin()){
+    if (this.authService.isLogin()) {
       this.readArticles();
     }
     const thisNotShow = document.querySelector('#requested') as HTMLElement;
@@ -144,3 +160,4 @@ type fetchArticle = {
   columnName: string;
   //we still need the columnName for displaying, columnName less than 0 means it is deleted
 }
+
