@@ -14,8 +14,11 @@ export class ArticleMainComponent implements OnInit {
   articleRemoveEvent(aId: string) {
     console.log("remove", aId)
   }
-  articleAddEvent(){
+  articleAddEvent() {
     console.log("add new artciel to col", this.contentCol);
+  }
+  articleEditEvent(aId: string) {
+    console.log("edit event", aId);
   }
 
 }

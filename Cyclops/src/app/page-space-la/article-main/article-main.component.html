@@ -12,7 +12,7 @@
         </ion-col>
         <ion-col size-xs="12" size-sm="6" size-md="6" size-lg="4" *ngFor="let content of contentCol">
             <!-- fab button  -->
-            <ion-fab horizontal="end" vertical="top" *ngIf="!editMode">
+            <!-- <ion-fab horizontal="end" vertical="top" *ngIf="!editMode">
                 <ion-fab-button color="light">
                     <ion-icon name="reorder-four-outline"></ion-icon>
                 </ion-fab-button>
@@ -24,11 +24,16 @@
                         <ion-icon name="construct-outline"></ion-icon>
                     </ion-fab-button>
                 </ion-fab-list>
-            </ion-fab>
-            <ion-fab horizontal="end" vertical="top" *ngIf="editMode">
-                <ion-fab-button color="danger" (click)="articleRemoveEvent(content.id)">
+            </ion-fab> -->
+            <ion-fab vertical="top" horizontal="end" *ngIf="editMode">
+                <ion-button (click)="articleEditEvent(content.id)">
+                    <ion-icon name="create-outline"></ion-icon>
+                    <ion-label>&nbsp;&nbsp;Edit Card</ion-label>
+                </ion-button>
+                <ion-button color="danger" (click)="articleRemoveEvent(content.id)">
                     <ion-icon name="trash-outline"></ion-icon>
-                </ion-fab-button>
+                    <ion-label>&nbsp;&nbsp;Delete Card</ion-label>
+                </ion-button>
             </ion-fab>
             <!-- article card -->
             <ng-container *ngIf="!editMode">
@@ -44,7 +49,7 @@
                 </ion-card>
             </ng-container>
             <ng-container *ngIf="editMode">
-                <ion-card color='light'>
+                <ion-card color='light' routerLink="/tabs/TextEdit/{{content.id}}">
                     <img src="{{content.image}}" />
                     <ion-card-header>
                         <ion-card-subtitle>{{content.subtitle}}</ion-card-subtitle>
