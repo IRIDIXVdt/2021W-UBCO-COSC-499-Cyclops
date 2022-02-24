@@ -20,6 +20,8 @@ export class ScoreModalComponent implements OnInit  {
   sec: any=[];
   level: any=[];
   range: any=[];
+  star: any=[];
+  starsol : any=[];
 
   @Input() rating: number ;
   @Output() ratingChange: EventEmitter<number> = new EventEmitter();;
