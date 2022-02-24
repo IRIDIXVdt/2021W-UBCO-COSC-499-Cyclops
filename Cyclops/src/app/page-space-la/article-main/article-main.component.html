@@ -1,5 +1,14 @@
 <ion-grid>
     <ion-row id="testList">
+        <ion-col size-xs="12" size-sm="6" size-md="6" size-lg="4" *ngIf="editMode">
+            <ion-fab horizontal="center" vertical="center">
+                <ion-fab-button color="primary">
+                    <ion-icon name="add-circle-outline" size="large"></ion-icon>
+                </ion-fab-button>
+            </ion-fab>
+            <ion-card color='light' disabled = "true">
+            </ion-card>
+        </ion-col>
         <ion-col size-xs="12" size-sm="6" size-md="6" size-lg="4" *ngFor="let content of contentCol">
             <ion-fab horizontal="end" vertical="top" *ngIf="!editMode">
                 <ion-fab-button color="light">
@@ -27,7 +36,7 @@
                     </ion-fab-button>
                 </ion-fab-list>
             </ion-fab>
-            
+
             <ion-card color='light' routerLink="/tabs/page-space-me/{{content.id}}">
                 <img src="{{content.image}}" />
                 <ion-card-header>
