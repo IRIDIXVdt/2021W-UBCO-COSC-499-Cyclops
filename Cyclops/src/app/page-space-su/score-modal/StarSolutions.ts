@@ -1,5 +1,5 @@
 import {StarSolutionTags} from "./StarSolutionTags"
-export const StarSoltuions : StarSolutionTags[] = [
+export const StarSolutions : StarSolutionTags[] = [
 
     {
         stars : [1,2,3,4,5],

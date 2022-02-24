@@ -5,6 +5,7 @@ import { SolutionPageForm } from '../form/solution.page.form';
 import { COLORS } from './enum';
 import { SectionSolution } from './SectionSolution';
 import { SectionSolutionTags } from "./SectionSolutionTags"
+import { StarSolutions } from './StarSolutions';
 
 @Component({
   selector: 'app-score-modal',
@@ -20,8 +21,8 @@ export class ScoreModalComponent implements OnInit  {
   sec: any=[];
   level: any=[];
   range: any=[];
-  star: any=[];
-  starsol : any=[];
+  stars: any=[];
+  starsols : any=[];
 
   @Input() rating: number ;
   @Output() ratingChange: EventEmitter<number> = new EventEmitter();;
@@ -67,6 +68,11 @@ export class ScoreModalComponent implements OnInit  {
     console.log(SectionSolution[0].solution);
     this.sections = SectionSolution[0].sections;
     this.solutions = SectionSolution[0].solution;
+
+    console.log(StarSolutions[0].stars);
+    console.log(StarSolutions[0].starsols);
+    this.stars = StarSolutions[0].stars;
+    this.starsols = StarSolutions[0].starsols;
 
     this.myForm = this.formBuilder.group({
       // task: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
