@@ -13,7 +13,8 @@ import { AuthService } from '../authentication/auth/auth.service';
 export class PageSpaceErPage implements OnInit {
   isDesktop: boolean;
   //contents: displayArticle[] = displayArticles;
-  articles: any;
+  articles: content[];
+  
 
   survey: any;
 
@@ -37,10 +38,10 @@ export class PageSpaceErPage implements OnInit {
     this.loadData();
     this.loadSurveyData();
 
-    if(authService.userData){
-      console.log("Has User",authService.isLogin())
-    }else{
-      console.log("No User",authService.isLogin())
+    if (authService.userData) {
+      console.log("Has User", authService.isLogin())
+    } else {
+      console.log("No User", authService.isLogin())
     }
   }
 
@@ -91,7 +92,17 @@ export class PageSpaceErPage implements OnInit {
   }
 
 
-  
-
 
 }
+
+type content={
+  docId: string,
+  image: string,
+  title: string,
+  subtitle: string,
+  cardIntroduction: string
+}
+
+
+
+

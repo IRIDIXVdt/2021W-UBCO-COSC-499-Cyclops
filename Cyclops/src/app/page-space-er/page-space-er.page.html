@@ -109,9 +109,9 @@
                         <ion-col *ngFor="let data of survey">
                             <ion-card id="card1" color='light'>
                                 <ion-card-header>
-                                    <ion-router-link href="{{data.surveyLink}}" color="dark">
+                                    <a href="{{data.surveyLink}}" color="dark">
                                         <ion-card-title>{{data.surveyTitle}}</ion-card-title>
-                                    </ion-router-link>
+                                    </a>
                                 </ion-card-header>
                             </ion-card>
                         </ion-col>
@@ -125,9 +125,9 @@
             <ion-slide class="surveyCard-mobile" *ngFor="let data of survey">
                 <ion-card color='light'>
                     <ion-card-header>
-                        <ion-router-link href="{{data.surveyLink}}" color="dark">
+                        <a href="{{data.surveyLink}}" color="dark">
                             <ion-card-title>{{data.surveyTitle}}</ion-card-title>
-                        </ion-router-link>
+                        </a>
                     </ion-card-header>
                 </ion-card>
             </ion-slide>
