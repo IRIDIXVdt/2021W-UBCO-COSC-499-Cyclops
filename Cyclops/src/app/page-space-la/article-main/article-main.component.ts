@@ -8,14 +8,26 @@ import { segmentItem } from '../../sharedData/displayArticle';
 export class ArticleMainComponent implements OnInit {
   @Input() contentCol: fetchArticle[];
   @Input() editMode: boolean;
+  @Input() col: string;
   constructor() { }
   ngOnInit() { }
 
-  articleRemoveEvent(aId: string) {
-    console.log("remove", aId)
+  articleRemoveEvent(aIndex: number) {
+    console.log("remove", aIndex);
+    this.contentCol.splice(aIndex,1);
   }
   articleAddEvent() {
     console.log("add new artciel to col", this.contentCol);
+    const newArticle:fetchArticle = {
+      id: '',
+      title: 'new Title',
+      subtitle: '',
+      image: '../assets/pic1.jpg',
+      cardIntroduction: 'new Introduction',
+      columnName: this.col,
+      segment: []
+    }
+    this.contentCol.push(newArticle);
   }
   articleEditEvent(aId: string) {
     console.log("edit event", aId);
@@ -28,6 +40,6 @@ type fetchArticle = {
   subtitle: string;
   image: string;
   cardIntroduction: string;
-  columnName: number;
+  columnName: string;
   segment: segmentItem[];
 }
