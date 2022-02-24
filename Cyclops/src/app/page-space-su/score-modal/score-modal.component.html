@@ -125,6 +125,25 @@
       <p id="center">
         <ion-button size="small" shape="round"  color="tertiary" class="ion-margin-top" (click)="onSolution()">Submit Solution</ion-button>
       </p>
+
+
+      <ion-list>
+        <ion-item>
+          <ion-label> <h2 id="leveltag">Article Section</h2></ion-label>
+          <ion-select interface="popover" okText="Okay" cancelText="Dismiss" formControlName="Select_Section" (ionChange)="selectedSection($event)" (ionChange)="getSolutionsForSelectedStars($event.target.value)" name="Section" placeholder="Sections">
+          <ion-select-option *ngFor="let st of stars">{{st}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+
+      <ion-list>
+        <ion-item *ngIf="starsols && starsols.length > 0">
+          <ion-label> <h2 id="leveltag">Article Solution</h2></ion-label>
+          <ion-select  interface="popover" okText="Okay" cancelText="Dismiss" formControlName="Select_Solution" (ionChange)="selectedSolution($event)" name="Solution" placeholder="Solutions">
+          <ion-select-option *ngFor="let ss of starsols">{{ss}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
   
   
     
