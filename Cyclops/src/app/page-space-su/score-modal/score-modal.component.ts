@@ -39,6 +39,7 @@ export class ScoreModalComponent implements OnInit  {
 
   usereco: any = {};
   public buttonClicked: boolean=false;
+  public starbuttonClicked: boolean=false;
   public sectionClicked: boolean=false;
   public starClicked: boolean=false;
 
@@ -193,11 +194,12 @@ export class ScoreModalComponent implements OnInit  {
     console.log(this.usereco.solution)
   }
   selectedLevel($event) {
+    this.starbuttonClicked=null;
     this.usereco.level = ($event.target.value); // Value to database
     console.log(this.usereco.level)
   }
   getSolutionsForSelectedStars(val:string){
-    // this.buttonClicked = !this.buttonClicked;
+    this.starbuttonClicked = !this.starbuttonClicked;
     this.starsols = StarSolutions[0].starsols.find(s=> s.star.trim() == val.trim()).starsol;
   }
  
