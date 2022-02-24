@@ -11,29 +11,40 @@
     <ion-card color='light' id="card1" class="card-web">
         <ion-card-header>
             <ion-card-subtitle style="text-align:center; font-size:150%;">Overall Score</ion-card-subtitle>
-            <ion-card-title style="text-align:center; font-size:400%" fontsize>{{profile.level}}</ion-card-title>
+            <ion-card-title fontsize>
+                <div class="odisplay">
+                    <div class="odisplay1"><h4 style="text-align:center; font-size:300%" fontsize>{{profile.updatedscore}}</h4></div>
+                    <div class="odisplay2"><ion-icon  name="star"></ion-icon></div>
+                </div>
+            </ion-card-title>
         </ion-card-header>
 
-        <ion-card-content>
+        <!-- <ion-card-content>
             <ion-progress-bar color="primary" value="0.8"></ion-progress-bar>
-        </ion-card-content>
+        </ion-card-content> -->
     </ion-card>
 
     <div id="button-web">
         <section id="surveycenter">
-            <ion-button expand="block" (click)="openModal()">Submit Solution</ion-button>
+            <ion-button expand="block" (click)="openModal()">Submit New Solution</ion-button>
         </section>
     </div>
 
 
     <ion-grid>
+        <div class="isection">
+            <h1>{{profile.section}}</h1>
+        </div>
         <ion-row>
             <ion-col size-xs="12" size-sm="6" size-md="4" size-lg="3">
                 <ion-card color='light' id="card1">
                     <ion-card-header>
                         <ion-card-subtitle>
                             <span class="text">
-        <h4>{{profile.section}}</h4>
+        <div class="sdisplay">
+            <div class="sdisplay1"><h4 style="text-align:center; font-size:250%" fontsize>{{profile.rating}}</h4></div>
+            <div class="sdisplay2"><ion-icon  name="star"></ion-icon></div>
+        </div>
       </span>
                             <p id="right">
                                 <ion-button class="round" size="small" shape="round" color="medium" (click)="notifications()">
@@ -42,12 +53,12 @@
                             </p>
                         </ion-card-subtitle>
 
-                        <ion-card-title style="text-align:center; font-size:300%" fontsize>{{profile.level}}</ion-card-title>
+                        <ion-card-title style="text-align:center; font-size:150%" fontsize>{{profile.solution}}</ion-card-title>
                     </ion-card-header>
 
-                    <ion-card-content>
+                    <!-- <ion-card-content>
                         <ion-progress-bar color="primary" value="0.4"></ion-progress-bar>
-                    </ion-card-content>
+                    </ion-card-content> -->
                 </ion-card>
             </ion-col>
             <ion-col size-xs="12" size-sm="6" size-md="4" size-lg="3">
@@ -56,7 +67,10 @@
 
                         <ion-card-subtitle>
                             <span class="text">
-        <h4>{{profile.solution}}</h4>
+        <div class="sdisplay">
+            <div class="sdisplay1"><h4 style="text-align:center; font-size:250%" fontsize>{{profile.rating}}</h4></div>
+            <div class="sdisplay2"><ion-icon  name="star"></ion-icon></div>
+        </div>
       </span>
                             <p id="right">
                                 <ion-button slot="end" class="round" size="small" shape="round" color="medium" (click)="notifications()">
@@ -65,12 +79,12 @@
                             </p>
                         </ion-card-subtitle>
 
-                        <ion-card-title style="text-align:center; font-size:300%" fontsize>{{profile.level}}</ion-card-title>
+                        <ion-card-title style="text-align:center; font-size:150%" fontsize>{{profile.solution}}</ion-card-title>
                     </ion-card-header>
 
-                    <ion-card-content>
+                    <!-- <ion-card-content>
                         <ion-progress-bar color="primary" value="0.7"></ion-progress-bar>
-                    </ion-card-content>
+                    </ion-card-content> -->
                 </ion-card>
             </ion-col>
         </ion-row>

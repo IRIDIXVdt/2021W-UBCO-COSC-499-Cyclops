@@ -40,8 +40,11 @@
 .stars{
     text-align: center;
     padding-top: 20px;
-    padding-bottom: 20px;
+    padding-bottom: 40px;
 
+}
+.rater{
+    padding-top: 10px;
 }
 .default{
     --ion-background-color:red;;
@@ -99,3 +102,6 @@ ion-range::part(tick-active) {
      text-align: center;
    
 }
+.popover-content{
+    width: 1000%
+  }

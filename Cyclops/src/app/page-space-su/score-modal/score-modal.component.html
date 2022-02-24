@@ -1,105 +1,3 @@
-<!-- <ion-header>
-    <ion-toolbar>
-      <ion-title> ECO Tracker Input</ion-title>
-      <ion-buttons slot="end">
-        <ion-button (click)="dismissModal()">Close</ion-button>
-  
-      </ion-buttons>
-    </ion-toolbar>
-</ion-header>
-<ion-content class="ion-padding">
-
-  <h1 id ="logo">
-    <img src="../assets/icon/cyclops.png"/>
-
-  </h1>
-
-  <form [formGroup]="myForm">
-    
-
-    <h3 id="slab">Solution 1</h3>
-
-    <ion-item>
-      <ion-label position="stacked">Task 1 Completed</ion-label>
-      <ion-input formControlName="task"  type="text" [(ngModel)]="usereco.solution"></ion-input>
-    </ion-item>
-    <p id="err">
-      <span class="error" *ngIf="submitted && errorCtr.task.errors?.required">
-        Enter Task.
-       </span>
-       <span class="error" *ngIf="submitted && errorCtr.task.errors?.pattern">
-        Task input must be text only.
-       </span>
-    </p>
-    <ion-item>
-      <ion-label position="stacked">Solution 1 Score</ion-label>
-      <ion-input formControlName="score"  type="tel" [(ngModel)]="usereco.score" ></ion-input>
-    </ion-item>
-    <p id="err"s>
-      <span class="error" *ngIf="submitted && errorCtr.score.errors?.required">
-        Score is Required.
-      </span>
-      <span class="error" *ngIf="submitted && errorCtr.score.errors?.pattern">
-        Score must be a number.
-      </span>
-      <span class="error" *ngIf="submitted && errorCtr.score.errors?.max">
-        Score must be a number between 1-100.
-      </span>
-      <span class="error" *ngIf="submitted && errorCtr.score.errors?.min">
-        Score must be a number between 1-100.
-      </span>
-    </p>
-
-    <h1 id ="logo">
-      <img src="../assets/icon/cyclops.png"/>
-  
-    </h1>
-    
-
-    <h3 id="slab">Solution 2</h3>
-
-    <ion-item>
-      <ion-label position="stacked">Task 2 Completed</ion-label>
-      <ion-input formControlName="task1"  type="text" [(ngModel)]="usereco.solution1"></ion-input>
-    </ion-item>
-    <p id="err">
-      <span class="error" *ngIf="submitted && errorCtr.task1.errors?.required">
-        Enter Task.
-       </span>
-       <span class="error" *ngIf="submitted && errorCtr.task1.errors?.pattern">
-        Task input must be text only.
-       </span>
-    </p>
-    <ion-item>
-      <ion-label position="stacked">Solution 2 Score</ion-label>
-      <ion-input formControlName="score1"  type="tel" [(ngModel)]="usereco.score1" ></ion-input>
-    </ion-item>
-    <p id="err"s>
-      <span class="error" *ngIf="submitted && errorCtr.score1.errors?.required">
-        Score is Required.
-      </span>
-      <span class="error" *ngIf="submitted && errorCtr.score1.errors?.pattern">
-        Score must be a number.
-      </span>
-      <span class="error" *ngIf="submitted && errorCtr.score1.errors?.max">
-        Score must be a number between 1-100.
-      </span>
-      <span class="error" *ngIf="submitted && errorCtr.score1.errors?.min">
-        Score must be a number between 1-100.
-      </span>
-    </p>
-    <p id="center">
-      <ion-button size="small" shape="round"  color="tertiary" class="ion-margin-top" (click)="onSolution()">Submit</ion-button>
-    </p>
-
-   
-
-  </form>
-
-
-
-
-</ion-content> -->
 
 <ion-header>
   <ion-toolbar>
@@ -134,7 +32,7 @@
     <ion-list>
       <ion-item>
         <ion-label> <h2 id="leveltag">Article Section</h2></ion-label>
-        <ion-select okText="Okay" cancelText="Dismiss" formControlName="Select_Section" (ionChange)="selectedSection($event)" (ionChange)="getSolutionsForSelectedSections($event.target.value)" name="Section" placeholder="Sections">
+        <ion-select interface="popover" okText="Okay" cancelText="Dismiss" formControlName="Select_Section" (ionChange)="selectedSection($event)" (ionChange)="getSolutionsForSelectedSections($event.target.value)" name="Section" placeholder="Sections">
         <ion-select-option *ngFor="let se of sections">{{se}}</ion-select-option>
         </ion-select>
       </ion-item>
@@ -147,11 +45,11 @@
     <!-- <button ion-button full round (click)="onButtonClick()">Click</button> -->
     <!-- *ngIf="buttonClicked" -->
   
-    <div>   
+    <div *ngIf="buttonClicked">   
       <ion-list>
         <ion-item *ngIf="solution && solution.length > 0">
           <ion-label> <h2 id="leveltag">Article Solution</h2></ion-label>
-          <ion-select  okText="Okay" cancelText="Dismiss" formControlName="Select_Solution" (ionChange)="selectedSolution($event)" name="Solution" placeholder="Solutions">
+          <ion-select  interface="popover" okText="Okay" cancelText="Dismiss" formControlName="Select_Solution" (ionChange)="selectedSolution($event)" name="Solution" placeholder="Solutions">
           <ion-select-option *ngFor="let s of solutions">{{s}}</ion-select-option>
           </ion-select>
         </ion-item>
@@ -161,8 +59,9 @@
           Please Select a Solution
          </span>
       </p>
+    </div>
       
-      <div class="level">
+      <!-- <div class="level">
   
       <div class="menu">
         <ion-list>
@@ -177,34 +76,36 @@
             </ion-select>
           </ion-item>
         </ion-list>
-        <!-- <p id="err">
+        <p id="err">
           <span class="error" *ngIf="submitted && errorCtr.Select_Level.errors?.required">
             Please Select a Star Level
            </span>
-        </p> -->
-      </div>
-  
-      </div>
-  
-      <!-- <div class="stars">
-  
-        <p>Enter Rating Below:</p>
-      
-        <ion-icon name = "leaf"style="zoom:2.0;" *ngFor="let num of [1,2,3,4,5]"
-          (click)="rate(num)" [ngStyle]="{'color':getColor(num)}">
-        </ion-icon>
-       
-        <p id="err">
-          <span class="error" *ngIf="submitted && errorCtr.Select_Rating.errors?.required">
-            Please Select a Rating
-           </span>
         </p>
+      </div>
   
       </div> -->
   
+      <div class="stars">
+  
+        <h5>Enter Weight of Solution Below:</h5>
+        <div class="rater">
+          <ion-icon name = "star"style="zoom:2.0;" *ngFor="let num of [1,2,3,4,5]"
+          (click)="rate(num)" [ngStyle]="{'color':getColor(num)}">
+          </ion-icon>
+        </div>
+      
+       
+        <!-- <p id="err">
+          <span class="error" *ngIf="submitted && errorCtr.Select_Rating.errors?.required">
+            Please Select a Rating
+           </span>
+        </p> -->
+  
+      </div>
+  
       <div class="range">
-        <h5>Slide to Select a Solution Completion Score:</h5>
-          <ion-range deounce='500' min="-0.5" max="1" step="0.5" value="0"  (ionChange)="rangeChange($event)"  snaps="true" grid="true" snaps color="success" list='tickmarks'>
+        <h5>Slide to Select Completion for Solution:</h5>
+          <ion-range deounce='500' min="-1" max="2" step="1" value="0"  (ionChange)="rangeChange($event)"  snaps="true" grid="true" snaps color="success" list='tickmarks'>
             <ion-icon slot="start" color="success" name="leaf"></ion-icon>
             <ion-icon slot="end" color="success" name="leaf"></ion-icon>
           </ion-range>
@@ -226,7 +127,7 @@
       </p>
   
   
-    </div>
+    
 
 
 
