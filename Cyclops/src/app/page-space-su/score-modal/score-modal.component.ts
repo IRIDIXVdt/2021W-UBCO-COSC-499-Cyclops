@@ -115,8 +115,8 @@ export class ScoreModalComponent implements OnInit  {
   rate(index: number) {
     // function used to change the value of our rating 
     // triggered when user, clicks a star to change the rating
-    this.usereco.rating = this.rating = index; //  index is Value to database
-    console.log(index);
+    this.usereco.level = this.rating = index; //  index is Value to database
+    console.log(this.usereco.level);
     this.ratingChange.emit(this.rating);
  }
 
@@ -158,12 +158,12 @@ export class ScoreModalComponent implements OnInit  {
     console.log(this.usereco.range);
 
     if(this.usereco.range == 2){
-      this.usereco.updatedscore = (this.usereco.rating*this.usereco.range)/2;
+      this.usereco.updatedscore = (this.usereco.level*this.usereco.range)/2;
     }else if(this.usereco.range == 1){
-      this.usereco.updatedscore = (this.usereco.rating*this.usereco.range)/2;
+      this.usereco.updatedscore = (this.usereco.level*this.usereco.range)/2;
       
     }else{
-      this.usereco.updatedscore = this.usereco.rating*this.usereco.range;
+      this.usereco.updatedscore = this.usereco.level*this.usereco.range;
     }
     console.log(this.usereco.updatedscore); //Value to database
 
