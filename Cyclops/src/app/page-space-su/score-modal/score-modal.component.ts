@@ -62,12 +62,14 @@ export class ScoreModalComponent implements OnInit  {
   public onSectionClick(){
 
       this.sectionClicked = !this.sectionClicked;
+      this.starClicked=null;
     
     
   }
   public onStarClick(){
 
     this.starClicked = !this.starClicked;
+    this.sectionClicked=null;
   
   
 }
@@ -90,7 +92,7 @@ export class ScoreModalComponent implements OnInit  {
       // score1: ['', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.max(100), Validators.min(0)]],
       Select_Section : ['', Validators.required],
       Select_Solution : ['', Validators.required],
-      // Select_Level : ['', Validators.required],
+      Select_Level : ['', Validators.required],
       // Select_Range : ['', Validators.required]
     });
   }
