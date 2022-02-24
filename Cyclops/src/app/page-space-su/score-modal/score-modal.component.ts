@@ -39,6 +39,8 @@ export class ScoreModalComponent implements OnInit  {
 
   usereco: any = {};
   public buttonClicked: boolean=false;
+  public sectionClicked: boolean=false;
+  public starClicked: boolean=false;
 
 
   //@Input() solution: string;
@@ -56,12 +58,18 @@ export class ScoreModalComponent implements OnInit  {
 
     
   }
-  public onButtonClick(){
+  public onSectionClick(){
 
-      this.buttonClicked = !this.buttonClicked;
+      this.sectionClicked = !this.sectionClicked;
     
     
   }
+  public onStarClick(){
+
+    this.starClicked = !this.starClicked;
+  
+  
+}
 
   ngOnInit() {
     console.log(SectionSolution[0].sections);
