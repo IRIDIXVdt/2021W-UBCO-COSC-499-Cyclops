@@ -11,6 +11,13 @@ export class ArticleMainComponent implements OnInit {
   constructor() { }
   ngOnInit() { }
 
+  articleRemoveEvent(aId: string) {
+    console.log("remove", aId)
+  }
+  articleAddEvent(){
+    console.log("add new artciel to col", this.contentCol);
+  }
+
 }
 type fetchArticle = {
   id: string;

@@ -1,15 +1,17 @@
 <ion-grid>
     <ion-row id="testList">
+        <!-- add button -->
         <ion-col size-xs="12" size-sm="6" size-md="6" size-lg="4" *ngIf="editMode">
             <ion-fab horizontal="center" vertical="center">
-                <ion-fab-button color="primary">
+                <ion-fab-button color="primary" (click)="articleAddEvent()">
                     <ion-icon name="add-circle-outline" size="large"></ion-icon>
                 </ion-fab-button>
             </ion-fab>
-            <ion-card color='light' disabled = "true">
+            <ion-card color='light' disabled="true">
             </ion-card>
         </ion-col>
         <ion-col size-xs="12" size-sm="6" size-md="6" size-lg="4" *ngFor="let content of contentCol">
+            <!-- fab button  -->
             <ion-fab horizontal="end" vertical="top" *ngIf="!editMode">
                 <ion-fab-button color="light">
                     <ion-icon name="reorder-four-outline"></ion-icon>
@@ -24,29 +26,35 @@
                 </ion-fab-list>
             </ion-fab>
             <ion-fab horizontal="end" vertical="top" *ngIf="editMode">
-                <ion-fab-button color="primary">
-                    <ion-icon name="reorder-four-outline"></ion-icon>
+                <ion-fab-button color="danger" (click)="articleRemoveEvent(content.id)">
+                    <ion-icon name="trash-outline"></ion-icon>
                 </ion-fab-button>
-                <ion-fab-list side="bottom">
-                    <ion-fab-button>
-                        <ion-icon name="document-text-outline"></ion-icon>
-                    </ion-fab-button>
-                    <ion-fab-button>
-                        <ion-icon name="construct-outline"></ion-icon>
-                    </ion-fab-button>
-                </ion-fab-list>
             </ion-fab>
-
-            <ion-card color='light' routerLink="/tabs/page-space-me/{{content.id}}">
-                <img src="{{content.image}}" />
-                <ion-card-header>
-                    <ion-card-subtitle>{{content.subtitle}}</ion-card-subtitle>
-                    <ion-card-title>{{content.title}}</ion-card-title>
-                </ion-card-header>
-                <ion-card-content>
-                    {{content.cardIntroduction}}
-                </ion-card-content>
-            </ion-card>
+            <!-- article card -->
+            <ng-container *ngIf="!editMode">
+                <ion-card color='light' routerLink="/tabs/page-space-me/{{content.id}}">
+                    <img src="{{content.image}}" />
+                    <ion-card-header>
+                        <ion-card-subtitle>{{content.subtitle}}</ion-card-subtitle>
+                        <ion-card-title>{{content.title}}</ion-card-title>
+                    </ion-card-header>
+                    <ion-card-content>
+                        {{content.cardIntroduction}}
+                    </ion-card-content>
+                </ion-card>
+            </ng-container>
+            <ng-container *ngIf="editMode">
+                <ion-card color='light'>
+                    <img src="{{content.image}}" />
+                    <ion-card-header>
+                        <ion-card-subtitle>{{content.subtitle}}</ion-card-subtitle>
+                        <ion-card-title>{{content.title}}</ion-card-title>
+                    </ion-card-header>
+                    <ion-card-content>
+                        {{content.cardIntroduction}}
+                    </ion-card-content>
+                </ion-card>
+            </ng-container>
 
 
         </ion-col>
