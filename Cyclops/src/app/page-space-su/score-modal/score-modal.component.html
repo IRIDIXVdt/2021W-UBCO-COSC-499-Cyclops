@@ -57,12 +57,17 @@
         <ion-list>
           <ion-item *ngIf="starsols && starsols.length > 0">
             <ion-label> <h2 id="leveltag">Article Solution</h2></ion-label>
-            <ion-select  interface="popover" okText="Okay" cancelText="Dismiss" formControlName="Select_Solution" (ionChange)="selectedSolution($event)" name="Solution" placeholder="Solutions">
+            <ion-select  interface="popover" okText="Okay" cancelText="Dismiss" formControlName="Select_LevelSolution" (ionChange)="selectedSolution($event)" name="Solution" placeholder="Solutions">
             <ion-select-option *ngFor="let ss of starsols">{{ss}}</ion-select-option>
             </ion-select>
           </ion-item>
         </ion-list>
       </div>
+      <p id="err">
+        <span class="error" *ngIf="submitted && errorCtr.Select_LevelSolution.errors?.required">
+          Please Select a Solution Level
+         </span>
+      </p>
 
 
       <div class="range">
@@ -82,9 +87,12 @@
       <p id="center">
         <ion-button size="small" shape="round"  color="tertiary" class="ion-margin-top" (click)="onSolution()">Submit Solution</ion-button>
       </p>
-
-
     </div>
+  </form>
+
+  <form [formGroup]="myFormSection" >
+
+  
 
     <div class="sectiongroup" *ngIf="sectionClicked">
 
@@ -99,9 +107,9 @@
         </ion-item>
       </ion-list>
       <p id="err">
-        <span class="error" *ngIf="submitted && errorCtr.Select_Section.errors?.required">
+        <span class="error" *ngIf="submitted && errorCtr1.Select_Section.errors?.required">
           Please Select a Section
-         </span>
+        </span>
       </p>
       <!-- <button ion-button full round (click)="onButtonClick()">Click</button> -->
       <!-- *ngIf="buttonClicked" -->
@@ -116,9 +124,9 @@
           </ion-item>
         </ion-list>
         <p id="err">
-          <span class="error" *ngIf="submitted && errorCtr.Select_Solution.errors?.required">
+          <span class="error" *ngIf="submitted && errorCtr1.Select_Solution.errors?.required">
             Please Select a Solution
-           </span>
+          </span>
         </p>
       </div>
         
@@ -140,7 +148,7 @@
           <p id="err">
             <span class="error" *ngIf="submitted && errorCtr.Select_Level.errors?.required">
               Please Select a Star Level
-             </span>
+            </span>
           </p>
         </div>
     
@@ -156,11 +164,11 @@
           </div>
           
         
-         
+        
           <!-- <p id="err">
             <span class="error" *ngIf="submitted && errorCtr.Select_Rating.errors?.required">
               Please Select a Rating
-             </span>
+            </span>
           </p> -->
     
         </div>
@@ -181,15 +189,24 @@
         <!-- <p id="err">
           <span class="error" *ngIf="submitted && errorCtr.Select_Range.errors?.required">
             Please Select a Value from Range Input
-           </span>
+          </span>
         </p> -->
 
         <p id="center">
-          <ion-button size="small" shape="round"  color="tertiary" class="ion-margin-top" (click)="onSolution()">Submit Solution</ion-button>
+          <ion-button size="small" shape="round"  color="tertiary" class="ion-margin-top" (click)="onSectionSolution()">Submit Solution</ion-button>
         </p>
 
 
     </div>
+
+
+
+  </form>
+
+
+
+
+    
 
     
   
@@ -204,7 +221,6 @@
 
 
 
-  </form>
   
 
 

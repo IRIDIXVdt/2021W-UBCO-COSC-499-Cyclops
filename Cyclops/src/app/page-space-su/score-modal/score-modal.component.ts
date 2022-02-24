@@ -28,6 +28,7 @@ export class ScoreModalComponent implements OnInit  {
   @Output() ratingChange: EventEmitter<number> = new EventEmitter();;
 
   myForm: FormGroup;
+  myFormSection: FormGroup;
   submitted = false;
   public colors = COLORS;
   public grey = COLORS.GREY;
@@ -86,13 +87,15 @@ export class ScoreModalComponent implements OnInit  {
     this.starsols = StarSolutions[0].starsols;
 
     this.myForm = this.formBuilder.group({
-      // task: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
-      // score: ['', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.max(100), Validators.min(0)]],
-      // task1: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
-      // score1: ['', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.max(100), Validators.min(0)]],
+      // Select_Section : ['', Validators.required],
+      Select_Level : ['', Validators.required],
+      Select_LevelSolution : ['', Validators.required],
+      // Select_Range : ['', Validators.required]
+    });
+    this.myFormSection = this.formBuilder.group({
       Select_Section : ['', Validators.required],
       Select_Solution : ['', Validators.required],
-      Select_Level : ['', Validators.required],
+      // Select_Level : ['', Validators.required],
       // Select_Range : ['', Validators.required]
     });
   }
@@ -103,6 +106,9 @@ export class ScoreModalComponent implements OnInit  {
   }
   get errorCtr() {
     return this.myForm.controls;
+  }
+  get errorCtr1() {
+    return this.myFormSection.controls;
   }
 
   
@@ -115,6 +121,18 @@ export class ScoreModalComponent implements OnInit  {
 
     this.submitted = true;
     if (!this.myForm.valid) {
+      console.log('All fields are required.')
+      return false;
+    } else {
+      this.modalCtrl.dismiss(this.usereco) //Sends all modal data to eco tracker tab
+      console.log(this.usereco)
+    
+    }
+  }
+  onSectionSolution(){
+
+    this.submitted = true;
+    if (!this.myFormSection.valid) {
       console.log('All fields are required.')
       return false;
     } else {
