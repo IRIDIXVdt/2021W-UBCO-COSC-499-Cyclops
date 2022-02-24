@@ -129,12 +129,12 @@ export class ScoreModalComponent implements OnInit  {
    switch (this.rating){
      case 1:
      case 2:
-       return this.red;
+       return this.yellow;
     case 3:
       return this.yellow;
     case 4:
     case 5:
-      return this.green;
+      return this.yellow;
     default:
       return this.grey;  
    }
