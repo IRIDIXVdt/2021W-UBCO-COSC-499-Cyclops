@@ -1,3 +1,9 @@
-<p>
-  article-edit works!
-</p>
+<ion-toolbar>
+  <ion-title>Article Feedback</ion-title>
+  <ion-buttons slot="primary" (click)="dismissModal()">Close</ion-buttons>
+</ion-toolbar>
+<ion-content class="ion-padding">
+  <p>{{content.title}}</p>
+  <p>{{content.subtitle}}</p>
+  <p>{{content.cardIntroduction}}</p>
+</ion-content>

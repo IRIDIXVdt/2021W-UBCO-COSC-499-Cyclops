@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { segmentItem } from 'src/app/sharedData/displayArticle';
 
 @Component({
   selector: 'app-article-edit',
@@ -6,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./article-edit.component.scss'],
 })
 export class ArticleEditComponent implements OnInit {
+  @Input() content: fetchArticle;
 
-  constructor() { }
+  constructor(
+    public modalController: ModalController,
+  ) { }
 
-  ngOnInit() {}
-
+  ngOnInit() { }
+  dismissModal() {
+    this.modalController.dismiss();
+  }
+}
+type fetchArticle = {
+  id: string;
+  title: string;
+  subtitle: string;
+  image: string;
+  cardIntroduction: string;
+  columnName: string;
+  segment: segmentItem[];
 }
