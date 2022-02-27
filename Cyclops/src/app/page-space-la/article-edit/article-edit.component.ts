@@ -17,12 +17,10 @@ export class ArticleEditComponent implements OnInit {
     private navParams: NavParams,
   ) {
     this.editC = this.navParams.data.content;
-    console.log(this.editC);
-
   }
 
   ngOnInit() {
-    console.log(this.content);
+    // console.log(this.content);//the loading of content take place at ngOnInit()
     // this.editTitle.title = this.content.title
   }
   dismissModal() {

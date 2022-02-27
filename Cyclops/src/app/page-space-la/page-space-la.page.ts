@@ -3,7 +3,7 @@ import { FirebaseService } from '../FirebaseService/firebase.service';
 import { displayArticle, segmentItem } from '../sharedData/displayArticle';
 import { displayArticles } from '../sharedData/displayArticles';
 import { AuthService } from '../authentication/auth/auth.service';
-import { AlertController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-page-space-la',
@@ -32,15 +32,17 @@ export class PageSpaceLaPage implements OnInit {
   constructor(
     public alertController: AlertController,
     public firebaseService: FirebaseService,
-    public authService: AuthService) {
+    public authService: AuthService,
+    public loadingController: LoadingController,
+  ) {
     this.status1 = "Articles p1";
     if (this.authService.isLogin()) {
       this.userId = JSON.parse(localStorage.getItem('user'))['uid'];
     }
   }
 
-  async loadData(searchbarComponent: HTMLElement) {
-    // loadData loads all article information into the searchField Component
+  contentLoading() {
+
     this.firebaseService.getDataServiceMainPage().subscribe((res) => {
       this.searchField = res.map(e => {
         return {
@@ -53,10 +55,7 @@ export class PageSpaceLaPage implements OnInit {
           image: e.payload.doc.data()['image']
         }
       })
-      console.log("Search Field Loaded");
-      console.log(this.searchField);
-
-      searchbarComponent.style.display = "block";
+      console.log("Search Field Loaded",this.searchField);
       this.articleCol = [[], [], []];
       for (this.i = 0; this.i < this.searchField.length; this.i++) {
         //load data into each column
@@ -74,6 +73,14 @@ export class PageSpaceLaPage implements OnInit {
     }, (err: any) => {
       console.log(err);
     })
+    
+  }
+
+  async loadData(searchbarComponent: HTMLElement) {
+    this.contentLoading();
+    searchbarComponent.style.display = "block";
+    // loadData loads all article information into the searchField Component
+   
   }
   searchBarOnclick() {
     this.dummySearchField = this.searchField;
@@ -177,6 +184,7 @@ export class PageSpaceLaPage implements OnInit {
     if (role == "cancel") {
       console.log("cancel!");
     } else {
+      this.contentLoading();
       this.editModeOnchange(false);
     }
   }
@@ -192,6 +200,20 @@ export class PageSpaceLaPage implements OnInit {
     if (role == "cancel") {
       console.log("cancel!");
     } else {
+      // const loading = await this.loadingController.create({
+      //   message: 'Please wait...',
+      // });
+      // loading.present();  // present loading animation
+
+      // return this.afAuth.signOut().then(() => {
+
+      //   loading.dismiss();
+
+      // }).catch((error) => {
+      //   console.log(error);
+      //   loading.dismiss();
+
+      // })
       this.editModeOnchange(false);
     }
   }
