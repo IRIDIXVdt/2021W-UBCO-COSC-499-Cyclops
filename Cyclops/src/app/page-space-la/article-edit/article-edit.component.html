@@ -1,24 +1,34 @@
 <ion-toolbar>
-  <ion-title>Article Feedback</ion-title>
-  <ion-buttons slot="primary" (click)="dismissModal()" class="ion-padding-end">Close</ion-buttons>
+  <ion-title position="stacked">Article Feedback</ion-title>
+  <ion-buttons slot="primary" (click)="dismissModal()" class="ion-padding-end">
+    <ion-label color="primary">
+      Close
+    </ion-label>
+  </ion-buttons>
 </ion-toolbar>
 <ion-content class="ion-padding">
-  <ion-list>
-    <ion-item>
-      <ion-label>Title</ion-label>
-      <ion-input #title value="{{editC.title}}"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label>Subtitle</ion-label>
-      <ion-input #subtitle value="{{editC.subtitle}}"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label>Introduction</ion-label>
-      <ion-textarea auto-grow="true" #cardIntroduction value="{{editC.cardIntroduction}}"></ion-textarea>
-    </ion-item>
-    <ion-button expand="block" id="button" (click)="save(title.value,subtitle.value,cardIntroduction.value)">Save
-      Changes</ion-button>
-  </ion-list>
+  <div *ngIf="contents">
+    <ion-list>
+      <ion-item>
+        <ion-label position="stacked">Title: </ion-label>
+        <ion-textarea rows="1" #title value="{{contents.title}}"></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Subtitle: </ion-label>
+        <ion-textarea rows="1" #subtitle value="{{contents.subtitle}}"></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Introduction: </ion-label>
+        <ion-textarea rows="10" #cardIntroduction value="{{contents.cardIntroduction}}"></ion-textarea>
+      </ion-item>
+      <ion-button expand="block" id="button" (click)="save(title.value,subtitle.value,cardIntroduction.value)">Save
+        Changes</ion-button>
+    </ion-list>
+  </div>
+
+  <div *ngIf="!contents">
+    <ion-progress-bar type="indeterminate"></ion-progress-bar>
+  </div>
 
   <!-- <ion-item>
     <p>{{content.cardIntroduction}}</p>
