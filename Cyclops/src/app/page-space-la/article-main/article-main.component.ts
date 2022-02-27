@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { AlertController, ModalController } from '@ionic/angular';
+import { AlertController, LoadingController, ModalController } from '@ionic/angular';
+import { FirebaseService } from 'src/app/FirebaseService/firebase.service';
 import { segmentItem } from '../../sharedData/displayArticle';
 import { ArticleEditComponent } from '../article-edit/article-edit.component';
 @Component({
@@ -14,12 +15,35 @@ export class ArticleMainComponent implements OnInit {
   constructor(
     public alertController: AlertController,
     private modalCtrol: ModalController,
+    public loadingController: LoadingController,
+    public firebaseService: FirebaseService,
   ) { }
   ngOnInit() { }
 
-  articleRemoveEvent(aIndex: number) {
-    console.log("remove", aIndex);
-    this.contentCol.splice(aIndex, 1);
+  async articleRemoveEvent(aIndex: number, content: fetchArticle) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      message: 'Do you want to remove this article card along with all its content? This action cannot be undone.',
+      buttons: ['Cancel', 'Yes']
+    });
+    await alert.present();
+    const { role } = await alert.onDidDismiss();
+    if (role == "cancel") {
+      console.log("cancel!");
+    } else {
+      const loading = await this.loadingController.create({
+        message: 'Please wait...',
+      });
+      loading.present();  // present loading animation
+
+      console.log("remove", aIndex);
+      this.contentCol.splice(aIndex, 1);//remove locally
+      this.firebaseService.deleteDocByIdService("articles", content.id).then((res: any) => console.log(res, " ", content.id),
+        (err: any) => { console.log(err); loading.dismiss(); });//remove remotelly
+      loading.dismiss();
+    }
+
+
   }
   articleAddEvent() {
     console.log("add new artciel to col", this.contentCol);
