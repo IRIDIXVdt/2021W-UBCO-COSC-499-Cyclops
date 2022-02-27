@@ -7,7 +7,11 @@ const routes: Routes = [
   {
     path: '',
     component: PageSpaceLaPage
+  },  {
+    path: 'article-edit-page',
+    loadChildren: () => import('./article-edit-page/article-edit-page.module').then( m => m.ArticleEditPagePageModule)
   }
+
 ];
 
 @NgModule({
