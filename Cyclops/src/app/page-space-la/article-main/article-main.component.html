@@ -2,7 +2,7 @@
     <ion-row id="testList">
         <ion-col size-xs="12" size-sm="6" size-md="6" size-lg="4" *ngFor="let content of contentCol;let indexA = index">
             <!-- fab button  -->
-            <ion-fab horizontal="end" vertical="top" *ngIf="!editMode">
+            <ion-fab horizontal="end" vertical="top" *ngIf="!editMode && this.authService.isAdmin()">
                 <!-- <ion-fab-button color="light">
                     <ion-icon name="reorder-four-outline"></ion-icon>
                 </ion-fab-button>
@@ -23,7 +23,7 @@
                     <ion-label>&nbsp;&nbsp;Edit Content</ion-label>
                 </ion-button>
             </ion-fab>
-            <ion-fab vertical="top" horizontal="end" *ngIf="editMode">
+            <ion-fab vertical="top" horizontal="end" *ngIf="editMode && this.authService.isAdmin()">
                 <ion-button color="danger" (click)="articleRemoveEvent(indexA,content)">
                     <ion-icon name="trash-outline"></ion-icon>
                     <ion-label>&nbsp;&nbsp;Delete Card</ion-label>

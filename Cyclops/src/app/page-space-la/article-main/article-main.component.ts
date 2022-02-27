@@ -4,6 +4,8 @@ import { FirebaseService } from 'src/app/FirebaseService/firebase.service';
 import { segmentItem } from '../../sharedData/displayArticle';
 import { ArticleEditPagePage } from '../article-edit-page/article-edit-page.page';
 import { ArticleEditComponent } from '../article-edit/article-edit.component';
+import { AuthService } from '../../authentication/auth/auth.service';
+
 @Component({
   selector: 'app-article-main',
   templateUrl: './article-main.component.html',
@@ -18,6 +20,7 @@ export class ArticleMainComponent implements OnInit {
     private modalCtrol: ModalController,
     public loadingController: LoadingController,
     public firebaseService: FirebaseService,
+    public authService: AuthService,
   ) { }
   ngOnInit() { }
 
