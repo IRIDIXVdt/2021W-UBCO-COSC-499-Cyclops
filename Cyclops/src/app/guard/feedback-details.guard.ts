@@ -9,7 +9,7 @@ import { DisplayFeedbackDetailsPage } from '../userProfile/display-feedback-deta
   providedIn: 'root'
 })
 export class FeedbackDetailsGuard implements CanActivate {
-
+  // this guard is not working 
   constructor(
     public authService: AuthService,
     public alertController: AlertController,

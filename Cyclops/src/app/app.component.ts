@@ -10,7 +10,7 @@ import { AuthService } from './authentication/auth/auth.service';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor(private router: Router, public authService: AuthService) { }
+  constructor(public router: Router, public authService: AuthService) { }
 
   ngOnInit() {
     console.log('this.router.url', this.router.url);

@@ -129,12 +129,12 @@ export class ScoreModalComponent implements OnInit  {
    switch (this.rating){
      case 1:
      case 2:
-       return this.red;
+       return this.yellow;
     case 3:
       return this.yellow;
     case 4:
     case 5:
-      return this.green;
+      return this.yellow;
     default:
       return this.grey;  
    }
@@ -148,12 +148,27 @@ export class ScoreModalComponent implements OnInit  {
   rangeChange($event) {
     this.usereco.range = ($event.target.value); //Value to database
     console.log(this.usereco.range);
+
+    if(this.usereco.range == 2){
+      this.usereco.updatedscore = (this.usereco.rating*this.usereco.range)/2;
+    }else if(this.usereco.range == 1){
+      this.usereco.updatedscore = (this.usereco.rating*this.usereco.range)/2;
+      
+    }else{
+      this.usereco.updatedscore = this.usereco.rating*this.usereco.range;
+    }
+    console.log(this.usereco.updatedscore); //Value to database
+
+    // this.usereco.updatedscore = this.usereco.rating*this.usereco.range;
+    // console.log(this.usereco.updatedscore) // Value to database
   }
   getSolutionsForSelectedSections(val:string){
+    this.buttonClicked = !this.buttonClicked;
     this.solutions = SectionSolution[0].solution.find(s=> s.section.trim() == val.trim()).solutions;
   }
   selectedSection($event) {
     // this.buttonClicked = !this.buttonClicked;
+    this.buttonClicked=null;
     this.usereco.section = ($event.target.value); // Value to database
     console.log(this.usereco.section)
   }

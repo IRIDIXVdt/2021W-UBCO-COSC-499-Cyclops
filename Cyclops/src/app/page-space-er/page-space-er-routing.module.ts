@@ -7,7 +7,11 @@ const routes: Routes = [
   {
     path: '',
     component: PageSpaceErPage
+  },  {
+    path: 'welcome-message',
+    loadChildren: () => import('./welcome-message/welcome-message.module').then( m => m.WelcomeMessagePageModule)
   }
+
 
 ];
 
