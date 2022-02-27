@@ -46,7 +46,6 @@ export class ArticleMainComponent implements OnInit {
 
       modalres.onDidDismiss().then(res => {
         console.log("modal dismiss!");
-        // this.alertMess("Changes are all saved *locally*. To upload changes to the database, click the save button on the top right corner of the screen.");
       })
 
     })

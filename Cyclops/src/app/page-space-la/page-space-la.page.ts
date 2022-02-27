@@ -3,6 +3,7 @@ import { FirebaseService } from '../FirebaseService/firebase.service';
 import { displayArticle, segmentItem } from '../sharedData/displayArticle';
 import { displayArticles } from '../sharedData/displayArticles';
 import { AuthService } from '../authentication/auth/auth.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-page-space-la',
@@ -29,6 +30,7 @@ export class PageSpaceLaPage implements OnInit {
   }
 
   constructor(
+    public alertController: AlertController,
     public firebaseService: FirebaseService,
     public authService: AuthService) {
     this.status1 = "Articles p1";
@@ -153,6 +155,45 @@ export class PageSpaceLaPage implements OnInit {
 
   editModeOnchange(state) {
     this.editMode = state;
+  }
+  async enterEditMode() {
+    this.editModeOnchange(true);
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      subHeader: '',
+      message: "You are entering Edit Mode. You can add, remove, and edit \"article cards\" here.",
+      buttons: ['Ok']
+    });
+    await alert.present();
+  }
+  async exitEditMode() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      message: 'Do you want to exit Edit Mode? All unsaved changes will be lost.',
+      buttons: ['Cancel', 'Yes']
+    });
+    await alert.present();
+    const { role } = await alert.onDidDismiss();
+    if (role == "cancel") {
+      console.log("cancel!");
+    } else {
+      this.editModeOnchange(false);
+    }
+  }
+
+  async saveEditMode() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      message: 'Do you want to upload all your changes to cloud and exit?',
+      buttons: ['Cancel', 'Yes']
+    });
+    await alert.present();
+    const { role } = await alert.onDidDismiss();
+    if (role == "cancel") {
+      console.log("cancel!");
+    } else {
+      this.editModeOnchange(false);
+    }
   }
 }
 
