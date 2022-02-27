@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { AlertController, LoadingController, ModalController } from '@ionic/angular';
 import { FirebaseService } from 'src/app/FirebaseService/firebase.service';
 import { segmentItem } from '../../sharedData/displayArticle';
+import { ArticleEditPagePage } from '../article-edit-page/article-edit-page.page';
 import { ArticleEditComponent } from '../article-edit/article-edit.component';
 @Component({
   selector: 'app-article-main',
@@ -48,26 +49,31 @@ export class ArticleMainComponent implements OnInit {
   articleAddEvent() {
     console.log("add new artciel to col", this.contentCol);
     const newArticle: fetchArticle = {
-      id: '',
+      id: "",
       title: 'New Card Title',
       subtitle: '',
-      image: '../assets/pic1.jpg',
+      image: '../assets/pic' + this.getRandomInt(1, 9) + '.jpg',
       cardIntroduction: 'New Card Introduction',
       columnName: this.col,
       segment: [{
         segmentTitle: "Sample Title",
         segmentBody: `<p>Sample Body</p>`
-      },]
+      }, {
+        segmentTitle: "Sample Title",
+        segmentBody: `<p>Sample Body</p>`
+      }]
     }
     this.contentCol.push(newArticle);
     this.firebaseService.addDataService("articles", newArticle).then((res: any) => {
       console.log(res);
     })
   }
+
+
   articleEditEvent(articleContent: fetchArticle) {
     console.log("edit event", articleContent.id);
     this.modalCtrol.create({
-      component: ArticleEditComponent,
+      component: ArticleEditPagePage,
       componentProps: {
         content: articleContent,
       }
@@ -88,6 +94,12 @@ export class ArticleMainComponent implements OnInit {
       buttons: ['Ok']
     });
     await alert.present();
+  }
+
+  getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
   }
 
 }
