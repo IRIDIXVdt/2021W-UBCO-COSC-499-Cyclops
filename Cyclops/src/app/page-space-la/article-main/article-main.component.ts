@@ -49,14 +49,20 @@ export class ArticleMainComponent implements OnInit {
     console.log("add new artciel to col", this.contentCol);
     const newArticle: fetchArticle = {
       id: '',
-      title: 'new Title',
+      title: 'New Card Title',
       subtitle: '',
       image: '../assets/pic1.jpg',
-      cardIntroduction: 'new Introduction',
+      cardIntroduction: 'New Card Introduction',
       columnName: this.col,
-      segment: []
+      segment: [{
+        segmentTitle: "Sample Title",
+        segmentBody: `<p>Sample Body</p>`
+      },]
     }
     this.contentCol.push(newArticle);
+    this.firebaseService.addDataService("articles", newArticle).then((res: any) => {
+      console.log(res);
+    })
   }
   articleEditEvent(articleContent: fetchArticle) {
     console.log("edit event", articleContent.id);
