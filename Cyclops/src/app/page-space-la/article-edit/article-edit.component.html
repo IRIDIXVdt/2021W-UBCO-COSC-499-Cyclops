@@ -5,12 +5,15 @@
 <ion-content class="ion-padding">
   <ion-list>
     <ion-item>
+      <ion-label>Title</ion-label>
       <ion-input #title value="{{editC.title}}"></ion-input>
     </ion-item>
     <ion-item>
+      <ion-label>Subtitle</ion-label>
       <ion-input #subtitle value="{{editC.subtitle}}"></ion-input>
     </ion-item>
     <ion-item>
+      <ion-label>Introduction</ion-label>
       <ion-textarea auto-grow="true" #cardIntroduction value="{{editC.cardIntroduction}}"></ion-textarea>
     </ion-item>
     <ion-button expand="block" id="button" (click)="save(title.value,subtitle.value,cardIntroduction.value)">Save

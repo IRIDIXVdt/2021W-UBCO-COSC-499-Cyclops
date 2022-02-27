@@ -17,9 +17,11 @@ export class ArticleEditComponent implements OnInit {
   ) {
     this.editC = this.navParams.data.content;
     console.log(this.editC);
+    
   }
 
   ngOnInit() {
+    console.log(this.content);
     // this.editTitle.title = this.content.title
   }
   dismissModal() {
@@ -33,6 +35,10 @@ export class ArticleEditComponent implements OnInit {
     this.editC.subtitle = t;
     this.editC.title = s;
     this.editC.cardIntroduction = c;
+
+    this.content.subtitle = t;
+    this.content.title = s;
+    this.content.cardIntroduction = c;
   }
 
 }

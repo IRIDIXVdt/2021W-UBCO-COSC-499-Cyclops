@@ -44,6 +44,7 @@ export class ArticleMainComponent implements OnInit {
       modalres.present();
 
       modalres.onDidDismiss().then(res => {
+        console.log("modal dismiss!")
       })
 
     })
