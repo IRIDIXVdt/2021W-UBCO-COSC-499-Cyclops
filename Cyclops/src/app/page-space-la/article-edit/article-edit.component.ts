@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, NavParams } from '@ionic/angular';
 import { segmentItem } from 'src/app/sharedData/displayArticle';
 
 @Component({
@@ -9,15 +9,32 @@ import { segmentItem } from 'src/app/sharedData/displayArticle';
 })
 export class ArticleEditComponent implements OnInit {
   @Input() content: fetchArticle;
+  editC: fetchArticle;
 
   constructor(
     public modalController: ModalController,
-  ) { }
+    private navParams: NavParams,
+  ) {
+    this.editC = this.navParams.data.content;
+    console.log(this.editC);
+  }
 
-  ngOnInit() { }
+  ngOnInit() {
+    // this.editTitle.title = this.content.title
+  }
   dismissModal() {
+    console.log("we have the editC now as:", this.editC);
     this.modalController.dismiss();
   }
+  onTitleEditorChange() {
+    // console.log(this.editTitle);
+  }
+  save(t: string, s: string, c: string) {
+    this.editC.subtitle = t;
+    this.editC.title = s;
+    this.editC.cardIntroduction = c;
+  }
+
 }
 type fetchArticle = {
   id: string;

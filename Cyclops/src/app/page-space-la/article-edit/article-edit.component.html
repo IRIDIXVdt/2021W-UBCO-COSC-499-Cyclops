@@ -1,9 +1,25 @@
 <ion-toolbar>
   <ion-title>Article Feedback</ion-title>
-  <ion-buttons slot="primary" (click)="dismissModal()">Close</ion-buttons>
+  <ion-buttons slot="primary" (click)="dismissModal()" class="ion-padding-end">Close</ion-buttons>
 </ion-toolbar>
 <ion-content class="ion-padding">
-  <p>{{content.title}}</p>
-  <p>{{content.subtitle}}</p>
-  <p>{{content.cardIntroduction}}</p>
+  <ion-list>
+    <ion-item>
+      <ion-input #title value="{{editC.title}}"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input #subtitle value="{{editC.subtitle}}"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-textarea auto-grow="true" #cardIntroduction value="{{editC.cardIntroduction}}"></ion-textarea>
+    </ion-item>
+    <ion-button expand="block" id="button" (click)="save(title.value,subtitle.value,cardIntroduction.value)">Save
+      Changes</ion-button>
+  </ion-list>
+
+  <!-- <ion-item>
+    <p>{{content.cardIntroduction}}</p>
+    <ion-textarea [(ngModel)]="content.cardIntroduction"></ion-textarea>
+  </ion-item> -->
+
 </ion-content>
