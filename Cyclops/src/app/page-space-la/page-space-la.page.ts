@@ -168,28 +168,30 @@ export class PageSpaceLaPage implements OnInit {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       subHeader: '',
-      message: "You are entering Edit Mode. You can add, remove, and edit \"article cards\" here.",
+      message: "You can add and remove \"article cards\" here. To exit, click the exit button on the top right corner.",
       buttons: ['Ok']
     });
     await alert.present();
   }
+
   async exitEditMode() {
-    const alert = await this.alertController.create({
-      cssClass: 'my-custom-class',
-      message: 'Do you want to exit Edit Mode? All unsaved changes will be lost.',
-      buttons: ['Cancel', 'Yes']
-    });
-    await alert.present();
-    const { role } = await alert.onDidDismiss();
-    if (role == "cancel") {
-      console.log("cancel!");
-    } else {
-      this.contentLoading();
-      this.editModeOnchange(false);
-    }
+    this.editModeOnchange(false);
+    // const alert = await this.alertController.create({
+    //   cssClass: 'my-custom-class',
+    //   message: 'Do you want to exit Edit Mode? All unsaved changes will be lost.',
+    //   buttons: ['Cancel', 'Yes']
+    // });
+    // await alert.present();
+    // const { role } = await alert.onDidDismiss();
+    // if (role == "cancel") {
+    //   console.log("cancel!");
+    // } else {
+    //   this.contentLoading();
+    // }
   }
 
   async saveEditMode() {
+    //deprecated method
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       message: 'Do you want to upload all your changes to cloud and exit?',
@@ -200,20 +202,11 @@ export class PageSpaceLaPage implements OnInit {
     if (role == "cancel") {
       console.log("cancel!");
     } else {
-      // const loading = await this.loadingController.create({
-      //   message: 'Please wait...',
-      // });
-      // loading.present();  // present loading animation
+      const loading = await this.loadingController.create({
+        message: 'Please wait...',
+      });
+      loading.present();  // present loading animation
 
-      // return this.afAuth.signOut().then(() => {
-
-      //   loading.dismiss();
-
-      // }).catch((error) => {
-      //   console.log(error);
-      //   loading.dismiss();
-
-      // })
       this.editModeOnchange(false);
     }
   }

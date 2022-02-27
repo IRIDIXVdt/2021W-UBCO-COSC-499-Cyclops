@@ -14,16 +14,16 @@
                         <ion-icon name="construct-outline"></ion-icon>
                     </ion-fab-button>
                 </ion-fab-list> -->
+                <ion-button (click)="articleEditEvent(content)">
+                    <ion-icon name="create-outline"></ion-icon>
+                    <ion-label>&nbsp;&nbsp;Edit Card</ion-label>
+                </ion-button>
                 <ion-button routerLink="/tabs/TextEdit/{{content.id}}">
                     <ion-icon name="create-outline"></ion-icon>
                     <ion-label>&nbsp;&nbsp;Edit Content</ion-label>
                 </ion-button>
             </ion-fab>
             <ion-fab vertical="top" horizontal="end" *ngIf="editMode">
-                <ion-button (click)="articleEditEvent(content)">
-                    <ion-icon name="create-outline"></ion-icon>
-                    <ion-label>&nbsp;&nbsp;Edit Card</ion-label>
-                </ion-button>
                 <ion-button color="danger" (click)="articleRemoveEvent(indexA)">
                     <ion-icon name="trash-outline"></ion-icon>
                     <ion-label>&nbsp;&nbsp;Delete Card</ion-label>
