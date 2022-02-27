@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 import { segmentItem } from '../../sharedData/displayArticle';
 import { ArticleEditComponent } from '../article-edit/article-edit.component';
 @Component({
@@ -12,6 +12,7 @@ export class ArticleMainComponent implements OnInit {
   @Input() editMode: boolean;
   @Input() col: string;
   constructor(
+    public alertController: AlertController,
     private modalCtrol: ModalController,
   ) { }
   ngOnInit() { }
@@ -44,10 +45,20 @@ export class ArticleMainComponent implements OnInit {
       modalres.present();
 
       modalres.onDidDismiss().then(res => {
-        console.log("modal dismiss!")
+        console.log("modal dismiss!");
+        // this.alertMess("Changes are all saved *locally*. To upload changes to the database, click the save button on the top right corner of the screen.");
       })
 
     })
+  }
+  async alertMess(message) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      subHeader: '',
+      message: message,
+      buttons: ['Ok']
+    });
+    await alert.present();
   }
 
 }
