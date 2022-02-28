@@ -32,7 +32,7 @@ export class ArticleImagePage implements OnInit {
     '../assets/field.jpg',
     '../assets/fog.jpg',
     '../assets/hope.jpg',
-    '../assets/influence.jpg',
+    // '../assets/influence.jpg',
     '../assets/mine.jpg',
     '../assets/money.jpg',
     '../assets/pexels-eriks-cistovs-10002691.jpg',
