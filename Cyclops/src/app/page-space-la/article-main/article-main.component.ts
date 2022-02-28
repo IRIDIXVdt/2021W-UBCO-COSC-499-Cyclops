@@ -5,6 +5,7 @@ import { segmentItem } from '../../sharedData/displayArticle';
 import { ArticleEditPagePage } from '../article-edit-page/article-edit-page.page';
 // import { ArticleEditComponent } from '../article-edit/article-edit.component';
 import { AuthService } from '../../authentication/auth/auth.service';
+import { ArticleImagePage } from '../article-image/article-image.page';
 
 @Component({
   selector: 'app-article-main',
@@ -71,20 +72,34 @@ export class ArticleMainComponent implements OnInit {
       console.log(res);
     })
   }
+  coverEditEvent(aId: string){
+    console.log("cover event", aId);
+    this.modalCtrol.create({
+      component: ArticleImagePage,
+      componentProps: {
+        content: aId,
+      }
+    }).then(modalres => {
+      modalres.present();
+      modalres.onDidDismiss().then(res => {
+        console.log("cover modal dismiss!");
+      })
 
+    })
+  }
 
-  articleEditEvent(articleContent: fetchArticle) {
-    console.log("edit event", articleContent.id);
+  articleEditEvent(aId: string) {
+    console.log("edit event", aId);
     this.modalCtrol.create({
       component: ArticleEditPagePage,
       componentProps: {
-        content: articleContent,
+        content: aId,
       }
     }).then(modalres => {
       modalres.present();
 
       modalres.onDidDismiss().then(res => {
-        console.log("modal dismiss!");
+        console.log("card modal dismiss!");
       })
 
     })

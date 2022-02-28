@@ -7,7 +7,7 @@ import { PageSpaceLaPageRoutingModule } from './page-space-la-routing.module';
 import { PageSpaceLaPage } from './page-space-la.page';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { ArticleMainComponent } from './article-main/article-main.component';
-import { ArticleModalMainComponent } from './article-modal-main/article-modal-main.component';
+// import { ArticleModalMainComponent } from './article-modal-main/article-modal-main.component';
 
 @NgModule({
   imports: [
@@ -20,7 +20,7 @@ import { ArticleModalMainComponent } from './article-modal-main/article-modal-ma
   declarations: [
     PageSpaceLaPage,
     ArticleMainComponent,
-    ArticleModalMainComponent
+    // ArticleModalMainComponent
   ]
 })
 export class PageSpaceLaPageModule {}
