@@ -3,7 +3,7 @@ import { AlertController, LoadingController, ModalController } from '@ionic/angu
 import { FirebaseService } from 'src/app/FirebaseService/firebase.service';
 import { segmentItem } from '../../sharedData/displayArticle';
 import { ArticleEditPagePage } from '../article-edit-page/article-edit-page.page';
-import { ArticleEditComponent } from '../article-edit/article-edit.component';
+// import { ArticleEditComponent } from '../article-edit/article-edit.component';
 import { AuthService } from '../../authentication/auth/auth.service';
 
 @Component({
