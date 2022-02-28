@@ -10,6 +10,10 @@ const routes: Routes = [
   },  {
     path: 'article-edit-page',
     loadChildren: () => import('./article-edit-page/article-edit-page.module').then( m => m.ArticleEditPagePageModule)
+  },
+  {
+    path: 'article-image',
+    loadChildren: () => import('./article-image/article-image.module').then( m => m.ArticleImagePageModule)
   }
 
 ];
