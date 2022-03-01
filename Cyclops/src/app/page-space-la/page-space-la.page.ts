@@ -176,7 +176,7 @@ export class PageSpaceLaPage implements OnInit {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       subHeader: '',
-      message: "You can add and remove \"article cards\" here. To exit, click the exit button on the top right corner.",
+      message: "You can add and remove \"article cards\" here. To exit, click the exit button on the top left corner.",
       buttons: ['Ok']
     });
     await alert.present();

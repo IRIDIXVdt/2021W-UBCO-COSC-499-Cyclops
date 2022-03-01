@@ -1,0 +1,21 @@
+<ion-toolbar>
+  <ion-title position="stacked">Change Cover</ion-title>
+  <ion-buttons slot="primary" (click)="dismissModal()" class="ion-padding-end">
+    <ion-label color="primary">
+      Close
+    </ion-label>
+  </ion-buttons>
+</ion-toolbar>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="4" *ngFor="let img of listP">
+        <ion-card (click)="clickImageEvent(img)">
+          <!-- <ion-img [src]="img" style="height:20%"></ion-img> -->
+          <img src={{img}}/>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
