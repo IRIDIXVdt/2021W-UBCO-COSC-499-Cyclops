@@ -4,4 +4,8 @@ export class StarSolutionTags{
         star : string;
         starsol : string[];
     }[];
+    sectionstars : {
+        starssection : string;
+        starinput : string;
+    }[];
 }

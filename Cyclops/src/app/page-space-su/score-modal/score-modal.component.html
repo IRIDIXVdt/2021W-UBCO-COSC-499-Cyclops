@@ -41,7 +41,7 @@
 
       <ion-list>
         <ion-item>
-          <ion-label> <h2 id="leveltag">Star Level</h2></ion-label>
+          <ion-label> <h2 id="leveltag">Stars</h2></ion-label>
           <ion-select interface="popover" okText="Okay" cancelText="Dismiss" formControlName="Select_Level" (ionChange)="selectedLevel($event)" (ionChange)="getSolutionsForSelectedStars($event.target.value)" name="Section" placeholder="Sections">
           <ion-select-option *ngFor="let st of stars">{{st}}</ion-select-option>
           </ion-select>
@@ -62,12 +62,12 @@
             </ion-select>
           </ion-item>
         </ion-list>
+        <p id="err">
+          <span class="error" *ngIf="submitted && errorCtr.Select_LevelSolution.errors?.required">
+            Please Select a Solution Level
+           </span>
+        </p>
       </div>
-      <p id="err">
-        <span class="error" *ngIf="submitted && errorCtr.Select_LevelSolution.errors?.required">
-          Please Select a Solution Level
-         </span>
-      </p>
 
 
       <div class="range">
@@ -118,7 +118,7 @@
         <ion-list>
           <ion-item *ngIf="solution && solution.length > 0">
             <ion-label> <h2 id="leveltag">Article Solution</h2></ion-label>
-            <ion-select  interface="popover" okText="Okay" cancelText="Dismiss" formControlName="Select_Solution" (ionChange)="selectedSolution($event)" name="Solution" placeholder="Solutions">
+            <ion-select  interface="popover" okText="Okay" cancelText="Dismiss" formControlName="Select_Solution"  (ionChange)="selectedSolution($event)" name="Solution" placeholder="Solutions">
             <ion-select-option *ngFor="let s of solutions">{{s}}</ion-select-option>
             </ion-select>
           </ion-item>

@@ -36,6 +36,14 @@ export const StarSolutions : StarSolutionTags[] = [
         
                 ]
             }
+        ],
+        sectionstars : [
+            {
+                starssection: "Fill your car seats when you ride",
+                starinput : "1"
+
+            }
+
         ]
     }
 
