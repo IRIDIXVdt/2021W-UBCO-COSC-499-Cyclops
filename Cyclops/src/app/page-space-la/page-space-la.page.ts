@@ -36,9 +36,16 @@ export class PageSpaceLaPage implements OnInit {
     public loadingController: LoadingController,
   ) {
     this.status1 = "Articles p1";
-    if (this.authService.isLogin()) {
-      this.userId = JSON.parse(localStorage.getItem('user'))['uid'];
-    }
+    this.authService.afAuth.onAuthStateChanged(user=> {
+      if (user) {
+        console.log('logged in:',user.uid);
+        this.userId=user.uid;
+        this.readArticles();
+      } else{
+        this.userId=undefined;
+        console.log('logged out, userId: ',this.userId);
+      }
+    });
   }
 
   contentLoading() {
@@ -88,30 +95,29 @@ export class PageSpaceLaPage implements OnInit {
   }
 
   readArticles() {
-    /*let currentUserData = (await this.firebaseService.getCurrentUserData()).data();
-    let segmentData: any[] = currentUserData.readArticles;
-    this.totalArticles = segmentData.length;
-    for (let segment of segmentData) {
-      console.log(segment['segment']);
-      if (this.areAllTrue(segment['segment'])) {
-        ++this.finishedArticles;
-      }
-    }
-    console.log('current user progess:', this.finishedArticles, '/', this.totalArticles, (this.finishedArticles / this.totalArticles));
-    this.articleProgress = this.finishedArticles / this.totalArticles;*/
     const subscription = this.firebaseService.getUserByIdService(this.userId).subscribe(
       e => {
-        this.userData = e.payload.data()['readArticles'];
-        this.totalArticles = this.userData.length;
-        this.finishedArticles = 0;
-        for (let i = 0; i < this.userData.length; i++) {
-          if (this.areAllTrue(this.userData[i]['segment'])) {
-            ++this.finishedArticles;
+        console.log('readarticles starting with ',this.userId,' and ',e.payload.data());
+        if(e.payload.data()['readArticles']!=undefined){
+          console.log(e.payload.data()['readArticles']);
+          this.userData = e.payload.data()['readArticles'];
+          console.log('userdata:',this.userData);
+          this.totalArticles = this.userData.length;
+          this.finishedArticles = 0;
+          for (let i = 0; i < this.userData.length; i++) {
+            if (this.areAllTrue(this.userData[i]['segment'])) {
+              ++this.finishedArticles;
+            }
           }
+          console.log('current user progess:', this.finishedArticles, '/', this.totalArticles, (this.finishedArticles / this.totalArticles));
+          this.articleProgress = this.finishedArticles / this.totalArticles;
         }
-        console.log('current user progess:', this.finishedArticles, '/', this.totalArticles, (this.finishedArticles / this.totalArticles));
-        this.articleProgress = this.finishedArticles / this.totalArticles;
-        //subscription.unsubscribe();
+        
+
+        if(this.userId==null||this.userId==undefined){
+          console.log('unsubscribing readArticles');
+          subscription.unsubscribe();
+        }
       },
       err => {
         console.debug(err);
@@ -125,9 +131,11 @@ export class PageSpaceLaPage implements OnInit {
   }
 
   ngOnInit() {
-    if (this.authService.isLogin()) {
+    /*if (this.userId) {
+      console.log('logged in,',this.authService.afAuth.currentUser,', calculating progress bar');
       this.readArticles();
-    }
+    }*/
+
     const thisNotShow = document.querySelector('#requested') as HTMLElement;
     thisNotShow.style.display = 'none';
 
