@@ -109,17 +109,7 @@ export class PageSpaceMePage implements OnInit {
 
   segmentChanged(ev: any) {
     console.log('current segment status is', this.status);
-    switch (this.status) {
-      case '0':
-        this.currentSegment = 0;
-        break;
-      case '1':
-        this.currentSegment = 1;
-        break;
-      case '2':
-        this.currentSegment = 2;
-        break;
-    }
+    this.currentSegment= parseInt(this.status);
     console.log('this.currentSegment: ',this.currentSegment);
     this.content.scrollToPoint(0, this.segmentDepth[this.currentSegment]);
     this.checkForScrollbar();//check for scrollbar everytime the segment changes
