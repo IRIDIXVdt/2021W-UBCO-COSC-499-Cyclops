@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, OnDestroy} from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { PopoverController, IonContent } from '@ionic/angular';
 import { PopoverComponent } from '../popover/popover.component';
 import { ModalController } from '@ionic/angular';
@@ -27,7 +27,7 @@ export class PageSpaceMePage implements OnInit {
   pageRead: boolean; //whether this page has been read
   userId: any;
   userData: any;//corresponding to the readArticles field in the user document on firehost
-  hasScrollbar:boolean;
+  hasScrollbar: boolean;
 
 
 
@@ -52,25 +52,35 @@ export class PageSpaceMePage implements OnInit {
     //console.log("docid------",this.activatedrouter.snapshot.paramMap.get('docId'));
     console.log(this.docId);
     this.loadDataById();//load article data
-    this.userId = JSON.parse(localStorage.getItem('user'))['uid'];
-    this.loadUserSegmentsById();//load all user segment data
+    this.authService.afAuth.onAuthStateChanged(user => {
+      if (user) {
+        console.log('logged in:', user.uid);
+        this.userId = user.uid;
+        this.loadUserSegmentsById();//load all user segment data
+      } else {
+        this.userId = undefined;
+        console.log('logged out, userId: ', this.userId);
+      }
+    });
+
   }
 
   loadUserSegmentsById() {
     console.log("run loadUserById()");
     const subscription = this.firebaseService.getUserByIdService(this.userId).subscribe(
       e => {
-        this.userData = e.payload.data()['readArticles'];
-        for (let i = 0; i < this.userData.length; i++) {
-          if (this.userData[i]['id'] == this.docId) {
-            this.currentSegments = this.userData[i]['segment']
+        if(e.payload.data()['readArticles']!=undefined){
+          this.userData = e.payload.data()['readArticles'];
+          for (let i = 0; i < this.userData.length; i++) {
+            if (this.userData[i]['id'] == this.docId) {
+              this.currentSegments = this.userData[i]['segment']
+            }
           }
+          this.checkForScrollbar();
         }
         subscription.unsubscribe();
         console.log('unsubscribe success, with this user segment content loaded:', this.currentSegments);
         //after subscription closed and segment content has been loaded, scrollbar can be checked
-        this.checkForScrollbar();
-        
       },
       err => {
         console.debug(err);
@@ -109,8 +119,8 @@ export class PageSpaceMePage implements OnInit {
 
   segmentChanged(ev: any) {
     console.log('current segment status is', this.status);
-    this.currentSegment= parseInt(this.status);
-    console.log('this.currentSegment: ',this.currentSegment);
+    this.currentSegment = parseInt(this.status);
+    console.log('this.currentSegment: ', this.currentSegment);
     this.content.scrollToPoint(0, this.segmentDepth[this.currentSegment]);
     this.checkForScrollbar();//check for scrollbar everytime the segment changes
 
@@ -154,53 +164,59 @@ export class PageSpaceMePage implements OnInit {
   ngOnInit() {
 
   }
-  ngOnDestroy(){
-    console.log('page closing, saving article read information');
-    let position = 0;
-    if(this.hasScrollbar){
-      position = this.segmentDepth[this.currentSegment];
-    }
-    this.firebaseService.updateUserDataByIdService(this.userId, { latestRead: {id:this.docId, segment: this.currentSegment, depth: position}});
+  ngOnDestroy() {
+    if (this.userId) {
+      console.log('page closing, saving article read information');
+      let position = 0;
+      if (this.hasScrollbar) {
+        position = this.segmentDepth[this.currentSegment];
+      }
+      this.firebaseService.updateUserDataByIdService(this.userId, { latestRead: { id: this.docId, segment: this.currentSegment, depth: position } });
 
+    }
   }
 
   async onScroll($event) {
-    const scrollElement = await $event.target.getScrollElement();
-    //scrollHeight: height of content, clientHeight: height of view port
-    //track only scrolltop when bottom of page reached
-    //articleHeight changes with responsive screen sizes
-    const articleHeight = scrollElement.scrollHeight - scrollElement.clientHeight;
+    if (this.userId) {
+      const scrollElement = await $event.target.getScrollElement();
+      //scrollHeight: height of content, clientHeight: height of view port
+      //track only scrolltop when bottom of page reached
+      //articleHeight changes with responsive screen sizes
+      const articleHeight = scrollElement.scrollHeight - scrollElement.clientHeight;
 
-    const currentScrollDepth = $event.detail.scrollTop;
-    this.segmentDepth[this.currentSegment] = currentScrollDepth;
-    const targetPercent = 90;
+      const currentScrollDepth = $event.detail.scrollTop;
+      this.segmentDepth[this.currentSegment] = currentScrollDepth;
+      const targetPercent = 90;
 
-    let triggerDepth = ((articleHeight / 100) * targetPercent);
+      let triggerDepth = ((articleHeight / 100) * targetPercent);
 
-    if (currentScrollDepth >= triggerDepth) {
-      let pageRead = true;
-      console.log(`This segment read, scrolled to ${targetPercent}% on `, this.currentSegment);
+      if (currentScrollDepth >= triggerDepth) {
+        let pageRead = true;
+        console.log(`This segment read, scrolled to ${targetPercent}% on `, this.currentSegment);
 
-      // this ensures that the database is only changed if the page has been read and the database doesn't already say true
-      if (pageRead && !this.currentSegments[this.currentSegment]) {
-        console.log('updating database');
-        this.updateFirestoreUserSegments();
-        return;
+        // this ensures that the database is only changed if the page has been read and the database doesn't already say true
+        if (pageRead && !this.currentSegments[this.currentSegment]) {
+          console.log('updating database');
+          this.updateFirestoreUserSegments();
+          return;
+        }
       }
+
       // do your analytics tracking here
     }
+    return;
   }
 
   async checkForScrollbar() {//if there is no scrollbar then consider the page read
     const scrollElement = await this.content.getScrollElement();
     this.hasScrollbar = scrollElement.scrollHeight > scrollElement.clientHeight;
-    if(!this.hasScrollbar&&!this.currentSegments[this.currentSegment]){//if the database is marked as unread then update it
+    if (!this.hasScrollbar && !this.currentSegments[this.currentSegment]) {//if the database is marked as unread then update it
       console.log('no scrollbar and database indicates page has not been read, Updating database');
       this.updateFirestoreUserSegments();
     }
   }
 
-  updateFirestoreUserSegments(){
+  updateFirestoreUserSegments() {
     for (let i = 0; i < this.userData.length; i++) {
       if (this.userData[i]['id'] == this.docId) {
         this.userData[i]['segment'][this.currentSegment] = true;
