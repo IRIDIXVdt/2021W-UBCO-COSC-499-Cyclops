@@ -67,7 +67,7 @@ export class PageSpaceMePage implements OnInit {
 
   loadUserSegmentsById() {
     console.log("run loadUserById()");
-    const subscription = this.firebaseService.getUserByIdService(this.userId).subscribe(
+    const subscription = this.firebaseService.getUserDataByIdService(this.userId).subscribe(
       e => {
         if(e.payload.data()['readArticles']!=undefined){
           this.userData = e.payload.data()['readArticles'];
@@ -171,7 +171,7 @@ export class PageSpaceMePage implements OnInit {
       if (this.hasScrollbar) {
         position = this.segmentDepth[this.currentSegment];
       }
-      this.firebaseService.updateUserDataByIdService(this.userId, { latestRead: { id: this.docId, segment: this.currentSegment, depth: position } });
+      this.firebaseService.updateUserCollectionDataByIdService(this.userId, { latestRead: { id: this.docId, segment: this.currentSegment, depth: position } });
 
     }
   }
@@ -221,7 +221,7 @@ export class PageSpaceMePage implements OnInit {
       if (this.userData[i]['id'] == this.docId) {
         this.userData[i]['segment'][this.currentSegment] = true;
         console.log(this.userData[i]);
-        this.firebaseService.updateUserDataByIdService(this.userId, { readArticles: this.userData });
+        this.firebaseService.updateUserCollectionDataByIdService(this.userId, { readArticles: this.userData });
       }
     }
   }

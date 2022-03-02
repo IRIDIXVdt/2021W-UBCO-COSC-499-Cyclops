@@ -68,10 +68,29 @@ export class ArticleMainComponent implements OnInit {
       }]
     }
     this.contentCol.push(newArticle);
+    //update all user profiles read article tracker with new article
     this.firebaseService.addDataService("articles", newArticle).then((res: any) => {
-      console.log(res);
+      console.log(res.id);
+      this.addUserReadArticles(res.id,newArticle.segment.length);
     })
+
   }
+  async addUserReadArticles(docId, segmentLength) {
+    let users = this.firebaseService.getAllUsersDataService();
+    let segments: any[] = [];
+
+    (await users).forEach((userDoc) => {
+        console.log(userDoc.data());
+        segments= userDoc.data()['readArticles'];
+        let segmentRead = Array(segmentLength).fill(false);
+        let newData = { id: docId, segment: segmentRead };
+        segments.push(newData);
+        this.firebaseService.updateUserCollectionDataByIdService(userDoc.id,{readArticles: segments});
+
+    });
+  }
+
+
   coverEditEvent(aId: string){
     console.log("cover event", aId);
     this.modalCtrol.create({

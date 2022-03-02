@@ -95,7 +95,7 @@ export class PageSpaceLaPage implements OnInit {
   }
 
   readArticles() {
-    const subscription = this.firebaseService.getUserByIdService(this.userId).subscribe(
+    const subscription = this.firebaseService.getUserDataByIdService(this.userId).subscribe(
       e => {
         console.log('readarticles starting with ',this.userId,' and ',e.payload.data());
         if(e.payload.data()['readArticles']!=undefined){
