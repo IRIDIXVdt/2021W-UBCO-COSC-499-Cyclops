@@ -117,9 +117,8 @@ export class AuthService {
             }
           })
           let readArticles= this.initializeUserReadArticles(articles)
-          this.afs.collection("usersCollection")
-          .add({
-            uid: result.user.uid,
+          this.afs.collection("usersCollection").doc(result.user.uid)
+          .set({
             readArticles: readArticles
           })
         });

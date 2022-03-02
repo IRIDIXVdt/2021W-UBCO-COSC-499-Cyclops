@@ -22,6 +22,10 @@ export class FirebaseService {
   addDataService(collection, data) {
     return this.db.collection(collection).add(data);
   }
+  
+  addDataWithIdService(collection,id, data) {
+    return this.db.collection(collection).doc(id).set(data);
+  }
 
   removeDataService(id) {
     return this.db.doc("test" + "/" + id).delete();
