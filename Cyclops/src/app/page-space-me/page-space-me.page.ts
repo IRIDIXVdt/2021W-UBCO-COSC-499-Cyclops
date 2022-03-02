@@ -122,7 +122,11 @@ export class PageSpaceMePage implements OnInit {
     this.currentSegment = parseInt(this.status);
     console.log('this.currentSegment: ', this.currentSegment);
     this.content.scrollToPoint(0, this.segmentDepth[this.currentSegment]);
-    this.checkForScrollbar();//check for scrollbar everytime the segment changes
+    this.authService.afAuth.onAuthStateChanged(user => {
+      if (user) {
+        this.checkForScrollbar();//check for scrollbar everytime the segment changes
+      }});
+    
 
   }
 
