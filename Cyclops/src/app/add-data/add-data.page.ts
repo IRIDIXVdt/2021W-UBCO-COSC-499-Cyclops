@@ -60,6 +60,7 @@ export class AddDataPage implements OnInit {
 
   //initialize article tracking information for all users
   async initializeUserReadArticles() {
+    this.deleteAllUserData();
     let users = this.firebaseService.getAllUsersService();
     let data: any[] = [];
 
@@ -74,7 +75,7 @@ export class AddDataPage implements OnInit {
 
     (await users).forEach((userDoc) => {
         console.log(userDoc.data());
-        this.firebaseService.updateUserDataByIdService(userDoc.id, { readArticles: data});
+        this.firebaseService.addDataWithIdService('usersCollection', userDoc.id,{readArticles:data});
 
     });
   }
@@ -93,6 +94,11 @@ export class AddDataPage implements OnInit {
     }
   }
 
+  deleteAllUserData(){
+    for (let doc of this.userIds) {
+      this.firebaseService.deleteDocByIdService("usersCollection", doc.userId).then((res: any) => console.log(res, " ", doc.userId))
+    }
+  }
   // get all docid from collection
   loadDocId() {
     this.firebaseService.getDataServiceMainPage().subscribe((res) => {

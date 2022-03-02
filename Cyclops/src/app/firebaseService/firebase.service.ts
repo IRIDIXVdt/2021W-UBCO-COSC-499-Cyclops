@@ -22,6 +22,10 @@ export class FirebaseService {
   addDataService(collection, data) {
     return this.db.collection(collection).add(data);
   }
+  
+  addDataWithIdService(collection,id, data) {
+    return this.db.collection(collection).doc(id).set(data);
+  }
 
   removeDataService(id) {
     return this.db.doc("test" + "/" + id).delete();
@@ -40,9 +44,17 @@ export class FirebaseService {
     return this.db.collection('users').doc(userId).snapshotChanges();
   }
 
+  getUserDataByIdService(userId){
+    return this.db.collection('usersCollection').doc(userId).snapshotChanges();
+  }
+
   //return all users
   async getAllUsersService() {
     return await getDocs(collection(db, "users")); //access fields of returned document with .data()
+  }
+
+  async getAllUsersDataService() {
+    return await getDocs(collection(db, "usersCollection")); //access fields of returned document with .data()
   }
 
   //return all articles
@@ -59,6 +71,12 @@ export class FirebaseService {
   //append data to user document specified by userId
   async updateUserDataByIdService(userId, data) {
     const userDoc = doc(db, 'users', userId);
+    console.log('updating user:', userDoc.id, ' with:', data);
+    setDoc(userDoc, data, { merge: true });//set new user information, merge:true specifies to amend and not overwrite document
+  }
+
+  async updateUserCollectionDataByIdService(userId, data) {
+    const userDoc = doc(db, 'usersCollection', userId);
     console.log('updating user:', userDoc.id, ' with:', data);
     setDoc(userDoc, data, { merge: true });//set new user information, merge:true specifies to amend and not overwrite document
   }
