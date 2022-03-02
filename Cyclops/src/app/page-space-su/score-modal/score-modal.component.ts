@@ -5,6 +5,7 @@ import { SolutionPageForm } from '../form/solution.page.form';
 import { COLORS } from './enum';
 import { SectionSolution } from './SectionSolution';
 import { SectionSolutionTags } from "./SectionSolutionTags"
+import { StarSolutions } from './StarSolutions';
 
 @Component({
   selector: 'app-score-modal',
@@ -20,11 +21,16 @@ export class ScoreModalComponent implements OnInit  {
   sec: any=[];
   level: any=[];
   range: any=[];
+  stars: any=[];
+  starsols : any=[];
 
   @Input() rating: number ;
-  @Output() ratingChange: EventEmitter<number> = new EventEmitter();;
+  @Output() ratingChange: EventEmitter<number> = new EventEmitter();starinput: string[];
+  sectionstars: any=[];
+;
 
   myForm: FormGroup;
+  myFormSection: FormGroup;
   submitted = false;
   public colors = COLORS;
   public grey = COLORS.GREY;
@@ -36,6 +42,9 @@ export class ScoreModalComponent implements OnInit  {
 
   usereco: any = {};
   public buttonClicked: boolean=false;
+  public starbuttonClicked: boolean=false;
+  public sectionClicked: boolean=false;
+  public starClicked: boolean=false;
 
 
   //@Input() solution: string;
@@ -53,12 +62,20 @@ export class ScoreModalComponent implements OnInit  {
 
     
   }
-  public onButtonClick(){
+  public onSectionClick(){
 
-      this.buttonClicked = !this.buttonClicked;
+      this.sectionClicked = !this.sectionClicked;
+      this.starClicked=null;
     
     
   }
+  public onStarClick(){
+
+    this.starClicked = !this.starClicked;
+    this.sectionClicked=null;
+  
+  
+}
 
   ngOnInit() {
     console.log(SectionSolution[0].sections);
@@ -66,11 +83,18 @@ export class ScoreModalComponent implements OnInit  {
     this.sections = SectionSolution[0].sections;
     this.solutions = SectionSolution[0].solution;
 
+    console.log(StarSolutions[0].stars);
+    console.log(StarSolutions[0].starsols);
+    this.stars = StarSolutions[0].stars;
+    this.starsols = StarSolutions[0].starsols;
+
     this.myForm = this.formBuilder.group({
-      // task: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
-      // score: ['', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.max(100), Validators.min(0)]],
-      // task1: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
-      // score1: ['', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.max(100), Validators.min(0)]],
+      // Select_Section : ['', Validators.required],
+      Select_Level : ['', Validators.required],
+      Select_LevelSolution : ['', Validators.required],
+      // Select_Range : ['', Validators.required]
+    });
+    this.myFormSection = this.formBuilder.group({
       Select_Section : ['', Validators.required],
       Select_Solution : ['', Validators.required],
       // Select_Level : ['', Validators.required],
@@ -84,6 +108,9 @@ export class ScoreModalComponent implements OnInit  {
   }
   get errorCtr() {
     return this.myForm.controls;
+  }
+  get errorCtr1() {
+    return this.myFormSection.controls;
   }
 
   
@@ -104,11 +131,23 @@ export class ScoreModalComponent implements OnInit  {
     
     }
   }
+  onSectionSolution(){
+
+    this.submitted = true;
+    if (!this.myFormSection.valid) {
+      console.log('All fields are required.')
+      return false;
+    } else {
+      this.modalCtrl.dismiss(this.usereco) //Sends all modal data to eco tracker tab
+      console.log(this.usereco)
+    
+    }
+  }
   rate(index: number) {
     // function used to change the value of our rating 
     // triggered when user, clicks a star to change the rating
-    this.usereco.rating = this.rating = index; //  index is Value to database
-    console.log(index);
+    this.usereco.level = this.rating = index; //  index is Value to database
+    console.log(this.usereco.level);
     this.ratingChange.emit(this.rating);
  }
 
@@ -150,12 +189,12 @@ export class ScoreModalComponent implements OnInit  {
     console.log(this.usereco.range);
 
     if(this.usereco.range == 2){
-      this.usereco.updatedscore = (this.usereco.rating*this.usereco.range)/2;
+      this.usereco.updatedscore = (this.usereco.level*this.usereco.range)/2;
     }else if(this.usereco.range == 1){
-      this.usereco.updatedscore = (this.usereco.rating*this.usereco.range)/2;
+      this.usereco.updatedscore = (this.usereco.level*this.usereco.range)/2;
       
     }else{
-      this.usereco.updatedscore = this.usereco.rating*this.usereco.range;
+      this.usereco.updatedscore = this.usereco.level*this.usereco.range;
     }
     console.log(this.usereco.updatedscore); //Value to database
 
@@ -177,9 +216,20 @@ export class ScoreModalComponent implements OnInit  {
     console.log(this.usereco.solution)
   }
   selectedLevel($event) {
+    this.starbuttonClicked=null;
     this.usereco.level = ($event.target.value); // Value to database
     console.log(this.usereco.level)
   }
+  getSolutionsForSelectedStars(val:string){
+    this.starbuttonClicked = !this.starbuttonClicked;
+    this.starsols = StarSolutions[0].starsols.find(s=> s.star.trim() == val.trim()).starsol;
+  }
+  // getStarsForSelectedSolution(val:string){
+  //   this.sectionstars= StarSolutions[0].sectionstars.find(s=> s.starssection.trim() == val.trim()).starinput;
+  //   console.log(this.usereco.level);
+
+    
+  // }
  
   
   
