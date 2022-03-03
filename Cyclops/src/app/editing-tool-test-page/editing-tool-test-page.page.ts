@@ -173,6 +173,7 @@ export class EditingToolTestPagePage implements OnInit {
     // this.saveChangesLocal();
     //update it to the local one
     this.currentSeg = this.contents.segment.length - 1;
+    this.needSaving = true;
     //title input space updates automatically
     //manually update editor input area here
     this.updateArticle();
@@ -249,6 +250,7 @@ export class EditingToolTestPagePage implements OnInit {
         //this updates the CKEditor Directly, this is not good practice
         // this.editorComponent.editorInstance.setData("Body Paragraph");
       }
+      this.needSaving = true;
       this.updateArticle();
       // this.updateDataById(this.articleId, this.contents);
       // this.loadEditorDataById();
