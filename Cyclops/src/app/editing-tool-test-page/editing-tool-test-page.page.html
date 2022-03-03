@@ -94,11 +94,12 @@
         Title of this Segment:
       </ion-label>
       <ion-input #titleInput [(ngModel)]="TitleInput" placeholder="Input Title Here"
-        value="{{contents.segment[currentSeg].segmentTitle}}" (ionChange)="onTitleEditorChange()"></ion-input>
+        value="{{contents.segment[currentSeg].segmentTitle}}" (ionChange)="onTitleEditorChange()"
+        (ionFocus)="titleFocus()"></ion-input>
     </ion-item>
   </ion-toolbar>
   <div *ngIf="contents">
-    <ckeditor max-height="20%" #editor [(ngModel)]="model.editorData" [editor]="Editor" (change)="onChange($event)">
+    <ckeditor max-height="20%" #editor [(ngModel)]="model.editorData" [editor]="Editor" (change)="onChange($event)" (focus)="textAreaFocus()">
     </ckeditor>
   </div>
 

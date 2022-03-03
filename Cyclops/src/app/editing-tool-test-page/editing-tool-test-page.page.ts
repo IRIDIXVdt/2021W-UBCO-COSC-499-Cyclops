@@ -184,18 +184,22 @@ export class EditingToolTestPagePage implements OnInit {
     const newSegmentBody: string = this.editorComponent.editorInstance.getData();
     //store the data
     this.contents.segment[this.currentSeg].segmentBody = newSegmentBody;
-    console.log("Changes saved locally!");
-    //change saving state to open
-    this.needSaving = true;
-    console.log("need Saving on Content Editor Change");
+    // console.log("Changes saved locally!");
   }
 
   private onTitleEditorChange() {
     console.log("current title is: " + this.TitleInput);
     this.contents.segment[this.currentSeg].segmentTitle = this.TitleInput;
-    //change saving state to open
+    // this.needSaving = true;
+    // console.log("need Saving on Title Editor Change");
+  }
+  private titleFocus() {//change saving state to open when title input focused
     this.needSaving = true;
-    console.log("need Saving on Title Editor Change");
+    console.log("title focus");
+  }
+  private textAreaFocus() {
+    this.needSaving = true;
+    console.log("text area focus");
   }
 
   private updateArticle() {
@@ -203,19 +207,25 @@ export class EditingToolTestPagePage implements OnInit {
   }
 
   public async backArticle() {
-    const alert = await this.alertController.create({
-      cssClass: 'my-custom-class',
-      message: 'Do you want to go back to main page? All unsaved changes will be lost.',
-      buttons: ['Cancel', 'OK']
-    });
-    await alert.present();
-    const { role } = await alert.onDidDismiss();
-    if (role == "cancel") {
-      console.log("cancel!");
+    if (this.needSaving) {
+      const alert = await this.alertController.create({
+        cssClass: 'my-custom-class',
+        message: 'Do you want to go back to main page? All unsaved changes will be lost.',
+        buttons: ['Cancel', 'OK']
+      });
+      await alert.present();
+      const { role } = await alert.onDidDismiss();
+      if (role == "cancel") {
+        console.log("cancel!");
+      } else {
+        this.navControl.back();
+        console.log("back success");
+      }
     } else {
       this.navControl.back();
       console.log("back success");
     }
+
   }
 
   public async removeArticle() {
@@ -250,6 +260,7 @@ export class EditingToolTestPagePage implements OnInit {
   private reloadPage() {
     this.contents = null;
     this.loadEditorDataById();
+
   }
 
   private async saveChangesToCloud() {
@@ -272,7 +283,7 @@ export class EditingToolTestPagePage implements OnInit {
       // this.updateDataById(this.articleId, this.contents);
       this.firebaseService.updateDataByIdService(this.articleId, this.contents).then((res: any) => {
         console.log(res);
-        this.reloadPage();
+        // this.reloadPage();
 
         console.log("Changes saved to cloud!");
 
