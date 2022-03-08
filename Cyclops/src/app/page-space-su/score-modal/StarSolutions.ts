@@ -40,11 +40,20 @@ export const StarSolutions : StarSolutionTags[] = [
         sectionstars : [
             {
                 starssection: [ "Fill your car seats when you ride", "Remember that everything a car powers depends on burning gasoline"
-        
-            ],
+            
+                ],
                 starinput : 1
 
-            }
+            },
+            {
+                starssection: [ "Buy low emission vehicle", "Fill your car seats when you ride"
+            
+                ],
+                starinput : 2
+
+            },
+            
+
 
         ]
     }
