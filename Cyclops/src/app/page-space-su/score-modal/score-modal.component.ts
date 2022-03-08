@@ -226,10 +226,10 @@ export class ScoreModalComponent implements OnInit  {
     this.starsols = StarSolutions[0].starsols.find(s=> s.star.trim() == val.trim()).starsol;
   }
   getStarsForSelectedSolution(val:string){
-    this.starsection = StarSolutions[0].sectionstars;
-    this.usereco.level= StarSolutions[0].sectionstars.find(s=> this.starsection = val.trim()).starinput;
+    // this.starsection = StarSolutions[0].sectionstars;
+    // this.usereco.level= StarSolutions[0].sectionstars.find(s=> this.starsection = val.trim()).starinput;
+    this.usereco.level = StarSolutions[0].starsols.find(s=> s.starsol[""] == val.trim()).star;
     console.log(this.usereco.level);
-
     
   }
  
