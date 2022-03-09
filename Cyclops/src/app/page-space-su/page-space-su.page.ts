@@ -5,7 +5,7 @@ import { ScoreModalComponent } from './score-modal/score-modal.component';
 import { NavController } from '@ionic/angular';
 import { PageSpaceMePage } from '../page-space-me/page-space-me.page';
 import { Router } from '@angular/router';
-
+import { FirebaseService } from '../FirebaseService/firebase.service';
 
 
 @Component({
@@ -25,8 +25,17 @@ export class PageSpaceSuPage implements OnInit {
   }
 
   surveyPage: PageSpaceMePage;
+
+  solutions:fetchSolution[];
   
-  constructor(public ecopopover:PopoverController, private modalCtrol: ModalController, public navCtrl: NavController, private router: Router) {}
+  constructor(
+    public ecopopover:PopoverController, 
+    private modalCtrol: ModalController, 
+    public navCtrl: NavController, 
+    public firebaseService: FirebaseService,
+    private router: Router) {
+      this.contentLoading();
+    }
 
 
   async notifications(ev: any) {  
@@ -39,6 +48,24 @@ export class PageSpaceSuPage implements OnInit {
   }
   goSurvey(){
     this.router.navigateByUrl('tabs/page-space-me');
+  }
+  contentLoading() {
+
+    this.firebaseService.getDataServiceECOPage().subscribe((res) => {
+      this.solutions = res.map(e => {
+        return {
+          id: e.payload.doc.id,
+          name: e.payload.doc.data()['name'],
+          description: e.payload.doc.data()['description'],
+          section: e.payload.doc.data()['section'],
+          starLevel: e.payload.doc.data()['starLevel']
+        }
+      })
+      console.log("content loaded",this.solutions);
+    }, (err: any) => {
+      console.log(err);
+    })
+    
   }
 
 
@@ -60,16 +87,12 @@ export class PageSpaceSuPage implements OnInit {
       })
     })
   }
-    
-
-   
-
-  
-
-  
-  
-
-
-
+}
+type fetchSolution = {
+  id: string;
+  name: string;
+  section: string;
+  description: string;
+  starLevel: Number;
 }
 
