@@ -28,6 +28,7 @@ export class ScoreModalComponent implements OnInit  {
   @Output() ratingChange: EventEmitter<number> = new EventEmitter();starinput: string[];
   sectionstars: any=[];
   starsection: any=[];
+  starsol: any=[];
 ;
 
   myForm: FormGroup;
@@ -221,15 +222,17 @@ export class ScoreModalComponent implements OnInit  {
     this.usereco.level = ($event.target.value); // Value to database
     console.log(this.usereco.level)
   }
-  getSolutionsForSelectedStars(val:string){
+  getSolutionsForSelectedStars(val:number){
     this.starbuttonClicked = !this.starbuttonClicked;
-    this.starsols = StarSolutions[0].starsols.find(s=> s.star.trim() == val.trim()).starsol;
+    this.starsols = StarSolutions[0].starsols.find(s=> s.star == val).starsol;
   }
-  getStarsForSelectedSolution(val:string){
+  getStarsForSelectedSolution(val:string[]){
     // this.starsection = StarSolutions[0].sectionstars;
     // this.usereco.level= StarSolutions[0].sectionstars.find(s=> this.starsection = val.trim()).starinput;
-    this.usereco.level = StarSolutions[0].starsols.find(s=> s.starsol[0] == val.trim()).star;
-    console.log(this.usereco.level);
+  
+      this.usereco.level = StarSolutions[0].starsols.find(s=> s.starsol = val).star;
+      console.log(this.usereco.level);
+    
     
   }
  
