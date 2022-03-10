@@ -78,7 +78,7 @@ export class EditingToolTestPagePage implements OnInit {
     await alert.present();
   }
 
-  private loadEditorDataById() {
+  loadEditorDataById() {
     this.firebaseService.getDataByIdService(this.articleId).subscribe(
       e => {
         this.contents = {
