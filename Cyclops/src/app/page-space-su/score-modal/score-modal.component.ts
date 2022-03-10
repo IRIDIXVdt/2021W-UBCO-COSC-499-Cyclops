@@ -29,6 +29,7 @@ export class ScoreModalComponent implements OnInit  {
   sectionstars: any=[];
   starsection: any=[];
   starsol: any=[];
+  navCtrl: any;
 ;
 
   myForm: FormGroup;
@@ -230,8 +231,13 @@ export class ScoreModalComponent implements OnInit  {
     // this.starsection = StarSolutions[0].sectionstars;
     // this.usereco.level= StarSolutions[0].sectionstars.find(s=> this.starsection = val.trim()).starinput;
 
+   
+   
       this.usereco.level = StarSolutions[0].starsols.find(s=> s.starsol[0] == val).star;
       console.log(this.usereco.level);
+   
+      // this.usereco.level = StarSolutions[0].starsols.find(s=> s.starsol[0] == val).star;
+      // console.log(this.usereco.level);
     
   }
  
@@ -271,3 +277,7 @@ export class ScoreModalComponent implements OnInit  {
         solutions : string[];
     }[];
   }
+function Table(Table: any, arg1: { averagesList: any; }) {
+  throw new Error('Function not implemented.');
+}
+

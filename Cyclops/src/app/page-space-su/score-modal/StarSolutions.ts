@@ -3,7 +3,6 @@ export const StarSolutions : StarSolutionTags[] = [
 
     {
         stars : [1,2,3,4,5],
-    
         starsols: [
             {
                 star: 1,
