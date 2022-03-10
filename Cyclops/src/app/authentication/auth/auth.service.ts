@@ -46,6 +46,12 @@ export class AuthService {
       return true;
     }
   }
+
+  getUserEmail(){
+    if(this.isLogin){
+      return JSON.parse(localStorage.getItem('user')).email
+    }
+  }
   // Sign in with email/password
   async SignIn(email, password) {
     // create a loading animation

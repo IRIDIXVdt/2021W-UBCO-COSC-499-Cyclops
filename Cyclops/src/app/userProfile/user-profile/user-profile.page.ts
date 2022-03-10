@@ -12,31 +12,26 @@ export class UserProfilePage implements OnInit {
 
   userData = JSON.parse(localStorage.getItem('user'));
 
-  displayName:any;
+
 
 
 
   constructor(public authService: AuthService, public alertController: AlertController) { 
-    if(JSON.parse(localStorage.getItem('user')).displayName != null){
+    /* if(JSON.parse(localStorage.getItem('user')).displayName != null){
       this.displayName= JSON.parse(localStorage.getItem('user')).displayName;
     }else{
       this.displayName= JSON.parse(localStorage.getItem('user')).email;
       console.log(this.displayName);
-    }
+    } */
 
 
   }
 
   ngOnInit() {
-    if(JSON.parse(localStorage.getItem('user')).displayName != null){
-      this.displayName= JSON.parse(localStorage.getItem('user')).displayName;
-    }else{
-      this.displayName= JSON.parse(localStorage.getItem('user')).email;
-      console.log(this.displayName);
-    }
+
   }
 
-  async editUsername() {
+  /* async editUsername() {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Edit User Name',
@@ -60,7 +55,7 @@ export class UserProfilePage implements OnInit {
         }, {
           text: 'Save',
           handler: data => {
-            if (data.userName != '') {               /*  data.userName != '' */
+            if (data.userName != '') {              
               console.log(data)
               this.authService.updateUserName(data.userName);
               this.userData = JSON.parse(localStorage.getItem('user'));
@@ -77,7 +72,7 @@ export class UserProfilePage implements OnInit {
 
     await alert.present();
     console.log(this.userData.displayName);
-  }
+  } */
 
 
   async alertError(message) {
