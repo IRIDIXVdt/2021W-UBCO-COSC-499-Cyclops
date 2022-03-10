@@ -3,34 +3,41 @@ export const StarSolutions : StarSolutionTags[] = [
 
     {
         stars : [1,2,3,4,5],
+        
+        sols : ["Reduce meat consumption", "Forget about the labels","Try New things",
+                "Find your high impact food","Live carlessly", "Reduce car use",
+                "Buy low emission vehicle", "Fill your car seats when you ride",
+                "Fill your car seats when you ride", "Remember that everything a car powers depends on burning gasoline"],
+
+    
         starsols: [
             {
-                star: "1",
+                star: 1,
                 starsol : [ "Reduce meat consumption", "Forget about the labels"
         
                 ]
         
             },
             {
-                star: "2",
+                star: 2,
                 starsol: [ "Try New things", "Find your high impact food"
         
                 ]
             },
             {
-                star: "3",
+                star: 3,
                 starsol: [ "Live carlessly", "Reduce car use"
         
                 ]
             },
             {
-                star: "4",
+                star: 4,
                 starsol: [ "Buy low emission vehicle", "Fill your car seats when you ride"
         
                 ]
             },
             {
-                star: "5",
+                star: 5,
                 starsol: [ "Fill your car seats when you ride", "Remember that everything a car powers depends on burning gasoline"
         
                 ]
