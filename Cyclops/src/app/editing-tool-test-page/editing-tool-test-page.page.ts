@@ -259,7 +259,7 @@ export class EditingToolTestPagePage implements OnInit {
     }
   }
 
-  private reloadPage() {
+  reloadPage() {
     this.contents = null;
     this.loadEditorDataById();
 
