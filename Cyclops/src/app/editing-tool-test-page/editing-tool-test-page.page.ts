@@ -188,7 +188,7 @@ export class EditingToolTestPagePage implements OnInit {
     // console.log("Changes saved locally!");
   }
 
-  private onTitleEditorChange() {
+  onTitleEditorChange() {
     console.log("current title is: " + this.TitleInput);
     this.contents.segment[this.currentSeg].segmentTitle = this.TitleInput;
     // this.needSaving = true;
