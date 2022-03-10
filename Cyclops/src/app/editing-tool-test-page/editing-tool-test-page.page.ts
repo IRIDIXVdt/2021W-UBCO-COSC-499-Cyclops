@@ -61,7 +61,7 @@ export class EditingToolTestPagePage implements OnInit {
     this.presentAlert();
   }
 
-  private updateDataById(docId, data) {
+  updateDataById(docId, data) {
     this.firebaseService.updateDataByIdService(docId, data).then((res: any) => {
       console.log(res);
     }).catch((error) => {
