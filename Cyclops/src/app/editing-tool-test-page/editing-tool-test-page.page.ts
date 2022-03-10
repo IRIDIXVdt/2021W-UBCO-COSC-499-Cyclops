@@ -203,7 +203,7 @@ export class EditingToolTestPagePage implements OnInit {
     console.log("text area focus");
   }
 
-  private updateArticle() {
+  updateArticle() {
     this.editorComponent.editorInstance.setData(this.contents.segment[this.currentSeg].segmentBody)
   }
 
