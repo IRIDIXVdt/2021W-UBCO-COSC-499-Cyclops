@@ -194,11 +194,11 @@ export class EditingToolTestPagePage implements OnInit {
     // this.needSaving = true;
     // console.log("need Saving on Title Editor Change");
   }
-  private titleFocus() {//change saving state to open when title input focused
+  titleFocus() {//change saving state to open when title input focused
     this.needSaving = true;
     console.log("title focus");
   }
-  private textAreaFocus() {
+  textAreaFocus() {
     this.needSaving = true;
     console.log("text area focus");
   }
