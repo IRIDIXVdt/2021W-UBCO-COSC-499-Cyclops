@@ -265,7 +265,7 @@ export class EditingToolTestPagePage implements OnInit {
 
   }
 
-  private async saveChangesToCloud() {
+  async saveChangesToCloud() {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       message: 'Do you want to save all changes to Cloud?',
