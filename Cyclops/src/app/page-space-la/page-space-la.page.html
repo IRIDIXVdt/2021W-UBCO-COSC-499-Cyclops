@@ -1,11 +1,11 @@
 <ion-header [translucent]="true">
     <ion-toolbar>
         <ion-title style="font-size: 150%;" *ngIf="!editMode">Articles</ion-title>
-        <ion-button slot="start" class="ion-padding-start" (click)="exitEditMode(false)" *ngIf="editMode && this.authService.isAdmin()">
+        <ion-button slot="start" class="ion-padding-start" (click)="exitEditMode()" *ngIf="editMode && this.authService.isAdmin()">
             <ion-icon name="chevron-back-outline"></ion-icon>
             <ion-label>&nbsp;&nbsp;Exit Edit</ion-label>
         </ion-button>
-        <ion-button slot="end" class="ion-padding-end" (click)="enterEditMode(true)" *ngIf="!editMode && this.authService.isAdmin()">
+        <ion-button slot="end" class="ion-padding-end" (click)="enterEditMode()" *ngIf="!editMode && this.authService.isAdmin()">
             <ion-icon name="settings-outline"></ion-icon>
             <ion-label>&nbsp;&nbsp;Manage Article Cards</ion-label>
         </ion-button>
