@@ -75,13 +75,13 @@
         <ng-container *ngIf="articleCol">
             <div [ngSwitch]="status1">
                 <div *ngSwitchCase="'Articles p1'">
-                    <app-article-main [contentCol]="articleCol[0]" [col]="1" [editMode]="editMode"></app-article-main>
+                    <app-article-main [contentCol]="articleCol[0]" [col]="'1'" [editMode]="editMode"></app-article-main>
                 </div>
                 <div *ngSwitchCase="'Articles p2'">
-                    <app-article-main [contentCol]="articleCol[1]" [col]="2" [editMode]="editMode"></app-article-main>
+                    <app-article-main [contentCol]="articleCol[1]" [col]="'2'" [editMode]="editMode"></app-article-main>
                 </div>
                 <div *ngSwitchCase="'Articles p3'">
-                    <app-article-main [contentCol]="articleCol[2]" [col]="3" [editMode]="editMode"></app-article-main>
+                    <app-article-main [contentCol]="articleCol[2]" [col]="'3'" [editMode]="editMode"></app-article-main>
                 </div>
             </div>
         </ng-container>
