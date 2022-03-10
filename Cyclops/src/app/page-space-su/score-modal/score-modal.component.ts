@@ -223,9 +223,9 @@ export class ScoreModalComponent implements OnInit  {
     this.usereco.level = ($event.target.value); // Value to database
     console.log(this.usereco.level)
   }
-  getSolutionsForSelectedStars(val:number){
+  getSolutionsForSelectedStars(val:string){
     this.starbuttonClicked = !this.starbuttonClicked;
-    this.starsols = StarSolutions[0].starsols.find(s=> s.star == val).starsol;
+    this.starsols = StarSolutions[0].starsols.find(s=> s.star.trim() == val.trim()).starsol;
   }
   getStarsForSelectedSolution(val:string){
     // this.starsection = StarSolutions[0].sectionstars;

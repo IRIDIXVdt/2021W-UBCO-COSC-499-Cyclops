@@ -1,7 +1,7 @@
 export class StarSolutionTags{
     stars : number[];
     starsols : {
-        star : number;
+        star : string;
         starsol : string[];
     }[];
     sectionstars : {
