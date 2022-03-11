@@ -114,8 +114,8 @@
     </ion-item>
     <ion-row>
         <ng-container *ngFor="let solution of solutions">
-            <ion-col size-xs="12" size-sm="6" size-md="4" size-lg="3" *ngIf="selectOptions==[]||selectOptions.indexOf(solution.starLevel)!==-1">
-                <ion-card color='light'>
+            <ion-col size-xs="12" size-sm="6" size-md="4" size-lg="3" *ngIf="solution.section=='Transportation'&&(selectOptions==[]||selectOptions.indexOf(solution.starLevel)!==-1)">
+                <ion-card class="solution" color='light'>
                     <ion-card-header>
                         <ion-card-subtitle>{{solution.starLevel}}
                             <ion-icon name="star"></ion-icon>
