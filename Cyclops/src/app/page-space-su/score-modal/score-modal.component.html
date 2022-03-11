@@ -42,7 +42,7 @@
       <ion-list>
         <ion-item>
           <ion-label> <h2 id="leveltag">Stars</h2></ion-label>
-          <ion-select interface="popover" [interfaceOptions]="{'cssClass': 'mycomponent-wider-popover'}" okText="Okay" cancelText="Dismiss" formControlName="Select_Level" (ionChange)="selectedLevel($event)" (ionChange)="getSolutionsForSelectedStars($event.target.value)" name="Section" placeholder="Sections">
+          <ion-select interface="popover" [interfaceOptions]="{'cssClass': 'mystars-wider-popover'}" okText="Okay" cancelText="Dismiss" formControlName="Select_Level" (ionChange)="selectedLevel($event)" (ionChange)="getSolutionsForSelectedStars($event.target.value)" name="Section" placeholder="Sections">
           <ion-select-option *ngFor="let st of stars">{{st}}</ion-select-option>
           </ion-select>
         </ion-item>
@@ -57,7 +57,7 @@
         <ion-list>
           <ion-item *ngIf="starsols && starsols.length > 0">
             <ion-label> <h2 id="leveltag">Article Solution</h2></ion-label>
-            <ion-select  interface="popover" [interfaceOptions]="{'cssClass': 'mycomponent-wider-popover'}" okText="Okay" cancelText="Dismiss" formControlName="Select_LevelSolution" (ionChange)="selectedSolution($event)" name="Solution" placeholder="Solutions">
+            <ion-select  interface="popover" [interfaceOptions]="{'cssClass': 'mysolutions-wider-popover'}" okText="Okay" cancelText="Dismiss" formControlName="Select_LevelSolution" (ionChange)="selectedSolution($event)" name="Solution" placeholder="Solutions">
             <ion-select-option *ngFor="let ss of starsols">{{ss}}</ion-select-option>
             </ion-select>
           </ion-item>
@@ -102,7 +102,7 @@
       <ion-list>
         <ion-item>
           <ion-label> <h2 id="leveltag">Article Section</h2></ion-label>
-          <ion-select interface="popover" [interfaceOptions]="{'cssClass': 'mycomponent-wider-popover'}" okText="Okay" cancelText="Dismiss" formControlName="Select_Section" (ionChange)="selectedSection($event)" (ionChange)="getSolutionsForSelectedSections($event.target.value)" name="Section" placeholder="Sections">
+          <ion-select interface="popover" [interfaceOptions]="{'cssClass': 'mysection-wider-popover'}" okText="Okay" cancelText="Dismiss" formControlName="Select_Section" (ionChange)="selectedSection($event)" (ionChange)="getSolutionsForSelectedSections($event.target.value)" name="Section" placeholder="Sections">
           <ion-select-option *ngFor="let se of sections">{{se}}</ion-select-option>
           </ion-select>
         </ion-item>
@@ -119,7 +119,7 @@
         <ion-list>
           <ion-item *ngIf="solution && solution.length > 0">
             <ion-label> <h2 id="leveltag">Article Solution</h2></ion-label>
-            <ion-select  interface="popover" [interfaceOptions]="{'cssClass': 'mycomponent-wider-popover'}" okText="Okay" cancelText="Dismiss" formControlName="Select_Solution"  (ionChange)="selectedSolution($event)" name="Solution" placeholder="Solutions">
+            <ion-select  interface="popover" [interfaceOptions]="{'cssClass': 'mysolutions-wider-popover'}" okText="Okay" cancelText="Dismiss" formControlName="Select_Solution"  (ionChange)="selectedSolution($event)" name="Solution" placeholder="Solutions">
             <ion-select-option *ngFor="let s of solutions">{{s}}</ion-select-option>
             </ion-select>
           </ion-item>
