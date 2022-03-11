@@ -112,21 +112,23 @@
             <ion-select-option value=5>5</ion-select-option>
         </ion-select>
     </ion-item>
-
     <ion-row>
-        <ion-col size-xs="12" size-sm="6" size-md="4" size-lg="3" *ngFor="let solution of solutions">
-            <ion-card color='light' *ngIf="selectOptions==[]||selectOptions.indexOf(solution.starLevel)!==-1">
-                <ion-card-header>
-                    <ion-card-subtitle>{{solution.starLevel}}
-                        <ion-icon name="star"></ion-icon>
-                    </ion-card-subtitle>
-                    <ion-card-title>{{solution.name}}</ion-card-title>
-                </ion-card-header>
-                <ion-card-content>
-                    {{solution.description}}
-                </ion-card-content>
-            </ion-card>
-        </ion-col>
+        <ng-container *ngFor="let solution of solutions">
+            <ion-col size-xs="12" size-sm="6" size-md="4" size-lg="3" *ngIf="selectOptions==[]||selectOptions.indexOf(solution.starLevel)!==-1">
+                <ion-card color='light'>
+                    <ion-card-header>
+                        <ion-card-subtitle>{{solution.starLevel}}
+                            <ion-icon name="star"></ion-icon>
+                        </ion-card-subtitle>
+                        <ion-card-title>{{solution.name}}</ion-card-title>
+                    </ion-card-header>
+                    <ion-card-content>
+                        {{solution.description}}
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+        </ng-container>
+
     </ion-row>
 
 

@@ -80,20 +80,7 @@ export class PageSpaceSuPage implements OnInit {
     this.selectOptions = [1, 2, 3, 4, 5];
 
   }
-  onChange($event) {/*
-    let temp :any[];
-    temp=this.solutions;
-    let select :any[];
-    select = $event.detail.value;
-    select=select.map(Number);
-    for (let i =0; i<this.solutions.length;i++){
-      let tempI = this.solutions.map((a: any) => a.starLevel)[i];
-      if(select.indexOf(tempI)==-1){
-        console.log('don\'t include',temp[i]);
-        console.log(temp.splice(i,1), this.solutions);
-      }
-    }
-    console.log(temp);*/
+  onChange($event) {
     console.log($event.detail.value);
     if ($event.detail.value.length == 0) {
       console.log('nothing selected, select all');
