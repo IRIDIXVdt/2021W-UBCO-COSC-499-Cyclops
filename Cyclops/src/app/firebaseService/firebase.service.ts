@@ -36,6 +36,11 @@ export class FirebaseService {
       ref.orderBy('id', 'asc')).snapshotChanges();
   }
 
+  getDataServiceECOPage() {
+    return this.db.collection("ECOSolutions", ref =>
+      ref.orderBy('starLevel', 'asc')).snapshotChanges();
+  }
+
   getDataByIdService(docId) {
     return this.db.collection('articles').doc(docId).snapshotChanges();
   }

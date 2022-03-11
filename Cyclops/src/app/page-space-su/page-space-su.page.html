@@ -7,14 +7,18 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-    
+
     <ion-card color='light' id="card1" class="card-web">
         <ion-card-header>
             <ion-card-subtitle style="text-align:center; font-size:150%;">Overall Score</ion-card-subtitle>
             <ion-card-title fontsize>
                 <div class="odisplay">
-                    <div class="odisplay1"><h4 style="text-align:center; font-size:300%" fontsize>{{profile.updatedscore}}</h4></div>
-                    <div class="odisplay2"><ion-icon  name="star"></ion-icon></div>
+                    <div class="odisplay1">
+                        <h4 style="text-align:center; font-size:300%" fontsize>{{profile.updatedscore}}</h4>
+                    </div>
+                    <div class="odisplay2">
+                        <ion-icon name="star"></ion-icon>
+                    </div>
                 </div>
             </ion-card-title>
         </ion-card-header>
@@ -94,10 +98,39 @@
     <!-- <div id="button-web">
         <section id="surveycenter">
             <ion-button expand="block">Survey(peer testing 2)</ion-button> -->
-            <!-- <ion-button expand="block" (click)="goSurvey()" >Survey(peer testing 2)</ion-button> -->
-        <!-- </section>
+    <!-- <ion-button expand="block" (click)="goSurvey()" >Survey(peer testing 2)</ion-button> -->
+    <!-- </section>
     </div> -->
+    <h1>Transportation</h1>
+    <ion-item>
+        <ion-label>Filter by Star Level</ion-label>
+        <ion-select multiple="true" (ionChange)="onChange($event)">
+            <ion-select-option value=1>1</ion-select-option>
+            <ion-select-option value=2>2</ion-select-option>
+            <ion-select-option value=3>3</ion-select-option>
+            <ion-select-option value=4>4</ion-select-option>
+            <ion-select-option value=5>5</ion-select-option>
+        </ion-select>
+    </ion-item>
+    <ion-row>
+        <ng-container *ngFor="let solution of solutions">
+            <ion-col size-xs="12" size-sm="6" size-md="4" size-lg="3" *ngIf="solution.section=='Transportation'&&(selectOptions==[]||selectOptions.indexOf(solution.starLevel)!==-1)">
+                <ion-card class="solution" color='light'>
+                    <ion-card-header>
+                        <ion-card-subtitle>{{solution.starLevel}}
+                            <ion-icon name="star"></ion-icon>
+                        </ion-card-subtitle>
+                        <ion-card-title>{{solution.name}}</ion-card-title>
+                    </ion-card-header>
+                    <ion-card-content>
+                        {{solution.description}}
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+        </ng-container>
 
-    
+    </ion-row>
+
+
 
 </ion-content>
