@@ -68,6 +68,7 @@
            </span>
         </p>
       </div>
+      
 
 
       <div class="range">
@@ -153,15 +154,16 @@
         </div>
     
         </div> -->
+
     
-        <div class="stars">
+        <div class="stars">      
     
-          <h5>Enter Weight of Solution Below:</h5>
-          <div class="rater">
-            <ion-icon name = "star"style="zoom:2.0;" *ngFor="let num of [1,2,3,4,5]"
-            (click)="rate(num)" [ngStyle]="{'color':getColor(num)}">
-            </ion-icon>
-          </div>
+            <h5>Enter Weight of Solution Below:</h5>
+            <div class="rater">
+              <ion-icon name = "star"style="zoom:2.0;" *ngFor="let num of [1,2,3,4,5]"
+              (click)="rate(num)" [ngStyle]="{'color':getColor(num)}">
+              </ion-icon>
+             </div>
           
         
         
