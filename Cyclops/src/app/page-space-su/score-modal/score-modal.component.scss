@@ -111,3 +111,8 @@ ion-range::part(tick-active) {
 .buttontags{
     text-align: center;
 }
+::ng-deep .mycomponent-wider-popover
+{
+  --width: 400%;
+  --max-width: 700px;
+}
