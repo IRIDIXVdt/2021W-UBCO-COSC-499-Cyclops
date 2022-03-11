@@ -30,6 +30,7 @@ export class ScoreModalComponent implements OnInit  {
   starsection: any=[];
   starsol: any=[];
   navCtrl: any;
+  
 ;
 
   myForm: FormGroup;
@@ -226,14 +227,6 @@ export class ScoreModalComponent implements OnInit  {
   getSolutionsForSelectedStars(val:number){
     this.starbuttonClicked = !this.starbuttonClicked;
     this.starsols = StarSolutions[0].starsols.find(s=> s.star == val).starsol;
-  }
-  getStarsForSelectedSolution(val:string[]){
-    // this.starsection = StarSolutions[0].sectionstars;
-    // this.usereco.level= StarSolutions[0].sectionstars.find(s=> this.starsection = val.trim()).starinput;
-
-      this.usereco.level = StarSolutions[0].starsols.find(s=> this.starsol == val).star;
-      console.log(this.usereco.level);
-    
   }
  
   
