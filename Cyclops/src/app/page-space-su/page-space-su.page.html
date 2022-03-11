@@ -102,9 +102,20 @@
     <!-- </section>
     </div> -->
     <h1>Transportation</h1>
+    <ion-item>
+        <ion-label>Filter by Star Level</ion-label>
+        <ion-select multiple="true" (ionChange)="onChange($event)">
+            <ion-select-option value=1>1</ion-select-option>
+            <ion-select-option value=2>2</ion-select-option>
+            <ion-select-option value=3>3</ion-select-option>
+            <ion-select-option value=4>4</ion-select-option>
+            <ion-select-option value=5>5</ion-select-option>
+        </ion-select>
+    </ion-item>
+
     <ion-row>
         <ion-col size-xs="12" size-sm="6" size-md="4" size-lg="3" *ngFor="let solution of solutions">
-            <ion-card color='light'>
+            <ion-card color='light' *ngIf="selectOptions==[]||selectOptions.indexOf(solution.starLevel)!==-1">
                 <ion-card-header>
                     <ion-card-subtitle>{{solution.starLevel}}
                         <ion-icon name="star"></ion-icon>

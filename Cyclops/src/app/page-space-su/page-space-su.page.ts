@@ -6,6 +6,10 @@ import { NavController } from '@ionic/angular';
 import { PageSpaceMePage } from '../page-space-me/page-space-me.page';
 import { Router } from '@angular/router';
 import { FirebaseService } from '../FirebaseService/firebase.service';
+import { Observable, from, of } from 'rxjs'
+import { filter } from 'rxjs/operators';
+import { identifierModuleUrl } from '@angular/compiler';
+import { convertToViews } from '@ionic/core/dist/types/components/nav/view-controller';
 
 
 @Component({
@@ -17,36 +21,40 @@ export class PageSpaceSuPage implements OnInit {
 
   profile = {
     solution: "Solution", // retrives solution from score modal
-    section : "Section", // retrives section from score modal
-    range : 0, // retrives value from score modal
-    level : 0, // retrives level from score modal
+    section: "Section", // retrives section from score modal
+    range: 0, // retrives value from score modal
+    level: 0, // retrives level from score modal
     updatedscore: 0, // retrives level*range
     rating: 0
   }
 
   surveyPage: PageSpaceMePage;
 
-  solutions:fetchSolution[];
-  
+  solutions;
+  selectOptions;
+
+
+
+
   constructor(
-    public ecopopover:PopoverController, 
-    private modalCtrol: ModalController, 
-    public navCtrl: NavController, 
+    public ecopopover: PopoverController,
+    private modalCtrol: ModalController,
+    public navCtrl: NavController,
     public firebaseService: FirebaseService,
     private router: Router) {
-      this.contentLoading();
-    }
-
-
-  async notifications(ev: any) {  
-    const popover = await this.ecopopover.create({  
-        component: EcoPopoverComponent,  
-        event: ev,  
-        translucent: true
-    });  
-    return await popover.present(); 
+    this.contentLoading();
   }
-  goSurvey(){
+
+
+  async notifications(ev: any) {
+    const popover = await this.ecopopover.create({
+      component: EcoPopoverComponent,
+      event: ev,
+      translucent: true
+    });
+    return await popover.present();
+  }
+  goSurvey() {
     this.router.navigateByUrl('tabs/page-space-me');
   }
   contentLoading() {
@@ -61,27 +69,51 @@ export class PageSpaceSuPage implements OnInit {
           starLevel: e.payload.doc.data()['starLevel']
         }
       })
-      console.log("content loaded",this.solutions);
+      console.log("content loaded", this.solutions.map((a: any) => a.starLevel));
     }, (err: any) => {
       console.log(err);
     })
-    
+
   }
 
+  ngOnInit() {
+    this.selectOptions = [1, 2, 3, 4, 5];
 
+  }
+  onChange($event) {/*
+    let temp :any[];
+    temp=this.solutions;
+    let select :any[];
+    select = $event.detail.value;
+    select=select.map(Number);
+    for (let i =0; i<this.solutions.length;i++){
+      let tempI = this.solutions.map((a: any) => a.starLevel)[i];
+      if(select.indexOf(tempI)==-1){
+        console.log('don\'t include',temp[i]);
+        console.log(temp.splice(i,1), this.solutions);
+      }
+    }
+    console.log(temp);*/
+    console.log($event.detail.value);
+    if ($event.detail.value.length == 0) {
+      console.log('nothing selected, select all');
+      this.selectOptions = [1, 2, 3, 4, 5];
+    } else {
+      this.selectOptions = $event.detail.value.map(Number);
+      console.log(this.selectOptions);
+    }
 
+  }
 
-  ngOnInit() {}
-
-  openModal(){
+  openModal() {
     this.modalCtrol.create({
-      component:ScoreModalComponent,
+      component: ScoreModalComponent,
       componentProps: this.profile
-    }).then(modalres =>{
+    }).then(modalres => {
       modalres.present();
 
-      modalres.onDidDismiss().then( res =>{
-        if(res.data != null){
+      modalres.onDidDismiss().then(res => {
+        if (res.data != null) {
           this.profile = res.data;
         }
       })
