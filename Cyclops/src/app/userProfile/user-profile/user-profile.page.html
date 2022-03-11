@@ -13,10 +13,10 @@
 
     <div class="user_div">
       <div class="first_div">
-        <ion-label class="username" >{{displayName}}</ion-label>
+        <ion-label class="username" >Welcome! {{this.authService.getUserEmail()}}</ion-label>
       </div>
-      <div *ngIf="userData.photoURL == null" class="user_back" [style.backgroundImage]="'url(../../../assets/default-user-image.png)'"></div>
-      <div *ngIf="userData.photoURL != null" class="user_back" [style.backgroundImage]="'url({{userData.photoURL}})'"></div>    
+      <!-- <div *ngIf="userData.photoURL == null" class="user_back" [style.backgroundImage]="'url(../../../assets/default-user-image.png)'"></div>
+      <div *ngIf="userData.photoURL != null" class="user_back" [style.backgroundImage]="'url({{userData.photoURL}})'"></div>  -->   
     </div>
 
     <div class ="content_div">
@@ -69,10 +69,10 @@
         </div>
       </ng-container>
      
-      <div class="list_div" (click)="this.editUsername()">
+      <!-- <div class="list_div" (click)="this.editUsername()">
         <ion-label>Edit User Name</ion-label>
         <ion-icon name="chevron-forward-outline" slot="end"></ion-icon> 
-      </div>
+      </div> -->
 
       <div class="list_div" routerLink="/reset-password">
         <ion-label>Reset My Password</ion-label>

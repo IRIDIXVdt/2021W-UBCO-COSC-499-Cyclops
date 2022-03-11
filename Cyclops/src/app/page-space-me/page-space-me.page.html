@@ -15,7 +15,7 @@
     </ion-toolbar>
 
     <div *ngIf="contents">
-        <ion-segment mode="md" scrollable (ionChange)="segmentChanged($event)" color="medium" [(ngModel)]="status">
+        <ion-segment mode="md" scrollable (ionChange)="segmentChanged($event)" color="primary" [(ngModel)]="status">
             <ng-container *ngFor="let contentSeg of contents.segment; let indexOfSeg = index;">
                 <ion-segment-button text-wrap value={{indexOfSeg}}>
                     <ion-label text-wrap>{{contentSeg.segmentTitle}}</ion-label>

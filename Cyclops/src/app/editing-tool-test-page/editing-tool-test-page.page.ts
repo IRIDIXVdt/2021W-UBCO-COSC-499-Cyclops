@@ -61,7 +61,7 @@ export class EditingToolTestPagePage implements OnInit {
     this.presentAlert();
   }
 
-  private updateDataById(docId, data) {
+  updateDataById(docId, data) {
     this.firebaseService.updateDataByIdService(docId, data).then((res: any) => {
       console.log(res);
     }).catch((error) => {
@@ -78,7 +78,7 @@ export class EditingToolTestPagePage implements OnInit {
     await alert.present();
   }
 
-  private loadEditorDataById() {
+  loadEditorDataById() {
     this.firebaseService.getDataByIdService(this.articleId).subscribe(
       e => {
         this.contents = {
@@ -188,22 +188,22 @@ export class EditingToolTestPagePage implements OnInit {
     // console.log("Changes saved locally!");
   }
 
-  private onTitleEditorChange() {
+  onTitleEditorChange() {
     console.log("current title is: " + this.TitleInput);
     this.contents.segment[this.currentSeg].segmentTitle = this.TitleInput;
     // this.needSaving = true;
     // console.log("need Saving on Title Editor Change");
   }
-  private titleFocus() {//change saving state to open when title input focused
+  titleFocus() {//change saving state to open when title input focused
     this.needSaving = true;
     console.log("title focus");
   }
-  private textAreaFocus() {
+  textAreaFocus() {
     this.needSaving = true;
     console.log("text area focus");
   }
 
-  private updateArticle() {
+  updateArticle() {
     this.editorComponent.editorInstance.setData(this.contents.segment[this.currentSeg].segmentBody)
   }
 
@@ -259,13 +259,13 @@ export class EditingToolTestPagePage implements OnInit {
     }
   }
 
-  private reloadPage() {
+  reloadPage() {
     this.contents = null;
     this.loadEditorDataById();
 
   }
 
-  private async saveChangesToCloud() {
+  async saveChangesToCloud() {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       message: 'Do you want to save all changes to Cloud?',

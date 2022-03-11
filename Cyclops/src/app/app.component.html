@@ -13,7 +13,8 @@
 
               <ion-icon name="{{item.icon}}" *ngIf="router.url === item.link" color="primary"></ion-icon>
               <ion-icon name="{{item.icon}}" *ngIf="router.url !== item.link"></ion-icon>
-              {{item.name}}
+              <ion-text *ngIf="router.url === item.link" color="primary">{{item.name}}</ion-text>
+              <ion-text *ngIf="router.url !== item.link">{{item.name}}</ion-text>
             </ion-item>
           </div>
         </ion-header>
@@ -21,7 +22,10 @@
       <ion-footer class="ion-no-border">
         <ng-container *ngIf="!authService.isLogin()">  <!-- have not logged in  -->
         <ion-item lines="none" button routerLink="/login">
-          <ion-icon name="log-in"></ion-icon>Login
+          <ion-icon *ngIf="router.url === '/login' " color="primary"name="log-in"></ion-icon>
+          <ion-icon *ngIf="router.url !== '/login' " name="log-in"></ion-icon>
+          <ion-text *ngIf="router.url === '/login' " color="primary">Login</ion-text>
+          <ion-text *ngIf="router.url !== '/login' ">Login</ion-text>
         </ion-item>
         <!-- <ion-item lines="none" button routerLink="/login">
           <ion-icon name="settings"></ion-icon>Settings
@@ -30,7 +34,10 @@
 
       <ng-container *ngIf="authService.isLogin()"> <!-- have logged in  -->
         <ion-item lines="none" button routerLink="/user-profile">
-          <ion-icon name="person-circle-outline"></ion-icon>Profile
+          <ion-icon *ngIf="router.url === '/user-profile' " color="primary" name="person-circle-outline"></ion-icon>
+          <ion-icon *ngIf="router.url !== '/user-profile' " name="person-circle-outline"></ion-icon>
+          <ion-text *ngIf="router.url === '/user-profile' " color="primary">Profile</ion-text>
+          <ion-text *ngIf="router.url !== '/user-profile' ">Profile</ion-text>
         </ion-item>
         <ion-item lines="none" button routerLink="" (click)="this.authService.SignOut()">
           <ion-icon name="remove-circle-outline" ></ion-icon>Sign-out

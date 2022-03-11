@@ -27,6 +27,10 @@ export class ScoreModalComponent implements OnInit  {
   @Input() rating: number ;
   @Output() ratingChange: EventEmitter<number> = new EventEmitter();starinput: string[];
   sectionstars: any=[];
+  starsection: any=[];
+  starsol: any=[];
+  navCtrl: any;
+  
 ;
 
   myForm: FormGroup;
@@ -220,16 +224,10 @@ export class ScoreModalComponent implements OnInit  {
     this.usereco.level = ($event.target.value); // Value to database
     console.log(this.usereco.level)
   }
-  getSolutionsForSelectedStars(val:string){
+  getSolutionsForSelectedStars(val:number){
     this.starbuttonClicked = !this.starbuttonClicked;
-    this.starsols = StarSolutions[0].starsols.find(s=> s.star.trim() == val.trim()).starsol;
+    this.starsols = StarSolutions[0].starsols.find(s=> s.star == val).starsol;
   }
-  // getStarsForSelectedSolution(val:string){
-  //   this.sectionstars= StarSolutions[0].sectionstars.find(s=> s.starssection.trim() == val.trim()).starinput;
-  //   console.log(this.usereco.level);
-
-    
-  // }
  
   
   
@@ -267,3 +265,7 @@ export class ScoreModalComponent implements OnInit  {
         solutions : string[];
     }[];
   }
+function Table(Table: any, arg1: { averagesList: any; }) {
+  throw new Error('Function not implemented.');
+}
+

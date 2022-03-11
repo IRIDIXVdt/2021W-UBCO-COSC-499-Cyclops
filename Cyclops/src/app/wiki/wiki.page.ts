@@ -40,27 +40,27 @@ export class WikiPage implements OnInit {
     this.loadEditorDataById();
     // this.presentAlert();
   }
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.contents = null;
   }
-  private newEditor() {
+  newEditor() {
     const Edi = InlineEditor;
     return Edi;
   }
-  private updateDataById(docId, data) {
+  updateDataById(docId, data) {
     this.firebaseService.updateDataByIdService(docId, data).then((res: any) => {
       console.log(res);
     })
   }
-  private startPreview(){
+  startPreview() {
     console.log("startPreview");
     this.editMode = false;
   }
-  private endPreview(){
+  endPreview() {
     console.log("endPreview");
     this.editMode = true;
   }
-  private loadEditorDataById() {
+  loadEditorDataById() {
     const subscription = this.firebaseService.getDataByIdService(this.articleId).subscribe(
       e => {
         this.contents = {
@@ -83,7 +83,7 @@ export class WikiPage implements OnInit {
         this.needSaving = false;
         console.log("need saving to false from loadEditorDataById");
         // this.editorComponent.focus;
-        
+
       },
       err => {
         console.debug(err);
@@ -150,13 +150,13 @@ export class WikiPage implements OnInit {
     console.log("need Saving on Content Editor Change");
   }
 
-  private onTitleEditorChange(data: string) {
+  onTitleEditorChange(data: string) {
     // const newTitle: string = document.getElementById(data).value;
     this.needSaving = true;
     console.log("need Saving on Title Editor Change", data);
   }
 
-  private updateArticle() {
+  updateArticle() {
     this.editorComponent.editorInstance.setData(this.contents.segment[this.currentSeg].segmentBody)
   }
 
@@ -198,12 +198,12 @@ export class WikiPage implements OnInit {
     }
   }
 
-  private reloadPage() {
+  reloadPage() {
     this.contents = null;
     this.loadEditorDataById();
   }
 
-  private async saveChangesToCloud() {
+  async saveChangesToCloud() {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       message: 'Do you want to save all changes to Cloud?',
