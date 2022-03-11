@@ -64,7 +64,6 @@ export class PageSpaceErPage implements OnInit {
         if(e.payload.data()['latestRead']!=undefined){
           this.userData = e.payload.data()['latestRead'];
         }
-        subscription.unsubscribe();
         console.log('this user latest rad content loaded:', this.userData.id);
         this.latestRead=this.userData.id;
         console.log(this.latestRead);
