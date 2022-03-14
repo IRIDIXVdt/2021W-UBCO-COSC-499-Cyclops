@@ -3,5 +3,9 @@ export class SectionSolutionTags{
     solution : {
         section : string;
         scores : number[];
+        staramount:{
+            amount: number;
+            amountsolution:string[];
+        }[];
     }[];
 }
