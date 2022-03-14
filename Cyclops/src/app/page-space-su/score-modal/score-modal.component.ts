@@ -207,7 +207,7 @@ export class ScoreModalComponent implements OnInit  {
   }
   getSolutionsForSelectedSections(val:string){
     this.buttonClicked = !this.buttonClicked;
-    this.solutions = SectionSolution[0].solution.find(s=> s.section.trim() == val.trim()).solutions;
+    this.solutions = SectionSolution[0].solution.find(s=> s.section.trim() == val.trim()).scores;
   }
   selectedSection($event) {
     // this.buttonClicked = !this.buttonClicked;
