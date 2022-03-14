@@ -38,7 +38,7 @@ export const StarSolutions : StarSolutionTags[] = [
             },
             {
                 star: 5,
-                starsol: [ "Fill your car seats when you ride", "Remember that everything a car powers depends on burning gasoline"
+                starsol: [ "star5solution", "Remember that everything a car powers depends on burning gasoline"
         
                 ]
             }
