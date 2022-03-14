@@ -118,7 +118,7 @@
       <div *ngIf="buttonClicked">   
         <ion-list>
           <ion-item *ngIf="solution && solution.length > 0">
-            <ion-label> <h2 id="leveltag">Article Solution</h2></ion-label>
+            <ion-label> <h2 id="leveltag">Stars</h2></ion-label>
             <ion-select  interface="popover" [interfaceOptions]="{'cssClass': 'mysolutions-wider-popover'}" okText="Okay" cancelText="Dismiss" formControlName="Select_Solution"  (ionChange)="selectedSolution($event)" name="Solution" placeholder="Solutions">
             <ion-select-option *ngFor="let s of solutions">{{s}}</ion-select-option>
             </ion-select>
@@ -129,6 +129,20 @@
             Please Select a Solution
           </span>
         </p>
+      </div>
+
+      <div>
+
+        <ion-list>
+          <ion-item *ngIf="solution && solution.length > 0">
+            <ion-label> <h2 id="leveltag">Solutions</h2></ion-label>
+            <ion-select  interface="popover" [interfaceOptions]="{'cssClass': 'mystars-wider-popover'}" okText="Okay" cancelText="Dismiss" formControlName="Select_Solution"  (ionChange)="selectedSolution($event)" name="Solution" placeholder="Solutions">
+            <ion-select-option *ngFor="let s of solutions">{{s}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+
+
       </div>
         
         <!-- <div class="level">
