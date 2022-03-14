@@ -3,7 +3,6 @@ export const SectionSolution : SectionSolutionTags[] = [
 
     {
         sections : ["Transportation", "Food"],
-        sectionstars: [1,2,3,4,5],
     
         solution: [
             {
