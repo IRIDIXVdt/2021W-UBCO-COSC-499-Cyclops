@@ -7,16 +7,12 @@ export const SectionSolution : SectionSolutionTags[] = [
         solution: [
             {
                 section: "Food",
-                solutions : [ "Reduce meat consumption", "Forget about the labels", "Try New things", "Find your high impact food"
-        
-                ]
+                solutions : [1,2,3,4,5]
         
             },
             {
                 section: "Transportation",
-                solutions: [ "Live carlessly", "Reduce car use", "Buy low emission vehicle", "Fill your car seats when you ride", "Remember that everything a car powers depends on burning gasoline"
-        
-                ]
+                solutions: [1,2,3,4,5]
             }
         ]
     }
