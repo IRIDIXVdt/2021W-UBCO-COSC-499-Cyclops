@@ -10,7 +10,7 @@ export const SectionSolution : SectionSolutionTags[] = [
                 scores: [1,2,3,4,5],
                 staramount:[{
                     amount: 1,
-                    amountsolution: ["",""],
+                    amountsolution: ["food1","food2"],
                 }
                 ]
             },
@@ -19,7 +19,7 @@ export const SectionSolution : SectionSolutionTags[] = [
                 scores: [1,2,3,4,5],
                 staramount:[{
                     amount: 1,
-                    amountsolution: ["",""],
+                    amountsolution: ["transportation1","transportation2"],
                 }
                 ]
             }
