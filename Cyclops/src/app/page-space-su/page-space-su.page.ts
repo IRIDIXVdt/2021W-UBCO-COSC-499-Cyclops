@@ -113,6 +113,8 @@ export class PageSpaceSuPage implements OnInit {
   }
   sortTypeOnChange() {
     console.log("sort type:", this.sortType);
+    const currentTime = new Date().getTime();
+    console.log(currentTime);
     //handle the event here
     //use the new sortType to update displaySol
   }
