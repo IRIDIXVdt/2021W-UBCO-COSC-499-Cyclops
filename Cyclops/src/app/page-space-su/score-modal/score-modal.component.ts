@@ -8,6 +8,7 @@ import { SectionSolution } from './SectionSolution';
 import { SectionSolutionTags } from "./SectionSolutionTags"
 import { StarSolutions } from './StarSolutions';
 
+
 @Component({
   selector: 'app-score-modal',
   templateUrl: './score-modal.component.html',
