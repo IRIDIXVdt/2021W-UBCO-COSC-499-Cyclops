@@ -1,3 +1,4 @@
+import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalController, NavParams } from '@ionic/angular';
@@ -87,11 +88,12 @@ export class ScoreModalComponent implements OnInit  {
     console.log(SectionSolution[0].solution);
     this.sections = SectionSolution[0].sections;
     this.solutions = SectionSolution[0].solution;
-
+  
     console.log(StarSolutions[0].stars);
     console.log(StarSolutions[0].starsols);
     this.stars = StarSolutions[0].stars;
     this.starsols = StarSolutions[0].starsols;
+    
 
     this.myForm = this.formBuilder.group({
       // Select_Section : ['', Validators.required],
