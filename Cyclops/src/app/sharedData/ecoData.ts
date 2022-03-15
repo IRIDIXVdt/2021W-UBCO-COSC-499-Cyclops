@@ -3,7 +3,17 @@ export type solutionItem = {
 	star: number;
 	detail: string;
 	section: string;
+	
+
 };
+/*
+{
+	solutionId
+	timestamp
+	weight
+	score
+}
+*/
 
 export const sectionList: string[] = [
 	"Climate Change",

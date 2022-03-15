@@ -35,7 +35,8 @@ export class PageSpaceSuPage implements OnInit {
   localSol: fetchSolution[];
   displaySol: fetchSolution[];
   sortType: string;//this handles the type of sorting
-
+  section: string;//this handles which section we want
+  sections: string[];
 
   constructor(
     public ecopopover: PopoverController,
@@ -46,6 +47,8 @@ export class PageSpaceSuPage implements OnInit {
   ) {
     // this.contentLoading();
     this.dummyContentLoading();
+    this.sections = sectionList;
+    this.sortTypeOnChange();
   }
 
 
@@ -94,6 +97,7 @@ export class PageSpaceSuPage implements OnInit {
 
   sortTypeInitialize() {
     this.sortType = "starUp";
+    this.section = "All";
     this.displaySol = this.localSol;
   }
   openModal() {
@@ -128,6 +132,17 @@ export class PageSpaceSuPage implements OnInit {
       console.log("section name")
       this.displaySol.sort((a, b) => (a.section > b.section) ? 1 : -1);
     }
+  }
+
+  sectionTypeOnChange() {
+    this.displaySol = this.localSol;
+    if (this.section === "All") {
+      console.log("Display All");
+    } else {
+      console.log(this.section);
+      this.displaySol = this.displaySol.filter(f => (f.section === this.section));
+    }
+
   }
 }
 type fetchSolution = {

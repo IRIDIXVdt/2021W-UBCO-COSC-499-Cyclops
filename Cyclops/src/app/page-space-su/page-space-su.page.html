@@ -22,14 +22,13 @@
                     </div>
                 </ion-card-title>
             </ion-card-header>
-
         </ion-card>
 
-        <div id="button-web">
+        <!-- <div id="button-web">
             <section id="surveycenter">
                 <ion-button expand="block" (click)="openModal()">Submit New Solution</ion-button>
             </section>
-        </div>
+        </div> -->
 
 
         <h1>Solutions</h1>
@@ -81,20 +80,58 @@
                                 </ion-item> -->
                             </ion-radio-group>
 
-                            
+
+                        </ion-col>
+                    </ion-row>
+
+
+                    <ion-row>
+                        <ion-col>
+                            <!--  [(ngModel)]="section"  -->
+                            <ion-radio-group [(ngModel)]="section" (ionChange)="sectionTypeOnChange()">
+                                <ion-list-header>
+                                    <ion-label>Select by Section</ion-label>
+                                </ion-list-header>
+                                <ion-item>
+                                    <ion-label>All</ion-label>
+                                    <ion-radio slot="start" value="All"></ion-radio>
+                                </ion-item>
+                                <ng-container *ngFor="let item of sections">
+                                    <ion-item>
+                                        <ion-label> {{item}}</ion-label>
+                                        <ion-radio slot="start" value={{item}}></ion-radio>
+                                    </ion-item>
+                                </ng-container>
+
+
+
+
+                            </ion-radio-group>
+
+
                         </ion-col>
                     </ion-row>
                 </ion-col>
                 <ion-col>
                     <ion-row>
-                        <ion-col *ngFor="let item of displaySol" size-xs="12" size-sm="6" size-md="4" size-lg="3">
+                        <ion-col *ngFor="let item of displaySol" size-xs="12" size-sm="6" size-md="6" size-lg="3">
                             <ion-card class="solution" color='light'>
                                 <ion-card-header>
-                                    <ion-card-subtitle>{{item.star + 1}}
+                                    <ion-card-subtitle>
+                                        {{item.star + 1}}
                                         <ion-icon name="star"></ion-icon>
                                     </ion-card-subtitle>
-                                    <ion-card-title>{{item.name}}</ion-card-title>
+                                    <ion-card-title>
+                                        <ion-label color="primary">
+                                            {{item.name}}
+                                        </ion-label>
+                                    </ion-card-title>
                                 </ion-card-header>
+                                <ion-card-content>
+                                    <ion-label>
+                                        {{item.section}}
+                                    </ion-label>
+                                </ion-card-content>
                                 <ion-card-content>
                                     {{item.detail}}
                                 </ion-card-content>
