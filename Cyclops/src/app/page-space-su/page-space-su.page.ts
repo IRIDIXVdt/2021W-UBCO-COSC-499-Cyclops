@@ -10,7 +10,7 @@ import { Observable, from, of } from 'rxjs'
 import { filter } from 'rxjs/operators';
 import { identifierModuleUrl } from '@angular/compiler';
 import { convertToViews } from '@ionic/core/dist/types/components/nav/view-controller';
-
+import { solutionItem, sectionList, ecoData } from '../sharedData/ecoData';
 
 @Component({
   selector: 'app-page-space-su',
@@ -31,7 +31,7 @@ export class PageSpaceSuPage implements OnInit {
   surveyPage: PageSpaceMePage;
 
   solutions;
-  selectOptions;
+  // selectOptions;
   displaySol: fetchSolution[];
   sortType: string;//this handles the type of sorting
 
@@ -41,8 +41,10 @@ export class PageSpaceSuPage implements OnInit {
     private modalCtrol: ModalController,
     public navCtrl: NavController,
     public firebaseService: FirebaseService,
-    private router: Router) {
-    this.contentLoading();
+    private router: Router,
+  ) {
+    // this.contentLoading();
+    this.dummyContentLoading();
   }
 
 
@@ -54,11 +56,12 @@ export class PageSpaceSuPage implements OnInit {
     });
     return await popover.present();
   }
+
   goSurvey() {
     this.router.navigateByUrl('tabs/page-space-me');
   }
-  contentLoading() {
 
+  contentLoading() {
     this.firebaseService.getDataServiceECOPage().subscribe((res) => {
       this.solutions = res.map(e => {
         return {
@@ -73,30 +76,24 @@ export class PageSpaceSuPage implements OnInit {
       // console.log("content loaded", this.solutions.map((a: any) => a.starLevel));
       this.displaySol = this.solutions;
       console.log("solution", this.solutions);
-      this.sortType = "starUp";
-
+      this.sortTypeInitialize();
     }, (err: any) => {
       console.log(err);
     })
 
   }
+  dummyContentLoading() {
+    this.displaySol = ecoData;
+    this.sortTypeInitialize();
+  }
 
   ngOnInit() {
-    this.selectOptions = [1, 2, 3, 4, 5];
-
-  }
-  onChange($event) {
-    console.log($event.detail.value);
-    if ($event.detail.value.length == 0) {
-      console.log('nothing selected, select all');
-      this.selectOptions = [1, 2, 3, 4, 5];
-    } else {
-      this.selectOptions = $event.detail.value.map(Number);
-      console.log(this.selectOptions);
-    }
 
   }
 
+  sortTypeInitialize() {
+    this.sortType = "starUp";
+  }
   openModal() {
     this.modalCtrol.create({
       component: ScoreModalComponent,
@@ -112,17 +109,25 @@ export class PageSpaceSuPage implements OnInit {
     })
   }
   sortTypeOnChange() {
-    const currentTime = new Date().getTime();
-    console.log("sort type:", this.sortType, currentTime);
+    // const currentTime = new Date().getTime();
+    // console.log("sort type:", this.sortType, currentTime);
     //handle the event here
     //use the new sortType to update displaySol
+    if (this.sortType === "starUp") {
+      console.log("sort Asc")
+      this.displaySol.sort((a, b) => (a.star > b.star) ? 1 : -1);
+    }
+    if (this.sortType === "starDown") {
+      console.log("sort Des")
+      this.displaySol.sort((a, b) => (a.star < b.star) ? 1 : -1);
+    }
   }
 }
 type fetchSolution = {
-  id: string;
+  // id: string;
   name: string;
+  star: number;
+  detail: string;
   section: string;
-  description: string;
-  starLevel: Number;
 }
 

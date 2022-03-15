@@ -1,4 +1,4 @@
-export type RandomData = {
+export type solutionItem = {
 	name: string;
 	star: number;
 	detail: string;
@@ -17,7 +17,7 @@ export const sectionList: string[] = [
 	"Urban Sprawl",
 ];
 
-export const data: RandomData[] = [
+export const ecoData: solutionItem[] = [
 	{
 		name: "Bianca Carroll",
 		star: 2,
