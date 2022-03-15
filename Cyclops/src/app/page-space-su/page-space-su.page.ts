@@ -32,6 +32,7 @@ export class PageSpaceSuPage implements OnInit {
 
   solutions;
   // selectOptions;
+  localSol: fetchSolution[];
   displaySol: fetchSolution[];
   sortType: string;//this handles the type of sorting
 
@@ -83,7 +84,7 @@ export class PageSpaceSuPage implements OnInit {
 
   }
   dummyContentLoading() {
-    this.displaySol = ecoData;
+    this.localSol = ecoData;
     this.sortTypeInitialize();
   }
 
@@ -93,6 +94,7 @@ export class PageSpaceSuPage implements OnInit {
 
   sortTypeInitialize() {
     this.sortType = "starUp";
+    this.displaySol = this.localSol;
   }
   openModal() {
     this.modalCtrol.create({
@@ -116,10 +118,15 @@ export class PageSpaceSuPage implements OnInit {
     if (this.sortType === "starUp") {
       console.log("sort Asc")
       this.displaySol.sort((a, b) => (a.star > b.star) ? 1 : -1);
-    }
-    if (this.sortType === "starDown") {
+    } else if (this.sortType === "starDown") {
       console.log("sort Des")
       this.displaySol.sort((a, b) => (a.star < b.star) ? 1 : -1);
+    } else if (this.sortType === "sN") {
+      console.log("solution name")
+      this.displaySol.sort((a, b) => (a.name > b.name) ? 1 : -1);
+    } else if (this.sortType === "sT") {
+      console.log("section name")
+      this.displaySol.sort((a, b) => (a.section > b.section) ? 1 : -1);
     }
   }
 }
