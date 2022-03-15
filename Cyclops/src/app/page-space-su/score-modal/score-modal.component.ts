@@ -205,7 +205,7 @@ export class ScoreModalComponent implements OnInit  {
     // this.usereco.updatedscore = this.usereco.rating*this.usereco.range;
     // console.log(this.usereco.updatedscore) // Value to database
   }
-  getSolutionsForSelectedSections(val:string){
+  getStarsForSelectedSections(val:string){
     this.buttonClicked = !this.buttonClicked;
     this.solutions = SectionSolution[0].solution.find(s=> s.section.trim() == val.trim()).scores;
   }
@@ -227,6 +227,9 @@ export class ScoreModalComponent implements OnInit  {
   getSolutionsForSelectedStars(val:number){
     this.starbuttonClicked = !this.starbuttonClicked;
     this.starsols = StarSolutions[0].starsols.find(s=> s.star == val).starsol;
+  }
+  getSolutionsForSelectedSections(val:string){
+    this.solutions = SectionSolution[0].solution.find(s=> s.section.trim() == val.trim()).scores;
   }
  
   
