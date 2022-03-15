@@ -29,6 +29,7 @@ export class ScoreModalComponent implements OnInit  {
   sectionstars: any=[];
   starsection: any=[];
   starsol: any=[];
+  starsolutions: any=[];
   navCtrl: any;
   
 ;
@@ -228,8 +229,8 @@ export class ScoreModalComponent implements OnInit  {
     this.starbuttonClicked = !this.starbuttonClicked;
     this.starsols = StarSolutions[0].starsols.find(s=> s.star == val).starsol;
   }
-  getSolutions(val:string){
-    this.solutions = SectionSolution[0].solution.find(s=> s.section.trim() == val.trim()).scores;
+  getSolutions(val:number){
+    this.starsolutions = SectionSolution[0].solution[0].staramount.find(s=> s.amount == val).amountsolution;
   }
  
   
