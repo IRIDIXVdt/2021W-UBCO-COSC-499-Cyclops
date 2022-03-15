@@ -7,129 +7,148 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-
-    <ion-card color='light' id="card1" class="card-web">
-        <ion-card-header>
-            <ion-card-subtitle style="text-align:center; font-size:150%;">Overall Score</ion-card-subtitle>
-            <ion-card-title fontsize>
-                <div class="odisplay">
-                    <div class="odisplay1">
-                        <h4 style="text-align:center; font-size:300%" fontsize>{{profile.updatedscore}}</h4>
+    <div class="ionMaxContent">
+        <ion-card color='light' id="card1" class="card-web">
+            <ion-card-header>
+                <ion-card-subtitle style="text-align:center; font-size:150%;">Overall Score</ion-card-subtitle>
+                <ion-card-title fontsize>
+                    <div class="odisplay">
+                        <div class="odisplay1">
+                            <h4 style="text-align:center; font-size:300%" fontsize>{{profile.updatedscore}}</h4>
+                        </div>
+                        <div class="odisplay2">
+                            <ion-icon name="star"></ion-icon>
+                        </div>
                     </div>
-                    <div class="odisplay2">
-                        <ion-icon name="star"></ion-icon>
-                    </div>
-                </div>
-            </ion-card-title>
-        </ion-card-header>
+                </ion-card-title>
+            </ion-card-header>
 
-        <!-- <ion-card-content>
-            <ion-progress-bar color="primary" value="0.8"></ion-progress-bar>
-        </ion-card-content> -->
-    </ion-card>
+            <!-- <ion-card-content>
+                <ion-progress-bar color="primary" value="0.8"></ion-progress-bar>
+            </ion-card-content> -->
+        </ion-card>
 
-    <div id="button-web">
-        <section id="surveycenter">
-            <ion-button expand="block" (click)="openModal()">Submit New Solution</ion-button>
-        </section>
+        <div id="button-web">
+            <section id="surveycenter">
+                <ion-button expand="block" (click)="openModal()">Submit New Solution</ion-button>
+            </section>
+        </div>
+
+
+        <ion-grid>
+            <div class="isection">
+                <h1>{{profile.section}}</h1>
+            </div>
+            <ion-row>
+                <ion-col size-xs="12" size-sm="6" size-md="4" size-lg="3">
+                    <ion-card color='light' id="card1">
+                        <ion-card-header>
+                            <ion-card-subtitle>
+                                <span class="text">
+                                    <div class="sdisplay">
+                                        <div class="sdisplay1">
+                                            <h4 style="text-align:center; font-size:250%" fontsize>{{profile.level}}
+                                            </h4>
+                                        </div>
+                                        <div class="sdisplay2">
+                                            <ion-icon name="star"></ion-icon>
+                                        </div>
+                                    </div>
+                                </span>
+                                <p id="right">
+                                    <ion-button class="round" size="small" shape="round" color="medium"
+                                        (click)="notifications()">
+                                        <ion-icon name="help"></ion-icon>
+                                    </ion-button>
+                                </p>
+                            </ion-card-subtitle>
+
+                            <ion-card-title style="text-align:center; font-size:150%" fontsize>{{profile.solution}}
+                            </ion-card-title>
+                        </ion-card-header>
+
+                        <!-- <ion-card-content>
+                            <ion-progress-bar color="primary" value="0.4"></ion-progress-bar>
+                        </ion-card-content> -->
+                    </ion-card>
+                </ion-col>
+                <ion-col size-xs="12" size-sm="6" size-md="4" size-lg="3">
+                    <ion-card color='light' id="card1">
+                        <ion-card-header>
+
+                            <ion-card-subtitle>
+                                <span class="text">
+                                    <div class="sdisplay">
+                                        <div class="sdisplay1">
+                                            <h4 style="text-align:center; font-size:250%" fontsize>{{profile.level}}
+                                            </h4>
+                                        </div>
+                                        <div class="sdisplay2">
+                                            <ion-icon name="star"></ion-icon>
+                                        </div>
+                                    </div>
+                                </span>
+                                <p id="right">
+                                    <ion-button slot="end" class="round" size="small" shape="round" color="medium"
+                                        (click)="notifications()">
+                                        <ion-icon name="help"></ion-icon>
+                                    </ion-button>
+                                </p>
+                            </ion-card-subtitle>
+
+                            <ion-card-title style="text-align:center; font-size:150%" fontsize>{{profile.solution}}
+                            </ion-card-title>
+                        </ion-card-header>
+
+                        <!-- <ion-card-content>
+                            <ion-progress-bar color="primary" value="0.7"></ion-progress-bar>
+                        </ion-card-content> -->
+                    </ion-card>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+
+
+        <!-- <div id="button-web">
+            <section id="surveycenter">
+                <ion-button expand="block">Survey(peer testing 2)</ion-button> -->
+        <!-- <ion-button expand="block" (click)="goSurvey()" >Survey(peer testing 2)</ion-button> -->
+        <!-- </section>
+        </div> -->
+        <h1>Transportation</h1>
+        <ion-item>
+            <ion-label>Filter by Star Level</ion-label>
+            <ion-select multiple="true" (ionChange)="onChange($event)">
+                <ion-select-option value=1>1</ion-select-option>
+                <ion-select-option value=2>2</ion-select-option>
+                <ion-select-option value=3>3</ion-select-option>
+                <ion-select-option value=4>4</ion-select-option>
+                <ion-select-option value=5>5</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-row>
+            <ng-container *ngFor="let solution of solutions">
+                <ion-col size-xs="12" size-sm="6" size-md="4" size-lg="3"
+                    *ngIf="solution.section=='Transportation'&&(selectOptions==[]||selectOptions.indexOf(solution.starLevel)!==-1)">
+                    <ion-card class="solution" color='light'>
+                        <ion-card-header>
+                            <ion-card-subtitle>{{solution.starLevel}}
+                                <ion-icon name="star"></ion-icon>
+                            </ion-card-subtitle>
+                            <ion-card-title>{{solution.name}}</ion-card-title>
+                        </ion-card-header>
+                        <ion-card-content>
+                            {{solution.description}}
+                        </ion-card-content>
+                    </ion-card>
+                </ion-col>
+            </ng-container>
+
+        </ion-row>
+        
+        <h1>Your Solutions</h1>
     </div>
 
-
-    <ion-grid>
-        <div class="isection">
-            <h1>{{profile.section}}</h1>
-        </div>
-        <ion-row>
-            <ion-col size-xs="12" size-sm="6" size-md="4" size-lg="3">
-                <ion-card color='light' id="card1">
-                    <ion-card-header>
-                        <ion-card-subtitle>
-                            <span class="text">
-        <div class="sdisplay">
-            <div class="sdisplay1"><h4 style="text-align:center; font-size:250%" fontsize>{{profile.level}}</h4></div>
-            <div class="sdisplay2"><ion-icon  name="star"></ion-icon></div>
-        </div>
-      </span>
-                            <p id="right">
-                                <ion-button class="round" size="small" shape="round" color="medium" (click)="notifications()">
-                                    <ion-icon name="help"></ion-icon>
-                                </ion-button>
-                            </p>
-                        </ion-card-subtitle>
-
-                        <ion-card-title style="text-align:center; font-size:150%" fontsize>{{profile.solution}}</ion-card-title>
-                    </ion-card-header>
-
-                    <!-- <ion-card-content>
-                        <ion-progress-bar color="primary" value="0.4"></ion-progress-bar>
-                    </ion-card-content> -->
-                </ion-card>
-            </ion-col>
-            <ion-col size-xs="12" size-sm="6" size-md="4" size-lg="3">
-                <ion-card color='light' id="card1">
-                    <ion-card-header>
-
-                        <ion-card-subtitle>
-                            <span class="text">
-        <div class="sdisplay">
-            <div class="sdisplay1"><h4 style="text-align:center; font-size:250%" fontsize>{{profile.level}}</h4></div>
-            <div class="sdisplay2"><ion-icon  name="star"></ion-icon></div>
-        </div>
-      </span>
-                            <p id="right">
-                                <ion-button slot="end" class="round" size="small" shape="round" color="medium" (click)="notifications()">
-                                    <ion-icon name="help"></ion-icon>
-                                </ion-button>
-                            </p>
-                        </ion-card-subtitle>
-
-                        <ion-card-title style="text-align:center; font-size:150%" fontsize>{{profile.solution}}</ion-card-title>
-                    </ion-card-header>
-
-                    <!-- <ion-card-content>
-                        <ion-progress-bar color="primary" value="0.7"></ion-progress-bar>
-                    </ion-card-content> -->
-                </ion-card>
-            </ion-col>
-        </ion-row>
-    </ion-grid>
-
-
-    <!-- <div id="button-web">
-        <section id="surveycenter">
-            <ion-button expand="block">Survey(peer testing 2)</ion-button> -->
-    <!-- <ion-button expand="block" (click)="goSurvey()" >Survey(peer testing 2)</ion-button> -->
-    <!-- </section>
-    </div> -->
-    <h1>Transportation</h1>
-    <ion-item>
-        <ion-label>Filter by Star Level</ion-label>
-        <ion-select multiple="true" (ionChange)="onChange($event)">
-            <ion-select-option value=1>1</ion-select-option>
-            <ion-select-option value=2>2</ion-select-option>
-            <ion-select-option value=3>3</ion-select-option>
-            <ion-select-option value=4>4</ion-select-option>
-            <ion-select-option value=5>5</ion-select-option>
-        </ion-select>
-    </ion-item>
-    <ion-row>
-        <ng-container *ngFor="let solution of solutions">
-            <ion-col size-xs="12" size-sm="6" size-md="4" size-lg="3" *ngIf="solution.section=='Transportation'&&(selectOptions==[]||selectOptions.indexOf(solution.starLevel)!==-1)">
-                <ion-card class="solution" color='light'>
-                    <ion-card-header>
-                        <ion-card-subtitle>{{solution.starLevel}}
-                            <ion-icon name="star"></ion-icon>
-                        </ion-card-subtitle>
-                        <ion-card-title>{{solution.name}}</ion-card-title>
-                    </ion-card-header>
-                    <ion-card-content>
-                        {{solution.description}}
-                    </ion-card-content>
-                </ion-card>
-            </ion-col>
-        </ng-container>
-
-    </ion-row>
 
 
 

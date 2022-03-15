@@ -32,7 +32,7 @@ export class PageSpaceSuPage implements OnInit {
 
   solutions;
   selectOptions;
-
+  displaySol: fetchSolution[];
 
 
 
@@ -69,7 +69,10 @@ export class PageSpaceSuPage implements OnInit {
           starLevel: e.payload.doc.data()['starLevel']
         }
       })
+
       console.log("content loaded", this.solutions.map((a: any) => a.starLevel));
+      // console.log("solution", this.solutions);
+
     }, (err: any) => {
       console.log(err);
     })
