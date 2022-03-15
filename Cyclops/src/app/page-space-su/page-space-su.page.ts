@@ -70,8 +70,9 @@ export class PageSpaceSuPage implements OnInit {
         }
       })
 
-      console.log("content loaded", this.solutions.map((a: any) => a.starLevel));
-      // console.log("solution", this.solutions);
+      // console.log("content loaded", this.solutions.map((a: any) => a.starLevel));
+      this.displaySol = this.solutions;
+      console.log("solution", this.solutions);
 
     }, (err: any) => {
       console.log(err);
