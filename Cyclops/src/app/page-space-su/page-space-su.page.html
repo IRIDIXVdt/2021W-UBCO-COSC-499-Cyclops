@@ -43,7 +43,7 @@
                 <ion-col size-xs="12" size-sm="5" size-md="4" size-lg="3">
                     <ion-row>
                         <ion-col>
-                            <ion-radio-group value="starUp">
+                            <ion-radio-group [(ngModel)]="sortType" (ionChange)="sortTypeOnChange()">
                                 <ion-list-header>
                                     <ion-label>Sort by</ion-label>
                                 </ion-list-header>

@@ -33,7 +33,7 @@ export class PageSpaceSuPage implements OnInit {
   solutions;
   selectOptions;
   displaySol: fetchSolution[];
-
+  sortType: string;//this handles the type of sorting
 
 
   constructor(
@@ -73,6 +73,7 @@ export class PageSpaceSuPage implements OnInit {
       // console.log("content loaded", this.solutions.map((a: any) => a.starLevel));
       this.displaySol = this.solutions;
       console.log("solution", this.solutions);
+      this.sortType = "starUp";
 
     }, (err: any) => {
       console.log(err);
@@ -109,6 +110,11 @@ export class PageSpaceSuPage implements OnInit {
         }
       })
     })
+  }
+  sortTypeOnChange() {
+    console.log("sort type:", this.sortType);
+    //handle the event here
+    //use the new sortType to update displaySol
   }
 }
 type fetchSolution = {
