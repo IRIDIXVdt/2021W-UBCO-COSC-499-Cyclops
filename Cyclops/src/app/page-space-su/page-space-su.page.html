@@ -132,9 +132,35 @@
                                         {{item.section}}
                                     </ion-label>
                                 </ion-card-content>
+
+                                <ion-accordion-group>
+                                    <ion-accordion>
+                                        <ion-item slot="header" color="primary">
+                                            <ion-label>Assess Your Effort</ion-label>
+                                        </ion-item>
+                                        <ion-list slot="content">
+                                            <ion-item>
+                                                <ion-range deounce='500' min="-1" max="2" step="1" value="0"
+                                                    snaps="true" grid="true" snaps color="success" list='tickmarks'
+                                                    (ionChange)="rangeChange()">
+                                                    <ion-icon slot="start" color="success" name="leaf"></ion-icon>
+                                                    <ion-icon slot="end" color="success" name="leaf"></ion-icon>
+                                                </ion-range>
+                                            </ion-item>
+                                            <ion-item  button (click)="buttonClick()">
+                                                <ion-label color="primary">
+                                                    Submit
+                                                </ion-label>
+                                            </ion-item>
+                                        </ion-list>
+
+                                    </ion-accordion>
+                                </ion-accordion-group>
+
                                 <ion-card-content>
                                     {{item.detail}}
                                 </ion-card-content>
+
                             </ion-card>
                         </ion-col>
                     </ion-row>

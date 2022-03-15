@@ -50,8 +50,12 @@ export class PageSpaceSuPage implements OnInit {
     this.sections = sectionList;
     this.sortTypeOnChange();
   }
-
-
+  rangeChange() {
+    console.log("range change");
+  }
+  buttonClick() {
+    console.log("onSubmit");
+  }
   async notifications(ev: any) {
     const popover = await this.ecopopover.create({
       component: EcoPopoverComponent,
