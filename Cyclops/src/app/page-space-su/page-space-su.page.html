@@ -84,6 +84,29 @@
                         </ion-col>
                     </ion-row>
 
+                    <ion-row>
+                        <ion-col>
+                            <!--  [(ngModel)]="section"  -->
+                            <ion-radio-group [(ngModel)]="userProgressType" (ionChange)="progressTypeOnChange()">
+                                <ion-list-header>
+                                    <ion-label>Display solutions that are</ion-label>
+                                </ion-list-header>
+                                <ion-item>
+                                    <ion-label>Completed</ion-label>
+                                    <ion-radio slot="start" value="com"></ion-radio>
+                                </ion-item>
+                                <ion-item>
+                                    <ion-label>Not completed</ion-label>
+                                    <ion-radio slot="start" value="not"></ion-radio>
+                                </ion-item>
+                                <ion-item>
+                                    <ion-label>All</ion-label>
+                                    <ion-radio slot="start" value="all"></ion-radio>
+                                </ion-item>
+                            </ion-radio-group>
+                        </ion-col>
+                    </ion-row>
+
 
                     <ion-row>
                         <ion-col>
@@ -102,20 +125,16 @@
                                         <ion-radio slot="start" value={{item}}></ion-radio>
                                     </ion-item>
                                 </ng-container>
-
-
-
-
                             </ion-radio-group>
-
-
                         </ion-col>
+
                     </ion-row>
                 </ion-col>
                 <ion-col>
                     <ion-row>
                         <ion-col *ngFor="let item of displaySol" size-xs="12" size-sm="6" size-md="6" size-lg="3">
                             <ion-card class="solution" color='light'>
+                                <!--  *ngIf="item.id !" -->
                                 <ion-card-header>
                                     <ion-card-subtitle>
                                         {{item.star + 1}}
@@ -132,8 +151,10 @@
                                         {{item.section}}
                                     </ion-label>
                                 </ion-card-content>
-
-                                <ion-accordion-group>
+                                <!-- *ngIf="item.id != completedList[index]"  -->
+                                <!-- checkDisplay(item.ecoId) -->
+                                <!-- *ngIf="item.ecoId in completedList" -->
+                                <ion-accordion-group *ngIf="">
                                     <ion-accordion>
                                         <ion-item slot="header" color="primary">
                                             <ion-label>Assess Your Effort</ion-label>
@@ -146,8 +167,9 @@
                                                     <ion-icon slot="start" color="success" name="leaf"></ion-icon>
                                                     <ion-icon slot="end" color="success" name="leaf"></ion-icon>
                                                 </ion-range>
+                                                <!-- color change -->
                                             </ion-item>
-                                            <ion-item  button (click)="buttonClick()">
+                                            <ion-item button (click)="submitEcoSolEvent(item.id)">
                                                 <ion-label color="primary">
                                                     Submit
                                                 </ion-label>

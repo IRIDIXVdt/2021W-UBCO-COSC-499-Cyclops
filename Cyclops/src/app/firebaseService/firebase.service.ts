@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { collection, setDoc, doc, getDocs, getFirestore , getDocFromServer} from "firebase/firestore";
+import { collection, setDoc, doc, getDocs, getFirestore, getDocFromServer } from "firebase/firestore";
 const db = getFirestore();
 @Injectable({
   providedIn: 'root'
@@ -22,8 +22,8 @@ export class FirebaseService {
   addDataService(collection, data) {
     return this.db.collection(collection).add(data);
   }
-  
-  addDataWithIdService(collection,id, data) {
+
+  addDataWithIdService(collection, id, data) {
     return this.db.collection(collection).doc(id).set(data);
   }
 
@@ -45,11 +45,11 @@ export class FirebaseService {
     return this.db.collection('articles').doc(docId).snapshotChanges();
   }
 
-  getUserByIdService(userId){
+  getUserByIdService(userId) {
     return this.db.collection('users').doc(userId).snapshotChanges();
   }
 
-  getUserDataByIdService(userId){
+  getUserDataByIdService(userId) {
     return this.db.collection('usersCollection').doc(userId).snapshotChanges();
   }
 
@@ -91,9 +91,9 @@ export class FirebaseService {
     return this.db.collection(collection).doc(docId).delete();
   }
 
-  async getCurrentUserData(){
-    let currentUser=JSON.parse(localStorage.getItem('user'));
-    return await getDocFromServer(doc(db,"users",currentUser['uid']));
+  async getCurrentUserData() {
+    let currentUser = JSON.parse(localStorage.getItem('user'));
+    return await getDocFromServer(doc(db, "users", currentUser['uid']));
   }
 
   getUserDataService() {//collection of ALL users
@@ -112,7 +112,7 @@ export class FirebaseService {
 
   getFeedbackByIDService(id) {
     return this.db.collection('feedback').doc(id).snapshotChanges();
-  
+
   }
 
 
@@ -131,8 +131,22 @@ export class FirebaseService {
     return this.db.collection('survey').doc(docId).update(data);
   }
 
+  getAllEcoSolutionService() {
+    return this.db.collection('NewEcoSolution').snapshotChanges();
+  }
 
+  getEcoSolutionByIdService(docId) {
+    return this.db.collection('NewEcoSolution').doc(docId).snapshotChanges();
+  }
 
+  addUserEcoService(userId, data) {
+    return this.db.collection('users').doc(userId).set(data, { merge: true });
+    //update the array attribute
+  }
+
+  // getUserEcoSolutionService(userId){
+  //   return this.db.collection('users').doc(userId).snapshotChanges();
+  // }
 
 }
 

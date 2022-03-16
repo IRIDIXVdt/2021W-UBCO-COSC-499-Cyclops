@@ -37,6 +37,14 @@ export class PageSpaceSuPage implements OnInit {
   sortType: string;//this handles the type of sorting
   section: string;//this handles which section we want
   sections: string[];
+  userId: string;//this is the login user Id
+  userProgressType: string; //take cares of what to display
+
+
+  userEcoItemList: userEcoItem[];
+  completedList: string[];
+
+
 
   constructor(
     public ecopopover: PopoverController,
@@ -45,16 +53,84 @@ export class PageSpaceSuPage implements OnInit {
     public firebaseService: FirebaseService,
     private router: Router,
   ) {
-    // this.contentLoading();
-    this.dummyContentLoading();
+    this.contentLoading();
+    // this.dummyContentLoading();
     this.sections = sectionList;
     this.sortTypeOnChange();
+    this.userId = JSON.parse(localStorage.getItem('user')).uid;
+    // console.log(this.userId);
+    this.ecoListContentLoading();
+    this.userProgressTypeInit();
   }
+
+  initializeCompletedList() {
+    this.completedList = [];
+    for (let item of this.userEcoItemList) {
+      this.completedList.push(item.ecoId);
+    }
+    console.log(this.completedList);
+  }
+
+  checkDisplay(cId) {
+    if (this.completedList == undefined) {
+      return false;
+    } else {
+      if (this.completedList.indexOf(cId) > -1) {
+        return false;
+      } else {
+        return true;
+      }
+    }
+
+  }
+
+  userProgressTypeInit() {
+    this.userProgressType = "not";
+  }
+
+  progressTypeOnChange() {
+    console.log("current type is:", this.userProgressType);
+    //code here
+  }
+
   rangeChange() {
     console.log("range change");
+    //code here
   }
-  buttonClick() {
-    console.log("onSubmit");
+
+  ecoListContentLoading() {
+    const subscription = this.firebaseService.getUserByIdService(this.userId).subscribe(
+      e => {
+        this.userEcoItemList = e.payload.data()["userEcoSolutions"];
+        // console.log(this.userEcoItemList);
+        if (this.userEcoItemList == undefined) {//check with new account for testing*
+          this.userEcoItemList = [];
+        }
+        subscription.unsubscribe();
+        this.initializeCompletedList();
+        console.log('unsubscribe success', this.userEcoItemList);
+      }, err => {
+        console.debug(err);
+        this.userEcoItemList = [];
+      })
+  }
+
+  submitEcoSolEvent(solutionId: string) {
+    const currentTime = new Date().getTime();
+    console.log("onSubmit", solutionId, this.userId, currentTime);
+    const uploadData: userEcoItem = {//sol'n init
+      time: currentTime,
+      ecoId: solutionId,
+      weight: 1,//by default
+    }
+    //push into sol'n list
+    this.userEcoItemList.push(uploadData);
+    const userData: any = {
+      userEcoSolutions: this.userEcoItemList,
+    }
+    //upload to cloud
+    this.firebaseService.addUserEcoService(this.userId, userData);
+    this.completedList.push(solutionId);
   }
   async notifications(ev: any) {
     const popover = await this.ecopopover.create({
@@ -70,19 +146,20 @@ export class PageSpaceSuPage implements OnInit {
   }
 
   contentLoading() {
-    this.firebaseService.getDataServiceECOPage().subscribe((res) => {
+    //stop sub while read
+    this.firebaseService.getAllEcoSolutionService().subscribe((res) => {
       this.solutions = res.map(e => {
         return {
           id: e.payload.doc.id,
           name: e.payload.doc.data()['name'],
-          description: e.payload.doc.data()['description'],
+          detail: e.payload.doc.data()['detail'],
           section: e.payload.doc.data()['section'],
-          starLevel: e.payload.doc.data()['starLevel']
+          star: e.payload.doc.data()['star']
         }
       })
 
       // console.log("content loaded", this.solutions.map((a: any) => a.starLevel));
-      this.displaySol = this.solutions;
+      this.localSol = this.solutions;
       console.log("solution", this.solutions);
       this.sortTypeInitialize();
     }, (err: any) => {
@@ -91,7 +168,7 @@ export class PageSpaceSuPage implements OnInit {
 
   }
   dummyContentLoading() {
-    this.localSol = ecoData;
+    // this.localSol = ecoData;
     this.sortTypeInitialize();
   }
 
@@ -150,10 +227,15 @@ export class PageSpaceSuPage implements OnInit {
   }
 }
 type fetchSolution = {
-  // id: string;
+  id: string;
   name: string;
   star: number;
   detail: string;
   section: string;
+}
+type userEcoItem = {
+  time: number;
+  ecoId: string;
+  weight: number;
 }
 
