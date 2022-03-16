@@ -37,6 +37,13 @@ export class PageSpaceSuPage implements OnInit {
   sortType: string;//this handles the type of sorting
   section: string;//this handles which section we want
   sections: string[];
+  userId: string;//this is the login user Id
+
+  //read user eco item list
+  userEcoItemList: userEcoItem[];
+  //update eco item list local
+
+  //upload list
 
   constructor(
     public ecopopover: PopoverController,
@@ -49,12 +56,30 @@ export class PageSpaceSuPage implements OnInit {
     // this.dummyContentLoading();
     this.sections = sectionList;
     this.sortTypeOnChange();
+    this.userId = JSON.parse(localStorage.getItem('user')).uid;
+    // console.log(this.userId);
+    this.ecoListContentLoading();
   }
   rangeChange() {
     console.log("range change");
   }
-  buttonClick() {
-    console.log("onSubmit");
+
+  ecoListContentLoading() {
+    const subscription = this.firebaseService.getUserByIdService(this.userId).subscribe(
+      e => {
+        this.userEcoItemList = e.payload.data()["userEcoSolutions"];
+        subscription.unsubscribe();
+        console.log('unsubscribe success', this.userEcoItemList);
+      }, err => {
+        console.debug(err);
+        this.userEcoItemList = [];
+      })
+  }
+
+  submitEcoSolEvent(solutionId: string) {
+    const currentTime = new Date().getTime();
+    console.log("onSubmit", solutionId, this.userId, currentTime);
+
   }
   async notifications(ev: any) {
     const popover = await this.ecopopover.create({
@@ -117,7 +142,7 @@ export class PageSpaceSuPage implements OnInit {
           this.profile = res.data;
         }
       })
-    }) 
+    })
   }
   sortTypeOnChange() {
     // const currentTime = new Date().getTime();
@@ -156,5 +181,10 @@ type fetchSolution = {
   star: number;
   detail: string;
   section: string;
+}
+type userEcoItem = {
+  time: number;
+  ecoId: string;
+  weight: number;
 }
 
