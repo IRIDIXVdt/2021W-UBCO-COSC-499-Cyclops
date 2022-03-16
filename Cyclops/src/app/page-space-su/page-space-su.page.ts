@@ -45,8 +45,8 @@ export class PageSpaceSuPage implements OnInit {
     public firebaseService: FirebaseService,
     private router: Router,
   ) {
-    // this.contentLoading();
-    this.dummyContentLoading();
+    this.contentLoading();
+    // this.dummyContentLoading();
     this.sections = sectionList;
     this.sortTypeOnChange();
   }
@@ -70,19 +70,20 @@ export class PageSpaceSuPage implements OnInit {
   }
 
   contentLoading() {
-    this.firebaseService.getDataServiceECOPage().subscribe((res) => {
+    //stop sub while read
+    this.firebaseService.getAllEcoSolutionService().subscribe((res) => {
       this.solutions = res.map(e => {
         return {
           id: e.payload.doc.id,
           name: e.payload.doc.data()['name'],
-          description: e.payload.doc.data()['description'],
+          detail: e.payload.doc.data()['detail'],
           section: e.payload.doc.data()['section'],
-          starLevel: e.payload.doc.data()['starLevel']
+          star: e.payload.doc.data()['star']
         }
       })
 
       // console.log("content loaded", this.solutions.map((a: any) => a.starLevel));
-      this.displaySol = this.solutions;
+      this.localSol = this.solutions;
       console.log("solution", this.solutions);
       this.sortTypeInitialize();
     }, (err: any) => {
@@ -91,7 +92,7 @@ export class PageSpaceSuPage implements OnInit {
 
   }
   dummyContentLoading() {
-    this.localSol = ecoData;
+    // this.localSol = ecoData;
     this.sortTypeInitialize();
   }
 
@@ -116,7 +117,7 @@ export class PageSpaceSuPage implements OnInit {
           this.profile = res.data;
         }
       })
-    })
+    }) 
   }
   sortTypeOnChange() {
     // const currentTime = new Date().getTime();
@@ -150,7 +151,7 @@ export class PageSpaceSuPage implements OnInit {
   }
 }
 type fetchSolution = {
-  // id: string;
+  id: string;
   name: string;
   star: number;
   detail: string;

@@ -286,6 +286,8 @@ SetUserData(user) {
   }
   return userRef.set(userData, {
     merge: true
+    //we want to update only specific attributes
+    //but we don't want the software to crash if such object doesn't exist in the first place
   })
 }
 
