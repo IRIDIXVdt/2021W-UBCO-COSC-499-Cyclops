@@ -38,6 +38,7 @@ export class PageSpaceSuPage implements OnInit {
   section: string;//this handles which section we want
   sections: string[];
   userId: string;//this is the login user Id
+  userProgressType: string; //take cares of what to display
 
   //read user eco item list
   userEcoItemList: userEcoItem[];
@@ -59,15 +60,31 @@ export class PageSpaceSuPage implements OnInit {
     this.userId = JSON.parse(localStorage.getItem('user')).uid;
     // console.log(this.userId);
     this.ecoListContentLoading();
+    this.userProgressTypeInit();
   }
+
+  userProgressTypeInit() {
+    this.userProgressType = "not";
+  }
+
+  progressTypeOnChange() {
+    console.log("current type is:", this.userProgressType);
+    //code here
+  }
+
   rangeChange() {
     console.log("range change");
+    //code here
   }
 
   ecoListContentLoading() {
     const subscription = this.firebaseService.getUserByIdService(this.userId).subscribe(
       e => {
         this.userEcoItemList = e.payload.data()["userEcoSolutions"];
+        // console.log(this.userEcoItemList);
+        if (this.userEcoItemList == undefined) {//check with new account for testing*
+          this.userEcoItemList = [];
+        }
         subscription.unsubscribe();
         console.log('unsubscribe success', this.userEcoItemList);
       }, err => {
@@ -79,6 +96,18 @@ export class PageSpaceSuPage implements OnInit {
   submitEcoSolEvent(solutionId: string) {
     const currentTime = new Date().getTime();
     console.log("onSubmit", solutionId, this.userId, currentTime);
+    const uploadData: userEcoItem = {//sol'n init
+      time: currentTime,
+      ecoId: solutionId,
+      weight: 1,//by default
+    }
+    //push into sol'n list
+    this.userEcoItemList.push(uploadData);
+    const userData: any = {
+      userEcoSolutions: this.userEcoItemList,
+    }
+    //upload to cloud
+    this.firebaseService.addUserEcoService(this.userId, userData);
 
   }
   async notifications(ev: any) {

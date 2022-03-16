@@ -84,6 +84,29 @@
                         </ion-col>
                     </ion-row>
 
+                    <ion-row>
+                        <ion-col>
+                            <!--  [(ngModel)]="section"  -->
+                            <ion-radio-group [(ngModel)]="userProgressType" (ionChange)="progressTypeOnChange()">
+                                <ion-list-header>
+                                    <ion-label>Display solutions that are</ion-label>
+                                </ion-list-header>
+                                <ion-item>
+                                    <ion-label>Completed</ion-label>
+                                    <ion-radio slot="start" value="com"></ion-radio>
+                                </ion-item>
+                                <ion-item>
+                                    <ion-label>Not completed</ion-label>
+                                    <ion-radio slot="start" value="not"></ion-radio>
+                                </ion-item>
+                                <ion-item>
+                                    <ion-label>All</ion-label>
+                                    <ion-radio slot="start" value="all"></ion-radio>
+                                </ion-item>
+                            </ion-radio-group>
+                        </ion-col>
+                    </ion-row>
+
 
                     <ion-row>
                         <ion-col>
@@ -102,14 +125,9 @@
                                         <ion-radio slot="start" value={{item}}></ion-radio>
                                     </ion-item>
                                 </ng-container>
-
-
-
-
                             </ion-radio-group>
-
-
                         </ion-col>
+
                     </ion-row>
                 </ion-col>
                 <ion-col>
