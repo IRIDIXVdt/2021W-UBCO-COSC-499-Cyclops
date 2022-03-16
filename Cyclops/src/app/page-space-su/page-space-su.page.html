@@ -7,129 +7,172 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-
-    <ion-card color='light' id="card1" class="card-web">
-        <ion-card-header>
-            <ion-card-subtitle style="text-align:center; font-size:150%;">Overall Score</ion-card-subtitle>
-            <ion-card-title fontsize>
-                <div class="odisplay">
-                    <div class="odisplay1">
-                        <h4 style="text-align:center; font-size:300%" fontsize>{{profile.updatedscore}}</h4>
-                    </div>
-                    <div class="odisplay2">
-                        <ion-icon name="star"></ion-icon>
-                    </div>
-                </div>
-            </ion-card-title>
-        </ion-card-header>
-
-        <!-- <ion-card-content>
-            <ion-progress-bar color="primary" value="0.8"></ion-progress-bar>
-        </ion-card-content> -->
-    </ion-card>
-
-    <div id="button-web">
-        <section id="surveycenter">
-            <ion-button expand="block" (click)="openModal()">Submit New Solution</ion-button>
-        </section>
-    </div>
-
-
-    <ion-grid>
-        <div class="isection">
-            <h1>{{profile.section}}</h1>
-        </div>
-        <ion-row>
-            <ion-col size-xs="12" size-sm="6" size-md="4" size-lg="3">
-                <ion-card color='light' id="card1">
-                    <ion-card-header>
-                        <ion-card-subtitle>
-                            <span class="text">
-        <div class="sdisplay">
-            <div class="sdisplay1"><h4 style="text-align:center; font-size:250%" fontsize>{{profile.level}}</h4></div>
-            <div class="sdisplay2"><ion-icon  name="star"></ion-icon></div>
-        </div>
-      </span>
-                            <p id="right">
-                                <ion-button class="round" size="small" shape="round" color="medium" (click)="notifications()">
-                                    <ion-icon name="help"></ion-icon>
-                                </ion-button>
-                            </p>
-                        </ion-card-subtitle>
-
-                        <ion-card-title style="text-align:center; font-size:150%" fontsize>{{profile.solution}}</ion-card-title>
-                    </ion-card-header>
-
-                    <!-- <ion-card-content>
-                        <ion-progress-bar color="primary" value="0.4"></ion-progress-bar>
-                    </ion-card-content> -->
-                </ion-card>
-            </ion-col>
-            <ion-col size-xs="12" size-sm="6" size-md="4" size-lg="3">
-                <ion-card color='light' id="card1">
-                    <ion-card-header>
-
-                        <ion-card-subtitle>
-                            <span class="text">
-        <div class="sdisplay">
-            <div class="sdisplay1"><h4 style="text-align:center; font-size:250%" fontsize>{{profile.level}}</h4></div>
-            <div class="sdisplay2"><ion-icon  name="star"></ion-icon></div>
-        </div>
-      </span>
-                            <p id="right">
-                                <ion-button slot="end" class="round" size="small" shape="round" color="medium" (click)="notifications()">
-                                    <ion-icon name="help"></ion-icon>
-                                </ion-button>
-                            </p>
-                        </ion-card-subtitle>
-
-                        <ion-card-title style="text-align:center; font-size:150%" fontsize>{{profile.solution}}</ion-card-title>
-                    </ion-card-header>
-
-                    <!-- <ion-card-content>
-                        <ion-progress-bar color="primary" value="0.7"></ion-progress-bar>
-                    </ion-card-content> -->
-                </ion-card>
-            </ion-col>
-        </ion-row>
-    </ion-grid>
-
-
-    <!-- <div id="button-web">
-        <section id="surveycenter">
-            <ion-button expand="block">Survey(peer testing 2)</ion-button> -->
-    <!-- <ion-button expand="block" (click)="goSurvey()" >Survey(peer testing 2)</ion-button> -->
-    <!-- </section>
-    </div> -->
-    <h1>Transportation</h1>
-    <ion-item>
-        <ion-label>Filter by Star Level</ion-label>
-        <ion-select multiple="true" (ionChange)="onChange($event)">
-            <ion-select-option value=1>1</ion-select-option>
-            <ion-select-option value=2>2</ion-select-option>
-            <ion-select-option value=3>3</ion-select-option>
-            <ion-select-option value=4>4</ion-select-option>
-            <ion-select-option value=5>5</ion-select-option>
-        </ion-select>
-    </ion-item>
-    <ion-row>
-        <ng-container *ngFor="let solution of solutions">
-            <ion-col size-xs="12" size-sm="6" size-md="4" size-lg="3" *ngIf="solution.section=='Transportation'&&(selectOptions==[]||selectOptions.indexOf(solution.starLevel)!==-1)">
-                <ion-card class="solution" color='light'>
-                    <ion-card-header>
-                        <ion-card-subtitle>{{solution.starLevel}}
+    <div class="ionMaxContent">
+        <ion-card color='light' id="card1" class="card-web">
+            <ion-card-header>
+                <ion-card-subtitle style="text-align:center; font-size:150%;">Overall Score</ion-card-subtitle>
+                <ion-card-title fontsize>
+                    <div class="odisplay">
+                        <div class="odisplay1">
+                            <h4 style="text-align:center; font-size:300%" fontsize>{{profile.updatedscore}}</h4>
+                        </div>
+                        <div class="odisplay2">
                             <ion-icon name="star"></ion-icon>
-                        </ion-card-subtitle>
-                        <ion-card-title>{{solution.name}}</ion-card-title>
-                    </ion-card-header>
-                    <ion-card-content>
-                        {{solution.description}}
-                    </ion-card-content>
-                </ion-card>
-            </ion-col>
+                        </div>
+                    </div>
+                </ion-card-title>
+            </ion-card-header>
+        </ion-card>
+
+        <!-- <div id="button-web">
+            <section id="surveycenter">
+                <ion-button expand="block" (click)="openModal()">Submit New Solution</ion-button>
+            </section>
+        </div> -->
+
+
+        <h1>Solutions</h1>
+
+        <ng-container *ngIf="!displaySol">
+            <ion-progress-bar type="indeterminate"></ion-progress-bar>
         </ng-container>
 
-    </ion-row>
+        <ng-container *ngIf="displaySol">
+            <ion-row>
+                <ion-col size-xs="12" size-sm="5" size-md="4" size-lg="3">
+                    <ion-row>
+                        <ion-col>
+                            <ion-radio-group [(ngModel)]="sortType" (ionChange)="sortTypeOnChange()">
+                                <ion-list-header>
+                                    <ion-label>Sort by</ion-label>
+                                </ion-list-header>
+                                <ion-item>
+                                    <ion-label>Star Ascending</ion-label>
+                                    <ion-radio slot="start" value="starUp"></ion-radio>
+                                </ion-item>
+                                <ion-item>
+                                    <ion-label>Star Descending</ion-label>
+                                    <ion-radio slot="start" value="starDown"></ion-radio>
+                                </ion-item>
+                                <ion-item>
+                                    <ion-label>Solution Name</ion-label>
+                                    <ion-radio slot="start" value="sN"></ion-radio>
+                                </ion-item>
+                                <ion-item>
+                                    <ion-label>Section Type</ion-label>
+                                    <ion-radio slot="start" value="sT"></ion-radio>
+                                </ion-item>
+                                <!-- <ion-item>
+                                    <ion-label>Score Ascending</ion-label>
+                                    <ion-radio slot="start" value="scoreUp"></ion-radio>
+                                </ion-item>
+                                <ion-item>
+                                    <ion-label>Score Descending</ion-label>
+                                    <ion-radio slot="start" value="scoreDown"></ion-radio>
+                                </ion-item>
+                                <ion-item>
+                                    <ion-label>Date Ascending</ion-label>
+                                    <ion-radio slot="start" value="dateUp"></ion-radio>
+                                </ion-item>
+                                <ion-item>
+                                    <ion-label>Date Descending</ion-label>
+                                    <ion-radio slot="start" value="dateDown"></ion-radio>
+                                </ion-item> -->
+                            </ion-radio-group>
+
+
+                        </ion-col>
+                    </ion-row>
+
+
+                    <ion-row>
+                        <ion-col>
+                            <!--  [(ngModel)]="section"  -->
+                            <ion-radio-group [(ngModel)]="section" (ionChange)="sectionTypeOnChange()">
+                                <ion-list-header>
+                                    <ion-label>Select by Section</ion-label>
+                                </ion-list-header>
+                                <ion-item>
+                                    <ion-label>All</ion-label>
+                                    <ion-radio slot="start" value="All"></ion-radio>
+                                </ion-item>
+                                <ng-container *ngFor="let item of sections">
+                                    <ion-item>
+                                        <ion-label> {{item}}</ion-label>
+                                        <ion-radio slot="start" value={{item}}></ion-radio>
+                                    </ion-item>
+                                </ng-container>
+
+
+
+
+                            </ion-radio-group>
+
+
+                        </ion-col>
+                    </ion-row>
+                </ion-col>
+                <ion-col>
+                    <ion-row>
+                        <ion-col *ngFor="let item of displaySol" size-xs="12" size-sm="6" size-md="6" size-lg="3">
+                            <ion-card class="solution" color='light'>
+                                <ion-card-header>
+                                    <ion-card-subtitle>
+                                        {{item.star + 1}}
+                                        <ion-icon name="star"></ion-icon>
+                                    </ion-card-subtitle>
+                                    <ion-card-title>
+                                        <ion-label color="primary">
+                                            {{item.name}}
+                                        </ion-label>
+                                    </ion-card-title>
+                                </ion-card-header>
+                                <ion-card-content>
+                                    <ion-label>
+                                        {{item.section}}
+                                    </ion-label>
+                                </ion-card-content>
+
+                                <ion-accordion-group>
+                                    <ion-accordion>
+                                        <ion-item slot="header" color="primary">
+                                            <ion-label>Assess Your Effort</ion-label>
+                                        </ion-item>
+                                        <ion-list slot="content">
+                                            <ion-item>
+                                                <ion-range deounce='500' min="-1" max="2" step="1" value="0"
+                                                    snaps="true" grid="true" snaps color="success" list='tickmarks'
+                                                    (ionChange)="rangeChange()">
+                                                    <ion-icon slot="start" color="success" name="leaf"></ion-icon>
+                                                    <ion-icon slot="end" color="success" name="leaf"></ion-icon>
+                                                </ion-range>
+                                            </ion-item>
+                                            <ion-item  button (click)="buttonClick()">
+                                                <ion-label color="primary">
+                                                    Submit
+                                                </ion-label>
+                                            </ion-item>
+                                        </ion-list>
+
+                                    </ion-accordion>
+                                </ion-accordion-group>
+
+                                <ion-card-content>
+                                    {{item.detail}}
+                                </ion-card-content>
+
+                            </ion-card>
+                        </ion-col>
+                    </ion-row>
+                </ion-col>
+            </ion-row>
+
+            <!-- solution display area -->
+
+        </ng-container>
+
+    </div>
+
 
 
 
