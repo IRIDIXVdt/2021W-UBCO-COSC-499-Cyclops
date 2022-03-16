@@ -31,7 +31,8 @@ export class PageSpaceSuPage implements OnInit {
   surveyPage: PageSpaceMePage;
 
   solutions;
-  selectOptions;
+  starSelectOptions;
+  sectionSelectOptions;
 
 
 
@@ -77,18 +78,26 @@ export class PageSpaceSuPage implements OnInit {
   }
 
   ngOnInit() {
-    this.selectOptions = [1, 2, 3, 4, 5];
+    this.starSelectOptions = [1, 2, 3, 4, 5];
+    this.sectionSelectOptions = 'Transportation';
 
   }
-  onChange($event) {
+  onChangeStar($event) {
     console.log($event.detail.value);
     if ($event.detail.value.length == 0) {
       console.log('nothing selected, select all');
-      this.selectOptions = [1, 2, 3, 4, 5];
+      this.starSelectOptions = [1, 2, 3, 4, 5];
     } else {
-      this.selectOptions = $event.detail.value.map(Number);
-      console.log(this.selectOptions);
+      this.starSelectOptions = $event.detail.value.map(Number);
+      console.log(this.starSelectOptions);
     }
+
+  }
+
+  onChangeSection($event) {
+    console.log($event.detail.value);
+    this.sectionSelectOptions = $event.detail.value;
+    
 
   }
 
