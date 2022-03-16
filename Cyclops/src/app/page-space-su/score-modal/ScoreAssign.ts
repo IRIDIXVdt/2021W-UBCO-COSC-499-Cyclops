@@ -3,7 +3,7 @@ export type ScoreAssign = {
 	starsol: string[];
 };
 
-export const data: ScoreAssign[] = [
+export const ScoreAssign: ScoreAssign[] = [
 	{
 		star: 1,
 		starsol: ["Reduce meat consumption", "Forget about the labels"]
