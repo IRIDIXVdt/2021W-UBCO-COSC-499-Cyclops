@@ -40,11 +40,11 @@ export class PageSpaceSuPage implements OnInit {
   userId: string;//this is the login user Id
   userProgressType: string; //take cares of what to display
 
-  //read user eco item list
-  userEcoItemList: userEcoItem[];
-  //update eco item list local
 
-  //upload list
+  userEcoItemList: userEcoItem[];
+  completedList: string[];
+
+
 
   constructor(
     public ecopopover: PopoverController,
@@ -61,6 +61,27 @@ export class PageSpaceSuPage implements OnInit {
     // console.log(this.userId);
     this.ecoListContentLoading();
     this.userProgressTypeInit();
+  }
+
+  initializeCompletedList() {
+    this.completedList = [];
+    for (let item of this.userEcoItemList) {
+      this.completedList.push(item.ecoId);
+    }
+    console.log(this.completedList);
+  }
+
+  checkDisplay(cId) {
+    if (this.completedList == undefined) {
+      return false;
+    } else {
+      if (this.completedList.indexOf(cId) > -1) {
+        return false;
+      } else {
+        return true;
+      }
+    }
+
   }
 
   userProgressTypeInit() {
@@ -86,6 +107,7 @@ export class PageSpaceSuPage implements OnInit {
           this.userEcoItemList = [];
         }
         subscription.unsubscribe();
+        this.initializeCompletedList();
         console.log('unsubscribe success', this.userEcoItemList);
       }, err => {
         console.debug(err);
@@ -108,7 +130,7 @@ export class PageSpaceSuPage implements OnInit {
     }
     //upload to cloud
     this.firebaseService.addUserEcoService(this.userId, userData);
-
+    this.completedList.push(solutionId);
   }
   async notifications(ev: any) {
     const popover = await this.ecopopover.create({

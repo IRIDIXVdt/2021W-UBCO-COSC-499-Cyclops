@@ -134,6 +134,7 @@
                     <ion-row>
                         <ion-col *ngFor="let item of displaySol" size-xs="12" size-sm="6" size-md="6" size-lg="3">
                             <ion-card class="solution" color='light'>
+                                <!--  *ngIf="item.id !" -->
                                 <ion-card-header>
                                     <ion-card-subtitle>
                                         {{item.star + 1}}
@@ -150,8 +151,10 @@
                                         {{item.section}}
                                     </ion-label>
                                 </ion-card-content>
-
-                                <ion-accordion-group>
+                                <!-- *ngIf="item.id != completedList[index]"  -->
+                                <!-- checkDisplay(item.ecoId) -->
+                                <!-- *ngIf="item.ecoId in completedList" -->
+                                <ion-accordion-group *ngIf="">
                                     <ion-accordion>
                                         <ion-item slot="header" color="primary">
                                             <ion-label>Assess Your Effort</ion-label>
@@ -164,6 +167,7 @@
                                                     <ion-icon slot="start" color="success" name="leaf"></ion-icon>
                                                     <ion-icon slot="end" color="success" name="leaf"></ion-icon>
                                                 </ion-range>
+                                                <!-- color change -->
                                             </ion-item>
                                             <ion-item button (click)="submitEcoSolEvent(item.id)">
                                                 <ion-label color="primary">
