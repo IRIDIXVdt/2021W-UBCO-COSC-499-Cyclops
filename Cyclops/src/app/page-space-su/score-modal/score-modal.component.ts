@@ -88,11 +88,6 @@ export class ScoreModalComponent implements OnInit  {
     this.sections = SectionSolution[0].sections;
     this.solutions = SectionSolution[0].solution;
 
-    console.log(StarSolutions[0].stars);
-    console.log(StarSolutions[0].starsols);
-    this.stars = StarSolutions[0].stars;
-    this.starsols = StarSolutions[0].starsols;
-
     this.myForm = this.formBuilder.group({
       // Select_Section : ['', Validators.required],
       Select_Level : ['', Validators.required],
