@@ -131,8 +131,13 @@ export class FirebaseService {
     return this.db.collection('survey').doc(docId).update(data);
   }
 
+  getAllEcoSolutionService(){
+    return this.db.collection('NewEcoSolution').snapshotChanges();
+  }
 
-
+  getEcoSolutionByIdService(docId) {
+    return this.db.collection('NewEcoSolution').doc(docId).snapshotChanges();
+  }
 
 }
 
