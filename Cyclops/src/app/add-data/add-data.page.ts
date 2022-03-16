@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from '../FirebaseService/firebase.service';
 import { displayArticles } from '../sharedData/displayArticles';
-
+import { ecoData } from '../sharedData/ecoData';
 import { collection, getFirestore, doc, setDoc, getDocs } from "firebase/firestore";
 import { AuthService } from '../authentication/auth/auth.service';
 /* import { initializeApp } from 'firebase-admin/app'; */
@@ -66,18 +66,30 @@ export class AddDataPage implements OnInit {
 
     let articles = this.firebaseService.getAllArticlesService();
     (await articles).forEach((articleDoc) => {
-      let segmentsLength= articleDoc.data()['segment'].length;
+      let segmentsLength = articleDoc.data()['segment'].length;
       let segmentRead = Array(segmentsLength).fill(false);//initalize all segments read to be false
-      let newData = { id: articleDoc.id, segment:segmentRead };
+      let newData = { id: articleDoc.id, segment: segmentRead };
       data.push(newData);
     });
     console.log(data);
 
     (await users).forEach((userDoc) => {
-        console.log(userDoc.data());
-        this.firebaseService.addDataWithIdService('usersCollection', userDoc.id,{readArticles:data});
+      console.log(userDoc.data());
+      this.firebaseService.addDataWithIdService('usersCollection', userDoc.id, { readArticles: data });
 
     });
+  }
+
+  //initialize the eco solution data from variables
+  async initializeEcoS() {
+    for (let ecoDataItem of ecoData) {
+      this.firebaseService.addDataService("NewEcoSolution", ecoDataItem).then((res: any) => {
+        console.log(res);
+      }).catch((error) => {
+        console.log(error);
+      })
+    }
+    alert("successful");
   }
 
   deleteAllData() {
@@ -94,7 +106,7 @@ export class AddDataPage implements OnInit {
     }
   }
 
-  deleteAllUserData(){
+  deleteAllUserData() {
     for (let doc of this.userIds) {
       this.firebaseService.deleteDocByIdService("usersCollection", doc.userId).then((res: any) => console.log(res, " ", doc.userId))
     }
