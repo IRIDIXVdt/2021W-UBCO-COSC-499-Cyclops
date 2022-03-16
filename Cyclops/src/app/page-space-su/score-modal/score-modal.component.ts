@@ -6,6 +6,7 @@ import { COLORS } from './enum';
 import { SectionSolution } from './SectionSolution';
 import { SectionSolutionTags } from "./SectionSolutionTags"
 import { StarSolutions } from './StarSolutions';
+import { ScoreAssign } from './ScoreAssign';
 
 @Component({
   selector: 'app-score-modal',
@@ -226,6 +227,7 @@ export class ScoreModalComponent implements OnInit  {
   }
   getSolutionsForSelectedStars(val:number){
     this.starbuttonClicked = !this.starbuttonClicked;
+    // this.starsols = StarSolutions[0].starsols.find(s=> s.star == val).starsol;
     this.starsols = StarSolutions[0].starsols.find(s=> s.star == val).starsol;
   }
   
