@@ -6,7 +6,9 @@ import { COLORS } from './enum';
 import { SectionSolution } from './SectionSolution';
 import { SectionSolutionTags } from "./SectionSolutionTags"
 import { StarSolutions } from './StarSolutions';
+
 import { ScoreAssign } from './ScoreAssign';
+import { MainFormTags } from './MainFormTags';
 import { test } from './test';
 
 @Component({
@@ -84,10 +86,13 @@ export class ScoreModalComponent implements OnInit  {
 }
 
   ngOnInit() {
-    console.log(SectionSolution[0].sections);
-    console.log(SectionSolution[0].solution);
     this.sections = SectionSolution[0].sections;
     this.solutions = SectionSolution[0].solution;
+    console.log(this.sections);
+    console.log(this.solutions);
+
+    this.stars = MainFormTags[0].stars;
+    console.log(this.stars);
 
     this.myForm = this.formBuilder.group({
       // Select_Section : ['', Validators.required],
