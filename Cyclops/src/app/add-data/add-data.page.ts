@@ -61,23 +61,59 @@ export class AddDataPage implements OnInit {
   //initialize article tracking information for all users
   async initializeUserReadArticles() {
     this.deleteAllUserData();
-    let users = this.firebaseService.getAllUsersService();
+    let articles  : any;
     let data: any[] = [];
 
-    let articles = this.firebaseService.getAllArticlesService();
-    (await articles).forEach((articleDoc) => {
-      let segmentsLength = articleDoc.data()['segment'].length;
-      let segmentRead = Array(segmentsLength).fill(false);//initalize all segments read to be false
-      let newData = { id: articleDoc.id, segment: segmentRead, time: 1234, progress: "unread" };
-      data.push(newData);
-    });
-    console.log(data);
+
+    this.firebaseService.getDataServiceMainPage().subscribe(async res => {
+      articles = res.map(e => {
+        return {
+          id: e.payload.doc.id,
+          columnName: e.payload.doc.data()['columnName'],
+          segment: e.payload.doc.data()['segment'],
+        }
+
+
+      })
+      //create sorted array 
+      let col1 = [];
+      let col2 = [];
+      let col3 = [];
+      for (let i = 0; i < articles.length; i++) {
+        const currentArticle = articles[i];
+        if (currentArticle.columnName == '1') {
+          col1.push(currentArticle);
+        } else if (currentArticle.columnName == '2') {
+          col2.push(currentArticle);
+        } else if (currentArticle.columnName == '3') {
+          col3.push(currentArticle);
+        }
+      }
+      let cols = col1.concat(col2).concat(col3);
+      console.log(cols);
+
+      //create readArticles field
+      cols.forEach((articleDoc) => {
+        let segmentsLength = articleDoc['segment'].length;
+        let segmentRead = Array(segmentsLength).fill(false);//initalize all segments read to be false
+        let newData = { id: articleDoc.id, segment: segmentRead, time: 1234, progress: "unread" };
+        data.push(newData);
+      });
+      console.log(data);
+      let users = this.firebaseService.getAllUsersService();
 
     (await users).forEach((userDoc) => {
       console.log(userDoc.data());
+      console.log(data);
       this.firebaseService.addDataWithIdService('usersCollection', userDoc.id, { readArticles: data });
 
     });
+
+     
+    }, (err: any) => {
+      console.log(err);
+    })
+    
   }
 
   //initialize the eco solution data from variables
