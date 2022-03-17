@@ -14,7 +14,11 @@ export class PageSpaceErPage implements OnInit {
   isDesktop: boolean;
   //contents: displayArticle[] = displayArticles;
   articles: content[];
-  
+  userId:any;
+  userData:any;
+  latestRead:any;
+  pagePosition:any;
+  segment:any;
 
   survey: any;
 
@@ -37,16 +41,44 @@ export class PageSpaceErPage implements OnInit {
     console.log("constructor run");
     this.loadData();
     this.loadSurveyData();
-
-    if (authService.userData) {
-      console.log("Has User", authService.isLogin())
-    } else {
-      console.log("No User", authService.isLogin())
-    }
+    this.authService.afAuth.onAuthStateChanged(user=> {
+      if (user) {
+        console.log('logged in:',user.uid);
+        this.userId=user.uid;
+        this.loadUserLatesReadsById();
+      } else{
+        this.userId=undefined;
+        console.log('logged out, userId: ',this.userId);
+      }
+    });
   }
 
 
   ngOnInit() {
+    
+  }
+  loadUserLatesReadsById() {
+    console.log("run loadUserById() for latest read");
+    const subscription = this.firebaseService.getUserDataByIdService(this.userId).subscribe(
+      e => {
+        if(e.payload.data()['latestRead']!=undefined){
+          this.userData = e.payload.data()['latestRead'];
+        }
+        console.log('this user latest rad content loaded:', this.userData.id);
+        this.latestRead=this.userData.id;
+        console.log(this.latestRead);
+        this.pagePosition=this.userData.depth;
+        this.segment=this.userData.segment;
+        //after subscription closed and segment content has been loaded, scrollbar can be checked
+        if(this.userId==null||this.userId==undefined){
+          console.log('unsubscribing readArticles');
+          subscription.unsubscribe();
+        }
+      },
+      err => {
+        console.debug(err);
+      }
+    )
 
   }
 
