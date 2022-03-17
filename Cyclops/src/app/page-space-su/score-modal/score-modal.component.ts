@@ -7,6 +7,10 @@ import { SectionSolution } from './SectionSolution';
 import { SectionSolutionTags } from "./SectionSolutionTags"
 import { StarSolutions } from './StarSolutions';
 
+import { SolutionAssign } from './SolutionAssign';
+import { MainFormTags } from './MainFormTags';
+import { ScoreAssign } from './ScoreAssign';
+
 @Component({
   selector: 'app-score-modal',
   templateUrl: './score-modal.component.html',
@@ -82,15 +86,13 @@ export class ScoreModalComponent implements OnInit  {
 }
 
   ngOnInit() {
-    console.log(SectionSolution[0].sections);
-    console.log(SectionSolution[0].solution);
     this.sections = SectionSolution[0].sections;
     this.solutions = SectionSolution[0].solution;
+    console.log(this.sections);
+    console.log(this.solutions);
 
-    console.log(StarSolutions[0].stars);
-    console.log(StarSolutions[0].starsols);
-    this.stars = StarSolutions[0].stars;
-    this.starsols = StarSolutions[0].starsols;
+    this.stars = MainFormTags[0].stars;
+    console.log(this.stars);
 
     this.myForm = this.formBuilder.group({
       // Select_Section : ['', Validators.required],
@@ -226,7 +228,23 @@ export class ScoreModalComponent implements OnInit  {
   }
   getSolutionsForSelectedStars(val:number){
     this.starbuttonClicked = !this.starbuttonClicked;
-    this.starsols = StarSolutions[0].starsols.find(s=> s.star == val).starsol;
+    // this.starsols = StarSolutions[0].starsols.find(s=> s.star == val).starsol;
+    this.starsols = SolutionAssign.find(s=> s.star == val).starsol;
+  }
+  
+  getStarsForSelectedSolution(val:string){
+    // this.starsection = StarSolutions[0].sectionstars;
+    // this.usereco.level= StarSolutions[0].sectionstars.find(s=> this.starsection = val.trim()).starinput;
+
+    // for(var index of [0,1]) {
+    //   console.log(index);
+    //   this.usereco.level = StarSolutions[0].starsols.find(s=> s.starsol[index] == val).star;
+    //   console.log(this.usereco.level);
+    // }
+
+    this.usereco.level = ScoreAssign.find(s=> s.solutionname == val).starnumber;
+    console.log(this.usereco.level);
+
   }
  
   

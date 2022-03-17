@@ -42,7 +42,7 @@
       <ion-list>
         <ion-item>
           <ion-label> <h2 id="leveltag">Stars</h2></ion-label>
-          <ion-select interface="popover" [interfaceOptions]="{'cssClass': 'mystars-wider-popover'}" okText="Okay" cancelText="Dismiss" formControlName="Select_Level" (ionChange)="selectedLevel($event)" (ionChange)="getSolutionsForSelectedStars($event.target.value)" name="Section" placeholder="Sections">
+          <ion-select interface="popover" [interfaceOptions]="{'cssClass': 'mystars-wider-popover'}" okText="Okay" cancelText="Dismiss" formControlName="Select_Level" (ionChange)="selectedLevel($event)" (ionChange)="getSolutionsForSelectedStars($event.target.value)" name="Section" placeholder="Stars">
           <ion-select-option *ngFor="let st of stars">{{st}}</ion-select-option>
           </ion-select>
         </ion-item>
@@ -119,7 +119,7 @@
         <ion-list>
           <ion-item *ngIf="solution && solution.length > 0">
             <ion-label> <h2 id="leveltag">Article Solution</h2></ion-label>
-            <ion-select  interface="popover" [interfaceOptions]="{'cssClass': 'mysolutions-wider-popover'}" okText="Okay" cancelText="Dismiss" formControlName="Select_Solution"  (ionChange)="selectedSolution($event)" name="Solution" placeholder="Solutions">
+            <ion-select  interface="popover" [interfaceOptions]="{'cssClass': 'mysolutions-wider-popover'}" okText="Okay" cancelText="Dismiss" formControlName="Select_Solution" (ionChange)="getStarsForSelectedSolution($event.target.value)"  (ionChange)="selectedSolution($event)" name="Solution" placeholder="Solutions">
             <ion-select-option *ngFor="let s of solutions">{{s}}</ion-select-option>
             </ion-select>
           </ion-item>
@@ -158,12 +158,11 @@
     
         <div class="stars">      
     
-            <h5>Enter Weight of Solution Below:</h5>
-            <div class="rater">
-              <ion-icon name = "star"style="zoom:2.0;" *ngFor="let num of [1,2,3,4,5]"
-              (click)="rate(num)" [ngStyle]="{'color':getColor(num)}">
-              </ion-icon>
-             </div>
+          <h5>Solution Star Score:</h5>
+          <div class="rater">
+            <div class="stardisplay"><h1>{{this.usereco.level}}</h1></div>
+            <div class="stardisplay2"><ion-icon  name="star"></ion-icon></div>
+          </div>
           
         
         

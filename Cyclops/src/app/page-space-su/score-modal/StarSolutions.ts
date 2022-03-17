@@ -3,12 +3,6 @@ export const StarSolutions : StarSolutionTags[] = [
 
     {
         stars : [1,2,3,4,5],
-        
-        sols : ["Reduce meat consumption", "Forget about the labels","Try New things",
-                "Find your high impact food","Live carlessly", "Reduce car use",
-                "Buy low emission vehicle", "Fill your car seats when you ride",
-                "Fill your car seats when you ride", "Remember that everything a car powers depends on burning gasoline"],
-
     
         starsols: [
             {
@@ -38,30 +32,11 @@ export const StarSolutions : StarSolutionTags[] = [
             },
             {
                 star: 5,
-                starsol: [ "Fill your car seats when you ride", "Remember that everything a car powers depends on burning gasoline"
+                starsol: [ "star5solution", "Remember that everything a car powers depends on burning gasoline"
         
                 ]
             }
         ],
-        sectionstars : [
-            {
-                starssection: [ "Fill your car seats when you ride", "Remember that everything a car powers depends on burning gasoline"
-            
-                ],
-                starinput : 1
-
-            },
-            {
-                starssection: [ "Buy low emission vehicle", "Fill your car seats when you ride"
-            
-                ],
-                starinput : 2
-
-            },
-            
-
-
-        ]
     }
 
 ]

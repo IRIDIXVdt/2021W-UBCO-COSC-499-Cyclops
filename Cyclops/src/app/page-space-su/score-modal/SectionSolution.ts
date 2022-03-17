@@ -15,7 +15,7 @@ export const SectionSolution : SectionSolutionTags[] = [
             },
             {
                 section: "Transportation",
-                solutions: [ "Live carlessly", "Reduce car use", "Buy low emission vehicle", "Fill your car seats when you ride", "Remember that everything a car powers depends on burning gasoline"
+                solutions: [ "Live carlessly", "Reduce car use", "Buy low emission vehicle", "Fill your car seats when you ride", "Remember that everything a car powers depends on burning gasoline", "star5solution"
         
                 ]
             }
