@@ -7,6 +7,7 @@ import { SectionSolution } from './SectionSolution';
 import { SectionSolutionTags } from "./SectionSolutionTags"
 import { StarSolutions } from './StarSolutions';
 import { ScoreAssign } from './ScoreAssign';
+import { test } from './test';
 
 @Component({
   selector: 'app-score-modal',
@@ -226,7 +227,7 @@ export class ScoreModalComponent implements OnInit  {
     this.starsols = ScoreAssign.find(s=> s.star == val).starsol;
   }
   
-  getStarsForSelectedSolution(val:number){
+  getStarsForSelectedSolution(val:string){
     // this.starsection = StarSolutions[0].sectionstars;
     // this.usereco.level= StarSolutions[0].sectionstars.find(s=> this.starsection = val.trim()).starinput;
 
@@ -236,7 +237,7 @@ export class ScoreModalComponent implements OnInit  {
     //   console.log(this.usereco.level);
     // }
 
-    this.usereco.level = ScoreAssign.find(s=> s.star == val).starsol;
+    this.usereco.level = test.find(s=> s.name == val).numberrange;
     console.log(this.usereco.level);
 
   }
