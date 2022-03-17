@@ -105,7 +105,7 @@ export class PageSpaceLaPage implements OnInit {
           this.totalArticles = this.userData.length;
           this.finishedArticles = 0;
           for (let i = 0; i < this.userData.length; i++) {
-            if (this.areAllTrue(this.userData[i]['segment'])) {
+            if (this.userData[i]['progress']=="completed") {
               ++this.finishedArticles;
             }
           }
@@ -123,11 +123,6 @@ export class PageSpaceLaPage implements OnInit {
         console.debug(err);
       }
     )
-  }
-
-  areAllTrue(array) {
-    for (let b of array) if (!b) return false;
-    return true;
   }
 
   ngOnInit() {

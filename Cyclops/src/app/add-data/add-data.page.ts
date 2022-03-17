@@ -68,7 +68,7 @@ export class AddDataPage implements OnInit {
     (await articles).forEach((articleDoc) => {
       let segmentsLength = articleDoc.data()['segment'].length;
       let segmentRead = Array(segmentsLength).fill(false);//initalize all segments read to be false
-      let newData = { id: articleDoc.id, segment: segmentRead };
+      let newData = { id: articleDoc.id, segment: segmentRead, time: 1234, progress: "unread" };
       data.push(newData);
     });
     console.log(data);

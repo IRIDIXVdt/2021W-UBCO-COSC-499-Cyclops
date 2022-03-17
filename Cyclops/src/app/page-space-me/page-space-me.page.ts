@@ -224,10 +224,21 @@ export class PageSpaceMePage implements OnInit {
     for (let i = 0; i < this.userData.length; i++) {
       if (this.userData[i]['id'] == this.docId) {
         this.userData[i]['segment'][this.currentSegment] = true;
+        console.log(this.areAllTrue(this.userData[i]['segment']));
+        if (this.areAllTrue(this.userData[i]['segment'])) {
+          this.userData[i]['progress']= "completed";
+        }else{
+          this.userData[i]['progress']= "partial"; 
+        }
         console.log(this.userData[i]);
-        this.firebaseService.updateUserCollectionDataByIdService(this.userId, { readArticles: this.userData });
+        this.firebaseService.updateUserCollectionDataByIdService(this.userId, { readArticles: this.userData});
       }
     }
+  }
+
+  areAllTrue(array) {
+    for (let b of array) if (!b) return false;
+    return true;
   }
 
 
