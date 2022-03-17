@@ -9,7 +9,7 @@ import { StarSolutions } from './StarSolutions';
 
 import { SolutionAssign } from './SolutionAssign';
 import { MainFormTags } from './MainFormTags';
-import { test } from './test';
+import { ScoreAssign } from './ScoreAssign';
 
 @Component({
   selector: 'app-score-modal',
@@ -242,7 +242,7 @@ export class ScoreModalComponent implements OnInit  {
     //   console.log(this.usereco.level);
     // }
 
-    this.usereco.level = test.find(s=> s.name == val).numberrange;
+    this.usereco.level = ScoreAssign.find(s=> s.solutionname == val).starnumber;
     console.log(this.usereco.level);
 
   }
