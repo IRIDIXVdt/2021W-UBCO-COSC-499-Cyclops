@@ -7,7 +7,7 @@ import { SectionSolution } from './SectionSolution';
 import { SectionSolutionTags } from "./SectionSolutionTags"
 import { StarSolutions } from './StarSolutions';
 
-import { ScoreAssign } from './ScoreAssign';
+import { SolutionAssign } from './SolutionAssign';
 import { MainFormTags } from './MainFormTags';
 import { test } from './test';
 
@@ -229,7 +229,7 @@ export class ScoreModalComponent implements OnInit  {
   getSolutionsForSelectedStars(val:number){
     this.starbuttonClicked = !this.starbuttonClicked;
     // this.starsols = StarSolutions[0].starsols.find(s=> s.star == val).starsol;
-    this.starsols = ScoreAssign.find(s=> s.star == val).starsol;
+    this.starsols = SolutionAssign.find(s=> s.star == val).starsol;
   }
   
   getStarsForSelectedSolution(val:string){

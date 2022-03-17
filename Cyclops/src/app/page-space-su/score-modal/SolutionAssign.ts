@@ -1,9 +1,9 @@
-export type ScoreAssign = {
+export type SolutionAssign = {
 	star: number;
 	starsol: string[];
 };
 
-export const ScoreAssign: ScoreAssign[] = [
+export const SolutionAssign: SolutionAssign[] = [
 	{
 		star: 1,
 		starsol: ["Reduce meat consumption", "Forget about the labels"]
