@@ -76,6 +76,15 @@ export class PageSpaceSuPage implements OnInit {
     await alert.present();
   }
 
+  async alertMessage(message){
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      message: message,
+      buttons: ['Ok']
+    });
+    await alert.present();
+  }
+
   assignCompletedList() {
     this.scoreArea = 0;
     for (let item of this.localSol) {
@@ -145,9 +154,18 @@ export class PageSpaceSuPage implements OnInit {
       message: 'Please wait...',
     });
     loading.present();  // present loading animation
-    this.firebaseService.addUserEcoService(this.userId, userData);
-    this.assignCompletedList();//update the card looking and the score as well
-    this.updateDisplayList();
+    this.firebaseService.addUserEcoService(this.userId, userData).then(() => {
+      console.log('updated userName');
+      this.assignCompletedList();//update the card looking and the score as well
+      this.updateDisplayList();
+      loading.dismiss();
+      this.alertMessage("Successful");
+    }).catch((error) => {
+      console.log(error);
+      loading.dismiss();
+      this.alertMessage("Check your internet Connection");
+    });
+   
   }
 
   async notifications(ev: any) {
