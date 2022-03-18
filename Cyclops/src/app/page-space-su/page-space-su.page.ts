@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController, LoadingController, ModalController, PopoverController } from '@ionic/angular';
-import { ScoreModalComponent } from './score-modal/score-modal.component';
 import { NavController } from '@ionic/angular';
 import { PageSpaceMePage } from '../page-space-me/page-space-me.page';
 import { Router } from '@angular/router';
@@ -46,7 +45,6 @@ export class PageSpaceSuPage implements OnInit {
 
 
   constructor(
-    public ecopopover: PopoverController,
     private modalCtrol: ModalController,
     public navCtrl: NavController,
     public firebaseService: FirebaseService,
@@ -210,7 +208,7 @@ export class PageSpaceSuPage implements OnInit {
     this.section = "All";
   }
 
-  openModal() {
+/*   openModal() {
     this.modalCtrol.create({
       component: ScoreModalComponent,
       componentProps: this.profile
@@ -223,7 +221,7 @@ export class PageSpaceSuPage implements OnInit {
         }
       })
     })
-  }
+  } */
 
   sortTypeOnChange() {
     // const currentTime = new Date().getTime();
