@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController, LoadingController, ModalController, PopoverController } from '@ionic/angular';
-import { EcoPopoverComponent } from './eco-popover/eco-popover.component';
 import { ScoreModalComponent } from './score-modal/score-modal.component';
 import { NavController } from '@ionic/angular';
 import { PageSpaceMePage } from '../page-space-me/page-space-me.page';
@@ -76,6 +75,15 @@ export class PageSpaceSuPage implements OnInit {
     await alert.present();
   }
 
+  async alertMessage(message){
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      message: message,
+      buttons: ['Ok']
+    });
+    await alert.present();
+  }
+
   assignCompletedList() {
     this.scoreArea = 0;
     for (let item of this.localSol) {
@@ -127,7 +135,7 @@ export class PageSpaceSuPage implements OnInit {
       })
   }
 
-  submitEcoSolEvent(solutionId: string) {
+  async submitEcoSolEvent(solutionId: string) {
     const currentTime = new Date().getTime();
     console.log("onSubmit", solutionId, this.userId, currentTime);
     const uploadData: userEcoItem = {//sol'n init
@@ -141,19 +149,24 @@ export class PageSpaceSuPage implements OnInit {
       userEcoSolutions: this.userEcoItemList,
     }
     //upload to cloud
-    this.firebaseService.addUserEcoService(this.userId, userData);
-    this.assignCompletedList();//update the card looking and the score as well
-    this.updateDisplayList();
+    const loading = await this.loadingController.create({
+      message: 'Please wait...',
+    });
+    loading.present();  // present loading animation
+    this.firebaseService.addUserEcoService(this.userId, userData).then(() => {
+      console.log('updated userName');
+      loading.dismiss();
+      this.assignCompletedList();//update the card looking and the score as well
+      this.updateDisplayList();
+      this.alertMessage("Successful");
+    }).catch((error) => {
+      console.log(error);
+      loading.dismiss();
+      this.alertMessage("Check your internet Connection");
+    });
+   
   }
 
-  async notifications(ev: any) {
-    const popover = await this.ecopopover.create({
-      component: EcoPopoverComponent,
-      event: ev,
-      translucent: true
-    });
-    return await popover.present();
-  }
 
   goSurvey() {
     this.router.navigateByUrl('tabs/page-space-me');
