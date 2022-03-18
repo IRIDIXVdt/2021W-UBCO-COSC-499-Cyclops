@@ -31,7 +31,9 @@
         </div>
 
 
-        <h1>Solutions <ion-icon name="help-circle-outline" (click)="popAlert('You can submit your solutions here!')"></ion-icon></h1>
+        <h1>Solutions <ion-icon name="help-circle-outline" (click)="popAlert('You can submit your solutions')">
+            </ion-icon>
+        </h1>
 
         <ng-container *ngIf="!displaySol">
             <ion-progress-bar type="indeterminate"></ion-progress-bar>
@@ -39,7 +41,7 @@
 
         <ng-container *ngIf="displaySol">
             <ion-row>
-                <ion-col size-xs="12" size-sm="5" size-md="4" size-lg="3">
+                <!-- <ion-col size-xs="12" size-sm="5" size-md="4" size-lg="3">
                     <ion-row>
                         <ion-col>
                             <ion-radio-group [(ngModel)]="sortType" (ionChange)="updateDisplayList()">
@@ -70,7 +72,7 @@
 
                     <ion-row>
                         <ion-col>
-                            <!--  [(ngModel)]="section"  -->
+                           
                             <ion-radio-group [(ngModel)]="userProgressType" (ionChange)="updateDisplayList()">
                                 <ion-list-header>
                                     <ion-label>Display solutions that are</ion-label>
@@ -94,7 +96,7 @@
 
                     <ion-row>
                         <ion-col>
-                            <!--  [(ngModel)]="section"  -->
+                            
                             <ion-radio-group [(ngModel)]="section" (ionChange)="updateDisplayList()">
                                 <ion-list-header>
                                     <ion-label>Select by Section</ion-label>
@@ -113,6 +115,84 @@
                         </ion-col>
 
                     </ion-row>
+                </ion-col> -->
+                <ion-col size-xs="12" size-sm="5" size-md="4" size-lg="3">
+                    <ion-accordion-group>
+                        <ion-accordion>
+                            <ion-item slot="header" color="light">
+                                <ion-label>Type Filter</ion-label>
+                            </ion-item>
+                            <ion-list slot="content">
+                                <ion-item>
+                                    <ion-radio-group [(ngModel)]="sortType" (ionChange)="updateDisplayList()"
+                                        class="ion-padding-bottom">
+                                        <ion-item>
+                                            <ion-label>Star Ascending</ion-label>
+                                            <ion-radio slot="start" value="starUp"></ion-radio>
+                                        </ion-item>
+                                        <ion-item>
+                                            <ion-label>Star Descending</ion-label>
+                                            <ion-radio slot="start" value="starDown"></ion-radio>
+                                        </ion-item>
+                                        <ion-item>
+                                            <ion-label>Solution Name</ion-label>
+                                            <ion-radio slot="start" value="sN"></ion-radio>
+                                        </ion-item>
+                                        <ion-item>
+                                            <ion-label>Section Type</ion-label>
+                                            <ion-radio slot="start" value="sT"></ion-radio>
+                                        </ion-item>
+                                    </ion-radio-group>
+                                </ion-item>
+                            </ion-list>
+                        </ion-accordion>
+                        <ion-accordion>
+                            <ion-item slot="header" color="light">
+                                <ion-label>Completeness Filter</ion-label>
+                            </ion-item>
+                            <ion-list slot="content">
+                                <ion-item>
+                                    <ion-radio-group [(ngModel)]="userProgressType" (ionChange)="updateDisplayList()"
+                                        class="ion-padding-bottom">
+                                        <ion-item>
+                                            <ion-label>Attended</ion-label>
+                                            <ion-radio slot="start" value="com"></ion-radio>
+                                        </ion-item>
+                                        <ion-item>
+                                            <ion-label>Not Attended</ion-label>
+                                            <ion-radio slot="start" value="not"></ion-radio>
+                                        </ion-item>
+                                        <ion-item>
+                                            <ion-label>All</ion-label>
+                                            <ion-radio slot="start" value="all"></ion-radio>
+                                        </ion-item>
+                                    </ion-radio-group>
+                                </ion-item>
+                            </ion-list>
+                        </ion-accordion>
+                        <ion-accordion>
+                            <ion-item slot="header" color="light">
+                                <ion-label>Section Filter</ion-label>
+                            </ion-item>
+                            <ion-list slot="content">
+                                <ion-item>
+                                    <ion-radio-group [(ngModel)]="section" (ionChange)="sectionTypeOnChange()"
+                                        class="ion-padding-bottom">
+                                        <ion-item>
+                                            <ion-label>All</ion-label>
+                                            <ion-radio slot="start" value="All"></ion-radio>
+                                        </ion-item>
+                                        <ng-container *ngFor="let item of sections">
+                                            <ion-item>
+                                                <ion-label> {{item}}</ion-label>
+                                                <ion-radio slot="start" value={{item}}></ion-radio>
+                                            </ion-item>
+                                        </ng-container>
+                                    </ion-radio-group>
+                                </ion-item>
+                            </ion-list>
+                        </ion-accordion>
+                    </ion-accordion-group>
                 </ion-col>
                 <ion-col>
                     <ion-row>
@@ -148,7 +228,9 @@
                                         </ion-item>
                                         <ion-list slot="content">
                                             <ion-item>
-                                                <ion-range deounce='500' min="-1" max="2" step="1" value="0" snaps="true" grid="true" snaps color="success" list='tickmarks' (ionChange)="rangeChange()">
+                                                <ion-range deounce='500' min="-1" max="2" step="1" value="0"
+                                                    snaps="true" grid="true" snaps color="success" list='tickmarks'
+                                                    (ionChange)="rangeChange()">
                                                     <ion-icon slot="start" color="success" name="leaf"></ion-icon>
                                                     <ion-icon slot="end" color="success" name="leaf"></ion-icon>
                                                 </ion-range>
