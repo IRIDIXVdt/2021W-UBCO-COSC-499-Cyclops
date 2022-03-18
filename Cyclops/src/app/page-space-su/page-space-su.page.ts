@@ -61,7 +61,7 @@ export class PageSpaceSuPage implements OnInit {
     // console.log(this.userId);
     this.ecoListContentLoading();
     this.userProgressTypeInit();
-    
+
   }
 
   initializeCompletedList() {
@@ -122,6 +122,7 @@ export class PageSpaceSuPage implements OnInit {
         subscription.unsubscribe();
         this.initializeCompletedList();
         this.assignCompletedList();
+        this.updateDisplayList();
         console.log('unsubscribe success', this.userEcoItemList);
       }, err => {
         console.debug(err);
@@ -230,24 +231,35 @@ export class PageSpaceSuPage implements OnInit {
   }
 
   sectionTypeOnChange() {
-    this.displaySol = this.localSol;
+    
     if (this.section === "All") {
       console.log("Display All");
     } else {
-      console.log(this.section);
+      // console.log(this.section);
       this.displaySol = this.displaySol.filter(f => (f.section === this.section));
     }
 
   }
 
+  attendTypeOnChange() {
+    if (this.userProgressType == "all") {
+      console.log("Select All");
+    } else if (this.userProgressType == "not") {
+      this.displaySol = this.displaySol.filter(f => (!f.attend));
+    } else if (this.userProgressType == "com") {
+      this.displaySol = this.displaySol.filter(f => (f.attend));
+    }
+  }
+
   updateDisplayList() {
     // this display list handles everything:
-    // // 1. sort type
-    // this.sortTypeOnChange()
-    // 2. attend type
-
-    // 3. section type
-
+    this.displaySol = this.localSol;
+    // 1. attend type
+    this.sectionTypeOnChange();
+    // 2. section type
+    this.attendTypeOnChange()
+    // 3. sort type
+    this.sortTypeOnChange()
   }
 }
 type fetchSolution = {

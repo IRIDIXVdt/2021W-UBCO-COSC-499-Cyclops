@@ -42,7 +42,7 @@
                 <ion-col size-xs="12" size-sm="5" size-md="4" size-lg="3">
                     <ion-row>
                         <ion-col>
-                            <ion-radio-group [(ngModel)]="sortType" (ionChange)="sortTypeOnChange()">
+                            <ion-radio-group [(ngModel)]="sortType" (ionChange)="updateDisplayList()">
                                 <ion-list-header>
                                     <ion-label>Sort by</ion-label>
                                 </ion-list-header>
@@ -71,7 +71,7 @@
                     <ion-row>
                         <ion-col>
                             <!--  [(ngModel)]="section"  -->
-                            <ion-radio-group [(ngModel)]="userProgressType" (ionChange)="progressTypeOnChange()">
+                            <ion-radio-group [(ngModel)]="userProgressType" (ionChange)="updateDisplayList()">
                                 <ion-list-header>
                                     <ion-label>Display solutions that are</ion-label>
                                 </ion-list-header>
@@ -155,8 +155,11 @@
                                                 <!-- color change -->
                                             </ion-item>
                                             <ion-item button (click)="submitEcoSolEvent(item.id)">
-                                                <ion-label color="primary">
+                                                <ion-label color="primary" *ngIf="!item.attend">
                                                     Submit
+                                                </ion-label>
+                                                <ion-label color="primary" *ngIf="item.attend">
+                                                    Update
                                                 </ion-label>
                                             </ion-item>
                                         </ion-list>
