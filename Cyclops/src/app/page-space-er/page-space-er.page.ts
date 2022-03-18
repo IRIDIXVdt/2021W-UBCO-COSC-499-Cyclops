@@ -5,6 +5,7 @@ import { Platform } from '@ionic/angular';
 import { NgZone } from '@angular/core';
 import { FirebaseService } from '../FirebaseService/firebase.service';
 import { AuthService } from '../authentication/auth/auth.service';
+import { element } from 'protractor';
 @Component({
   selector: 'app-page-space-er',
   templateUrl: './page-space-er.page.html',
@@ -14,9 +15,17 @@ export class PageSpaceErPage implements OnInit {
   isDesktop: boolean;
   //contents: displayArticle[] = displayArticles;
   articles: content[];
-  
-
+  userId: any;
+  userData: any;
+  latestRead: any;
+  pagePosition: any;
+  segment: any;
+  readProgressHeader: string;
+  readProgressImg: any;
+  readProgressTitle: any;
+  readProgressIntro: any;
   survey: any;
+
 
   authentication: boolean; // validate user is logged in or not 
 
@@ -37,16 +46,123 @@ export class PageSpaceErPage implements OnInit {
     console.log("constructor run");
     this.loadData();
     this.loadSurveyData();
-
-    if (authService.userData) {
-      console.log("Has User", authService.isLogin())
-    } else {
-      console.log("No User", authService.isLogin())
-    }
+    this.authService.afAuth.onAuthStateChanged(user => {
+      if (user) {
+        console.log('logged in:', user.uid);
+        this.userId = user.uid;
+        this.loadUserLatesReadsById();
+      } else {
+        this.userId = undefined;
+        console.log('logged out, userId: ', this.userId);
+      }
+    });
   }
 
 
   ngOnInit() {
+
+  }
+  loadUserLatesReadsById() {
+    console.log("run loadUserById() for latest read");
+    const subscription = this.firebaseService.getUserDataByIdService(this.userId).subscribe(
+      e => {
+        if (e.payload.data()['latestRead'] != undefined) {
+          this.userData = e.payload.data()['latestRead'];
+          console.log(e.payload.data()['latestRead']['completed']);
+          if (e.payload.data()['latestRead']['completed'] == false) {//continue to read latest read
+            this.readProgressHeader = "Pick up where you left off";
+            this.pagePosition = this.userData.depth;
+            this.segment = this.userData.segment;
+            this.latestRead = this.userData.id;
+            this.firebaseService.getDataByIdService(this.latestRead).subscribe(
+              res => {
+                this.readProgressImg = res.payload.data()['image'];
+                this.readProgressTitle = res.payload.data()['title'];
+                this.readProgressIntro = res.payload.data()['cardIntroduction'];
+              },
+              err => {
+                console.debug(err);
+              }
+            )
+
+            console.log('this user latest read content loaded:', this.userData);
+
+            console.log(this.latestRead);
+
+          } else {//find a partially read article, if not found then find the first unread article
+            
+            let readArticles = e.payload.data()['readArticles'];
+            let partialArticle = undefined;
+
+            for (let i = 0; i < readArticles.length; i++) {
+              if (readArticles[i].progress == "partial") {
+                this.readProgressHeader = "Continue reading";
+                partialArticle = readArticles[i];
+                console.log(partialArticle);
+                this.latestRead = partialArticle.id;
+                this.firebaseService.getDataByIdService(this.latestRead).subscribe(
+                  res => {
+                    this.readProgressImg = res.payload.data()['image'];
+                    this.readProgressTitle = res.payload.data()['title'];
+                    this.readProgressIntro = res.payload.data()['cardIntroduction'];
+                  },
+                  err => {
+                    console.debug(err);
+                  }
+                )
+                break;
+              }
+            }
+            if (partialArticle == undefined) {//if still undefined then find the first unread article
+              for (let i = 0; i < readArticles.length; i++) {
+                if (readArticles[i].progress == "unread") {
+                  this.readProgressHeader = "Explore a new article";
+                  partialArticle = readArticles[i];
+                  console.log(partialArticle);
+                  this.latestRead = partialArticle.id;
+                  this.firebaseService.getDataByIdService(this.latestRead).subscribe(
+                    res => {
+                      this.readProgressImg = res.payload.data()['image'];
+                      this.readProgressTitle = res.payload.data()['title'];
+                      this.readProgressIntro = res.payload.data()['cardIntroduction'];
+                    },
+                    err => {
+                      console.debug(err);
+                    }
+                  )
+                  break;
+                }
+              }
+            }
+          }
+        } else {//if the user has no latest read then get them to start at the beginning
+          console.log('execute if latestReadUndefined')
+          this.readProgressHeader = "Start reading";
+          let readArticles = e.payload.data()['readArticles'];
+          this.latestRead = readArticles[0].id;
+          this.firebaseService.getDataByIdService(this.latestRead).subscribe(
+            res => {
+              this.readProgressImg = res.payload.data()['image'];
+              this.readProgressTitle = res.payload.data()['title'];
+              this.readProgressIntro = res.payload.data()['cardIntroduction'];
+            },
+            err => {
+              console.debug(err);
+            }
+          )
+
+
+        }
+        if (this.userId == null || this.userId == undefined) {
+          console.log('unsubscribing readArticles');
+          subscription.unsubscribe();
+        }
+
+      },
+      err => {
+        console.debug(err);
+      }
+    )
 
   }
 
@@ -95,7 +211,7 @@ export class PageSpaceErPage implements OnInit {
 
 }
 
-type content={
+type content = {
   docId: string,
   image: string,
   title: string,
