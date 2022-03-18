@@ -42,7 +42,7 @@
                 <ion-col size-xs="12" size-sm="5" size-md="4" size-lg="3">
                     <ion-row>
                         <ion-col>
-                            <ion-radio-group [(ngModel)]="sortType" (ionChange)="sortTypeOnChange()">
+                            <ion-radio-group [(ngModel)]="sortType" (ionChange)="updateDisplayList()">
                                 <ion-list-header>
                                     <ion-label>Sort by</ion-label>
                                 </ion-list-header>
@@ -71,16 +71,16 @@
                     <ion-row>
                         <ion-col>
                             <!--  [(ngModel)]="section"  -->
-                            <ion-radio-group [(ngModel)]="userProgressType" (ionChange)="progressTypeOnChange()">
+                            <ion-radio-group [(ngModel)]="userProgressType" (ionChange)="updateDisplayList()">
                                 <ion-list-header>
                                     <ion-label>Display solutions that are</ion-label>
                                 </ion-list-header>
                                 <ion-item>
-                                    <ion-label>Completed</ion-label>
+                                    <ion-label>Attended</ion-label>
                                     <ion-radio slot="start" value="com"></ion-radio>
                                 </ion-item>
                                 <ion-item>
-                                    <ion-label>Not completed</ion-label>
+                                    <ion-label>Not Attended</ion-label>
                                     <ion-radio slot="start" value="not"></ion-radio>
                                 </ion-item>
                                 <ion-item>
@@ -140,8 +140,11 @@
                                 <!-- *ngIf="item.ecoId in completedList" -->
                                 <ion-accordion-group>
                                     <ion-accordion>
-                                        <ion-item slot="header" color="primary">
+                                        <ion-item slot="header" color="primary" *ngIf="!item.attend">
                                             <ion-label>Assess Your Effort</ion-label>
+                                        </ion-item>
+                                        <ion-item slot="header" color="secondary" *ngIf="item.attend">
+                                            <ion-label>Update Solution</ion-label>
                                         </ion-item>
                                         <ion-list slot="content">
                                             <ion-item>
@@ -152,8 +155,11 @@
                                                 <!-- color change -->
                                             </ion-item>
                                             <ion-item button (click)="submitEcoSolEvent(item.id)">
-                                                <ion-label color="primary">
+                                                <ion-label color="primary" *ngIf="!item.attend">
                                                     Submit
+                                                </ion-label>
+                                                <ion-label color="primary" *ngIf="item.attend">
+                                                    Update
                                                 </ion-label>
                                             </ion-item>
                                         </ion-list>

@@ -61,6 +61,7 @@ export class PageSpaceSuPage implements OnInit {
     // console.log(this.userId);
     this.ecoListContentLoading();
     this.userProgressTypeInit();
+
   }
 
   initializeCompletedList() {
@@ -69,6 +70,18 @@ export class PageSpaceSuPage implements OnInit {
       this.completedList.push(item.ecoId);
     }
     console.log(this.completedList);
+  }
+
+  assignCompletedList() {
+    for (let item of this.localSol) {
+      if (this.completedList.indexOf(item.id) > -1) {
+        //this is attended
+        item.attend = true;
+        console.log("exist");
+      }
+    }
+    this.displaySol = this.localSol;
+    console.log('complete', this.localSol);
   }
 
   checkDisplay(cId) {
@@ -108,6 +121,8 @@ export class PageSpaceSuPage implements OnInit {
         }
         subscription.unsubscribe();
         this.initializeCompletedList();
+        this.assignCompletedList();
+        this.updateDisplayList();
         console.log('unsubscribe success', this.userEcoItemList);
       }, err => {
         console.debug(err);
@@ -154,7 +169,8 @@ export class PageSpaceSuPage implements OnInit {
           name: e.payload.doc.data()['name'],
           detail: e.payload.doc.data()['detail'],
           section: e.payload.doc.data()['section'],
-          star: e.payload.doc.data()['star']
+          star: e.payload.doc.data()['star'],
+          attend: false,
         }
       })
 
@@ -179,7 +195,6 @@ export class PageSpaceSuPage implements OnInit {
   sortTypeInitialize() {
     this.sortType = "starUp";
     this.section = "All";
-    this.displaySol = this.localSol;
   }
   openModal() {
     this.modalCtrol.create({
@@ -216,14 +231,35 @@ export class PageSpaceSuPage implements OnInit {
   }
 
   sectionTypeOnChange() {
-    this.displaySol = this.localSol;
+    
     if (this.section === "All") {
       console.log("Display All");
     } else {
-      console.log(this.section);
+      // console.log(this.section);
       this.displaySol = this.displaySol.filter(f => (f.section === this.section));
     }
 
+  }
+
+  attendTypeOnChange() {
+    if (this.userProgressType == "all") {
+      console.log("Select All");
+    } else if (this.userProgressType == "not") {
+      this.displaySol = this.displaySol.filter(f => (!f.attend));
+    } else if (this.userProgressType == "com") {
+      this.displaySol = this.displaySol.filter(f => (f.attend));
+    }
+  }
+
+  updateDisplayList() {
+    // this display list handles everything:
+    this.displaySol = this.localSol;
+    // 1. attend type
+    this.sectionTypeOnChange();
+    // 2. section type
+    this.attendTypeOnChange()
+    // 3. sort type
+    this.sortTypeOnChange()
   }
 }
 type fetchSolution = {
@@ -232,6 +268,7 @@ type fetchSolution = {
   star: number;
   detail: string;
   section: string;
+  attend: boolean;
 }
 type userEcoItem = {
   time: number;
