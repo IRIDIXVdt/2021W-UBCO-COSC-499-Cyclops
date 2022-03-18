@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController, LoadingController, ModalController, PopoverController } from '@ionic/angular';
-import { EcoPopoverComponent } from './eco-popover/eco-popover.component';
 import { ScoreModalComponent } from './score-modal/score-modal.component';
 import { NavController } from '@ionic/angular';
 import { PageSpaceMePage } from '../page-space-me/page-space-me.page';
@@ -156,9 +155,9 @@ export class PageSpaceSuPage implements OnInit {
     loading.present();  // present loading animation
     this.firebaseService.addUserEcoService(this.userId, userData).then(() => {
       console.log('updated userName');
+      loading.dismiss();
       this.assignCompletedList();//update the card looking and the score as well
       this.updateDisplayList();
-      loading.dismiss();
       this.alertMessage("Successful");
     }).catch((error) => {
       console.log(error);
@@ -168,14 +167,6 @@ export class PageSpaceSuPage implements OnInit {
    
   }
 
-  async notifications(ev: any) {
-    const popover = await this.ecopopover.create({
-      component: EcoPopoverComponent,
-      event: ev,
-      translucent: true
-    });
-    return await popover.present();
-  }
 
   goSurvey() {
     this.router.navigateByUrl('tabs/page-space-me');
