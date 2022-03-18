@@ -71,6 +71,17 @@ export class PageSpaceSuPage implements OnInit {
     console.log(this.completedList);
   }
 
+  assignCompletedList() {
+    for (let item of this.localSol) {
+      if (this.completedList.indexOf(item.id) > -1) {
+        //this is attended
+        item.attend = true;
+        console.log("exist");
+      }
+    }
+    console.log('complete', this.localSol);
+  }
+
   checkDisplay(cId) {
     if (this.completedList == undefined) {
       return false;
@@ -154,7 +165,8 @@ export class PageSpaceSuPage implements OnInit {
           name: e.payload.doc.data()['name'],
           detail: e.payload.doc.data()['detail'],
           section: e.payload.doc.data()['section'],
-          star: e.payload.doc.data()['star']
+          star: e.payload.doc.data()['star'],
+          attend: false,
         }
       })
 
@@ -225,6 +237,16 @@ export class PageSpaceSuPage implements OnInit {
     }
 
   }
+
+  updateDisplayList() {
+    // this display list handles everything:
+    // // 1. sort type
+    // this.sortTypeOnChange()
+    // 2. attend type
+
+    // 3. section type
+
+  }
 }
 type fetchSolution = {
   id: string;
@@ -232,6 +254,7 @@ type fetchSolution = {
   star: number;
   detail: string;
   section: string;
+  attend: boolean;
 }
 type userEcoItem = {
   time: number;
