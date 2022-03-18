@@ -53,6 +53,7 @@ export class PageSpaceSuPage implements OnInit {
     public firebaseService: FirebaseService,
     private router: Router,
   ) {
+    this.scoreArea = 0;
     this.contentLoading();
     // this.dummyContentLoading();
     this.sections = sectionList;
@@ -74,11 +75,22 @@ export class PageSpaceSuPage implements OnInit {
 
   assignCompletedList() {
     for (let item of this.localSol) {
-      if (this.completedList.indexOf(item.id) > -1) {
-        //this is attended
-        item.attend = true;
-        console.log("exist");
+      // if (this.completedList.indexOf(item.id) > -1) {
+      //stop as soon as there is a match
+      for (let ecoAttendItem of this.userEcoItemList) {
+        if (item.id === ecoAttendItem.ecoId) {
+          item.attend = true;
+          console.log(this.scoreArea, 'adds', item.star, ecoAttendItem.weight, 'from', item.name);
+          this.scoreArea += (item.star + 1) * ecoAttendItem.weight;
+
+          break;
+        }
       }
+      // if(this.userEcoItemList.some(e => e.ecoId === item.id)){
+      //   //this is attended, we also want to add marks to it
+      //   item.attend = true;
+      //   console.log("exist");
+      // }
     }
     this.displaySol = this.localSol;
     console.log('complete', this.localSol);
@@ -201,6 +213,7 @@ export class PageSpaceSuPage implements OnInit {
       })
     })
   }
+
   sortTypeOnChange() {
     // const currentTime = new Date().getTime();
     // console.log("sort type:", this.sortType, currentTime);
@@ -253,6 +266,7 @@ export class PageSpaceSuPage implements OnInit {
     this.sortTypeOnChange()
   }
 }
+
 type fetchSolution = {
   id: string;
   name: string;
