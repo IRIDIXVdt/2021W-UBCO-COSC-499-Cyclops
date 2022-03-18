@@ -154,10 +154,12 @@
                                                 </ion-range>
                                                 <!-- color change -->
                                             </ion-item>
-                                            <ion-item button (click)="submitEcoSolEvent(item.id)">
-                                                <ion-label color="primary" *ngIf="!item.attend">
+                                            <ion-item button (click)="submitEcoSolEvent(item.id)" *ngIf="!item.attend">
+                                                <ion-label color="primary">
                                                     Submit
                                                 </ion-label>
+                                            </ion-item>
+                                            <ion-item button>
                                                 <ion-label color="primary" *ngIf="item.attend">
                                                     Update
                                                 </ion-label>
