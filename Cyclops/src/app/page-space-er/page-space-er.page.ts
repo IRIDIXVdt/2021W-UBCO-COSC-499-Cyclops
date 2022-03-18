@@ -5,6 +5,7 @@ import { Platform } from '@ionic/angular';
 import { NgZone } from '@angular/core';
 import { FirebaseService } from '../FirebaseService/firebase.service';
 import { AuthService } from '../authentication/auth/auth.service';
+import { element } from 'protractor';
 @Component({
   selector: 'app-page-space-er',
   templateUrl: './page-space-er.page.html',
@@ -14,12 +15,12 @@ export class PageSpaceErPage implements OnInit {
   isDesktop: boolean;
   //contents: displayArticle[] = displayArticles;
   articles: content[];
-  userId:any;
-  userData:any;
-  latestRead:any;
-  pagePosition:any;
-  segment:any;
-
+  userId: any;
+  userData: any;
+  latestRead: any;
+  pagePosition: any;
+  segment: any;
+  readProgressHeader: string;
   survey: any;
 
   authentication: boolean; // validate user is logged in or not 
@@ -41,39 +42,74 @@ export class PageSpaceErPage implements OnInit {
     console.log("constructor run");
     this.loadData();
     this.loadSurveyData();
-    this.authService.afAuth.onAuthStateChanged(user=> {
+    this.authService.afAuth.onAuthStateChanged(user => {
       if (user) {
-        console.log('logged in:',user.uid);
-        this.userId=user.uid;
+        console.log('logged in:', user.uid);
+        this.userId = user.uid;
         this.loadUserLatesReadsById();
-      } else{
-        this.userId=undefined;
-        console.log('logged out, userId: ',this.userId);
+      } else {
+        this.userId = undefined;
+        console.log('logged out, userId: ', this.userId);
       }
     });
   }
 
 
   ngOnInit() {
-    
+
   }
   loadUserLatesReadsById() {
     console.log("run loadUserById() for latest read");
     const subscription = this.firebaseService.getUserDataByIdService(this.userId).subscribe(
       e => {
-        if(e.payload.data()['latestRead']!=undefined){
+        if (e.payload.data()['latestRead'] != undefined) {
           this.userData = e.payload.data()['latestRead'];
+          console.log(e.payload.data()['latestRead']['completed']);
+          if (e.payload.data()['latestRead']['completed'] == false) {//continue to read latest read
+            this.readProgressHeader="Pick up where you left off";
+            console.log('this user latest read content loaded:', this.userData);
+            this.pagePosition = this.userData.depth;
+            this.segment = this.userData.segment;
+            this.latestRead = this.userData.id;
+            console.log(this.latestRead);
+
+          } else {//find a partially read article, if not found then find the first unread article
+            this.readProgressHeader="Continue reading";
+            let readArticles = e.payload.data()['readArticles'];
+            let partialArticle = undefined;
+
+            for (let i = 0; i < readArticles.length; i++) {
+              if (readArticles[i].progress == "partial") {
+                
+                partialArticle = readArticles[i];
+                console.log(partialArticle);
+                this.latestRead = partialArticle.id;
+                break;
+              }
+            }
+            if (partialArticle == undefined) {//if still undefined then find the first unread article
+              for (let i = 0; i < readArticles.length; i++) {
+                if (readArticles[i].progress == "unread") {
+                  partialArticle = readArticles[i];
+                  console.log(partialArticle);
+                  this.latestRead = partialArticle.id;
+                  break;
+                }
+              }
+            }
+          }
+        } else {//if the user has no latest read then get them to start at the beginning
+          console.log('execute if latestReadUndefined')
+          let readArticles = e.payload.data()['readArticles'];
+          this.latestRead = readArticles[0].id;
+
+
         }
-        console.log('this user latest rad content loaded:', this.userData.id);
-        this.latestRead=this.userData.id;
-        console.log(this.latestRead);
-        this.pagePosition=this.userData.depth;
-        this.segment=this.userData.segment;
-        //after subscription closed and segment content has been loaded, scrollbar can be checked
-        if(this.userId==null||this.userId==undefined){
+        if (this.userId == null || this.userId == undefined) {
           console.log('unsubscribing readArticles');
           subscription.unsubscribe();
         }
+
       },
       err => {
         console.debug(err);
@@ -127,7 +163,7 @@ export class PageSpaceErPage implements OnInit {
 
 }
 
-type content={
+type content = {
   docId: string,
   image: string,
   title: string,

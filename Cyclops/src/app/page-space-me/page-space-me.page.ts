@@ -175,7 +175,8 @@ export class PageSpaceMePage implements OnInit {
       if (this.hasScrollbar) {
         position = this.segmentDepth[this.currentSegment];
       }
-      this.firebaseService.updateUserCollectionDataByIdService(this.userId, { latestRead: { id: this.docId, segment: this.currentSegment, depth: position } });
+      let completion = this.areAllTrue(this.currentSegments);
+      this.firebaseService.updateUserCollectionDataByIdService(this.userId, { latestRead: { id: this.docId, segment: this.currentSegment, depth: position, completed: completion } });
 
     }
   }
