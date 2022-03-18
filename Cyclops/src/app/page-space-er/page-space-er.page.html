@@ -73,17 +73,35 @@
     </div>
 
     <ng-container *ngIf="authService.isLogin()">
-        <h1 [innerHTML]="readProgressHeader"></h1>
+        <h1>For you</h1>
+        <ion-row>
+            <ion-col>
+                <ion-card [routerLink]="['/tabs/page-space-me/' , latestRead]" color='light' style="height:100%">
+                    <img [src]="readProgressImg" style="width: 690px; height:200px; object-fit: cover" />
+                    <ion-card-header>
+                        <ion-card-subtitle [innerHTML]="readProgressHeader"></ion-card-subtitle>
+                        <ion-card-title [innerHTML]="readProgressTitle"></ion-card-title>
+                    </ion-card-header>
+                    <ion-card-content [innerHTML]="readProgressIntro">
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+            <ion-col>
+                <ion-card routerLink="/tabs/page-space-su" color='light' style="height:100%;padding-top: 15%;">
+                    <ion-card-header>
+                        <ion-card-subtitle style="text-align:center;">Your ECO progress</ion-card-subtitle>
+                        <ion-card-subtitle style="text-align:center; font-size:300%;">Overall Score
+                        </ion-card-subtitle>
+                        <ion-card-title style="text-align:center; font-size:550%" fontsize>80%</ion-card-title>
+                    </ion-card-header>
+                    <ion-card-content>
+                        <ion-progress-bar color="primary" value="0.8"></ion-progress-bar>
+                    </ion-card-content>
+                </ion-card>
 
-        <ion-card [routerLink]="['/tabs/page-space-me/' , latestRead]" color='light'>
-            <img [src]="readProgressImg" style="width: 690px; height:200px; object-fit: cover" />
-            <ion-card-header>
-                <ion-card-title [innerHTML]="readProgressTitle"></ion-card-title>
-            </ion-card-header>
-            <ion-card-content [innerHTML]="readProgressIntro">
+            </ion-col>
+        </ion-row>
 
-            </ion-card-content>
-        </ion-card>
     </ng-container>
 
 
@@ -137,21 +155,7 @@
     <!-- seconed section end (content) -->
 
     <!-- third section begin (title) -->
-    <h1>Your ECO score</h1>
-    <!-- third section end (title) -->
 
-    <!-- third section begin (content) -->
-    <div style="max-width: 690px; justify-content: center;  margin-left: auto;margin-right: auto;">
-        <ion-card id="card2" routerLink="/tabs/page-space-su" color='light'>
-            <ion-card-header>
-                <ion-card-subtitle style="text-align:center; font-size:150%;">Overall Score</ion-card-subtitle>
-                <ion-card-title style="text-align:center; font-size:400%" fontsize>80%</ion-card-title>
-            </ion-card-header>
-            <ion-card-content>
-                <ion-progress-bar color="primary" value="0.8"></ion-progress-bar>
-            </ion-card-content>
-        </ion-card>
-    </div>
 
     <!-- third section end (content) -->
     <!-- [options]="slideOptsOne" -->
