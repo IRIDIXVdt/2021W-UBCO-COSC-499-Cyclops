@@ -159,58 +159,60 @@
 
     <!-- third section end (content) -->
     <!-- [options]="slideOptsOne" -->
-    <!-- fourth section begin (title) -->
-    <h1>Newest article</h1>
-    <!-- fourth section end (title) -->
+    <!-- fourth section begin (title) only when user not logged in -->
+    <ng-container *ngIf="!authService.isLogin()">
+        <h1>Start Reading</h1>
+        <!-- fourth section end (title) -->
 
-    <!-- third section begin (content) -->
-    <div *ngIf="articles" class="mobile-display">
-        <ion-slides pager="true" id="newsetArticle">
-            <ion-slide *ngFor="let content of articles | slice:0:3 ">
-                <ion-card class="article-card" color='light' routerLink="/tabs/page-space-me/{{content.docId}}">
-                    <img src="{{content.image}}" style="width: 690px; height:200px; object-fit: cover" />
-                    <ion-card-header>
-                        <ion-card-subtitle>{{content.subtitle}}</ion-card-subtitle>
-                        <ion-card-title>{{content.title}}</ion-card-title>
-                    </ion-card-header>
-                    <ion-card-content>
-                        {{content.cardIntroduction}}
-                    </ion-card-content>
-                </ion-card>
-            </ion-slide>
-        </ion-slides>
-    </div>
-    <div *ngIf="articles" class="web-display">
-        <ion-slides pager="true" id="newsetArticle">
-            <ion-slide>
-                <ion-grid>
-                    <ion-row>
-                        <ion-col *ngFor="let content of articles | slice:0:3 ">
-                            <ion-card class="article-card" color='light' routerLink="/tabs/page-space-me/{{content.docId}}">
-                                <img src="{{content.image}}" />
-                                <ion-card-header>
-                                    <ion-card-title>{{content.title}}</ion-card-title>
-                                </ion-card-header>
-                                <ion-card-content>
-                                    {{content.cardIntroduction}}
-                                </ion-card-content>
-                            </ion-card>
-                        </ion-col>
-                    </ion-row>
-                </ion-grid>
-            </ion-slide>
-        </ion-slides>
-    </div>
-    <div *ngIf="!articles">
-        <!-- <ion-spinner></ion-spinner> -->
-        <ion-card>
+        <!-- third section begin (content) -->
+        <div *ngIf="articles" class="mobile-display">
+            <ion-slides pager="true" id="newsetArticle">
+                <ion-slide *ngFor="let content of articles | slice:0:3 ">
+                    <ion-card class="article-card" color='light' routerLink="/tabs/page-space-me/{{content.docId}}">
+                        <img src="{{content.image}}" style="width: 690px; height:200px; object-fit: cover" />
+                        <ion-card-header>
+                            <ion-card-subtitle>{{content.subtitle}}</ion-card-subtitle>
+                            <ion-card-title>{{content.title}}</ion-card-title>
+                        </ion-card-header>
+                        <ion-card-content>
+                            {{content.cardIntroduction}}
+                        </ion-card-content>
+                    </ion-card>
+                </ion-slide>
+            </ion-slides>
+        </div>
+        <div *ngIf="articles" class="web-display">
+            <ion-slides pager="true" id="newsetArticle">
+                <ion-slide>
+                    <ion-grid>
+                        <ion-row>
+                            <ion-col *ngFor="let content of articles | slice:0:3 ">
+                                <ion-card class="article-card" color='light' routerLink="/tabs/page-space-me/{{content.docId}}">
+                                    <img src="{{content.image}}" />
+                                    <ion-card-header>
+                                        <ion-card-title>{{content.title}}</ion-card-title>
+                                    </ion-card-header>
+                                    <ion-card-content>
+                                        {{content.cardIntroduction}}
+                                    </ion-card-content>
+                                </ion-card>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </ion-slide>
+            </ion-slides>
+        </div>
+        <div *ngIf="!articles">
             <!-- <ion-spinner></ion-spinner> -->
+            <ion-card>
+                <!-- <ion-spinner></ion-spinner> -->
 
-            <ion-progress-bar type="indeterminate"></ion-progress-bar>
-            <!-- <ion-skeleton-text animated></ion-skeleton-text> -->
+                <ion-progress-bar type="indeterminate"></ion-progress-bar>
+                <!-- <ion-skeleton-text animated></ion-skeleton-text> -->
 
-        </ion-card>
-    </div>
+            </ion-card>
+        </div>
+    </ng-container>
 
 
 
