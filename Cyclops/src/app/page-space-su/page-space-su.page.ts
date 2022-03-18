@@ -61,6 +61,7 @@ export class PageSpaceSuPage implements OnInit {
     // console.log(this.userId);
     this.ecoListContentLoading();
     this.userProgressTypeInit();
+    
   }
 
   initializeCompletedList() {
@@ -79,6 +80,7 @@ export class PageSpaceSuPage implements OnInit {
         console.log("exist");
       }
     }
+    this.displaySol = this.localSol;
     console.log('complete', this.localSol);
   }
 
@@ -119,6 +121,7 @@ export class PageSpaceSuPage implements OnInit {
         }
         subscription.unsubscribe();
         this.initializeCompletedList();
+        this.assignCompletedList();
         console.log('unsubscribe success', this.userEcoItemList);
       }, err => {
         console.debug(err);
@@ -191,7 +194,6 @@ export class PageSpaceSuPage implements OnInit {
   sortTypeInitialize() {
     this.sortType = "starUp";
     this.section = "All";
-    this.displaySol = this.localSol;
   }
   openModal() {
     this.modalCtrol.create({
