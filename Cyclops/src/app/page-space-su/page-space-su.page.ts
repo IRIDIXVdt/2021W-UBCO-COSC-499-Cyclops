@@ -43,7 +43,7 @@ export class PageSpaceSuPage implements OnInit {
 
   userEcoItemList: userEcoItem[];
   completedList: string[];
-
+  scoreArea: number;
 
 
   constructor(
@@ -84,18 +84,6 @@ export class PageSpaceSuPage implements OnInit {
     console.log('complete', this.localSol);
   }
 
-  checkDisplay(cId) {
-    if (this.completedList == undefined) {
-      return false;
-    } else {
-      if (this.completedList.indexOf(cId) > -1) {
-        return false;
-      } else {
-        return true;
-      }
-    }
-
-  }
 
   userProgressTypeInit() {
     this.userProgressType = "not";
@@ -115,7 +103,7 @@ export class PageSpaceSuPage implements OnInit {
     const subscription = this.firebaseService.getUserByIdService(this.userId).subscribe(
       e => {
         this.userEcoItemList = e.payload.data()["userEcoSolutions"];
-        // console.log(this.userEcoItemList);
+        console.log(this.userEcoItemList);
         if (this.userEcoItemList == undefined) {//check with new account for testing*
           this.userEcoItemList = [];
         }
@@ -147,6 +135,7 @@ export class PageSpaceSuPage implements OnInit {
     this.firebaseService.addUserEcoService(this.userId, userData);
     this.completedList.push(solutionId);
   }
+
   async notifications(ev: any) {
     const popover = await this.ecopopover.create({
       component: EcoPopoverComponent,
@@ -183,6 +172,7 @@ export class PageSpaceSuPage implements OnInit {
     })
 
   }
+
   dummyContentLoading() {
     // this.localSol = ecoData;
     this.sortTypeInitialize();
@@ -196,6 +186,7 @@ export class PageSpaceSuPage implements OnInit {
     this.sortType = "starUp";
     this.section = "All";
   }
+
   openModal() {
     this.modalCtrol.create({
       component: ScoreModalComponent,
@@ -231,7 +222,7 @@ export class PageSpaceSuPage implements OnInit {
   }
 
   sectionTypeOnChange() {
-    
+
     if (this.section === "All") {
       console.log("Display All");
     } else {
