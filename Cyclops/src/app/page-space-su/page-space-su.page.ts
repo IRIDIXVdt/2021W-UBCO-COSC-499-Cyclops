@@ -207,16 +207,16 @@ export class PageSpaceSuPage implements OnInit {
     //handle the event here
     //use the new sortType to update displaySol
     if (this.sortType === "starUp") {
-      console.log("sort Asc")
+      // console.log("sort Asc")
       this.displaySol.sort((a, b) => (a.star > b.star) ? 1 : -1);
     } else if (this.sortType === "starDown") {
-      console.log("sort Des")
+      // console.log("sort Des")
       this.displaySol.sort((a, b) => (a.star < b.star) ? 1 : -1);
     } else if (this.sortType === "sN") {
-      console.log("solution name")
+      // console.log("solution name")
       this.displaySol.sort((a, b) => (a.name > b.name) ? 1 : -1);
     } else if (this.sortType === "sT") {
-      console.log("section name")
+      // console.log("section name")
       this.displaySol.sort((a, b) => (a.section > b.section) ? 1 : -1);
     }
   }
@@ -245,6 +245,7 @@ export class PageSpaceSuPage implements OnInit {
   }
 
   updateDisplayList() {
+    console.log("update display with rule:",this.sortType,this.section,this.userProgressType);
     // this display list handles everything:
     this.displaySol = this.localSol;
     // 1. attend type
