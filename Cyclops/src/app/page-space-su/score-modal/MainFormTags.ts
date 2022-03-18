@@ -1,12 +1,12 @@
 export type MainFormTags = {
 	stars: number[];
-	solutions: string[];
+	sections: string[];
 };
 
 export const MainFormTags: MainFormTags[] = [
 	{
         stars: [1,2,3,4,5],
-		solutions: ["Transportation", "Food"]
+		sections: ["Transportation", "Food"]
 	
 	}
 ];

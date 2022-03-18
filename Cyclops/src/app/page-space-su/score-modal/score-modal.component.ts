@@ -10,6 +10,7 @@ import { StarSolutions } from './StarSolutions';
 import { SolutionAssign } from './SolutionAssign';
 import { MainFormTags } from './MainFormTags';
 import { ScoreAssign } from './ScoreAssign';
+import { SectionAssign } from './SectionAssign';
 
 @Component({
   selector: 'app-score-modal',
@@ -86,8 +87,7 @@ export class ScoreModalComponent implements OnInit  {
 }
 
   ngOnInit() {
-    this.sections = SectionSolution[0].sections;
-    this.solutions = SectionSolution[0].solution;
+    this.sections =  MainFormTags[0].sections;
     console.log(this.sections);
     console.log(this.solutions);
 
@@ -209,7 +209,7 @@ export class ScoreModalComponent implements OnInit  {
   }
   getSolutionsForSelectedSections(val:string){
     this.buttonClicked = !this.buttonClicked;
-    this.solutions = SectionSolution[0].solution.find(s=> s.section.trim() == val.trim()).solutions;
+    this.solutions = SectionAssign.find(s=> s.section.trim() == val.trim()).solutions;
   }
   selectedSection($event) {
     // this.buttonClicked = !this.buttonClicked;
