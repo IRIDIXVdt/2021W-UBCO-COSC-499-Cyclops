@@ -42,8 +42,8 @@ export class PageSpaceSuPage implements OnInit {
 
 
   userEcoItemList: userEcoItem[];
-  completedList: string[];
-
+  // completedList: string[];
+  scoreArea: number;
 
 
   constructor(
@@ -53,6 +53,7 @@ export class PageSpaceSuPage implements OnInit {
     public firebaseService: FirebaseService,
     private router: Router,
   ) {
+    this.scoreArea = 0;
     this.contentLoading();
     // this.dummyContentLoading();
     this.sections = sectionList;
@@ -64,38 +65,24 @@ export class PageSpaceSuPage implements OnInit {
 
   }
 
-  initializeCompletedList() {
-    this.completedList = [];
-    for (let item of this.userEcoItemList) {
-      this.completedList.push(item.ecoId);
-    }
-    console.log(this.completedList);
-  }
-
   assignCompletedList() {
+    this.scoreArea = 0;
     for (let item of this.localSol) {
-      if (this.completedList.indexOf(item.id) > -1) {
-        //this is attended
-        item.attend = true;
-        console.log("exist");
+      // if (this.completedList.indexOf(item.id) > -1) {
+      //stop as soon as there is a match
+      for (let ecoAttendItem of this.userEcoItemList) {
+        if (item.id === ecoAttendItem.ecoId) {
+          item.attend = true;
+          // console.log(this.scoreArea, 'adds', item.star, ecoAttendItem.weight, 'from', item.name);
+          this.scoreArea += (item.star + 1) * ecoAttendItem.weight;
+          break;
+        }
       }
     }
     this.displaySol = this.localSol;
-    console.log('complete', this.localSol);
+    console.log('loaded solution and user progress successfully merged');
   }
 
-  checkDisplay(cId) {
-    if (this.completedList == undefined) {
-      return false;
-    } else {
-      if (this.completedList.indexOf(cId) > -1) {
-        return false;
-      } else {
-        return true;
-      }
-    }
-
-  }
 
   userProgressTypeInit() {
     this.userProgressType = "not";
@@ -120,7 +107,6 @@ export class PageSpaceSuPage implements OnInit {
           this.userEcoItemList = [];
         }
         subscription.unsubscribe();
-        this.initializeCompletedList();
         this.assignCompletedList();
         this.updateDisplayList();
         console.log('unsubscribe success', this.userEcoItemList);
@@ -145,8 +131,10 @@ export class PageSpaceSuPage implements OnInit {
     }
     //upload to cloud
     this.firebaseService.addUserEcoService(this.userId, userData);
-    this.completedList.push(solutionId);
+    this.assignCompletedList();//update the card looking and the score as well
+    this.updateDisplayList();
   }
+
   async notifications(ev: any) {
     const popover = await this.ecopopover.create({
       component: EcoPopoverComponent,
@@ -176,13 +164,14 @@ export class PageSpaceSuPage implements OnInit {
 
       // console.log("content loaded", this.solutions.map((a: any) => a.starLevel));
       this.localSol = this.solutions;
-      console.log("solution", this.solutions);
+      // console.log("solution", this.solutions);
       this.sortTypeInitialize();
     }, (err: any) => {
       console.log(err);
     })
 
   }
+
   dummyContentLoading() {
     // this.localSol = ecoData;
     this.sortTypeInitialize();
@@ -196,6 +185,7 @@ export class PageSpaceSuPage implements OnInit {
     this.sortType = "starUp";
     this.section = "All";
   }
+
   openModal() {
     this.modalCtrol.create({
       component: ScoreModalComponent,
@@ -210,6 +200,7 @@ export class PageSpaceSuPage implements OnInit {
       })
     })
   }
+
   sortTypeOnChange() {
     // const currentTime = new Date().getTime();
     // console.log("sort type:", this.sortType, currentTime);
@@ -231,9 +222,10 @@ export class PageSpaceSuPage implements OnInit {
   }
 
   sectionTypeOnChange() {
-    
+
     if (this.section === "All") {
-      console.log("Display All");
+      // console.log("Display All");
+      // do nothing, keep the list as it is
     } else {
       // console.log(this.section);
       this.displaySol = this.displaySol.filter(f => (f.section === this.section));
@@ -243,7 +235,8 @@ export class PageSpaceSuPage implements OnInit {
 
   attendTypeOnChange() {
     if (this.userProgressType == "all") {
-      console.log("Select All");
+      // console.log("Select All");
+      // do nothing, keep the list as it is
     } else if (this.userProgressType == "not") {
       this.displaySol = this.displaySol.filter(f => (!f.attend));
     } else if (this.userProgressType == "com") {
@@ -262,6 +255,7 @@ export class PageSpaceSuPage implements OnInit {
     this.sortTypeOnChange()
   }
 }
+
 type fetchSolution = {
   id: string;
   name: string;
