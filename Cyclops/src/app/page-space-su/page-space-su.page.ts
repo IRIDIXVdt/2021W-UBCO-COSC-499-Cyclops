@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController, PopoverController } from '@ionic/angular';
+import { AlertController, LoadingController, ModalController, PopoverController } from '@ionic/angular';
 import { EcoPopoverComponent } from './eco-popover/eco-popover.component';
 import { ScoreModalComponent } from './score-modal/score-modal.component';
 import { NavController } from '@ionic/angular';
@@ -52,6 +52,8 @@ export class PageSpaceSuPage implements OnInit {
     public navCtrl: NavController,
     public firebaseService: FirebaseService,
     private router: Router,
+    public alertController: AlertController,
+    public loadingController: LoadingController,
   ) {
     this.scoreArea = 0;
     this.contentLoading();
@@ -63,6 +65,15 @@ export class PageSpaceSuPage implements OnInit {
     this.ecoListContentLoading();
     this.userProgressTypeInit();
 
+  }
+
+  async popAlert(message){
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      message: message,
+      buttons: ['Ok']
+    });
+    await alert.present();
   }
 
   assignCompletedList() {
