@@ -75,11 +75,11 @@
     <h1 [innerHTML]="readProgressHeader"></h1>
 
     <ion-card [routerLink]="['/tabs/page-space-me/' , latestRead]" color='light'>
-
+        <img [src]="readProgressImg" style="width: 690px; height:200px; object-fit: cover" />
         <ion-card-header>
-            <p>load card content here</p>
+            <ion-card-title [innerHTML]="readProgressTitle"></ion-card-title>
         </ion-card-header>
-        <ion-card-content>
+        <ion-card-content [innerHTML]="readProgressIntro">
 
         </ion-card-content>
     </ion-card>

@@ -21,7 +21,11 @@ export class PageSpaceErPage implements OnInit {
   pagePosition: any;
   segment: any;
   readProgressHeader: string;
+  readProgressImg: any;
+  readProgressTitle: any;
+  readProgressIntro: any;
   survey: any;
+
 
   authentication: boolean; // validate user is logged in or not 
 
@@ -66,33 +70,66 @@ export class PageSpaceErPage implements OnInit {
           this.userData = e.payload.data()['latestRead'];
           console.log(e.payload.data()['latestRead']['completed']);
           if (e.payload.data()['latestRead']['completed'] == false) {//continue to read latest read
-            this.readProgressHeader="Pick up where you left off";
-            console.log('this user latest read content loaded:', this.userData);
+            this.readProgressHeader = "Pick up where you left off";
             this.pagePosition = this.userData.depth;
             this.segment = this.userData.segment;
             this.latestRead = this.userData.id;
+            this.firebaseService.getDataByIdService(this.latestRead).subscribe(
+              res => {
+                this.readProgressImg = res.payload.data()['image'];
+                this.readProgressTitle = res.payload.data()['title'];
+                this.readProgressIntro = res.payload.data()['cardIntroduction'];
+              },
+              err => {
+                console.debug(err);
+              }
+            )
+
+            console.log('this user latest read content loaded:', this.userData);
+
             console.log(this.latestRead);
 
           } else {//find a partially read article, if not found then find the first unread article
-            this.readProgressHeader="Continue reading";
+            
             let readArticles = e.payload.data()['readArticles'];
             let partialArticle = undefined;
 
             for (let i = 0; i < readArticles.length; i++) {
               if (readArticles[i].progress == "partial") {
-                
+                this.readProgressHeader = "Continue reading";
                 partialArticle = readArticles[i];
                 console.log(partialArticle);
                 this.latestRead = partialArticle.id;
+                this.firebaseService.getDataByIdService(this.latestRead).subscribe(
+                  res => {
+                    this.readProgressImg = res.payload.data()['image'];
+                    this.readProgressTitle = res.payload.data()['title'];
+                    this.readProgressIntro = res.payload.data()['cardIntroduction'];
+                  },
+                  err => {
+                    console.debug(err);
+                  }
+                )
                 break;
               }
             }
             if (partialArticle == undefined) {//if still undefined then find the first unread article
               for (let i = 0; i < readArticles.length; i++) {
                 if (readArticles[i].progress == "unread") {
+                  this.readProgressHeader = "Explore a new article";
                   partialArticle = readArticles[i];
                   console.log(partialArticle);
                   this.latestRead = partialArticle.id;
+                  this.firebaseService.getDataByIdService(this.latestRead).subscribe(
+                    res => {
+                      this.readProgressImg = res.payload.data()['image'];
+                      this.readProgressTitle = res.payload.data()['title'];
+                      this.readProgressIntro = res.payload.data()['cardIntroduction'];
+                    },
+                    err => {
+                      console.debug(err);
+                    }
+                  )
                   break;
                 }
               }
@@ -100,8 +137,19 @@ export class PageSpaceErPage implements OnInit {
           }
         } else {//if the user has no latest read then get them to start at the beginning
           console.log('execute if latestReadUndefined')
+          this.readProgressHeader = "Start reading";
           let readArticles = e.payload.data()['readArticles'];
           this.latestRead = readArticles[0].id;
+          this.firebaseService.getDataByIdService(this.latestRead).subscribe(
+            res => {
+              this.readProgressImg = res.payload.data()['image'];
+              this.readProgressTitle = res.payload.data()['title'];
+              this.readProgressIntro = res.payload.data()['cardIntroduction'];
+            },
+            err => {
+              console.debug(err);
+            }
+          )
 
 
         }
