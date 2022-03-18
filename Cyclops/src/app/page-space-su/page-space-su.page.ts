@@ -127,7 +127,7 @@ export class PageSpaceSuPage implements OnInit {
       })
   }
 
-  submitEcoSolEvent(solutionId: string) {
+  async submitEcoSolEvent(solutionId: string) {
     const currentTime = new Date().getTime();
     console.log("onSubmit", solutionId, this.userId, currentTime);
     const uploadData: userEcoItem = {//sol'n init
@@ -141,6 +141,10 @@ export class PageSpaceSuPage implements OnInit {
       userEcoSolutions: this.userEcoItemList,
     }
     //upload to cloud
+    const loading = await this.loadingController.create({
+      message: 'Please wait...',
+    });
+    loading.present();  // present loading animation
     this.firebaseService.addUserEcoService(this.userId, userData);
     this.assignCompletedList();//update the card looking and the score as well
     this.updateDisplayList();
