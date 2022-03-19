@@ -13,8 +13,11 @@
                 <ion-card-subtitle style="text-align:center; font-size:150%;">Overall Score</ion-card-subtitle>
                 <ion-card-title fontsize>
                     <div class="odisplay">
-                        <div class="odisplay1">
+                        <div class="odisplay1" *ngIf="this.authService.isLogin()">
                             <h4 style="text-align:center; font-size:300%" fontsize>{{scoreArea}}</h4>
+                        </div>
+                        <div class="odisplay1" *ngIf="!this.authService.isLogin()">
+                            <h4 style="text-align:center; font-size:300%" fontsize>Please Login to Continue -> </h4>
                         </div>
                         <div class="odisplay2">
                             <ion-icon name="star"></ion-icon>

@@ -9,6 +9,7 @@ import { filter } from 'rxjs/operators';
 import { identifierModuleUrl } from '@angular/compiler';
 import { convertToViews } from '@ionic/core/dist/types/components/nav/view-controller';
 import { solutionItem, sectionList, ecoData } from '../sharedData/ecoData';
+import { AuthService } from '../authentication/auth/auth.service';
 
 @Component({
   selector: 'app-page-space-su',
@@ -51,6 +52,7 @@ export class PageSpaceSuPage implements OnInit {
     private router: Router,
     public alertController: AlertController,
     public loadingController: LoadingController,
+    public authService: AuthService
   ) {
     this.scoreArea = 0;
     this.contentLoading();
