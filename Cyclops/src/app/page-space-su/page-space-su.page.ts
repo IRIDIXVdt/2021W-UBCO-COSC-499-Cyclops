@@ -59,7 +59,12 @@ export class PageSpaceSuPage implements OnInit {
     // this.dummyContentLoading();
     this.sections = sectionList;
     this.sortTypeOnChange();
-    this.userId = JSON.parse(localStorage.getItem('user')).uid;
+    if(JSON.parse(localStorage.getItem('user')) != null){
+      this.userId = JSON.parse(localStorage.getItem('user')).uid;
+    }else{
+      this.userId = 'null';
+    }
+    
     // console.log(this.userId);
     this.ecoListContentLoading();
     this.userProgressTypeInit();
@@ -118,21 +123,24 @@ export class PageSpaceSuPage implements OnInit {
   }
 
   ecoListContentLoading() {
-    const subscription = this.firebaseService.getUserByIdService(this.userId).subscribe(
-      e => {
-        this.userEcoItemList = e.payload.data()["userEcoSolutions"];
-        // console.log(this.userEcoItemList);
-        if (this.userEcoItemList == undefined) {//check with new account for testing*
+    if(this.authService.isLogin()){
+      const subscription = this.firebaseService.getUserByIdService(this.userId).subscribe(
+        e => {
+          this.userEcoItemList = e.payload.data()["userEcoSolutions"];
+          // console.log(this.userEcoItemList);
+          if (this.userEcoItemList == undefined) {//check with new account for testing*
+            this.userEcoItemList = [];
+          }
+          subscription.unsubscribe();
+          this.assignCompletedList();
+          this.updateDisplayList();
+          console.log('unsubscribe success', this.userEcoItemList);
+        }, err => {
+          console.debug(err);
           this.userEcoItemList = [];
-        }
-        subscription.unsubscribe();
-        this.assignCompletedList();
-        this.updateDisplayList();
-        console.log('unsubscribe success', this.userEcoItemList);
-      }, err => {
-        console.debug(err);
-        this.userEcoItemList = [];
-      })
+        })
+    }
+    
   }
 
   async submitEcoSolEvent(solutionId: string) {
