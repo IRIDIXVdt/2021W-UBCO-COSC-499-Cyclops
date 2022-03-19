@@ -9,6 +9,7 @@ import { filter } from 'rxjs/operators';
 import { identifierModuleUrl } from '@angular/compiler';
 import { convertToViews } from '@ionic/core/dist/types/components/nav/view-controller';
 import { solutionItem, sectionList, ecoData } from '../sharedData/ecoData';
+import { AuthService } from '../authentication/auth/auth.service';
 
 @Component({
   selector: 'app-page-space-su',
@@ -51,13 +52,19 @@ export class PageSpaceSuPage implements OnInit {
     private router: Router,
     public alertController: AlertController,
     public loadingController: LoadingController,
+    public authService: AuthService
   ) {
     this.scoreArea = 0;
     this.contentLoading();
     // this.dummyContentLoading();
     this.sections = sectionList;
     this.sortTypeOnChange();
-    this.userId = JSON.parse(localStorage.getItem('user')).uid;
+    if(JSON.parse(localStorage.getItem('user')) != null){
+      this.userId = JSON.parse(localStorage.getItem('user')).uid;
+    }else{
+      this.userId = 'null';
+    }
+    
     // console.log(this.userId);
     this.ecoListContentLoading();
     this.userProgressTypeInit();
@@ -116,21 +123,24 @@ export class PageSpaceSuPage implements OnInit {
   }
 
   ecoListContentLoading() {
-    const subscription = this.firebaseService.getUserByIdService(this.userId).subscribe(
-      e => {
-        this.userEcoItemList = e.payload.data()["userEcoSolutions"];
-        // console.log(this.userEcoItemList);
-        if (this.userEcoItemList == undefined) {//check with new account for testing*
+    if(this.authService.isLogin()){
+      const subscription = this.firebaseService.getUserByIdService(this.userId).subscribe(
+        e => {
+          this.userEcoItemList = e.payload.data()["userEcoSolutions"];
+          // console.log(this.userEcoItemList);
+          if (this.userEcoItemList == undefined) {//check with new account for testing*
+            this.userEcoItemList = [];
+          }
+          subscription.unsubscribe();
+          this.assignCompletedList();
+          this.updateDisplayList();
+          console.log('unsubscribe success', this.userEcoItemList);
+        }, err => {
+          console.debug(err);
           this.userEcoItemList = [];
-        }
-        subscription.unsubscribe();
-        this.assignCompletedList();
-        this.updateDisplayList();
-        console.log('unsubscribe success', this.userEcoItemList);
-      }, err => {
-        console.debug(err);
-        this.userEcoItemList = [];
-      })
+        })
+    }
+    
   }
 
   async submitEcoSolEvent(solutionId: string) {
