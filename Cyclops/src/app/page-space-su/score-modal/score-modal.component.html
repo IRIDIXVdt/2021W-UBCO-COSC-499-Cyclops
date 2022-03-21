@@ -73,9 +73,9 @@
 
       <div class="range">
         <h5>Slide to Select Completion for Solution:</h5>
-          <ion-range deounce='500' min="-1" max="2" step="1" value="0" [ngStyle]="{'color':getCol()}" [color]="color"  (ionChange)="rangeChange($event)"  snaps="true" grid="true" snaps color="success" list='tickmarks'>
-            <ion-icon slot="start"[color]="color" name="leaf"></ion-icon>
-            <ion-icon slot="end" [color]="color" name="leaf"></ion-icon>
+          <ion-range deounce='500' min="-1" max="2" step="1" value="0" color="success"  (ionChange)="rangeChange($event)"  snaps="true" grid="true" snaps color="success" list='tickmarks'>
+            <ion-icon slot="start" color="success" name="leaf"></ion-icon>
+            <ion-icon slot="end"  color="success" ></ion-icon>
           </ion-range>
           <div id="tickmarks" class="tick-position">
             <p>No decision</p>
@@ -178,9 +178,9 @@
     
         <div class="range">
           <h5>Slide to Select Completion for Solution:</h5>
-            <ion-range  deounce='500' min="-1" max="2" step="1" value="0" [ngStyle]="{'color':getCol()}" [color]="color"  (ionChange)="rangeChange($event)"  snaps="true" grid="true"  list='tickmarks'>
-              <ion-icon [color]="color" slot="start" name="leaf"></ion-icon>
-              <ion-icon [color]="color" slot="end"  name="leaf"></ion-icon>
+            <ion-range  deounce='500' min="-1" max="2" step="1" value="0" color="success"  (ionChange)="rangeChange($event)"  snaps="true" grid="true"  list='tickmarks'>
+              <ion-icon color="success"  slot="start" name="leaf"></ion-icon>
+              <ion-icon color="success"  slot="end"  name="leaf"></ion-icon>
             </ion-range>
             <div id="tickmarks" class="tick-position">
               <p>No decision</p>
