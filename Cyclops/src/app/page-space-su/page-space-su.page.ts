@@ -44,6 +44,8 @@ export class PageSpaceSuPage implements OnInit {
   userEcoItemList: userEcoItem[];
   // completedList: string[];
   scoreArea: number;
+  range: number;
+  color: string;
 
 
   constructor(
@@ -118,9 +120,37 @@ export class PageSpaceSuPage implements OnInit {
     //code here
   }
 
-  rangeChange() {
+  rangeChange($event) {
+    this.range = ($event.target.value);
     console.log("range change");
     //code here
+    if (this.range == 2) {
+      this.color = 'success';
+    }
+    else if (this.range == 1) {
+        this.color = 'warning';
+    }
+    else if (this.range == 0) {
+        this.color = 'medium';
+    }
+    else if (this.range == -1)  {
+        this.color = 'danger';
+    }
+  }
+  getCol(){
+    if (this.range == 2) {
+      this.color = 'success';
+    }
+    else if (this.range == 1) {
+        this.color = 'warning';
+    }
+    else if (this.range == 0) {
+        this.color = 'medium';
+    }
+    else if (this.range == -1)  {
+        this.color = 'danger';
+    }
+
   }
 
   ecoListContentLoading() {
