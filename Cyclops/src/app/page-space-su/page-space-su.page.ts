@@ -10,6 +10,7 @@ import { identifierModuleUrl } from '@angular/compiler';
 import { convertToViews } from '@ionic/core/dist/types/components/nav/view-controller';
 import { solutionItem, sectionList, ecoData } from '../sharedData/ecoData';
 import { AuthService } from '../authentication/auth/auth.service';
+import { ScoreModalComponent } from './score-modal/score-modal.component';
 
 @Component({
   selector: 'app-page-space-su',
@@ -218,20 +219,20 @@ export class PageSpaceSuPage implements OnInit {
     this.section = "All";
   }
 
-  //  openModal() {
-  //   this.modalCtrol.create({
-  //     component: ScoreModalComponent,
-  //     componentProps: this.profile
-  //   }).then(modalres => {
-  //     modalres.present();
+   openModal() {
+    this.modalCtrol.create({
+      component: ScoreModalComponent,
+      componentProps: this.profile
+    }).then(modalres => {
+      modalres.present();
 
-  //     modalres.onDidDismiss().then(res => {
-  //       if (res.data != null) {
-  //         this.profile = res.data;
-  //       }
-  //     })
-  //   })
-  // } 
+      modalres.onDidDismiss().then(res => {
+        if (res.data != null) {
+          this.profile = res.data;
+        }
+      })
+    })
+  } 
 
   sortTypeOnChange() {
     // const currentTime = new Date().getTime();
