@@ -7,7 +7,6 @@ import { IonicModule } from '@ionic/angular';
 import { PageSpaceSuPageRoutingModule } from './page-space-su-routing.module';
 
 import { PageSpaceSuPage } from './page-space-su.page';
-import { ProgressIndicatorsComponent } from './progress-indicators/progress-indicators.component';
 import { ScoreModalComponent } from './score-modal/score-modal.component';
 import { SolutionPageForm } from './form/solution.page.form';
 
@@ -20,6 +19,6 @@ import { SolutionPageForm } from './form/solution.page.form';
     PageSpaceSuPageRoutingModule
     
   ],
-  declarations: [PageSpaceSuPage, ProgressIndicatorsComponent,ScoreModalComponent]
+  declarations: [PageSpaceSuPage,ScoreModalComponent]
 })
 export class PageSpaceSuPageModule {}
