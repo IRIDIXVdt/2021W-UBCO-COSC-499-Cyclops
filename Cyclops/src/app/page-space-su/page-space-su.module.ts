@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { PageSpaceSuPageRoutingModule } from './page-space-su-routing.module';
 
 import { PageSpaceSuPage } from './page-space-su.page';
+import { ScoreModalComponent } from './score-modal/score-modal.component';
 import { SolutionPageForm } from './form/solution.page.form';
 
 @NgModule({
@@ -18,6 +19,6 @@ import { SolutionPageForm } from './form/solution.page.form';
     PageSpaceSuPageRoutingModule
     
   ],
-  declarations: [PageSpaceSuPage]
+  declarations: [PageSpaceSuPage,ScoreModalComponent]
 })
 export class PageSpaceSuPageModule {}

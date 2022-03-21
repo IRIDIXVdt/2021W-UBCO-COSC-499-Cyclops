@@ -13,47 +13,36 @@
                 <ion-card-subtitle style="text-align:center; font-size:150%;">Overall Score</ion-card-subtitle>
                 <ion-card-title fontsize>
                     <div class="odisplay">
-                        <div class="odisplay1" *ngIf="this.authService.isLogin()">
-                            <h4 style="text-align:center; font-size:300%" fontsize>{{scoreArea}}</h4>
-                            <div class="odisplay2">
-                                <ion-icon name="star"></ion-icon>
-                            </div>
+                        <div class="odisplay1">
+                            <h4 style="text-align:center; font-size:300%" fontsize>{{profile.updatedscore}}</h4>
                         </div>
-                        <div class="odisplay1" *ngIf="!this.authService.isLogin()">
-                            <ion-text style="text-align:center; font-size:150%; font-weight: 700;" >
-                                Please Login to Continue 
-                                 
-                            <ion-text style="text-align:center; font-size:150%; font-weight: 700;" button routerLink="/login" color="primary">Login</ion-text>
-   
-                            </ion-text>
+                        <div class="odisplay2">
+                            <ion-icon name="star"></ion-icon>
                         </div>
-                        
                     </div>
                 </ion-card-title>
             </ion-card-header>
         </ion-card>
 
-        <!-- <div id="button-web">
+        <div id="button-web">
             <section id="surveycenter">
                 <ion-button expand="block" (click)="openModal()">Submit New Solution</ion-button>
             </section>
-        </div> -->
+        </div>
 
 
-        <h1>Solutions <ion-icon name="help-circle-outline" (click)="popAlert('You can submit your solutions')">
-            </ion-icon>
-        </h1>
+        <h1>Solutions</h1>
 
-        <ng-container *ngIf="!displaySol && this.authService.isLogin()" >
+        <ng-container *ngIf="!displaySol">
             <ion-progress-bar type="indeterminate"></ion-progress-bar>
         </ng-container>
 
-        <ng-container *ngIf="displaySol && this.authService.isLogin()" >
+        <ng-container *ngIf="displaySol">
             <ion-row>
-                <!-- <ion-col size-xs="12" size-sm="5" size-md="4" size-lg="3">
+                <ion-col size-xs="12" size-sm="5" size-md="4" size-lg="3">
                     <ion-row>
                         <ion-col>
-                            <ion-radio-group [(ngModel)]="sortType" (ionChange)="updateDisplayList()">
+                            <ion-radio-group [(ngModel)]="sortType" (ionChange)="sortTypeOnChange()">
                                 <ion-list-header>
                                     <ion-label>Sort by</ion-label>
                                 </ion-list-header>
@@ -74,21 +63,24 @@
                                     <ion-radio slot="start" value="sT"></ion-radio>
                                 </ion-item>
                             </ion-radio-group>
+
+
                         </ion-col>
                     </ion-row>
+
                     <ion-row>
                         <ion-col>
-                           
-                            <ion-radio-group [(ngModel)]="userProgressType" (ionChange)="updateDisplayList()">
+                            <!--  [(ngModel)]="section"  -->
+                            <ion-radio-group [(ngModel)]="userProgressType" (ionChange)="progressTypeOnChange()">
                                 <ion-list-header>
                                     <ion-label>Display solutions that are</ion-label>
                                 </ion-list-header>
                                 <ion-item>
-                                    <ion-label>Attended</ion-label>
+                                    <ion-label>Completed</ion-label>
                                     <ion-radio slot="start" value="com"></ion-radio>
                                 </ion-item>
                                 <ion-item>
-                                    <ion-label>Not Attended</ion-label>
+                                    <ion-label>Not completed</ion-label>
                                     <ion-radio slot="start" value="not"></ion-radio>
                                 </ion-item>
                                 <ion-item>
@@ -98,10 +90,12 @@
                             </ion-radio-group>
                         </ion-col>
                     </ion-row>
+
+
                     <ion-row>
                         <ion-col>
-                            
-                            <ion-radio-group [(ngModel)]="section" (ionChange)="updateDisplayList()">
+                            <!--  [(ngModel)]="section"  -->
+                            <ion-radio-group [(ngModel)]="section" (ionChange)="sectionTypeOnChange()">
                                 <ion-list-header>
                                     <ion-label>Select by Section</ion-label>
                                 </ion-list-header>
@@ -117,85 +111,8 @@
                                 </ng-container>
                             </ion-radio-group>
                         </ion-col>
+
                     </ion-row>
-                </ion-col> -->
-                <ion-col size-xs="12" size-sm="5" size-md="4" size-lg="3">
-                    <ion-accordion-group>
-                        <ion-accordion>
-                            <ion-item slot="header" color="light">
-                                <ion-label>Type Filter</ion-label>
-                            </ion-item>
-                            <ion-list slot="content">
-                                <ion-item>
-                                    <ion-radio-group [(ngModel)]="sortType" (ionChange)="updateDisplayList()"
-                                        class="ion-padding-bottom">
-                                        <ion-item>
-                                            <ion-label>Star Ascending</ion-label>
-                                            <ion-radio slot="start" value="starUp"></ion-radio>
-                                        </ion-item>
-                                        <ion-item>
-                                            <ion-label>Star Descending</ion-label>
-                                            <ion-radio slot="start" value="starDown"></ion-radio>
-                                        </ion-item>
-                                        <ion-item>
-                                            <ion-label>Solution Name</ion-label>
-                                            <ion-radio slot="start" value="sN"></ion-radio>
-                                        </ion-item>
-                                        <ion-item>
-                                            <ion-label>Section Type</ion-label>
-                                            <ion-radio slot="start" value="sT"></ion-radio>
-                                        </ion-item>
-                                    </ion-radio-group>
-                                </ion-item>
-                            </ion-list>
-                        </ion-accordion>
-                        <ion-accordion>
-                            <ion-item slot="header" color="light">
-                                <ion-label>Completeness Filter</ion-label>
-                            </ion-item>
-                            <ion-list slot="content">
-                                <ion-item>
-                                    <ion-radio-group [(ngModel)]="userProgressType" (ionChange)="updateDisplayList()"
-                                        class="ion-padding-bottom">
-                                        <ion-item>
-                                            <ion-label>Attended</ion-label>
-                                            <ion-radio slot="start" value="com"></ion-radio>
-                                        </ion-item>
-                                        <ion-item>
-                                            <ion-label>Not Attended</ion-label>
-                                            <ion-radio slot="start" value="not"></ion-radio>
-                                        </ion-item>
-                                        <ion-item>
-                                            <ion-label>All</ion-label>
-                                            <ion-radio slot="start" value="all"></ion-radio>
-                                        </ion-item>
-                                    </ion-radio-group>
-                                </ion-item>
-                            </ion-list>
-                        </ion-accordion>
-                        <ion-accordion>
-                            <ion-item slot="header" color="light">
-                                <ion-label>Section Filter</ion-label>
-                            </ion-item>
-                            <ion-list slot="content">
-                                <ion-item>
-                                    <ion-radio-group [(ngModel)]="section" (ionChange)="updateDisplayList()"
-                                        class="ion-padding-bottom">
-                                        <ion-item>
-                                            <ion-label>All</ion-label>
-                                            <ion-radio slot="start" value="All"></ion-radio>
-                                        </ion-item>
-                                        <ng-container *ngFor="let item of sections">
-                                            <ion-item>
-                                                <ion-label> {{item}}</ion-label>
-                                                <ion-radio slot="start" value={{item}}></ion-radio>
-                                            </ion-item>
-                                        </ng-container>
-                                    </ion-radio-group>
-                                </ion-item>
-                            </ion-list>
-                        </ion-accordion>
-                    </ion-accordion-group>
                 </ion-col>
                 <ion-col>
                     <ion-row>
@@ -223,11 +140,8 @@
                                 <!-- *ngIf="item.ecoId in completedList" -->
                                 <ion-accordion-group>
                                     <ion-accordion>
-                                        <ion-item slot="header" color="primary" *ngIf="!item.attend">
+                                        <ion-item slot="header" color="primary">
                                             <ion-label>Assess Your Effort</ion-label>
-                                        </ion-item>
-                                        <ion-item slot="header" color="secondary" *ngIf="item.attend">
-                                            <ion-label>Update Solution</ion-label>
                                         </ion-item>
                                         <ion-list slot="content">
                                             <ion-item>
@@ -239,14 +153,9 @@
                                                 </ion-range>
                                                 <!-- color change -->
                                             </ion-item>
-                                            <ion-item button (click)="submitEcoSolEvent(item.id)" *ngIf="!item.attend">
+                                            <ion-item button (click)="submitEcoSolEvent(item.id)">
                                                 <ion-label color="primary">
                                                     Submit
-                                                </ion-label>
-                                            </ion-item>
-                                            <ion-item button *ngIf="item.attend">
-                                                <ion-label color="primary">
-                                                    Update
                                                 </ion-label>
                                             </ion-item>
                                         </ion-list>
