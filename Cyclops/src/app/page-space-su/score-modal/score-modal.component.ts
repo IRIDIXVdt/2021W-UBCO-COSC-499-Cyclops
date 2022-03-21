@@ -55,6 +55,9 @@ export class ScoreModalComponent implements OnInit  {
   public sectionClicked: boolean=false;
   public starClicked: boolean=false;
 
+  number: number;
+  color: string;    
+
 
   //@Input() solution: string;
  // @Input() score: number;
@@ -194,6 +197,20 @@ export class ScoreModalComponent implements OnInit  {
     this.usereco.range = ($event.target.value); //Value to database
     console.log(this.usereco.range);
 
+
+    if (this.usereco.range == 2) {
+      this.color = 'success';
+    }
+    else if (this.usereco.range == 1) {
+        this.color = 'success';
+    }
+    else if (this.usereco.range == 0) {
+        this.color = 'danger';
+    }
+    else if (this.usereco.range == -1)  {
+        this.color = 'danger';
+    }
+
     if(this.usereco.range == 2){
       this.usereco.updatedscore = (this.usereco.level*this.usereco.range)/2;
     }else if(this.usereco.range == 1){
@@ -246,6 +263,9 @@ export class ScoreModalComponent implements OnInit  {
     console.log(this.usereco.level);
 
   }
+ 
+ 
+
  
   
   
