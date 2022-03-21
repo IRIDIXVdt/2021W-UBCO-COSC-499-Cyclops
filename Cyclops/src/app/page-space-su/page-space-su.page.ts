@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController, PopoverController } from '@ionic/angular';
-import { EcoPopoverComponent } from './eco-popover/eco-popover.component';
-import { ScoreModalComponent } from './score-modal/score-modal.component';
+import { AlertController, LoadingController, ModalController, PopoverController } from '@ionic/angular';
 import { NavController } from '@ionic/angular';
 import { PageSpaceMePage } from '../page-space-me/page-space-me.page';
 import { Router } from '@angular/router';
@@ -11,6 +9,7 @@ import { filter } from 'rxjs/operators';
 import { identifierModuleUrl } from '@angular/compiler';
 import { convertToViews } from '@ionic/core/dist/types/components/nav/view-controller';
 import { solutionItem, sectionList, ecoData } from '../sharedData/ecoData';
+import { AuthService } from '../authentication/auth/auth.service';
 
 @Component({
   selector: 'app-page-space-su',
@@ -42,47 +41,72 @@ export class PageSpaceSuPage implements OnInit {
 
 
   userEcoItemList: userEcoItem[];
-  completedList: string[];
-
+  // completedList: string[];
+  scoreArea: number;
 
 
   constructor(
-    public ecopopover: PopoverController,
     private modalCtrol: ModalController,
     public navCtrl: NavController,
     public firebaseService: FirebaseService,
     private router: Router,
+    public alertController: AlertController,
+    public loadingController: LoadingController,
+    public authService: AuthService
   ) {
+    this.scoreArea = 0;
     this.contentLoading();
     // this.dummyContentLoading();
     this.sections = sectionList;
     this.sortTypeOnChange();
-    this.userId = JSON.parse(localStorage.getItem('user')).uid;
+    if(JSON.parse(localStorage.getItem('user')) != null){
+      this.userId = JSON.parse(localStorage.getItem('user')).uid;
+    }else{
+      this.userId = 'null';
+    }
+    
     // console.log(this.userId);
     this.ecoListContentLoading();
     this.userProgressTypeInit();
+
   }
 
-  initializeCompletedList() {
-    this.completedList = [];
-    for (let item of this.userEcoItemList) {
-      this.completedList.push(item.ecoId);
-    }
-    console.log(this.completedList);
+  async popAlert(message){
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      message: message,
+      buttons: ['Ok']
+    });
+    await alert.present();
   }
 
-  checkDisplay(cId) {
-    if (this.completedList == undefined) {
-      return false;
-    } else {
-      if (this.completedList.indexOf(cId) > -1) {
-        return false;
-      } else {
-        return true;
+  async alertMessage(message){
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      message: message,
+      buttons: ['Ok']
+    });
+    await alert.present();
+  }
+
+  assignCompletedList() {
+    this.scoreArea = 0;
+    for (let item of this.localSol) {
+      // if (this.completedList.indexOf(item.id) > -1) {
+      //stop as soon as there is a match
+      for (let ecoAttendItem of this.userEcoItemList) {
+        if (item.id === ecoAttendItem.ecoId) {
+          item.attend = true;
+          // console.log(this.scoreArea, 'adds', item.star, ecoAttendItem.weight, 'from', item.name);
+          this.scoreArea += (item.star + 1) * ecoAttendItem.weight;
+          break;
+        }
       }
     }
-
+    this.displaySol = this.localSol;
+    console.log('loaded solution and user progress successfully merged');
   }
+
 
   userProgressTypeInit() {
     this.userProgressType = "not";
@@ -99,23 +123,27 @@ export class PageSpaceSuPage implements OnInit {
   }
 
   ecoListContentLoading() {
-    const subscription = this.firebaseService.getUserByIdService(this.userId).subscribe(
-      e => {
-        this.userEcoItemList = e.payload.data()["userEcoSolutions"];
-        // console.log(this.userEcoItemList);
-        if (this.userEcoItemList == undefined) {//check with new account for testing*
+    if(this.authService.isLogin()){
+      const subscription = this.firebaseService.getUserByIdService(this.userId).subscribe(
+        e => {
+          this.userEcoItemList = e.payload.data()["userEcoSolutions"];
+          // console.log(this.userEcoItemList);
+          if (this.userEcoItemList == undefined) {//check with new account for testing*
+            this.userEcoItemList = [];
+          }
+          subscription.unsubscribe();
+          this.assignCompletedList();
+          this.updateDisplayList();
+          console.log('unsubscribe success', this.userEcoItemList);
+        }, err => {
+          console.debug(err);
           this.userEcoItemList = [];
-        }
-        subscription.unsubscribe();
-        this.initializeCompletedList();
-        console.log('unsubscribe success', this.userEcoItemList);
-      }, err => {
-        console.debug(err);
-        this.userEcoItemList = [];
-      })
+        })
+    }
+    
   }
 
-  submitEcoSolEvent(solutionId: string) {
+  async submitEcoSolEvent(solutionId: string) {
     const currentTime = new Date().getTime();
     console.log("onSubmit", solutionId, this.userId, currentTime);
     const uploadData: userEcoItem = {//sol'n init
@@ -129,17 +157,24 @@ export class PageSpaceSuPage implements OnInit {
       userEcoSolutions: this.userEcoItemList,
     }
     //upload to cloud
-    this.firebaseService.addUserEcoService(this.userId, userData);
-    this.completedList.push(solutionId);
-  }
-  async notifications(ev: any) {
-    const popover = await this.ecopopover.create({
-      component: EcoPopoverComponent,
-      event: ev,
-      translucent: true
+    const loading = await this.loadingController.create({
+      message: 'Please wait...',
     });
-    return await popover.present();
+    loading.present();  // present loading animation
+    this.firebaseService.addUserEcoService(this.userId, userData).then(() => {
+      console.log('updated userName');
+      loading.dismiss();
+      this.assignCompletedList();//update the card looking and the score as well
+      this.updateDisplayList();
+      this.alertMessage("Successful");
+    }).catch((error) => {
+      console.log(error);
+      loading.dismiss();
+      this.alertMessage("Check your internet Connection");
+    });
+   
   }
+
 
   goSurvey() {
     this.router.navigateByUrl('tabs/page-space-me');
@@ -154,19 +189,21 @@ export class PageSpaceSuPage implements OnInit {
           name: e.payload.doc.data()['name'],
           detail: e.payload.doc.data()['detail'],
           section: e.payload.doc.data()['section'],
-          star: e.payload.doc.data()['star']
+          star: e.payload.doc.data()['star'],
+          attend: false,
         }
       })
 
       // console.log("content loaded", this.solutions.map((a: any) => a.starLevel));
       this.localSol = this.solutions;
-      console.log("solution", this.solutions);
+      // console.log("solution", this.solutions);
       this.sortTypeInitialize();
     }, (err: any) => {
       console.log(err);
     })
 
   }
+
   dummyContentLoading() {
     // this.localSol = ecoData;
     this.sortTypeInitialize();
@@ -179,59 +216,86 @@ export class PageSpaceSuPage implements OnInit {
   sortTypeInitialize() {
     this.sortType = "starUp";
     this.section = "All";
-    this.displaySol = this.localSol;
   }
-  openModal() {
-    this.modalCtrol.create({
-      component: ScoreModalComponent,
-      componentProps: this.profile
-    }).then(modalres => {
-      modalres.present();
 
-      modalres.onDidDismiss().then(res => {
-        if (res.data != null) {
-          this.profile = res.data;
-        }
-      })
-    })
-  }
+// /*   openModal() {
+//     this.modalCtrol.create({
+//       component: ScoreModalComponent,
+//       componentProps: this.profile
+//     }).then(modalres => {
+//       modalres.present();
+
+//       modalres.onDidDismiss().then(res => {
+//         if (res.data != null) {
+//           this.profile = res.data;
+//         }
+//       })
+//     })
+//   } */
+
   sortTypeOnChange() {
     // const currentTime = new Date().getTime();
     // console.log("sort type:", this.sortType, currentTime);
     //handle the event here
     //use the new sortType to update displaySol
     if (this.sortType === "starUp") {
-      console.log("sort Asc")
+      // console.log("sort Asc")
       this.displaySol.sort((a, b) => (a.star > b.star) ? 1 : -1);
     } else if (this.sortType === "starDown") {
-      console.log("sort Des")
+      // console.log("sort Des")
       this.displaySol.sort((a, b) => (a.star < b.star) ? 1 : -1);
     } else if (this.sortType === "sN") {
-      console.log("solution name")
+      // console.log("solution name")
       this.displaySol.sort((a, b) => (a.name > b.name) ? 1 : -1);
     } else if (this.sortType === "sT") {
-      console.log("section name")
+      // console.log("section name")
       this.displaySol.sort((a, b) => (a.section > b.section) ? 1 : -1);
     }
   }
 
   sectionTypeOnChange() {
-    this.displaySol = this.localSol;
+
     if (this.section === "All") {
-      console.log("Display All");
+      // console.log("Display All");
+      // do nothing, keep the list as it is
     } else {
-      console.log(this.section);
+      // console.log(this.section);
       this.displaySol = this.displaySol.filter(f => (f.section === this.section));
     }
 
   }
+
+  attendTypeOnChange() {
+    if (this.userProgressType == "all") {
+      // console.log("Select All");
+      // do nothing, keep the list as it is
+    } else if (this.userProgressType == "not") {
+      this.displaySol = this.displaySol.filter(f => (!f.attend));
+    } else if (this.userProgressType == "com") {
+      this.displaySol = this.displaySol.filter(f => (f.attend));
+    }
+  }
+
+  updateDisplayList() {
+    console.log("update display with rule:",this.sortType,this.section,this.userProgressType);
+    // this display list handles everything:
+    this.displaySol = this.localSol;
+    // 1. attend type
+    this.sectionTypeOnChange();
+    // 2. section type
+    this.attendTypeOnChange()
+    // 3. sort type
+    this.sortTypeOnChange()
+  }
 }
+
 type fetchSolution = {
   id: string;
   name: string;
   star: number;
   detail: string;
   section: string;
+  attend: boolean;
 }
 type userEcoItem = {
   time: number;
