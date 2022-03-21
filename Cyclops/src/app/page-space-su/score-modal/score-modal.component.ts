@@ -202,10 +202,10 @@ export class ScoreModalComponent implements OnInit  {
       this.color = 'success';
     }
     else if (this.usereco.range == 1) {
-        this.color = 'success';
+        this.color = 'warning';
     }
     else if (this.usereco.range == 0) {
-        this.color = 'danger';
+        this.color = 'dark';
     }
     else if (this.usereco.range == -1)  {
         this.color = 'danger';
