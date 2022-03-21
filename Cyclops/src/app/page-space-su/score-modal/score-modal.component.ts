@@ -197,18 +197,18 @@ export class ScoreModalComponent implements OnInit  {
     this.usereco.range = ($event.target.value); //Value to database
     console.log(this.usereco.range);
 
-    if (this.usereco.range == 2) {
-      this.color = 'success';
-    }
-    else if (this.usereco.range == 1) {
-        this.color = 'warning';
-    }
-    else if (this.usereco.range == 0) {
-        this.color = 'medium';
-    }
-    else if (this.usereco.range == -1)  {
-        this.color = 'danger';
-    }
+    // if (this.usereco.range == 2) {
+    //   this.color = 'success';
+    // }
+    // else if (this.usereco.range == 1) {
+    //     this.color = 'warning';
+    // }
+    // else if (this.usereco.range == 0) {
+    //     this.color = 'medium';
+    // }
+    // else if (this.usereco.range == -1)  {
+    //     this.color = 'danger';
+    // }
 
     if(this.usereco.range == 2){
       this.usereco.updatedscore = (this.usereco.level*this.usereco.range)/2;
