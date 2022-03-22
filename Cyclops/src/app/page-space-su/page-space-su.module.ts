@@ -7,7 +7,6 @@ import { IonicModule } from '@ionic/angular';
 import { PageSpaceSuPageRoutingModule } from './page-space-su-routing.module';
 
 import { PageSpaceSuPage } from './page-space-su.page';
-import { SolutionPageForm } from './form/solution.page.form';
 
 @NgModule({
   imports: [

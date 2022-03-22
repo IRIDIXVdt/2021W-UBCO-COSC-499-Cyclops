@@ -1,11 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalController, NavParams } from '@ionic/angular';
-import { SolutionPageForm } from '../form/solution.page.form';
 import { COLORS } from './enum';
-import { SectionSolution } from './SectionSolution';
-import { SectionSolutionTags } from "./SectionSolutionTags"
-import { StarSolutions } from './StarSolutions';
 
 import { SolutionAssign } from './SolutionAssign';
 import { MainFormTags } from './MainFormTags';
