@@ -11,7 +11,6 @@ import { convertToViews } from '@ionic/core/dist/types/components/nav/view-contr
 import { solutionItem, sectionList, ecoData } from '../sharedData/ecoData';
 import { AuthService } from '../authentication/auth/auth.service';
 import { ScoreModalComponent } from './score-modal/score-modal.component';
-import { SolutionformComponent } from './solutionform/solutionform.component';
 
 @Component({
   selector: 'app-page-space-su',
@@ -222,7 +221,7 @@ export class PageSpaceSuPage implements OnInit {
 
    openModal() {
     this.modalCtrol.create({
-      component: SolutionformComponent,
+      component: ScoreModalComponent,
       componentProps: this.profile
     }).then(modalres => {
       modalres.present();
