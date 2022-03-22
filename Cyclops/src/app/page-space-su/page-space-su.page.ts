@@ -103,6 +103,17 @@ export class PageSpaceSuPage implements OnInit {
         }
       }
     }
+    //update total score  to database
+    const data: any = {
+      totalEcoScore: this.scoreArea
+    }
+    this.firebaseService.addUserEcoService(this.userId, data).then(() => {
+      console.log('updated userName');
+    }).catch((error) => {
+      console.log(error);
+      this.alertMessage("Check your internet Connection");
+    });
+
     this.displaySol = this.localSol;
     console.log('loaded solution and user progress successfully merged');
   }
