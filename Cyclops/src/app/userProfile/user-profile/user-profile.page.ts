@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { AlertController } from '@ionic/angular';
 import { AuthService } from 'src/app/authentication/auth/auth.service';
+import { FirebaseService } from 'src/app/FirebaseService/firebase.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -12,23 +13,34 @@ export class UserProfilePage implements OnInit {
 
   userData = JSON.parse(localStorage.getItem('user'));
 
+  userEcoScore =0;
 
 
 
-
-  constructor(public authService: AuthService, public alertController: AlertController) { 
+  constructor(public authService: AuthService, public alertController: AlertController,public firebaseService: FirebaseService) { 
     /* if(JSON.parse(localStorage.getItem('user')).displayName != null){
       this.displayName= JSON.parse(localStorage.getItem('user')).displayName;
     }else{
       this.displayName= JSON.parse(localStorage.getItem('user')).email;
       console.log(this.displayName);
     } */
+    this.loadUserEcoScore();
 
 
   }
 
   ngOnInit() {
 
+  }
+  loadUserEcoScore(){
+    const subscription = this.firebaseService.getUserByIdService(this.userData.uid).subscribe(
+      e=>{
+        this.userEcoScore = e.payload.data()['totalEcoScore']; // get user total eco score
+      }
+    ) 
+    if (this.userData.uid == null || this.userData.uid == undefined) {
+      subscription.unsubscribe();
+    } 
   }
 
   /* async editUsername() {

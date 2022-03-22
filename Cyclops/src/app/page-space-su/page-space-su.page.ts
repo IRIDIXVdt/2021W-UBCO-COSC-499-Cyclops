@@ -144,9 +144,9 @@ export class PageSpaceSuPage implements OnInit {
           if (this.userEcoItemList == undefined) {//check with new account for testing*
             this.userEcoItemList = [];
           }
-          subscription.unsubscribe();
           this.assignCompletedList();
           this.updateDisplayList();
+          subscription.unsubscribe();
           console.log('unsubscribe success', this.userEcoItemList);
         }, err => {
           console.debug(err);

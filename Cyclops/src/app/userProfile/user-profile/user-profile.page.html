@@ -20,26 +20,51 @@
     </div>
 
     <div class ="content_div">
-      <div class="test_details">
+      <div class="test_details" routerLink="/tabs/page-space-su">
         <ion-grid fixed>
           <ion-row>
-            <ion-col size="6">
-              <ion-card>Eco-tracker over there</ion-card>
-            </ion-col>
-            <ion-col size="6">
-              <ion-card>Eco-tracker over there</ion-card>
+            <ion-col>
+              <ion-text style="text-align:center; font-size:200%;">Overall Score</ion-text>
             </ion-col>
           </ion-row>
           <ion-row>
-            <ion-col size="6">
-              <ion-card>Eco-tracker over there</ion-card>
+            <ion-col>
+              <h4 style="text-align:center; font-size:300%" >{{userEcoScore}}</h4>
             </ion-col>
-            <ion-col size="6">
-              <ion-card>Eco-tracker over there</ion-card>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <div class="odisplay2">
+                <ion-icon name="star"></ion-icon>
+            </div>
             </ion-col>
           </ion-row>
         </ion-grid>
       </div>
+
+      <!-- <ion-card routerLink="/tabs/page-space-su" color='light' style="height:50%;padding-top: 15%;">
+        <ion-card-header>
+            <ion-card-subtitle style="text-align:center; font-size:200%;">Overall Score</ion-card-subtitle>
+            <ion-card-title fontsize>
+                <div class="odisplay">
+                    <div class="odisplay1" *ngIf="this.authService.isLogin()">
+                        <h4 style="text-align:center; font-size:300%" fontsize>{{userEcoScore}}</h4>
+                        <div class="odisplay2">
+                            <ion-icon name="star"></ion-icon>
+                        </div>
+                    </div>
+                    <div class="odisplay1" *ngIf="!this.authService.isLogin()">
+                        <ion-text style="text-align:center; font-size:150%; font-weight: 700;" >
+                            Please Login to Continue 
+                             
+                        <ion-text style="text-align:center; font-size:150%; font-weight: 700;" button routerLink="/login" color="primary">Login</ion-text>
+
+                        </ion-text>
+                    </div>                       
+                </div>
+            </ion-card-title>
+        </ion-card-header>
+    </ion-card> -->
 
       <ng-container *ngIf="this.authService.isAdmin()">
         <div class="list_div" routerLink="/edit-survey">
