@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { SolutionformComponent } from './solutionform.component';
@@ -10,7 +11,7 @@ describe('SolutionformComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ SolutionformComponent ],
-      imports: [IonicModule.forRoot()]
+      imports: [IonicModule.forRoot(), ReactiveFormsModule, FormsModule]
     }).compileComponents();
 
     fixture = TestBed.createComponent(SolutionformComponent);
