@@ -36,59 +36,59 @@
 
     </div>
 
-    <div class="levelgroup" *ngIf="starClicked">
-      <h5 class="buttontags">Select a Star Level to begin</h5>
+      <div class="levelgroup" *ngIf="starClicked">
+        <h5 class="buttontags">Select a Star Level to begin</h5>
 
-      <ion-list>
-        <ion-item>
-          <ion-label> <h2 id="leveltag">Stars</h2></ion-label>
-          <ion-select interface="popover" [interfaceOptions]="{'cssClass': 'mystars-wider-popover'}" okText="Okay" cancelText="Dismiss" formControlName="Select_Level" (ionChange)="selectedLevel($event)" (ionChange)="getSolutionsForSelectedStars($event.target.value)" name="Section" placeholder="Stars">
-          <ion-select-option *ngFor="let st of stars">{{st}}</ion-select-option>
-          </ion-select>
-        </ion-item>
-      </ion-list>
-      <p id="err">
-        <span class="error" *ngIf="submitted && errorCtr.Select_Level.errors?.required">
-          Please Select a Star Level
-         </span>
-      </p>
-
-      <div *ngIf="starbuttonClicked">
         <ion-list>
-          <ion-item *ngIf="starsols && starsols.length > 0">
-            <ion-label> <h2 id="leveltag">Article Solution</h2></ion-label>
-            <ion-select  interface="popover" [interfaceOptions]="{'cssClass': 'mysolutions-wider-popover'}" okText="Okay" cancelText="Dismiss" formControlName="Select_LevelSolution" (ionChange)="selectedSolution($event)" name="Solution" placeholder="Solutions">
-            <ion-select-option *ngFor="let ss of starsols">{{ss}}</ion-select-option>
+          <ion-item>
+            <ion-label> <h2 id="leveltag">Stars</h2></ion-label>
+            <ion-select interface="popover" [interfaceOptions]="{'cssClass': 'mystars-wider-popover'}" okText="Okay" cancelText="Dismiss" formControlName="Select_Level" (ionChange)="selectedLevel($event)" (ionChange)="getSolutionsForSelectedStars($event.target.value)" name="Section" placeholder="Stars">
+            <ion-select-option *ngFor="let st of stars">{{st}}</ion-select-option>
             </ion-select>
           </ion-item>
         </ion-list>
         <p id="err">
-          <span class="error" *ngIf="submitted && errorCtr.Select_LevelSolution.errors?.required">
-            Please Select a Solution 
-           </span>
+          <span class="error" *ngIf="submitted && errorCtr.Select_Level.errors?.required">
+            Please Select a Star Level
+          </span>
+        </p>
+
+        <div *ngIf="starbuttonClicked">
+          <ion-list>
+            <ion-item *ngIf="starsols && starsols.length > 0">
+              <ion-label> <h2 id="leveltag">Article Solution</h2></ion-label>
+              <ion-select  interface="popover" [interfaceOptions]="{'cssClass': 'mysolutions-wider-popover'}" okText="Okay" cancelText="Dismiss" formControlName="Select_LevelSolution" (ionChange)="selectedSolution($event)" name="Solution" placeholder="Solutions">
+              <ion-select-option *ngFor="let ss of starsols">{{ss}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-list>
+          <p id="err">
+            <span class="error" *ngIf="submitted && errorCtr.Select_LevelSolution.errors?.required">
+              Please Select a Solution 
+            </span>
+          </p>
+        </div>
+        
+
+
+        <div class="range">
+          <h5>Slide to Select Completion for Solution:</h5>
+            <ion-range deounce='500' min="-1" max="2" step="1" value="0" [ngStyle]="{'color':getCol()}" [color]="color"  (ionChange)="rangeChange($event)"  snaps="true" grid="true" snaps color="success" list='tickmarks'>
+              <ion-icon slot="start"[color]="color" name="leaf"></ion-icon>
+              <ion-icon slot="end" [color]="color" name="leaf"></ion-icon>
+            </ion-range>
+            <div id="tickmarks" class="tick-position">
+              <p>No decision</p>
+              <p>Not doing it</p>
+              <p>Working on it!</p>
+              <p>Doing it!</p>
+          </div>
+        </div>
+
+        <p id="center">
+          <ion-button size="small" shape="round"  color="tertiary" class="ion-margin-top" (click)="onSolution()">Submit Solution</ion-button>
         </p>
       </div>
-      
-
-
-      <div class="range">
-        <h5>Slide to Select Completion for Solution:</h5>
-          <ion-range deounce='500' min="-1" max="2" step="1" value="0" [ngStyle]="{'color':getCol()}" [color]="color"  (ionChange)="rangeChange($event)"  snaps="true" grid="true" snaps color="success" list='tickmarks'>
-            <ion-icon slot="start"[color]="color" name="leaf"></ion-icon>
-            <ion-icon slot="end" [color]="color" name="leaf"></ion-icon>
-          </ion-range>
-          <div id="tickmarks" class="tick-position">
-            <p>No decision</p>
-            <p>Not doing it</p>
-            <p>Working on it!</p>
-            <p>Doing it!</p>
-        </div>
-      </div>
-
-      <p id="center">
-        <ion-button size="small" shape="round"  color="tertiary" class="ion-margin-top" (click)="onSolution()">Submit Solution</ion-button>
-      </p>
-    </div>
   </form>
 
   <form [formGroup]="myFormSection" >
