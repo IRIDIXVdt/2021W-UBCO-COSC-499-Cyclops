@@ -67,7 +67,12 @@ export class PageSpaceErPage implements OnInit {
   loadUserEcoScore(){
     const subscription = this.firebaseService.getUserByIdService(this.userId).subscribe(
       e=>{
-        this.userEcoScore = e.payload.data()['totalEcoScore']; // get user total eco score
+        if (e.payload.data()['totalEcoScore'] != undefined){
+          this.userEcoScore = e.payload.data()['totalEcoScore']; // get user total eco score
+        }else{
+          this.userEcoScore =0;
+        }
+        
       }
     ) 
     if (this.userId == null || this.userId == undefined) {
