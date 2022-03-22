@@ -50,7 +50,7 @@
 
         <ng-container *ngIf="displaySol && this.authService.isLogin()" >
             <ion-row>
-                <!-- <ion-col size-xs="12" size-sm="5" size-md="4" size-lg="3">
+                <ion-col size-xs="12" size-sm="5" size-md="4" size-lg="3" class="web-display">
                     <ion-row>
                         <ion-col>
                             <ion-radio-group [(ngModel)]="sortType" (ionChange)="updateDisplayList()">
@@ -124,8 +124,8 @@
                         </ion-col>
 
                     </ion-row>
-                </ion-col> -->
-                <ion-col size-xs="12" size-sm="5" size-md="4" size-lg="3">
+                </ion-col>
+                <ion-col size-xs="12" size-sm="5" size-md="4" size-lg="3" class="mobile-display"> 
                     <ion-accordion-group>
                         <ion-accordion>
                             <ion-item slot="header" color="light">
