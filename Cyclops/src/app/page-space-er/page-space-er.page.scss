@@ -58,6 +58,12 @@ ion-slides {
     .mobile-display {
         display: none;
     }
+    .card-web {
+        max-width: 40%;
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
 
 @media (max-width: 1023px) {
@@ -116,3 +122,16 @@ ion-card img {
 
 
 a{ text-decoration:none} 
+
+.odisplay2 {
+    display: inline-block;
+    font-size: 200%;
+    padding-left: 5px;
+    color: #FFCA28;
+    align-items: center;
+}
+.odisplay {
+    overflow: hidden;
+    /* add this to contain floated children */
+    text-align: center;
+}

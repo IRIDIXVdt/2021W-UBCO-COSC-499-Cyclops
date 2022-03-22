@@ -25,6 +25,7 @@ export class PageSpaceErPage implements OnInit {
   readProgressTitle: any;
   readProgressIntro: any;
   survey: any;
+  userEcoScore=0;
 
 
   authentication: boolean; // validate user is logged in or not 
@@ -51,6 +52,7 @@ export class PageSpaceErPage implements OnInit {
         console.log('logged in:', user.uid);
         this.userId = user.uid;
         this.loadUserLatesReadsById();
+        this.loadUserEcoScore();
       } else {
         this.userId = undefined;
         console.log('logged out, userId: ', this.userId);
@@ -61,6 +63,16 @@ export class PageSpaceErPage implements OnInit {
 
   ngOnInit() {
 
+  }
+  loadUserEcoScore(){
+    const subscription = this.firebaseService.getUserByIdService(this.userId).subscribe(
+      e=>{
+        this.userEcoScore = e.payload.data()['totalEcoScore']; // get user total eco score
+      }
+    ) 
+    if (this.userId == null || this.userId == undefined) {
+      subscription.unsubscribe();
+    } 
   }
   loadUserLatesReadsById() {
     console.log("run loadUserById() for latest read");

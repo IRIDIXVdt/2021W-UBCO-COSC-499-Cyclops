@@ -69,7 +69,7 @@
                 </ion-card>
             </ion-col>
             <ion-col>
-                <ion-card routerLink="/tabs/page-space-su" color='light' style="height:100%;padding-top: 15%;">
+                <!-- <ion-card routerLink="/tabs/page-space-su" color='light' style="height:100%;padding-top: 15%;">
                     <ion-card-header>
                         <ion-card-subtitle style="text-align:center;">Your ECO progress</ion-card-subtitle>
                         <ion-card-subtitle style="text-align:center; font-size:300%;">Overall Score
@@ -79,6 +79,30 @@
                     <ion-card-content>
                         <ion-progress-bar color="primary" value="0.8"></ion-progress-bar>
                     </ion-card-content>
+                </ion-card> -->
+
+                <ion-card routerLink="/tabs/page-space-su" color='light' style="height:100%;padding-top: 15%;">
+                    <ion-card-header>
+                        <ion-card-subtitle style="text-align:center; font-size:200%;">Overall Score</ion-card-subtitle>
+                        <ion-card-title fontsize>
+                            <div class="odisplay">
+                                <div class="odisplay1" *ngIf="this.authService.isLogin()">
+                                    <h4 style="text-align:center; font-size:300%" fontsize>{{userEcoScore}}</h4>
+                                    <div class="odisplay2">
+                                        <ion-icon name="star"></ion-icon>
+                                    </div>
+                                </div>
+                                <div class="odisplay1" *ngIf="!this.authService.isLogin()">
+                                    <ion-text style="text-align:center; font-size:150%; font-weight: 700;" >
+                                        Please Login to Continue 
+                                         
+                                    <ion-text style="text-align:center; font-size:150%; font-weight: 700;" button routerLink="/login" color="primary">Login</ion-text>
+           
+                                    </ion-text>
+                                </div>                       
+                            </div>
+                        </ion-card-title>
+                    </ion-card-header>
                 </ion-card>
 
             </ion-col>
