@@ -103,6 +103,11 @@ export class PageSpaceSuPage implements OnInit {
         }
       }
     }
+
+    this.displaySol = this.localSol;
+    console.log('loaded solution and user progress successfully merged');    
+  }
+  updateUserTotalEcoScore(){
     //update total score  to database
     const data: any = {
       totalEcoScore: this.scoreArea
@@ -113,9 +118,6 @@ export class PageSpaceSuPage implements OnInit {
       console.log(error);
       this.alertMessage("Check your internet Connection");
     });
-
-    this.displaySol = this.localSol;
-    console.log('loaded solution and user progress successfully merged');
   }
 
 
@@ -177,6 +179,7 @@ export class PageSpaceSuPage implements OnInit {
       loading.dismiss();
       this.assignCompletedList();//update the card looking and the score as well
       this.updateDisplayList();
+      this.updateUserTotalEcoScore();
       this.alertMessage("Successful");
     }).catch((error) => {
       console.log(error);
