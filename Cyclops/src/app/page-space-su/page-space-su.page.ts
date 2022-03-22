@@ -66,7 +66,7 @@ export class PageSpaceSuPage implements OnInit {
     }
     
     // console.log(this.userId);
-    this.ecoListContentLoading();
+    //this.ecoListContentLoading();  // move this inside the contentLoading()
     this.userProgressTypeInit();
 
   }
@@ -211,6 +211,7 @@ export class PageSpaceSuPage implements OnInit {
       // console.log("content loaded", this.solutions.map((a: any) => a.starLevel));
       this.localSol = this.solutions;
       // console.log("solution", this.solutions);
+      this.ecoListContentLoading();
       this.sortTypeInitialize();
     }, (err: any) => {
       console.log(err);
