@@ -35,9 +35,14 @@ export class UserProfilePage implements OnInit {
   loadUserEcoScore(){
     const subscription = this.firebaseService.getUserByIdService(this.userData.uid).subscribe(
       e=>{
-        this.userEcoScore = e.payload.data()['totalEcoScore']; // get user total eco score
+        if (e.payload.data()['totalEcoScore'] != undefined){
+          this.userEcoScore = e.payload.data()['totalEcoScore']; // get user total eco score
+        }else{
+          this.userEcoScore =0;
+        }
+        
       }
-    ) 
+    )  
     if (this.userData.uid == null || this.userData.uid == undefined) {
       subscription.unsubscribe();
     } 
