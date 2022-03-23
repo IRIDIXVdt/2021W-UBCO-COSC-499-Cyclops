@@ -61,9 +61,7 @@ export class PageSpaceErPage implements OnInit {
   }
 
 
-  ngOnInit() {
-
-  }
+  ngOnInit() {}
   loadUserEcoScore() {
     const subscription = this.firebaseService.getUserByIdService(this.userId).subscribe(
       e => {
@@ -230,6 +228,11 @@ export class PageSpaceErPage implements OnInit {
     }, (err: any) => {
       console.log(err);
     })
+  }
+
+  forYouRoute(){
+    console.log('clicked');
+    localStorage.setItem('forYou', 'true');
   }
 
 

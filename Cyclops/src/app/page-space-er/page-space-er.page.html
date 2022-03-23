@@ -57,7 +57,7 @@
     <ng-container *ngIf="authService.isLogin()">
         <h1>For you</h1>
         <ion-row>
-            <ion-col size-xs="12" size-sm="6" size-md="6" size-lg="4" *ngIf="readProgressImg!=undefined">
+            <ion-col size-xs="12" size-sm="6" size-md="6" size-lg="4" *ngIf="readProgressImg!=undefined" (click)="forYouRoute()">
                 <ion-card [routerLink]="['/tabs/page-space-me/' , latestRead]" color='light' style="height:100%">
                     <img [src]="readProgressImg" style="width: 690px; height:200px; object-fit: cover" />
                     <ion-card-header>

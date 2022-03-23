@@ -63,6 +63,7 @@ export class PageSpaceMePage implements OnInit {
       }
     });
 
+
   }
 
   loadUserSegmentsById() {
@@ -108,6 +109,13 @@ export class PageSpaceMePage implements OnInit {
           columnName: e.payload.data()['columnName'],
 
         };
+        //after content loaded, check if page is accessed from for you section
+        if(localStorage.getItem('forYou')=='true'){
+          console.log('here from forYou');
+          localStorage.setItem('forYou', 'false');//reset foryou check
+        }
+
+
         subscription.unsubscribe();
         console.log('unsubscribe success, with this content loaded:', this.contents);
       },
