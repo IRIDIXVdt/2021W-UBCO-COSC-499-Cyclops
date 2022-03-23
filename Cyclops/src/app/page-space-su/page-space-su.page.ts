@@ -120,6 +120,7 @@ export class PageSpaceSuPage implements OnInit {
   }
 
   rangeChange($event) {
+    this.range = ($event.target.value); // obtains value to obtain colour change on slider
     console.log("range change");
     //code here
   }
