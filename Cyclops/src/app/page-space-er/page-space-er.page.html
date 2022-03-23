@@ -57,7 +57,7 @@
     <ng-container *ngIf="authService.isLogin()">
         <h1>For you</h1>
         <ion-row>
-            <ion-col>
+            <ion-col *ngIf="readProgressImg!=undefined">
                 <ion-card [routerLink]="['/tabs/page-space-me/' , latestRead]" color='light' style="height:100%">
                     <img [src]="readProgressImg" style="width: 690px; height:200px; object-fit: cover" />
                     <ion-card-header>
@@ -93,13 +93,13 @@
                                     </div>
                                 </div>
                                 <div class="odisplay1" *ngIf="!this.authService.isLogin()">
-                                    <ion-text style="text-align:center; font-size:150%; font-weight: 700;" >
-                                        Please Login to Continue 
-                                         
-                                    <ion-text style="text-align:center; font-size:150%; font-weight: 700;" button routerLink="/login" color="primary">Login</ion-text>
-           
+                                    <ion-text style="text-align:center; font-size:150%; font-weight: 700;">
+                                        Please Login to Continue
+
+                                        <ion-text style="text-align:center; font-size:150%; font-weight: 700;" button routerLink="/login" color="primary">Login</ion-text>
+
                                     </ion-text>
-                                </div>                       
+                                </div>
                             </div>
                         </ion-card-title>
                     </ion-card-header>
@@ -131,7 +131,7 @@
                                 <ion-card-header>
                                     <a href="{{data.surveyLink}}" color="dark" target="_blank" rel="noopener noreferrer">
                                         <!-- The rel attribute sets the relationship between your page and the linked URL. 
-                                            Setting it to noopener noreferrer is to prevent a type of phishing known as tabnabbing. --> 
+                                            Setting it to noopener noreferrer is to prevent a type of phishing known as tabnabbing. -->
                                         <ion-card-title>{{data.surveyTitle}}</ion-card-title>
                                     </a>
                                 </ion-card-header>

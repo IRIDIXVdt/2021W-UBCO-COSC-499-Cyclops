@@ -25,7 +25,7 @@ export class PageSpaceErPage implements OnInit {
   readProgressTitle: any;
   readProgressIntro: any;
   survey: any;
-  userEcoScore=0;
+  userEcoScore = 0;
 
 
   authentication: boolean; // validate user is logged in or not 
@@ -64,20 +64,20 @@ export class PageSpaceErPage implements OnInit {
   ngOnInit() {
 
   }
-  loadUserEcoScore(){
+  loadUserEcoScore() {
     const subscription = this.firebaseService.getUserByIdService(this.userId).subscribe(
-      e=>{
-        if (e.payload.data()['totalEcoScore'] != undefined){
+      e => {
+        if (e.payload.data()['totalEcoScore'] != undefined) {
           this.userEcoScore = e.payload.data()['totalEcoScore']; // get user total eco score
-        }else{
-          this.userEcoScore =0;
+        } else {
+          this.userEcoScore = 0;
         }
-        
+
       }
-    ) 
+    )
     if (this.userId == null || this.userId == undefined) {
       subscription.unsubscribe();
-    } 
+    }
   }
   loadUserLatesReadsById() {
     console.log("run loadUserById() for latest read");
@@ -107,7 +107,7 @@ export class PageSpaceErPage implements OnInit {
             console.log(this.latestRead);
 
           } else {//find a partially read article, if not found then find the first unread article
-            
+
             let readArticles = e.payload.data()['readArticles'];
             let partialArticle = undefined;
 
@@ -151,6 +151,14 @@ export class PageSpaceErPage implements OnInit {
                 }
               }
             }
+            //if all articles read, reset readProgress variables
+            if (partialArticle == undefined) {
+              this.readProgressImg = undefined
+              this.readProgressTitle = undefined
+              this.readProgressHeader = undefined
+              this.readProgressIntro = undefined
+            }
+
           }
         } else {//if the user has no latest read then get them to start at the beginning
           console.log('execute if latestReadUndefined')
