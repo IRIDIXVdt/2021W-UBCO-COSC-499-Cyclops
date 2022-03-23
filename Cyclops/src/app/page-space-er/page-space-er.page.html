@@ -57,7 +57,7 @@
     <ng-container *ngIf="authService.isLogin()">
         <h1>For you</h1>
         <ion-row>
-            <ion-col>
+            <ion-col size-xs="12" size-sm="6" size-md="6" size-lg="4" *ngIf="readProgressImg!=undefined">
                 <ion-card [routerLink]="['/tabs/page-space-me/' , latestRead]" color='light' style="height:100%">
                     <img [src]="readProgressImg" style="width: 690px; height:200px; object-fit: cover" />
                     <ion-card-header>
@@ -68,7 +68,7 @@
                     </ion-card-content>
                 </ion-card>
             </ion-col>
-            <ion-col>
+            <ion-col size-xs="12" size-sm="6" size-md="6" size-lg="4">
                 <!-- <ion-card routerLink="/tabs/page-space-su" color='light' style="height:100%;padding-top: 15%;">
                     <ion-card-header>
                         <ion-card-subtitle style="text-align:center;">Your ECO progress</ion-card-subtitle>
@@ -81,7 +81,7 @@
                     </ion-card-content>
                 </ion-card> -->
 
-                <ion-card routerLink="/tabs/page-space-su" color='light' style="height:100%;padding-top: 15%;">
+                <ion-card class="center" routerLink="/tabs/page-space-su" color='light'>
                     <ion-card-header>
                         <ion-card-subtitle style="text-align:center; font-size:200%;">Overall Score</ion-card-subtitle>
                         <ion-card-title fontsize>
@@ -93,13 +93,13 @@
                                     </div>
                                 </div>
                                 <div class="odisplay1" *ngIf="!this.authService.isLogin()">
-                                    <ion-text style="text-align:center; font-size:150%; font-weight: 700;" >
-                                        Please Login to Continue 
-                                         
-                                    <ion-text style="text-align:center; font-size:150%; font-weight: 700;" button routerLink="/login" color="primary">Login</ion-text>
-           
+                                    <ion-text style="text-align:center; font-size:150%; font-weight: 700;">
+                                        Please Login to Continue
+
+                                        <ion-text style="text-align:center; font-size:150%; font-weight: 700;" button routerLink="/login" color="primary">Login</ion-text>
+
                                     </ion-text>
-                                </div>                       
+                                </div>
                             </div>
                         </ion-card-title>
                     </ion-card-header>
@@ -126,12 +126,12 @@
             <ion-slide class="surveyCard-web">
                 <ion-grid>
                     <ion-row>
-                        <ion-col *ngFor="let data of survey">
+                        <ion-col size-sm="4" size-md="3" size-lg="2" *ngFor="let data of survey">
                             <ion-card id="card1" color='light'>
                                 <ion-card-header>
                                     <a href="{{data.surveyLink}}" color="dark" target="_blank" rel="noopener noreferrer">
                                         <!-- The rel attribute sets the relationship between your page and the linked URL. 
-                                            Setting it to noopener noreferrer is to prevent a type of phishing known as tabnabbing. --> 
+                                            Setting it to noopener noreferrer is to prevent a type of phishing known as tabnabbing. -->
                                         <ion-card-title>{{data.surveyTitle}}</ion-card-title>
                                     </a>
                                 </ion-card-header>
