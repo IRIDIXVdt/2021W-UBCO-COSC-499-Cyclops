@@ -135,6 +135,21 @@ export class PageSpaceSuPage implements OnInit {
         this.color = 'danger';
     }
   }
+  getCol(){
+    if (this.range == 2) {
+      this.color = 'success';
+    }
+    else if (this.range == 1) {
+        this.color = 'warning';
+    }
+    else if (this.range == 0) {
+        this.color = 'medium';
+    }
+    else if (this.range == -1)  {
+        this.color = 'danger';
+    }
+
+  }
 
   ecoListContentLoading() {
     if(this.authService.isLogin()){
