@@ -43,6 +43,8 @@ export class PageSpaceSuPage implements OnInit {
   userEcoItemList: userEcoItem[];
   // completedList: string[];
   scoreArea: number;
+  range: number; //variable for range slider
+  color: string; // String to get color value for color change
 
 
   constructor(
