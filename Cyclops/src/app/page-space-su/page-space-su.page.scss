@@ -114,6 +114,18 @@
     height: 340px;
 }
 
+@media (max-width: 575px) {
+    .web-display {
+        display: none;
+    }
+}
+
+@media (min-width: 576px) {
+    .mobile-display {
+        display: none;
+    }
+}
+
 @media (min-width: 1200px) {
     .ecoCardItem {
         size: 3;
