@@ -218,20 +218,19 @@ export class PageSpaceSuPage implements OnInit {
     this.section = "All";
   }
 
-  //   openModal() {
-  //   this.modalCtrol.create({
-  //     component: ScoreModalComponent,
-  //     componentProps: this.profile
-  //   }).then(modalres => {
-  //     modalres.present();
-
-  //     modalres.onDidDismiss().then(res => {
-  //       if (res.data != null) {
-  //         this.profile = res.data;
-  //       }
-  //     })
-  //   })
-  // } 
+ /*   openModal() {
+    this.modalCtrol.create({
+      component: ScoreModalComponent,
+      componentProps: this.profile
+    }).then(modalres => {
+      modalres.present();
+      modalres.onDidDismiss().then(res => {
+        if (res.data != null) {
+          this.profile = res.data;
+        }
+      })
+    })
+  } */
 
   sortTypeOnChange() {
     // const currentTime = new Date().getTime();
