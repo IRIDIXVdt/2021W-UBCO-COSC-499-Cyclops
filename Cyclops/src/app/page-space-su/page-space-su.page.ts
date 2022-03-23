@@ -119,7 +119,7 @@ export class PageSpaceSuPage implements OnInit {
     //code here
   }
 
-  rangeChange() {
+  rangeChange($event) {
     console.log("range change");
     //code here
   }
