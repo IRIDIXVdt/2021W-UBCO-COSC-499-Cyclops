@@ -34,7 +34,7 @@ export class PageSpaceMePage implements OnInit {
 
   @ViewChild(IonContent) content: IonContent;
   status: any;
-  segmentDepth: number[] = [0, 0, 0];
+  segmentDepth: number[];
   currentSegment = 0;
   articleHeight = 0;
 
@@ -112,6 +112,7 @@ export class PageSpaceMePage implements OnInit {
           columnName: e.payload.data()['columnName'],
 
         };
+        this.segmentDepth=Array(this.contents.segment.length).fill(0);
         //after content loaded, check if page is accessed from for you section
         if(this.authService.isLogin()){
           if (localStorage.getItem('forYou') == 'true') {
@@ -127,7 +128,8 @@ export class PageSpaceMePage implements OnInit {
                     if (this.userData[i]['id'] == this.docId) {
                       console.log(this.userData[i]['currentSegment'], this.userData[i]['depth']);
                       this.status = this.userData[i]['currentSegment'];
-                      this.content.scrollToPoint(0, this.userData[i]['depth'] * this.articleHeight);
+                      //this.content.scrollToPoint(0, this.userData[i]['depth'] * this.articleHeight);
+                      this.content.scrollToPoint(0, 100);
                       break;
                     }
                   }
@@ -209,6 +211,7 @@ export class PageSpaceMePage implements OnInit {
 
   }
   ngOnDestroy() {
+    console.log(this.segmentDepth);
     if (this.userId) {
       console.log('page closing, saving article read information');
       let position = 0;
