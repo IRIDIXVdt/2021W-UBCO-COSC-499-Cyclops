@@ -64,6 +64,7 @@ export class PageSpaceMePage implements OnInit {
         console.log('logged out, userId: ', this.userId);
       }
     });
+    
 
 
   }
@@ -153,7 +154,9 @@ export class PageSpaceMePage implements OnInit {
     )
   }
 
-  segmentChanged(ev: any) {
+  async segmentChanged(ev: any) {
+    let scrollElement=await this.content.getScrollElement();
+    this.articleHeight = scrollElement.scrollHeight - scrollElement.clientHeight
     console.log('current segment status is', this.status);
     this.currentSegment = parseInt(this.status);
     console.log('this.currentSegment: ', this.currentSegment);
