@@ -239,9 +239,9 @@
                                             <ion-item>
                                                 <ion-range deounce='500' min="-1" max="2" step="1" value="0"
                                                     snaps="true" grid="true" snaps color="success" list='tickmarks'
-                                                    (ionChange)="rangeChange($event)">
-                                                    <ion-icon slot="start" color="success" name="leaf"></ion-icon>
-                                                    <ion-icon slot="end" color="success" name="leaf"></ion-icon>
+                                                    (ionChange)="rangeChange($event)" [ngStyle]="{'color':getCol()}" [color]="color">
+                                                    <ion-icon slot="start" [color]="color" name="leaf"></ion-icon>
+                                                    <ion-icon slot="end" [color]="color" name="leaf"></ion-icon>
                                                 </ion-range>
                                                 <!-- color change -->
                                             </ion-item>
