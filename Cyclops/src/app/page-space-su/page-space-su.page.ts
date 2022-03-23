@@ -43,7 +43,7 @@ export class PageSpaceSuPage implements OnInit {
   userEcoItemList: userEcoItem[];
   // completedList: string[];
   scoreArea: number;
-  range: number; //variable for range slider
+  slider: number; //variable for range slider
   color: string; // String to get color value for color change
 
 
@@ -56,6 +56,7 @@ export class PageSpaceSuPage implements OnInit {
     public loadingController: LoadingController,
     public authService: AuthService
   ) {
+    this.slider = 0;
     this.scoreArea = 0;
     this.contentLoading();
     // this.dummyContentLoading();
@@ -120,32 +121,33 @@ export class PageSpaceSuPage implements OnInit {
   }
 
   rangeChange($event) {
-    this.range = ($event.target.value); // obtains value to obtain colour change on slider
+    this.slider = ($event.target.value); // obtains value to obtain colour change on slider
     console.log("range change");
-    if (this.range == 2) {
+    console.log(this.slider);
+    if (this.slider == 2) {
       this.color = 'success';
     }
-    else if (this.range == 1) {
+    else if (this.slider == 1) {
         this.color = 'warning';
     }
-    else if (this.range == 0) {
+    else if (this.slider == 0) {
         this.color = 'medium';
     }
-    else if (this.range == -1)  {
+    else if (this.slider == -1)  {
         this.color = 'danger';
     }
   }
   getCol(){
-    if (this.range == 2) {
+    if (this.slider == 2) {
       this.color = 'success';
     }
-    else if (this.range == 1) {
+    else if (this.slider == 1) {
         this.color = 'warning';
     }
-    else if (this.range == 0) {
+    else if (this.slider == 0) {
         this.color = 'medium';
     }
-    else if (this.range == -1)  {
+    else if (this.slider== -1)  {
         this.color = 'danger';
     }
 
