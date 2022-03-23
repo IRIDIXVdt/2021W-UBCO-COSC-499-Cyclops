@@ -122,7 +122,18 @@ export class PageSpaceSuPage implements OnInit {
   rangeChange($event) {
     this.range = ($event.target.value); // obtains value to obtain colour change on slider
     console.log("range change");
-    //code here
+    if (this.range == 2) {
+      this.color = 'success';
+    }
+    else if (this.range == 1) {
+        this.color = 'warning';
+    }
+    else if (this.range == 0) {
+        this.color = 'medium';
+    }
+    else if (this.range == -1)  {
+        this.color = 'danger';
+    }
   }
 
   ecoListContentLoading() {
