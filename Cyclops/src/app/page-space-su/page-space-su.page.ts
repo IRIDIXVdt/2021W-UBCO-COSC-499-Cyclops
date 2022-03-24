@@ -43,6 +43,8 @@ export class PageSpaceSuPage implements OnInit {
   userEcoItemList: userEcoItem[];
   // completedList: string[];
   scoreArea: number;
+  slider: number; //variable for range slider
+  color: string; // String to get color value for color change
 
 
   constructor(
@@ -54,6 +56,7 @@ export class PageSpaceSuPage implements OnInit {
     public loadingController: LoadingController,
     public authService: AuthService
   ) {
+    this.slider = 0;
     this.scoreArea = 0;
     this.contentLoading();
     // this.dummyContentLoading();
@@ -130,9 +133,37 @@ export class PageSpaceSuPage implements OnInit {
     //code here
   }
 
-  rangeChange() {
+  rangeChange($event) {
+    this.slider = ($event.target.value); // obtains value to obtain colour change on slider
     console.log("range change");
-    //code here
+    console.log(this.slider);
+    if (this.slider == 2) {
+      this.color = 'success';
+    }
+    else if (this.slider == 1) {
+        this.color = 'warning';
+    }
+    else if (this.slider == 0) {
+        this.color = 'medium';
+    }
+    else if (this.slider == -1)  {
+        this.color = 'danger';
+    }
+  }
+  getCol(){
+    if (this.slider == 2) {
+      this.color = 'success';
+    }
+    else if (this.slider == 1) {
+        this.color = 'warning';
+    }
+    else if (this.slider == 0) {
+        this.color = 'medium';
+    }
+    else if (this.slider== -1)  {
+        this.color = 'danger';
+    }
+
   }
 
   ecoListContentLoading() {
@@ -233,13 +264,12 @@ export class PageSpaceSuPage implements OnInit {
     this.section = "All";
   }
 
-/*   openModal() {
+ /*   openModal() {
     this.modalCtrol.create({
       component: ScoreModalComponent,
       componentProps: this.profile
     }).then(modalres => {
       modalres.present();
-
       modalres.onDidDismiss().then(res => {
         if (res.data != null) {
           this.profile = res.data;
