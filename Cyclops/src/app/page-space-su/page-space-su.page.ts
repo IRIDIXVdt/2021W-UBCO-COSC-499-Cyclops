@@ -101,6 +101,10 @@ export class PageSpaceSuPage implements OnInit {
       for (let ecoAttendItem of this.userEcoItemList) {
         if (item.id === ecoAttendItem.ecoId) {
           item.attend = true;
+          // item.weight = ecoAttendItem.weight;
+
+          item.weight = 1;//tentative
+          //we have this solution attended by our user
           // console.log(this.scoreArea, 'adds', item.star, ecoAttendItem.weight, 'from', item.name);
           this.scoreArea += (item.star + 1) * ecoAttendItem.weight;
           break;
@@ -164,6 +168,7 @@ export class PageSpaceSuPage implements OnInit {
           if (this.userEcoItemList == undefined) {//check with new account for testing*
             this.userEcoItemList = [];
           }
+          //user eco list item consists of all the solutions the user has attempted
           this.assignCompletedList();
           this.updateDisplayList();
           subscription.unsubscribe();
@@ -225,7 +230,7 @@ export class PageSpaceSuPage implements OnInit {
           section: e.payload.doc.data()['section'],
           star: e.payload.doc.data()['star'],
           attend: false,
-          weight: 1,
+          weight: 0,
         }
       })
       this.localSol = this.solutions;

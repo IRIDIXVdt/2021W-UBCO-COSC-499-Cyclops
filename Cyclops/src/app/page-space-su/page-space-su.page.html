@@ -238,7 +238,7 @@
                                         </ion-item>
                                         <ion-list slot="content">
                                             <ion-item>
-                                                <ion-range deounce='500' min="-1" max="2" step="1" value="0"
+                                                <ion-range deounce='500' min="-1" max="2" step="1" [(ngModel)]="item.weight"
                                                     [color]="color" snaps="true" grid="true" snaps color="success"
                                                     list='tickmarks' (ionChange)="rangeChange($event,item.id)">
                                                     <ion-icon slot="start" [color]="color" name="leaf"></ion-icon>
