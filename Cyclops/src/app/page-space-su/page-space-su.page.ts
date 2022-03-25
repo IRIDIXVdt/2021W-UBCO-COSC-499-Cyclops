@@ -145,18 +145,22 @@ export class PageSpaceSuPage implements OnInit {
   rangeChange($event, currentId) {
     this.slider = ($event.target.value); // obtains value to obtain colour change on slider
     console.log("range change", this.slider, currentId);
-    if (this.slider == 2) {
-      this.color = 'success';
+  }
+
+  colorAssign(color: number) {
+    if (color == 2) {
+      return 'success';
     }
-    else if (this.slider == 1) {
-      this.color = 'warning';
+    else if (color == 1) {
+      return 'warning';
     }
-    else if (this.slider == 0) {
-      this.color = 'medium';
+    else if (color == 0) {
+      return 'medium';
     }
-    else if (this.slider == -1) {
-      this.color = 'danger';
+    else {
+      return 'danger';
     }
+
   }
 
   ecoListContentLoading() {
@@ -234,7 +238,7 @@ export class PageSpaceSuPage implements OnInit {
         }
       })
       this.localSol = this.solutions;
-      
+
       this.ecoListContentLoading();
       this.sortTypeInitialize();
     }, (err: any) => {
