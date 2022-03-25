@@ -241,6 +241,21 @@ export class PageSpaceSuPage implements OnInit {
   goSurvey() {
     this.router.navigateByUrl('tabs/page-space-me');
   }
+  
+  customFormatter(value: number) {
+    
+    if(value == -1){
+      return 'Bad';
+    }else if(value == 0){
+      return 'Ok';
+    }else if(value ==1){
+      return 'great!'
+    }else if(value ==2){
+      return 'Wonderful!'
+    }
+      
+  }
+
 
   contentLoading() {
     //stop sub while read
