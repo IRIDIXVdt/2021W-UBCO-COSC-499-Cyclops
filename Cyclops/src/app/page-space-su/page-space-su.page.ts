@@ -144,9 +144,13 @@ export class PageSpaceSuPage implements OnInit {
 
   rangeChangeEvent(currentWeight, currentId) {
     console.log("range change", currentWeight, currentId);
-    // //assign this new weight to localSol
-    // let onChangeItem = this.localSol.find(i => i.id == currentId);//locates the onChange Item
-    // onChangeItem.weight = currentWeight;//change the weight
+
+  }
+
+  localWeightUpdate(currentWeight, currentId) {
+    //assign this new weight to localSol
+    let onChangeItem = this.localSol.find(i => i.id == currentId);//locates the onChange Item
+    onChangeItem.weight = currentWeight;//change the weight
   }
 
   colorAssign(color: number) {
@@ -321,7 +325,7 @@ export class PageSpaceSuPage implements OnInit {
   }
 
   updateDisplayList() {
-    console.log("update display with rule:\nsort type:", this.sortType, '\nseciton name:',this.section, '\nprogress type:', this.userProgressType);
+    console.log("update display with rule:\nsort type:", this.sortType, '\nseciton name:', this.section, '\nprogress type:', this.userProgressType);
     // this display list handles everything:
     this.displaySol = this.localSol;
     // 1. attend type
