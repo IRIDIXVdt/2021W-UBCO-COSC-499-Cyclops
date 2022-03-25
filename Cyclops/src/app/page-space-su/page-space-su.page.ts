@@ -62,19 +62,20 @@ export class PageSpaceSuPage implements OnInit {
     // this.dummyContentLoading();
     this.sections = sectionList;
     this.sortTypeOnChange();
-    if(JSON.parse(localStorage.getItem('user')) != null){
+    if (JSON.parse(localStorage.getItem('user')) != null) {
       this.userId = JSON.parse(localStorage.getItem('user')).uid;
-    }else{
+    } else {
       this.userId = 'null';
     }
-    
+
     // console.log(this.userId);
     //this.ecoListContentLoading();  // move this inside the contentLoading()
     this.userProgressTypeInit();
+    this.initializeColor();
 
   }
 
-  async popAlert(message){
+  async popAlert(message) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       message: message,
@@ -83,7 +84,7 @@ export class PageSpaceSuPage implements OnInit {
     await alert.present();
   }
 
-  async alertMessage(message){
+  async alertMessage(message) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       message: message,
@@ -108,9 +109,9 @@ export class PageSpaceSuPage implements OnInit {
     }
 
     this.displaySol = this.localSol;
-    console.log('loaded solution and user progress successfully merged');    
+    console.log('loaded solution and user progress successfully merged');
   }
-  updateUserTotalEcoScore(){
+  updateUserTotalEcoScore() {
     //update total score  to database
     const data: any = {
       totalEcoScore: this.scoreArea
@@ -133,41 +134,29 @@ export class PageSpaceSuPage implements OnInit {
     //code here
   }
 
-  rangeChange($event) {
-    this.slider = ($event.target.value); // obtains value to obtain colour change on slider
-    console.log("range change");
-    console.log(this.slider);
-    if (this.slider == 2) {
-      this.color = 'success';
-    }
-    else if (this.slider == 1) {
-        this.color = 'warning';
-    }
-    else if (this.slider == 0) {
-        this.color = 'medium';
-    }
-    else if (this.slider == -1)  {
-        this.color = 'danger';
-    }
+  initializeColor() {
+    this.color = 'medium';
   }
-  getCol(){
+
+  rangeChange($event, currentId) {
+    this.slider = ($event.target.value); // obtains value to obtain colour change on slider
+    console.log("range change", this.slider, currentId);
     if (this.slider == 2) {
       this.color = 'success';
     }
     else if (this.slider == 1) {
-        this.color = 'warning';
+      this.color = 'warning';
     }
     else if (this.slider == 0) {
-        this.color = 'medium';
+      this.color = 'medium';
     }
-    else if (this.slider== -1)  {
-        this.color = 'danger';
+    else if (this.slider == -1) {
+      this.color = 'danger';
     }
-
   }
 
   ecoListContentLoading() {
-    if(this.authService.isLogin()){
+    if (this.authService.isLogin()) {
       const subscription = this.firebaseService.getUserByIdService(this.userId).subscribe(
         e => {
           this.userEcoItemList = e.payload.data()["userEcoSolutions"];
@@ -184,7 +173,7 @@ export class PageSpaceSuPage implements OnInit {
           this.userEcoItemList = [];
         })
     }
-    
+
   }
 
   async submitEcoSolEvent(solutionId: string) {
@@ -217,7 +206,7 @@ export class PageSpaceSuPage implements OnInit {
       loading.dismiss();
       this.alertMessage("Check your internet Connection");
     });
-   
+
   }
 
 
@@ -264,19 +253,19 @@ export class PageSpaceSuPage implements OnInit {
     this.section = "All";
   }
 
- /*   openModal() {
-    this.modalCtrol.create({
-      component: ScoreModalComponent,
-      componentProps: this.profile
-    }).then(modalres => {
-      modalres.present();
-      modalres.onDidDismiss().then(res => {
-        if (res.data != null) {
-          this.profile = res.data;
-        }
-      })
-    })
-  } */
+  /*   openModal() {
+     this.modalCtrol.create({
+       component: ScoreModalComponent,
+       componentProps: this.profile
+     }).then(modalres => {
+       modalres.present();
+       modalres.onDidDismiss().then(res => {
+         if (res.data != null) {
+           this.profile = res.data;
+         }
+       })
+     })
+   } */
 
   sortTypeOnChange() {
     // const currentTime = new Date().getTime();
@@ -322,7 +311,7 @@ export class PageSpaceSuPage implements OnInit {
   }
 
   updateDisplayList() {
-    console.log("update display with rule:",this.sortType,this.section,this.userProgressType);
+    console.log("update display with rule:", this.sortType, this.section, this.userProgressType);
     // this display list handles everything:
     this.displaySol = this.localSol;
     // 1. attend type
