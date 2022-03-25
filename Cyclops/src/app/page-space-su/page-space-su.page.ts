@@ -225,12 +225,11 @@ export class PageSpaceSuPage implements OnInit {
           section: e.payload.doc.data()['section'],
           star: e.payload.doc.data()['star'],
           attend: false,
+          weight: 1,
         }
       })
-
-      // console.log("content loaded", this.solutions.map((a: any) => a.starLevel));
       this.localSol = this.solutions;
-      // console.log("solution", this.solutions);
+      
       this.ecoListContentLoading();
       this.sortTypeInitialize();
     }, (err: any) => {
@@ -330,6 +329,7 @@ type fetchSolution = {
   detail: string;
   section: string;
   attend: boolean;
+  weight: number;
 }
 type userEcoItem = {
   time: number;
