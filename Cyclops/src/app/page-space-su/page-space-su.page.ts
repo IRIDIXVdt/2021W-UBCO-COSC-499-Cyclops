@@ -191,13 +191,13 @@ export class PageSpaceSuPage implements OnInit {
 
   }
 
-  async submitEcoSolEvent(solutionId: string) {
+  async submitEcoSolEvent(solutionWeight: number, solutionId: string) {
     const currentTime = new Date().getTime();
     console.log("onSubmit", solutionId, this.userId, currentTime);
     const uploadData: userEcoItem = {//sol'n init
       time: currentTime,
       ecoId: solutionId,
-      weight: 1,//by default
+      weight: solutionWeight,//by default
     }
     //push into sol'n list
     this.userEcoItemList.push(uploadData);
@@ -216,6 +216,7 @@ export class PageSpaceSuPage implements OnInit {
       this.updateDisplayList();
       this.updateUserTotalEcoScore();
       this.alertMessage("Successful");
+      this.localWeightUpdate(solutionWeight, solutionId);//update this score to localSol
     }).catch((error) => {
       console.log(error);
       loading.dismiss();
