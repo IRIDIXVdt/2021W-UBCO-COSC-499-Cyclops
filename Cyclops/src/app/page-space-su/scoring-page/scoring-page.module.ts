@@ -4,10 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { PageSpaceSuPageRoutingModule } from './page-space-su-routing.module';
+import { ScoringPagePageRoutingModule } from './scoring-page-routing.module';
 
-import { PageSpaceSuPage } from './page-space-su.page';
-
+import { ScoringPagePage } from './scoring-page.page';
 
 @NgModule({
   imports: [
@@ -15,9 +14,8 @@ import { PageSpaceSuPage } from './page-space-su.page';
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
-    PageSpaceSuPageRoutingModule
-    
+    ScoringPagePageRoutingModule
   ],
-  declarations: [PageSpaceSuPage]
+  declarations: [ScoringPagePage]
 })
-export class PageSpaceSuPageModule {}
+export class ScoringPagePageModule {}

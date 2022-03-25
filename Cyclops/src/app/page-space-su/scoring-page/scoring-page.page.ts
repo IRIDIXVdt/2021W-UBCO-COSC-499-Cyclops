@@ -9,11 +9,11 @@ import { ScoreAssign } from './ScoreAssign';
 import { SectionAssign } from './SectionAssign';
 
 @Component({
-  selector: 'app-score-modal',
-  templateUrl: './score-modal.component.html',
-  styleUrls: ['./score-modal.component.scss'],
+  selector: 'app-scoring-page',
+  templateUrl: './scoring-page.page.html',
+  styleUrls: ['./scoring-page.page.scss'],
 })
-export class ScoreModalComponent implements OnInit  {
+export class ScoringPagePage implements OnInit {
   tags :any;
   Tags: FetchTags[];
   solutions: any=[];

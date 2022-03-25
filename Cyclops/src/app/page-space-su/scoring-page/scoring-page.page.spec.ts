@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { StarModalComponent } from './star-modal.component';
+import { ScoringPagePage } from './scoring-page.page';
 
-describe('StarModalComponent', () => {
-  let component: StarModalComponent;
-  let fixture: ComponentFixture<StarModalComponent>;
+describe('ScoringPagePage', () => {
+  let component: ScoringPagePage;
+  let fixture: ComponentFixture<ScoringPagePage>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ StarModalComponent ],
+      declarations: [ ScoringPagePage ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(StarModalComponent);
+    fixture = TestBed.createComponent(ScoringPagePage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

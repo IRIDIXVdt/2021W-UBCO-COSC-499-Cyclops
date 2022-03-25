@@ -7,7 +7,11 @@ const routes: Routes = [
   {
     path: '',
     component: PageSpaceSuPage
+  },  {
+    path: 'scoring-page',
+    loadChildren: () => import('./scoring-page/scoring-page.module').then( m => m.ScoringPagePageModule)
   }
+
 ];
 
 @NgModule({

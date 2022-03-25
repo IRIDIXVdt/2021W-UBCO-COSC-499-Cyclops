@@ -10,7 +10,7 @@ import { identifierModuleUrl } from '@angular/compiler';
 import { convertToViews } from '@ionic/core/dist/types/components/nav/view-controller';
 import { solutionItem, sectionList, ecoData } from '../sharedData/ecoData';
 import { AuthService } from '../authentication/auth/auth.service';
-import { ScoreModalComponent } from './score-modal/score-modal.component';
+import { ScoringPagePage } from './scoring-page/scoring-page.page';
 
 @Component({
   selector: 'app-page-space-su',
@@ -221,7 +221,7 @@ export class PageSpaceSuPage implements OnInit {
 
    openModal() {
     this.modalCtrol.create({
-      component: ScoreModalComponent,
+      component: ScoringPagePage ,
       componentProps: this.profile
     }).then(modalres => {
       modalres.present();
