@@ -94,6 +94,7 @@ export class PageSpaceSuPage implements OnInit {
   }
 
   assignCompletedList() {
+    //this merges information from both lists: the solution list and the user list
     this.scoreArea = 0;
     for (let item of this.localSol) {
       // if (this.completedList.indexOf(item.id) > -1) {
@@ -101,13 +102,14 @@ export class PageSpaceSuPage implements OnInit {
       for (let ecoAttendItem of this.userEcoItemList) {
         if (item.id === ecoAttendItem.ecoId) {
           item.attend = true;
-          // item.weight = ecoAttendItem.weight;
+          item.weight = ecoAttendItem.weight;
 
-          item.weight = 1;//tentative
+          // item.weight = 1;//tentative
           //we have this solution attended by our user
           // console.log(this.scoreArea, 'adds', item.star, ecoAttendItem.weight, 'from', item.name);
-          this.scoreArea += (item.star + 1) * ecoAttendItem.weight;
+          this.scoreArea += (item.star + 1) * ecoAttendItem.weight;//add up the new weights to the ecotracker
           break;
+          //as there should only be one match for the whole list, we can break here to save some computations
         }
       }
     }
@@ -143,7 +145,7 @@ export class PageSpaceSuPage implements OnInit {
   }
 
   rangeChangeEvent(currentWeight, currentId) {
-    console.log("range change", currentWeight, currentId);
+    console.log("range change event\nthe new weight is:", currentWeight, '\nchange weight for article id:', currentId);
 
   }
 
