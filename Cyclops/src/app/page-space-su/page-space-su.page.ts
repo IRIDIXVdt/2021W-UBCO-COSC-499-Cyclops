@@ -193,7 +193,16 @@ export class PageSpaceSuPage implements OnInit {
 
   }
 
-  async submitEcoSolEvent(solutionWeight: number, solutionId: string) {
+  updateEcoItemList(data, update: boolean) {
+    if (update) {
+      let onChangeItem = this.userEcoItemList.find(i => i.ecoId == data.ecoId);//locates the onChange Item
+      onChangeItem.weight = data.weight;//change the weight
+    } else {
+      this.userEcoItemList.push(data);
+    }
+  }
+
+  async submitEcoSolEvent(solutionWeight: number, solutionId: string, update: boolean) {
     const currentTime = new Date().getTime();
     console.log("onSubmit", solutionId, this.userId, currentTime);
     const uploadData: userEcoItem = {//sol'n init
@@ -202,7 +211,8 @@ export class PageSpaceSuPage implements OnInit {
       weight: solutionWeight,//by default
     }
     //push into sol'n list
-    this.userEcoItemList.push(uploadData);
+    this.updateEcoItemList(uploadData, update);
+
     const userData: any = {
       userEcoSolutions: this.userEcoItemList,
     }
