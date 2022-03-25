@@ -43,6 +43,8 @@ export class PageSpaceSuPage implements OnInit {
   userEcoItemList: userEcoItem[];
   // completedList: string[];
   scoreArea: number;
+  slider: number; //variable for range slider
+  color: string; // String to get color value for color change
 
 
   constructor(
@@ -54,24 +56,26 @@ export class PageSpaceSuPage implements OnInit {
     public loadingController: LoadingController,
     public authService: AuthService
   ) {
+    this.slider = 0;
     this.scoreArea = 0;
     this.contentLoading();
     // this.dummyContentLoading();
     this.sections = sectionList;
     this.sortTypeOnChange();
-    if(JSON.parse(localStorage.getItem('user')) != null){
+    if (JSON.parse(localStorage.getItem('user')) != null) {
       this.userId = JSON.parse(localStorage.getItem('user')).uid;
-    }else{
+    } else {
       this.userId = 'null';
     }
-    
+
     // console.log(this.userId);
     //this.ecoListContentLoading();  // move this inside the contentLoading()
     this.userProgressTypeInit();
+    this.initializeColor();
 
   }
 
-  async popAlert(message){
+  async popAlert(message) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       message: message,
@@ -80,7 +84,7 @@ export class PageSpaceSuPage implements OnInit {
     await alert.present();
   }
 
-  async alertMessage(message){
+  async alertMessage(message) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       message: message,
@@ -90,6 +94,7 @@ export class PageSpaceSuPage implements OnInit {
   }
 
   assignCompletedList() {
+    //this merges information from both lists: the solution list and the user list
     this.scoreArea = 0;
     for (let item of this.localSol) {
       // if (this.completedList.indexOf(item.id) > -1) {
@@ -97,17 +102,22 @@ export class PageSpaceSuPage implements OnInit {
       for (let ecoAttendItem of this.userEcoItemList) {
         if (item.id === ecoAttendItem.ecoId) {
           item.attend = true;
+          item.weight = ecoAttendItem.weight;
+
+          // item.weight = 1;//tentative
+          //we have this solution attended by our user
           // console.log(this.scoreArea, 'adds', item.star, ecoAttendItem.weight, 'from', item.name);
-          this.scoreArea += (item.star + 1) * ecoAttendItem.weight;
+          this.scoreArea += (item.star + 1) * ecoAttendItem.weight;//add up the new weights to the ecotracker
           break;
+          //as there should only be one match for the whole list, we can break here to save some computations
         }
       }
     }
 
     this.displaySol = this.localSol;
-    console.log('loaded solution and user progress successfully merged');    
+    console.log('loaded solution and user progress successfully merged');
   }
-  updateUserTotalEcoScore(){
+  updateUserTotalEcoScore() {
     //update total score  to database
     const data: any = {
       totalEcoScore: this.scoreArea
@@ -130,13 +140,39 @@ export class PageSpaceSuPage implements OnInit {
     //code here
   }
 
-  rangeChange() {
-    console.log("range change");
-    //code here
+  initializeColor() {
+    this.color = 'medium';
+  }
+
+  rangeChangeEvent(currentWeight, currentId) {
+    console.log("range change event\nthe new weight is:", currentWeight, '\nchange weight for article id:', currentId);
+
+  }
+
+  localWeightUpdate(currentWeight, currentId) {
+    //assign this new weight to localSol
+    let onChangeItem = this.localSol.find(i => i.id == currentId);//locates the onChange Item
+    onChangeItem.weight = currentWeight;//change the weight
+  }
+
+  colorAssign(color: number) {
+    if (color == 2) {
+      return 'success';
+    }
+    else if (color == 1) {
+      return 'warning';
+    }
+    else if (color == 0) {
+      return 'medium';
+    }
+    else {
+      return 'danger';
+    }
+
   }
 
   ecoListContentLoading() {
-    if(this.authService.isLogin()){
+    if (this.authService.isLogin()) {
       const subscription = this.firebaseService.getUserByIdService(this.userId).subscribe(
         e => {
           this.userEcoItemList = e.payload.data()["userEcoSolutions"];
@@ -144,6 +180,7 @@ export class PageSpaceSuPage implements OnInit {
           if (this.userEcoItemList == undefined) {//check with new account for testing*
             this.userEcoItemList = [];
           }
+          //user eco list item consists of all the solutions the user has attempted
           this.assignCompletedList();
           this.updateDisplayList();
           subscription.unsubscribe();
@@ -153,19 +190,29 @@ export class PageSpaceSuPage implements OnInit {
           this.userEcoItemList = [];
         })
     }
-    
+
   }
 
-  async submitEcoSolEvent(solutionId: string) {
+  updateEcoItemList(data, update: boolean) {
+    if (update) {
+      let onChangeItem = this.userEcoItemList.find(i => i.ecoId == data.ecoId);//locates the onChange Item
+      onChangeItem.weight = data.weight;//change the weight
+    } else {
+      this.userEcoItemList.push(data);
+    }
+  }
+
+  async submitEcoSolEvent(solutionWeight: number, solutionId: string, update: boolean) {
     const currentTime = new Date().getTime();
     console.log("onSubmit", solutionId, this.userId, currentTime);
     const uploadData: userEcoItem = {//sol'n init
       time: currentTime,
       ecoId: solutionId,
-      weight: 1,//by default
+      weight: solutionWeight,//by default
     }
     //push into sol'n list
-    this.userEcoItemList.push(uploadData);
+    this.updateEcoItemList(uploadData, update);
+
     const userData: any = {
       userEcoSolutions: this.userEcoItemList,
     }
@@ -181,12 +228,13 @@ export class PageSpaceSuPage implements OnInit {
       this.updateDisplayList();
       this.updateUserTotalEcoScore();
       this.alertMessage("Successful");
+      this.localWeightUpdate(solutionWeight, solutionId);//update this score to localSol
     }).catch((error) => {
       console.log(error);
       loading.dismiss();
       this.alertMessage("Check your internet Connection");
     });
-   
+
   }
 
 
@@ -205,12 +253,11 @@ export class PageSpaceSuPage implements OnInit {
           section: e.payload.doc.data()['section'],
           star: e.payload.doc.data()['star'],
           attend: false,
+          weight: 0,
         }
       })
-
-      // console.log("content loaded", this.solutions.map((a: any) => a.starLevel));
       this.localSol = this.solutions;
-      // console.log("solution", this.solutions);
+
       this.ecoListContentLoading();
       this.sortTypeInitialize();
     }, (err: any) => {
@@ -233,20 +280,19 @@ export class PageSpaceSuPage implements OnInit {
     this.section = "All";
   }
 
-/*   openModal() {
-    this.modalCtrol.create({
-      component: ScoreModalComponent,
-      componentProps: this.profile
-    }).then(modalres => {
-      modalres.present();
-
-      modalres.onDidDismiss().then(res => {
-        if (res.data != null) {
-          this.profile = res.data;
-        }
-      })
-    })
-  } */
+  /*   openModal() {
+     this.modalCtrol.create({
+       component: ScoreModalComponent,
+       componentProps: this.profile
+     }).then(modalres => {
+       modalres.present();
+       modalres.onDidDismiss().then(res => {
+         if (res.data != null) {
+           this.profile = res.data;
+         }
+       })
+     })
+   } */
 
   sortTypeOnChange() {
     // const currentTime = new Date().getTime();
@@ -292,7 +338,7 @@ export class PageSpaceSuPage implements OnInit {
   }
 
   updateDisplayList() {
-    console.log("update display with rule:",this.sortType,this.section,this.userProgressType);
+    console.log("update display with rule:\nsort type:", this.sortType, '\nseciton name:', this.section, '\nprogress type:', this.userProgressType);
     // this display list handles everything:
     this.displaySol = this.localSol;
     // 1. attend type
@@ -311,6 +357,7 @@ type fetchSolution = {
   detail: string;
   section: string;
   attend: boolean;
+  weight: number;
 }
 type userEcoItem = {
   time: number;
