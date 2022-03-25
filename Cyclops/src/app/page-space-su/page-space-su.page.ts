@@ -107,7 +107,7 @@ export class PageSpaceSuPage implements OnInit {
           // item.weight = 1;//tentative
           //we have this solution attended by our user
           // console.log(this.scoreArea, 'adds', item.star, ecoAttendItem.weight, 'from', item.name);
-          this.scoreArea += (item.star + 1) * ecoAttendItem.weight;//add up the new weights to the ecotracker
+          this.addScore(item.star, ecoAttendItem.weight);//add up the new weights to the ecotracker
           break;
           //as there should only be one match for the whole list, we can break here to save some computations
         }
@@ -115,8 +115,17 @@ export class PageSpaceSuPage implements OnInit {
     }
 
     this.displaySol = this.localSol;
-    console.log('loaded solution and user progress successfully merged');
+    console.log('loaded solution and user progress successfully merged', this.scoreArea);
   }
+
+  addScore(star, weight) {
+    if (weight > 0) {
+      this.scoreArea += (star + 1) * weight * 0.5;
+    } else if (weight == -1) {
+      this.scoreArea -= (star + 1);
+    }
+  }
+
   updateUserTotalEcoScore() {
     //update total score  to database
     const data: any = {
@@ -241,19 +250,19 @@ export class PageSpaceSuPage implements OnInit {
   goSurvey() {
     this.router.navigateByUrl('tabs/page-space-me');
   }
-  
+
   customFormatter(value: number) {
-    
-    if(value == -1){
+
+    if (value == -1) {
       return 'Bad';
-    }else if(value == 0){
+    } else if (value == 0) {
       return 'Ok';
-    }else if(value ==1){
+    } else if (value == 1) {
       return 'great!'
-    }else if(value ==2){
+    } else if (value == 2) {
       return 'Wonderful!'
     }
-      
+
   }
 
 
