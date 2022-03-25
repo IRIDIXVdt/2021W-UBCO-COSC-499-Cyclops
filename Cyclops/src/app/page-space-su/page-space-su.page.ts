@@ -254,13 +254,13 @@ export class PageSpaceSuPage implements OnInit {
   customFormatter(value: number) {
 
     if (value == -1) {
-      return 'Bad';
+      return '\xa0\xa0Bad\xa0\xa0';
     } else if (value == 0) {
-      return 'Ok';
+      return '\xa0\xa0Ok\xa0\xa0';
     } else if (value == 1) {
-      return 'great!'
+      return '\xa0\xa0Great!\xa0\xa0'
     } else if (value == 2) {
-      return 'Wonderful!'
+      return '\xa0\xa0Wonderful!\xa0\xa0'
     }
 
   }
