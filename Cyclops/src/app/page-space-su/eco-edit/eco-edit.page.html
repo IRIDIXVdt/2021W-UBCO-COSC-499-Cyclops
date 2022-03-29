@@ -18,7 +18,7 @@
     <ion-list>
       <ion-item>
         <ion-label position="stacked">Star: {{solutionDetail.star+1}}</ion-label>
-        <ion-range min="0" max="4" step="1" snaps="true"  [(ngModel)]="solutionDetail.star"> </ion-range>
+        <ion-range min="0" max="4" step="1" snaps="true" [(ngModel)]="solutionDetail.star"> </ion-range>
       </ion-item>
       <ion-item>
         <ion-label position="stacked">Name: </ion-label>
@@ -26,17 +26,18 @@
       </ion-item>
       <ion-item>
         <ion-label position="stacked">Section: </ion-label>
-        <ion-textarea rows="1" [(ngModel)]="solutionDetail.section"></ion-textarea>
+        <ion-select [ngModel]="solutionDetail.section">
+          <ion-select-option *ngFor="let item of selectionList" [value]="item">
+            {{ item }}
+          </ion-select-option>
+        </ion-select>
       </ion-item>
       <ion-item>
         <ion-label position="stacked">Solution Detail: </ion-label>
         <ion-textarea rows="6" [(ngModel)]="solutionDetail.detail"></ion-textarea>
       </ion-item>
-      <ion-item>
-        <ion-button expand="block" id="button" (click)="save()">Save Changes</ion-button>
-      </ion-item>
+      <ion-button expand="block" id="button" (click)="save()">Save Changes</ion-button>
     </ion-list>
-
 
   </ng-container>
 

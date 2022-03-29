@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AlertController, LoadingController, ModalController, NavParams } from '@ionic/angular';
 import { FirebaseService } from 'src/app/FirebaseService/firebase.service';
+import { sectionList } from '../../sharedData/ecoData';
 
 @Component({
   selector: 'app-eco-edit',
@@ -10,13 +11,14 @@ import { FirebaseService } from 'src/app/FirebaseService/firebase.service';
 export class EcoEditPage implements OnInit {
   @Input() ecoId: string;
   solutionDetail: any;
+  selectionList: string[];
   constructor(
     public modalController: ModalController,
     public firebaseService: FirebaseService,
     public alertController: AlertController,
     public loadingController: LoadingController,
   ) {
-   
+    this.selectionList = sectionList;
   }
 
   loadData(targetId) {
@@ -47,7 +49,7 @@ export class EcoEditPage implements OnInit {
     await alert.present();
   }
 
-  save(){
+  save() {
     console.log('save changes to cloud!');
   }
 
