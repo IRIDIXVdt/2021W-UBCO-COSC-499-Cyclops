@@ -222,6 +222,7 @@ export class ScoringPage implements OnInit {
   getSolutionsForSelectedSections(val:string){
     this.buttonClicked = !this.buttonClicked;
     this.solutions = SectionAssign.find(s=> s.section.trim() == val.trim()).solutions;
+    console.log(this.solutions);
   }
   selectedSection($event) {
     // this.buttonClicked = !this.buttonClicked;
