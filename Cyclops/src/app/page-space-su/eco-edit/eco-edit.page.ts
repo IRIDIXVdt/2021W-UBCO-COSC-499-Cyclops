@@ -28,7 +28,7 @@ export class EcoEditPage implements OnInit {
           section: e.payload.data()['section'],
           star: e.payload.data()['star'],
         };
-        console.log('solution content', this.solutionDetail);
+        // console.log('solution content', this.solutionDetail);
       },
       err => {
         // console.debug(err);
@@ -45,6 +45,10 @@ export class EcoEditPage implements OnInit {
       buttons: ['Ok']
     });
     await alert.present();
+  }
+
+  save(){
+    console.log('save changes to cloud!');
   }
 
   ngOnInit() {
