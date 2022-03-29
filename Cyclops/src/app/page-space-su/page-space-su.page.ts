@@ -18,14 +18,14 @@ import { AuthService } from '../authentication/auth/auth.service';
 })
 export class PageSpaceSuPage implements OnInit {
 
-  profile = {
-    solution: "Solution", // retrives solution from score modal
-    section: "Section", // retrives section from score modal
-    range: 0, // retrives value from score modal
-    level: 0, // retrives level from score modal
-    updatedscore: 0, // retrives level*range
-    rating: 0
-  }
+  // profile = {
+  //   solution: "Solution", // retrives solution from score modal
+  //   section: "Section", // retrives section from score modal
+  //   range: 0, // retrives value from score modal
+  //   level: 0, // retrives level from score modal
+  //   updatedscore: 0, // retrives level*range
+  //   rating: 0
+  // }
 
   surveyPage: PageSpaceMePage;
 
@@ -396,12 +396,41 @@ export class PageSpaceSuPage implements OnInit {
   }
 
   //admin functions
-  editCard(id){
-    console.log('edit',id);
+  editCard(id) {
+    console.log('edit', id);
   }
 
-  removeCard(id){
-    console.log('remove',id);
+  removeFromLocal(id) {
+    this.localSol = this.localSol.filter(f => (f.id != id));
+    //now local soltion do not contain this
+    
+    this.assignCompletedList();
+    this.updateDisplayList(); 
+  }
+
+  async removeCard(id) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      message: 'Do you want to remove this Eco Tracker Solution? This action cannot be undone.',
+      buttons: ['Cancel', 'Yes']
+    });
+    await alert.present();
+    const { role } = await alert.onDidDismiss();//fetch result
+    
+    if (role == "cancel" || role == "backdrop") {
+      console.log('cancel')
+    } else {
+      const loading = await this.loadingController.create({
+        message: 'Please wait...',
+      });
+      loading.present();  // present loading animation
+      //remove locally first
+      this.removeFromLocal(id);
+      //then remove on remote
+
+      loading.dismiss();
+    }
+
   }
 }
 
