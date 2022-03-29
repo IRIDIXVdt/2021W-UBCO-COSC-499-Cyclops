@@ -276,10 +276,26 @@
 
                                     </ion-accordion>
                                 </ion-accordion-group>
-
-                                <ion-card-content>
-                                    {{item.detail}}
-                                </ion-card-content>
+                                <ng-container *ngIf="!this.authService.isAdmin()">
+                                    <ion-card-content>
+                                        {{item.detail}}
+                                    </ion-card-content>
+                                </ng-container>
+                                <ng-container *ngIf="this.authService.isAdmin()">
+                                    <ion-card-content class="solutionHandle">
+                                        <p>{{item.detail}}</p>
+                                        <ion-button>
+                                            Edit Card
+                                        </ion-button>
+                                        <ion-button>
+                                            Removed Card
+                                        </ion-button>
+                                        <ion-button>
+                                            Change Star
+                                        </ion-button>
+                                    </ion-card-content>
+                                    
+                                </ng-container>
 
                             </ion-card>
                         </ion-col>
