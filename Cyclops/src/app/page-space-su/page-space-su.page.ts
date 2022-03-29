@@ -338,6 +338,7 @@ export class PageSpaceSuPage implements OnInit {
    openModal() {
      this.modalCtrol.create({
        component: ScoringPagePage,
+       componentProps: this.profile
      }).then(modalres => {
        modalres.present();
        modalres.onDidDismiss().then(res => {
