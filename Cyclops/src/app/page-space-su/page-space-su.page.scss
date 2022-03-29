@@ -70,6 +70,27 @@
     }
 }
 
+.solutionHandle:hover {
+    p{
+        display: none;
+    }
+    ion-button{
+        display: block;
+    }
+}
+
+.solutionHandle{
+    p{
+        display: block;
+    }
+    ion-button{
+        display: none;
+    }
+}
+// .solutionEditButton {
+//     display: none;
+// }
+
 .isection {
     padding-top: 10px;
     padding-bottom: 10px;

@@ -45,7 +45,7 @@ export class PageSpaceSuPage implements OnInit {
   scoreArea: number;
   slider: number; //variable for range slider
   color: string; // String to get color value for color change
-
+  editMode: boolean = false;//for admin user
 
   constructor(
     private modalCtrol: ModalController,
@@ -54,7 +54,7 @@ export class PageSpaceSuPage implements OnInit {
     private router: Router,
     public alertController: AlertController,
     public loadingController: LoadingController,
-    public authService: AuthService
+    public authService: AuthService,
   ) {
     this.slider = 0;
     this.scoreArea = 0;
@@ -67,6 +67,9 @@ export class PageSpaceSuPage implements OnInit {
     } else {
       this.userId = 'null';
     }
+
+    // console.log('is Admin?:', this.authService.isAdmin());
+    // information on Admin is stored in this.authService.isAdmin()
 
     // console.log(this.userId);
     //this.ecoListContentLoading();  // move this inside the contentLoading()
@@ -91,6 +94,26 @@ export class PageSpaceSuPage implements OnInit {
       buttons: ['Ok']
     });
     await alert.present();
+  }
+
+  //edit mode change section
+  editModeOnchange(state) {
+    this.editMode = state;
+  }
+
+  async enterEditMode() {
+    this.editModeOnchange(true);
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      subHeader: '',
+      message: "You can add and edit \"Eco Solution\" here. To exit, click the exit button on the top left corner.",
+      buttons: ['Ok']
+    });
+    await alert.present();
+  }
+
+  async exitEditMode() {
+    this.editModeOnchange(false);
   }
 
   assignCompletedList() {
@@ -138,7 +161,6 @@ export class PageSpaceSuPage implements OnInit {
       this.alertMessage("Check your internet Connection");
     });
   }
-
 
   userProgressTypeInit() {
     this.userProgressType = "not";

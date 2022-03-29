@@ -3,6 +3,16 @@
         <ion-title style="font-size: 150%;">
             ECO Tracker
         </ion-title>
+        <ion-button slot="start" class="ion-padding-start" (click)="exitEditMode()"
+            *ngIf="editMode && this.authService.isAdmin()">
+            <ion-icon name="chevron-back-outline"></ion-icon>
+            <ion-label>&nbsp;&nbsp;Exit Edit</ion-label>
+        </ion-button>
+        <ion-button slot="end" class="ion-padding-end" (click)="enterEditMode()"
+            *ngIf="!editMode && this.authService.isAdmin()">
+            <ion-icon name="settings-outline"></ion-icon>
+            <ion-label>&nbsp;&nbsp;Manage Article Cards</ion-label>
+        </ion-button>
     </ion-toolbar>
 </ion-header>
 
@@ -266,10 +276,26 @@
 
                                     </ion-accordion>
                                 </ion-accordion-group>
-
-                                <ion-card-content>
-                                    {{item.detail}}
-                                </ion-card-content>
+                                <ng-container *ngIf="!this.authService.isAdmin()">
+                                    <ion-card-content>
+                                        {{item.detail}}
+                                    </ion-card-content>
+                                </ng-container>
+                                <ng-container *ngIf="this.authService.isAdmin()">
+                                    <ion-card-content class="solutionHandle">
+                                        <p>{{item.detail}}</p>
+                                        <ion-button>
+                                            Edit Card
+                                        </ion-button>
+                                        <ion-button>
+                                            Removed Card
+                                        </ion-button>
+                                        <ion-button>
+                                            Change Star
+                                        </ion-button>
+                                    </ion-card-content>
+                                    
+                                </ng-container>
 
                             </ion-card>
                         </ion-col>
