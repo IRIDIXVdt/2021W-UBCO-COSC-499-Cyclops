@@ -69,6 +69,7 @@ export class ScoringPage implements OnInit {
   
 
     this.usereco = this.navParams.data;
+    this.usereco.range = 0;
 
     
   }
