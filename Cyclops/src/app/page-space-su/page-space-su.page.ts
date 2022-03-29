@@ -41,6 +41,7 @@ export class PageSpaceSuPage implements OnInit {
 
 
   userEcoItemList: userEcoItem[];
+  userEcoItemListRemote: userEcoItem[];
   // completedList: string[];
   scoreArea: number;
   slider: number; //variable for range slider
@@ -118,6 +119,9 @@ export class PageSpaceSuPage implements OnInit {
 
   assignCompletedList() {
     //this merges information from both lists: the solution list and the user list
+    if(this.userEcoItemList == undefined){
+      this.userEcoItemList = this.userEcoItemListRemote;
+    }
     this.scoreArea = 0;
     for (let item of this.localSol) {
       // if (this.completedList.indexOf(item.id) > -1) {
@@ -206,20 +210,22 @@ export class PageSpaceSuPage implements OnInit {
     if (this.authService.isLogin()) {
       const subscription = this.firebaseService.getUserByIdService(this.userId).subscribe(
         e => {
-          this.userEcoItemList = e.payload.data()["userEcoSolutions"];
+          this.userEcoItemListRemote = e.payload.data()["userEcoSolutions"];
           // console.log(this.userEcoItemList);
-          if (this.userEcoItemList == undefined) {//check with new account for testing*
-            this.userEcoItemList = [];
+          if (this.userEcoItemListRemote == undefined) {//check with new account for testing*
+            this.userEcoItemListRemote = [];
           }
           //user eco list item consists of all the solutions the user has attempted
           this.assignCompletedList();
           this.updateDisplayList();
+
           subscription.unsubscribe();
-          console.log('unsubscribe success', this.userEcoItemList);
+          console.log('unsubscribe success', this.userEcoItemListRemote);
         }, err => {
           console.debug(err);
-          this.userEcoItemList = [];
-        })
+          this.userEcoItemListRemote = [];
+        });
+
     }
 
   }
@@ -305,6 +311,7 @@ export class PageSpaceSuPage implements OnInit {
       this.localSol = this.solutions;
 
       this.ecoListContentLoading();
+      // this.userEcoItemList = this.userEcoItemList;
       this.sortTypeInitialize();
     }, (err: any) => {
       console.log(err);
@@ -403,9 +410,22 @@ export class PageSpaceSuPage implements OnInit {
   removeFromLocal(id) {
     this.localSol = this.localSol.filter(f => (f.id != id));
     //now local soltion do not contain this
-    
+
     this.assignCompletedList();
-    this.updateDisplayList(); 
+    this.updateDisplayList();
+  }
+
+  async removeFromRemote(id) {
+    const loading = await this.loadingController.create({
+      message: 'Please wait...',
+    });
+    loading.present();  // present loading animation
+    this.firebaseService.deleteDocByIdService("NewEcoSolution", id).then((res: any) => console.log(res, " ", id),
+      (err: any) => { console.log(err); loading.dismiss(); });
+    loading.dismiss();
+    this.updateUserTotalEcoScore();
+
+    this.updateDisplayList();
   }
 
   async removeCard(id) {
@@ -416,19 +436,15 @@ export class PageSpaceSuPage implements OnInit {
     });
     await alert.present();
     const { role } = await alert.onDidDismiss();//fetch result
-    
+
     if (role == "cancel" || role == "backdrop") {
       console.log('cancel')
     } else {
-      const loading = await this.loadingController.create({
-        message: 'Please wait...',
-      });
-      loading.present();  // present loading animation
+
       //remove locally first
       this.removeFromLocal(id);
       //then remove on remote
-
-      loading.dismiss();
+      this.removeFromRemote(id);
     }
 
   }
