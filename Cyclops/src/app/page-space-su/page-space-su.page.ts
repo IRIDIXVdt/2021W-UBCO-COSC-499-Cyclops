@@ -394,6 +394,15 @@ export class PageSpaceSuPage implements OnInit {
     // 3. sort type
     this.sortTypeOnChange()
   }
+
+  //admin functions
+  editCard(id){
+    console.log('edit',id);
+  }
+
+  removeCard(id){
+    console.log('remove',id);
+  }
 }
 
 type fetchSolution = {

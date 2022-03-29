@@ -3,7 +3,7 @@
         <ion-title style="font-size: 150%;">
             ECO Tracker
         </ion-title>
-        <ion-button slot="start" class="ion-padding-start" (click)="exitEditMode()"
+        <!-- <ion-button slot="start" class="ion-padding-start" (click)="exitEditMode()"
             *ngIf="editMode && this.authService.isAdmin()">
             <ion-icon name="chevron-back-outline"></ion-icon>
             <ion-label>&nbsp;&nbsp;Exit Edit</ion-label>
@@ -12,7 +12,7 @@
             *ngIf="!editMode && this.authService.isAdmin()">
             <ion-icon name="settings-outline"></ion-icon>
             <ion-label>&nbsp;&nbsp;Manage Article Cards</ion-label>
-        </ion-button>
+        </ion-button> -->
     </ion-toolbar>
 </ion-header>
 
@@ -284,14 +284,11 @@
                                 <ng-container *ngIf="this.authService.isAdmin()">
                                     <ion-card-content class="solutionHandle">
                                         <p>{{item.detail}}</p>
-                                        <ion-button>
+                                        <ion-button (click)="editCard(item.id)">
                                             Edit Card
                                         </ion-button>
-                                        <ion-button>
+                                        <ion-button (click)="removeCard(item.id)">
                                             Removed Card
-                                        </ion-button>
-                                        <ion-button>
-                                            Change Star
                                         </ion-button>
                                     </ion-card-content>
                                     
