@@ -11,7 +11,7 @@ import { convertToViews } from '@ionic/core/dist/types/components/nav/view-contr
 import { solutionItem, sectionList, ecoData } from '../sharedData/ecoData';
 import { AuthService } from '../authentication/auth/auth.service';
 import { EcoEditPage } from '../page-space-su/eco-edit/eco-edit.page';
-import { ScoringPagePage } from './scoring-page/scoring-page.page';
+import { ScoringPage } from './scoring/scoring.page';
 
 @Component({
   selector: 'app-page-space-su',
@@ -20,14 +20,14 @@ import { ScoringPagePage } from './scoring-page/scoring-page.page';
 })
 export class PageSpaceSuPage implements OnInit {
 
-  profile = {
-    solution: "Solution", // retrives solution from score modal
-    section: "Section", // retrives section from score modal
-    range: 0, // retrives value from score modal
-    level: 0, // retrives level from score modal
-    updatedscore: 0, // retrives level*range
-    rating: 0
-  }
+  // profile = {
+  //   solution: "Solution", // retrives solution from score modal
+  //   section: "Section", // retrives section from score modal
+  //   range: 0, // retrives value from score modal
+  //   level: 0, // retrives level from score modal
+  //   updatedscore: 0, // retrives level*range
+  //   rating: 0
+  // }
 
   surveyPage: PageSpaceMePage;
 
@@ -337,8 +337,7 @@ export class PageSpaceSuPage implements OnInit {
 
    openModal() {
      this.modalCtrol.create({
-       component: ScoringPagePage,
-       componentProps: this.profile
+       component: ScoringPage,
      }).then(modalres => {
        modalres.present();
        modalres.onDidDismiss().then(res => {
