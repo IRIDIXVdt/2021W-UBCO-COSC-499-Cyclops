@@ -10,6 +10,7 @@ import { identifierModuleUrl } from '@angular/compiler';
 import { convertToViews } from '@ionic/core/dist/types/components/nav/view-controller';
 import { solutionItem, sectionList, ecoData } from '../sharedData/ecoData';
 import { AuthService } from '../authentication/auth/auth.service';
+import { EcoEditPage } from '../page-space-su/eco-edit/eco-edit.page';
 
 @Component({
   selector: 'app-page-space-su',
@@ -119,7 +120,7 @@ export class PageSpaceSuPage implements OnInit {
 
   assignCompletedList() {
     //this merges information from both lists: the solution list and the user list
-    if(this.userEcoItemList == undefined){
+    if (this.userEcoItemList == undefined) {
       this.userEcoItemList = this.userEcoItemListRemote;
     }
     this.scoreArea = 0;
@@ -405,6 +406,19 @@ export class PageSpaceSuPage implements OnInit {
   //admin functions
   editCard(id) {
     console.log('edit', id);
+
+    this.modalCtrol.create({
+      component: EcoEditPage,
+      componentProps: {
+        ecoId: id,
+      }
+    }).then(modalres => {
+      modalres.present();
+      modalres.onDidDismiss().then(res => {
+        console.log("edit eco modal dismiss!");
+      })
+
+    })
   }
 
   removeFromLocal(id) {
