@@ -77,6 +77,8 @@ export class ScoringPage implements OnInit {
 
       this.sectionClicked = !this.sectionClicked;
       this.starClicked=null;
+      this.usereco.range = 0;
+      this.usereco.level = 0;
     
     
   }
@@ -84,6 +86,7 @@ export class ScoringPage implements OnInit {
 
     this.starClicked = !this.starClicked;
     this.sectionClicked=null;
+    this.usereco.range = 0;
   
   
 }
