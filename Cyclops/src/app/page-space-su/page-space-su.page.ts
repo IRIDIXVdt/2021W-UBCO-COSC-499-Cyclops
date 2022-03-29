@@ -10,6 +10,7 @@ import { identifierModuleUrl } from '@angular/compiler';
 import { convertToViews } from '@ionic/core/dist/types/components/nav/view-controller';
 import { solutionItem, sectionList, ecoData } from '../sharedData/ecoData';
 import { AuthService } from '../authentication/auth/auth.service';
+import { EcoEditPage } from '../page-space-su/eco-edit/eco-edit.page';
 
 @Component({
   selector: 'app-page-space-su',
@@ -18,14 +19,14 @@ import { AuthService } from '../authentication/auth/auth.service';
 })
 export class PageSpaceSuPage implements OnInit {
 
-  profile = {
-    solution: "Solution", // retrives solution from score modal
-    section: "Section", // retrives section from score modal
-    range: 0, // retrives value from score modal
-    level: 0, // retrives level from score modal
-    updatedscore: 0, // retrives level*range
-    rating: 0
-  }
+  // profile = {
+  //   solution: "Solution", // retrives solution from score modal
+  //   section: "Section", // retrives section from score modal
+  //   range: 0, // retrives value from score modal
+  //   level: 0, // retrives level from score modal
+  //   updatedscore: 0, // retrives level*range
+  //   rating: 0
+  // }
 
   surveyPage: PageSpaceMePage;
 
@@ -41,6 +42,7 @@ export class PageSpaceSuPage implements OnInit {
 
 
   userEcoItemList: userEcoItem[];
+  userEcoItemListRemote: userEcoItem[];
   // completedList: string[];
   scoreArea: number;
   slider: number; //variable for range slider
@@ -118,6 +120,9 @@ export class PageSpaceSuPage implements OnInit {
 
   assignCompletedList() {
     //this merges information from both lists: the solution list and the user list
+    if (this.userEcoItemList == undefined) {
+      this.userEcoItemList = this.userEcoItemListRemote;
+    }
     this.scoreArea = 0;
     for (let item of this.localSol) {
       // if (this.completedList.indexOf(item.id) > -1) {
@@ -206,20 +211,22 @@ export class PageSpaceSuPage implements OnInit {
     if (this.authService.isLogin()) {
       const subscription = this.firebaseService.getUserByIdService(this.userId).subscribe(
         e => {
-          this.userEcoItemList = e.payload.data()["userEcoSolutions"];
+          this.userEcoItemListRemote = e.payload.data()["userEcoSolutions"];
           // console.log(this.userEcoItemList);
-          if (this.userEcoItemList == undefined) {//check with new account for testing*
-            this.userEcoItemList = [];
+          if (this.userEcoItemListRemote == undefined) {//check with new account for testing*
+            this.userEcoItemListRemote = [];
           }
           //user eco list item consists of all the solutions the user has attempted
           this.assignCompletedList();
           this.updateDisplayList();
+
           subscription.unsubscribe();
-          console.log('unsubscribe success', this.userEcoItemList);
+          console.log('unsubscribe success', this.userEcoItemListRemote);
         }, err => {
           console.debug(err);
-          this.userEcoItemList = [];
-        })
+          this.userEcoItemListRemote = [];
+        });
+
     }
 
   }
@@ -305,6 +312,7 @@ export class PageSpaceSuPage implements OnInit {
       this.localSol = this.solutions;
 
       this.ecoListContentLoading();
+      // this.userEcoItemList = this.userEcoItemList;
       this.sortTypeInitialize();
     }, (err: any) => {
       console.log(err);
@@ -393,6 +401,66 @@ export class PageSpaceSuPage implements OnInit {
     this.attendTypeOnChange()
     // 3. sort type
     this.sortTypeOnChange()
+  }
+
+  //admin functions
+  editCard(id) {
+    console.log('edit', id);
+
+    this.modalCtrol.create({
+      component: EcoEditPage,
+      componentProps: {
+        ecoId: id,
+      }
+    }).then(modalres => {
+      modalres.present();
+      modalres.onDidDismiss().then(res => {
+        console.log("edit eco modal dismiss!");
+      })
+
+    })
+  }
+
+  removeFromLocal(id) {
+    this.localSol = this.localSol.filter(f => (f.id != id));
+    //now local soltion do not contain this
+
+    this.assignCompletedList();
+    this.updateDisplayList();
+  }
+
+  async removeFromRemote(id) {
+    const loading = await this.loadingController.create({
+      message: 'Please wait...',
+    });
+    loading.present();  // present loading animation
+    this.firebaseService.deleteDocByIdService("NewEcoSolution", id).then((res: any) => console.log(res, " ", id),
+      (err: any) => { console.log(err); loading.dismiss(); });
+    loading.dismiss();
+    this.updateUserTotalEcoScore();
+
+    this.updateDisplayList();
+  }
+
+  async removeCard(id) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      message: 'Do you want to remove this Eco Tracker Solution? This action cannot be undone.',
+      buttons: ['Cancel', 'Yes']
+    });
+    await alert.present();
+    const { role } = await alert.onDidDismiss();//fetch result
+
+    if (role == "cancel" || role == "backdrop") {
+      console.log('cancel')
+    } else {
+
+      //remove locally first
+      this.removeFromLocal(id);
+      //then remove on remote
+      this.removeFromRemote(id);
+    }
+
   }
 }
 

@@ -144,6 +144,10 @@ export class FirebaseService {
     //update the array attribute
   }
 
+  updateEcoSolutionService(docId, data) {
+    return this.db.collection('NewEcoSolution').doc(docId).update(data);
+  }
+
   // getUserEcoSolutionService(userId){
   //   return this.db.collection('users').doc(userId).snapshotChanges();
   // }
