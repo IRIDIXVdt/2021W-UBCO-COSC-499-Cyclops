@@ -26,7 +26,7 @@
       </ion-item>
       <ion-item>
         <ion-label position="stacked">Section: </ion-label>
-        <ion-select [ngModel]="solutionDetail.section">
+        <ion-select [(ngModel)]="solutionDetail.section">
           <ion-select-option *ngFor="let item of selectionList" [value]="item">
             {{ item }}
           </ion-select-option>
