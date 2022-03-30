@@ -203,11 +203,11 @@ export class PageSpaceSuPage implements OnInit {
     }
     else if (color == 0) {
       this.progressAlertMessage="Not doing it!"
-      return 'medium';
+      return 'danger';
     }
     else {     
-      this.progressAlertMessage="No decision"
-      return 'danger';
+      this.progressAlertMessage="Not applicable"
+      return 'medium';
     }
 
   }
