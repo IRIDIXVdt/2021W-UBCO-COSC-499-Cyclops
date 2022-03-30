@@ -40,7 +40,7 @@ export class PageSpaceSuPage implements OnInit {
   sections: string[];
   userId: string;//this is the login user Id
   userProgressType: string; //take cares of what to display
-
+  progressAlertMessage:string;
 
   userEcoItemList: userEcoItem[];
   userEcoItemListRemote: userEcoItem[];
@@ -194,15 +194,19 @@ export class PageSpaceSuPage implements OnInit {
 
   colorAssign(color: number) {
     if (color == 2) {
+      this.progressAlertMessage="Doing it!"
       return 'success';
     }
     else if (color == 1) {
+      this.progressAlertMessage="Working on it!"
       return 'warning';
     }
     else if (color == 0) {
+      this.progressAlertMessage="Not doing it!"
       return 'medium';
     }
-    else {
+    else {     
+      this.progressAlertMessage="No decision"
       return 'danger';
     }
 

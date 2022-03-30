@@ -247,10 +247,13 @@
                                             <ion-label>Update Solution</ion-label>
                                         </ion-item>
                                         <ion-list slot="content">
+                                            <ion-text class="center-text" [color]="colorAssign(item.weight)">
+                                               <h6> {{progressAlertMessage}} </h6>
+                                            </ion-text>
                                             <ion-item>
                                                 <ion-range deounce='500' min="-1" max="2" step="1"
                                                     [(ngModel)]="item.weight" [color]="colorAssign(item.weight)"
-                                                    [pinFormatter]="customFormatter" [pin]="true" snaps="true"
+                                                    [pinFormatter]="customFormatter" [pin]="false" snaps="true"
                                                     grid="true" snaps color="success" list='tickmarks'
                                                     (ionBlur)="rangeChangeEvent(item.weight, item.id)"
                                                     class="ion-padding-end">
