@@ -3,7 +3,8 @@ import { FirebaseService } from '../FirebaseService/firebase.service';
 import { displayArticle, segmentItem } from '../sharedData/displayArticle';
 import { displayArticles } from '../sharedData/displayArticles';
 import { AuthService } from '../authentication/auth/auth.service';
-import { AlertController, LoadingController } from '@ionic/angular';
+import { AlertController, LoadingController, ModalController } from '@ionic/angular';
+import { ArticleSearchPagePage } from './article-search-page/article-search-page.page';
 
 @Component({
   selector: 'app-page-space-la',
@@ -33,7 +34,8 @@ export class PageSpaceLaPage implements OnInit {
     public alertController: AlertController,
     public firebaseService: FirebaseService,
     public authService: AuthService,
-    public loadingController: LoadingController,
+    private modalCtrol: ModalController,
+    public loadingController: LoadingController
   ) {
     this.status1 = "Articles p1";
     this.authService.afAuth.onAuthStateChanged(user=> {
@@ -138,7 +140,7 @@ export class PageSpaceLaPage implements OnInit {
     const searchbar = document.querySelector('ion-searchbar');
     searchbar.style.display = "none";
     this.loadData(searchbar);
-    searchbar.addEventListener('ionFocus', handleFocus);
+    /*searchbar.addEventListener('ionFocus', handleFocus);
     //searchbar focus, hide other things
     function handleFocus() {
       const searchResult = document.querySelector('#requested') as HTMLElement;
@@ -160,7 +162,23 @@ export class PageSpaceLaPage implements OnInit {
         textSpace.style.display = 'block';
         searchResult.style.display = 'none';
       });
-    }
+    }*/
+  }
+
+  searchModalEvent(aId: string){
+    console.log("cover event", aId);
+    this.modalCtrol.create({
+      component: ArticleSearchPagePage,
+      componentProps: {
+        content: aId,
+      }
+    }).then(modalres => {
+      modalres.present();
+      modalres.onDidDismiss().then(res => {
+        console.log("cover modal dismiss!");
+      })
+
+    })
   }
 
   editModeOnchange(state) {
