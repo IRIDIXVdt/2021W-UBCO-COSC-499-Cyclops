@@ -1,7 +1,7 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
+  appId: 'cyclopediapp.firebaseapp.com',
   appName: 'Cyclops',
   webDir: 'www',
   bundledWebRuntime: false
