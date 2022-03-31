@@ -25,7 +25,9 @@ export class PageSpaceErPage implements OnInit {
   readProgressTitle: any;
   readProgressIntro: any;
   survey: any;
-  userEcoScore = 0;
+
+  userEcoScore:number;
+  solutionTotalScore:number;
 
 
   authentication: boolean; // validate user is logged in or not 
@@ -67,10 +69,18 @@ export class PageSpaceErPage implements OnInit {
   loadUserEcoScore() {
     const subscription = this.firebaseService.getUserByIdService(this.userId).subscribe(
       e => {
-        if (e.payload.data()['totalEcoScore'] != undefined) {
+        if (e.payload.data()['totalEcoScore'] != undefined){
           this.userEcoScore = e.payload.data()['totalEcoScore']; // get user total eco score
-        } else {
-          this.userEcoScore = 0;
+        }
+        if(e.payload.data()['totalEcoScore'] == undefined){
+          this.userEcoScore =0;
+        }
+
+        if (e.payload.data()['solutionTotalScore'] != undefined){
+          this.solutionTotalScore = e.payload.data()['solutionTotalScore']; 
+        }
+        if (e.payload.data()['solutionTotalScore'] == undefined){
+          this.solutionTotalScore = 0; 
         }
 
       }

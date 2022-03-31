@@ -23,8 +23,14 @@
                 <ion-card-subtitle style="text-align:center; font-size:150%;">Overall Score</ion-card-subtitle>
                 <ion-card-title fontsize>
                     <div class="odisplay">
-                        <div class="odisplay1" *ngIf="this.authService.isLogin()">
+                        <div class="odisplay1" *ngIf="this.authService.isLogin() && solutionTotalScore == 0" >
                             <h4 style="text-align:center; font-size:300%" fontsize>{{scoreArea}}</h4>
+                            <div class="odisplay2">
+                                <ion-icon name="star"></ion-icon>
+                            </div>
+                        </div>
+                        <div class="odisplay1" *ngIf="this.authService.isLogin() && solutionTotalScore != 0">
+                            <h4 style="text-align:center; font-size:300%" fontsize>{{scoreArea}} / {{solutionTotalScore}}</h4>
                             <div class="odisplay2">
                                 <ion-icon name="star"></ion-icon>
                             </div>

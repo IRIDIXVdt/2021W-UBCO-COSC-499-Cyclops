@@ -50,6 +50,8 @@ export class PageSpaceSuPage implements OnInit {
   color: string; // String to get color value for color change
   editMode: boolean = false;//for admin user
 
+  solutionTotalScore=0; // total score of all solutions
+
   constructor(
     private modalCtrol: ModalController,
     public navCtrl: NavController,
@@ -78,6 +80,7 @@ export class PageSpaceSuPage implements OnInit {
     //this.ecoListContentLoading();  // move this inside the contentLoading()
     this.userProgressTypeInit();
     this.initializeColor();
+
 
   }
 
@@ -156,17 +159,21 @@ export class PageSpaceSuPage implements OnInit {
   }
 
   updateUserTotalEcoScore() {
+    //get solutionTotalScore
+    this.solutionTotalScore=100;
     //update total score  to database
     const data: any = {
-      totalEcoScore: this.scoreArea
+      totalEcoScore: this.scoreArea,
+      solutionTotalScore: this.solutionTotalScore
     }
     this.firebaseService.addUserEcoService(this.userId, data).then(() => {
-      console.log('updated userName');
+      console.log('updated UserTotalEcoScore');
     }).catch((error) => {
       console.log(error);
       this.alertMessage("Check your internet Connection");
     });
   }
+
 
   userProgressTypeInit() {
     this.userProgressType = "not";
