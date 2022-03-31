@@ -58,6 +58,11 @@
         <ng-container *ngIf="authService.isLogin()">
             <h1>For you</h1>
             <ion-row>
+                <ion-col size-xs="12" size-sm="6" size-md="6" size-lg="4" *ngIf="readProgressImg==undefined">
+                    <ion-card>
+                        <ion-progress-bar type="indeterminate"></ion-progress-bar>
+                    </ion-card>
+                </ion-col>
                 <ion-col size-xs="12" size-sm="6" size-md="6" size-lg="4" *ngIf="readProgressImg!=undefined">
                     <ion-card [routerLink]="['/tabs/page-space-me/' , latestRead]" color='light' style="height:100%">
                         <img [src]="readProgressImg" style="width: 690px; height:200px; object-fit: cover" />
@@ -81,15 +86,23 @@
                         <ion-progress-bar color="primary" value="0.8"></ion-progress-bar>
                     </ion-card-content>
                 </ion-card> -->
-
-                    <ion-card class="center" routerLink="/tabs/page-space-su" color='light'>
+                    <ion-card *ngIf="userEcoScore ==  undefined || solutionTotalScore == undefined">
+                        <ion-progress-bar type="indeterminate"></ion-progress-bar>
+                    </ion-card>
+                    <ion-card class="center" routerLink="/tabs/page-space-su" color='light' *ngIf="userEcoScore !=  undefined && solutionTotalScore != undefined">
                         <ion-card-header>
                             <ion-card-subtitle style="text-align:center; font-size:200%;">Overall Score
                             </ion-card-subtitle>
                             <ion-card-title fontsize>
                                 <div class="odisplay">
-                                    <div class="odisplay1" *ngIf="this.authService.isLogin()">
+                                    <div class="odisplay1" *ngIf="this.authService.isLogin() && solutionTotalScore == 0" >
                                         <h4 style="text-align:center; font-size:300%" fontsize>{{userEcoScore}}</h4>
+                                        <div class="odisplay2">
+                                            <ion-icon name="star"></ion-icon>
+                                        </div>
+                                    </div>
+                                    <div class="odisplay1" *ngIf="this.authService.isLogin() && solutionTotalScore != 0">
+                                        <h4 style="text-align:center; font-size:300%" fontsize>{{userEcoScore}} / {{solutionTotalScore}}</h4>
                                         <div class="odisplay2">
                                             <ion-icon name="star"></ion-icon>
                                         </div>
