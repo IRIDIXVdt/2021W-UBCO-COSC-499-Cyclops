@@ -84,10 +84,19 @@ export class PageSpaceSuPage implements OnInit {
 
   }
 
-  async popAlert(message) {
+  async popAlert() {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
-      message: message,
+      message:`
+      <p> You can assess your effort to get score</p>
+      <p> If you choose: </p>
+      <ul>
+        <li>Not applicable: Not count for score</li>
+        <li>Not Doing it: Get 0 score</li>
+        <li>Working on it: Get half of score</li>
+        <li>Doing it: Get all score</li>
+      </ul>
+    `,
       buttons: ['Ok']
     });
     await alert.present();
