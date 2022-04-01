@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from 'src/app/FirebaseService/firebase.service';
 import { displayArticle, segmentItem } from 'src/app/sharedData/displayArticle';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-article-search-page',
@@ -16,6 +17,7 @@ export class ArticleSearchPagePage implements OnInit {
 
   constructor(
     public firebaseService: FirebaseService,
+    public modalController: ModalController,
   ) { }
   contentLoading() {
 
@@ -67,6 +69,10 @@ export class ArticleSearchPagePage implements OnInit {
     const searchbar = document.querySelector('ion-searchbar');
     searchbar.style.display = "none";
     this.loadData(searchbar);
+  }
+  dismissModal() {
+    // console.log("we have the editC now as:", this.editC);
+    this.modalController.dismiss();
   }
 
 }

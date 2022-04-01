@@ -9,7 +9,7 @@
     <div id='requested'>
         <!-- <p>this is the requested field</p> -->
         <ion-list id='viewContentTest' *ngFor="let cardContent of searchField | filter:userInput ">
-            <ion-item id="listItem" *ngIf="cardContent.columnName > 0">
+            <ion-item id="listItem" *ngIf="cardContent.columnName > 0" (click)="dismissModal()">
                 <ion-card color='light' routerLink="/tabs/page-space-me/{{cardContent.id}}">
                     <ion-card-header>
                         <ion-card-subtitle>{{cardContent.subtitle}}</ion-card-subtitle>
