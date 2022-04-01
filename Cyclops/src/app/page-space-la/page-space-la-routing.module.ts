@@ -14,6 +14,10 @@ const routes: Routes = [
   {
     path: 'article-image',
     loadChildren: () => import('./article-image/article-image.module').then( m => m.ArticleImagePageModule)
+  },
+  {
+    path: 'article-search-page',
+    loadChildren: () => import('./article-search-page/article-search-page.module').then( m => m.ArticleSearchPagePageModule)
   }
 
 ];
