@@ -31,7 +31,7 @@ export class PageSpaceSuPage implements OnInit {
 
   surveyPage: PageSpaceMePage;
 
-  solutions;
+  solutions:any;
   // selectOptions;
   localSol: fetchSolution[];
   displaySol: fetchSolution[];
@@ -237,7 +237,10 @@ export class PageSpaceSuPage implements OnInit {
     if (this.authService.isLogin()) {
       const subscription = this.firebaseService.getUserByIdService(this.userId).subscribe(
         e => {
-          this.userEcoItemListRemote = e.payload.data()["userEcoSolutions"];
+          if(e.payload.data()["userEcoSolutions"] != undefined){
+            this.userEcoItemListRemote = e.payload.data()["userEcoSolutions"];
+          }
+          
           // console.log(this.userEcoItemList);
           if (this.userEcoItemListRemote == undefined) {//check with new account for testing*
             this.userEcoItemListRemote = [];
