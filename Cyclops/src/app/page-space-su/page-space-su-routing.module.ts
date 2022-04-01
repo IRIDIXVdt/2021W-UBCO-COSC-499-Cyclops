@@ -7,14 +7,15 @@ const routes: Routes = [
   {
     path: '',
     component: PageSpaceSuPage
-  },  {
+  },
+  {
     path: 'eco-edit',
     loadChildren: () => import('./eco-edit/eco-edit.module').then( m => m.EcoEditPageModule)
   },
-  {
+ /*  {
     path: 'scoring',
     loadChildren: () => import('./scoring/scoring.module').then( m => m.ScoringPageModule)
-  }
+  } */
 
 ];
 
