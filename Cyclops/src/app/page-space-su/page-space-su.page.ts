@@ -11,7 +11,7 @@ import { convertToViews } from '@ionic/core/dist/types/components/nav/view-contr
 import { solutionItem, sectionList, ecoData } from '../sharedData/ecoData';
 import { AuthService } from '../authentication/auth/auth.service';
 import { EcoEditPage } from '../page-space-su/eco-edit/eco-edit.page';
-import { ScoringPage } from './scoring/scoring.page';
+
 
 @Component({
   selector: 'app-page-space-su',
@@ -360,7 +360,7 @@ export class PageSpaceSuPage implements OnInit {
     this.section = "All";
   }
 
-  openModal() {
+  /* openModal() {
     this.modalCtrol.create({
       component: ScoringPage,
     }).then(modalres => {
@@ -370,7 +370,7 @@ export class PageSpaceSuPage implements OnInit {
         }
       })
     })
-  }
+  } */
 
   sortTypeOnChange() {
     // const currentTime = new Date().getTime();
