@@ -40,7 +40,7 @@ export class PageSpaceSuPage implements OnInit {
   sections: string[];
   userId: string;//this is the login user Id
   userProgressType: string; //take cares of what to display
-  progressAlertMessage:string;
+  progressAlertMessage: string;
 
   userEcoItemList: userEcoItem[];
   userEcoItemListRemote: userEcoItem[];
@@ -50,7 +50,7 @@ export class PageSpaceSuPage implements OnInit {
   color: string; // String to get color value for color change
   editMode: boolean = false;//for admin user
 
-  solutionTotalScore=0; // total score of all solutions
+  solutionTotalScore = 0; // total score of all solutions
 
   constructor(
     private modalCtrol: ModalController,
@@ -87,7 +87,7 @@ export class PageSpaceSuPage implements OnInit {
   async popAlert() {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
-      message:`
+      message: `
       <p> You can assess your effort to get score</p>
       <p> If you choose: </p>
       <ul>
@@ -136,10 +136,13 @@ export class PageSpaceSuPage implements OnInit {
     if (this.userEcoItemList == undefined) {
       this.userEcoItemList = this.userEcoItemListRemote;
     }
+    //reset values first
+    this.solutionTotalScore = 0;
     this.scoreArea = 0;
     for (let item of this.localSol) {
       // if (this.completedList.indexOf(item.id) > -1) {
       //stop as soon as there is a match
+      this.solutionTotalScore += item.star;
       for (let ecoAttendItem of this.userEcoItemList) {
         if (item.id === ecoAttendItem.ecoId) {
           item.attend = true;
@@ -162,14 +165,16 @@ export class PageSpaceSuPage implements OnInit {
   addScore(star, weight) {
     if (weight > 0) {
       this.scoreArea += (star + 1) * weight * 0.5;
+
     } else if (weight == -1) {
-      this.scoreArea -= (star + 1);
+      // this.scoreArea -= (star + 1);
+      //we deduct the mark on total Score. 
+      this.solutionTotalScore -= (star + 1);
     }
   }
 
   updateUserTotalEcoScore() {
     //get solutionTotalScore
-    this.solutionTotalScore=100;
     //update total score  to database
     const data: any = {
       totalEcoScore: this.scoreArea,
@@ -210,19 +215,19 @@ export class PageSpaceSuPage implements OnInit {
 
   colorAssign(color: number) {
     if (color == 2) {
-      this.progressAlertMessage="Doing it!"
+      this.progressAlertMessage = "Doing it!"
       return 'success';
     }
     else if (color == 1) {
-      this.progressAlertMessage="Working on it!"
+      this.progressAlertMessage = "Working on it!"
       return 'warning';
     }
     else if (color == 0) {
-      this.progressAlertMessage="Not doing it!"
+      this.progressAlertMessage = "Not doing it!"
       return 'danger';
     }
-    else {     
-      this.progressAlertMessage="Not applicable"
+    else {
+      this.progressAlertMessage = "Not applicable"
       return 'medium';
     }
 
@@ -355,17 +360,17 @@ export class PageSpaceSuPage implements OnInit {
     this.section = "All";
   }
 
-   openModal() {
-     this.modalCtrol.create({
-       component: ScoringPage,
-     }).then(modalres => {
-       modalres.present();
-       modalres.onDidDismiss().then(res => {
-         if (res.data != null) {
-         }
-       })
-     })
-   } 
+  openModal() {
+    this.modalCtrol.create({
+      component: ScoringPage,
+    }).then(modalres => {
+      modalres.present();
+      modalres.onDidDismiss().then(res => {
+        if (res.data != null) {
+        }
+      })
+    })
+  }
 
   sortTypeOnChange() {
     // const currentTime = new Date().getTime();
