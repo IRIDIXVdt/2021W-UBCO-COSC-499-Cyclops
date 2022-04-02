@@ -14,15 +14,15 @@ const routes: Routes = [
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
   },
   {
-    path: 'page-space-la',
+    path: 'Home',
     loadChildren: () => import('./page-space-la/page-space-la.module').then(m => m.PageSpaceLaPageModule)
   },
   {
-    path: 'page-space-er',
+    path: 'Articles',
     loadChildren: () => import('./page-space-er/page-space-er.module').then(m => m.PageSpaceErPageModule)
   },
   {
-    path: 'page-space-su',
+    path: 'EcoTracker',
     loadChildren: () => import('./page-space-su/page-space-su.module').then(m => m.PageSpaceSuPageModule)
   },
   {
