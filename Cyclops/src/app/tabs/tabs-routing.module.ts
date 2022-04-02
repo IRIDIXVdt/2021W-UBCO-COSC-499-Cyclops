@@ -20,11 +20,11 @@ const routes: Routes = [
       //   loadChildren: () => import('../tab3/tab3.module').then(m => m.Tab3PageModule)
       // },
       {
-        path: 'page-space-er',
+        path: 'Home',
         loadChildren: () => import('../page-space-er/page-space-er.module').then(m => m.PageSpaceErPageModule)
       },
       {
-        path: 'page-space-la',
+        path: 'Articles',
         loadChildren: () => import('../page-space-la/page-space-la.module').then(m => m.PageSpaceLaPageModule)
       },
       {
@@ -32,7 +32,7 @@ const routes: Routes = [
         loadChildren: () => import('../page-space-me/page-space-me.module').then(m => m.PageSpaceMePageModule)
       },
       {
-        path: 'page-space-su',
+        path: 'EcoTracker',
         loadChildren: () => import('../page-space-su/page-space-su.module').then(m => m.PageSpaceSuPageModule)
       },
       {
@@ -45,14 +45,14 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: '/tabs/page-space-er',
+        redirectTo: '/tabs/Home',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/page-space-er',
+    redirectTo: '/tabs/Home',
     pathMatch: 'full'
   }
 ];
