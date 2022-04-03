@@ -23,14 +23,15 @@
                 <ion-card-subtitle style="text-align:center; font-size:150%;">Overall Score</ion-card-subtitle>
                 <ion-card-title fontsize>
                     <div class="odisplay">
-                        <div class="odisplay1" *ngIf="this.authService.isLogin() && solutionTotalScore == 0" >
+                        <div class="odisplay1" *ngIf="this.authService.isLogin() && solutionTotalScore == 0">
                             <h4 style="text-align:center; font-size:300%" fontsize>{{scoreArea}}</h4>
                             <div class="odisplay2">
                                 <ion-icon name="star"></ion-icon>
                             </div>
                         </div>
                         <div class="odisplay1" *ngIf="this.authService.isLogin() && solutionTotalScore != 0">
-                            <h4 style="text-align:center; font-size:300%" fontsize>{{scoreArea}} / {{solutionTotalScore}}</h4>
+                            <h4 style="text-align:center; font-size:300%" fontsize>{{scoreArea}} /
+                                {{solutionTotalScore}}</h4>
                             <div class="odisplay2">
                                 <ion-icon name="star"></ion-icon>
                             </div>
@@ -50,7 +51,7 @@
             </ion-card-header>
         </ion-card>
 
-       <!--  <div id="button-web">
+        <!--  <div id="button-web">
             <section id="surveycenter">
                 <ion-button expand="block" (click)="openModal()">Submit New Solution</ion-button>
             </section>
@@ -222,6 +223,40 @@
                 </ion-col>
                 <ion-col>
                     <ion-row>
+                        <ion-col *ngIf="this.authService.isAdmin()" class="ecoCardItem">
+                            <ion-fab horizontal="center" vertical="center">
+                                <ion-fab-button color="primary" >
+                                    <!-- (click)="articleAddEvent()" -->
+                                    <ion-icon name="add-circle-outline" size="large"></ion-icon>
+                                </ion-fab-button>
+                            </ion-fab>
+                            <ion-card color='light' disabled="true">
+                                 <ion-card-header>
+                                    <ion-card-subtitle>
+                                        1
+                                        <ion-icon name="star"></ion-icon>
+                                    </ion-card-subtitle>
+                                    <ion-card-title>
+                                        <ion-label color="primary">
+                                            New Solution
+                                        </ion-label>
+                                    </ion-card-title>
+                                </ion-card-header>
+                                <ion-card-content>
+                                    <ion-label>
+                                        Section
+                                    </ion-label>
+                                </ion-card-content>
+                                <ion-accordion-group>
+                                    <ion-accordion>
+                                        <ion-item slot="header" color="primary" >
+                                            <ion-label>Assess Your Effort</ion-label>
+                                        </ion-item>
+                                    </ion-accordion>
+                                </ion-accordion-group>
+                            </ion-card>
+                        </ion-col>
+
                         <ion-col *ngFor="let item of displaySol" class="ecoCardItem">
                             <ion-card class="solution" color='light'>
                                 <!--  *ngIf="item.id !" -->
@@ -254,7 +289,7 @@
                                         </ion-item>
                                         <ion-list slot="content">
                                             <ion-text class="center-text" [color]="colorAssign(item.weight)">
-                                               <h6> {{progressAlertMessage}} </h6>
+                                                <h6> {{progressAlertMessage}} </h6>
                                             </ion-text>
                                             <ion-item>
                                                 <ion-range deounce='500' min="-1" max="2" step="1"
@@ -300,7 +335,7 @@
                                             Removed Card
                                         </ion-button>
                                     </ion-card-content>
-                                    
+
                                 </ng-container>
 
                             </ion-card>
