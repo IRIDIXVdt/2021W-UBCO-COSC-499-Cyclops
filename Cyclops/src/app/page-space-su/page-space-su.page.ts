@@ -52,6 +52,8 @@ export class PageSpaceSuPage implements OnInit {
 
   solutionTotalScore = 0; // total score of all solutions
 
+  testString="asdasdbjashgdyuigasuidbjkashduiashuidhasuidhuaishduashduhnasudhasuihduiashduiashdiuashuidhasuid"
+
   constructor(
     private modalCtrol: ModalController,
     public navCtrl: NavController,
@@ -98,6 +100,15 @@ export class PageSpaceSuPage implements OnInit {
       </ul>
     `,
       buttons: ['Ok']
+    });
+    await alert.present();
+  }
+
+  async displaySolutionDetail(description) {
+    const alert = await this.alertController.create({
+      cssClass: 'alertSolutionContentDetails',
+      message: description,
+      buttons: ['Continue']
     });
     await alert.present();
   }
