@@ -3,16 +3,6 @@
         <ion-title style="font-size: 150%;">
             ECO Tracker
         </ion-title>
-        <!-- <ion-button slot="start" class="ion-padding-start" (click)="exitEditMode()"
-            *ngIf="editMode && this.authService.isAdmin()">
-            <ion-icon name="chevron-back-outline"></ion-icon>
-            <ion-label>&nbsp;&nbsp;Exit Edit</ion-label>
-        </ion-button>
-        <ion-button slot="end" class="ion-padding-end" (click)="enterEditMode()"
-            *ngIf="!editMode && this.authService.isAdmin()">
-            <ion-icon name="settings-outline"></ion-icon>
-            <ion-label>&nbsp;&nbsp;Manage Article Cards</ion-label>
-        </ion-button> -->
     </ion-toolbar>
 </ion-header>
 
@@ -50,13 +40,6 @@
                 </ion-card-title>
             </ion-card-header>
         </ion-card>
-
-        <!--  <div id="button-web">
-            <section id="surveycenter">
-                <ion-button expand="block" (click)="openModal()">Submit New Solution</ion-button>
-            </section>
-        </div> -->
-
 
         <h1>Solutions <ion-icon name="help-circle-outline" (click)="popAlert()">
             </ion-icon>
@@ -133,12 +116,17 @@
                                     <ion-radio slot="start" value="All"></ion-radio>
                                 </ion-item>
                                 <ng-container *ngFor="let item of sections">
+                                    <!-- all items below should have edit button available -->
                                     <ion-item>
                                         <ion-label> {{item}}</ion-label>
                                         <ion-radio slot="start" value={{item}}></ion-radio>
                                     </ion-item>
                                 </ng-container>
                             </ion-radio-group>
+                            <ion-item>
+                                <ion-label color="primary">Add a new section</ion-label>
+                                <ion-radio slot="start"></ion-radio>
+                            </ion-item>
                         </ion-col>
 
                     </ion-row>
