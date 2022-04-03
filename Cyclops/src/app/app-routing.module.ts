@@ -30,7 +30,7 @@ const routes: Routes = [
     loadChildren: () => import('./page-space-me/page-space-me.module').then(m => m.PageSpaceMePageModule)
   },
   {
-    path: 'SelectedArticle/:docId',
+    path: 'tabs/SelectedArticle/:docId',
     loadChildren: () => import('./page-space-me/page-space-me.module').then(m => m.PageSpaceMePageModule)
   },
   {
