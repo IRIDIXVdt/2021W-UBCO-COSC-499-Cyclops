@@ -286,13 +286,19 @@
                                     </ion-accordion>
                                 </ion-accordion-group>
                                 <ng-container *ngIf="!this.authService.isAdmin()">
-                                    <ion-card-content>
-                                        {{item.detail}}
+                                    <ion-card-content *ngIf="item.detail.length >130">
+                                        <p>{{ (item.detail.length>130)? (item.detail | slice:0:130)+'...':(str) }}</p>                                    
+                                        <ion-button (click)="displaySolutionDetail(item.detail)" color="primary" fill="clear" expand="block">Read More</ion-button>                                       
+                                    </ion-card-content>
+                                    <ion-card-content *ngIf="item.detail.length <130" >
+                                        <p>{{item.detail}}</p>
+                                        
                                     </ion-card-content>
                                 </ng-container>
-                                <ng-container *ngIf="this.authService.isAdmin()">
-                                    <ion-card-content class="solutionHandle">
-                                        <p>{{item.detail}}</p>
+                                <ng-container *ngIf="this.authService.isAdmin()"  >
+                                    <ion-card-content class="solutionHandle" *ngIf="item.detail.length >130">
+                                        <p>{{ (item.detail.length>130)? (item.detail | slice:0:130)+'...':(str) }}</p>
+                                        <ion-button (click)="displaySolutionDetail(item.detail)" color="primary" class="readMoreButton">Read More</ion-button>
                                         <ion-button (click)="editCard(item.id)">
                                             Edit Card
                                         </ion-button>
@@ -300,6 +306,17 @@
                                             Removed Card
                                         </ion-button>
                                     </ion-card-content>
+
+                                    <ion-card-content class="solutionHandle" *ngIf="item.detail.length <130"  > 
+                                        <p>{{item.detail}}</p>
+                                        <ion-button (click)="displaySolutionDetail(item.detail)" color="primary">Read More</ion-button>
+                                        <ion-button (click)="editCard(item.id)">
+                                            Edit Card
+                                        </ion-button>
+                                        <ion-button (click)="removeCard(item.id)">
+                                            Removed Card
+                                        </ion-button>
+                                    </ion-card-content> 
                                     
                                 </ng-container>
 
