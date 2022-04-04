@@ -498,8 +498,24 @@ export class PageSpaceSuPage implements OnInit {
     console.log("section on edit", item);
   }
 
-  removeSection(item) {
-    console.log("section on remove", item);
+  async removeSection(item) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      message: 'Do you want to remove section ' + item + '? All eco solutions of this section will also be removed. This action cannot be undone.',
+      buttons: ['Cancel', 'Yes']
+    });
+    await alert.present();
+    const { role } = await alert.onDidDismiss();//fetch result
+
+    if (role == "cancel" || role == "backdrop") {
+      console.log('cancel')
+    } else {
+      console.log('remove section event', item);
+      //remove locally first
+
+      //then remove on remote
+
+    }
   }
 }
 
