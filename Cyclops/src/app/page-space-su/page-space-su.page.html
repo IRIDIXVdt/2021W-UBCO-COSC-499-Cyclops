@@ -51,6 +51,8 @@
 
         <ng-container *ngIf="displaySol && this.authService.isLogin()">
             <ion-row>
+
+                <!-- desktop users -->
                 <ion-col size-xs="12" size-sm="5" size-md="4" size-lg="3" class="web-display">
                     <ion-row>
                         <ion-col>
@@ -75,14 +77,11 @@
                                     <ion-radio slot="start" value="sT"></ion-radio>
                                 </ion-item>
                             </ion-radio-group>
-
-
                         </ion-col>
                     </ion-row>
 
                     <ion-row>
                         <ion-col>
-
                             <ion-radio-group [(ngModel)]="userProgressType" (ionChange)="updateDisplayList()">
                                 <ion-list-header>
                                     <ion-label>Display solutions that are</ion-label>
@@ -103,10 +102,8 @@
                         </ion-col>
                     </ion-row>
 
-
                     <ion-row>
                         <ion-col>
-
                             <ion-radio-group [(ngModel)]="section" (ionChange)="updateDisplayList()">
                                 <ion-list-header>
                                     <ion-label>Select by Section</ion-label>
@@ -117,20 +114,27 @@
                                 </ion-item>
                                 <ng-container *ngFor="let item of sections">
                                     <!-- all items below should have edit button available -->
-                                    <ion-item>
+                                    <ion-item class="sectionHandle">
                                         <ion-label> {{item}}</ion-label>
                                         <ion-radio slot="start" value={{item}}></ion-radio>
+
+                                        <!-- editSection(item) -->
+                                        <ion-button fill="clear" (click)="editSection(item)">
+                                            <ion-icon name="create-outline"></ion-icon>
+                                        </ion-button>
+
+                                        <!-- removeSection(item) -->
+                                        <ion-button fill="clear" (click)="removeSection(item)">
+                                            <ion-icon name="trash-outline" color="danger"></ion-icon>
+                                        </ion-button>
                                     </ion-item>
                                 </ng-container>
                             </ion-radio-group>
-                            <ion-item>
-                                <ion-label color="primary">Add a new section</ion-label>
-                                <ion-radio slot="start"></ion-radio>
-                            </ion-item>
                         </ion-col>
-
                     </ion-row>
                 </ion-col>
+
+                <!-- mobile users -->
                 <ion-col size-xs="12" size-sm="5" size-md="4" size-lg="3" class="mobile-display">
                     <ion-accordion-group>
                         <ion-accordion>
@@ -209,17 +213,18 @@
                         </ion-accordion>
                     </ion-accordion-group>
                 </ion-col>
+
                 <ion-col>
                     <ion-row>
                         <ion-col *ngIf="this.authService.isAdmin()" class="ecoCardItem">
                             <ion-fab horizontal="center" vertical="center">
-                                <ion-fab-button color="primary" >
+                                <ion-fab-button color="primary">
                                     <!-- (click)="articleAddEvent()" -->
                                     <ion-icon name="add-circle-outline" size="large"></ion-icon>
                                 </ion-fab-button>
                             </ion-fab>
                             <ion-card color='light' disabled="true">
-                                 <ion-card-header>
+                                <ion-card-header>
                                     <ion-card-subtitle>
                                         1
                                         <ion-icon name="star"></ion-icon>
@@ -237,7 +242,7 @@
                                 </ion-card-content>
                                 <ion-accordion-group>
                                     <ion-accordion>
-                                        <ion-item slot="header" color="primary" >
+                                        <ion-item slot="header" color="primary">
                                             <ion-label>Assess Your Effort</ion-label>
                                         </ion-item>
                                     </ion-accordion>

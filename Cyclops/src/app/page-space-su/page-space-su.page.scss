@@ -70,6 +70,18 @@
     }
 }
 
+.sectionHandle:hover{
+    ion-button{
+        display: block;
+    }
+}
+
+.sectionHandle{
+    ion-button{
+        display: none;
+    }
+}
+
 .solutionHandle:hover {
     p{
         display: none;
@@ -78,6 +90,7 @@
         display: block;
     }
 }
+
 
 .solutionHandle{
     min-height: 500px;
