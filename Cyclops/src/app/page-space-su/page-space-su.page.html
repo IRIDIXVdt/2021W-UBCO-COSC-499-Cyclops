@@ -115,16 +115,16 @@
                                 <ng-container *ngFor="let item of sections">
                                     <!-- all items below should have edit button available -->
                                     <ion-item class="sectionHandle">
-                                        <ion-label> {{item}}</ion-label>
-                                        <ion-radio slot="start" value={{item}}></ion-radio>
+                                        <ion-label> {{item.sectionName}}</ion-label>
+                                        <ion-radio slot="start" value={{item.sectionName}}></ion-radio>
 
                                         <!-- editSection(item) -->
-                                        <ion-button fill="clear" (click)="editSection(item)">
+                                        <ion-button fill="clear" (click)="editSection(item.sectionName)">
                                             <ion-icon name="create-outline"></ion-icon>
                                         </ion-button>
 
                                         <!-- removeSection(item) -->
-                                        <ion-button fill="clear" (click)="removeSection(item)">
+                                        <ion-button fill="clear" (click)="removeSection(item.sectionName)">
                                             <ion-icon name="trash-outline" color="danger"></ion-icon>
                                         </ion-button>
                                     </ion-item>
@@ -203,8 +203,8 @@
                                         </ion-item>
                                         <ng-container *ngFor="let item of sections">
                                             <ion-item>
-                                                <ion-label> {{item}}</ion-label>
-                                                <ion-radio slot="start" value={{item}}></ion-radio>
+                                                <ion-label> {{item.sectionName}}</ion-label>
+                                                <ion-radio slot="start" value={{item.sectionName}}></ion-radio>
                                             </ion-item>
                                         </ng-container>
                                     </ion-radio-group>

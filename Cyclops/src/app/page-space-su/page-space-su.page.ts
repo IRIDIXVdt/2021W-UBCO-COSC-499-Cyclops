@@ -37,7 +37,7 @@ export class PageSpaceSuPage implements OnInit {
   displaySol: fetchSolution[];
   sortType: string;//this handles the type of sorting
   section: string;//this handles which section we want
-  sections: string[];
+  sections: any;
   userId: string;//this is the login user Id
   userProgressType: string; //take cares of what to display
   progressAlertMessage: string;
@@ -52,7 +52,9 @@ export class PageSpaceSuPage implements OnInit {
 
   solutionTotalScore = 0; // total score of all solutions
 
-  testString="asdasdbjashgdyuigasuidbjkashduiashuidhasuidhuaishduashduhnasudhasuihduiashduiashdiuashuidhasuid"
+  currentSectionSolutions: any;
+
+  idOfSection:any;
 
   constructor(
     private modalCtrol: ModalController,
@@ -63,11 +65,11 @@ export class PageSpaceSuPage implements OnInit {
     public loadingController: LoadingController,
     public authService: AuthService,
   ) {
+    this.getSections();
     this.slider = 0;
     this.scoreArea = 0;
     this.contentLoading();
     // this.dummyContentLoading();
-    this.sections = sectionList;
     this.sortTypeOnChange();
     if (JSON.parse(localStorage.getItem('user')) != null) {
       this.userId = JSON.parse(localStorage.getItem('user')).uid;
@@ -82,6 +84,26 @@ export class PageSpaceSuPage implements OnInit {
     //this.ecoListContentLoading();  // move this inside the contentLoading()
     this.userProgressTypeInit();
     this.initializeColor();
+
+
+  }
+
+  getSections() {
+    const subscription = this.firebaseService.getSectionList().subscribe((res) => {
+      this.sections = res.map(e => {
+        return {
+          sectionName: e.payload.doc.data()['sectionName'],
+        }
+      })
+      console.log(this.sections);
+    }, (err: any) => {
+      this.alertMessage("Check your internet Connection");
+    })
+
+    if(this.sections != null){
+      subscription.unsubscribe();
+    }
+   
 
 
   }
@@ -506,6 +528,9 @@ export class PageSpaceSuPage implements OnInit {
   }
 
   async editSection(item) {
+    const loading = await this.loadingController.create({
+      message: 'Please wait...',
+    });
     console.log("section on edit", item);
 
     var newSectionInputName: string = item;
@@ -524,26 +549,70 @@ export class PageSpaceSuPage implements OnInit {
         {
           text: 'Yes',
           handler: (alertInputData) => {
-            // console.log(datainput.sectionTitle);
+            
+            loading.present();
+
             newSectionInputName = alertInputData.sectionTitle;
+            this.currentSectionSolutions = this.localSol.filter(f => (f.section === item));
+
+            //delete origin one 
+            this.localSol = this.localSol.filter(f => (f.section != item))
+
+            for (let data of this.currentSectionSolutions) {
+              // edit the section name 
+              data.section = newSectionInputName;
+              //push to localSol
+              this.localSol.push(data);
+            }
+            this.updateDisplayList();
+            for (let data of this.sections) {
+              if (data.sectionName == item) {
+                data.sectionName = newSectionInputName;
+              }
+            }
+            for (let data of this.currentSectionSolutions) {
+              this.firebaseService.updateEcoSolutionService(data.id, data).then((res: any) => {
+              }).catch((error) => {
+                console.log("error", error);
+                loading.dismiss();
+              })
+            } 
+
+            const subscriptionUpdate = this.firebaseService.getSectionName(item).subscribe((res: any) => {
+              if(res.length > 0){ // when res find values
+                this.idOfSection = res[0].payload.doc.id;
+              }
+             
+              this.firebaseService.upDateSectionList(this.idOfSection,newSectionInputName).then((res: any) => {
+                console.log("Update", res);
+              }).catch((error) => {
+                console.log("update error", error);
+                loading.dismiss();
+              })
+            });
+            /* subscriptionUpdate.unsubscribe();  */
+            loading.dismiss();
           }
         }]
     });
     await alert.present();
     const { role } = await alert.onDidDismiss();//fetch result
 
-    if (role == "cancel" || role == "backdrop") {
-      console.log('cancel')
-    } else {
-      console.log('edit section event', item, 'to', newSectionInputName);
-      //your code here:
 
-      //remove locally first
 
-      //then remove on remote
 
-    }
+    //update all ids
+
+
+    //remove locally first
+
+    //then remove on remote
+
   }
+
+
+
+
 
   async removeSection(item) {
     const alert = await this.alertController.create({
@@ -559,7 +628,7 @@ export class PageSpaceSuPage implements OnInit {
     } else {
       console.log('remove section event', item);
       //your code here:
-      
+
       //remove locally first
 
       //then remove on remote
