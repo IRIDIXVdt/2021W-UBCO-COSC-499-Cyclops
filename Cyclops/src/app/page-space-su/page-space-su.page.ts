@@ -31,7 +31,7 @@ export class PageSpaceSuPage implements OnInit {
 
   surveyPage: PageSpaceMePage;
 
-  solutions:any;
+  solutions: any;
   // selectOptions;
   localSol: fetchSolution[];
   displaySol: fetchSolution[];
@@ -237,10 +237,10 @@ export class PageSpaceSuPage implements OnInit {
     if (this.authService.isLogin()) {
       const subscription = this.firebaseService.getUserByIdService(this.userId).subscribe(
         e => {
-          if(e.payload.data()["userEcoSolutions"] != undefined){
+          if (e.payload.data()["userEcoSolutions"] != undefined) {
             this.userEcoItemListRemote = e.payload.data()["userEcoSolutions"];
           }
-          
+
           // console.log(this.userEcoItemList);
           if (this.userEcoItemListRemote == undefined) {//check with new account for testing*
             this.userEcoItemListRemote = [];
@@ -488,6 +488,14 @@ export class PageSpaceSuPage implements OnInit {
       this.removeFromRemote(id);
     }
 
+  }
+
+  editSection(item) {
+    console.log("section on edit", item);
+  }
+
+  removeSection(item) {
+    console.log("section on remove", item);
   }
 }
 
