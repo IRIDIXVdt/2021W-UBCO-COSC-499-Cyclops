@@ -494,14 +494,50 @@ export class PageSpaceSuPage implements OnInit {
     console.log("solution add event");
   }
 
-  editSection(item) {
+  async editSection(item) {
     console.log("section on edit", item);
+
+    var newSectionInputName: string = item;
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      message: 'Editing section ' + item + '. All eco solutions of this section will also be updated.',
+      inputs: [
+        {
+          name: 'sectionTitle',
+          type: 'text',
+          placeholder: item,
+        },
+      ],
+      buttons: [
+        'Cancel',
+        {
+          text: 'Yes',
+          handler: (alertInputData) => {
+            // console.log(datainput.sectionTitle);
+            newSectionInputName = alertInputData.sectionTitle;
+          }
+        }]
+    });
+    await alert.present();
+    const { role } = await alert.onDidDismiss();//fetch result
+
+    if (role == "cancel" || role == "backdrop") {
+      console.log('cancel')
+    } else {
+      console.log('edit section event', item, 'to', newSectionInputName);
+      //your code here:
+
+      //remove locally first
+
+      //then remove on remote
+
+    }
   }
 
   async removeSection(item) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
-      message: 'Do you want to remove section ' + item + '? All eco solutions of this section will also be removed. This action cannot be undone.',
+      message: 'Do you want to remove section \'' + item + '\'? All eco solutions of this section will also be removed. This action cannot be undone.',
       buttons: ['Cancel', 'Yes']
     });
     await alert.present();
@@ -511,6 +547,8 @@ export class PageSpaceSuPage implements OnInit {
       console.log('cancel')
     } else {
       console.log('remove section event', item);
+      //your code here:
+      
       //remove locally first
 
       //then remove on remote
