@@ -490,6 +490,10 @@ export class PageSpaceSuPage implements OnInit {
 
   }
 
+  solutionAddEvent() {
+    console.log("solution add event");
+  }
+
   editSection(item) {
     console.log("section on edit", item);
   }

@@ -218,7 +218,7 @@
                     <ion-row>
                         <ion-col *ngIf="this.authService.isAdmin()" class="ecoCardItem">
                             <ion-fab horizontal="center" vertical="center">
-                                <ion-fab-button color="primary">
+                                <ion-fab-button color="primary" (click)="solutionAddEvent()">
                                     <!-- (click)="articleAddEvent()" -->
                                     <ion-icon name="add-circle-outline" size="large"></ion-icon>
                                 </ion-fab-button>
