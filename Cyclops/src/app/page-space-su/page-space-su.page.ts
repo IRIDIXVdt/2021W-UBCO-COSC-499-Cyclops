@@ -54,7 +54,7 @@ export class PageSpaceSuPage implements OnInit {
 
   currentSectionSolutions: any;
 
-  idOfSection:any;
+  idOfSection: any;
 
   constructor(
     private modalCtrol: ModalController,
@@ -100,10 +100,10 @@ export class PageSpaceSuPage implements OnInit {
       this.alertMessage("Check your internet Connection");
     })
 
-    if(this.sections != null){
+    if (this.sections != null) {
       subscription.unsubscribe();
     }
-   
+
 
 
   }
@@ -549,7 +549,7 @@ export class PageSpaceSuPage implements OnInit {
         {
           text: 'Yes',
           handler: (alertInputData) => {
-            
+
             loading.present();
 
             newSectionInputName = alertInputData.sectionTitle;
@@ -576,14 +576,14 @@ export class PageSpaceSuPage implements OnInit {
                 console.log("error", error);
                 loading.dismiss();
               })
-            } 
+            }
 
             const subscriptionUpdate = this.firebaseService.getSectionName(item).subscribe((res: any) => {
-              if(res.length > 0){ // when res find values
+              if (res.length > 0) { // when res find values
                 this.idOfSection = res[0].payload.doc.id;
               }
-             
-              this.firebaseService.upDateSectionList(this.idOfSection,newSectionInputName).then((res: any) => {
+
+              this.firebaseService.upDateSectionList(this.idOfSection, newSectionInputName).then((res: any) => {
                 console.log("Update", res);
               }).catch((error) => {
                 console.log("update error", error);
@@ -623,15 +623,23 @@ export class PageSpaceSuPage implements OnInit {
     await alert.present();
     const { role } = await alert.onDidDismiss();//fetch result
 
+    const loading = await this.loadingController.create({
+      message: 'Please wait...',
+    });
+
     if (role == "cancel" || role == "backdrop") {
       console.log('cancel')
     } else {
-      console.log('remove section event', item);
-      //your code here:
+      loading.present();
+      this.localSol = this.localSol.filter(f => (f.section != item));
+      this.updateDisplayList();
+      this.sections = this.sections.filter(f => (f.sectionName != item));
 
-      //remove locally first
+      console.log(this.sections);
 
-      //then remove on remote
+      loading.dismiss();
+
+
 
     }
   }
