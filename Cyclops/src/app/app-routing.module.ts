@@ -14,27 +14,27 @@ const routes: Routes = [
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
   },
   {
-    path: 'page-space-la',
+    path: 'Articles',
     loadChildren: () => import('./page-space-la/page-space-la.module').then(m => m.PageSpaceLaPageModule)
   },
   {
-    path: 'page-space-er',
+    path: 'Home',
     loadChildren: () => import('./page-space-er/page-space-er.module').then(m => m.PageSpaceErPageModule)
   },
   {
-    path: 'page-space-su',
+    path: 'EcoTracker',
     loadChildren: () => import('./page-space-su/page-space-su.module').then(m => m.PageSpaceSuPageModule)
   },
   {
-    path: 'page-space-me',
+    path: 'SelectedArticles',
     loadChildren: () => import('./page-space-me/page-space-me.module').then(m => m.PageSpaceMePageModule)
   },
   {
-    path: 'tabs/page-space-me/:docId',
+    path: 'tabs/SelectedArticle/:docId',
     loadChildren: () => import('./page-space-me/page-space-me.module').then(m => m.PageSpaceMePageModule)
   },
   {
-    path: 'tabs/TextEdit/:docId',
+    path: 'tabs/EditContent/:docId',
     canActivate: [AuthGuard],
     // different from the id we had before, this new docId is from FireStore
     loadChildren: () => import('./editing-tool-test-page/editing-tool-test-page.module').then(m => m.EditingToolTestPagePageModule)
