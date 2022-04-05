@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { collection, setDoc, doc, getDocs, getFirestore, getDocFromServer } from "firebase/firestore";
+import { sectionList } from '../sharedData/ecoData';
 const db = getFirestore();
 @Injectable({
   providedIn: 'root'
@@ -151,6 +152,19 @@ export class FirebaseService {
   // getUserEcoSolutionService(userId){
   //   return this.db.collection('users').doc(userId).snapshotChanges();
   // }
+
+
+  getSectionName(sectionName){
+    return this.db.collection("sectionList", ref => ref.where('sectionName', '==', sectionName)).snapshotChanges();
+  }
+  upDateSectionList(id,value){
+    return this.db.collection('sectionList').doc(id).update({ sectionName: value });
+  }
+
+
+  getSectionList(){
+    return this.db.collection("sectionList",ref => ref.orderBy('sectionName', 'asc')).snapshotChanges();
+  }
 
 }
 

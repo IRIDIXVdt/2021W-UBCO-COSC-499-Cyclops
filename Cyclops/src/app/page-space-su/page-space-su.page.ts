@@ -37,7 +37,7 @@ export class PageSpaceSuPage implements OnInit {
   displaySol: fetchSolution[];
   sortType: string;//this handles the type of sorting
   section: string;//this handles which section we want
-  sections: string[];
+  sections: any;
   userId: string;//this is the login user Id
   userProgressType: string; //take cares of what to display
   progressAlertMessage: string;
@@ -52,7 +52,9 @@ export class PageSpaceSuPage implements OnInit {
 
   solutionTotalScore = 0; // total score of all solutions
 
-  testString="asdasdbjashgdyuigasuidbjkashduiashuidhasuidhuaishduashduhnasudhasuihduiashduiashdiuashuidhasuid"
+  currentSectionSolutions: any;
+
+  idOfSection: any;
 
   constructor(
     private modalCtrol: ModalController,
@@ -63,11 +65,11 @@ export class PageSpaceSuPage implements OnInit {
     public loadingController: LoadingController,
     public authService: AuthService,
   ) {
+    this.getSections();
     this.slider = 0;
     this.scoreArea = 0;
     this.contentLoading();
     // this.dummyContentLoading();
-    this.sections = sectionList;
     this.sortTypeOnChange();
     if (JSON.parse(localStorage.getItem('user')) != null) {
       this.userId = JSON.parse(localStorage.getItem('user')).uid;
@@ -82,6 +84,26 @@ export class PageSpaceSuPage implements OnInit {
     //this.ecoListContentLoading();  // move this inside the contentLoading()
     this.userProgressTypeInit();
     this.initializeColor();
+
+
+  }
+
+  getSections() {
+    const subscription = this.firebaseService.getSectionList().subscribe((res) => {
+      this.sections = res.map(e => {
+        return {
+          sectionName: e.payload.doc.data()['sectionName'],
+        }
+      })
+      /* console.log(this.sections); */
+    }, (err: any) => {
+      this.alertMessage("Check your internet Connection");
+    })
+
+    if (this.sections != null) {
+      subscription.unsubscribe();
+    }
+
 
 
   }
@@ -170,7 +192,7 @@ export class PageSpaceSuPage implements OnInit {
     }
 
     this.displaySol = this.localSol;
-    console.log('loaded solution and user progress successfully merged', this.scoreArea);
+    /* console.log('loaded solution and user progress successfully merged', this.scoreArea); */
   }
 
   addScore(star, weight) {
@@ -192,7 +214,7 @@ export class PageSpaceSuPage implements OnInit {
       solutionTotalScore: this.solutionTotalScore
     }
     this.firebaseService.addUserEcoService(this.userId, data).then(() => {
-      console.log('updated UserTotalEcoScore');
+      /* console.log('updated UserTotalEcoScore'); */
     }).catch((error) => {
       console.log(error);
       this.alertMessage("Check your internet Connection");
@@ -261,7 +283,7 @@ export class PageSpaceSuPage implements OnInit {
           this.updateDisplayList();
 
           subscription.unsubscribe();
-          console.log('unsubscribe success', this.userEcoItemListRemote);
+          /* console.log('unsubscribe success', this.userEcoItemListRemote); */
         }, err => {
           console.debug(err);
           this.userEcoItemListRemote = [];
@@ -453,7 +475,7 @@ export class PageSpaceSuPage implements OnInit {
     }).then(modalres => {
       modalres.present();
       modalres.onDidDismiss().then(res => {
-        console.log("edit eco modal dismiss!");
+        /* console.log("edit eco modal dismiss!"); */
       })
 
     })
@@ -506,6 +528,9 @@ export class PageSpaceSuPage implements OnInit {
   }
 
   async editSection(item) {
+    const loading = await this.loadingController.create({
+      message: 'Please wait...',
+    });
     console.log("section on edit", item);
 
     var newSectionInputName: string = item;
@@ -523,27 +548,75 @@ export class PageSpaceSuPage implements OnInit {
         'Cancel',
         {
           text: 'Yes',
-          handler: (alertInputData) => {
-            // console.log(datainput.sectionTitle);
+          handler: async (alertInputData) => {
+
+            loading.present();
+
             newSectionInputName = alertInputData.sectionTitle;
+            this.currentSectionSolutions =null;
+            this.currentSectionSolutions = this.localSol.filter(f => (f.section === item));
+
+            //delete origin one 
+            this.localSol = this.localSol.filter(f => (f.section != item))
+
+            for (let data of this.currentSectionSolutions) {
+              // edit the section name 
+              data.section = newSectionInputName;
+              //push to localSol
+              this.localSol.push(data);
+            }
+            this.updateDisplayList();
+            for (let data of this.sections) {
+              if (data.sectionName == item) {
+                data.sectionName = newSectionInputName;
+              }
+            }
+            for (let data of this.currentSectionSolutions) {
+              this.firebaseService.updateEcoSolutionService(data.id, data).then((res: any) => {
+              }).catch((error) => {
+                console.log("error", error);
+                loading.dismiss();
+              })
+            }
+
+            const subscriptionUpdate = this.firebaseService.getSectionName(item).subscribe((res: any) => {
+              if (res.length > 0) { // when res find values
+                this.idOfSection = res[0].payload.doc.id;
+                this.firebaseService.upDateSectionList(this.idOfSection, newSectionInputName).then((res: any) => {
+                 
+                }).catch((error) => {
+                  console.log("Update section error", error);
+                  loading.dismiss();
+                })
+              }
+
+              
+            });
+            /* subscriptionUpdate.unsubscribe();  */
+
+
+            loading.dismiss();
           }
         }]
     });
     await alert.present();
     const { role } = await alert.onDidDismiss();//fetch result
 
-    if (role == "cancel" || role == "backdrop") {
-      console.log('cancel')
-    } else {
-      console.log('edit section event', item, 'to', newSectionInputName);
-      //your code here:
 
-      //remove locally first
 
-      //then remove on remote
 
-    }
+    //update all ids
+
+
+    //remove locally first
+
+    //then remove on remote
+
   }
+
+
+
+
 
   async removeSection(item) {
     const alert = await this.alertController.create({
@@ -554,17 +627,91 @@ export class PageSpaceSuPage implements OnInit {
     await alert.present();
     const { role } = await alert.onDidDismiss();//fetch result
 
+    const loading = await this.loadingController.create({
+      message: 'Please wait...',
+    });
+
     if (role == "cancel" || role == "backdrop") {
       console.log('cancel')
     } else {
-      console.log('remove section event', item);
-      //your code here:
+      loading.present();
+      /* this.localSol = this.localSol.filter(f => (f.section != item));
+      this.updateDisplayList();
+      this.sections = this.sections.filter(f => (f.sectionName != item)); */
+
       
-      //remove locally first
 
+
+      // delete corresponding solutions
+      this.currentSectionSolutions =null;
+      this.currentSectionSolutions = this.localSol.filter(f => (f.section === item));
+      for (let data of this.currentSectionSolutions) {
+        //remove locally first
+      this.removeFromLocal(data.id);
       //then remove on remote
+      this.removeFromRemote(data.id);
+      }
 
+      // delete corresponding section
+      const subscriptionUpdate = this.firebaseService.getSectionName(item).subscribe((res: any) => {
+        if (res.length > 0) { // when res find values
+          this.idOfSection = res[0].payload.doc.id;
+         
+          this.firebaseService.deleteDocByIdService('sectionList', this.idOfSection).then((res: any) => {
+            
+          }).catch((error) => {
+            console.log("Update section error", error);
+            loading.dismiss();
+          })
+        }
+
+        
+      });
+
+      loading.dismiss();
     }
+  }
+
+  async addSection(item) {
+    const loading = await this.loadingController.create({
+      message: 'Please wait...',
+    });
+    var addSectionInputName: string;
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      message: 'You can add a section here',
+      inputs: [
+        {
+          name: 'sectionTitle',
+          type: 'text',
+          placeholder: 'Enter the section name',
+        },
+      ],
+      buttons: [
+        'Cancel',
+        {
+          text: 'Yes',
+          handler: async (alertInputData) => {
+            loading.present();
+            addSectionInputName = alertInputData.sectionTitle;
+            let data={
+              sectionName:addSectionInputName
+            }
+            this.sections.push(data);
+
+            this.firebaseService.addDataService("sectionList", data).then((res: any) => {
+            }).catch((error) => {
+              console.log(error);
+              loading.dismiss();
+            })
+
+            loading.dismiss();
+          }
+        }]
+    });
+    await alert.present();
+    const { role } = await alert.onDidDismiss();//fetch result
+
   }
 }
 
