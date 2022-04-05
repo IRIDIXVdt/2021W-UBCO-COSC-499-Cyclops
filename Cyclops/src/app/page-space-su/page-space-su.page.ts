@@ -95,7 +95,7 @@ export class PageSpaceSuPage implements OnInit {
           sectionName: e.payload.doc.data()['sectionName'],
         }
       })
-      console.log(this.sections);
+      /* console.log(this.sections); */
     }, (err: any) => {
       this.alertMessage("Check your internet Connection");
     })
@@ -192,7 +192,7 @@ export class PageSpaceSuPage implements OnInit {
     }
 
     this.displaySol = this.localSol;
-    console.log('loaded solution and user progress successfully merged', this.scoreArea);
+    /* console.log('loaded solution and user progress successfully merged', this.scoreArea); */
   }
 
   addScore(star, weight) {
@@ -214,7 +214,7 @@ export class PageSpaceSuPage implements OnInit {
       solutionTotalScore: this.solutionTotalScore
     }
     this.firebaseService.addUserEcoService(this.userId, data).then(() => {
-      console.log('updated UserTotalEcoScore');
+      /* console.log('updated UserTotalEcoScore'); */
     }).catch((error) => {
       console.log(error);
       this.alertMessage("Check your internet Connection");
@@ -283,7 +283,7 @@ export class PageSpaceSuPage implements OnInit {
           this.updateDisplayList();
 
           subscription.unsubscribe();
-          console.log('unsubscribe success', this.userEcoItemListRemote);
+          /* console.log('unsubscribe success', this.userEcoItemListRemote); */
         }, err => {
           console.debug(err);
           this.userEcoItemListRemote = [];
@@ -475,7 +475,7 @@ export class PageSpaceSuPage implements OnInit {
     }).then(modalres => {
       modalres.present();
       modalres.onDidDismiss().then(res => {
-        console.log("edit eco modal dismiss!");
+        /* console.log("edit eco modal dismiss!"); */
       })
 
     })
@@ -548,11 +548,12 @@ export class PageSpaceSuPage implements OnInit {
         'Cancel',
         {
           text: 'Yes',
-          handler: (alertInputData) => {
+          handler: async (alertInputData) => {
 
             loading.present();
 
             newSectionInputName = alertInputData.sectionTitle;
+            this.currentSectionSolutions =null;
             this.currentSectionSolutions = this.localSol.filter(f => (f.section === item));
 
             //delete origin one 
@@ -581,16 +582,19 @@ export class PageSpaceSuPage implements OnInit {
             const subscriptionUpdate = this.firebaseService.getSectionName(item).subscribe((res: any) => {
               if (res.length > 0) { // when res find values
                 this.idOfSection = res[0].payload.doc.id;
+                this.firebaseService.upDateSectionList(this.idOfSection, newSectionInputName).then((res: any) => {
+                 
+                }).catch((error) => {
+                  console.log("Update section error", error);
+                  loading.dismiss();
+                })
               }
 
-              this.firebaseService.upDateSectionList(this.idOfSection, newSectionInputName).then((res: any) => {
-                console.log("Update", res);
-              }).catch((error) => {
-                console.log("update error", error);
-                loading.dismiss();
-              })
+              
             });
             /* subscriptionUpdate.unsubscribe();  */
+
+
             loading.dismiss();
           }
         }]
@@ -631,16 +635,40 @@ export class PageSpaceSuPage implements OnInit {
       console.log('cancel')
     } else {
       loading.present();
-      this.localSol = this.localSol.filter(f => (f.section != item));
+      /* this.localSol = this.localSol.filter(f => (f.section != item));
       this.updateDisplayList();
-      this.sections = this.sections.filter(f => (f.sectionName != item));
+      this.sections = this.sections.filter(f => (f.sectionName != item)); */
 
-      console.log(this.sections);
+      
+
+
+      // delete corresponding solutions
+      this.currentSectionSolutions =null;
+      this.currentSectionSolutions = this.localSol.filter(f => (f.section === item));
+      for (let data of this.currentSectionSolutions) {
+        //remove locally first
+      this.removeFromLocal(data.id);
+      //then remove on remote
+      this.removeFromRemote(data.id);
+      }
+
+      // delete corresponding section
+      const subscriptionUpdate = this.firebaseService.getSectionName(item).subscribe((res: any) => {
+        if (res.length > 0) { // when res find values
+          this.idOfSection = res[0].payload.doc.id;
+         
+          this.firebaseService.deleteDocByIdService('sectionList', this.idOfSection).then((res: any) => {
+            
+          }).catch((error) => {
+            console.log("Update section error", error);
+            loading.dismiss();
+          })
+        }
+
+        
+      });
 
       loading.dismiss();
-
-
-
     }
   }
 }

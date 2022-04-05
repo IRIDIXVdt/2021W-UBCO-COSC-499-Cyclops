@@ -161,6 +161,7 @@ export class FirebaseService {
     return this.db.collection('sectionList').doc(id).update({ sectionName: value });
   }
 
+
   getSectionList(){
     return this.db.collection("sectionList",ref => ref.orderBy('sectionName', 'asc')).snapshotChanges();
   }
