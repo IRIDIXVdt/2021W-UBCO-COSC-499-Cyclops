@@ -71,7 +71,7 @@
                     </ion-card>
                 </ion-col>
                 <ion-col size-xs="12" size-sm="6" size-md="6" size-lg="4" *ngIf="readProgressImg!=undefined">
-                    <ion-card [routerLink]="['/tabs/page-space-me/' , latestRead]" color='light' style="height:100%">
+                    <ion-card [routerLink]="['/tabs/SelectedArticle/' , latestRead]" color='light' style="height:100%">
                         <img [src]="readProgressImg" style="width: 690px; height:200px; object-fit: cover" />
                         <ion-card-header>
                             <ion-card-subtitle [innerHTML]="readProgressHeader"></ion-card-subtitle>
@@ -96,7 +96,7 @@
                     <ion-card *ngIf="userEcoScore ==  undefined || solutionTotalScore == undefined">
                         <ion-progress-bar type="indeterminate"></ion-progress-bar>
                     </ion-card>
-                    <ion-card class="center" routerLink="/tabs/page-space-su" color='light' *ngIf="userEcoScore !=  undefined && solutionTotalScore != undefined">
+                    <ion-card class="center" routerLink="/tabs/EcoTracker" color='light' *ngIf="userEcoScore !=  undefined && solutionTotalScore != undefined">
                         <ion-card-header>
                             <ion-card-subtitle style="text-align:center; font-size:200%;">Overall Score
                             </ion-card-subtitle>
@@ -198,7 +198,7 @@
             <div *ngIf="articles" class="mobile-display">
                 <ion-slides pager="true" id="newsetArticle">
                     <ion-slide *ngFor="let content of articles | slice:0:3 ">
-                        <ion-card class="article-card" color='light' routerLink="/tabs/page-space-me/{{content.docId}}">
+                        <ion-card class="article-card" color='light' routerLink="/tabs/SelectedArticle/{{content.docId}}">
                             <img src="{{content.image}}" style="width: 690px; height:200px; object-fit: cover" />
                             <ion-card-header>
                                 <ion-card-subtitle>{{content.subtitle}}</ion-card-subtitle>
@@ -217,7 +217,7 @@
                         <ion-grid>
                             <ion-row>
                                 <ion-col *ngFor="let content of articles | slice:0:3 ">
-                                    <ion-card class="article-card" color='light' routerLink="/tabs/page-space-me/{{content.docId}}">
+                                    <ion-card class="article-card" color='light' routerLink="/tabs/SelectedArticle/{{content.docId}}">
                                         <img src="{{content.image}}" />
                                         <ion-card-header>
                                             <ion-card-title>{{content.title}}</ion-card-title>
