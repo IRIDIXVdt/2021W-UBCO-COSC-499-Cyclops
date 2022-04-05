@@ -671,6 +671,48 @@ export class PageSpaceSuPage implements OnInit {
       loading.dismiss();
     }
   }
+
+  async addSection(item) {
+    const loading = await this.loadingController.create({
+      message: 'Please wait...',
+    });
+    var addSectionInputName: string;
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      message: 'You can add a section here',
+      inputs: [
+        {
+          name: 'sectionTitle',
+          type: 'text',
+          placeholder: 'Enter the section name',
+        },
+      ],
+      buttons: [
+        'Cancel',
+        {
+          text: 'Yes',
+          handler: async (alertInputData) => {
+            loading.present();
+            addSectionInputName = alertInputData.sectionTitle;
+            let data={
+              sectionName:addSectionInputName
+            }
+            this.sections.push(data);
+
+            this.firebaseService.addDataService("sectionList", data).then((res: any) => {
+            }).catch((error) => {
+              console.log(error);
+              loading.dismiss();
+            })
+
+            loading.dismiss();
+          }
+        }]
+    });
+    await alert.present();
+    const { role } = await alert.onDidDismiss();//fetch result
+
+  }
 }
 
 type fetchSolution = {

@@ -118,18 +118,28 @@
                                         <ion-label> {{item.sectionName}}</ion-label>
                                         <ion-radio slot="start" value={{item.sectionName}}></ion-radio>
 
-                                        <!-- editSection(item) -->
-                                        <ion-button fill="clear" (click)="editSection(item.sectionName)">
-                                            <ion-icon name="create-outline"></ion-icon>
-                                        </ion-button>
+                                        <ng-container *ngIf="this.authService.isAdmin()">
+                                            <!-- editSection(item) -->
+                                            <ion-button fill="clear" (click)="editSection(item.sectionName)">
+                                                <ion-icon name="create-outline"></ion-icon>
+                                            </ion-button>
 
-                                        <!-- removeSection(item) -->
-                                        <ion-button fill="clear" (click)="removeSection(item.sectionName)">
-                                            <ion-icon name="trash-outline" color="danger"></ion-icon>
-                                        </ion-button>
+                                            <!-- removeSection(item) -->
+                                            <ion-button fill="clear" (click)="removeSection(item.sectionName)">
+                                                <ion-icon name="trash-outline" color="danger"></ion-icon>
+                                            </ion-button>
+                                        </ng-container>
+
                                     </ion-item>
                                 </ng-container>
                             </ion-radio-group>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row class="ion-align-items-center" *ngIf="this.authService.isAdmin()">
+                        <ion-col class="ion-text-center">
+                            <ion-button (click)="addSection()">
+                                <span>Add Section</span>
+                            </ion-button>
                         </ion-col>
                     </ion-row>
                 </ion-col>
@@ -315,18 +325,20 @@
                                 </ion-accordion-group>
                                 <ng-container *ngIf="!this.authService.isAdmin()">
                                     <ion-card-content *ngIf="item.detail.length >130">
-                                        <p>{{ (item.detail.length>130)? (item.detail | slice:0:130)+'...':(str) }}</p>                                    
-                                        <ion-button (click)="displaySolutionDetail(item.detail)" color="primary" fill="clear" expand="block">Read More</ion-button>                                       
+                                        <p>{{ (item.detail.length>130)? (item.detail | slice:0:130)+'...':(str) }}</p>
+                                        <ion-button (click)="displaySolutionDetail(item.detail)" color="primary"
+                                            fill="clear" expand="block">Read More</ion-button>
                                     </ion-card-content>
-                                    <ion-card-content *ngIf="item.detail.length <130" >
+                                    <ion-card-content *ngIf="item.detail.length <130">
                                         <p>{{item.detail}}</p>
-                                        
+
                                     </ion-card-content>
                                 </ng-container>
-                                <ng-container *ngIf="this.authService.isAdmin()"  >
+                                <ng-container *ngIf="this.authService.isAdmin()">
                                     <ion-card-content class="solutionHandle" *ngIf="item.detail.length >130">
                                         <p>{{ (item.detail.length>130)? (item.detail | slice:0:130)+'...':(str) }}</p>
-                                        <ion-button (click)="displaySolutionDetail(item.detail)" color="primary" class="readMoreButton">Read More</ion-button>
+                                        <ion-button (click)="displaySolutionDetail(item.detail)" color="primary"
+                                            class="readMoreButton">Read More</ion-button>
                                         <ion-button (click)="editCard(item.id)">
                                             Edit Card
                                         </ion-button>
@@ -336,17 +348,18 @@
                                     </ion-card-content>
 
 
-                                    <ion-card-content class="solutionHandle" *ngIf="item.detail.length <130"  > 
+                                    <ion-card-content class="solutionHandle" *ngIf="item.detail.length <130">
                                         <p>{{item.detail}}</p>
-                                        <ion-button (click)="displaySolutionDetail(item.detail)" color="primary">Read More</ion-button>
+                                        <ion-button (click)="displaySolutionDetail(item.detail)" color="primary">Read
+                                            More</ion-button>
                                         <ion-button (click)="editCard(item.id)">
                                             Edit Card
                                         </ion-button>
                                         <ion-button (click)="removeCard(item.id)">
                                             Removed Card
                                         </ion-button>
-                                    </ion-card-content> 
-                                    
+                                    </ion-card-content>
+
                                 </ng-container>
 
                             </ion-card>
