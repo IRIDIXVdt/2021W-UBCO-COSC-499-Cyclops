@@ -18,15 +18,15 @@ export class AppComponent {
 
   list = [
     {
-      "link": "/tabs/page-space-er",
+      "link": "/tabs/Home",
       "icon": "compass",
       "name": "Home"
     }, {
-      "link": "/tabs/page-space-la",
+      "link": "/tabs/Articles",
       "icon": "reader",
       "name": "Articles"
     }, {
-      "link": "/tabs/page-space-su",
+      "link": "/tabs/EcoTracker",
       "icon": "leaf",
       "name": "Eco Tracker"
     }

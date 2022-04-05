@@ -27,7 +27,7 @@
                         </ion-button>
                     </div>
                     <div>
-                        <ion-button routerLink="/tabs/TextEdit/{{content.id}}">
+                        <ion-button routerLink="/tabs/EditContent/{{content.id}}">
                             Edit Content
                         </ion-button>
                     </div>
@@ -43,7 +43,7 @@
             </ion-fab>
             <!-- article card -->
             <ng-container *ngIf="!editMode">
-                <ion-card color='light' routerLink="/tabs/page-space-me/{{content.id}}">
+                <ion-card color='light' routerLink="/tabs/SelectedArticle/{{content.id}}">
                     <img src="{{content.image}}" />
                     <ion-card-header>
                         <ion-card-subtitle>{{content.subtitle}}</ion-card-subtitle>
