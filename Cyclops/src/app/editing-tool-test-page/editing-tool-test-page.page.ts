@@ -277,10 +277,11 @@ export class EditingToolTestPagePage implements OnInit {
     }).then(modalres => {
       modalres.present();
       modalres.onDidDismiss().then(res => {
-        console.log("cover modal dismiss!");
+        console.log("cover modal dismiss!", res['data']);
       })
 
     })
+
   }
 
   async saveChangesToCloud() {
@@ -328,6 +329,11 @@ export class EditingToolTestPagePage implements OnInit {
       buttons: ['OK']
     });
     await alert2.present();
+  }
+
+  displaySolutions(checkedSolutions:any[]){
+    console.log('wee');
+    console.log(checkedSolutions);
   }
 
 }
