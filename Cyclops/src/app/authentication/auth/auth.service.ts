@@ -69,7 +69,7 @@ export class AuthService {
 
           loading.dismiss(); //stop the loading animation
 
-          this.router.navigate(['tabs/page-space-er']);
+          this.router.navigate(['tabs/Home']);
 
         } else {
           loading.dismiss(); //stop the loading animation
@@ -301,7 +301,7 @@ export class AuthService {
         this.ngZone.run(() => {
           this.userData = result.user;
           localStorage.setItem('user', JSON.stringify(this.userData));
-          this.router.navigate(['tabs/page-space-er']);
+          this.router.navigate(['tabs/Home']);
           this.getIsAdmin();
         })
         this.SetUserData(result.user);
@@ -355,7 +355,7 @@ export class AuthService {
         localStorage.setItem('user', null);
 
         loading.dismiss();
-        this.router.navigate(['tabs/page-space-er']);
+        this.router.navigate(['tabs/Home']);
       }).catch((error) => {
         console.log(error);
         loading.dismiss();
