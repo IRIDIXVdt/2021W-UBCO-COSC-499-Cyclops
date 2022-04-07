@@ -1,5 +1,16 @@
 <ion-grid>
     <ion-row id="testList">
+        <ion-col size-xs="12" size-sm="6" size-md="6" size-lg="4">
+            <!-- *ngIf="editMode" -->
+            <ion-fab horizontal="center" vertical="center">
+                <ion-fab-button color="primary" (click)="articleAddEvent()">
+                    <ion-icon name="add-circle-outline" size="large"></ion-icon>
+                </ion-fab-button>
+            </ion-fab>
+            <ion-card color='light' disabled="true">
+            </ion-card>
+        </ion-col>
+
         <ion-col size-xs="12" size-sm="6" size-md="6" size-lg="4" *ngFor="let content of contentCol;let indexA = index">
             <!-- fab button  -->
             <!-- <ion-fab-button color="light">
@@ -24,7 +35,7 @@
                         </ion-button>
                     </div>
                     <div>
-                        <ion-button (click)="articleEditEvent(content.id)"> 
+                        <ion-button (click)="articleEditEvent(content.id)">
                             <ion-icon name="create-outline"></ion-icon>
                             <ion-label>&nbsp;&nbsp;Edit Card</ion-label>
                         </ion-button>
@@ -79,14 +90,6 @@
             </ng-container>
         </ion-col>
         <!-- add button -->
-        <ion-col size-xs="12" size-sm="6" size-md="6" size-lg="4" *ngIf="editMode">
-            <ion-fab horizontal="center" vertical="center">
-                <ion-fab-button color="primary" (click)="articleAddEvent()">
-                    <ion-icon name="add-circle-outline" size="large"></ion-icon>
-                </ion-fab-button>
-            </ion-fab>
-            <ion-card color='light' disabled="true">
-            </ion-card>
-        </ion-col>
+        
     </ion-row>
 </ion-grid>
