@@ -180,7 +180,7 @@ export class PageSpaceSuPage implements OnInit {
     for (let item of this.localSol) {
       // if (this.completedList.indexOf(item.id) > -1) {
       //stop as soon as there is a match
-      this.solutionTotalScore += item.star;
+      this.solutionTotalScore += (item.star + 1);
       for (let ecoAttendItem of this.userEcoItemList) {
         if (item.id === ecoAttendItem.ecoId) {
           item.attend = true;
