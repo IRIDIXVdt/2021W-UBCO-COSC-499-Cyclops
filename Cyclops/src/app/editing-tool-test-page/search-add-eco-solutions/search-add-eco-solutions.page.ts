@@ -72,7 +72,7 @@ export class SearchAddEcoSolutionsPage implements OnInit {
     for (let i = 0; i < this.searchField.length; i++) {
       let currentSol = this.searchField[i];
       if (currentSol.checked == true) {
-        this.checkedSolutions.push(currentSol.id);
+        this.checkedSolutions.push(currentSol);
       }
     }
     this.modalController.dismiss(this.checkedSolutions);

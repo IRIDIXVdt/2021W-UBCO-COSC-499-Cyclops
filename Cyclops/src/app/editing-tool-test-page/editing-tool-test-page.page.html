@@ -101,6 +101,43 @@
         </ckeditor>
     </div>
     <ion-button (click)="searchModalEvent()">Add ECO solutions</ion-button>
+    <ion-grid>
+        <ion-row>
+            <ion-col *ngFor="let item of checkedSolutions" class="ecoCardItem">
+                <ion-card class="solution" color='light'>
+                    <!--  *ngIf="item.id !" -->
+                    <ion-card-header>
+                        <ion-card-subtitle>
+                            {{item.star + 1}}
+                            <ion-icon name="star"></ion-icon>
+                        </ion-card-subtitle>
+                        <ion-card-title>
+                            <ion-label color="primary">
+                                {{item.name}}
+                            </ion-label>
+                        </ion-card-title>
+                    </ion-card-header>
+                    <ion-card-content>
+                        <ion-label>
+                            {{item.section}}
+                        </ion-label>
+                    </ion-card-content>
+                    <!-- *ngIf="item.id != completedList[index]"  -->
+                    <!-- checkDisplay(item.ecoId) -->
+                    <!-- *ngIf="item.ecoId in completedList" -->
+                    <ng-container>
+                        <ion-card-content *ngIf="item.detail.length >130">
+                            <p>{{ (item.detail.length>130)? (item.detail | slice:0:130)+'...':(str) }}</p>
+                        </ion-card-content>
+                        <ion-card-content *ngIf="item.detail.length <130">
+                            <p>{{item.detail}}</p>
+
+                        </ion-card-content>
+                    </ng-container>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 
 
 

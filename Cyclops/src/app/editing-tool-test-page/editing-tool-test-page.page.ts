@@ -39,6 +39,8 @@ export class EditingToolTestPagePage implements OnInit {
   //get ionic input data
   TitleInput: string;
   navControl: NavController;
+  checkedSolutions: any[];
+  progressAlertMessage: string;
 
   //Import the editor build in your Angular component and assign it to a public property to make it accessible from the template
   // public Editor = ClassicEditor;
@@ -278,9 +280,30 @@ export class EditingToolTestPagePage implements OnInit {
       modalres.present();
       modalres.onDidDismiss().then(res => {
         console.log("cover modal dismiss!", res['data']);
+        this.checkedSolutions= res['data'];
       })
 
     })
+
+  }
+
+  colorAssign(color: number) {
+    if (color == 2) {
+      this.progressAlertMessage = "Doing it!"
+      return 'success';
+    }
+    else if (color == 1) {
+      this.progressAlertMessage = "Working on it!"
+      return 'warning';
+    }
+    else if (color == 0) {
+      this.progressAlertMessage = "Not doing it!"
+      return 'danger';
+    }
+    else {
+      this.progressAlertMessage = "Not applicable"
+      return 'medium';
+    }
 
   }
 
@@ -331,10 +354,6 @@ export class EditingToolTestPagePage implements OnInit {
     await alert2.present();
   }
 
-  displaySolutions(checkedSolutions:any[]){
-    console.log('wee');
-    console.log(checkedSolutions);
-  }
 
 }
 type EditPageArticle = {
