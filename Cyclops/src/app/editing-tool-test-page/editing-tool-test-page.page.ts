@@ -7,7 +7,9 @@ import { displayArticles } from '../sharedData/displayArticles';
 import { ActivatedRoute } from '@angular/router';
 // import { Content } from '@angular/compiler/src/render3/r3_ast';
 import { FirebaseService } from '../FirebaseService/firebase.service';
-import { AlertController, LoadingController, NavController } from '@ionic/angular';
+import { AlertController, LoadingController, NavController, ModalController } from '@ionic/angular';
+import { SearchAddEcoSolutionsPage } from './search-add-eco-solutions/search-add-eco-solutions.page';
+
 
 @Component({
   selector: 'app-editing-tool-test-page',
@@ -47,6 +49,7 @@ export class EditingToolTestPagePage implements OnInit {
     public firebaseService: FirebaseService,
     public alertController: AlertController,
     public navCtrl: NavController,
+    private modalCtrol: ModalController,
     public loadingController: LoadingController
   ) {
     this.navControl = navCtrl;
@@ -263,6 +266,21 @@ export class EditingToolTestPagePage implements OnInit {
     this.contents = null;
     this.loadEditorDataById();
 
+  }
+
+  searchModalEvent(aId: string){
+    this.modalCtrol.create({
+      component: SearchAddEcoSolutionsPage,
+      componentProps: {
+        content: aId,
+      }
+    }).then(modalres => {
+      modalres.present();
+      modalres.onDidDismiss().then(res => {
+        console.log("cover modal dismiss!");
+      })
+
+    })
   }
 
   async saveChangesToCloud() {

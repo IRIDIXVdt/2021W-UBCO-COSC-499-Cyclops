@@ -1,29 +1,29 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-button (click)="backArticle()" color="primary">
-        <ion-icon name="chevron-back-outline"></ion-icon>
-        Back
-      </ion-button>
-    </ion-buttons>
-    <ion-title *ngIf="contents">
-      <p>Editing "{{contents.title}}"</p>
-    </ion-title>
-    <ion-title *ngIf="!contents">
-      <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
-    </ion-title>
-    <ion-button slot="end" color="light" fill="outline" (click)="saveChangesToCloud()" *ngIf="needSaving">
-      <ion-icon name="cloud-upload-outline" color="primary"></ion-icon>
-      <ion-label color="primary">&nbsp;&nbsp;Save</ion-label>
-    </ion-button>
-    <ion-button slot="end" color="light" fill="outline" *ngIf="!needSaving">
-      <ion-icon name="cloud-upload-outline" color="medium"></ion-icon>
-      <ion-label color="medium">&nbsp;&nbsp;Saved</ion-label>
-    </ion-button>
-  </ion-toolbar>
-  <!-- <ion-progress-bar  ></ion-progress-bar> -->
-  <ion-toolbar *ngIf="contents">
-    <span *ngFor="let segmentItem of contents.segment;let indexOfelement=index;">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button (click)="backArticle()" color="primary">
+                <ion-icon name="chevron-back-outline"></ion-icon>
+                Back
+            </ion-button>
+        </ion-buttons>
+        <ion-title *ngIf="contents">
+            <p>Editing "{{contents.title}}"</p>
+        </ion-title>
+        <ion-title *ngIf="!contents">
+            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+        </ion-title>
+        <ion-button slot="end" color="light" fill="outline" (click)="saveChangesToCloud()" *ngIf="needSaving">
+            <ion-icon name="cloud-upload-outline" color="primary"></ion-icon>
+            <ion-label color="primary">&nbsp;&nbsp;Save</ion-label>
+        </ion-button>
+        <ion-button slot="end" color="light" fill="outline" *ngIf="!needSaving">
+            <ion-icon name="cloud-upload-outline" color="medium"></ion-icon>
+            <ion-label color="medium">&nbsp;&nbsp;Saved</ion-label>
+        </ion-button>
+    </ion-toolbar>
+    <!-- <ion-progress-bar  ></ion-progress-bar> -->
+    <ion-toolbar *ngIf="contents">
+        <span *ngFor="let segmentItem of contents.segment;let indexOfelement=index;">
 
       <span *ngIf="indexOfelement != currentSeg">
         <!-- default chip -->
@@ -32,26 +32,26 @@
         </ion-chip>
       </span>
 
-      <span *ngIf="indexOfelement == currentSeg">
+        <span *ngIf="indexOfelement == currentSeg">
         <!-- if this is the selected option, highlight the chip and include a remove button -->
         <ion-chip (click)="onChipClick(indexOfelement)">
           <ion-label color="primary">{{segmentItem.segmentTitle}}</ion-label>
           <ion-icon color="danger" name="trash-outline" (click)="removeArticle()"></ion-icon>
         </ion-chip>
       </span>
-    </span>
+        </span>
 
-    <ion-chip (click)="onChipAdd()" color="light">
-      <!-- This is the button for adding segments -->
-      <ion-icon name="add-circle-outline" color="primary"></ion-icon>
-      <ion-label></ion-label>
-    </ion-chip>
+        <ion-chip (click)="onChipAdd()" color="light">
+            <!-- This is the button for adding segments -->
+            <ion-icon name="add-circle-outline" color="primary"></ion-icon>
+            <ion-label></ion-label>
+        </ion-chip>
 
-  </ion-toolbar>
-  <div *ngIf="!contents">
-    <ion-progress-bar type="indeterminate"></ion-progress-bar>
-  </div>
-  <!-- <ion-toolbar *ngIf = "!contents">
+    </ion-toolbar>
+    <div *ngIf="!contents">
+        <ion-progress-bar type="indeterminate"></ion-progress-bar>
+    </div>
+    <!-- <ion-toolbar *ngIf = "!contents">
     <ion-label>
       <ion-skeleton-text animated style="width: 20%"></ion-skeleton-text>
     </ion-label>
@@ -59,49 +59,48 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <ion-toolbar *ngIf="contents">
-    <!-- space for image {{contents.image}} -->
-    <ion-img [src]="contents.image" class="custome-image"></ion-img>
-    <!-- <img src = "{{contents.image}}" class = "custome-image"> -->
-  </ion-toolbar>
-  <ion-fab vertical="top" horizontal="end" slot="fixed" class="custome-item">
-    <ion-fab-button>
-      <ion-icon name="settings"></ion-icon>
-    </ion-fab-button>
+    <ion-toolbar *ngIf="contents">
+        <!-- space for image {{contents.image}} -->
+        <ion-img [src]="contents.image" class="custome-image"></ion-img>
+        <!-- <img src = "{{contents.image}}" class = "custome-image"> -->
+    </ion-toolbar>
+    <ion-fab vertical="top" horizontal="end" slot="fixed" class="custome-item">
+        <ion-fab-button>
+            <ion-icon name="settings"></ion-icon>
+        </ion-fab-button>
 
-    <ion-fab-list side="bottom" *ngIf="contents">
-      <!-- only display it if contents variable exists -->
-      <ion-fab-button (click)="removeArticle()">
-        <ion-icon color="danger" name="trash-outline"></ion-icon>
-      </ion-fab-button>
-      <ion-fab-button (click)="saveChangesToCloud()">
-        <ion-icon color="primary" name="cloud-upload-outline"></ion-icon>
-      </ion-fab-button>
+        <ion-fab-list side="bottom" *ngIf="contents">
+            <!-- only display it if contents variable exists -->
+            <ion-fab-button (click)="removeArticle()">
+                <ion-icon color="danger" name="trash-outline"></ion-icon>
+            </ion-fab-button>
+            <ion-fab-button (click)="saveChangesToCloud()">
+                <ion-icon color="primary" name="cloud-upload-outline"></ion-icon>
+            </ion-fab-button>
 
-      <ion-fab-button (click)="onChipAdd()">
-        <ion-icon name="add-circle-outline" color="primary"></ion-icon>
-      </ion-fab-button>
+            <ion-fab-button (click)="onChipAdd()">
+                <ion-icon name="add-circle-outline" color="primary"></ion-icon>
+            </ion-fab-button>
 
-      <ion-fab-button (click)="presentAlert()">
-        <ion-icon name="help-outline" color="primary"></ion-icon>
-      </ion-fab-button>
-    </ion-fab-list>
-  </ion-fab>
-  <!-- <p class = "testT">testText</p> -->
-  <ion-toolbar *ngIf="contents">
-    <ion-item>
-      <ion-label text-wrap position="stacked">
-        Title of this Segment:
-      </ion-label>
-      <ion-input #titleInput [(ngModel)]="TitleInput" placeholder="Input Title Here"
-        value="{{contents.segment[currentSeg].segmentTitle}}" (ionChange)="onTitleEditorChange()"
-        (ionFocus)="titleFocus()"></ion-input>
-    </ion-item>
-  </ion-toolbar>
-  <div *ngIf="contents">
-    <ckeditor max-height="20%" #editor [(ngModel)]="model.editorData" [editor]="Editor" (change)="onChange($event)" (focus)="textAreaFocus()">
-    </ckeditor>
-  </div>
+            <ion-fab-button (click)="presentAlert()">
+                <ion-icon name="help-outline" color="primary"></ion-icon>
+            </ion-fab-button>
+        </ion-fab-list>
+    </ion-fab>
+    <!-- <p class = "testT">testText</p> -->
+    <ion-toolbar *ngIf="contents">
+        <ion-item>
+            <ion-label text-wrap position="stacked">
+                Title of this Segment:
+            </ion-label>
+            <ion-input #titleInput [(ngModel)]="TitleInput" placeholder="Input Title Here" value="{{contents.segment[currentSeg].segmentTitle}}" (ionChange)="onTitleEditorChange()" (ionFocus)="titleFocus()"></ion-input>
+        </ion-item>
+    </ion-toolbar>
+    <div *ngIf="contents">
+        <ckeditor max-height="20%" #editor [(ngModel)]="model.editorData" [editor]="Editor" (change)="onChange($event)" (focus)="textAreaFocus()">
+        </ckeditor>
+    </div>
+    <ion-button (click)="searchModalEvent()">Add ECO solutions</ion-button>
 
 
 </ion-content>
