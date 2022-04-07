@@ -64,7 +64,7 @@ export class PageSpaceErPage implements OnInit {
 
 
   ngOnInit() {
-
+    console.log("home page ng oninit run");
   }
   loadUserEcoScore() {
     const subscription = this.firebaseService.getUserByIdService(this.userId).subscribe(

@@ -14,5 +14,17 @@ ion-card {
 ion-card img {
     width: 600px;
     height: 200px;
-    object-fit: cover
+    object-fit: cover;
+}
+
+.editDisplay {
+    .editButton {
+        display: none;
+    }
+}
+
+.editdisplay:hover {
+    .editButton {
+        display: block;
+    }
 }
