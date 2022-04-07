@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AlertController, LoadingController, ModalController, NavParams } from '@ionic/angular';
 import { FirebaseService } from 'src/app/FirebaseService/firebase.service';
-import { sectionList } from '../../sharedData/ecoData';
+
 
 @Component({
   selector: 'app-eco-edit',
@@ -11,14 +11,35 @@ import { sectionList } from '../../sharedData/ecoData';
 export class EcoEditPage implements OnInit {
   @Input() ecoId: string;
   solutionDetail: any;
-  selectionList: string[];
+  selectionList: any;
   constructor(
     public modalController: ModalController,
     public firebaseService: FirebaseService,
     public alertController: AlertController,
     public loadingController: LoadingController,
   ) {
-    this.selectionList = sectionList;
+    this.getSections();
+    
+  }
+
+  getSections() {
+    const subscription = this.firebaseService.getSectionList().subscribe((res) => {
+      this.selectionList = res.map(e => {
+        return {
+          sectionName: e.payload.doc.data()['sectionName'],
+        }
+      })
+      /* console.log(this.sections); */
+    }, (err: any) => {
+      console.log("Get section list error")
+    })
+
+    if (this.selectionList != null) {
+      subscription.unsubscribe();
+    }
+
+
+
   }
 
   loadData(targetId) {

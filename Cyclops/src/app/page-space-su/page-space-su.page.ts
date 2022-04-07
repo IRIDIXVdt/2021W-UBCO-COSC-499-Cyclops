@@ -65,6 +65,12 @@ export class PageSpaceSuPage implements OnInit {
     public loadingController: LoadingController,
     public authService: AuthService,
   ) {
+    
+
+
+  }
+
+  ngOnInit() {
     this.getSections();
     this.slider = 0;
     this.scoreArea = 0;
@@ -84,8 +90,6 @@ export class PageSpaceSuPage implements OnInit {
     //this.ecoListContentLoading();  // move this inside the contentLoading()
     this.userProgressTypeInit();
     this.initializeColor();
-
-
   }
 
   getSections() {
@@ -285,7 +289,7 @@ export class PageSpaceSuPage implements OnInit {
           subscription.unsubscribe();
           /* console.log('unsubscribe success', this.userEcoItemListRemote); */
         }, err => {
-          console.debug(err);
+          console.log("test  ",err);
           this.userEcoItemListRemote = [];
         });
 
@@ -387,9 +391,6 @@ export class PageSpaceSuPage implements OnInit {
     this.sortTypeInitialize();
   }
 
-  ngOnInit() {
-
-  }
 
   sortTypeInitialize() {
     this.sortType = "starUp";
