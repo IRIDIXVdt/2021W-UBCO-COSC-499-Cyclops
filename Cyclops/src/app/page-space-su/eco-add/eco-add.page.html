@@ -10,10 +10,10 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <ng-container *ngIf="!solutionDetail">
+  <ng-container *ngIf="!selectionList">
     <ion-progress-bar type="indeterminate"></ion-progress-bar>
   </ng-container>
-  <ng-container *ngIf="solutionDetail">
+  <ng-container *ngIf="selectionList">
 
     <ion-list>
       <ion-item>
@@ -27,8 +27,8 @@
       <ion-item>
         <ion-label position="stacked">Section: </ion-label>
         <ion-select [(ngModel)]="solutionDetail.section">
-          <ion-select-option *ngFor="let item of selectionList" [value]="item.sectionName">
-            {{ item.sectionName }}
+          <ion-select-option *ngFor="let item of selectionList" [value]="item">
+            {{ item }}
           </ion-select-option>
         </ion-select>
       </ion-item>
