@@ -104,7 +104,7 @@
     <ng-container *ngIf="contents">
         <ion-grid *ngIf="this.currentSeg==this.contents.solSegment">
             <ion-row>
-                <ion-col *ngFor="let item of checkedSolutions" class="ecoCardItem">
+                <ion-col size-xs="12" size-sm="6" size-md="6" size-lg="4" *ngFor="let item of checkedSolutions" class="ecoCardItem">
                     <ion-card class="solution" color='light'>
                         <!--  *ngIf="item.id !" -->
                         <ion-card-header>

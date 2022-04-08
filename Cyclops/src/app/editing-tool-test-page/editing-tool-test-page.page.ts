@@ -282,7 +282,9 @@ export class EditingToolTestPagePage implements OnInit {
       component: SearchAddEcoSolutionsPage,
       componentProps: {
         content: aId,
-      }
+        checkedSolutions: this.checkedSolutions
+      },
+      backdropDismiss: false
     }).then(modalres => {
       modalres.present();
       modalres.onDidDismiss().then(res => {

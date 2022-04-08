@@ -12,6 +12,7 @@ import { FirebaseService } from 'src/app/FirebaseService/firebase.service';
 export class SearchAddEcoSolutionsPage implements OnInit {
   searchField: any[];
   checkedSolutions: any[];
+  checkedIds: any[];
   constructor(
     public firebaseService: FirebaseService,
     public modalController: ModalController,
@@ -31,20 +32,19 @@ export class SearchAddEcoSolutionsPage implements OnInit {
         }
       })
       console.log("Search Field Loaded", this.searchField);
-      /* this.articleCol = [[], [], []];
-       for (this.i = 0; this.i < this.searchField.length; this.i++) {
-         //load data into each column
-         const currentArticle = this.searchField[this.i];
-         if (currentArticle.columnName == '1') {
-           this.articleCol[0].push(currentArticle);
-         } else if (currentArticle.columnName == '2') {
-           this.articleCol[1].push(currentArticle);
-         } else if (currentArticle.columnName == '3') {
-           this.articleCol[2].push(currentArticle);
-         }
-       }
-       this.i = 0;
-       console.log("independent data loaded!", this.articleCol);*/
+      this.checkedIds = [];
+      if(this.checkedSolutions){
+        for (let i = 0; i < this.checkedSolutions.length; i++) {
+          this.checkedIds.push(this.checkedSolutions[i].id);
+        }
+        for (let i = 0; i < this.searchField.length; i++) {
+          let currentSol = this.searchField[i];
+          if (this.checkedIds.indexOf(currentSol.id)!=-1) {
+            this.searchField[i].checked=true;
+          }
+        }
+      }
+      
 
     }, (err: any) => {
       console.log(err);
@@ -68,14 +68,21 @@ export class SearchAddEcoSolutionsPage implements OnInit {
   }
   saveResults() {
     // console.log("we have the editC now as:", this.editC);
-    this.checkedSolutions=[]
+
+      this.checkedSolutions=[];
+    
+    this.checkedIds=[];//check again before submission
+    for (let i = 0; i < this.checkedSolutions.length; i++) {
+      this.checkedIds.push(this.checkedSolutions[i].id);
+    }
     for (let i = 0; i < this.searchField.length; i++) {
       let currentSol = this.searchField[i];
-      if (currentSol.checked == true) {
+      if (currentSol.checked == true&& this.checkedIds.indexOf(currentSol.id)==-1) {
         this.checkedSolutions.push(currentSol);
       }
     }
     this.modalController.dismiss(this.checkedSolutions);
   }
+  
 
 }
