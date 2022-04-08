@@ -48,6 +48,81 @@
             <ion-img [src]="contents.image" class="custome-image-article"></ion-img>
         </ion-toolbar>
         <div [innerHTML]="contents.segment[status].segmentBody"> </div>
+        <ng-container *ngIf="contents">
+
+            <ion-grid *ngIf="this.status==this.contents.solSegment">
+                <ion-row>
+                    <ion-col size-xs="12" size-sm="6" size-md="6" size-lg="4" *ngFor="let item of this.contents.solutions" class="ecoCardItem">
+                        <ion-card class="solution" color='light'>
+                            <!--  *ngIf="item.id !" -->
+                            <ion-card-header>
+                                <ion-card-subtitle>
+                                    {{item.star + 1}}
+                                    <ion-icon name="star"></ion-icon>
+                                </ion-card-subtitle>
+                                <ion-card-title>
+                                    <ion-label color="primary">
+                                        {{item.name}}
+                                    </ion-label>
+                                </ion-card-title>
+                            </ion-card-header>
+                            <ion-card-content>
+                                <ion-label>
+                                    {{item.section}}
+                                </ion-label>
+                            </ion-card-content>
+                            <ion-accordion-group>
+                                <ion-accordion>
+                                    <ion-item slot="header" color="primary" *ngIf="!item.attend">
+                                        <ion-label>Assess Your Effort</ion-label>
+                                    </ion-item>
+                                    <ion-item slot="header" color="secondary" *ngIf="item.attend">
+                                        <ion-label>Update Solution</ion-label>
+                                    </ion-item>
+                                    <ion-list slot="content">
+                                        <ion-text class="center-text" [color]="colorAssign(item.weight)">
+                                            <h6> {{progressAlertMessage}} </h6>
+                                        </ion-text>
+                                        <ion-item>
+                                            <ion-range deounce='500' min="-1" max="2" step="1" [(ngModel)]="item.weight" [color]="colorAssign(item.weight)" [pinFormatter]="customFormatter" [pin]="false" snaps="true" grid="true" snaps color="success" list='tickmarks' (ionBlur)="rangeChangeEvent(item.weight, item.id)"
+                                                class="ion-padding-end">
+                                                <ion-icon slot="start" [color]="colorAssign(item.weight)" name="leaf"></ion-icon>
+                                                <ion-icon slot="end" [color]="colorAssign(item.weight)" name="leaf">
+                                                </ion-icon>
+                                            </ion-range>
+                                        </ion-item>
+                                        <ion-item button (click)="submitEcoSolEvent(item.weight, item.id, false)" *ngIf="!item.attend">
+                                            <ion-label color="primary">
+                                                Submit
+                                            </ion-label>
+                                        </ion-item>
+                                        <ion-item button (click)="submitEcoSolEvent(item.weight, item.id, true)" *ngIf="item.attend">
+                                            <ion-label color="primary">
+                                                Update
+                                            </ion-label>
+                                        </ion-item>
+                                    </ion-list>
+
+                                </ion-accordion>
+                            </ion-accordion-group>
+                            <!-- *ngIf="item.id != completedList[index]"  -->
+                            <!-- checkDisplay(item.ecoId) -->
+                            <!-- *ngIf="item.ecoId in completedList" -->
+                            <ng-container>
+                                <ion-card-content *ngIf="item.detail.length >130">
+                                    <p>{{ (item.detail.length>130)? (item.detail | slice:0:130)+'...':(str) }}</p>
+                                    <ion-button (click)="displaySolutionDetail(item.detail)" color="primary" fill="clear" expand="block">Read More</ion-button>
+                                </ion-card-content>
+                                <ion-card-content *ngIf="item.detail.length <130">
+                                    <p>{{item.detail}}</p>
+
+                                </ion-card-content>
+                            </ng-container>
+                        </ion-card>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ng-container>
         <div>
             <!-- <ion-button expand="block " (click)="openModal() " *ngIf="this.authService.isAdmin()">Edit Content
             </ion-button> -->

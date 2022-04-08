@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
-import { PopoverController, IonContent } from '@ionic/angular';
+import { PopoverController, IonContent, AlertController, LoadingController } from '@ionic/angular';
 import { PopoverComponent } from '../popover/popover.component';
 import { ModalController } from '@ionic/angular';
 import { FeedbackModalComponent } from './feedback-modal/feedback-modal.component';
@@ -28,14 +28,19 @@ export class PageSpaceMePage implements OnInit {
   userId: any;
   userData: any;//corresponding to the readArticles field in the user document on firehost
   hasScrollbar: boolean;
-
-
-
+  userEcoItemList: userEcoItem[];
+  userEcoItemListRemote: userEcoItem[];
+  solutionTotalScore = 0; // total score of all solutions
+  scoreArea: number;
+  solutions: any;
+  currentSectionSolutions: any;
+  localSol: fetchSolution[];
+  displaySol: fetchSolution[];
   @ViewChild(IonContent) content: IonContent;
   status: any;
   segmentDepth: number[] = [0, 0, 0];
   currentSegment = 0;
-
+  progressAlertMessage: string;
 
 
 
@@ -44,7 +49,9 @@ export class PageSpaceMePage implements OnInit {
     public modalController: ModalController,
     private modalCtrol: ModalController,
     private activatedrouter: ActivatedRoute,
+    public loadingController: LoadingController,
     public firebaseService: FirebaseService,
+    public alertController: AlertController,
     public authService: AuthService
   ) {
     this.status = 0;
@@ -62,14 +69,14 @@ export class PageSpaceMePage implements OnInit {
         console.log('logged out, userId: ', this.userId);
       }
     });
-
+    this.contentLoading();
   }
 
   loadUserSegmentsById() {
     console.log("run loadUserById()");
     const subscription = this.firebaseService.getUserDataByIdService(this.userId).subscribe(
       e => {
-        if(e.payload.data()['readArticles']!=undefined){
+        if (e.payload.data()['readArticles'] != undefined) {
           this.userData = e.payload.data()['readArticles'];
           for (let i = 0; i < this.userData.length; i++) {
             if (this.userData[i]['id'] == this.docId) {
@@ -106,6 +113,8 @@ export class PageSpaceMePage implements OnInit {
           segment: e.payload.data()['segment'],
           cardIntroduction: e.payload.data()['cardIntroduction'],
           columnName: e.payload.data()['columnName'],
+          solutions: e.payload.data()['solutions'],
+          solSegment: e.payload.data()['solSegment']
 
         };
         subscription.unsubscribe();
@@ -116,7 +125,30 @@ export class PageSpaceMePage implements OnInit {
       }
     )
   }
+  contentLoading() {
+    //stop sub while read
+    this.firebaseService.getAllEcoSolutionService().subscribe((res) => {
+      this.solutions = res.map(e => {
+        return {
+          id: e.payload.doc.id,
+          name: e.payload.doc.data()['name'],
+          detail: e.payload.doc.data()['detail'],
+          section: e.payload.doc.data()['section'],
+          star: e.payload.doc.data()['star'],
+          attend: false,
+          weight: 0,
+        }
+      })
+      this.localSol = this.solutions;
 
+      this.ecoListContentLoading();
+      // this.userEcoItemList = this.userEcoItemList;
+      //this.sortTypeInitialize();
+    }, (err: any) => {
+      console.log(err);
+    })
+
+  }
   segmentChanged(ev: any) {
     console.log('current segment status is', this.status);
     this.currentSegment = parseInt(this.status);
@@ -125,8 +157,9 @@ export class PageSpaceMePage implements OnInit {
     this.authService.afAuth.onAuthStateChanged(user => {
       if (user) {
         this.checkForScrollbar();//check for scrollbar everytime the segment changes
-      }});
-    
+      }
+    });
+
 
   }
 
@@ -180,6 +213,185 @@ export class PageSpaceMePage implements OnInit {
 
     }
   }
+  colorAssign(color: number) {
+    if (color == 2) {
+      this.progressAlertMessage = "Doing it!"
+      return 'success';
+    }
+    else if (color == 1) {
+      this.progressAlertMessage = "Working on it!"
+      return 'warning';
+    }
+    else if (color == 0) {
+      this.progressAlertMessage = "Not doing it!"
+      return 'danger';
+    }
+    else {
+      this.progressAlertMessage = "Not applicable"
+      return 'medium';
+    }
+
+  }
+  rangeChangeEvent(currentWeight, currentId) {
+    console.log("range change event\nthe new weight is:", currentWeight, '\nchange weight for article id:', currentId);
+
+  }
+  async displaySolutionDetail(description) {
+    const alert = await this.alertController.create({
+      cssClass: 'alertSolutionContentDetails',
+      message: description,
+      buttons: ['Continue']
+    });
+    await alert.present();
+  }
+
+  updateEcoItemList(data, update: boolean) {
+    if (update) {
+      let onChangeItem = this.userEcoItemList.find(i => i.ecoId == data.ecoId);//locates the onChange Item
+      onChangeItem.weight = data.weight;//change the weight
+    } else {
+      console.log(this.userEcoItemList);
+      this.userEcoItemList.push(data);
+    }
+  }
+  /*updateDisplayList() {
+    console.log("update display with rule:\nsort type:", this.sortType, '\nseciton name:', this.section, '\nprogress type:', this.userProgressType);
+    // this display list handles everything:
+    this.displaySol = this.localSol;
+    // 1. attend type
+    this.sectionTypeOnChange();
+    // 2. section type
+    this.attendTypeOnChange()
+    // 3. sort type
+    this.sortTypeOnChange()
+  }*/
+  ecoListContentLoading() {
+    if (this.authService.isLogin()) {
+      const subscription = this.firebaseService.getUserByIdService(this.userId).subscribe(
+        e => {
+          if (e.payload.data()["userEcoSolutions"] != undefined) {
+            this.userEcoItemListRemote = e.payload.data()["userEcoSolutions"];
+          }
+
+          // console.log(this.userEcoItemList);
+          if (this.userEcoItemListRemote == undefined) {//check with new account for testing*
+            this.userEcoItemListRemote = [];
+          }
+          //user eco list item consists of all the solutions the user has attempted
+          this.assignCompletedList();
+         // this.updateDisplayList();
+
+          subscription.unsubscribe();
+          /* console.log('unsubscribe success', this.userEcoItemListRemote); */
+        }, err => {
+          console.debug(err);
+          this.userEcoItemListRemote = [];
+        });
+
+    }
+
+  }
+  assignCompletedList() {
+    //this merges information from both lists: the solution list and the user list
+    if (this.userEcoItemList == undefined) {
+      this.userEcoItemList = this.userEcoItemListRemote;
+    }
+    //reset values first
+    this.solutionTotalScore = 0;
+    this.scoreArea = 0;
+    for (let item of this.localSol) {
+      // if (this.completedList.indexOf(item.id) > -1) {
+      //stop as soon as there is a match
+      this.solutionTotalScore += item.star;
+      for (let ecoAttendItem of this.userEcoItemList) {
+        if (item.id === ecoAttendItem.ecoId) {
+          item.attend = true;
+          item.weight = ecoAttendItem.weight;
+
+          // item.weight = 1;//tentative
+          //we have this solution attended by our user
+          // console.log(this.scoreArea, 'adds', item.star, ecoAttendItem.weight, 'from', item.name);
+          this.addScore(item.star, ecoAttendItem.weight);//add up the new weights to the ecotracker
+          break;
+          //as there should only be one match for the whole list, we can break here to save some computations
+        }
+      }
+    }
+
+    this.displaySol = this.localSol;
+    /* console.log('loaded solution and user progress successfully merged', this.scoreArea); */
+  }
+  addScore(star, weight) {
+    if (weight > 0) {
+      this.scoreArea += (star + 1) * weight * 0.5;
+
+    } else if (weight == -1) {
+      // this.scoreArea -= (star + 1);
+      //we deduct the mark on total Score. 
+      this.solutionTotalScore -= (star + 1);
+    }
+  }
+  async alertMessage(message) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      message: message,
+      buttons: ['Ok']
+    });
+    await alert.present();
+  }
+  updateUserTotalEcoScore() {
+    //get solutionTotalScore
+    //update total score  to database
+    const data: any = {
+      totalEcoScore: this.scoreArea,
+      solutionTotalScore: this.solutionTotalScore
+    }
+    this.firebaseService.addUserEcoService(this.userId, data).then(() => {
+      /* console.log('updated UserTotalEcoScore'); */
+    }).catch((error) => {
+      console.log(error);
+      this.alertMessage("Check your internet Connection");
+    });
+  }
+  localWeightUpdate(currentWeight, currentId) {
+    //assign this new weight to localSol
+    let onChangeItem = this.localSol.find(i => i.id == currentId);//locates the onChange Item
+    onChangeItem.weight = currentWeight;//change the weight
+  }
+  async submitEcoSolEvent(solutionWeight: number, solutionId: string, update: boolean) {
+    const currentTime = new Date().getTime();
+    console.log("onSubmit", solutionId, this.userId, currentTime);
+    const uploadData: userEcoItem = {//sol'n init
+      time: currentTime,
+      ecoId: solutionId,
+      weight: solutionWeight,//by default
+    }
+    //push into sol'n list
+    this.updateEcoItemList(uploadData, update);
+
+    const userData: any = {
+      userEcoSolutions: this.userEcoItemList,
+    }
+    //upload to cloud
+    const loading = await this.loadingController.create({
+      message: 'Please wait...',
+    });
+    loading.present();  // present loading animation
+    this.firebaseService.addUserEcoService(this.userId, userData).then(() => {
+      console.log('updated userName');
+      loading.dismiss();
+      this.assignCompletedList();//update the card looking and the score as well
+      //this.updateDisplayList();
+      this.updateUserTotalEcoScore();
+      this.alertMessage("Successful");
+      this.localWeightUpdate(solutionWeight, solutionId);//update this score to localSol
+    }).catch((error) => {
+      console.log(error);
+      loading.dismiss();
+      this.alertMessage("Check your internet Connection");
+    });
+
+  }
 
   async onScroll($event) {
     if (this.userId) {
@@ -227,12 +439,12 @@ export class PageSpaceMePage implements OnInit {
         this.userData[i]['segment'][this.currentSegment] = true;
         console.log(this.areAllTrue(this.userData[i]['segment']));
         if (this.areAllTrue(this.userData[i]['segment'])) {
-          this.userData[i]['progress']= "completed";
-        }else{
-          this.userData[i]['progress']= "partial"; 
+          this.userData[i]['progress'] = "completed";
+        } else {
+          this.userData[i]['progress'] = "partial";
         }
         console.log(this.userData[i]);
-        this.firebaseService.updateUserCollectionDataByIdService(this.userId, { readArticles: this.userData});
+        this.firebaseService.updateUserCollectionDataByIdService(this.userId, { readArticles: this.userData });
       }
     }
   }
@@ -278,4 +490,18 @@ export class PageSpaceMePage implements OnInit {
     })
   }
 
+}
+type userEcoItem = {
+  time: number;
+  ecoId: string;
+  weight: number;
+}
+type fetchSolution = {
+  id: string;
+  name: string;
+  star: number;
+  detail: string;
+  section: string;
+  attend: boolean;
+  weight: number;
 }
