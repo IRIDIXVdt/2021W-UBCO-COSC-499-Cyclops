@@ -70,6 +70,41 @@
     }
 }
 
+.sectionHandle:hover{
+    ion-button{
+        display: block;
+    }
+}
+
+.sectionHandle{
+    ion-button{
+        display: none;
+    }
+}
+
+.solutionHandle:hover {
+    p{
+        display: none;
+    }
+    ion-button{
+        display: block;
+    }
+}
+
+
+.solutionHandle{
+    min-height: 500px;
+    p{
+        display: block;
+    }
+    ion-button{
+        display: none;
+    }
+}
+// .solutionEditButton {
+//     display: none;
+// }
+
 .isection {
     padding-top: 10px;
     padding-bottom: 10px;
@@ -90,7 +125,7 @@
     display: inline-block;
     font-size: 175%;
     padding-left: 5px;
-    color: #FFCA28;
+    color: #ffca28;
 }
 
 .odisplay {
@@ -107,21 +142,42 @@
     display: inline-block;
     font-size: 200%;
     padding-left: 5px;
-    color: #FFCA28;
+    color: #ffca28;
 }
 
 .solution {
     height: 340px;
 }
 
-@media (max-width: 820px) {
+@media (max-width: 575px) {
     .web-display {
         display: none;
     }
 }
 
-@media (min-width: 820px) {
+@media (min-width: 576px) {
     .mobile-display {
         display: none;
     }
 }
+
+@media (min-width: 1200px) {
+    .ecoCardItem {
+        size: 3;
+    }
+}
+@media (max-width: 1200px) and (min-width: 501px) {
+    .ecoCardItem {
+        size: 4;
+    }
+}
+
+@media (max-width: 500px) and (min-width: 0px) {
+    .ecoCardItem {
+        size: 6;
+    }
+}
+.center-text {
+    text-align: center;
+ }
+

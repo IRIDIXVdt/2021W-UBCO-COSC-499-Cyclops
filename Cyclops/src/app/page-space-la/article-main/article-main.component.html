@@ -1,5 +1,16 @@
 <ion-grid>
     <ion-row id="testList">
+        <ion-col size-xs="12" size-sm="6" size-md="6" size-lg="4" *ngIf="this.authService.isAdmin()">
+            <!-- *ngIf="editMode" -->
+            <ion-fab horizontal="center" vertical="center">
+                <ion-fab-button color="primary" (click)="articleAddEvent()">
+                    <ion-icon name="add-circle-outline" size="large"></ion-icon>
+                </ion-fab-button>
+            </ion-fab>
+            <ion-card color='light' disabled="true">
+            </ion-card>
+        </ion-col>
+
         <ion-col size-xs="12" size-sm="6" size-md="6" size-lg="4" *ngFor="let content of contentCol;let indexA = index">
             <!-- fab button  -->
             <!-- <ion-fab-button color="light">
@@ -13,37 +24,50 @@
                         <ion-icon name="construct-outline"></ion-icon>
                     </ion-fab-button>
                 </ion-fab-list> -->
-            <ion-fab class="ion-padding" horizontal="start" vertical="top"
-                *ngIf="!editMode && this.authService.isAdmin()">
-                <div class="ion-padding-start">
-                    <div>
-                        <ion-button (click)="coverEditEvent(content.id)">
-                            Edit Cover
-                        </ion-button>
+            <div>
+                <ion-fab class="ion-padding" horizontal="start" vertical="top"
+                    *ngIf="!editMode && this.authService.isAdmin()">
+                    <div class="ion-padding-start">
+                        <!-- class="adminEdit" -->
+                        <div>
+                            <ion-button (click)="coverEditEvent(content.id)">
+                                <ion-icon name="image-outline"></ion-icon>
+                                <ion-label>&nbsp;&nbsp;Edit Cover</ion-label>
+                            </ion-button>
+                        </div>
+                        <div>
+                            <ion-button (click)="articleEditEvent(content.id)">
+                                <ion-icon name="albums-outline"></ion-icon>
+                                <ion-label>&nbsp;&nbsp;Edit Card</ion-label>
+                            </ion-button>
+                        </div>
+                        <div>
+                            <ion-button routerLink="/tabs/EditContent/{{content.id}}">
+                                <ion-icon name="create-outline"></ion-icon>
+                                <ion-label>&nbsp;&nbsp;Edit Content</ion-label>
+                            </ion-button>
+                        </div>
+                        <div>
+                            <ion-button color="danger" (click)="articleRemoveEvent(indexA,content)">
+                                <ion-icon name="trash-outline"></ion-icon>
+                                <ion-label>&nbsp;&nbsp;Delete Card</ion-label>
+                            </ion-button>
+                        </div>
                     </div>
-                    <div>
-                        <ion-button (click)="articleEditEvent(content.id)">
-                            Edit Card
-                        </ion-button>
-                    </div>
-                    <div>
-                        <ion-button routerLink="/tabs/TextEdit/{{content.id}}">
-                            Edit Content
-                        </ion-button>
-                    </div>
-                </div>
 
-            </ion-fab>
+                </ion-fab>
+            </div>
 
-            <ion-fab vertical="top" horizontal="end" *ngIf="editMode && this.authService.isAdmin()">
+
+            <!-- <ion-fab vertical="top" horizontal="end" *ngIf="editMode && this.authService.isAdmin()">
                 <ion-button color="danger" (click)="articleRemoveEvent(indexA,content)">
                     <ion-icon name="trash-outline"></ion-icon>
                     <ion-label>&nbsp;&nbsp;Delete Card</ion-label>
                 </ion-button>
-            </ion-fab>
+            </ion-fab> -->
             <!-- article card -->
             <ng-container *ngIf="!editMode">
-                <ion-card color='light' routerLink="/tabs/page-space-me/{{content.id}}">
+                <ion-card color='light' routerLink="/tabs/SelectedArticle/{{content.id}}">
                     <img src="{{content.image}}" />
                     <ion-card-header>
                         <ion-card-subtitle>{{content.subtitle}}</ion-card-subtitle>
@@ -69,14 +93,6 @@
             </ng-container>
         </ion-col>
         <!-- add button -->
-        <ion-col size-xs="12" size-sm="6" size-md="6" size-lg="4" *ngIf="editMode">
-            <ion-fab horizontal="center" vertical="center">
-                <ion-fab-button color="primary" (click)="articleAddEvent()">
-                    <ion-icon name="add-circle-outline" size="large"></ion-icon>
-                </ion-fab-button>
-            </ion-fab>
-            <ion-card color='light' disabled="true">
-            </ion-card>
-        </ion-col>
+
     </ion-row>
 </ion-grid>

@@ -13,43 +13,47 @@
                 <ion-card-subtitle style="text-align:center; font-size:150%;">Overall Score</ion-card-subtitle>
                 <ion-card-title fontsize>
                     <div class="odisplay">
-                        <div class="odisplay1" *ngIf="this.authService.isLogin()">
+                        <div class="odisplay1" *ngIf="this.authService.isLogin() && solutionTotalScore == 0">
                             <h4 style="text-align:center; font-size:300%" fontsize>{{scoreArea}}</h4>
                             <div class="odisplay2">
                                 <ion-icon name="star"></ion-icon>
                             </div>
                         </div>
-                        <div class="odisplay1" *ngIf="!this.authService.isLogin()">
-                            <ion-text style="text-align:center; font-size:150%; font-weight: 700;" >
-                                Please Login to Continue 
-                                 
-                            <ion-text style="text-align:center; font-size:150%; font-weight: 700;" button routerLink="/login" color="primary">Login</ion-text>
-   
-                            </ion-text>
+                        <div class="odisplay1" *ngIf="this.authService.isLogin() && solutionTotalScore != 0">
+                            <h4 style="text-align:center; font-size:300%" fontsize>{{scoreArea}} / {{solutionTotalScore}}
+                            </h4>
+                            <div class="odisplay2">
+                                <ion-icon name="star"></ion-icon>
+                            </div>
                         </div>
-                        
+                        <div class="odisplay1" *ngIf="!this.authService.isLogin()">
+                            <ion-text style="text-align:center; font-size:150%; font-weight: 700;">
+                                Please Login to Continue
+
+
+
+                            </ion-text>
+                            <ion-text style="text-align:center; font-size:150%; font-weight: 700;" button routerLink="/login" color="primary">Login</ion-text>
+                        </div>
+
                     </div>
                 </ion-card-title>
             </ion-card-header>
         </ion-card>
 
-        <!-- <div id="button-web">
-            <section id="surveycenter">
-                <ion-button expand="block" (click)="openModal()">Submit New Solution</ion-button>
-            </section>
-        </div> -->
-
-
-        <h1>Solutions <ion-icon name="help-circle-outline" (click)="popAlert('You can submit your solutions')">
+        <h1>Solutions
+            <ion-icon name="help-circle-outline" (click)="popAlert()">
             </ion-icon>
         </h1>
 
-        <ng-container *ngIf="!displaySol && this.authService.isLogin()" >
+        <ng-container *ngIf="!displaySol && this.authService.isLogin()">
             <ion-progress-bar type="indeterminate"></ion-progress-bar>
         </ng-container>
 
-        <ng-container *ngIf="displaySol && this.authService.isLogin()" >
+        <ng-container *ngIf="displaySol && this.authService.isLogin()">
             <ion-row>
+
+                <!-- desktop users -->
                 <ion-col size-xs="12" size-sm="5" size-md="4" size-lg="3" class="web-display">
                     <ion-row>
                         <ion-col>
@@ -74,14 +78,11 @@
                                     <ion-radio slot="start" value="sT"></ion-radio>
                                 </ion-item>
                             </ion-radio-group>
-
-
                         </ion-col>
                     </ion-row>
 
                     <ion-row>
                         <ion-col>
-                           
                             <ion-radio-group [(ngModel)]="userProgressType" (ionChange)="updateDisplayList()">
                                 <ion-list-header>
                                     <ion-label>Display solutions that are</ion-label>
@@ -102,10 +103,8 @@
                         </ion-col>
                     </ion-row>
 
-
                     <ion-row>
                         <ion-col>
-                            
                             <ion-radio-group [(ngModel)]="section" (ionChange)="updateDisplayList()">
                                 <ion-list-header>
                                     <ion-label>Select by Section</ion-label>
@@ -115,17 +114,39 @@
                                     <ion-radio slot="start" value="All"></ion-radio>
                                 </ion-item>
                                 <ng-container *ngFor="let item of sections">
-                                    <ion-item>
-                                        <ion-label> {{item}}</ion-label>
-                                        <ion-radio slot="start" value={{item}}></ion-radio>
+                                    <!-- all items below should have edit button available -->
+                                    <ion-item class="sectionHandle">
+                                        <ion-label> {{item.sectionName}}</ion-label>
+                                        <ion-radio slot="start" value={{item.sectionName}}></ion-radio>
+
+                                        <ng-container *ngIf="this.authService.isAdmin()">
+                                            <!-- editSection(item) -->
+                                            <ion-button fill="clear" (click)="editSection(item.sectionName)">
+                                                <ion-icon name="create-outline"></ion-icon>
+                                            </ion-button>
+
+                                            <!-- removeSection(item) -->
+                                            <ion-button fill="clear" (click)="removeSection(item.sectionName)">
+                                                <ion-icon name="trash-outline" color="danger"></ion-icon>
+                                            </ion-button>
+                                        </ng-container>
+
                                     </ion-item>
                                 </ng-container>
                             </ion-radio-group>
                         </ion-col>
-
+                    </ion-row>
+                    <ion-row class="ion-align-items-center" *ngIf="this.authService.isAdmin()">
+                        <ion-col class="ion-text-center">
+                            <ion-button (click)="addSection()">
+                                <span>Add Section</span>
+                            </ion-button>
+                        </ion-col>
                     </ion-row>
                 </ion-col>
-                <ion-col size-xs="12" size-sm="5" size-md="4" size-lg="3" class="mobile-display"> 
+
+                <!-- mobile users -->
+                <ion-col size-xs="12" size-sm="5" size-md="4" size-lg="3" class="mobile-display">
                     <ion-accordion-group>
                         <ion-accordion>
                             <ion-item slot="header" color="light">
@@ -133,8 +154,7 @@
                             </ion-item>
                             <ion-list slot="content">
                                 <ion-item>
-                                    <ion-radio-group [(ngModel)]="sortType" (ionChange)="updateDisplayList()"
-                                        class="ion-padding-bottom">
+                                    <ion-radio-group [(ngModel)]="sortType" (ionChange)="updateDisplayList()" class="ion-padding-bottom">
                                         <ion-item>
                                             <ion-label>Star Ascending</ion-label>
                                             <ion-radio slot="start" value="starUp"></ion-radio>
@@ -161,8 +181,7 @@
                             </ion-item>
                             <ion-list slot="content">
                                 <ion-item>
-                                    <ion-radio-group [(ngModel)]="userProgressType" (ionChange)="updateDisplayList()"
-                                        class="ion-padding-bottom">
+                                    <ion-radio-group [(ngModel)]="userProgressType" (ionChange)="updateDisplayList()" class="ion-padding-bottom">
                                         <ion-item>
                                             <ion-label>Attended</ion-label>
                                             <ion-radio slot="start" value="com"></ion-radio>
@@ -185,16 +204,15 @@
                             </ion-item>
                             <ion-list slot="content">
                                 <ion-item>
-                                    <ion-radio-group [(ngModel)]="section" (ionChange)="updateDisplayList()"
-                                        class="ion-padding-bottom">
+                                    <ion-radio-group [(ngModel)]="section" (ionChange)="updateDisplayList()" class="ion-padding-bottom">
                                         <ion-item>
                                             <ion-label>All</ion-label>
                                             <ion-radio slot="start" value="All"></ion-radio>
                                         </ion-item>
                                         <ng-container *ngFor="let item of sections">
                                             <ion-item>
-                                                <ion-label> {{item}}</ion-label>
-                                                <ion-radio slot="start" value={{item}}></ion-radio>
+                                                <ion-label> {{item.sectionName}}</ion-label>
+                                                <ion-radio slot="start" value={{item.sectionName}}></ion-radio>
                                             </ion-item>
                                         </ng-container>
                                     </ion-radio-group>
@@ -203,9 +221,44 @@
                         </ion-accordion>
                     </ion-accordion-group>
                 </ion-col>
+
                 <ion-col>
                     <ion-row>
-                        <ion-col *ngFor="let item of displaySol" size-xs="12" size-sm="6" size-md="6" size-lg="3">
+                        <ion-col *ngIf="this.authService.isAdmin()" class="ecoCardItem">
+                            <ion-fab horizontal="center" vertical="center" >
+                                <ion-fab-button color="primary" (click)="addCard()">
+                                    <!-- (click)="articleAddEvent()" -->
+                                    <ion-icon name="add-circle-outline" size="large"></ion-icon>
+                                </ion-fab-button>
+                            </ion-fab>
+                            <ion-card color='light' disabled="true">
+                                <ion-card-header>
+                                    <ion-card-subtitle>
+                                        1
+                                        <ion-icon name="star"></ion-icon>
+                                    </ion-card-subtitle>
+                                    <ion-card-title>
+                                        <ion-label color="primary">
+                                            New Solution
+                                        </ion-label>
+                                    </ion-card-title>
+                                </ion-card-header>
+                                <ion-card-content>
+                                    <ion-label>
+                                        Section
+                                    </ion-label>
+                                </ion-card-content>
+                                <ion-accordion-group>
+                                    <ion-accordion>
+                                        <ion-item slot="header" color="primary">
+                                            <ion-label>Assess Your Effort</ion-label>
+                                        </ion-item>
+                                    </ion-accordion>
+                                </ion-accordion-group>
+                            </ion-card>
+                        </ion-col>
+
+                        <ion-col *ngFor="let item of displaySol" class="ecoCardItem">
                             <ion-card class="solution" color='light'>
                                 <!--  *ngIf="item.id !" -->
                                 <ion-card-header>
@@ -236,22 +289,23 @@
                                             <ion-label>Update Solution</ion-label>
                                         </ion-item>
                                         <ion-list slot="content">
+                                            <ion-text class="center-text" [color]="colorAssign(item.weight)">
+                                                <h6> {{progressAlertMessage}} </h6>
+                                            </ion-text>
                                             <ion-item>
-                                                <ion-range deounce='500' min="-1" max="2" step="1" value="0"
-                                                    [ngStyle]="{'color':getCol()}" [color]="color"
-                                                    snaps="true" grid="true" snaps color="success" list='tickmarks'
-                                                    (ionChange)="rangeChange($event)">
-                                                    <ion-icon slot="start" [color]="color" name="leaf"></ion-icon>
-                                                    <ion-icon slot="end" [color]="color" name="leaf"></ion-icon>
+                                                <ion-range deounce='500' min="-1" max="2" step="1" [(ngModel)]="item.weight" [color]="colorAssign(item.weight)" [pinFormatter]="customFormatter" [pin]="false" snaps="true" grid="true" snaps color="success" list='tickmarks' (ionBlur)="rangeChangeEvent(item.weight, item.id)"
+                                                    class="ion-padding-end">
+                                                    <ion-icon slot="start" [color]="colorAssign(item.weight)" name="leaf"></ion-icon>
+                                                    <ion-icon slot="end" [color]="colorAssign(item.weight)" name="leaf">
+                                                    </ion-icon>
                                                 </ion-range>
-                                                <!-- color change -->
                                             </ion-item>
-                                            <ion-item button (click)="submitEcoSolEvent(item.id)" *ngIf="!item.attend">
+                                            <ion-item button (click)="submitEcoSolEvent(item.weight, item.id, false)" *ngIf="!item.attend">
                                                 <ion-label color="primary">
                                                     Submit
                                                 </ion-label>
                                             </ion-item>
-                                            <ion-item button *ngIf="item.attend">
+                                            <ion-item button (click)="submitEcoSolEvent(item.weight, item.id, true)" *ngIf="item.attend">
                                                 <ion-label color="primary">
                                                     Update
                                                 </ion-label>
@@ -260,10 +314,40 @@
 
                                     </ion-accordion>
                                 </ion-accordion-group>
+                                <ng-container *ngIf="!this.authService.isAdmin()">
+                                    <ion-card-content *ngIf="item.detail.length >130">
+                                        <p>{{ (item.detail.length>130)? (item.detail | slice:0:130)+'...':(str) }}</p>
+                                        <ion-button (click)="displaySolutionDetail(item.detail)" color="primary" fill="clear" expand="block">Read More</ion-button>
+                                    </ion-card-content>
+                                    <ion-card-content *ngIf="item.detail.length <130">
+                                        <p>{{item.detail}}</p>
 
-                                <ion-card-content>
-                                    {{item.detail}}
-                                </ion-card-content>
+                                    </ion-card-content>
+                                </ng-container>
+                                <ng-container *ngIf="this.authService.isAdmin()">
+                                    <ion-card-content class="solutionHandle" *ngIf="item.detail.length >130">
+                                        <p>{{ (item.detail.length>130)? (item.detail | slice:0:130)+'...':(str) }}</p>
+                                        <ion-button (click)="displaySolutionDetail(item.detail)" color="primary" class="readMoreButton">Read More</ion-button>
+                                        <ion-button (click)="editCard(item.id)">
+                                            Edit Card
+                                        </ion-button>
+                                        <ion-button (click)="removeCard(item.id)">
+                                            Removed Card
+                                        </ion-button>
+                                    </ion-card-content>
+
+
+                                    <ion-card-content class="solutionHandle" *ngIf="item.detail.length <130">
+                                        <p>{{item.detail}}</p>
+                                        <ion-button (click)="editCard(item.id)">
+                                            Edit Card
+                                        </ion-button>
+                                        <ion-button (click)="removeCard(item.id)">
+                                            Removed Card
+                                        </ion-button>
+                                    </ion-card-content>
+
+                                </ng-container>
 
                             </ion-card>
                         </ion-col>

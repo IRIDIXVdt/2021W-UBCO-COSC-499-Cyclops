@@ -13,7 +13,9 @@ export class UserProfilePage implements OnInit {
 
   userData = JSON.parse(localStorage.getItem('user'));
 
-  userEcoScore =0;
+  userEcoScore:number;  // score user currently get
+
+  solutionTotalScore:number; // the total score of all solutions
 
 
 
@@ -37,8 +39,16 @@ export class UserProfilePage implements OnInit {
       e=>{
         if (e.payload.data()['totalEcoScore'] != undefined){
           this.userEcoScore = e.payload.data()['totalEcoScore']; // get user total eco score
-        }else{
+        }
+        if(e.payload.data()['totalEcoScore'] == undefined){
           this.userEcoScore =0;
+        }
+
+        if (e.payload.data()['solutionTotalScore'] != undefined){
+          this.solutionTotalScore = e.payload.data()['solutionTotalScore']; 
+        }
+        if (e.payload.data()['solutionTotalScore'] == undefined){
+          this.solutionTotalScore = 0; 
         }
         
       }

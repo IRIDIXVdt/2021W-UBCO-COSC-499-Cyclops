@@ -8,3 +8,19 @@
     margin-left: 20px;
     margin-right: 8px;
 }
+
+
+
+.editDisplay {
+    min-width: 500px;
+    ion-button {
+        display: none;
+    }
+}
+
+.editDisplay:hover {
+    min-width: 500px;
+    ion-button {
+        display: block;
+    }
+}

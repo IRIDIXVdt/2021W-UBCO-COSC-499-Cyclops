@@ -31,7 +31,7 @@
 //     -moz-border-radius: 20px 20px 20px 20px;
 //     -webkit-border-radius: 20px 20px 20px 20px;
 //     border: 0px solid #000000;
-//     //https://www.cssmatic.com/border-radius 
+//     //https://www.cssmatic.com/border-radius
 //     -webkit-box-shadow: -7px 8px 7px -4px rgba(92,87,92,1);
 //     -moz-box-shadow: -7px 8px 7px -4px rgba(92,87,92,1);
 //     box-shadow: -7px 8px 7px -4px rgba(92,87,92,1);
@@ -125,14 +125,14 @@ ion-card img {
 }
 
 a {
-    text-decoration: none
+    text-decoration: none;
 }
 
 .odisplay2 {
     display: inline-block;
     font-size: 200%;
     padding-left: 5px;
-    color: #FFCA28;
+    color: #ffca28;
     align-items: center;
 }
 
@@ -147,4 +147,14 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+ion-fab-button {
+    width: 50px;
+    height: 50px;
+}
+
+.fab-horizontal-center {
+    margin-left: unset;
+    margin-inline-start: -50px !important;
 }

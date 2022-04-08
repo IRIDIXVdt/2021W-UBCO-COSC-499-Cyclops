@@ -7,7 +7,9 @@ import { displayArticles } from '../sharedData/displayArticles';
 import { ActivatedRoute } from '@angular/router';
 // import { Content } from '@angular/compiler/src/render3/r3_ast';
 import { FirebaseService } from '../FirebaseService/firebase.service';
-import { AlertController, LoadingController, NavController } from '@ionic/angular';
+import { AlertController, LoadingController, NavController, ModalController } from '@ionic/angular';
+import { SearchAddEcoSolutionsPage } from './search-add-eco-solutions/search-add-eco-solutions.page';
+
 
 @Component({
   selector: 'app-editing-tool-test-page',
@@ -37,6 +39,9 @@ export class EditingToolTestPagePage implements OnInit {
   //get ionic input data
   TitleInput: string;
   navControl: NavController;
+  checkedSolutions: any[];
+  progressAlertMessage: string;
+
 
   //Import the editor build in your Angular component and assign it to a public property to make it accessible from the template
   // public Editor = ClassicEditor;
@@ -47,6 +52,7 @@ export class EditingToolTestPagePage implements OnInit {
     public firebaseService: FirebaseService,
     public alertController: AlertController,
     public navCtrl: NavController,
+    private modalCtrol: ModalController,
     public loadingController: LoadingController
   ) {
     this.navControl = navCtrl;
@@ -85,7 +91,10 @@ export class EditingToolTestPagePage implements OnInit {
           title: e.payload.data()['title'],
           image: e.payload.data()['image'],
           segment: e.payload.data()['segment'],
+          solutions: e.payload.data()['solutions'],
+          solSegment: e.payload.data()['solSegment']
         };
+        this.checkedSolutions=this.contents.solutions;
         console.log("load editor data by id message from " + this.articleId);
         console.log(this.contents);
         if (this.contents.segment.length == 0) {
@@ -242,6 +251,9 @@ export class EditingToolTestPagePage implements OnInit {
     } else {
       console.log("remove segment article id: " + this.currentSeg);
       this.contents.segment.splice(this.currentSeg, 1);
+      if (this.currentSeg==this.contents.solSegment){
+        this.contents.solSegment=undefined;
+      }
       this.currentSeg = 0;
       if (this.contents.segment.length == 0) {
         //empty segment here, increase one
@@ -250,6 +262,7 @@ export class EditingToolTestPagePage implements OnInit {
         //this updates the CKEditor Directly, this is not good practice
         // this.editorComponent.editorInstance.setData("Body Paragraph");
       }
+      
       this.needSaving = true;
       this.updateArticle();
       // this.updateDataById(this.articleId, this.contents);
@@ -262,6 +275,78 @@ export class EditingToolTestPagePage implements OnInit {
   reloadPage() {
     this.contents = null;
     this.loadEditorDataById();
+
+  }
+
+  searchModalEvent(aId: string) {
+    this.modalCtrol.create({
+      component: SearchAddEcoSolutionsPage,
+      componentProps: {
+        content: aId,
+        checkedSolutions: this.checkedSolutions
+      },
+      backdropDismiss: false
+    }).then(modalres => {
+      modalres.present();
+      modalres.onDidDismiss().then(res => {
+        console.log("cover modal dismiss!", res['data']);
+        this.checkedSolutions = res['data'];
+        this.contents.solutions = this.checkedSolutions;
+        this.needSaving = true;
+        if(this.contents.solutions){
+          if (this.contents.solutions.length!=0&&(this.contents.solSegment==undefined)){
+            console.log('sth selected and no eco segment yet');
+            this.addSolutionsChip();
+          }else{//there is already one, move there
+            this.currentSeg=this.contents.solSegment;
+          }
+        }
+        
+      })
+
+    })
+
+  }
+  addSolutionsChip(){
+     // console.log("not implemented yet");
+    //include an empty one
+    const templateText: segmentItem = {
+      segmentTitle: "ECO Solutions",
+      segmentBody: "Body Paragraph"
+    }
+    //add segment to contents
+    console.log("the current article id is: " + this.articleId);
+    this.contents.segment.push({
+      segmentTitle: "ECO Solutions",
+      segmentBody: "Body Paragraph"
+    });
+    // this.saveChangesLocal();
+    //update it to the local one
+    this.currentSeg = this.contents.segment.length - 1;
+    this.contents.solSegment=this.currentSeg;
+    this.needSaving = true;
+    //title input space updates automatically
+    //manually update editor input area here
+    this.updateArticle();
+  }
+
+  colorAssign(color: number) {
+    if (color == 2) {
+      this.progressAlertMessage = "Doing it!"
+      return 'success';
+    }
+    else if (color == 1) {
+      this.progressAlertMessage = "Working on it!"
+      return 'warning';
+    }
+    else if (color == 0) {
+      this.progressAlertMessage = "Not doing it!"
+      return 'danger';
+    }
+    else {
+      this.progressAlertMessage = "Not applicable"
+      return 'medium';
+    }
 
   }
 
@@ -283,6 +368,7 @@ export class EditingToolTestPagePage implements OnInit {
       // this.saveChangesLocal();
       //we need to show animation to let user know there are changes
       // this.updateDataById(this.articleId, this.contents);
+
       this.firebaseService.updateDataByIdService(this.articleId, this.contents).then((res: any) => {
         console.log(res);
         // this.reloadPage();
@@ -312,9 +398,12 @@ export class EditingToolTestPagePage implements OnInit {
     await alert2.present();
   }
 
+
 }
 type EditPageArticle = {
   title: string;
   image: string;
   segment: segmentItem[];
+  solutions: string[];
+  solSegment: number;
 }

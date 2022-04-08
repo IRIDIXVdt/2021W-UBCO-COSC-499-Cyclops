@@ -8,6 +8,7 @@ import { EditingToolTestPagePageRoutingModule } from './editing-tool-test-page-r
 
 import { EditingToolTestPagePage } from './editing-tool-test-page.page';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   imports: [
@@ -16,8 +17,11 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
     CommonModule,
     FormsModule,
     IonicModule,
-    EditingToolTestPagePageRoutingModule
+    EditingToolTestPagePageRoutingModule,
+    Ng2SearchPipeModule
   ],
-  declarations: [EditingToolTestPagePage]
+  declarations: [
+    EditingToolTestPagePage
+  ]
 })
 export class EditingToolTestPagePageModule {}

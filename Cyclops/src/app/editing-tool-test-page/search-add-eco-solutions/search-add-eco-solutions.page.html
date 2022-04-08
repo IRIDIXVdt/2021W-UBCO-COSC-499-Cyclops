@@ -1,0 +1,30 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Select ECO Solutions</ion-title>
+        <ion-button slot="end" (click)="saveResults()">Update</ion-button>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-searchbar [(ngModel)]="userInput" placeholder="Search Article" showCancelButton="focus" cancelButtonText="Cancel" animated='true'></ion-searchbar>
+    <div id='requested'>
+        <!-- <p>this is the requested field</p> -->
+        <ion-list id='viewContentTest' *ngFor="let cardContent of searchField | filter:userInput ">
+            <ion-item id="listItem">
+                <ion-checkbox [(ngModel)]="cardContent.checked"></ion-checkbox>
+                <ion-card color='light'>
+                    <ion-card-header>
+                        <ion-card-subtitle>{{cardContent.star}}</ion-card-subtitle>
+                        <ion-card-title>{{cardContent.name}}</ion-card-title>
+                        <ion-card-subtitle>{{cardContent.section}}</ion-card-subtitle>
+                    </ion-card-header>
+                    <ion-card-content>
+                        {{cardContent.detail}}
+                    </ion-card-content>
+                </ion-card>
+            </ion-item>
+        </ion-list>
+    </div>
+
+
+</ion-content>

@@ -3,13 +3,11 @@
 //      padding-left: 10%;
 //      padding-right: 10%;
 //  }
- 
 //  ul {
 //      padding-left: 15%;
 //      padding-right: 10%;
 //      text-align: justify;
 //  }
- 
 //  h1,
 //  h5 {
 //      padding-top: 5%;
@@ -17,7 +15,6 @@
 //      padding-right: 10%;
 //      font-weight: bold;
 //  }
- 
 //  @media (min-width: 820px) {
 //      #button-web {
 //          padding-left: 30%;
@@ -25,31 +22,51 @@
 //          text-align: center;
 //      }
 //  }
- 
 //  #popover {
 //      text-decoration: underline;
 //      text-decoration-color: rgb(55, 135, 255);
 //  }
-
- //
+//
 .custome-image-article {
     max-height: 20vh;
 }
+
 @media (min-width: 768px) {
-   
-   .custome-image-article {       
-       position: relative;
-       top: 50%;
-       transform: translate(0, -50%);
-   }
+    .custome-image-article {
+        position: relative;
+        top: 50%;
+        transform: translate(0, -50%);
+    }
 }
+
 .displayAreaContent {
-   max-width: 1440px;
-   left: 50%;
-   position: relative;
-   transform: translate(-50%, 0);
+    max-width: 1440px;
+    left: 50%;
+    position: relative;
+    transform: translate(-50%, 0);
 }
- 
- // ion-header {
- //     box-shadow: 0px 10px 15px 5px rgba(0, 0, 0, 0.1);
- // }
+
+// ion-header {
+//     box-shadow: 0px 10px 15px 5px rgba(0, 0, 0, 0.1);
+// }
+.solution {
+    height: 340px;
+}
+
+@media (min-width: 820px) {
+    #button-web {
+        padding-left: 30%;
+        padding-right: 30%;
+        text-align: center;
+    }
+    .card-web {
+        max-width: 40%;
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.odisplay1 {
+    display: inline-block;
+}

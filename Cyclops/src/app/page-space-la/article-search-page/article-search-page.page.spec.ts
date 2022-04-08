@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { StarModalComponent } from './star-modal.component';
+import { ArticleSearchPagePage } from './article-search-page.page';
 
-describe('StarModalComponent', () => {
-  let component: StarModalComponent;
-  let fixture: ComponentFixture<StarModalComponent>;
+describe('ArticleSearchPagePage', () => {
+  let component: ArticleSearchPagePage;
+  let fixture: ComponentFixture<ArticleSearchPagePage>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ StarModalComponent ],
+      declarations: [ ArticleSearchPagePage ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(StarModalComponent);
+    fixture = TestBed.createComponent(ArticleSearchPagePage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

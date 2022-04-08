@@ -59,7 +59,7 @@ export class ArticleEditPagePage implements OnInit {
     });
     await alert.present();
     const { role } = await alert.onDidDismiss();
-    if (role == "cancel") {
+    if (role == "cancel" || role == "backdrop") {
       console.log("cancel!");
     } else {
       const loading = await this.loadingController.create({
