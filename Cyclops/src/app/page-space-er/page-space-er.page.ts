@@ -242,6 +242,11 @@ export class PageSpaceErPage implements OnInit {
     })
   }
 
+  forYouRoute(){
+    console.log('clicked');
+    localStorage.setItem('forYou', 'true');
+  }
+
 
 
 }

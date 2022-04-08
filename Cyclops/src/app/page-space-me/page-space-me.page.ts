@@ -10,6 +10,7 @@ import { displayArticles } from '../sharedData/displayArticles';
 import { FirebaseService } from '../FirebaseService/firebase.service';
 import { AuthService } from '../authentication/auth/auth.service';
 import { segment } from '../sharedData/segment';
+import { auth } from 'firebase-admin';
 @Component({
   selector: 'app-page-space-me',
   templateUrl: './page-space-me.page.html',
@@ -38,8 +39,10 @@ export class PageSpaceMePage implements OnInit {
   displaySol: fetchSolution[];
   @ViewChild(IonContent) content: IonContent;
   status: any;
-  segmentDepth: number[] = [0, 0, 0];
+  segmentDepth: number[];
   currentSegment = 0;
+  articleHeight = 0;
+
   progressAlertMessage: string;
 
   ecoSolutionIdList: string[] = [];
@@ -80,7 +83,7 @@ export class PageSpaceMePage implements OnInit {
           this.userData = e.payload.data()['readArticles'];
           for (let i = 0; i < this.userData.length; i++) {
             if (this.userData[i]['id'] == this.docId) {
-              this.currentSegments = this.userData[i]['segment']
+              this.currentSegments = this.userData[i]['segment'];
             }
           }
           this.checkForScrollbar();
@@ -117,6 +120,41 @@ export class PageSpaceMePage implements OnInit {
           solSegment: e.payload.data()['solSegment']
 
         };
+        this.segmentDepth = Array(this.contents.segment.length).fill(0);
+        //after content loaded, check if page is accessed from for you section
+        if (this.authService.isLogin()) {
+          if (localStorage.getItem('forYou') == 'true') {
+            localStorage.setItem('forYou', 'false');//reset foryou check
+            console.log('from for you');
+            //get segment and depth
+            const subscription = this.firebaseService.getUserDataByIdService(this.userId).subscribe(
+              async e => {
+                if (e.payload.data()['readArticles'] != undefined) {
+                  console.log('readarticles found');
+                  this.userData = e.payload.data()['readArticles'];
+                  for (let i = 0; i < this.userData.length; i++) {
+                    if (this.userData[i]['id'] == this.docId) {
+                      this.status = this.userData[i]['currentSegment'];
+                      console.log(this.status);
+                      //this.content.scrollToPoint(0, this.userData[i]['depth'] * 50);
+
+                      break;
+                    }
+                  }
+                }
+                subscription.unsubscribe();;
+                //after subscription closed and segment content has been loaded, scrollbar can be checked
+              },
+              err => {
+                console.debug(err);
+              }
+            )
+
+          }
+        }
+
+
+
         subscription.unsubscribe();
         console.log('unsubscribe success, with this content loaded:', this.contents);
 
@@ -145,6 +183,7 @@ export class PageSpaceMePage implements OnInit {
       })
       this.localSol = this.solutions;
 
+
       this.ecoListContentLoading();
       // this.userEcoItemList = this.userEcoItemList;
       //this.sortTypeInitialize();
@@ -153,11 +192,12 @@ export class PageSpaceMePage implements OnInit {
     })
 
   }
-  segmentChanged(ev: any) {
+
+  async segmentChanged(ev: any) {
+    let scrollElement = await this.content.getScrollElement();
+    this.articleHeight = scrollElement.scrollHeight - scrollElement.clientHeight
     console.log('current segment status is', this.status);
     this.currentSegment = parseInt(this.status);
-    console.log('this.currentSegment: ', this.currentSegment);
-    this.content.scrollToPoint(0, this.segmentDepth[this.currentSegment]);
     this.authService.afAuth.onAuthStateChanged(user => {
       if (user) {
         this.checkForScrollbar();//check for scrollbar everytime the segment changes
@@ -204,15 +244,17 @@ export class PageSpaceMePage implements OnInit {
 
   ngOnInit() {
 
+
   }
   ngOnDestroy() {
     if (this.userId) {
-      console.log('page closing, saving article read information');
       let position = 0;
-      if (this.hasScrollbar) {
-        position = this.segmentDepth[this.currentSegment];
-      }
+
+      position = this.segmentDepth[this.currentSegment];
+      this.updateFirestoreUserDepth();
+
       let completion = this.areAllTrue(this.currentSegments);
+      console.log('completion: ', completion);
       this.firebaseService.updateUserCollectionDataByIdService(this.userId, { latestRead: { id: this.docId, segment: this.currentSegment, depth: position, completed: completion } });
 
     }
@@ -408,25 +450,26 @@ export class PageSpaceMePage implements OnInit {
 
   async onScroll($event) {
     if (this.userId) {
+
       const scrollElement = await $event.target.getScrollElement();
       //scrollHeight: height of content, clientHeight: height of view port
       //track only scrolltop when bottom of page reached
       //articleHeight changes with responsive screen sizes
-      const articleHeight = scrollElement.scrollHeight - scrollElement.clientHeight;
+      this.articleHeight = scrollElement.scrollHeight - scrollElement.clientHeight;
 
-      const currentScrollDepth = $event.detail.scrollTop;
+      const currentScrollDepth = $event.detail.scrollTop / this.articleHeight;
       this.segmentDepth[this.currentSegment] = currentScrollDepth;
-      const targetPercent = 90;
+      const targetPercent = 0.9;
 
-      let triggerDepth = ((articleHeight / 100) * targetPercent);
+      //let triggerDepth = ((articleHeight / 100) * targetPercent);
 
-      if (currentScrollDepth >= triggerDepth) {
+      if (currentScrollDepth >= targetPercent) {
         let pageRead = true;
         console.log(`This segment read, scrolled to ${targetPercent}% on `, this.currentSegment);
 
         // this ensures that the database is only changed if the page has been read and the database doesn't already say true
         if (pageRead && !this.currentSegments[this.currentSegment]) {
-          console.log('updating database');
+          this.currentSegments[this.currentSegment] = true;
           this.updateFirestoreUserSegments();
           return;
         }
@@ -441,7 +484,8 @@ export class PageSpaceMePage implements OnInit {
     const scrollElement = await this.content.getScrollElement();
     this.hasScrollbar = scrollElement.scrollHeight > scrollElement.clientHeight;
     if (!this.hasScrollbar && !this.currentSegments[this.currentSegment]) {//if the database is marked as unread then update it
-      console.log('no scrollbar and database indicates page has not been read, Updating database');
+      console.log('no scrolbar');
+      this.currentSegments[this.currentSegment] = true;
       this.updateFirestoreUserSegments();
     }
   }
@@ -450,16 +494,27 @@ export class PageSpaceMePage implements OnInit {
     for (let i = 0; i < this.userData.length; i++) {
       if (this.userData[i]['id'] == this.docId) {
         this.userData[i]['segment'][this.currentSegment] = true;
-        console.log(this.areAllTrue(this.userData[i]['segment']));
         if (this.areAllTrue(this.userData[i]['segment'])) {
           this.userData[i]['progress'] = "completed";
         } else {
           this.userData[i]['progress'] = "partial";
         }
-        console.log(this.userData[i]);
+        this.firebaseService.updateUserCollectionDataByIdService(this.userId, { readArticles: this.userData });
+        break;
+      }
+    }
+  }
+
+  updateFirestoreUserDepth() {
+    for (let i = 0; i < this.userData.length; i++) {
+      if (this.userData[i]['id'] == this.docId) {
+        this.userData[i]['depth'] = this.segmentDepth[this.currentSegment];
+        console.log('cureentseg updates');
+        this.userData[i]['currentSegment'] = this.currentSegment;
         this.firebaseService.updateUserCollectionDataByIdService(this.userId, { readArticles: this.userData });
       }
     }
+
   }
 
   areAllTrue(array) {

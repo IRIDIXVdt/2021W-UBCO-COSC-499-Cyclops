@@ -70,7 +70,7 @@
                         <ion-progress-bar type="indeterminate"></ion-progress-bar>
                     </ion-card>
                 </ion-col>
-                <ion-col size-xs="12" size-sm="6" size-md="6" size-lg="4" *ngIf="readProgressImg!=undefined">
+                <ion-col size-xs="12" size-sm="6" size-md="6" size-lg="4" *ngIf="readProgressImg!=undefined" (click)="forYouRoute()">
                     <ion-card [routerLink]="['/tabs/SelectedArticle/' , latestRead]" color='light' style="height:100%">
                         <img [src]="readProgressImg" style="width: 690px; height:200px; object-fit: cover" />
                         <ion-card-header>
@@ -151,7 +151,7 @@
                             <ion-col size-sm="4" size-md="3" size-lg="2" *ngFor="let data of survey">
                                 <ion-card id="card1" color='light'>
                                     <ion-card-header>
-                                        <a href="{{data.surveyLink}}" color="dark" >
+                                        <a href="{{data.surveyLink}}" color="dark">
 
                                             <!-- target="_blank" rel="noopener noreferrer" -->
                                             <!-- The rel attribute sets the relationship between your page and the linked URL. 
@@ -171,7 +171,7 @@
                 <ion-slide class="surveyCard-mobile" *ngFor="let data of survey">
                     <ion-card color='light'>
                         <ion-card-header>
-                            <a href="{{data.surveyLink}}"color="dark">
+                            <a href="{{data.surveyLink}}" color="dark">
                                 <!--  target="_blank" rel="noopener noreferrer"  -->
                                 <ion-card-title>{{data.surveyTitle}}</ion-card-title>
                             </a>
