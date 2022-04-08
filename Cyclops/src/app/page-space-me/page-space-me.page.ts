@@ -42,7 +42,7 @@ export class PageSpaceMePage implements OnInit {
   currentSegment = 0;
   progressAlertMessage: string;
 
-
+  ecoSolutionIdList: string[] = [];
 
   constructor(
     public popover: PopoverController,
@@ -119,6 +119,10 @@ export class PageSpaceMePage implements OnInit {
         };
         subscription.unsubscribe();
         console.log('unsubscribe success, with this content loaded:', this.contents);
+
+        for (let item of this.contents.solutions) {
+          this.ecoSolutionIdList.push(item.id);
+        }
       },
       err => {
         console.debug(err);
@@ -279,7 +283,7 @@ export class PageSpaceMePage implements OnInit {
           }
           //user eco list item consists of all the solutions the user has attempted
           this.assignCompletedList();
-         // this.updateDisplayList();
+          // this.updateDisplayList();
 
           subscription.unsubscribe();
           /* console.log('unsubscribe success', this.userEcoItemListRemote); */
@@ -292,6 +296,7 @@ export class PageSpaceMePage implements OnInit {
 
   }
   assignCompletedList() {
+    console.log("assign complete list")
     //this merges information from both lists: the solution list and the user list
     if (this.userEcoItemList == undefined) {
       this.userEcoItemList = this.userEcoItemListRemote;
@@ -318,7 +323,15 @@ export class PageSpaceMePage implements OnInit {
       }
     }
 
-    this.displaySol = this.localSol;
+    // this.displaySol = this.localSol;
+    // ----------------------
+    console.log(this.localSol);
+    console.log(this.ecoSolutionIdList);
+    this.displaySol = this.localSol.filter(f => (this.ecoSolutionIdList.indexOf(f.id) > -1));
+
+    // 00000000000
+    console.log(this.displaySol);
+
     /* console.log('loaded solution and user progress successfully merged', this.scoreArea); */
   }
   addScore(star, weight) {
