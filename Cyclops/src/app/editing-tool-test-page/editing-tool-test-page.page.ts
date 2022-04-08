@@ -42,6 +42,7 @@ export class EditingToolTestPagePage implements OnInit {
   checkedSolutions: any[];
   progressAlertMessage: string;
 
+
   //Import the editor build in your Angular component and assign it to a public property to make it accessible from the template
   // public Editor = ClassicEditor;
   public Editor = InlineEditor;
@@ -90,6 +91,7 @@ export class EditingToolTestPagePage implements OnInit {
           title: e.payload.data()['title'],
           image: e.payload.data()['image'],
           segment: e.payload.data()['segment'],
+          solutions: e.payload.data()['solutions']
         };
         console.log("load editor data by id message from " + this.articleId);
         console.log(this.contents);
@@ -270,7 +272,7 @@ export class EditingToolTestPagePage implements OnInit {
 
   }
 
-  searchModalEvent(aId: string){
+  searchModalEvent(aId: string) {
     this.modalCtrol.create({
       component: SearchAddEcoSolutionsPage,
       componentProps: {
@@ -280,7 +282,9 @@ export class EditingToolTestPagePage implements OnInit {
       modalres.present();
       modalres.onDidDismiss().then(res => {
         console.log("cover modal dismiss!", res['data']);
-        this.checkedSolutions= res['data'];
+        this.checkedSolutions = res['data'];
+        this.contents.solutions = this.checkedSolutions;
+        this.needSaving = true;
       })
 
     })
@@ -325,6 +329,7 @@ export class EditingToolTestPagePage implements OnInit {
       // this.saveChangesLocal();
       //we need to show animation to let user know there are changes
       // this.updateDataById(this.articleId, this.contents);
+
       this.firebaseService.updateDataByIdService(this.articleId, this.contents).then((res: any) => {
         console.log(res);
         // this.reloadPage();
@@ -360,4 +365,5 @@ type EditPageArticle = {
   title: string;
   image: string;
   segment: segmentItem[];
+  solutions: string[];
 }
