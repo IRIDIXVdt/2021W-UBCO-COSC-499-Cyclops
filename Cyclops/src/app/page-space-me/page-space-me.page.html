@@ -50,7 +50,7 @@
         <div [innerHTML]="contents.segment[status].segmentBody"> </div>
         <ng-container *ngIf="contents">
 
-            <ion-grid *ngIf="this.status==this.contents.solSegment">
+            <ion-grid *ngIf="this.status==this.contents.solSegment&&this.authService.isLogin()">
                 <ion-row>
                     <ion-col size-xs="12" size-sm="6" size-md="6" size-lg="4" *ngFor="let item of this.contents.solutions" class="ecoCardItem">
                         <ion-card class="solution" color='light'>
@@ -122,6 +122,20 @@
                     </ion-col>
                 </ion-row>
             </ion-grid>
+            <ion-card class="card-web" color='light' *ngIf="this.status==this.contents.solSegment&&!this.authService.isLogin()">
+                <ion-card-header>
+                    <ion-card-title>
+                        <ng-container *ngIf="!this.authService.isLogin()">
+                            <ion-text style="text-align:center; font-size:150%; font-weight: 700;">
+                                <p>Please Login to Continue</p>
+                            </ion-text>
+                            <ion-text style="text-align:center; font-size:150%; font-weight: 700;" button routerLink="/login" color="primary">
+                                <p>Login</p>
+                            </ion-text>
+                        </ng-container>
+                    </ion-card-title>
+                </ion-card-header>
+            </ion-card>
         </ng-container>
         <div>
             <!-- <ion-button expand="block " (click)="openModal() " *ngIf="this.authService.isAdmin()">Edit Content

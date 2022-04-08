@@ -94,6 +94,7 @@ export class EditingToolTestPagePage implements OnInit {
           solutions: e.payload.data()['solutions'],
           solSegment: e.payload.data()['solSegment']
         };
+        this.checkedSolutions=this.contents.solutions;
         console.log("load editor data by id message from " + this.articleId);
         console.log(this.contents);
         if (this.contents.segment.length == 0) {

@@ -52,3 +52,21 @@
 .solution {
     height: 340px;
 }
+
+@media (min-width: 820px) {
+    #button-web {
+        padding-left: 30%;
+        padding-right: 30%;
+        text-align: center;
+    }
+    .card-web {
+        max-width: 40%;
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.odisplay1 {
+    display: inline-block;
+}
