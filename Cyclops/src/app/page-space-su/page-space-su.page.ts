@@ -11,6 +11,7 @@ import { convertToViews } from '@ionic/core/dist/types/components/nav/view-contr
 import { solutionItem, sectionList, ecoData } from '../sharedData/ecoData';
 import { AuthService } from '../authentication/auth/auth.service';
 import { EcoEditPage } from '../page-space-su/eco-edit/eco-edit.page';
+import { EcoAddPage } from './eco-add/eco-add.page';
 
 
 @Component({
@@ -65,6 +66,12 @@ export class PageSpaceSuPage implements OnInit {
     public loadingController: LoadingController,
     public authService: AuthService,
   ) {
+
+
+
+  }
+
+  ngOnInit() {
     this.getSections();
     this.slider = 0;
     this.scoreArea = 0;
@@ -84,8 +91,6 @@ export class PageSpaceSuPage implements OnInit {
     //this.ecoListContentLoading();  // move this inside the contentLoading()
     this.userProgressTypeInit();
     this.initializeColor();
-
-
   }
 
   getSections() {
@@ -175,7 +180,7 @@ export class PageSpaceSuPage implements OnInit {
     for (let item of this.localSol) {
       // if (this.completedList.indexOf(item.id) > -1) {
       //stop as soon as there is a match
-      this.solutionTotalScore += item.star;
+      this.solutionTotalScore += (item.star + 1);
       for (let ecoAttendItem of this.userEcoItemList) {
         if (item.id === ecoAttendItem.ecoId) {
           item.attend = true;
@@ -285,7 +290,7 @@ export class PageSpaceSuPage implements OnInit {
           subscription.unsubscribe();
           /* console.log('unsubscribe success', this.userEcoItemListRemote); */
         }, err => {
-          console.debug(err);
+          console.log("test  ", err);
           this.userEcoItemListRemote = [];
         });
 
@@ -388,9 +393,6 @@ export class PageSpaceSuPage implements OnInit {
     this.sortTypeInitialize();
   }
 
-  ngOnInit() {
-
-  }
 
   sortTypeInitialize() {
     this.sortType = "starUp";
@@ -482,6 +484,20 @@ export class PageSpaceSuPage implements OnInit {
     })
   }
 
+  addCard() {
+    console.log('add');
+
+    this.modalCtrol.create({
+      component: EcoAddPage,
+    }).then(modalres => {
+      modalres.present();
+      modalres.onDidDismiss().then(res => {
+        /* console.log("edit eco modal dismiss!"); */
+      })
+
+    })
+  }
+
   removeFromLocal(id) {
     this.localSol = this.localSol.filter(f => (f.id != id));
     //now local soltion do not contain this
@@ -554,7 +570,7 @@ export class PageSpaceSuPage implements OnInit {
             loading.present();
 
             newSectionInputName = alertInputData.sectionTitle;
-            this.currentSectionSolutions =null;
+            this.currentSectionSolutions = null;
             this.currentSectionSolutions = this.localSol.filter(f => (f.section === item));
 
             //delete origin one 
@@ -584,14 +600,14 @@ export class PageSpaceSuPage implements OnInit {
               if (res.length > 0) { // when res find values
                 this.idOfSection = res[0].payload.doc.id;
                 this.firebaseService.upDateSectionList(this.idOfSection, newSectionInputName).then((res: any) => {
-                 
+
                 }).catch((error) => {
                   console.log("Update section error", error);
                   loading.dismiss();
                 })
               }
 
-              
+
             });
             /* subscriptionUpdate.unsubscribe();  */
 
@@ -640,33 +656,33 @@ export class PageSpaceSuPage implements OnInit {
       this.updateDisplayList();
       this.sections = this.sections.filter(f => (f.sectionName != item)); */
 
-      
+
 
 
       // delete corresponding solutions
-      this.currentSectionSolutions =null;
+      this.currentSectionSolutions = null;
       this.currentSectionSolutions = this.localSol.filter(f => (f.section === item));
       for (let data of this.currentSectionSolutions) {
         //remove locally first
-      this.removeFromLocal(data.id);
-      //then remove on remote
-      this.removeFromRemote(data.id);
+        this.removeFromLocal(data.id);
+        //then remove on remote
+        this.removeFromRemote(data.id);
       }
 
       // delete corresponding section
       const subscriptionUpdate = this.firebaseService.getSectionName(item).subscribe((res: any) => {
         if (res.length > 0) { // when res find values
           this.idOfSection = res[0].payload.doc.id;
-         
+
           this.firebaseService.deleteDocByIdService('sectionList', this.idOfSection).then((res: any) => {
-            
+
           }).catch((error) => {
             console.log("Update section error", error);
             loading.dismiss();
           })
         }
 
-        
+
       });
 
       loading.dismiss();
@@ -695,8 +711,8 @@ export class PageSpaceSuPage implements OnInit {
           handler: async (alertInputData) => {
             loading.present();
             addSectionInputName = alertInputData.sectionTitle;
-            let data={
-              sectionName:addSectionInputName
+            let data = {
+              sectionName: addSectionInputName
             }
             this.sections.push(data);
 

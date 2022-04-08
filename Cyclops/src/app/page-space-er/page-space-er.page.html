@@ -151,7 +151,9 @@
                             <ion-col size-sm="4" size-md="3" size-lg="2" *ngFor="let data of survey">
                                 <ion-card id="card1" color='light'>
                                     <ion-card-header>
-                                        <a href="{{data.surveyLink}}" color="dark" target="_blank" rel="noopener noreferrer">
+                                        <a href="{{data.surveyLink}}" color="dark" >
+
+                                            <!-- target="_blank" rel="noopener noreferrer" -->
                                             <!-- The rel attribute sets the relationship between your page and the linked URL. 
                                             Setting it to noopener noreferrer is to prevent a type of phishing known as tabnabbing. -->
                                             <ion-card-title>{{data.surveyTitle}}</ion-card-title>
@@ -169,7 +171,8 @@
                 <ion-slide class="surveyCard-mobile" *ngFor="let data of survey">
                     <ion-card color='light'>
                         <ion-card-header>
-                            <a href="{{data.surveyLink}}" target="_blank" rel="noopener noreferrer" color="dark">
+                            <a href="{{data.surveyLink}}"color="dark">
+                                <!--  target="_blank" rel="noopener noreferrer"  -->
                                 <ion-card-title>{{data.surveyTitle}}</ion-card-title>
                             </a>
                         </ion-card-header>
