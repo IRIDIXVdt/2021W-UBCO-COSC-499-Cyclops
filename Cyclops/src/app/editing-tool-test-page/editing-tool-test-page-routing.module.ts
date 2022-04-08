@@ -7,7 +7,11 @@ const routes: Routes = [
   {
     path: '',
     component: EditingToolTestPagePage
+  },  {
+    path: 'search-add-eco-solutions',
+    loadChildren: () => import('./search-add-eco-solutions/search-add-eco-solutions.module').then( m => m.SearchAddEcoSolutionsPageModule)
   }
+
 ];
 
 @NgModule({

@@ -303,6 +303,7 @@ export class PageSpaceSuPage implements OnInit {
       let onChangeItem = this.userEcoItemList.find(i => i.ecoId == data.ecoId);//locates the onChange Item
       onChangeItem.weight = data.weight;//change the weight
     } else {
+      console.log(this.userEcoItemList);
       this.userEcoItemList.push(data);
     }
   }
