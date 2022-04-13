@@ -36,7 +36,7 @@ export class PageSpaceMePage implements OnInit {
   solutions: any;
   currentSectionSolutions: any;
   localSol: fetchSolution[];
-  displaySol: fetchSolution[];
+  displaySol: fetchSolution[] = [];
   @ViewChild(IonContent) content: IonContent;
   status: any;
   segmentDepth: number[];
