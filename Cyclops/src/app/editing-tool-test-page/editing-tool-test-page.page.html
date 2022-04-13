@@ -128,7 +128,7 @@
                         <!-- *ngIf="item.ecoId in completedList" -->
                         <ng-container>
                             <ion-card-content *ngIf="item.detail.length >130">
-                                <p>{{ (item.detail.length>130)? (item.detail | slice:0:130)+'...':(str) }}</p>
+                                <p>{{ (item.detail.length>130)? (item.detail | slice:0:130)+'...':(string) }}</p>
                             </ion-card-content>
                             <ion-card-content *ngIf="item.detail.length <130">
                                 <p>{{item.detail}}</p>
