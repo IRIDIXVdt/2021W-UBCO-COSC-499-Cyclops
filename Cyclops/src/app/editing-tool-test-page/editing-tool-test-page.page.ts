@@ -294,11 +294,16 @@ export class EditingToolTestPagePage implements OnInit {
         this.contents.solutions = this.checkedSolutions;
         this.needSaving = true;
         if(this.contents.solutions){
+          console.log('yes');
           if (this.contents.solutions.length!=0&&(this.contents.solSegment==undefined)){
             console.log('sth selected and no eco segment yet');
             this.addSolutionsChip();
-          }else{//there is already one, move there
+          }else if(this.contents.solutions.length!=0&&(this.contents.solSegment!==undefined)){//there is already one, move there
+            console.log('sth selected and eco segment already exists');
             this.currentSeg=this.contents.solSegment;
+          }else if (this.contents.solutions.length==0&&(this.contents.solSegment!==undefined)){//nothing selected but there is an eco tab
+            console.log('nothing selected, remove eco tab');
+            this.removeArticle();
           }
         }
         
