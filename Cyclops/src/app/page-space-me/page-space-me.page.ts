@@ -159,7 +159,7 @@ export class PageSpaceMePage implements OnInit {
         console.log('unsubscribe success, with this content loaded:', this.contents);
         if (this.contents.solutions) {
           for (let item of this.contents.solutions) {
-            this.ecoSolutionIdList.push(item.id);
+            this.ecoSolutionIdList.push(item);
           }
         }
 
