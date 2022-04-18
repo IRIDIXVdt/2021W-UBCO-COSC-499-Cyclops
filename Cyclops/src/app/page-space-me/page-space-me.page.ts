@@ -36,7 +36,7 @@ export class PageSpaceMePage implements OnInit {
   solutions: any;
   currentSectionSolutions: any;
   localSol: fetchSolution[];
-  displaySol: fetchSolution[] = [];
+  displaySol: fetchSolution[];
   @ViewChild(IonContent) content: IonContent;
   status: any;
   segmentDepth: number[];
@@ -157,12 +157,10 @@ export class PageSpaceMePage implements OnInit {
 
         subscription.unsubscribe();
         console.log('unsubscribe success, with this content loaded:', this.contents);
-        if (this.contents.solutions) {
-          for (let item of this.contents.solutions) {
-            this.ecoSolutionIdList.push(item);
-          }
-        }
 
+        for (let item of this.contents.solutions) {
+          this.ecoSolutionIdList.push(item.id);
+        }
       },
       err => {
         console.debug(err);

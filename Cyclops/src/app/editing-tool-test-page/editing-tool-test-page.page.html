@@ -20,7 +20,6 @@
             <ion-icon name="cloud-upload-outline" color="medium"></ion-icon>
             <ion-label color="medium">&nbsp;&nbsp;Saved</ion-label>
         </ion-button>
-
     </ion-toolbar>
     <!-- <ion-progress-bar  ></ion-progress-bar> -->
     <ion-toolbar *ngIf="contents">
@@ -41,16 +40,12 @@
         </ion-chip>
       </span>
         </span>
-        <ion-chip color="success" (click)="searchModalEvent()" *ngIf="this.contents.solSegment==undefined||this.contents.solSegment == -1">
-            Add ECO Solutions segment
-            <ion-icon name="add-circle-outline"></ion-icon>
-        </ion-chip>
-        <ion-chip (click)="onChipAdd()" color="primary">
-            Add article segment
-            <!-- This is the button for adding segments -->
-            <ion-icon name="add-circle-outline"></ion-icon>
-        </ion-chip>
 
+        <ion-chip (click)="onChipAdd()" color="light">
+            <!-- This is the button for adding segments -->
+            <ion-icon name="add-circle-outline" color="primary"></ion-icon>
+            <ion-label></ion-label>
+        </ion-chip>
 
     </ion-toolbar>
     <div *ngIf="!contents">
@@ -94,7 +89,6 @@
     </ion-fab>
     <!-- <p class = "testT">testText</p> -->
     <ion-toolbar *ngIf="contents">
-        <ion-button *ngIf="this.currentSeg==this.contents.solSegment" (click)="searchModalEvent()">Add/Remove Solutions</ion-button>
         <ion-item>
             <ion-label text-wrap position="stacked">
                 Title of this Segment:
@@ -106,6 +100,7 @@
         <ckeditor max-height="20%" #editor [(ngModel)]="model.editorData" [editor]="Editor" (change)="onChange($event)" (focus)="textAreaFocus()">
         </ckeditor>
     </div>
+    <ion-button (click)="searchModalEvent()">Add ECO solutions</ion-button>
     <ng-container *ngIf="contents">
         <ion-grid *ngIf="this.currentSeg==this.contents.solSegment">
             <ion-row>
