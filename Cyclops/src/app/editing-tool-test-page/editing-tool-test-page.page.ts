@@ -40,6 +40,8 @@ export class EditingToolTestPagePage implements OnInit {
   TitleInput: string;
   navControl: NavController;
   checkedSolutions: any[];
+  checkedIds: any[];
+  allSolutions: any[];
   progressAlertMessage: string;
 
 
@@ -64,6 +66,7 @@ export class EditingToolTestPagePage implements OnInit {
 
   ngOnInit() {
     this.loadEditorDataById();//update data by id
+    this.contentLoading();
     this.presentAlert();
   }
 
@@ -94,7 +97,7 @@ export class EditingToolTestPagePage implements OnInit {
           solutions: e.payload.data()['solutions'],
           solSegment: e.payload.data()['solSegment']
         };
-        this.checkedSolutions=this.contents.solutions;
+        this.checkedIds = this.contents.solutions;//contents.solutions hold the checkedIds
         console.log("load editor data by id message from " + this.articleId);
         console.log(this.contents);
         if (this.contents.segment.length == 0) {
@@ -118,7 +121,52 @@ export class EditingToolTestPagePage implements OnInit {
     )
 
   }
+  contentLoading() {
+    this.firebaseService.getAllEcoSolutionService().subscribe((res) => {
+      this.allSolutions = res.map(e => {
+        return {
+          id: e.payload.doc.id,
+          name: e.payload.doc.data()['name'],
+          section: e.payload.doc.data()['section'],
+          star: e.payload.doc.data()['star'],
+          detail: e.payload.doc.data()['detail'],
+          checked: false
+        }
+      })
+      console.log("all solutions loaded", this.allSolutions);
+      /*
+      this.checkedIds = [];
+      if(this.checkedSolutions){
+        for (let i = 0; i < this.checkedSolutions.length; i++) {
+          this.checkedIds.push(this.checkedSolutions[i].id);
+        }
+        for (let i = 0; i < this.searchField.length; i++) {
+          let currentSol = this.searchField[i];
+          if (this.checkedIds.indexOf(currentSol.id)!=-1) {
+            this.searchField[i].checked=true;
+          }
+        }
+      }
+      */
+      this.updateCheckedSolutions();
+    }, (err: any) => {
+      console.log(err);
+    })
+  }
 
+  updateCheckedSolutions() {//update checkedSolutions based on what is in checkedIds
+    this.checkedSolutions = [];//reset checked solutions 
+    //checkedIds might be undefined or empty, only push content if it's defined or is not empty
+
+    if (this.checkedIds != undefined && this.checkedIds != []) {
+      for (let i = 0; i < this.allSolutions.length; i++) {
+        if (this.checkedIds.indexOf(this.allSolutions[i].id) != -1) {//add only solutions in checkedIds
+          this.checkedSolutions.push(this.allSolutions[i]);
+        }
+      }
+    }
+
+  }
   async presentErr(errMessage: string) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
@@ -251,8 +299,9 @@ export class EditingToolTestPagePage implements OnInit {
     } else {
       console.log("remove segment article id: " + this.currentSeg);
       this.contents.segment.splice(this.currentSeg, 1);
-      if (this.currentSeg==this.contents.solSegment){
-        this.contents.solSegment=undefined;
+      if (this.currentSeg == this.contents.solSegment) {
+        this.contents.solSegment = -1;
+        this.contents.solutions = [];//make sure solutions array is empty
       }
       this.currentSeg = 0;
       if (this.contents.segment.length == 0) {
@@ -262,7 +311,7 @@ export class EditingToolTestPagePage implements OnInit {
         //this updates the CKEditor Directly, this is not good practice
         // this.editorComponent.editorInstance.setData("Body Paragraph");
       }
-      
+
       this.needSaving = true;
       this.updateArticle();
       // this.updateDataById(this.articleId, this.contents);
@@ -288,27 +337,33 @@ export class EditingToolTestPagePage implements OnInit {
       backdropDismiss: false
     }).then(modalres => {
       modalres.present();
-      modalres.onDidDismiss().then(res => {
+      modalres.onDidDismiss().then(res => {//res returns checked *IDS*
         console.log("cover modal dismiss!", res['data']);
-        this.checkedSolutions = res['data'];
-        this.contents.solutions = this.checkedSolutions;
+        this.checkedIds = res['data'];
+        this.updateCheckedSolutions();//once checkedIds changed, update the displayed solution cards
+        this.contents.solutions = this.checkedIds;//save checked *IDS* to database
         this.needSaving = true;
-        if(this.contents.solutions){
-          if (this.contents.solutions.length!=0&&(this.contents.solSegment==undefined)){
+        if (this.contents.solutions) {
+          console.log('yes');
+          if (this.contents.solutions.length != 0 && (this.contents.solSegment == undefined || (this.contents.solSegment != undefined&&this.contents.solSegment == -1))) {
             console.log('sth selected and no eco segment yet');
             this.addSolutionsChip();
-          }else{//there is already one, move there
-            this.currentSeg=this.contents.solSegment;
+          } else if (this.contents.solutions.length != 0 && (this.contents.solSegment !== undefined && this.contents.solSegment != -1)) {//there is already one, move there
+            console.log('sth selected and eco segment already exists');
+            this.currentSeg = this.contents.solSegment;
+          } else if (this.contents.solutions.length == 0 && (this.contents.solSegment !== undefined && this.contents.solSegment != -1)) {//nothing selected but there is an eco tab
+            console.log('nothing selected, remove eco tab', this.contents.solSegment);
+            this.removeArticle();
           }
         }
-        
+
       })
 
     })
 
   }
-  addSolutionsChip(){
-     // console.log("not implemented yet");
+  addSolutionsChip() {
+    // console.log("not implemented yet");
     //include an empty one
     const templateText: segmentItem = {
       segmentTitle: "ECO Solutions",
@@ -323,7 +378,7 @@ export class EditingToolTestPagePage implements OnInit {
     // this.saveChangesLocal();
     //update it to the local one
     this.currentSeg = this.contents.segment.length - 1;
-    this.contents.solSegment=this.currentSeg;
+    this.contents.solSegment = this.currentSeg;
     this.needSaving = true;
     //title input space updates automatically
     //manually update editor input area here

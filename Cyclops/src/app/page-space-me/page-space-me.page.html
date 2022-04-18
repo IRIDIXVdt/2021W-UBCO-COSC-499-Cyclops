@@ -17,8 +17,9 @@
     <div *ngIf="contents">
         <ion-segment mode="md" scrollable (ionChange)="segmentChanged($event)" color="primary" [(ngModel)]="status">
             <ng-container *ngFor="let contentSeg of contents.segment; let indexOfSeg = index;">
-                <ion-segment-button text-wrap value={{indexOfSeg}}>
+                <ion-segment-button text-wrap value={{indexOfSeg}} *ngIf="(indexOfSeg==this.contents.solSegment&&this.displaySol.length!=0)||indexOfSeg!==this.contents.solSegment">
                     <ion-label text-wrap>{{contentSeg.segmentTitle}}</ion-label>
+                    <ion-text></ion-text>
                 </ion-segment-button>
             </ng-container>
         </ion-segment>

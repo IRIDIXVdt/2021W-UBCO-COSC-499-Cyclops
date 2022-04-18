@@ -81,7 +81,12 @@ export class SearchAddEcoSolutionsPage implements OnInit {
         this.checkedSolutions.push(currentSol);
       }
     }
-    this.modalController.dismiss(this.checkedSolutions);
+    this.checkedIds=[];
+    for(let i = 0; i<this.checkedSolutions.length;i++){
+      this.checkedIds.push(this.checkedSolutions[i].id);
+    }
+    
+    this.modalController.dismiss(this.checkedIds);
   }
   
 
