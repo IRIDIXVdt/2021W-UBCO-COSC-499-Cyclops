@@ -41,7 +41,7 @@
         </ion-chip>
       </span>
         </span>
-        <ion-chip color="success" (click)="searchModalEvent()" *ngIf="this.contents.solSegment==undefined">
+        <ion-chip color="success" (click)="searchModalEvent()" *ngIf="this.contents.solSegment==undefined||this.contents.solSegment == -1">
             Add ECO Solutions segment
             <ion-icon name="add-circle-outline"></ion-icon>
         </ion-chip>

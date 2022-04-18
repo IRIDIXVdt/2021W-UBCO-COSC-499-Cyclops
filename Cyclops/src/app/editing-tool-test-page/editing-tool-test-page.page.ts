@@ -148,7 +148,7 @@ export class EditingToolTestPagePage implements OnInit {
         }
       }
       */
-     this.updateCheckedSolutions();
+      this.updateCheckedSolutions();
     }, (err: any) => {
       console.log(err);
     })
@@ -157,15 +157,15 @@ export class EditingToolTestPagePage implements OnInit {
   updateCheckedSolutions() {//update checkedSolutions based on what is in checkedIds
     this.checkedSolutions = [];//reset checked solutions 
     //checkedIds might be undefined or empty, only push content if it's defined or is not empty
-    
-    if(this.checkedIds!=undefined&&this.checkedIds!=[]){
+
+    if (this.checkedIds != undefined && this.checkedIds != []) {
       for (let i = 0; i < this.allSolutions.length; i++) {
         if (this.checkedIds.indexOf(this.allSolutions[i].id) != -1) {//add only solutions in checkedIds
           this.checkedSolutions.push(this.allSolutions[i]);
         }
       }
     }
-    
+
   }
   async presentErr(errMessage: string) {
     const alert = await this.alertController.create({
@@ -300,7 +300,8 @@ export class EditingToolTestPagePage implements OnInit {
       console.log("remove segment article id: " + this.currentSeg);
       this.contents.segment.splice(this.currentSeg, 1);
       if (this.currentSeg == this.contents.solSegment) {
-        this.contents.solSegment = undefined;
+        this.contents.solSegment = -1;
+        this.contents.solutions = [];//make sure solutions array is empty
       }
       this.currentSeg = 0;
       if (this.contents.segment.length == 0) {
@@ -338,20 +339,20 @@ export class EditingToolTestPagePage implements OnInit {
       modalres.present();
       modalres.onDidDismiss().then(res => {//res returns checked *IDS*
         console.log("cover modal dismiss!", res['data']);
-        this.checkedIds=res['data'];
+        this.checkedIds = res['data'];
         this.updateCheckedSolutions();//once checkedIds changed, update the displayed solution cards
         this.contents.solutions = this.checkedIds;//save checked *IDS* to database
         this.needSaving = true;
         if (this.contents.solutions) {
           console.log('yes');
-          if (this.contents.solutions.length != 0 && (this.contents.solSegment == undefined)) {
+          if (this.contents.solutions.length != 0 && (this.contents.solSegment == undefined || (this.contents.solSegment != undefined&&this.contents.solSegment == -1))) {
             console.log('sth selected and no eco segment yet');
             this.addSolutionsChip();
-          } else if (this.contents.solutions.length != 0 && (this.contents.solSegment !== undefined)) {//there is already one, move there
+          } else if (this.contents.solutions.length != 0 && (this.contents.solSegment !== undefined && this.contents.solSegment != -1)) {//there is already one, move there
             console.log('sth selected and eco segment already exists');
             this.currentSeg = this.contents.solSegment;
-          } else if (this.contents.solutions.length == 0 && (this.contents.solSegment !== undefined)) {//nothing selected but there is an eco tab
-            console.log('nothing selected, remove eco tab');
+          } else if (this.contents.solutions.length == 0 && (this.contents.solSegment !== undefined && this.contents.solSegment != -1)) {//nothing selected but there is an eco tab
+            console.log('nothing selected, remove eco tab', this.contents.solSegment);
             this.removeArticle();
           }
         }
