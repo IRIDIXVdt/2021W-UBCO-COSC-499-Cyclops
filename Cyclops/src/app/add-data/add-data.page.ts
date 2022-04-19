@@ -65,7 +65,7 @@ export class AddDataPage implements OnInit {
     let data: any[] = [];
 
 
-    this.firebaseService.getDataServiceMainPage().subscribe(async res => {
+    const subscription = this.firebaseService.getDataServiceMainPage().subscribe(async res => {
       articles = res.map(e => {
         return {
           id: e.payload.doc.id,
@@ -108,7 +108,7 @@ export class AddDataPage implements OnInit {
       this.firebaseService.addDataWithIdService('usersCollection', userDoc.id, { readArticles: data });
 
     });
-
+    subscription.unsubscribe();
      
     }, (err: any) => {
       console.log(err);
