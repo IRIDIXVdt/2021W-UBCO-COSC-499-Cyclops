@@ -6,6 +6,7 @@ import { ArticleEditPagePage } from '../article-edit-page/article-edit-page.page
 // import { ArticleEditComponent } from '../article-edit/article-edit.component';
 import { AuthService } from '../../authentication/auth/auth.service';
 import { ArticleImagePage } from '../article-image/article-image.page';
+import { deleteField } from 'firebase/firestore';
 
 @Component({
   selector: 'app-article-main',
@@ -43,13 +44,51 @@ export class ArticleMainComponent implements OnInit {
 
       console.log("remove", aIndex);
       this.contentCol.splice(aIndex, 1);//remove locally
-      this.firebaseService.deleteDocByIdService("articles", content.id).then((res: any) => console.log(res, " ", content.id),
-        (err: any) => { console.log(err); loading.dismiss(); });//remove remotelly
+      this.firebaseService.deleteDocByIdService("articles", content.id).then((res: any) => {
+        console.log(res, " ", content.id)
+        this.removeUserReadArticles(content.id);
+      }, (err: any) => {
+        console.log(err); loading.dismiss();
+      });//remove remotelly
       loading.dismiss();
     }
-
-
   }
+
+  async removeUserReadArticles(docId) {
+    let users = this.firebaseService.getAllUsersDataService();
+    let segments: any[] = [];
+
+    (await users).forEach((userDoc) => {
+      console.log(userDoc.data());
+      console.log(docId);
+      segments = userDoc.data()['readArticles'];
+      for (let i = 0; i < segments.length; i++) {
+
+        if (segments[i].id == docId) {
+          segments.splice(i, 1);
+          console.log('spliced');
+          break;
+        }
+        
+      }
+      console.log(segments);
+      if(userDoc.data()['latestRead']){
+        console.log('latestread exists');
+        if (docId == userDoc.data()['latestRead'].id){
+          console.log('latestread undefined');
+          this.firebaseService.updateUserCollectionDataByIdService(userDoc.id, {latestRead:deleteField() });
+        }
+      }
+      this.firebaseService.updateUserCollectionDataByIdService(userDoc.id, { readArticles: segments });
+      
+      /*let segmentRead = Array(segmentLength).fill(false);
+      
+      segments.push(newData);
+      */
+
+    });
+  }
+
   articleAddEvent() {
     console.log("add new artciel to col", this.contentCol);
     const newArticle: fetchArticle = {
@@ -71,7 +110,7 @@ export class ArticleMainComponent implements OnInit {
     //update all user profiles read article tracker with new article
     this.firebaseService.addDataService("articles", newArticle).then((res: any) => {
       console.log(res.id);
-      this.addUserReadArticles(res.id,newArticle.segment.length);
+      this.addUserReadArticles(res.id, newArticle.segment.length);
     })
 
   }
@@ -80,18 +119,18 @@ export class ArticleMainComponent implements OnInit {
     let segments: any[] = [];
 
     (await users).forEach((userDoc) => {
-        console.log(userDoc.data());
-        segments= userDoc.data()['readArticles'];
-        let segmentRead = Array(segmentLength).fill(false);
-        let newData = { id: docId, segment: segmentRead };
-        segments.push(newData);
-        this.firebaseService.updateUserCollectionDataByIdService(userDoc.id,{readArticles: segments});
+      console.log(userDoc.data());
+      segments = userDoc.data()['readArticles'];
+      let segmentRead = Array(segmentLength).fill(false);
+      let newData = { id: docId, segment: segmentRead };
+      segments.push(newData);
+      this.firebaseService.updateUserCollectionDataByIdService(userDoc.id, { readArticles: segments });
 
     });
   }
 
 
-  coverEditEvent(aId: string){
+  coverEditEvent(aId: string) {
     console.log("cover event", aId);
     this.modalCtrol.create({
       component: ArticleImagePage,
