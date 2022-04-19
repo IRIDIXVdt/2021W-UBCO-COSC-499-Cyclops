@@ -67,7 +67,15 @@ export class PageSpaceSuPage implements OnInit {
     public authService: AuthService,
   ) {
 
-
+    this.authService.afAuth.onAuthStateChanged(user => {
+      if (user) {
+        console.log('logged in:', user.uid);
+        this.userId = user.uid;
+      } else {
+        this.userId = 'null';
+        console.log('logged out, userId: ', this.userId);
+      }
+    });
 
   }
 
@@ -77,12 +85,12 @@ export class PageSpaceSuPage implements OnInit {
     this.scoreArea = 0;
     this.contentLoading();
     // this.dummyContentLoading();
-    this.sortTypeOnChange();
+    this.sortTypeOnChange();/*
     if (JSON.parse(localStorage.getItem('user')) != null) {
       this.userId = JSON.parse(localStorage.getItem('user')).uid;
     } else {
       this.userId = 'null';
-    }
+    }*/
 
     // console.log('is Admin?:', this.authService.isAdmin());
     // information on Admin is stored in this.authService.isAdmin()
@@ -275,7 +283,8 @@ export class PageSpaceSuPage implements OnInit {
     if (this.authService.isLogin()) {
       const subscription = this.firebaseService.getUserByIdService(this.userId).subscribe(
         e => {
-          if (e.payload.data()["userEcoSolutions"] != undefined) {
+          console.log('subscription starts: ',e.payload.data()['userEcoSolutions']) ;
+          if (e.payload.data()["userEcoSolutions"]!=undefined) {
             this.userEcoItemListRemote = e.payload.data()["userEcoSolutions"];
           }
 
@@ -288,7 +297,7 @@ export class PageSpaceSuPage implements OnInit {
           this.updateDisplayList();
 
           subscription.unsubscribe();
-          /* console.log('unsubscribe success', this.userEcoItemListRemote); */
+           console.log('unsubscribe success', this.userEcoItemListRemote); 
         }, err => {
           console.log("test  ", err);
           this.userEcoItemListRemote = [];
