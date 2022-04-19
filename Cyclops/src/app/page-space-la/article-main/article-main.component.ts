@@ -6,6 +6,7 @@ import { ArticleEditPagePage } from '../article-edit-page/article-edit-page.page
 // import { ArticleEditComponent } from '../article-edit/article-edit.component';
 import { AuthService } from '../../authentication/auth/auth.service';
 import { ArticleImagePage } from '../article-image/article-image.page';
+import { deleteField } from 'firebase/firestore';
 
 @Component({
   selector: 'app-article-main',
@@ -62,7 +63,7 @@ export class ArticleMainComponent implements OnInit {
       console.log(docId);
       segments = userDoc.data()['readArticles'];
       for (let i = 0; i < segments.length; i++) {
-        console.log(segments[i].id);
+
         if (segments[i].id == docId) {
           segments.splice(i, 1);
           console.log('spliced');
@@ -71,7 +72,15 @@ export class ArticleMainComponent implements OnInit {
         
       }
       console.log(segments);
+      if(userDoc.data()['latestRead']){
+        console.log('latestread exists');
+        if (docId == userDoc.data()['latestRead'].id){
+          console.log('latestread undefined');
+          this.firebaseService.updateUserCollectionDataByIdService(userDoc.id, {latestRead:deleteField() });
+        }
+      }
       this.firebaseService.updateUserCollectionDataByIdService(userDoc.id, { readArticles: segments });
+      
       /*let segmentRead = Array(segmentLength).fill(false);
       
       segments.push(newData);
