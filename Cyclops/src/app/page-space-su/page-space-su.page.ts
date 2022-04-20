@@ -698,7 +698,7 @@ export class PageSpaceSuPage implements OnInit {
     }
   }
 
-  async addSection(item) {
+  async addSection() {
     const loading = await this.loadingController.create({
       message: 'Please wait...',
     });
