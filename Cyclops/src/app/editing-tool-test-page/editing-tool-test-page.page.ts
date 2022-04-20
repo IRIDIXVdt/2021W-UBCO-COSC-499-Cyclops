@@ -327,11 +327,10 @@ export class EditingToolTestPagePage implements OnInit {
 
   }
 
-  searchModalEvent(aId: string) {
+  searchModalEvent() {
     this.modalCtrol.create({
       component: SearchAddEcoSolutionsPage,
       componentProps: {
-        content: aId,
         checkedSolutions: this.checkedSolutions
       },
       backdropDismiss: false

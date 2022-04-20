@@ -14,6 +14,7 @@ export class ArticleSearchPagePage implements OnInit {
   searchField: fetchArticle[];
   articleCol: fetchArticle[][];
   i: number = 0;
+  userInput: string = '';
 
   constructor(
     public firebaseService: FirebaseService,
@@ -33,7 +34,7 @@ export class ArticleSearchPagePage implements OnInit {
           image: e.payload.doc.data()['image']
         }
       })
-      console.log("Search Field Loaded",this.searchField);
+      console.log("Search Field Loaded", this.searchField);
       this.articleCol = [[], [], []];
       for (this.i = 0; this.i < this.searchField.length; this.i++) {
         //load data into each column
@@ -51,14 +52,14 @@ export class ArticleSearchPagePage implements OnInit {
     }, (err: any) => {
       console.log(err);
     })
-    
+
   }
 
   async loadData(searchbarComponent: HTMLElement) {
     this.contentLoading();
     searchbarComponent.style.display = "block";
     // loadData loads all article information into the searchField Component
-   
+
   }
   searchBarOnclick() {
     this.dummySearchField = this.searchField;

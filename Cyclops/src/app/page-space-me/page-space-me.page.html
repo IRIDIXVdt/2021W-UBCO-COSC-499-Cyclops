@@ -85,7 +85,7 @@
                                             <h6> {{progressAlertMessage}} </h6>
                                         </ion-text>
                                         <ion-item>
-                                            <ion-range deounce='500' min="-1" max="2" step="1" [(ngModel)]="item.weight" [color]="colorAssign(item.weight)" [pinFormatter]="customFormatter" [pin]="false" snaps="true" grid="true" snaps color="success" list='tickmarks' (ionBlur)="rangeChangeEvent(item.weight, item.id)"
+                                            <ion-range deounce='500' min="-1" max="2" step="1" [(ngModel)]="item.weight" [color]="colorAssign(item.weight)"  snaps="true" grid="true" snaps color="success" list='tickmarks' (ionBlur)="rangeChangeEvent(item.weight, item.id)"
                                                 class="ion-padding-end">
                                                 <ion-icon slot="start" [color]="colorAssign(item.weight)" name="leaf"></ion-icon>
                                                 <ion-icon slot="end" [color]="colorAssign(item.weight)" name="leaf">
@@ -111,7 +111,7 @@
                             <!-- *ngIf="item.ecoId in completedList" -->
                             <ng-container>
                                 <ion-card-content *ngIf="item.detail.length >130">
-                                    <p>{{ (item.detail.length>130)? (item.detail | slice:0:130)+'...':(string) }}</p>
+                                    <p>{{ (item.detail.length>130)? (item.detail | slice:0:130)+'...':'' }}</p>
                                     <ion-button (click)="displaySolutionDetail(item.detail)" color="primary" fill="clear" expand="block">Read More</ion-button>
                                 </ion-card-content>
                                 <ion-card-content *ngIf="item.detail.length <130">

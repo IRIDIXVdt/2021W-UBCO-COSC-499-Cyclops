@@ -165,13 +165,10 @@ export class PageSpaceLaPage implements OnInit {
     }*/
   }
 
-  searchModalEvent(aId: string){
-    console.log("cover event", aId);
+  searchModalEvent(){
     this.modalCtrol.create({
       component: ArticleSearchPagePage,
-      componentProps: {
-        content: aId,
-      }
+      
     }).then(modalres => {
       modalres.present();
       modalres.onDidDismiss().then(res => {

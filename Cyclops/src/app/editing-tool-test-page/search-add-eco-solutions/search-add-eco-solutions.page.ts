@@ -13,6 +13,7 @@ export class SearchAddEcoSolutionsPage implements OnInit {
   searchField: any[];
   checkedSolutions: any[];
   checkedIds: any[];
+  userInput: string = '';
   constructor(
     public firebaseService: FirebaseService,
     public modalController: ModalController,
@@ -33,18 +34,18 @@ export class SearchAddEcoSolutionsPage implements OnInit {
       })
       console.log("Search Field Loaded", this.searchField);
       this.checkedIds = [];
-      if(this.checkedSolutions){
+      if (this.checkedSolutions) {
         for (let i = 0; i < this.checkedSolutions.length; i++) {
           this.checkedIds.push(this.checkedSolutions[i].id);
         }
         for (let i = 0; i < this.searchField.length; i++) {
           let currentSol = this.searchField[i];
-          if (this.checkedIds.indexOf(currentSol.id)!=-1) {
-            this.searchField[i].checked=true;
+          if (this.checkedIds.indexOf(currentSol.id) != -1) {
+            this.searchField[i].checked = true;
           }
         }
       }
-      
+
 
     }, (err: any) => {
       console.log(err);
@@ -69,25 +70,25 @@ export class SearchAddEcoSolutionsPage implements OnInit {
   saveResults() {
     // console.log("we have the editC now as:", this.editC);
 
-      this.checkedSolutions=[];
-    
-    this.checkedIds=[];//check again before submission
+    this.checkedSolutions = [];
+
+    this.checkedIds = [];//check again before submission
     for (let i = 0; i < this.checkedSolutions.length; i++) {
       this.checkedIds.push(this.checkedSolutions[i].id);
     }
     for (let i = 0; i < this.searchField.length; i++) {
       let currentSol = this.searchField[i];
-      if (currentSol.checked == true&& this.checkedIds.indexOf(currentSol.id)==-1) {
+      if (currentSol.checked == true && this.checkedIds.indexOf(currentSol.id) == -1) {
         this.checkedSolutions.push(currentSol);
       }
     }
-    this.checkedIds=[];
-    for(let i = 0; i<this.checkedSolutions.length;i++){
+    this.checkedIds = [];
+    for (let i = 0; i < this.checkedSolutions.length; i++) {
       this.checkedIds.push(this.checkedSolutions[i].id);
     }
-    
+
     this.modalController.dismiss(this.checkedIds);
   }
-  
+
 
 }
