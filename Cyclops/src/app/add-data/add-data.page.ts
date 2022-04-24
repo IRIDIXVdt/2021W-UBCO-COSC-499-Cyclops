@@ -75,6 +75,7 @@ export class AddDataPage implements OnInit {
 
 
       })
+      console.log(articles);
       //create sorted array 
       let col1 = [];
       let col2 = [];

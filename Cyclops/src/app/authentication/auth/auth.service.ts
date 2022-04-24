@@ -7,6 +7,7 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat
 import { Router } from "@angular/router";
 import { AlertController, LoadingController } from '@ionic/angular';
 import { Observable } from 'rxjs';
+import { read } from 'fs';
 @Injectable({
   providedIn: 'root'
 })
@@ -152,15 +153,19 @@ export class AuthService {
     return this.afAuth.createUserWithEmailAndPassword(email, password)
       .then((result) => {
         let articles: any[];
-        let articlesCollection = this.afs.collection('articles').snapshotChanges();
+        let articlesCollection = this.afs.collection('articles', ref =>
+          ref.orderBy('id', 'asc')).snapshotChanges();
         const subscription = articlesCollection.subscribe(res => {
           articles = res.map(e => {
             return {
-              docId: e.payload.doc.id,
-              segment: e.payload.doc.data()['segment']
+              id: e.payload.doc.id,
+              columnName: e.payload.doc.data()['columnName'],
+              segment: e.payload.doc.data()['segment'],
             }
           })
-          let readArticles = this.initializeUserReadArticles(articles)
+          console.log(articles);
+          let readArticles = this.initializeUserReadArticles(articles);
+          console.log(readArticles);
           this.afs.collection("usersCollection").doc(result.user.uid)
             .set({
               readArticles: readArticles
@@ -187,12 +192,35 @@ export class AuthService {
 
   initializeUserReadArticles(articles: any[]) {
     let data: any[] = [];
-    for (let i = 0; i < articles.length; i++) {
+    /*for (let i = 0; i < articles.length; i++) {
       let segmentsLength = articles[i]['segment'].length;
       let segmentRead = Array(segmentsLength).fill(false);//initalize all segments read to be false
       let newData = { id: articles[i]['docId'], segment: segmentRead };
       data.push(newData);
+    }*/
+    let col1 = [];
+    let col2 = [];
+    let col3 = [];
+    for (let i = 0; i < articles.length; i++) {
+      const currentArticle = articles[i];
+      if (currentArticle.columnName == '1') {
+        col1.push(currentArticle);
+      } else if (currentArticle.columnName == '2') {
+        col2.push(currentArticle);
+      } else if (currentArticle.columnName == '3') {
+        col3.push(currentArticle);
+      }
     }
+    let cols = col1.concat(col2).concat(col3);
+    console.log('cols', cols);
+
+    //create readArticles field
+    cols.forEach((articleDoc) => {
+      let segmentsLength = articleDoc['segment'].length;
+      let segmentRead = Array(segmentsLength).fill(false);//initalize all segments read to be false
+      let newData = { id: articleDoc.id, segment: segmentRead, depth: 0, currentSegment: 0, progress: "unread" };
+      data.push(newData);
+    });
     console.log(data);
     return data;
   }
